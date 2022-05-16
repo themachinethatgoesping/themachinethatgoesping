@@ -1,0 +1,4 @@
+[submodule "subprojects/tools"]
+	path = subprojects/tools
+	url = ../tools.git
+	branch = master
