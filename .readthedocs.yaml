@@ -1,0 +1,37 @@
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Set the version of Python and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.10"
+
+  jobs:
+    post_checkout:
+      # add git lfs support (https://docs.readthedocs.io/en/stable/build-customization.html)
+      - wget https://github.com/git-lfs/git-lfs/releases/download/v3.1.4/git-lfs-linux-amd64-v3.1.4.tar.gz
+      - tar xvfz git-lfs-linux-amd64-v3.1.4.tar.gz
+      - git config filter.lfs.process "`pwd`/git-lfs filter-process"
+      - git config filter.lfs.smudge  "`pwd`/git-lfs smudge -- %f"
+      - git config filter.lfs.clean "`pwd`/git-lfs clean -- %f"
+      - ./git-lfs install
+      - ./git-lfs fetch
+      - ./git-lfs checkout
+
+# Build documentation in the docs/ directory with Sphinx
+sphinx:
+   configuration: docs/source/conf.py
+
+# If using Sphinx, optionally build your docs in additional formats such as PDF
+# formats:
+#    - pdf
+
+# Optionally declare the Python requirements required to build your docs
+# python:
+#    install:
+#    - requirements: docs/requirements.txt
