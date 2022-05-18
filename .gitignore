@@ -1,7 +1,52 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,jupyternotebooks
+# other
+*.kate-swp
+*.kdev4
+*.user
 
+#build dirs
+*/build/*
+*/builddir/*
+*.vscode/*
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+# -- python
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
@@ -154,3 +199,4 @@ dmypy.json
 cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
+
