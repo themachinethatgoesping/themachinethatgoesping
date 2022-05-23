@@ -1,0 +1,162 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+  pull_request:
+    branches: [ main ]
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+
+# env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  #BUILD_TYPE: Release
+  
+jobs:
+
+  build-on-ubuntu-22_04:
+    runs-on: ubuntu-latest
+    container: ubuntu:22.04 #pull directly from dockerhub
+
+    steps:
+    - uses: actions/checkout@v1
+        
+    - name: update apt and install sudo
+      run: apt update && apt-get install -y sudo 
+
+    - name: install dependecies
+      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
+
+    - name: install meson
+      run: pip install meson ninja
+      
+    - name: configure meson
+      run: meson setup builddir/
+      env:
+        CC: gcc
+
+    - name: build and test
+      run: meson test -C builddir/ -v
+        
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Ubuntu_22.04_Testlog
+        path: builddir/meson-logs/testlog.txt
+        
+
+  build-on-ubuntu-20_04:
+    runs-on: ubuntu-latest
+    container: ubuntu:20.04 #pull directly from dockerhub   
+
+    steps:
+    - uses: actions/checkout@v1
+       
+    - name: update apt and install sudo
+      run: apt update && apt-get install -y sudo 
+
+    - name: install dependecies
+      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
+
+    - name: install meson
+      run: pip install meson ninja
+      
+    - name: configure meson
+      run: meson setup builddir/
+      env:
+        CC: gcc
+
+    - name: build and test
+      run: meson test -C builddir/ -v
+        
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Ubuntu_20.04_Testlog
+        path: builddir/meson-logs/testlog.txt  
+
+
+  build-on-archlinux:
+    runs-on: ubuntu-latest
+    container: archlinux:latest #pull directly from dockerhub   
+
+    steps:
+    - uses: actions/checkout@v1
+        
+    - name: update and install sudo
+      run: pacman -Syu --noconfirm; pacman -Syy --noconfirm sudo 
+
+    - name: install dependecies
+      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl 
+
+    - name: install meson
+      run: pip install meson ninja
+      
+    - name: configure meson
+      run: meson setup builddir/
+      env:
+        CC: gcc
+
+    - name: build and test
+      run: meson test -C builddir/ -v
+        
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: archlinux_Testlog
+        path: builddir/meson-logs/testlog.txt
+    
+
+#   build-on-windows:
+#     runs-on: windows-latest
+#     steps:
+#     - uses: actions/checkout@v1
+#     - uses: actions/setup-python@v1
+#       with:
+#         python-version: '3.x'
+#     - run: pip install meson ninja
+#     - run: meson setup builddir/
+#       env:
+#         CC: gcc
+#     - run: meson test -C builddir/ -v
+#     - uses: actions/upload-artifact@v1
+#       if: failure()
+#       with:
+#         name: Windows_Meson_Testlog
+#         path: builddir/meson-logs/testlog.txt
+
+#   macos:
+#     runs-on: macos-latest
+#     steps:
+#     - uses: actions/checkout@v1
+#     - uses: actions/setup-python@v1
+#       with:
+#         python-version: '3.x'
+#     - run: brew install gcc
+#     - run: pip install meson ninja
+#     - run: meson setup builddir/
+#       env:
+#         CC: gcc
+#     - run: meson test -C builddir/ -v
+#     - uses: actions/upload-artifact@v1
+#       if: failure()
+#       with:
+#         name: MacOS_Meson_Testlog
+#         path: builddir/meson-logs/testlog.txt
+
+      
