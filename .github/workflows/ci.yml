@@ -27,11 +27,11 @@ on:
 jobs:
 
   build-on-ubuntu-22_04:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container: ubuntu:22.04 #pull directly from dockerhub
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3git
       with:
         submodules: recursive
 
