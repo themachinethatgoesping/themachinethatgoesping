@@ -32,6 +32,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: checkout submodules
+      run: git submodule update --init --recursive
         
     - name: update apt and install sudo
       run: apt update && apt-get install -y sudo 
@@ -64,6 +67,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: checkout submodules
+      run: git submodule update --init --recursive
        
     - name: update apt and install sudo
       run: apt update && apt-get install -y sudo 
@@ -96,6 +102,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: checkout submodules
+      run: git submodule update --init --recursive
         
     - name: update and install sudo
       run: pacman -Syu --noconfirm; pacman -Syy --noconfirm sudo 
