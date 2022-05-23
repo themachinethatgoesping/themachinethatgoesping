@@ -31,7 +31,7 @@ jobs:
     container: ubuntu:22.04 #pull directly from dockerhub
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: update apt and install prequisits
       run: apt update && apt-get install -y sudo git
@@ -66,7 +66,7 @@ jobs:
     container: ubuntu:20.04 #pull directly from dockerhub   
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: update apt and install prequisits
       run: apt update && apt-get install -y sudo git
@@ -101,7 +101,7 @@ jobs:
     container: archlinux:latest #pull directly from dockerhub   
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: update apt and install prequisits
       run: apt update && apt-get install -y sudo git
