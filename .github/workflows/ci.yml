@@ -39,20 +39,28 @@ jobs:
       with:
         submodules: recursive
 
-    - name: install dependecies
+    - name: install dependecies (c++)
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
-    - name: install meson
-      run: pip install meson ninja
+    - name: install dependcies (meson & pythone)
+      run: pip install meson ninja pytest
 
     - name: configure meson
-      run: meson setup builddir/
+      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
       env:
         CC: gcc
 
-    - name: build and test
+    - name: compile project
+      run: meson compile -C builddir/
+
+    - name: test (cpp)
       run: meson test -C builddir/ -v
-        
+
+    - name: install project
+      run: meson install -C builddir/
+
+    - name: test (pytest)
+      run: pytest -v
       
     - uses: actions/upload-artifact@v1
       if: failure()
@@ -74,20 +82,28 @@ jobs:
       with:
         submodules: recursive
 
-    - name: install dependecies
+    - name: install dependecies (c++)
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
-    - name: install meson
-      run: pip install meson ninja
+    - name: install dependcies (meson & pythone)
+      run: pip install meson ninja pytest
 
     - name: configure meson
-      run: meson setup builddir/
+      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
       env:
         CC: gcc
 
-    - name: build and test
+    - name: compile project
+      run: meson compile -C builddir/
+
+    - name: test (cpp)
       run: meson test -C builddir/ -v
-        
+
+    - name: install project
+      run: meson install -C builddir/
+
+    - name: test (pytest)
+      run: pytest -v
       
     - uses: actions/upload-artifact@v1
       if: failure()
@@ -109,20 +125,28 @@ jobs:
       with:
         submodules: recursive
 
-    - name: install dependecies
+    - name: install dependecies (c++)
       run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl
 
-    - name: install meson
-      run: pip install meson ninja
+    - name: install dependecies (meson & python)
+      run: pip install meson ninja pytest
       
     - name: configure meson
-      run: meson setup builddir/
+      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
       env:
         CC: gcc
 
-    - name: build and test
+    - name: compile project
+      run: meson compile -C builddir/
+
+    - name: test (cpp)
       run: meson test -C builddir/ -v
-        
+
+    - name: install project
+      run: meson install -C builddir/
+
+    - name: test (pytest)
+      run: pytest -v
       
     - uses: actions/upload-artifact@v1
       if: failure()
