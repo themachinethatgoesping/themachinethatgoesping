@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+ option('build_pythonmodule', type : 'feature', value : 'enabled', description : 'build the python module (requires pybind11)', yield : true)
+ option('python_path', type : 'string', value : 'python3', description : 'name of the python version or path to the python module (e.g. python3.10 or /usr/local/bin/python3.10m)', yield : true)
+ option('build_tests', type : 'feature', value : 'enabled', description : 'build tests (requires catch2)', yield : true)
