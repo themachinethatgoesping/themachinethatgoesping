@@ -37,7 +37,7 @@ jobs:
       run: apt update && apt-get install -y sudo git
 
     - name: checkout submodules
-      run: git submodule update --init --recursive
+      run: cd $GITHUB_WORKSPACE; git submodule update --init --recursive
 
     - name: install dependecies
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
