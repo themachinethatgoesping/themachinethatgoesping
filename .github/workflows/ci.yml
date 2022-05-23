@@ -31,7 +31,7 @@ jobs:
     container: ubuntu:22.04 #pull directly from dockerhub
 
     steps:
-    - uses: actions/checkout@v3git
+    - uses: actions/checkout@v3
       with:
         submodules: recursive
 
@@ -65,7 +65,7 @@ jobs:
     container: ubuntu:20.04 #pull directly from dockerhub   
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
       with:
         submodules: recursive
 
