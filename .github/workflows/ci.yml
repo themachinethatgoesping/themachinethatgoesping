@@ -26,7 +26,7 @@ on:
   
 jobs:
 
-  build-on-ubuntu-preinstalled-dependcies:
+  build-on-ubuntu-image:
     runs-on: ubuntu-latest
     container: ghcr.io/themachinethatgoesping/ubuntu_dependencies:latest #pull docker images with preinstalled dependcies
     steps:
