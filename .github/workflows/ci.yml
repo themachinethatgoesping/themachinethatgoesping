@@ -34,18 +34,17 @@ jobs:
     - name: install prequisits
       run: apt update && apt-get install -y sudo git
 
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
     - name: install dependecies
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
     - name: install meson
       run: pip install meson ninja
 
-    - name: checkout main repository
-      uses: actions/checkout@v3
-
-    - name: Checkout submodules
-      run: git submodule update --init --recursive
-      
     - name: configure meson
       run: meson setup builddir/
       env:
@@ -70,17 +69,16 @@ jobs:
     - name: install prequisits
       run: apt update && apt-get install -y sudo git
 
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
     - name: install dependecies
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
     - name: install meson
       run: pip install meson ninja
-
-    - name: checkout main repository
-      uses: actions/checkout@v3
-
-    - name: Checkout submodules
-      run: git submodule update --init --recursive
 
     - name: configure meson
       run: meson setup builddir/
@@ -103,15 +101,16 @@ jobs:
     container: archlinux:latest #pull directly from dockerhub   
 
     steps:
-    - uses: actions/checkout@v3
+    - name: install prequisits
+      run: pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
       with:
         submodules: recursive
 
-    - name: update apt and install prequisits
-      run: apt update && apt-get install -y sudo
-
     - name: install dependecies
-      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl 
+      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl
 
     - name: install meson
       run: pip install meson ninja
