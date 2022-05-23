@@ -26,6 +26,40 @@ on:
   
 jobs:
 
+  build-on-ubuntu-preinstalled-dependcies:
+    runs-on: ubuntu-latest
+    container: ghcr.io/themachinethatgoesping/ubuntu_dependencies:latest #pull docker images with preinstalled dependcies
+    steps:
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: configure meson
+      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
+      env:
+        CC: gcc
+
+    - name: compile project
+      run: meson compile -C builddir/
+
+    - name: test (cpp)
+      run: meson test -C builddir/ -v
+
+    - name: install project
+      run: meson install -C builddir/
+
+    - name: test (pytest)
+      run: pytest -v
+
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Ubuntu_22.04_Testlog
+        path: builddir/meson-logs/testlog.txt
+
+
   build-on-ubuntu-22_04:
     runs-on: ubuntu-latest
     container: ubuntu:22.04 #pull directly from dockerhub
