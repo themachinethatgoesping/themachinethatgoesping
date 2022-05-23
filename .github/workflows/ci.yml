@@ -32,12 +32,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: update apt and install prequisits
-      run: apt update && apt-get install -y sudo git
-
-    - name: checkout submodules
-      run: cd $GITHUB_WORKSPACE; git submodule update --init --recursive
+      run: apt update && apt-get install -y sudo
 
     - name: install dependecies
       run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
@@ -67,9 +66,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: update apt and install prequisits
-      run: apt update && apt-get install -y sudo git
+      run: apt update && apt-get install -y sudo
 
     - name: checkout submodules
       run: git submodule update --init --recursive
@@ -102,12 +103,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: update apt and install prequisits
-      run: apt update && apt-get install -y sudo git
-
-    - name: checkout submodules
-      run: git submodule update --init --recursive
+      run: apt update && apt-get install -y sudo
 
     - name: install dependecies
       run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl 
