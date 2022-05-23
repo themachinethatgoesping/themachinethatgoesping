@@ -5,5 +5,5 @@ Subprojects
 
 <a href="themachinethatgoesping.readthedocs.io/projects/tools/">
 Tools
-<\a?
+</a>
 
