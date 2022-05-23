@@ -25,5 +25,5 @@ Contents
 .. toctree::
 
    usage
-   subprojects
    api
+   subprojects
