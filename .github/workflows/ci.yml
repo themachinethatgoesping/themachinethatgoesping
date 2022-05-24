@@ -45,13 +45,13 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/ -v
+      run: meson test -C builddir/
 
     - name: install project
       run: meson install -C builddir/
 
     - name: test (pytest)
-      run: pytest -v
+      run: pytest
 
     - uses: actions/upload-artifact@v1
       if: failure()
@@ -88,13 +88,13 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/ -v
+      run: meson test -C builddir/
 
     - name: install project
       run: meson install -C builddir/
 
     - name: test (pytest)
-      run: pytest -v
+      run: pytest
       
     - uses: actions/upload-artifact@v1
       if: failure()
@@ -131,13 +131,13 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/ -v
+      run: meson test -C builddir/
 
     - name: install project
       run: meson install -C builddir/
 
     - name: test (pytest)
-      run: pytest -v
+      run: pytest
       
     - uses: actions/upload-artifact@v1
       if: failure()
@@ -174,13 +174,13 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/ -v
+      run: meson test -C builddir/
 
     - name: install project
       run: meson install -C builddir/
 
     - name: test (pytest)
-      run: pytest -v
+      run: pytest
       
     - uses: actions/upload-artifact@v1
       if: failure()
