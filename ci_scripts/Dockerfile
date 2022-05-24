@@ -22,8 +22,8 @@ RUN apt-get install -y build-essential ccache pkg-config cmake python3-pip libbo
 RUN apt-get install -y catch2 libeigen3-dev pybind11-dev
 
 # install dependcies (meson & pythone)
-RUN apt-get install -y meson ninja-build python3-pytest
-#RUN pip install meson ninja pytest numpy
+#RUN apt-get install -y meson ninja-build python3-pytest
+RUN pip install meson ninja pytest
 
 # update and upgrade
 RUN apt-get update; apt-get upgrade -y
