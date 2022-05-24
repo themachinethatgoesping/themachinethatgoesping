@@ -25,48 +25,31 @@ on:
   #BUILD_TYPE: Release
   
 jobs:
-
-  build-on-ubuntu-image:
+  linux:
+    strategy:
+      matrix:
+        include:  
+          - { container: 'ghcr.io/themachinethatgoesping/ubuntu_dependencies:latest'}
+          - { container: 'ubuntu:22.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
+              pip : 'pip install meson ninja pytest' }
+          - { container: 'ubuntu:20.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
+              pip : 'pip install meson ninja pytest' }
+          - { container: 'archlinux', 
+              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm', 
+              dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
+              pip : 'pip install meson ninja pytest' }
+    
     runs-on: ubuntu-latest
-    container: ghcr.io/themachinethatgoesping/ubuntu_dependencies:latest #pull docker images with preinstalled dependcies
-    steps:
-
-    - name: checkout main repository
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
-    - name: configure meson
-      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
-      env:
-        CC: gcc
-
-    - name: compile project
-      run: meson compile -C builddir/
-
-    - name: test (cpp)
-      run: meson test -C builddir/
-
-    - name: install project
-      run: meson install -C builddir/
-
-    - name: test (pytest)
-      run: pytest
-
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: Ubuntu_22.04_Testlog
-        path: builddir/meson-logs/testlog.txt
-
-
-  build-on-ubuntu-22_04:
-    runs-on: ubuntu-latest
-    container: ubuntu:22.04 #pull directly from dockerhub
+    container: ${{matrix.container}}
 
     steps:
     - name: install prequisits
-      run: apt update && apt-get install -y sudo git
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
 
     - name: checkout main repository
       uses: actions/checkout@v3
@@ -74,10 +57,12 @@ jobs:
         submodules: recursive
 
     - name: install dependecies (c++)
-      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
-
+      if:  ${{matrix.dep}}
+      run: ${{matrix.dep}}
+      
     - name: install dependcies (meson & pythone)
-      run: pip install meson ninja pytest
+      if:  ${{matrix.pip}}
+      run: ${{matrix.pip}}
 
     - name: configure meson
       run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
@@ -88,114 +73,41 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/
+      run: meson test -C builddir/ -v
 
     - name: install project
       run: meson install -C builddir/
 
     - name: test (pytest)
-      run: pytest
+      run: pytest -v
       
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: Ubuntu_22.04_Testlog
-        path: builddir/meson-logs/testlog.txt
-        
-
-  build-on-ubuntu-20_04:
-    runs-on: ubuntu-latest
-    container: ubuntu:20.04 #pull directly from dockerhub   
-
-    steps:
-    - name: install prequisits
-      run: apt update && apt-get install -y sudo git
-
-    - name: checkout main repository
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
-    - name: install dependecies (c++)
-      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
-
-    - name: install dependcies (meson & pythone)
-      run: pip install meson ninja pytest
-
-    - name: configure meson
-      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
-      env:
-        CC: gcc
-
-    - name: compile project
-      run: meson compile -C builddir/
-
-    - name: test (cpp)
-      run: meson test -C builddir/
-
-    - name: install project
-      run: meson install -C builddir/
-
-    - name: test (pytest)
-      run: pytest
-      
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: Ubuntu_20.04_Testlog
-        path: builddir/meson-logs/testlog.txt  
-
-
-  build-on-archlinux:
-    runs-on: ubuntu-latest
-    container: archlinux:latest #pull directly from dockerhub   
-
-    steps:
-    - name: install prequisits
-      run: pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm
-
-    - name: checkout main repository
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
-    - name: install dependecies (c++)
-      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl
-
-    - name: install dependecies (meson & python)
-      run: pip install meson ninja pytest
-      
-    - name: configure meson
-      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
-      env:
-        CC: gcc
-
-    - name: compile project
-      run: meson compile -C builddir/
-
-    - name: test (cpp)
-      run: meson test -C builddir/
-
-    - name: install project
-      run: meson install -C builddir/
-
-    - name: test (pytest)
-      run: pytest
-      
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: archlinux_Testlog
+        name: ${{matrix.container}}_Testlog
         path: builddir/meson-logs/testlog.txt
     
 
 #   build-on-windows:
 #     runs-on: windows-latest
+#     #container: python:latest #pull directly from dockerhub   
 #     steps:
-#     - uses: actions/checkout@v1
-#     - uses: actions/setup-python@v1
+
+#     - uses: actions/setup-python@v3
 #       with:
 #         python-version: '3.x'
+
+#     - name: checkout main repository
+#       uses: actions/checkout@v3
+#       with:
+#         submodules: recursive
+
+#     - name: install vcpk
+#       run: git clone https://github.com/Microsoft/vcpkg.git
+#     - run: .\vcpkg\bootstrap-vcpkg.bat
+#     - run: vcpkg install boost
+
+
 #     - run: pip install meson ninja
 #     - run: meson setup builddir/
 #       env:
