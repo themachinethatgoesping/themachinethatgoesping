@@ -9,7 +9,7 @@ Subprojects
 
 :doc:`tools <themachinethatgoespingtools:index>`
 ------------
-| Tools library for the machien that goes ping:
+| Tools library for themachinethatgoesping:
 | - :doc:`tools/index <themachinethatgoespingtools:index>`
 | - :doc:`tools/usage <themachinethatgoespingtools:usage>`
 | - :doc:`tools/api <themachinethatgoespingtools:api>`
