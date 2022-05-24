@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 FROM ubuntu:latest
-MAINTAINER Peter Urban <peter.urban@ugent.be>
+LABEL maintainer="Peter Urban <peter.urban@ugent.be>""
 
 # install prequisits
 RUN apt-get update && apt-get install -y sudo git git-lfs apt-utils
