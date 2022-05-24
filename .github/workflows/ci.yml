@@ -74,7 +74,7 @@ jobs:
         submodules: recursive
 
     - name: install dependecies (c++)
-      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev
+      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
     - name: install dependcies (meson & pythone)
       run: pip install meson ninja pytest
@@ -117,7 +117,7 @@ jobs:
         submodules: recursive
 
     - name: install dependecies (c++)
-      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev
+      run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
 
     - name: install dependcies (meson & pythone)
       run: pip install meson ninja pytest
@@ -160,7 +160,7 @@ jobs:
         submodules: recursive
 
     - name: install dependecies (c++)
-      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost
+      run: sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl
 
     - name: install dependecies (meson & python)
       run: pip install meson ninja pytest
