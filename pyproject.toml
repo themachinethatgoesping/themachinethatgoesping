@@ -16,9 +16,7 @@ readme = 'README-proj.md'
 license = { file = 'LICENSE' }
 keyword = ['mbes', 'sbes', 'watercolumn','echosounder','quantification']
 authors = [
-    {name = 'Peter Urban', email = 'peter.urban@ugent.be'},
-    {name = 'Alexandre Schimel'},
-    {name = 'More will follow soon'}]
+    {name = 'Peter Urban', email = 'peter.urban@ugent.be'}]
 
 classifiers = [
   'Development Status :: 1 - Planning',
