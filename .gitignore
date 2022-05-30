@@ -15,6 +15,7 @@
 #pip build
 .mesonpy-native-file.ini
 ./dist/*
+./pybuild/*
 
 # Prerequisites
 *.d
