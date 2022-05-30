@@ -1,8 +1,42 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+build-backend = 'mesonpy'
+requires = [
+    'meson',
+    'meson-python >= 0.5'
+]
 
 [project]
-name = "themachinethatgoesping"
-authors = [{name = "Peter Urban", email = "peter.urban@ugent.be"},{name = "More to follow"}]
-dynamic = ["version", "description"]
+name = 'themachinethatgoesping'
+dynamic = [
+  'version',
+]
+#version = '0.0.1'
+description = 'Enable advanced processing for multibeam and singlebeam echosounder data. THIS PROJECT IS IN DEVELOPMENT AND DOES NOT REALLY EXIST YET!'
+readme = 'README.md'
+license = { file = 'LICENSE' }
+keyword = ['mbes', 'sbes', 'watercolumn','echosounder','quantification']
+authors = [
+    {name = 'Peter Urban', email = 'peter.urban@ugent.be'},
+    {name = 'Alexandre Schimel'},
+    {name = 'More will follow soon'}]
+
+classifiers = [
+  'Development Status :: 1 - Planning',
+  'Programming Languages :: C++, Python',
+]
+
+requires-python = '>=3.10'
+dependencies = [
+  'numpy',
+]
+
+[project.optional-dependencies]
+test = [
+  'matplotlib',
+]
+
+[project.urls]
+homepage      = 'https://github.com/themachinethatgoesping'
+repository    = 'https://github.com/themachinethatgoesping/themachinethatgoesping'
+documentation = 'https://themachinethatgoesping.readthedocs.io/en/latest/'
+#changelog = 'https://constellations.example.com/orion/docs/changelog.html'

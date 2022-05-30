@@ -12,6 +12,10 @@
 */builddir/*
 *.vscode/*
 
+#pip build
+.mesonpy-native-file.ini
+./dist/*
+
 # Prerequisites
 *.d
 
