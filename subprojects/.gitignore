@@ -7,3 +7,8 @@ date*/*
 eigen*/*
 pybind11*/*
 Catch2*/*
+
+#inherited wrap files
+catch2.wrap
+hinnant-date.wrap
+pybind11.wrap
