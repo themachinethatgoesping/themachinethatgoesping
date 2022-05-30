@@ -22,7 +22,7 @@ authors = [
 
 classifiers = [
   'Development Status :: 1 - Planning',
-  'Programming Languages :: C++, Python',
+  'Programming Language :: C++,Python',
 ]
 
 requires-python = '>=3.10'
