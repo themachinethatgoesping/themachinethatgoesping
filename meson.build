@@ -7,7 +7,7 @@
 project(
   'themachinethatgoesping',
   'cpp',
-version : '0.0.2',
+version : '0.0.1.1',
 default_options : ['warning_level=3', 'buildtype=release', 'cpp_std=c++20']
 )
 
