@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build_and_publish:
 
     runs-on: ubuntu-latest
     container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
@@ -75,5 +75,52 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ./wheelhouse/
+        
+        
+  install_and_test:
+    needs: build_and_publish
+      
+    strategy:
+      matrix:
+        include:  
+          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
+          - { container: 'ubuntu:22.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          - { container: 'ubuntu:20.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          - { container: 'archlinux', 
+              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm', 
+              dep : 'sudo pacman -Syy --noconfirm base-devel python-pip'}
+
+    runs-on: ubuntu-latest
+    container: ${{matrix.container}}
+
+    steps:
+    - name: install prequisits
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: install dependecies (c++)
+      if:  ${{matrix.dep}}
+      run: ${{matrix.dep}}
+
+    - name: install dependcies (meson & pythone)
+      run: pip install themachinethatgoesping
+
+    - name: test (pytest)
+      run: pytest -v
+
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: ${{matrix.container}}_Testlog
+        path: builddir/meson-logs/testlog.txt
 
   
