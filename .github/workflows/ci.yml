@@ -97,9 +97,9 @@ jobs:
   build-on-windows:
     strategy:
         matrix:
-          boost-version: 1.74.0
-          boost-version_: 1_74_0
-          boost-modules: "filesystem"
+          boost-version: [1.74.0]
+          boost-version_: [1_74_0]
+          boost-modules: ["filesystem"]
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
