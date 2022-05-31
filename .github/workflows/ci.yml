@@ -114,8 +114,8 @@ jobs:
   
     - name: Install dependencies on windows
       run: |
-           curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
-           tar -xf boost_${BOOST_VERSION_}.tar.bz2
+           curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.zip
+           tar -xf boost_${BOOST_VERSION_}.zip
            cd boost_*
            ./bootstrap.bat --with-libraries=${BOOST_MODULES}
            ./b2 install --variant=release --threading=multi --link=static
