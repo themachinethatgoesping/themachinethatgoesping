@@ -107,11 +107,11 @@ jobs:
       with:
         submodules: recursive
 
-    - name: install dependecies (c++)
+    - name: install dependecies (python and pip)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
 
-    - name: install dependcies (meson & pythone)
+    - name: install dependcies (pip)
       run: pip install themachinethatgoesping pytest
 
     - name: test (pytest)
