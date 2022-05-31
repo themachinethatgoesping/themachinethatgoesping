@@ -99,7 +99,7 @@ jobs:
         matrix:
           boost-version: [1.79.0]
           boost-version_: [1_79_0]
-          boost-modules: ["filesystem"]
+          boost-modules: ["with-filesystem"]
           
     
     env:
@@ -125,8 +125,8 @@ jobs:
         Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
         7z x boost.7z 
         cd .\boost_${{matrix.boost-version_}}\
-        .\bootstrap.bat --with-libraries=filesystem
-        .\b2 install --variant=release --threading=multi --link=static
+        .\bootstrap.bat
+        .\b2 install --variant=release --threading=multi --link=static {{matrix.boost-modules}}
         cd ..
         #rm -rv boost*
 
