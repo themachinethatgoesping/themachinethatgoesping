@@ -77,7 +77,7 @@ jobs:
     - name: build with meson and test
       run: |
         # setup with meson
-        meson setup builddir
+        meson setup builddir/ -Dcpp_std=vc++17 -Ddefault_library=static
         # test with meson
         meson test -C builddir/ -v
          

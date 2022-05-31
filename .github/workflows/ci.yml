@@ -143,8 +143,7 @@ jobs:
 
     - name: configure meson
       run: |
-        meson setup builddir/
-        meson configure builddir -D"python.install_env=auto"
+        meson setup builddir/ -D"python.install_env=auto" -Dcpp_std=vc++17 -Ddefault_library=static
 
     - name: compile project
       run: meson compile -C builddir/
