@@ -72,7 +72,7 @@ jobs:
       run: |
         python${{ matrix.python-version }} -m pip install --upgrade pip
         python${{ matrix.python-version }} -m pip install meson ninja pytest twine auditwheel
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: build with meson and test
       run: |
