@@ -18,6 +18,7 @@ on:
 jobs:
   build_and_publish:
 
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -30,43 +31,38 @@ jobs:
     env:
       CC: ${{matrix.compiler}}
 
-    runs-on: windows-latest
-    #container: python:latest #pull directly from dockerhub
     steps:
-
     - uses: actions/setup-python@v3
-    with:
-    python-version: ${{matrix.python-version}}
+      with:
+      python-version: ${{matrix.python-version}}
 
     - name: checkout main repository
-    uses: actions/checkout@v3
-    with:
+      uses: actions/checkout@v3
+      with:
         submodules: recursive
 
     - name: Cache Boost
-    id: cache-boost
-    uses: actions/cache@v3
-    with:
+      id: cache-boost
+      uses: actions/cache@v3
+      with:
         path: c:\Boost
         key: windows-${{matrix.compiler}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
     - name: Install dependencies on windows
-    if: steps.cache-boost.outputs.cache-hit != 'true'
-    run: |
-        #vcpkg install boost
-        #choco install boost-msvc-14.3
-        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
-        7z x boost.7z
-        cd .\boost_${{matrix.boost-version_}}\
-        .\bootstrap.bat
-        .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
-        cd ..
-        #rm -rv boost*
+      if: steps.cache-boost.outputs.cache-hit != 'true'
+      run: |
+          #vcpkg install boost
+          #choco install boost-msvc-14.3
+          Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+          7z x boost.7z
+          cd .\boost_${{matrix.boost-version_}}\
+          .\bootstrap.bat
+          .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
+          cd ..
+          #rm -rv boost*
 
 
-    #- name: append github path
-    #  run: echo ${{ matrix.pip-path }} >> $GITHUB_PATH
-    
+    #same as on linux
     - name: checkout main repository
       uses: actions/checkout@v3
       with:
