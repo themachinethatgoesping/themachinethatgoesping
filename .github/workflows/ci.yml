@@ -95,11 +95,13 @@ jobs:
     
 
   build-on-windows:
+    strategy:
+        matrix:
+          boost-version: 1.74.0
+          boost-version_: 1_74_0
+          boost-modules: "filesystem"
+
     runs-on: windows-latest
-    env:
-      BOOST_VERSION: 1.74.0
-      BOOST_VERSION_: 1_74_0
-      BOOST_MODULES: "filesystem"
     #container: python:latest #pull directly from dockerhub   
     steps:
 
@@ -114,10 +116,10 @@ jobs:
   
     - name: Install dependencies on windows
       run: |
-           curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.gz
-           tar xzf boost_${BOOST_VERSION_}.tar.gz
+           curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.tar.bz2
+           tar xzf boost_${{matrix.boost-version_}}.tar.bz2
            cd boost_*
-           ./bootstrap.bat --with-libraries=${BOOST_MODULES}
+           ./bootstrap.bat --with-libraries=${{matrix.boost-modules}}
            ./b2 install --variant=release --threading=multi --link=static
            cd ..
            rm -rv boost*
