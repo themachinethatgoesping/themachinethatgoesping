@@ -24,8 +24,8 @@ jobs:
               pip-path: '/opt/_internal/cpython-3.9.13/bin'}
           - { python-version: '3.10', 
               pip-path: '/opt/_internal/cpython-3.10.4/bin'}
-          - { python-version: '3.11', 
-              pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
+          #- { python-version: '3.11', 
+          #    pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
     #env:
     #  PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
   
@@ -41,7 +41,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         python${{ matrix.python-version }} -m pip install --upgrade pip
-        python${{ matrix.python-version }} -m pip install --upgrade meson ninja pytest twine auditwheel
+        python${{ matrix.python-version }} -m pip install meson ninja pytest twine auditwheel
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: build with meson and test
@@ -51,10 +51,10 @@ jobs:
         # test with meson
         meson test -C builddir/ -v
          
-    - name: build wheel
+    - name: build and install wheel
       run: |
         # build wheel
-        python${{ matrix.python-version }} -m build -w
+        python${{ matrix.python-version }} -m build -w -Cbuilddir=builddir
         # install wheel
         python${{ matrix.python-version }} -m pip install ./dist/*
         
