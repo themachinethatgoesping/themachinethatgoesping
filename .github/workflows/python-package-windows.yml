@@ -23,11 +23,11 @@ jobs:
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
         boost-modules: [--with-filesystem]
-        compiler: [msvc-14.2, msvc-14.3]
+        compiler: [msvc-14.3]
         python-version: ['3.8','3.9','3.10']
 
     env:
-      CC: {{matrix.compiler}}
+      CC: ${{matrix.compiler}}
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub
@@ -35,7 +35,7 @@ jobs:
 
     - uses: actions/setup-python@v3
     with:
-    python-version: {{matrix.python-version}}
+    python-version: ${{matrix.python-version}}
 
     - name: checkout main repository
     uses: actions/checkout@v3
@@ -47,7 +47,7 @@ jobs:
     uses: actions/cache@v3
     with:
         path: c:\Boost
-        key: windows-{{matrix.compiler}}-boost-{{matrix.boost-version}}-{{matrix.boost-modules}}
+        key: windows-${{matrix.compiler}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
     - name: Install dependencies on windows
     if: steps.cache-boost.outputs.cache-hit != 'true'
