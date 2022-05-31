@@ -1,0 +1,60 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python package
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container: ghcr.io/themachinethatgoesping/manylinux-dep
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { python-version: '3.8', 
+              pip-path: '/opt/_internal/cpython-3.8.13/bin'}
+          - { python-version: '3.9', 
+              pip-path: '/opt/_internal/cpython-3.9.13/bin'}
+          - { python-version: '3.10', 
+              pip-path: '/opt/_internal/cpython-3.10.4/bin'}
+          - { python-version: '3.11', 
+              pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
+    env:
+      PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
+  
+    steps:
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
+    - name: Install dependencies (pip)
+      run: |
+        python${{ matrix.python-version }} -m pip install --upgrade pip
+        python${{ matrix.python-version }} -m pip install --upgrade meson ninja pytest twine auditwheel
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    - name: build with meson and test
+      run: |
+        # setup with meson
+        meson setup builddir
+        # test with meson
+        meson test -C builddir/ -v
+         
+    - name: build wheel
+      run: |
+        # build wheel
+        python${{ matrix.python-version }} -m build -w
+        # install wheel
+        python${{ matrix.python-version }} -m pip install ./dist/*
+        
+    - name: Test with pytest
+      run: |
+        pytest
