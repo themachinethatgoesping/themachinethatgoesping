@@ -70,14 +70,14 @@ jobs:
     
     - name: Install dependencies (pip)
       run: |
-        pip install --upgrade pip
+        #pip install --upgrade pip
         pip install meson ninja pytest twine auditwheel
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: build with meson and test
       run: |
         # setup with meson
-        meson setup builddir/ -Dcpp_std=vc++17 -Ddefault_library=static
+        meson setup builddir/ -Dcpp_std=c++17 -Ddefault_library=static
         # test with meson
         meson test -C builddir/ -v
          
