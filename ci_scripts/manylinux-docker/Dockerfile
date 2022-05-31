@@ -2,30 +2,41 @@
 
 # SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
 #
-# SPDX-License-Identifier: CPL-1.0
+# SPDX-License-Identifier: CC0-1.0
 
 FROM quay.io/pypa/manylinux2014_x86_64
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
-# install prequisits
-#RUN apt-get update && apt-get install -y sudo git git-lfs apt-utils
+# package versions
+ARG BOOST_VERSION=1.74.0
+ARG BOOST_VERSION_=1_74_0
+ARG BOOST_MODULES="filesystem"
 
-#RUN apt-get update -qq
 
-#ARG DEBIAN_FRONTEND=noninteractive
+# install source build dependcies
+RUN yum install -y bzip2 curl zlib
+
+
+# -- install package versions from source --
+# BOOST
+RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2 && \
+    tar -xf boost_${BOOST_VERSION_}.tar.bz2 && \
+    cd boost_* && \
+    ./bootstrap.sh --with-libraries=${BOOST_MODULES} && \
+    ./b2 install --variant=release --threading=multi --link=static && \
+    cd .. && \
+    rm -rv boost*
+
+
+# -- install build requirements
+RUN yum install -y git git-lfs
 
 # install dependecies (c++)
-#RUN apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev
+RUN yum install -y ccache pkgconfig cmake libcurl-devel
 
-# install extra dependecies (instead of subprojects)
-#RUN apt-get install -y catch2 libeigen3-dev pybind11-dev
 
 # install dependcies (meson & pythone)
-#RUN apt-get install -y meson ninja-build python3-pytest
-#RUN pip install meson ninja pytest
-
-# update and upgrade
-#RUN apt-get update; apt-get upgrade -y
-
-# Reset terminal to interactive mode
-#ARG DEBIAN_FRONTEND=teletype
+# this is best done in the ci scripts!
+# ENV PATH "/opt/_internal/cpython-3.10.4/bin:$PATH"
+# RUN python3.10 -m pip install --upgrade pip
+# RUN python3.10 -m pip install --upgrade meson ninja pytest build twine auditwheel
