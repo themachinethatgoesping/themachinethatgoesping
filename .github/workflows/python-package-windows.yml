@@ -19,6 +19,7 @@ jobs:
   build_and_publish:
 
     strategy:
+      fail-fast: false
       matrix:
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
