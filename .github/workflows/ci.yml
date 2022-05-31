@@ -94,24 +94,25 @@ jobs:
         path: builddir/meson-logs/testlog.txt
     
 
-#   build-on-windows:
-#     runs-on: windows-latest
-#     #container: python:latest #pull directly from dockerhub   
-#     steps:
+  build-on-windows:
+    runs-on: windows-latest
+    #container: python:latest #pull directly from dockerhub   
+    steps:
 
-#     - uses: actions/setup-python@v3
-#       with:
-#         python-version: '3.x'
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
 
-#     - name: checkout main repository
-#       uses: actions/checkout@v3
-#       with:
-#         submodules: recursive
-
-#     - name: install vcpk
-#       run: git clone https://github.com/Microsoft/vcpkg.git
-#     - run: .\vcpkg\bootstrap-vcpkg.bat
-#     - run: vcpkg install boost
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+  
+    - name: Install dependencies on windows
+      run: |
+            choco install ninja cmake
+            ninja --version
+            cmake --version
 
 
 #     - run: pip install meson ninja
