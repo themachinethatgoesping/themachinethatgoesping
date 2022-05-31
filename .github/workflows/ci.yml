@@ -96,6 +96,10 @@ jobs:
 
   build-on-windows:
     runs-on: windows-latest
+    env:
+      BOOST_VERSION: 1.74.0
+      BOOST_VERSION_: 1_74_0
+      BOOST_MODULES: "filesystem"
     #container: python:latest #pull directly from dockerhub   
     steps:
 
@@ -110,8 +114,15 @@ jobs:
   
     - name: Install dependencies on windows
       run: |
-            #choco install boost-msvc-14.2
-            choco install boost-msvc-14.3
+           curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
+           tar -xf boost_${BOOST_VERSION_}.tar.bz2
+           cd boost_*
+           ./bootstrap.bat --with-libraries=${BOOST_MODULES}
+           ./b2 install --variant=release --threading=multi --link=static
+           cd ..
+           rm -rv boost*
+      env:
+        CC: msvc-14.3
 
     - run: pip install meson ninja
     - run: meson setup builddir/
