@@ -12,3 +12,4 @@ Catch2*/*
 catch2.wrap
 hinnant-date.wrap
 pybind11.wrap
+eigen.wrap
