@@ -18,26 +18,53 @@ on:
 jobs:
   build_and_publish:
 
-    runs-on: ubuntu-latest
-    container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
     strategy:
-      fail-fast: false
       matrix:
-        include:
-          - { python-version: '3.8', 
-              pip-path: '/opt/_internal/cpython-3.8.13/bin'}
-          - { python-version: '3.9', 
-              pip-path: '/opt/_internal/cpython-3.9.13/bin'}
-          - { python-version: '3.10', 
-              pip-path: '/opt/_internal/cpython-3.10.4/bin'}
-          #- { python-version: '3.11', 
-          #    pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
-    #env:
-    #  PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
-  
+        boost-version: [1.79.0]
+        boost-version_: [1_79_0]
+        boost-modules: [--with-filesystem]
+        compiler: [msvc-14.2, msvc-14.3]
+        python-version: ['3.8','3.9','3.10']
+
+    env:
+      CC: {{matrix.compiler}}
+
+    runs-on: windows-latest
+    #container: python:latest #pull directly from dockerhub
     steps:
-    - name: append github path
-      run: echo ${{ matrix.pip-path }} >> $GITHUB_PATH
+
+    - uses: actions/setup-python@v3
+    with:
+    python-version: {{matrix.python-version}}
+
+    - name: checkout main repository
+    uses: actions/checkout@v3
+    with:
+        submodules: recursive
+
+    - name: Cache Boost
+    id: cache-boost
+    uses: actions/cache@v3
+    with:
+        path: c:\Boost
+        key: windows-{{matrix.compiler}}-boost-{{matrix.boost-version}}-{{matrix.boost-modules}}
+
+    - name: Install dependencies on windows
+    if: steps.cache-boost.outputs.cache-hit != 'true'
+    run: |
+        #vcpkg install boost
+        #choco install boost-msvc-14.3
+        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+        7z x boost.7z
+        cd .\boost_${{matrix.boost-version_}}\
+        .\bootstrap.bat
+        .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
+        cd ..
+        #rm -rv boost*
+
+
+    #- name: append github path
+    #  run: echo ${{ matrix.pip-path }} >> $GITHUB_PATH
     
     - name: checkout main repository
       uses: actions/checkout@v3
@@ -83,50 +110,50 @@ jobs:
         packages_dir: ./wheelhouse/
         
         
-  install_and_test:
-    needs: build_and_publish
+  #install_and_test:
+    #needs: build_and_publish
       
-    strategy:
-      matrix:
-        include:  
-          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
-          - { container: 'ubuntu:22.04', 
-              pre-dep : 'apt update && apt-get install -y sudo git', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
-          - { container: 'ubuntu:20.04', 
-              pre-dep : 'apt update && apt-get install -y sudo git', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
-          - { container: 'archlinux', 
-              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm', 
-              dep : 'sudo pacman -Syy --noconfirm base-devel python-pip'}
+    #strategy:
+      #matrix:
+        #include:
+          #- { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
+          #- { container: 'ubuntu:22.04',
+              #pre-dep : 'apt update && apt-get install -y sudo git',
+              #dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          #- { container: 'ubuntu:20.04',
+              #pre-dep : 'apt update && apt-get install -y sudo git',
+              #dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          #- { container: 'archlinux',
+              #pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm',
+              #dep : 'sudo pacman -Syy --noconfirm base-devel python-pip'}
 
-    runs-on: ubuntu-latest
-    container: ${{matrix.container}}
+    #runs-on: ubuntu-latest
+    #container: ${{matrix.container}}
 
-    steps:
-    - name: install prequisits
-      if:  ${{matrix.pre-dep}}
-      run: ${{matrix.pre-dep}}
+    #steps:
+    #- name: install prequisits
+      #if:  ${{matrix.pre-dep}}
+      #run: ${{matrix.pre-dep}}
 
-    - name: checkout main repository
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
+    #- name: checkout main repository
+      #uses: actions/checkout@v3
+      #with:
+        #submodules: recursive
 
-    - name: install dependecies (python and pip)
-      if:  ${{matrix.dep}}
-      run: ${{matrix.dep}}
+    #- name: install dependecies (python and pip)
+      #if:  ${{matrix.dep}}
+      #run: ${{matrix.dep}}
 
-    - name: install dependcies (pip)
-      run: pip install themachinethatgoesping pytest
+    #- name: install dependcies (pip)
+      #run: pip install themachinethatgoesping pytest
 
-    - name: test (pytest)
-      run: pytest -v
+    #- name: test (pytest)
+      #run: pytest -v
 
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: ${{matrix.container}}_Testlog
-        path: builddir/meson-logs/testlog.txt
+    #- uses: actions/upload-artifact@v1
+      #if: failure()
+      #with:
+        #name: ${{matrix.container}}_Testlog
+        #path: builddir/meson-logs/testlog.txt
 
   
