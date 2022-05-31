@@ -130,9 +130,23 @@ jobs:
         cd ..
         #rm -rv boost*
 
-    - run: pip install meson ninja
-    - run: meson setup builddir/
-    - run: meson test -C builddir/ -v
+    # same as for linux
+    - name: configure meson
+      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
+      env:
+        CC: gcc
+
+    - name: compile project
+      run: meson compile -C builddir/
+
+    - name: test (cpp)
+      run: meson test -C builddir/ -v
+
+    - name: install project
+      run: meson install -C builddir/
+
+    - name: test (pytest)
+      run: pytest -v
     
     - uses: actions/upload-artifact@v1
       if: failure()
