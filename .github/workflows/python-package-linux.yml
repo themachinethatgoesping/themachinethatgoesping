@@ -1,0 +1,132 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Build Python Wheels
+
+on:
+  push:
+    branches: [ main ]    
+    paths-ignore:
+      - '.github/workflows/ci*'
+      - '.github/workflows/python-package-windows*'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '.github/workflows/ci*'
+      - '.github/workflows/python-package-windows*'
+
+jobs:
+  build_and_publish:
+
+    runs-on: ubuntu-latest
+    container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { python-version: '3.8', 
+              pip-path: '/opt/_internal/cpython-3.8.13/bin'}
+          - { python-version: '3.9', 
+              pip-path: '/opt/_internal/cpython-3.9.13/bin'}
+          - { python-version: '3.10', 
+              pip-path: '/opt/_internal/cpython-3.10.4/bin'}
+          #- { python-version: '3.11', 
+          #    pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
+    #env:
+    #  PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
+  
+    steps:
+    - name: append github path
+      run: echo ${{ matrix.pip-path }} >> $GITHUB_PATH
+    
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
+    - name: Install dependencies (pip)
+      run: |
+        python${{ matrix.python-version }} -m pip install --upgrade pip
+        python${{ matrix.python-version }} -m pip install meson ninja pytest twine auditwheel
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    - name: build with meson and test
+      run: |
+        # setup with meson
+        meson setup builddir
+        # test with meson
+        meson test -C builddir/ -v
+         
+    - name: build and install wheel
+      run: |
+        # build wheel
+        python${{ matrix.python-version }} -m build -w
+        # repair with auditwheel
+        auditwheel repair ./dist/*
+        # install wheel
+        python${{ matrix.python-version }} -m pip install ./wheelhouse/*
+        
+    - name: Test with pytest
+      run: |
+        pytest
+        
+    - name: Publish package
+      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+      # Note 3: In the future this should better build against test.pypi repository!
+      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip_existing: true
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ./wheelhouse/
+        
+        
+  install_and_test:
+    needs: build_and_publish
+      
+    strategy:
+      matrix:
+        include:  
+          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
+          - { container: 'ubuntu:22.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          - { container: 'ubuntu:20.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
+          - { container: 'archlinux', 
+              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm', 
+              dep : 'sudo pacman -Syy --noconfirm base-devel python-pip'}
+
+    runs-on: ubuntu-latest
+    container: ${{matrix.container}}
+
+    steps:
+    - name: install prequisits
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: install dependecies (python and pip)
+      if:  ${{matrix.dep}}
+      run: ${{matrix.dep}}
+
+    - name: install dependcies (pip)
+      run: pip install themachinethatgoesping pytest
+
+    - name: test (pytest)
+      run: pytest -v
+
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: ${{matrix.container}}_Testlog
+        path: builddir/meson-logs/testlog.txt
+
+  

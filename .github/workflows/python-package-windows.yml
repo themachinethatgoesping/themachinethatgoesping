@@ -8,10 +8,12 @@ on:
     branches: [ main ]    
     paths-ignore:
       - '.github/workflows/ci*'
+      - '.github/workflows/python-package-linux*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
+      - '.github/workflows/python-package-linux*'
 
 jobs:
   build_and_publish:
