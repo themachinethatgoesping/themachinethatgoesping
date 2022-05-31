@@ -119,8 +119,8 @@ jobs:
         submodules: recursive
   
     - name: Install dependencies on windows
-      run: wget https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z
-    - run: Expand-Archive boost_${{matrix.boost-version_}}.tar.bz2 -DestinationPath boostsrc
+      run: Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+    - run: Expand-Archive boost.7z -DestinationPath boostsrc
     - run: cd boostsrc
     - run: ./bootstrap.bat --with-libraries=${{matrix.boost-modules}}
     - run: ./b2 install --variant=release --threading=multi --link=static
