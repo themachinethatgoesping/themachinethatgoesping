@@ -119,12 +119,11 @@ jobs:
         submodules: recursive
   
     - name: Install dependencies on windows
-      run: |
-        git clone https://github.com/boostorg/boost
-        cd .\boost\
-        git submodule update --init --recursive
-    - run: .\bootstrap.bat --with-libraries=${{matrix.boost-modules}}
-    - run: .\b2 install --variant=release --threading=multi --link=static
+      run: Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.zip -outfile boost.zip
+    - run: Expand-Archive boost.zip -DestinationPath boostsrc
+    - run: cd boostsrc
+    - run: ./bootstrap.bat --with-libraries=${{matrix.boost-modules}}
+    - run: ./b2 install --variant=release --threading=multi --link=static
     - run: cd ..
     - run: rm -rv boost*
 
