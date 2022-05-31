@@ -4,12 +4,14 @@
 name: Build Python Wheels
 
 on:
-  paths-ignore:
-    - '.github/workflows/ci*'
   push:
-    branches: [ main ]
+    branches: [ main ]    
+    paths-ignore:
+      - '.github/workflows/ci*'
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - '.github/workflows/ci*'
 
 jobs:
   build_and_publish:
