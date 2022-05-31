@@ -30,6 +30,7 @@ jobs:
       PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
   
     steps:
+    - run: yum install -y git git-lfs
     - name: checkout main repository
       uses: actions/checkout@v3
       with:
