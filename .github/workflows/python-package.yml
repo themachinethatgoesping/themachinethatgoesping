@@ -4,6 +4,8 @@
 name: Build Python Wheels
 
 on:
+  paths-ignore:
+    - '.github/workflows/ci*'
   push:
     branches: [ main ]
   pull_request:
