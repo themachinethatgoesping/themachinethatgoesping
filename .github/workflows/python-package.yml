@@ -26,8 +26,8 @@ jobs:
               pip-path: '/opt/_internal/cpython-3.10.4/bin'}
           - { python-version: '3.11', 
               pip-path: '/opt/_internal/cpython-3.11.0b1/bin'}
-    env:
-      PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
+    #env:
+    #  PATH: "/opt/_internal/cpython-3.10.4/bin:$PATH"
   
     steps:
     - run: yum install -y git git-lfs
