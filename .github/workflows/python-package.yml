@@ -13,7 +13,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: ghcr.io/themachinethatgoesping/manylinux-dep
+    container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
     strategy:
       fail-fast: false
       matrix:
