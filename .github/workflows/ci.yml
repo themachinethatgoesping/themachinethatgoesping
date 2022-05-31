@@ -128,7 +128,7 @@ jobs:
         .\bootstrap.bat --with-libraries=filesystem
         .\b2 install --variant=release --threading=multi --link=static
         cd ..
-        rm -rv boost*
+        #rm -rv boost*
 
     - run: pip install meson ninja
     - run: meson setup builddir/
