@@ -112,7 +112,7 @@ jobs:
       run: ${{matrix.dep}}
 
     - name: install dependcies (meson & pythone)
-      run: pip install themachinethatgoesping
+      run: pip install themachinethatgoesping pytest
 
     - name: test (pytest)
       run: pytest -v
