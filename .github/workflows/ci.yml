@@ -141,22 +141,22 @@ jobs:
     - name: install dependcies (meson & pythone)
       run: pip install meson ninja pytest
 
-    #- name: configure meson
-      #run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto;
-      #env:
-        #CC: gcc
+    - name: configure meson
+      run: |
+        meson setup builddir/
+        meson configure builddir -D"python.install_env=auto"
 
-    #- name: compile project
-      #run: meson compile -C builddir/
+    - name: compile project
+      run: meson compile -C builddir/
 
-    #- name: test (cpp)
-      #run: meson test -C builddir/ -v
+    - name: test (cpp)
+      run: meson test -C builddir/ -v
 
-    #- name: install project
-      #run: meson install -C builddir/
+    - name: install project
+      run: meson install -C builddir/
 
-    #- name: test (pytest)
-      #run: pytest -v
+    - name: test (pytest)
+      run: pytest -v
     
     - uses: actions/upload-artifact@v1
       if: failure()
