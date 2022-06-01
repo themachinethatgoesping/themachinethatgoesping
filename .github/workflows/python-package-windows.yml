@@ -48,7 +48,7 @@ jobs:
         path: c:\Boost
         key: windows-${{matrix.compiler}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
-    - name: Install dependencies on windows
+    - name: Install boost
       if: steps.cache-boost.outputs.cache-hit != 'true'
       run: |
           #vcpkg install boost
@@ -71,7 +71,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         #pip install --upgrade pip
-        pip install meson ninja pytest twine auditwheel
+        pip install meson ninja pytest twine wheel
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: build with meson and test
@@ -84,9 +84,9 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w .\dist\ .
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation -v
         # install wheel
-        pip install .\dist\*
+        pip install . --config-settings="builddir=pybuild" --no-build-isolation -v
         
     - name: Test with pytest
       run: |
