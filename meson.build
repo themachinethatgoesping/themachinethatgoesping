@@ -7,7 +7,7 @@
 project(
   'themachinethatgoesping',
   'cpp',
-  license : 'MPL-2.0'
+  license : 'MPL-2.0',
 
   version : '0.0.1.6',
   default_options : ['warning_level=3', 'buildtype=release', 'cpp_std=c++17']
