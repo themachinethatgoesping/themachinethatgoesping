@@ -82,7 +82,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation --no-deps
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation --no-deps -v
         # install wheel
         pip install . --config-settings="builddir=pybuild" --no-build-isolation
         
