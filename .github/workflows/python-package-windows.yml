@@ -84,11 +84,9 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        python -m build -w
-        # repair with auditwheel
-        auditwheel repair ./dist/*
+        pip wheel -w ./dist/ .
         # install wheel
-        pip install ./wheelhouse/*
+        pip install ./dist/*
         
     - name: Test with pytest
       run: |
