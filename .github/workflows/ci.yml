@@ -112,6 +112,12 @@ jobs:
     - uses: actions/setup-python@v3
       with:
         python-version: '3.x'
+    
+    # make sure meson can find msvc
+    - name: Prepare MSVC
+      uses: bus1/cabuild/action/msdevshell@v1
+      with:
+        architecture: x64
 
     - name: checkout main repository
       uses: actions/checkout@v3
