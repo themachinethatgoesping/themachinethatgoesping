@@ -73,13 +73,6 @@ jobs:
         #pip install --upgrade pip
         pip install meson ninja pytest twine wheel
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-    - name: build with meson and test
-      run: |
-        # setup with meson
-        meson setup builddir/ -Dcpp_std=c++17 -Ddefault_library=static
-        # test with meson
-        meson test -C builddir/ -v
          
     - name: build and install wheel
       run: |
@@ -87,6 +80,10 @@ jobs:
         pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation -v
         # install wheel
         pip install . --config-settings="builddir=pybuild" --no-build-isolation -v
+        
+    - name: Test with meson (c++)
+      run: |
+        meson test -C pybuild
         
     - name: Test with pytest
       run: |
