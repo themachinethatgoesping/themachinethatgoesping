@@ -22,11 +22,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        python-version: ['3.8','3.9','3.10']
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
         boost-modules: [--with-filesystem]
         compiler: [msvc-14.3]
-        python-version: ['3.8','3.9','3.10']
 
     env:
       CC: ${{matrix.compiler}}
@@ -77,9 +77,14 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation -v
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation
         # install wheel
-        pip install . --config-settings="builddir=pybuild" --no-build-isolation -v
+        pip install . --config-settings="builddir=pybuild" --no-build-isolation
+        
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: dist/ # upload wheel files
         
     - name: Test with meson (c++)
       run: |
