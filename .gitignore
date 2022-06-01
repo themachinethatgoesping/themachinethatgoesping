@@ -16,6 +16,7 @@
 .mesonpy-native-file.ini
 ./dist/*
 ./pybuild/*
+./wheelhouse/*
 
 # Prerequisites
 *.d
