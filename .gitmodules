@@ -2,3 +2,9 @@
 	path = subprojects/tools
 	url = ../tools.git
 	branch = main
+
+[submodule "subprojects/meson-python"]
+	path = subprojects/meson-python
+	url = ../meson-python.git
+	branch = main
+
