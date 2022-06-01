@@ -71,7 +71,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         #pip install --upgrade pip
-        pip install meson ninja pytest twine wheel
+        pip install meson ninja pytest twine wheel pep621
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
          
     - name: build and install wheel
@@ -87,7 +87,7 @@ jobs:
         
     - name: Test with pytest
       run: |
-        pytest
+        pytest -v
         
     - name: Publish package
       # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
