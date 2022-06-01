@@ -16,11 +16,10 @@ on:
       - '.github/workflows/python-package-linux*'
 
 jobs:
-  build_and_publish:
+  build_wheel:
 
     runs-on: windows-latest
     strategy:
-      fail-fast: false
       matrix:
         python-version: ['3.8','3.9','3.10']
         boost-version: [1.79.0]
@@ -87,11 +86,12 @@ jobs:
         # install wheel
         pip install . --config-settings="builddir=pybuild" --no-build-isolation
         
-    - uses: actions/upload-artifact@v3
+    - name: Store the binary wheel
+      uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
-        path: dist/ # upload wheel files
-        
+        name: python-package-distributions
+        path: dist    
+         
     - name: Test with meson (c++)
       run: |
         meson test -C pybuild
@@ -112,51 +112,63 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: .\dist\
         
+  install_and_test:
+    needs: build_wheel
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        python-version: ['3.8','3.9','3.10']
+
+    steps:    
+    
+    - uses: actions/setup-python@v3
+      with:
+        python-version: ${{matrix.python-version}}
+    
+    #necessary only for pytest
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
+    - name: Download all the dists
+      uses: actions/download-artifact@v2
+      with:
+        name: python-package-distributions
+        path: dist/
         
-  #install_and_test:
-    #needs: build_and_publish
+    - name: install pip dependencies
+      run: pip install pytest
       
-    #strategy:
-      #matrix:
-        #include:
-          #- { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
-          #- { container: 'ubuntu:22.04',
-              #pre-dep : 'apt update && apt-get install -y sudo git',
-              #dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
-          #- { container: 'ubuntu:20.04',
-              #pre-dep : 'apt update && apt-get install -y sudo git',
-              #dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip'}
-          #- { container: 'archlinux',
-              #pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm',
-              #dep : 'sudo pacman -Syy --noconfirm base-devel python-pip'}
+    - name: install wheels
+      run: |
+        ${wheels} = Get-ChildItem dist\*.whl   
+        pip install ${wheels}
+        
+    - name: test (pytest)
+      run: pytest
+    
 
-    #runs-on: ubuntu-latest
-    #container: ${{matrix.container}}
-
-    #steps:
-    #- name: install prequisits
-      #if:  ${{matrix.pre-dep}}
-      #run: ${{matrix.pre-dep}}
-
-    #- name: checkout main repository
-      #uses: actions/checkout@v3
-      #with:
-        #submodules: recursive
-
-    #- name: install dependecies (python and pip)
-      #if:  ${{matrix.dep}}
-      #run: ${{matrix.dep}}
-
-    #- name: install dependcies (pip)
-      #run: pip install themachinethatgoesping pytest
-
-    #- name: test (pytest)
-      #run: pytest -v
-
-    #- uses: actions/upload-artifact@v1
-      #if: failure()
-      #with:
-        #name: ${{matrix.container}}_Testlog
-        #path: builddir/meson-logs/testlog.txt
-
-  
+  publish:
+    needs: install_and_test
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Download all the dists
+      uses: actions/download-artifact@v2
+      with:
+        name: python-package-distributions
+        path: dist/
+        
+    - name: Publish package
+      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+      # Note 3: In the future this should better build against test.pypi repository!
+      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip_existing: true
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ./dist/
