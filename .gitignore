@@ -17,6 +17,7 @@
 ./dist/*
 ./pybuild/*
 ./wheelhouse/*
+*.whl
 
 # Prerequisites
 *.d
