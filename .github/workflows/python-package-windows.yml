@@ -40,6 +40,12 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
+        
+    # make sure meson can find msvc
+    - name: Prepare MSVC
+      uses: bus1/cabuild/action/msdevshell@v1
+      with:
+        architecture: x64
 
     - name: Cache Boost
       id: cache-boost
@@ -77,7 +83,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation --no-deps
         # install wheel
         pip install . --config-settings="builddir=pybuild" --no-build-isolation
         
