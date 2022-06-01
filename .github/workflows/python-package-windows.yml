@@ -84,9 +84,9 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w ./dist/ .
+        pip wheel -w .\dist\ .
         # install wheel
-        pip install ./dist/*
+        pip install .\dist\*
         
     - name: Test with pytest
       run: |
@@ -102,7 +102,7 @@ jobs:
         skip_existing: true
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: ./dist/
+        packages_dir: .\dist\
         
         
   #install_and_test:
