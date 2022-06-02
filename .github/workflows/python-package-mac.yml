@@ -59,7 +59,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --no-deps -v #--config-settings="builddir=pybuild" --no-build-isolation
+        pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
         delocate-wheel -w wheelhouse dist/* -v
         # install wheel
