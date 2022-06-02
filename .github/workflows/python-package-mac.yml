@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Build Python Package Windows
+name: Build Python Package macOS
 
 on:
   push:
@@ -9,25 +9,22 @@ on:
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-linux*'
-      - '.github/workflows/python-package-mac*'
+      - '.github/workflows/python-package-windows*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-linux*'
-      - '.github/workflows/python-package-mac*'
+      - '.github/workflows/python-package-windows*'
 
 jobs:
   build_wheel:
 
-    runs-on: windows-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         python-version: ['3.8','3.9','3.10']
-        boost-version: [1.79.0]
-        boost-version_: [1_79_0]
-        boost-modules: [--with-filesystem]
-        compiler: [msvc-14.3]
+        compiler: [clang]
 
     env:
       CC: ${{matrix.compiler}}
@@ -42,32 +39,10 @@ jobs:
       with:
         submodules: recursive
         
-    # make sure meson can find msvc
-    - name: Prepare MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
-      with:
-        architecture: x64
 
-    - name: Cache Boost
-      id: cache-boost
-      uses: actions/cache@v3
-      with:
-        path: c:\Boost
-        key: windows-${{matrix.compiler}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
-
-    - name: Install boost
-      if: steps.cache-boost.outputs.cache-hit != 'true'
+    - name: Install dependencies (homebrew)
       run: |
-          #vcpkg install boost
-          #choco install boost-msvc-14.3
-          Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
-          7z x boost.7z
-          cd .\boost_${{matrix.boost-version_}}\
-          .\bootstrap.bat
-          .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
-          cd ..
-          #rm -rv boost*
-
+          brew install boost libomp
 
     #same as on linux
     - name: checkout main repository
@@ -78,21 +53,24 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         #pip install --upgrade pip
-        pip install meson ninja pytest twine wheel pep621
+        pip install meson ninja pytest twine wheel pep621 delocate pep517
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
          
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-build-isolation --no-deps -v
+        pip wheel -w dist . --no-deps -v #--config-settings="builddir=pybuild" --no-build-isolation
+        # delocate wheel
+        delocate-wheel -w wheelhouse dist/* -v
         # install wheel
-        pip install . --config-settings="builddir=pybuild" --no-build-isolation
+        pip install wheelhouse/*
+        #pip install . --config-settings="builddir=pybuild" --no-build-isolation
         
     - name: Store the binary wheel
       uses: actions/upload-artifact@v3
       with:
-        name: python-package-distributions
-        path: dist    
+        name: python-package-macos
+        path: wheelhouse
          
     - name: Test with meson (c++)
       run: |
@@ -105,7 +83,7 @@ jobs:
         
   install_and_test:
     needs: build_wheel
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
@@ -126,7 +104,7 @@ jobs:
     - name: Download all the dists
       uses: actions/download-artifact@v2
       with:
-        name: python-package-distributions
+        name: python-package-macos
         path: dist/
         
     - name: install pip dependencies
@@ -134,8 +112,7 @@ jobs:
       
     - name: install wheels
       run: |
-        ${wheels} = Get-ChildItem dist\*-cp3${{matrix.python-3-version}}-*.whl   
-        pip install ${wheels}
+        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl)
         
     - name: test (pytest)
       run: pytest
@@ -149,7 +126,7 @@ jobs:
     - name: Download all the dists
       uses: actions/download-artifact@v2
       with:
-        name: python-package-distributions
+        name: python-package-macos
         path: dist/
         
     - name: Publish package

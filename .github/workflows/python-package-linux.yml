@@ -9,11 +9,13 @@ on:
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-windows*'
+      - '.github/workflows/python-package-mac*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-windows*'
+      - '.github/workflows/python-package-mac*'
 
 jobs:
   build_and_publish:
