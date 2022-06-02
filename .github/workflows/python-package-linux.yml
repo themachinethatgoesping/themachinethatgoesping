@@ -79,7 +79,7 @@ jobs:
         name: python-package-linux
         path: wheelhouse
         
- install_test_and_publish:
+  install_test_and_publish:
     needs: build_wheel
     runs-on: ubuntu-latest
 
