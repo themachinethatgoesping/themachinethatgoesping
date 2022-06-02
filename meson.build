@@ -17,6 +17,9 @@ projectnamespace = 'themachinethatgoesping'
 
 # --- dependencies ---
 # system
+if meson.get_compiler('cpp').get_id() == 'clang'
+  add_project_arguments('-Xpreprocess', language : 'cpp')
+endif
 omp    = dependency('openmp')
 
 
