@@ -6,6 +6,7 @@
 *.kate-swp
 *.kdev4
 *.user
+*.DS_Store
 
 #build dirs
 */build/*
