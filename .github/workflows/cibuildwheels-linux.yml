@@ -42,7 +42,7 @@ jobs:
 
         - name: Set up QEMU
           if: runner.os == 'Linux'
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v2
           with:
             platforms: all
 
@@ -51,8 +51,9 @@ jobs:
           env:
             # configure cibuildwheel to build native archs ('auto'), and some
             # emulated ones
+            # aarch64 did not finish
             #CIBW_ARCHS_LINUX: auto64 aarch64 ppc64le s390x
-            CIBW_ARCHS_LINUX: ppc64le s390x auto64
+            CIBW_ARCHS_LINUX: aarch64 ppc64le s390x
 
         - uses: actions/upload-artifact@v2
           with:
