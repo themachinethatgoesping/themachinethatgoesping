@@ -63,4 +63,4 @@ test-command  = 'cd {project} && pytest'
 # Install build dependencies
 before-all = './ci_scripts/docker-manylinux_x86_64/manylinux2014-install.sh'
 # Cross compile architectures [needs this: https://cibuildwheel.readthedocs.io/en/stable/faq/#emulation]
-archs = 'x86_64 aarch64 ppc64le s390x'
+#archs = 'x86_64 aarch64 ppc64le s390x'
