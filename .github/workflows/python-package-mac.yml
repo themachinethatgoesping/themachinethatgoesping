@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
