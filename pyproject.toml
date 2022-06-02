@@ -51,8 +51,8 @@ documentation = 'https://themachinethatgoesping.readthedocs.io/en/latest/'
 
 # -- cibuildwheel options ---
 [tool.cibuildwheel]
-# Skip pypy[pp*] and cpython 3.6-3.7 [cp36-* cp37-*]
-skip = 'pp* cp36-* cp37-*'
+# Skip pypy[pp*] and cpython 3.6-3.7[cp36-* cp37-*] and musllinux (for now TODO)
+skip = 'pp* cp36-* cp37-* *musllinux*'
 
 # Run at least pytests
 test-requires = 'pytest'
