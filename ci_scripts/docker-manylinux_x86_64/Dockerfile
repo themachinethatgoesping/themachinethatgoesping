@@ -10,6 +10,7 @@ LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 ADD manylinux2014-install.sh manylinux2014-install.sh
 RUN bash manylinux2014-install.sh
 
+RUN yum install -y git git-lfs ccache
 #
 # # package versions
 # ARG BOOST_VERSION=1.74.0

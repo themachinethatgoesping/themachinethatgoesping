@@ -20,8 +20,8 @@ curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/s
     rm -r boost*
 
 # install build requirements
-yum install -y git git-lfs
+#yum install -y git git-lfs ccache
 
 
 # install dependecies (c++)
-yum install -y ccache pkgconfig cmake libcurl-devel
+yum install -y pkgconfig cmake libcurl-devel
