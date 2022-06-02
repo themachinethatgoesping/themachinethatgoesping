@@ -10,13 +10,13 @@ on:
   push:
     branches: [ main ]    
     paths-ignore:
-      - '.github/workflows/ci*'
+      - '.github/workflows/ci.yml'
       - '.github/workflows/python-package-windows*'
       - '.github/workflows/python-package-mac*'
   pull_request:
     branches: [ main ]
     paths-ignore:
-      - '.github/workflows/ci*'
+      - '.github/workflows/ci.yml'
       - '.github/workflows/python-package-windows*'
       - '.github/workflows/python-package-mac*'
 
