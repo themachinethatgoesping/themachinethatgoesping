@@ -11,14 +11,14 @@ on:
     branches: [ main ]    
     paths-ignore:
       - '.github/workflows/ci*'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/python-package-mac*'
+      - '.github/workflows/python-*'
+      - '.github/workflows/cibuildwheels*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/python-package-mac*'
+      - '.github/workflows/python-*'
+      - '.github/workflows/cibuildwheels*'
 
 jobs:
   build_wheel:

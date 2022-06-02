@@ -1,0 +1,71 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+
+name: cibuildwheel
+
+on:
+  push:
+    branches: [ main ]    
+    paths-ignore:
+      - '.github/workflows/ci*'
+      - '.github/workflows/python-package-windows*'
+      - '.github/workflows/python-package-mac*'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '.github/workflows/ci*'
+      - '.github/workflows/python-package-windows*'
+      - '.github/workflows/python-package-mac*'
+
+jobs:
+  cibuildwheel:
+      name: Build wheels on ${{ matrix.os }}
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [ubuntu-latest]#, windows-2019, macos-10.15]
+
+      steps:
+
+        - name: checkout main repository
+          uses: actions/checkout@v3
+          with:
+            submodules: recursive
+
+        - uses: actions/setup-python@v2
+          name: Install Python
+          with:
+            python-version: '3.x'
+
+        - name: Set up QEMU
+          if: runner.os == 'Linux'
+          uses: docker/setup-qemu-action@v1
+          with:
+            platforms: all
+
+        - name: Build wheels
+          uses: pypa/cibuildwheel@v2.6.0
+          env:
+            # configure cibuildwheel to build native archs ('auto'), and some
+            # emulated ones
+            # CIBW_ARCHS_LINUX: auto aarch64 ppc64le s390x
+
+        - uses: actions/upload-artifact@v2
+          with:
+            path: ./wheelhouse/*.whl
+
+        - name: Publish package
+          # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+          # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+          # Note 3: In the future this should better build against test.pypi repository!
+          #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+          uses: pypa/gh-action-pypi-publish@release/v1
+          with:
+            skip_existing: true
+            user: __token__
+            password: ${{ secrets.PYPI_API_TOKEN }}
+            packages_dir: ./wheelhouse/
+  

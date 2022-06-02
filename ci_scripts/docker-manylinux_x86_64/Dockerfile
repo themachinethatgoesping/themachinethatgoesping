@@ -7,32 +7,36 @@
 FROM quay.io/pypa/manylinux2014_x86_64
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
-# package versions
-ARG BOOST_VERSION=1.74.0
-ARG BOOST_VERSION_=1_74_0
-ARG BOOST_MODULES="filesystem"
+ADD manylinux2014-install.sh manylinux2014-install.sh
+RUN bash manylinux2014-install.sh
 
-
-# install source build dependcies
-RUN yum install -y bzip2 curl zlib
-
-
-# -- install package versions from source --
-# BOOST
-RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2 && \
-    tar -xf boost_${BOOST_VERSION_}.tar.bz2 && \
-    cd boost_* && \
-    ./bootstrap.sh --with-libraries=${BOOST_MODULES} && \
-    ./b2 install --variant=release --threading=multi --link=static && \
-    cd .. && \
-    rm -rv boost*
-
-
-# -- install build requirements
-RUN yum install -y git git-lfs
-
-# install dependecies (c++)
-RUN yum install -y ccache pkgconfig cmake libcurl-devel
+#
+# # package versions
+# ARG BOOST_VERSION=1.74.0
+# ARG BOOST_VERSION_=1_74_0
+# ARG BOOST_MODULES="filesystem"
+#
+#
+# # install source build dependcies
+# RUN yum install -y bzip2 curl zlib
+#
+#
+# # -- install package versions from source --
+# # BOOST
+# RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2 && \
+#     tar -xf boost_${BOOST_VERSION_}.tar.bz2 && \
+#     cd boost_* && \
+#     ./bootstrap.sh --with-libraries=${BOOST_MODULES} && \
+#     ./b2 install --variant=release --threading=multi --link=static && \
+#     cd .. && \
+#     rm -rv boost*
+#
+#
+# # install build requirements
+# RUN yum install -y git git-lfs
+#
+# # install dependecies (c++)
+# RUN yum install -y ccache pkgconfig cmake libcurl-devel
 
 
 # install dependcies (meson & pythone)
