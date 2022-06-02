@@ -23,6 +23,7 @@ on:
 jobs:
   build_wheel:
 
+    name: Build linux wheel for python${{ matrix.python-version }}
     runs-on: ubuntu-latest
     container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
     strategy:
@@ -80,6 +81,7 @@ jobs:
         path: wheelhouse
         
   install_test_and_publish:
+    name: Test,install and publish linux wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
     runs-on: ubuntu-latest
 

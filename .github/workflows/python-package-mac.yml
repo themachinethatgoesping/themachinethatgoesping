@@ -23,6 +23,7 @@ on:
 
 jobs:
   build_wheel:
+    name: Build macOS wheel for python${{ matrix.python-version }}
 
     runs-on: macos-latest
     strategy:
@@ -86,6 +87,7 @@ jobs:
         
         
   install_and_test:
+    name: Install and test macOS wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
     runs-on: macos-latest
 
@@ -122,7 +124,7 @@ jobs:
       run: pytest
     
 
-  publish:
+  publish_wheels:
     needs: install_and_test
     runs-on: ubuntu-latest
     steps:

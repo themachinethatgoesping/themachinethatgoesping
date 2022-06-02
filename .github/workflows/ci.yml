@@ -33,6 +33,7 @@ on:
   
 jobs:
   linux:
+    name: Build and install with meson on ${{matrix.container}}
     strategy:
       matrix:
         include:  
@@ -96,6 +97,7 @@ jobs:
     
 
   build-on-windows:
+    name: Build and install with meson on windows
     strategy:
         matrix:
           boost-version: [1.79.0]
@@ -171,6 +173,7 @@ jobs:
         path: builddir/meson-logs/testlog.txt
 
   macos:
+    name: Build and install with meson on macOS
     runs-on: macos-latest
     
     env:
