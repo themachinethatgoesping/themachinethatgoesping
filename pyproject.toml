@@ -11,6 +11,7 @@ requires = [
 build-backend = 'mesonpy'
 backend-path = ['./subprojects/meson-python']
 
+
 [project]
 name = 'themachinethatgoesping'
 dynamic = [
@@ -34,10 +35,12 @@ dependencies = [
   'numpy',
 ]
 
+
 [project.optional-dependencies]
 test = [
   'matplotlib',
 ]
+
 
 [project.urls]
 homepage      = 'https://github.com/themachinethatgoesping'
@@ -45,10 +48,16 @@ repository    = 'https://github.com/themachinethatgoesping'
 documentation = 'https://themachinethatgoesping.readthedocs.io/en/latest/'
 #changelog = 'https://constellations.example.com/orion/docs/changelog.html'
 
+
 # -- cibuildwheel options ---
 [tool.cibuildwheel]
 # Skip pypy[pp*] and cpython 3.6-3.7 [cp36-* cp37-*]
 skip = 'pp* cp36-* cp37-*'
+
+# Run at least pytests
+test-requires = 'pytest'
+test-command  = 'cd {project} && pytest'
+#test-extras   = ''
 
 [tool.cibuildwheel.linux]
 # Install build dependencies

@@ -15,9 +15,9 @@ curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/s
     tar -xf boost_${BOOST_VERSION_}.tar.bz2 && \
     cd boost_* && \
     ./bootstrap.sh  && \
-    ./b2 install --variant=release --threading=multi --link=static ${BOOST_MODULES} && \
+    ./b2 install --variant=release --threading=multi --link=static ${BOOST_MODULES} -d0 && \
     cd .. && \
-    rm -rv boost*
+    rm -r boost*
 
 # install build requirements
 yum install -y git git-lfs
