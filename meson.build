@@ -18,10 +18,12 @@ projectnamespace = 'themachinethatgoesping'
 # --- dependencies ---
 # system
 if meson.get_compiler('cpp').get_id() == 'clang'
-  add_project_arguments('-Xpreprocess', language : 'cpp')
+  add_project_arguments('-Xpreprocess -fopenmp', language : 'cpp')
+  omp_dep = declare_dependency(
+ )
+else
+  omp_dep = dependency('openmp')
 endif
-omp    = dependency('openmp')
-
 
 # load themachinethatgoesping projects
 tools_project = subproject('tools')
