@@ -22,67 +22,67 @@ on:
 
 jobs:
   cibuildwheel:
-      name: Build wheels on ${{ matrix.os }} - ${{ matrix.arch }}
-      runs-on: ${{ matrix.os }}
-      strategy:
-        fail-fast: false
-        matrix:
-          #os: [ubuntu-latest, macos-latest]#, windows-2019, macos-10.15]
-          include:
-            - { os: ubuntu-latest, arch: auto64 }
-            #these run very slow at the moment maybe activate for releases
-            #- { os: ubuntu-latest, arch: aarch64 }
-            #- { os: ubuntu-latest, arch: ppc64le }
-            #- { os: ubuntu-latest, arch: s390x }
-            - { os: macos-latest,  arch: auto64 }
-            - { os: macos-latest,  arch: arm64 }
-            - { os: macos-latest,  arch: x86_64 }
-            - { os: macos-latest,  arch: universal2 }
+    name: Build wheels on ${{ matrix.os }} - ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        #os: [ubuntu-latest, macos-latest]#, windows-2019, macos-10.15]
+        include:
+          - { os: ubuntu-latest, arch: auto64 }
+          #these run very slow at the moment maybe activate for releases
+          #- { os: ubuntu-latest, arch: aarch64 }
+          #- { os: ubuntu-latest, arch: ppc64le }
+          #- { os: ubuntu-latest, arch: s390x }
+          - { os: macos-latest,  arch: auto64 }
+          - { os: macos-latest,  arch: arm64 }
+          - { os: macos-latest,  arch: x86_64 }
+          - { os: macos-latest,  arch: universal2 }
 
-      steps:
+    steps:
 
-        - name: checkout main repository
-          uses: actions/checkout@v3
-          with:
-            submodules: recursive
+      - name: checkout main repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
-        #- uses: actions/setup-python@v2
-          #if: runner.os == 'Linux'
-          #name: Install Python
-          #with:
-            #python-version: '3.x'
+      #- uses: actions/setup-python@v2
+        #if: runner.os == 'Linux'
+        #name: Install Python
+        #with:
+          #python-version: '3.x'
 
-        - name: Set up QEMU
-          if: runner.os == 'Linux'
-          uses: docker/setup-qemu-action@v2
-          with:
-            platforms: all
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
 
-        - name: Build wheels
-          uses: pypa/cibuildwheel@v2.6.0
-          env:
-            # configure cibuildwheel to build different archs
-            #MACOSX_DEPLOYMENT_TARGET: "10.15" #at the moment it is not important to support ancient macos platforms
-            MACOSX_DEPLOYMENT_TARGET: 11
-            CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.6.0
+        env:
+          # configure cibuildwheel to build different archs
+          #MACOSX_DEPLOYMENT_TARGET: "10.15" #at the moment it is not important to support ancient macos platforms
+          MACOSX_DEPLOYMENT_TARGET: 11
+          CIBW_ARCHS_LINUX: ${{ matrix.arch }}
 
-        - uses: actions/upload-artifact@v2
-          with:
-          name: python-package-cibuildwheel
-            path: ./wheelhouse/*.whl
+      - uses: actions/upload-artifact@v2
+        with:
+        name: python-package-cibuildwheel
+          path: ./wheelhouse/*.whl
 
-        - name: Publish package
-          if: runner.os == 'Linux'
-          # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-          # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
-          # Note 3: In the future this should better build against test.pypi repository!
-          #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-          uses: pypa/gh-action-pypi-publish@release/v1
-          with:
-            skip_existing: true
-            user: __token__
-            password: ${{ secrets.PYPI_API_TOKEN }}
-            packages_dir: ./wheelhouse/
+      - name: Publish package
+        if: runner.os == 'Linux'
+        # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+        # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+        # Note 3: In the future this should better build against test.pypi repository!
+        #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip_existing: true
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: ./wheelhouse/
 
   publish_wheels:
     needs: cibuildwheel
