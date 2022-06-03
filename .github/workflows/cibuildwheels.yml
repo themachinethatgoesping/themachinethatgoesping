@@ -37,7 +37,7 @@ jobs:
             - { os: macos-latest,  arch: auto64 }
             - { os: macos-latest,  arch: arm64 }
             - { os: macos-latest,  arch: x86_64 }
-            - { os: macos-latest,  arch: universial2 }
+            - { os: macos-latest,  arch: x86_64 universal2 }
 
       steps:
 
@@ -61,18 +61,18 @@ jobs:
         - name: Build wheels
           uses: pypa/cibuildwheel@v2.6.0
           env:
-            # configure cibuildwheel to build native archs ('auto'), and some
-            # emulated ones
-            # aarch64 did not finish
-            #CIBW_ARCHS_LINUX: auto64 aarch64 ppc64le s390x
-            MACOSX_DEPLOYMENT_TARGET: "10.14"
+            # configure cibuildwheel to build different archs
+            #MACOSX_DEPLOYMENT_TARGET: "10.15" #at the moment it is not important to support ancient macos platforms
+            MACOSX_DEPLOYMENT_TARGET: "11"
             CIBW_ARCHS_LINUX: ${{ matrix.arch }}
 
         - uses: actions/upload-artifact@v2
           with:
+          name: python-package-cibuildwheel
             path: ./wheelhouse/*.whl
 
         - name: Publish package
+          if: runner.os == 'Linux'
           # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
           # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
           # Note 3: In the future this should better build against test.pypi repository!
@@ -83,4 +83,27 @@ jobs:
             user: __token__
             password: ${{ secrets.PYPI_API_TOKEN }}
             packages_dir: ./wheelhouse/
+
+  publish_wheels:
+    needs: cibuildwheel
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download all the dists
+      uses: actions/download-artifact@v2
+      with:
+        name: python-package-cibuildwheel
+        path: dist/
+
+    - name: Publish package
+      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+      # Note 3: In the future this should better build against test.pypi repository!
+      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip_existing: true
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: ./dist/
   
