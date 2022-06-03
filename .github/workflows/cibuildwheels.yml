@@ -65,6 +65,7 @@ jobs:
             # emulated ones
             # aarch64 did not finish
             #CIBW_ARCHS_LINUX: auto64 aarch64 ppc64le s390x
+            MACOSX_DEPLOYMENT_TARGET: "10.14"
             CIBW_ARCHS_LINUX: ${{ matrix.arch }}
 
         - uses: actions/upload-artifact@v2
