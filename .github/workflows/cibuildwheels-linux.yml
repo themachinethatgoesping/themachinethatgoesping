@@ -27,8 +27,14 @@ jobs:
       strategy:
         fail-fast: false
         matrix:
-          os: [ubuntu-latest]#, windows-2019, macos-10.15]
-          arch: [auto64, aarch64, ppc64le, s390x]
+          os: [ubuntu-latest, macos-latest]#, windows-2019, macos-10.15]
+          include:
+            - os: ubuntu-latest
+              #arch: [auto64, aarch64, ppc64le, s390x] #activate this only for releases because it takes hours at the moment (maybe use if: tag option)
+              arch: [auto64]
+            - os: macos-latest
+              #arch: [auto64]
+              arch: [arm64, universial2, x86_64]
 
       steps:
 
