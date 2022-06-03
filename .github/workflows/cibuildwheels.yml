@@ -37,7 +37,7 @@ jobs:
             - { os: macos-latest,  arch: auto64 }
             - { os: macos-latest,  arch: arm64 }
             - { os: macos-latest,  arch: x86_64 }
-            - { os: macos-latest,  arch: x86_64 universal2 }
+            - { os: macos-latest,  arch: universal2 }
 
       steps:
 
@@ -63,7 +63,7 @@ jobs:
           env:
             # configure cibuildwheel to build different archs
             #MACOSX_DEPLOYMENT_TARGET: "10.15" #at the moment it is not important to support ancient macos platforms
-            MACOSX_DEPLOYMENT_TARGET: "11"
+            MACOSX_DEPLOYMENT_TARGET: 11
             CIBW_ARCHS_LINUX: ${{ matrix.arch }}
 
         - uses: actions/upload-artifact@v2
