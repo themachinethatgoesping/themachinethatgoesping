@@ -65,6 +65,7 @@ jobs:
           #MACOSX_DEPLOYMENT_TARGET: "10.15" #at the moment it is not important to support ancient macos platforms
           MACOSX_DEPLOYMENT_TARGET: 11
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+          CIBW_ARCHS_MACOS: ${{ matrix.arch }}
 
       - uses: actions/upload-artifact@v2
         with:
