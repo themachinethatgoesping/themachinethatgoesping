@@ -34,9 +34,9 @@ jobs:
             - { os: ubuntu-latest, arch: ppc64le }
             - { os: ubuntu-latest, arch: s390x }
             - { os: ubuntu-latest, arch: auto64 }
-            - { os: macos-latest,  arch: arm64 }
-            - { os: macos-latest,  arch: x86_64 }
-            - { os: macos-latest,  arch: universial2 }
+            - { os: macos-10.15,  arch: arm64 }
+            - { os: macos-10.15,  arch: x86_64 }
+            - { os: macos-10.15,  arch: universial2 }
 
       steps:
 
