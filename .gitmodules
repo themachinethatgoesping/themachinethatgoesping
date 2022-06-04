@@ -8,3 +8,7 @@
 	url = ../meson-python.git
 	branch = main
 
+[submodule "subprojects/pybind11_mkdoc"]
+	path = subprojects/pybind11_mkdoc
+	url = https://github.com/pybind/pybind11_mkdoc.git
+	branch = master
