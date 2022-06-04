@@ -9,3 +9,7 @@ API
    :toctree: generated
 
    themachinethatgoesping
+
+.. automodule:: themachinethatgoesping.tools.timeconv
+   :members:
+
