@@ -16,4 +16,4 @@
 
 # themachinethatgoesping
 
-Super-project for themachinethatgoesping components
+Super-project for themachinethatgoesping components (https://github.com/themachinethatgoesping)
