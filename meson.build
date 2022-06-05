@@ -7,10 +7,11 @@
 project(
   'themachinethatgoesping',
   'cpp',
-  license : 'MPL-2.0',
+  license: 'MPL-2.0',
 
-  version : '0.0.1.7',
-  default_options : ['warning_level=3', 'buildtype=release', 'cpp_std=c++17']
+  version: '0.0.1.7',
+  default_options: ['warning_level=3', 'buildtype=release', 'cpp_std=c++17'],
+  meson_version: '>=0.62' #force new meson version to limit necessary testing
 )
 
 projectnamespace = 'themachinethatgoesping'
