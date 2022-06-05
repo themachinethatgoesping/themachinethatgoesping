@@ -5,7 +5,7 @@
 Welcome to themachinethatgoesping's documentation!
 ===================================
 
-**themachinethatgoesping** (tmtgp or p!ng) is about to become a set Python libraries for enabling advanced processing strategies for multibeam and singlebeam echosounder data. </br>
+**themachinethatgoesping** (short: ping)  is about to become a set Python libraries for enabling advanced processing strategies for multibeam and singlebeam echosounder data. </br>
 Our approach is to implement core components of this library in C++ and create python interfaces using pybind11. </br>
 The functionality of the c++ core components will thus also be accessibly both, from C++ and Python. </br>
 However, many libraries, tools and applications will be implemented in Python directly, making use of the fast prototyping features of this language. </br>
