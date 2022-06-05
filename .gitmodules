@@ -12,3 +12,8 @@
 	path = subprojects/pybind11_mkdoc
 	url = https://github.com/pybind/pybind11_mkdoc.git
 	branch = master
+
+[submodule "subprojects/navigation"]
+	path = subprojects/navigation
+	url  = ../navigation.git
+	branch = main
