@@ -30,10 +30,9 @@ Contents
 
    usage
    api
-   subprojects
 
 .. toctree::
-   :caption: Module Usage
+   :caption: Module Api
    :maxdepth: 2
 
    modules/tools
