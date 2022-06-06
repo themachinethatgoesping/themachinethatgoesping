@@ -4,7 +4,7 @@
 .. SPDX-License-Identifier: MPL-2.0
 
 Subprojects
-=====
+===========
 
 .. .. _tools:
 

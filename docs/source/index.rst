@@ -3,7 +3,8 @@
 .. SPDX-License-Identifier: MPL-2.0
 
 Welcome to themachinethatgoesping's documentation!
-===================================
+==================================================
+
 
 **themachinethatgoesping** (short: ping)  is about to become a set Python libraries for enabling advanced processing strategies for multibeam and singlebeam echosounder data.
 Our approach is to implement core components of this library in C++ and create python interfaces using pybind11.
@@ -30,3 +31,9 @@ Contents
    usage
    api
    subprojects
+
+.. toctree::
+   :caption: Module Usage
+   :maxdepth: 2
+
+   modules/tools

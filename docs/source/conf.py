@@ -21,7 +21,11 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.napoleon',
 ]
+
+#autodoc
+add_module_names = False
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
@@ -29,6 +33,7 @@ intersphinx_mapping = {
     'themachinethatgoespingtools': ('https://themachinethatgoesping.readthedocs.io/projects/tools/en/latest/', None),
 }
 intersphinx_disabled_domains = ['std']
+
 
 templates_path = ['_templates']
 

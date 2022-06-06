@@ -5,12 +5,12 @@
 API
 ===
 
-.. autosummary::
-   :toctree: generated
-   :recursive:
+.. .. autosummary::
+..    :toctree: generated
+..    :recursive:
 
-   themachinethatgoesping
+..    themachinethatgoesping
 
-.. automodule:: themachinethatgoesping.tools.timeconv
-   :members:
+.. .. automodule:: themachinethatgoesping.tools.timeconv
+..    :members:
 
