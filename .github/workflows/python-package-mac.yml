@@ -50,11 +50,6 @@ jobs:
           brew install boost libomp
 
     #same as on linux
-    - name: checkout main repository
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
-    
     - name: Install dependencies (pip)
       run: |
         #pip install --upgrade pip
