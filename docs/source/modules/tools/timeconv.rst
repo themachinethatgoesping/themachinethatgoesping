@@ -14,11 +14,11 @@ Example usage
     import time # default pyhon module
     from themachinethatgoesping.tools import timeconv
     
-    unixtime   = time.time()
-    datestring = timeconv.unixtime_to_datestring(time())
+    unixtime   = time.time() # create a unixtimestamp in python
+    datestring = timeconv.unixtime_to_datestring(time()) # convert to datestring
     print(datestring)
 
-    unixtime = timeconv.datestring_to_unixtime(datestring)
+    unixtime = timeconv.datestring_to_unixtime(datestring) # convert datestring to unixtimestamp
     print(unixtime)
 
 Format string
