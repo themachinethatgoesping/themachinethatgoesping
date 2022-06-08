@@ -26,6 +26,7 @@ extensions = [
 
 #autodoc
 add_module_names = False
+autodoc_member_order = 'bysource'
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

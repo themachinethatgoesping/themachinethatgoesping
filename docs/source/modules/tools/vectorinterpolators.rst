@@ -40,10 +40,14 @@ Class: LinearInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
-   :members:
+   :members: interpolate, set_extrapolation_mode, set_data_XY, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, checkX, sortX
+
+   .. automethod:: __init__
 
 Class: NearestInterpolator
 **************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.NearestInterpolator
-   :members:
+   :members: interpolate, set_extrapolation_mode, set_data_XY, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, checkX, sortX
+
+   .. automethod:: __init__
