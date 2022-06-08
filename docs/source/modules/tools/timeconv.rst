@@ -1,5 +1,5 @@
 timeconv
-################
+########
 
 This modules provides functions to convert between a datestring format and unixtime timestamp (double).
 The unixtimestamp is defined in seconds since 1970 UTC time.

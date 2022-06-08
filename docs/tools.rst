@@ -6,4 +6,3 @@ tools
    :caption: Module Usage
 
    tools/timeconv
-   tools/vectorinterpolators
