@@ -40,15 +40,7 @@ jobs:
       matrix:
         include:  
           - { os : ubuntu-latest,
-              container : mambaorg/micromamba,
-              predep: 'DEBIAN_FRONTEND=noninteractive apt-get install -y git',
               dep: 'DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
-              #CC : gcc,
-              shell : 'bash -l {0}'}
-          - { os : ubuntu-latest,
-              container : archlinux,
-              predep: 'pacman -Syy --noconfirm git curl tar',
-              dep: 'pacman -Syy --noconfirm boost',
               #CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
@@ -57,6 +49,10 @@ jobs:
               boostversion_: '1_79_0',
               boostmodules: '--with-filesystem',
               shell : powershell}
+          - { os: macos-latest,
+              dep: brew install libomp boost
+              #CC : clang,
+              shell: 'bash -l {0}'}
           
     container: ${{matrix.container}}
 
@@ -124,81 +120,6 @@ jobs:
         path: builddir/meson-logs/testlog.txt
     
 
-  # build-on-windows:
-  #   name: Build and install with meson on windows
-  #   strategy:
-  #       matrix:
-  #         boost-version: [1.79.0]
-  #         boost-version_: [1_79_0]
-  #         boost-modules: [--with-filesystem]
-          
-    
-  #   env:
-  #     CC: msvc-14.3
-
-  #   runs-on: windows-latest
-  #   #container: python:latest #pull directly from dockerhub   
-  #   steps:
-
-  #   - uses: actions/setup-python@v3
-  #     with:
-  #       python-version: '3.x'
-    
-  #   # make sure meson can find msvc
-  #   - name: Prepare MSVC
-  #     uses: bus1/cabuild/action/msdevshell@v1
-  #     with:
-  #       architecture: x64
-
-  #   - name: checkout main repository
-  #     uses: actions/checkout@v3
-  #     with:
-  #       submodules: recursive
-
-  #   - name: Cache Boost
-  #     id: cache-boost
-  #     uses: actions/cache@v3
-  #     with:
-  #       path: c:\Boost
-  #       key: windows-msvc-14.3-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
-  
-  #   - name: Install dependencies on windows
-  #     if: steps.cache-boost.outputs.cache-hit != 'true'
-  #     run: |
-  #       Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
-  #       7z x boost.7z 
-  #       cd .\boost_${{matrix.boost-version_}}\
-  #       .\bootstrap.bat
-  #       .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
-  #       cd ..
-  #       #rm -rv boost*
-
-  #   # same as for linux
-
-  #   - name: install dependcies (meson & pythone)
-  #     run: pip install meson ninja pytest
-
-  #   - name: configure meson
-  #     run: |
-  #       meson setup builddir/ -D"python.install_env=auto" -Dcpp_std=c++17 -Ddefault_library=static -D"python.install_env=auto"
-
-  #   - name: compile project
-  #     run: meson compile -C builddir/
-
-  #   - name: test (cpp)
-  #     run: meson test -C builddir/ -v
-
-  #   - name: install project
-  #     run: meson install -C builddir/
-
-  #   - name: test (pytest)
-  #     run: pytest -v
-    
-  #   - uses: actions/upload-artifact@v1
-  #     if: failure()
-  #     with:
-  #       name: Windows_Meson_Testlog
-  #       path: builddir/meson-logs/testlog.txt
 
   # macos:
   #   name: Build and install with meson on macOS
