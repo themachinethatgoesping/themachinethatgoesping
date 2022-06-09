@@ -13,12 +13,16 @@ on:
       - '.github/workflows/ci.yml'
       - '.github/workflows/python-package-windows*'
       - '.github/workflows/python-package-mac*'
+      - '.github/workflows/conda*'
+      - 'conda*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci.yml'
       - '.github/workflows/python-package-windows*'
       - '.github/workflows/python-package-mac*'
+      - '.github/workflows/conda*'
+      - 'conda*'
 
 jobs:
   cibuildwheel:

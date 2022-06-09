@@ -10,7 +10,7 @@ on:
     
     paths-ignore:
       - '.github/workflows/python-package*'
-      - '.github/workflows/cibuildwheels*'
+      - '.github/workflows/ci*'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"
@@ -21,6 +21,7 @@ on:
     
     paths-ignore:
       - '.github/workflows/python-package*'
+      - '.github/workflows/ci*'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"

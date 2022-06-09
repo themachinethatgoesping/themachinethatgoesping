@@ -13,12 +13,16 @@ on:
       - '.github/workflows/ci*'
       - '.github/workflows/python-*'
       - '.github/workflows/cibuildwheels*'
+      - '.github/workflows/conda*'
+      - 'conda*'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-*'
       - '.github/workflows/cibuildwheels*'
+      - '.github/workflows/conda*'
+      - 'conda*'
 
 jobs:
   build_wheel:
