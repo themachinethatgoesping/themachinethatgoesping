@@ -9,6 +9,7 @@ on:
     branches: [ main ]
     
     paths-ignore:
+      - '*' # ignore for now, conda build does not work
       - '.github/workflows/python-package*'
       - '.github/workflows/ci*'
     #paths:
@@ -20,13 +21,9 @@ on:
     branches: [ main ]
     
     paths-ignore:
+      - '*' # ignore for now, conda build does not work
       - '.github/workflows/python-package*'
       - '.github/workflows/ci*'
-    #paths:
-    #  - "**meson.build"
-    #  - "**.cpp"
-    #  - "**.c"
-    #  - "**.h"
 
 # env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
