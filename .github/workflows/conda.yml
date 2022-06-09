@@ -42,7 +42,7 @@ jobs:
           - { os: ubuntu-latest,
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
               CC : gcc,
-              shell : [bash -l {0}]}
+              shell : 'bash -l {0}'}
           - { os: windows-latest,
               dep: '',
               CC : msvc14-3,
