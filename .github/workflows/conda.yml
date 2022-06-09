@@ -46,7 +46,7 @@ jobs:
           - { os : ubuntu-latest,
               container : archlinux,
               predep: 'pacman -Syy --noconfirm git curl tar',
-              dep: 'pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl tar',
+              dep: 'pacman -Syy --noconfirm boost',
               CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
