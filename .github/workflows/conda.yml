@@ -83,6 +83,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         miniconda-version: "latest"
+        python-version: 3.9
         activate-environment: buildenv
     - name: install conda dependencies
       run: conda install -y conda-build anaconda-client
