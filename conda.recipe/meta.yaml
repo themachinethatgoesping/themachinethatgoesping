@@ -22,6 +22,7 @@ requirements:
     - tomli
     - pep621
     - meson>=0.62
+    - boost-cpp>=1.74
   run:
     - python
 
