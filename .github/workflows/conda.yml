@@ -41,6 +41,7 @@ jobs:
         include:  
           - { os : ubuntu-latest,
               container : mambaorg/micromamba,
+              predep: 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git',
               dep: 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
               #CC : gcc,
               shell : 'bash -l {0}'}
