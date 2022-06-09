@@ -121,7 +121,7 @@ jobs:
 
     - name: Build and test conda packages 
       #run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
-      run: conda build conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
+      run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
       
     - uses: actions/upload-artifact@v1
       if: failure()

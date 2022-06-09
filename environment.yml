@@ -6,9 +6,9 @@ channels:
 
 dependencies:
   - python=3.9
-  # - boa
+  - boa
   # - mamba
-  # - conda-verify
+  - conda-verify
   # - jinja2
   - anaconda-client
   - conda-build
