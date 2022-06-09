@@ -1,1 +1,6 @@
-boa
+name: build-environment
+
+dependencies:
+  - python=3.10
+  - boa
+  - mamba
