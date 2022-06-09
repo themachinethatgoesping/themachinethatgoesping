@@ -1,0 +1,38 @@
+{% set name = "themachinethatgoesping" %}
+{% set version = "0.0.2.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  path: ../
+
+build:
+  number: 1
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - python {{ python }}
+    - pip
+    - tomli
+    - pep621
+  run:
+    - python
+
+test:
+  imports:
+    - themachinethatgoesping
+
+  source_files:
+    - subprojects/tools/tests/pytests
+  requires:
+    - pytest
+  commands:
+    - pytest
+
+about:
+  home: https://themachinethatgoesping.readthedocs.io/en/latest/
+  license: MPL-2.0
+  summary: Enable advanced processing for multibeam and singlebeam echosounder data.
