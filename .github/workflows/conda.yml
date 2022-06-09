@@ -74,20 +74,20 @@ jobs:
       with:
         submodules: recursive
     
-    # - name: Install Conda environment from environment.yml
-    #   if: ${{matrix.container}} != mambaorg/micromamba
-    #   uses: mamba-org/provision-with-micromamba@main
-    #   with:
-    #     cache-env: true
-
-    - uses: conda-incubator/setup-miniconda@v2
+    - name: Install Conda environment from environment.yml
+      if: ${{matrix.container}} != mambaorg/micromamba
+      uses: mamba-org/provision-with-micromamba@main
       with:
-        miniconda-version: "latest"
-        python-version: 3.9
-        activate-environment: buildenv
-        channels: defaults, conda-forge
-    - name: install conda dependencies
-      run: conda install -y conda-build anaconda-client
+        cache-env: true
+
+    # - uses: conda-incubator/setup-miniconda@v2
+    #   with:
+    #     miniconda-version: "latest"
+    #     python-version: 3.9
+    #     activate-environment: buildenv
+    #     channels: defaults, conda-forge
+    # - name: install conda dependencies
+    #   run: conda install -y conda-build anaconda-client
   
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
