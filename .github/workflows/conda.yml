@@ -42,7 +42,7 @@ jobs:
           - { os: ubuntu-latest,
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
               CC : gcc,
-              shell : bash -l {0}}
+              shell : [bash -l {0}]}
           - { os: windows-latest,
               dep: '',
               CC : msvc14-3,
@@ -51,11 +51,9 @@ jobs:
               boost-modules: [--with-filesystem],
               shell : powershell}
           
-    
     runs-on: ${{matrix.os}}    
     env:
       CC: ${{matrix.CC}} 
-
     
     defaults:
       run:
@@ -89,7 +87,7 @@ jobs:
   
     - name: Install dependencies on windows
       if: steps.cache-boost.outputs.cache-hit != 'true'
-      if: runner.os == 'Windows'
+      #if: runner.os == 'Windows'
       run: |
         Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
         7z x boost.7z 
