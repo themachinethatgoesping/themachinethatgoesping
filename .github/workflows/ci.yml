@@ -12,7 +12,7 @@ on:
       - '.github/workflows/python-package*'
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
-      - 'conda*'
+      - 'conda.recipe/*'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"
@@ -25,7 +25,7 @@ on:
       - '.github/workflows/python-package*'
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
-      - 'conda*'
+      - 'conda.recipe/*'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"

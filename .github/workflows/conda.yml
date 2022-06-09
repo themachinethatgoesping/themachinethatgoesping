@@ -38,7 +38,8 @@ jobs:
     strategy:
       matrix:
         include:  
-          - { os: ubuntu-latest}
+          - { os: ubuntu-latest,
+            dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev'}
           
     
     runs-on: ${{matrix.os}}
@@ -51,6 +52,10 @@ jobs:
 
     - name: Install Conda environment from environment.yml
       uses: mamba-org/provision-with-micromamba@main
+
+    - name: install build dependecies (c++)
+      if:  ${{matrix.dep}}
+      run: ${{matrix.dep}}
 
     - name: Build and test conda packages
       shell: bash -l {0}
