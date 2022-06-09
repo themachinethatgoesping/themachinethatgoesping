@@ -55,8 +55,7 @@ jobs:
               boostmodules: '--with-filesystem',
               shell : powershell}
           
-    if: ${{matrix.container}}
-      container: ${{matrix.container}}
+    container: ${{matrix.container}}
 
     runs-on: ${{matrix.os}}    
     env:
