@@ -102,7 +102,7 @@ jobs:
       run: ${{matrix.dep}}
 
     - name: Build and test conda packages 
-      run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token th-516851c1-f53e-4c1b-82a0-88b751ad4d63
+      run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
       
     - uses: actions/upload-artifact@v1
       if: failure()
