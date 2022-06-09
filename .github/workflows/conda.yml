@@ -45,6 +45,7 @@ jobs:
               shell : 'bash -l {0}'}
           - { os : ubuntu-latest,
               container : archlinux,
+              predep: 'pacman -Syy --noconfirm git curl tar',
               dep: 'pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl tar',
               CC : gcc,
               shell : 'bash -l {0}'}
@@ -66,19 +67,23 @@ jobs:
         shell: ${{matrix.shell}}  
 
     steps:
+    - name: install build dependecies (prebuild)
+      if:  ${{matrix.predep}}
+      run: ${{matrix.predep}}
+
     - name: checkout main repository
       uses: actions/checkout@v3
       with:
         submodules: recursive
     
-    - name: install build dependecies (c++)
-      if:  ${{matrix.dep}}
-      run: ${{matrix.dep}}
-
     - name: Install Conda environment from environment.yml
       uses: mamba-org/provision-with-micromamba@main
       with:
         cache-env: true
+    
+    - name: install build dependecies (c++)
+      if:  ${{matrix.dep}}
+      run: ${{matrix.dep}}
 
     # make sure meson can find msvc
     - name: Prepare MSVC
