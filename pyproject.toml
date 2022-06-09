@@ -5,7 +5,8 @@
 [build-system]
 requires = [
     'meson-python >= 0.5',
-    'meson',
+    'meson >= 0.62',
+    'pyproject_metadata',
     'ninja'
 ]
 build-backend = 'mesonpy'
