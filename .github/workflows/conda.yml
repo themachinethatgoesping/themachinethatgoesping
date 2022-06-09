@@ -5,25 +5,18 @@
 name: conda packages
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
     
-    paths-ignore:
-      - '*' # ignore for now, conda build does not work
-      - '.github/workflows/python-package*'
-      - '.github/workflows/ci*'
-    #paths:
-    #  - "**meson.build"
-    #  - "**.cpp"
-    #  - "**.c"
-    #  - "**.h"
-  pull_request:
-    branches: [ main ]
+  #   paths-ignore:
+  #     - '.github/workflows/python-package*'
+  #     - '.github/workflows/ci*'
+  # pull_request:
+  #   branches: [ main ]
     
-    paths-ignore:
-      - '*' # ignore for now, conda build does not work
-      - '.github/workflows/python-package*'
-      - '.github/workflows/ci*'
+  #   paths-ignore:
+  #     - '.github/workflows/python-package*'
+  #     - '.github/workflows/ci*'
 
 # env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
