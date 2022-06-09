@@ -52,6 +52,8 @@ jobs:
 
     - name: Install Conda environment from environment.yml
       uses: mamba-org/provision-with-micromamba@main
+      with:
+        cache-env: true
 
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
@@ -59,7 +61,7 @@ jobs:
 
     - name: Build and test conda packages
       shell: bash -l {0}
-      run: conda mambabuild .
+      run: conda mambabuild conde.recipe/
       
     - uses: actions/upload-artifact@v1
       if: failure()
