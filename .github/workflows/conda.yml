@@ -5,9 +5,12 @@
 name: conda packages
 
 on:
-  # push:
-  #   branches: [ main ]
+  push:
+    branches: [ main ]
     
+    paths:
+     - "**conda.yml" #ignore for now (except if this file is change)
+
   #   paths-ignore:
   #     - '.github/workflows/python-package*'
   #     - '.github/workflows/ci*'
