@@ -14,15 +14,13 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
-  #  - libstdcxx-ng
+  #  - {{ compiler('cxx') }}
   host:
     - python {{ python }}
     - pip
     - tomli
     - pep621
     - meson>=0.62
-    - boost-cpp>=1.74
   run:
     - python
 
