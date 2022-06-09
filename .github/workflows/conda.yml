@@ -40,17 +40,18 @@ jobs:
       matrix:
         include:  
           - { os : ubuntu-latest,
+              container : mambaorg/micromamba,
               dep: 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
-              CC : gcc,
+              #CC : gcc,
               shell : 'bash -l {0}'}
           - { os : ubuntu-latest,
               container : archlinux,
               predep: 'pacman -Syy --noconfirm git curl tar',
               dep: 'pacman -Syy --noconfirm boost',
-              CC : gcc,
+              #CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
-              CC : msvc14-3,
+              #CC : msvc14-3,
               boostversion: '1.79.0',
               boostversion_: '1_79_0',
               boostmodules: '--with-filesystem',
@@ -77,6 +78,7 @@ jobs:
         submodules: recursive
     
     - name: Install Conda environment from environment.yml
+      if: ${{matrix.container}} != mambaorg/micromamba
       uses: mamba-org/provision-with-micromamba@main
       with:
         cache-env: true
