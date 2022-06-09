@@ -9,3 +9,5 @@ dependencies:
   - boa
   - mamba
   - conda-verify
+  - jinja2
+  - anaconda-client
