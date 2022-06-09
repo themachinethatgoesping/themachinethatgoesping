@@ -59,7 +59,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         python${{ matrix.python-version }} -m pip install --upgrade pi
-        python${{ matrix.python-version }} -m pip install meson ninja pytest twine auditwheel pyproject_metadata
+        python${{ matrix.python-version }} -m pip install meson ninja pytest twine auditwheel pyproject-metadata
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
          

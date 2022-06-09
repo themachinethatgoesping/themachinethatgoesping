@@ -88,7 +88,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         #pip install --upgrade pip
-        pip install meson ninja pytest twine wheel pyproject_metadata
+        pip install meson ninja pytest twine wheel pyproject-metadata
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
          
     - name: build and install wheel
