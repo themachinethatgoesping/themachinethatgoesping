@@ -8,3 +8,4 @@ dependencies:
   - python=3.10
   - boa
   - mamba
+  - conda-verify
