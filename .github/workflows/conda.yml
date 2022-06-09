@@ -40,7 +40,7 @@ jobs:
       matrix:
         include:  
           - { os : ubuntu-latest,
-              dep: 'DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
+              dep: 'DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libboost-all-dev',
               #CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
