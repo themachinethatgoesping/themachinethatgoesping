@@ -80,12 +80,10 @@ jobs:
     #   with:
     #     cache-env: true
 
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: build-environment
-        environment-file: environment.yml
-        python-version: 3.10
-        auto-activate-base: false
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniconda-version: "latest"
+          activate-environment: buildenv
     
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
