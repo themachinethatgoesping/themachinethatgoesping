@@ -80,11 +80,13 @@ jobs:
     #   with:
     #     cache-env: true
 
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          miniconda-version: "latest"
-          activate-environment: buildenv
-    
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniconda-version: "latest"
+        activate-environment: buildenv
+    - name: install conda dependencies
+      run: conda install -y conda-build anaconda-client
+  
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
