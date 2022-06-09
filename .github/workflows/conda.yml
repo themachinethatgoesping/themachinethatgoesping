@@ -39,16 +39,15 @@ jobs:
       fail-fast: false
       matrix:
         include:  
-          - { os: ubuntu-latest,
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
+          - { os : ubuntu-latest,
+              dep: 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
               CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
-              dep: '',
               CC : msvc14-3,
-              boost-version: [1.79.0],
-              boost-version_: [1_79_0],
-              boost-modules: [--with-filesystem],
+              boostversion: '1.79.0',
+              boostversion_: '1_79_0',
+              boostmodules: '--with-filesystem',
               shell : powershell}
           
     runs-on: ${{matrix.os}}    
@@ -83,14 +82,14 @@ jobs:
       uses: actions/cache@v3
       with:
         path: c:\Boost
-        key: windows-msvc-14.3-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+        key: windows-msvc-14.3-boost-${{matrix.boostversion}}-${{matrix.boostmodules}}
   
     - name: Install dependencies on windows
       if: (runner.os == 'Windows') && (steps.cache-boost.outputs.cache-hit != 'true')
       run: |
-        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boostversion}}/source/boost_${{matrix.boostversion_}}.7z -outfile boost.7z
         7z x boost.7z 
-        cd .\boost_${{matrix.boost-version_}}\
+        cd .\boost_${{matrix.boostversion_}}\
         .\bootstrap.bat
         .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
         cd ..
