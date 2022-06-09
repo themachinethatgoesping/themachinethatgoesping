@@ -74,11 +74,18 @@ jobs:
       with:
         submodules: recursive
     
-    - name: Install Conda environment from environment.yml
-      if: ${{matrix.container}} != mambaorg/micromamba
-      uses: mamba-org/provision-with-micromamba@main
+    # - name: Install Conda environment from environment.yml
+    #   if: ${{matrix.container}} != mambaorg/micromamba
+    #   uses: mamba-org/provision-with-micromamba@main
+    #   with:
+    #     cache-env: true
+
+    - uses: conda-incubator/setup-miniconda@v2
       with:
-        cache-env: true
+        activate-environment: build-environment
+        environment-file: environment.yml
+        python-version: 3.10
+        auto-activate-base: false
     
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
@@ -111,7 +118,8 @@ jobs:
         #rm -rv boost*
 
     - name: Build and test conda packages 
-      run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
+      #run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
+      run: conda build conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
       
     - uses: actions/upload-artifact@v1
       if: failure()

@@ -1,13 +1,14 @@
 name: build-environment
 
 channels:
-  - conda-forge
-#  - defaults
+  - defaults
+  # - conda-forge
 
 dependencies:
-  - python=3.10
-  - boa
-  - mamba
-  - conda-verify
-  - jinja2
+  - python=3.9
+  # - boa
+  # - mamba
+  # - conda-verify
+  # - jinja2
   - anaconda-client
+  - conda-build
