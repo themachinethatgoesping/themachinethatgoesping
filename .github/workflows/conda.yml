@@ -50,7 +50,7 @@ jobs:
               boostmodules: '--with-filesystem',
               shell : powershell}
           - { os: macos-latest,
-              dep: brew install libomp boost
+              dep: brew install libomp boost,
               #CC : clang,
               shell: 'bash -l {0}'}
           
