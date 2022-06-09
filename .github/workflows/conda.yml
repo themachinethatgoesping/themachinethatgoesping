@@ -85,6 +85,7 @@ jobs:
         miniconda-version: "latest"
         python-version: 3.9
         activate-environment: buildenv
+        channels: defaults, conda-forge
     - name: install conda dependencies
       run: conda install -y conda-build anaconda-client
   
