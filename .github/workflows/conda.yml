@@ -36,20 +36,30 @@ jobs:
   build_conda:
     name: Build conda package for ${{matrix.os}}
     strategy:
+      fail-fast: false
       matrix:
         include:  
           - { os: ubuntu-latest,
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-all-dev',
-              CC : gcc}
+              CC : gcc,
+              shell : bash -l {0}}
           - { os: windows-latest,
               dep: '',
               CC : msvc14-3,
               boost-version: [1.79.0],
               boost-version_: [1_79_0],
-              boost-modules: [--with-filesystem]}
+              boost-modules: [--with-filesystem],
+              shell : powershell}
           
     
-    runs-on: ${{matrix.os}}
+    runs-on: ${{matrix.os}}    
+    env:
+      CC: ${{matrix.CC}} 
+
+    
+    defaults:
+      run:
+        shell: ${{matrix.shell}}  
 
     steps:
     - name: checkout main repository
@@ -62,12 +72,38 @@ jobs:
       with:
         cache-env: true
 
+    # make sure meson can find msvc
+    - name: Prepare MSVC
+      if: runner.os == 'Windows'
+      uses: bus1/cabuild/action/msdevshell@v1
+      with:
+        architecture: x64
+
+    - name: Cache Boost
+      if: runner.os == 'Windows'
+      id: cache-boost
+      uses: actions/cache@v3
+      with:
+        path: c:\Boost
+        key: windows-msvc-14.3-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+  
+    - name: Install dependencies on windows
+      if: steps.cache-boost.outputs.cache-hit != 'true'
+      if: runner.os == 'Windows'
+      run: |
+        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+        7z x boost.7z 
+        cd .\boost_${{matrix.boost-version_}}\
+        .\bootstrap.bat
+        .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
+        cd ..
+        #rm -rv boost*
+
     - name: install build dependecies (c++)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
 
-    - name: Build and test conda packages
-      shell: bash -l {0}
+    - name: Build and test conda packages 
       run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token th-516851c1-f53e-4c1b-82a0-88b751ad4d63
       
     - uses: actions/upload-artifact@v1
