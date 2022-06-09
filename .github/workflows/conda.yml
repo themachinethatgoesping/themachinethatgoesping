@@ -52,6 +52,7 @@ jobs:
       uses: mamba-org/provision-with-micromamba@main
 
     - name: Build and test conda packages
+      shell: bash -l {0}
       run: conda mambabuild .
       
     - uses: actions/upload-artifact@v1
