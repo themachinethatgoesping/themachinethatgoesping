@@ -20,5 +20,9 @@ projectnamespace = 'themachinethatgoesping'
 # load themachinethatgoesping projects
 tools_project = subproject('tools')
 tools_dep = tools_project.get_variable('tools_dep')
+pythoninstallpath = tools_project.get_variable('pythoninstallpath')
+
+# add python files
+subdir('python')
 
  
