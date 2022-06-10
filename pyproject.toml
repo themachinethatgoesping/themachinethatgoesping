@@ -34,13 +34,16 @@ classifiers = [
 requires-python = '>=3.8'
 dependencies = [
   'numpy',
-  'numba'
+  'numba',
+  'matplotlib',
+  'ipyml',
+  'tqdm'
 ]
 
 
 [project.optional-dependencies]
 test = [
-  'matplotlib','tqdm','jupyter'
+  'jupyter'
 ]
 
 
@@ -70,3 +73,13 @@ before-all = './ci_scripts/docker-manylinux_x86_64/manylinux2014-install.sh'
 before-all = 'brew install boost libomp'
 
 #FUTURE: add windows build here as well
+
+
+# pyproject.toml
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "subprojects/tools/tests/",
+    "subprojects/echogrids/tests/",
+]
