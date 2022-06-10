@@ -171,6 +171,9 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
+    - name: install pip requirements
+      run: pip install -r requirements.txt
+
     - name: test (pytest)
       run: pytest -v
     
@@ -213,6 +216,9 @@ jobs:
 
     - name: install project
       run: meson install -C builddir/
+
+    - name: install pip requirements
+      run: pip install -r requirements.txt
 
     - name: test (pytest)
       run: pytest -v
