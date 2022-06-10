@@ -36,7 +36,7 @@ dependencies = [
   'numpy',
   'numba',
   'matplotlib',
-  'ipyml',
+  'ipympl',
   'tqdm'
 ]
 
