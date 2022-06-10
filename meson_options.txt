@@ -5,3 +5,4 @@
  option('build_pythonmodule', type : 'feature', value : 'enabled', description : 'build the python module (requires pybind11)', yield : true)
  option('python_path', type : 'string', value : 'python3', description : 'name of the python version or path to the python module (e.g. python3.10 or /usr/local/bin/python3.10m)', yield : true)
  option('build_tests', type : 'feature', value : 'enabled', description : 'build tests (requires catch2)', yield : true)
+ option('pydev_install', type : 'feature', value : 'disabled', description : 'On install: Link to python package src directories, rather than installing the souce to hdd.', yield : true)

@@ -9,7 +9,7 @@ project(
   'cpp',
   license: 'MPL-2.0',
 
-  version: '0.0.2.2b1',
+  version: '0.0.2.2',
   default_options: ['warning_level=3', 'buildtype=release', 'cpp_std=c++17'],
   meson_version: '>=0.62' #force new meson version to limit necessary testing
 )
@@ -20,7 +20,9 @@ projectnamespace = 'themachinethatgoesping'
 # load themachinethatgoesping projects
 tools_project = subproject('tools')
 tools_dep = tools_project.get_variable('tools_dep')
-pythoninstallpath = tools_project.get_variable('pythoninstallpath')
+
+# python only projects
+echogrids_project = subproject('echogrids')
 
 # add python files
 subdir('python')
