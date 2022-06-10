@@ -31,8 +31,7 @@ python_use_unqualified_type_names = True
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
-    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
-    'themachinethatgoespingtools': ('https://themachinethatgoesping.readthedocs.io/projects/tools/en/latest/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None)
 }
 intersphinx_disabled_domains = ['std']
 
