@@ -17,3 +17,6 @@
 	path = subprojects/navigation
 	url  = ../navigation.git
 	branch = main
+[submodule "subprojects/echogrids"]
+	path = subprojects/echogrids
+	url = ../echogrids.git
