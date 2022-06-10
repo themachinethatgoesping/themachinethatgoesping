@@ -58,4 +58,6 @@ If you are interested, contact peter.urban@ugent.be
 
 - <a href="https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/tools">**tools:**</a> Shared functions and interfaces 
 
+- <a href="https://github.com/themachinethatgoesping/echogrids/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/echogrids/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/echogrids">**echogrids:**</a> Gridding functions (python only test repo) 
+
 <!--
