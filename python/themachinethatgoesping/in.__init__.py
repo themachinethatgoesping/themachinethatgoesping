@@ -3,6 +3,18 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
+"""
+themachinethatgoesping
+**********************
+Enable quantitative processing of multibeam and singlebeam echosounder systems
+"""
+
+@PYDEV_SRC_PATH@
+@PYDEV_MODULES@
+
+@PYDEV_INSTALL@
+
 #import the module functions into the current namespace
 from themachinethatgoesping import tools
 from themachinethatgoesping import tools_ext
+from themachinethatgoesping import echogrids
