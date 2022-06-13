@@ -21,4 +21,3 @@
 [submodule "subprojects/gridding"]
 	path = subprojects/gridding
 	url = ../gridding.git
-	branch = main
