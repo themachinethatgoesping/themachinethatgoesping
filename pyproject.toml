@@ -81,5 +81,5 @@ minversion = "6.0"
 addopts = "-ra -q"
 testpaths = [
     "subprojects/tools/tests/",
-    "subprojects/echogrids/tests/",
+    "subprojects/gridding/tests/",
 ]

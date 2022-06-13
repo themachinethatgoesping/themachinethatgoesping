@@ -22,7 +22,7 @@ tools_project = subproject('tools')
 tools_dep = tools_project.get_variable('tools_dep')
 
 # python only projects
-echogrids_project = subproject('echogrids')
+echogrids_project = subproject('gridding')
 
 # add python files
 subdir('python')

@@ -36,4 +36,4 @@ Contents
    :maxdepth: 2
 
    modules/tools
-   modules/echogrids
+   modules/gridding

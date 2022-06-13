@@ -17,4 +17,4 @@ Enable quantitative processing of multibeam and singlebeam echosounder systems
 #import the module functions into the current namespace
 from themachinethatgoesping import tools
 from themachinethatgoesping import tools_ext
-from themachinethatgoesping import echogrids
+from themachinethatgoesping import gridding
