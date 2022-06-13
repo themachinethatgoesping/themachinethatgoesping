@@ -1,7 +1,9 @@
-FoorwardGridder
-###############
+:py:class:`ForwardGridder <themachinethatgoesping.gridding.forwardgridder.ForwardGridder>`
+##########################################################################################
 
 This modules provides a class to create 3D numpy grids from scatter points using a selection of forward mapping functions.
+
+
 
 Example usage
 *************
@@ -23,7 +25,7 @@ Example usage
 
    # create new grid (auto determine min/max x,y,z)
    grd_res = 1
-   gridder = grd.ForwardGridder.from_data(grd_res,sx,sy,sz)
+   gridder = grd.:ForwardGridder:.from_data(grd_res,sx,sy,sz)
 
    #create 3D numpy array using block mean (fast)
    ival, iweight = gridder.interpolate_block_mean(sx,sy,sz,sv)
@@ -46,3 +48,5 @@ Class: ForwardGridder
    :members:
 
    .. automethod:: __init__
+   
+
