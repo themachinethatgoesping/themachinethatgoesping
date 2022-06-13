@@ -2,9 +2,7 @@ gridding
 ********
 
 
-.. autosummary::
-   :toctree: gridding.generated
-   :nosignatures:
-   :recursive:
+.. toctree::
+   :caption: Module Usage
 
-   themachinethatgoesping.gridding
+   gridding/forwardgridder
