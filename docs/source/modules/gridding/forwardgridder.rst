@@ -25,7 +25,7 @@ Example usage
 
    # create new grid (auto determine min/max x,y,z)
    grd_res = 1
-   gridder = grd.:ForwardGridder:.from_data(grd_res,sx,sy,sz)
+   gridder = ForwardGridder.from_data(grd_res,sx,sy,sz)
 
    #create 3D numpy array using block mean (fast)
    ival, iweight = gridder.interpolate_block_mean(sx,sy,sz,sv)
@@ -37,8 +37,7 @@ Example usage
 
    #compuate total value
    iavg = np.zeros(ival.shape)
-   iavg[imagenums > 0] = ival[iweight > 0] / iweight[iweight > 0]
-   TotalValue = np.nansum(iavg) * (gridder.xres*gridder.yres*gridder.zres)
+   iavg[ival > 0] = ival[iweight > 0] / iweight[iweight > 0]
   
 
 Class: ForwardGridder
