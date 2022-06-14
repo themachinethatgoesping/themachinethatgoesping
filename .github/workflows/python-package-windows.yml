@@ -34,8 +34,8 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8','3.9','3.10']
-        boost-version: [1.79.0]
-        boost-version_: [1_79_0]
+        boost-version: [1.74.0]
+        boost-version_: [1_74_0]
         boost-modules: [--with-filesystem]
         compiler: [msvc-14.3]
 
