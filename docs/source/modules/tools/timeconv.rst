@@ -11,7 +11,7 @@ Example usage
 .. code-block:: python
 
     # import this module
-    import time # default pyhon module
+    from time import time # default pyhon module
     from themachinethatgoesping.tools import timeconv
     
     unixtime   = time.time() # create a unixtimestamp in python
