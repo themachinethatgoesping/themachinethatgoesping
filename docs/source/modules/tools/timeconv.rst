@@ -11,11 +11,11 @@ Example usage
 .. code-block:: python
 
     # import this module
-    from time import time # default pyhon module
+    import time # default pyhon module
     from themachinethatgoesping.tools import timeconv
     
     unixtime   = time.time() # create a unixtimestamp in python
-    datestring = timeconv.unixtime_to_datestring(time()) # convert to datestring
+    datestring = timeconv.unixtime_to_datestring(time.time()) # convert to datestring
     print(datestring)
 
     unixtime = timeconv.datestring_to_unixtime(datestring) # convert datestring to unixtimestamp
