@@ -161,3 +161,49 @@ jobs:
     - name: pytest from git repo
       run: pytest -v
       
+  test_pypi_container:
+    needs: install_test_and_publish
+    name: Python ${{matrix.python_version}} on ${{matrix.container}}
+    strategy:
+      fail-fast: false
+      matrix:
+        container: ['ubuntu:20.04','ubuntu:22.04','archlinux']
+
+        include:  
+          - container: 'ubuntu:20.04'
+            pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
+            pip-command: 'python3 -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python3 -m pytest'
+          - container: 'ubuntu:22.04'
+            pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
+            pip-command: 'python3 -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python3 -m pytest'
+          - container: 'archlinux'
+            pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git python python-pip --noconfirm'
+            pip-command: 'python -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python -m pytest'
+  
+    runs-on: ubuntu-latest
+    container: ${{matrix.container}}
+
+    steps:
+    - name: install prequisits
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: install via pip
+      run: ${{matrix.pip-command}}
+
+    - name: python -m pytest from git repo
+      run: ${{matrix.pytest-command}}
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: ${{matrix.container}}_Testlog
+        path: builddir/meson-logs/testlog.txt
