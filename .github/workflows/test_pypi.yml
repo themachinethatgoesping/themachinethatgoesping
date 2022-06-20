@@ -79,9 +79,13 @@ jobs:
 
         include:  
           - container: 'ubuntu:22.04'
-            pre-dep : 'apt update && apt-get install -y sudo git'
+            pre-dep : 'apt update && apt-get install -y sudo git python3'
+            pip-command: 'python3 -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python3 -m pytest'
           - container: 'archlinux'
-            pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'
+            pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git python --noconfirm'
+            pip-command: 'python -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python -m pytest'
   
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
@@ -96,15 +100,11 @@ jobs:
       with:
         submodules: recursive
 
-    - uses: actions/setup-python@v3
-      with:
-        python-version: ${{matrix.python_version}}
-
     - name: install via pip
-      run: python -m pip install setuptools themachinethatgoesping pytest
+      run: ${{matrix.pip-command}}
 
     - name: python -m pytest from git repo
-      run: pytest -v
+      run: ${{matrix.pytest-command}}
       
     - uses: actions/upload-artifact@v1
       if: failure()
