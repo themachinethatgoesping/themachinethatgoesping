@@ -180,8 +180,10 @@ jobs:
     needs: publish_wheel
     runs-on: windows-latest
 
-    matrix:
-      python-version: ['3.8','3.9','3.10']
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8','3.9','3.10']
 
     steps:
 

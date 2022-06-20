@@ -152,11 +152,12 @@ jobs:
     needs: publish_wheel
     runs-on: macos-latest
 
-    matrix:
-      python-version: ['3.8','3.9','3.10']
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8','3.9','3.10']
       
-    steps:
-    
+    steps:    
     - name: checkout main repository
       uses: actions/checkout@v3
       with:
