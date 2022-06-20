@@ -48,10 +48,6 @@ jobs:
     runs-on: ${{matrix.os}}
 
     steps:
-    - name: install prequisits
-      if:  ${{matrix.pre-dep}}
-      run: ${{matrix.pre-dep}}
-
     - name: checkout main repository
       uses: actions/checkout@v3
       with:
@@ -77,14 +73,15 @@ jobs:
     name: Python ${{matrix.python_version}} on ${{matrix.container}}
     strategy:
       fail-fast: false
-      matrix:
-        python_version: ['3.8','3.9','3.10']
+      matrix:       
 
         include:  
           - { container: 'ubuntu:22.04', 
-              pre-dep : 'apt update && apt-get install -y sudo git'}
+              pre-dep : 'apt update && apt-get install -y sudo git',
+              python_version: ['3.8','3.9','3.10']}
           - { container: 'archlinux', 
-              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'}
+              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm',
+              python_version: ['3.8','3.9','3.10']}
   
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
