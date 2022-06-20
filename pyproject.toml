@@ -80,6 +80,6 @@ before-all = 'brew install boost libomp'
 minversion = "6.0"
 addopts = "-ra -q"
 testpaths = [
-    "subprojects/tools/tests/",
-    "subprojects/gridding/tests/",
+    "subprojects/tools/python/tests/",
+    "subprojects/gridding/python/tests/",
 ]
