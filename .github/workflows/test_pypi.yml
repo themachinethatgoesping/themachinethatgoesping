@@ -55,7 +55,6 @@ jobs:
           pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'
   
     runs-on: ${{matrix.os}}
-    if: ${{matrix.container}}
     container: ${{matrix.container}}
 
     steps:
