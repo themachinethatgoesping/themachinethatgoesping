@@ -46,6 +46,7 @@ jobs:
         python_version: ['3.8','3.9','3.10']
         include:  
           - os: ubuntu-latest
+            test: false
           - os: ubuntu-latest
             container: 'ubuntu:22.04'
             pre-dep : 'apt update && apt-get install -y sudo git',
