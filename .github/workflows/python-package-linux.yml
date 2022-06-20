@@ -15,6 +15,7 @@ on:
       - '.github/workflows/python-package-mac*'
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
+      - '.github/workflows/test_*'
       - 'conda.recipe/*'
   pull_request:
     branches: [ main ]
@@ -24,6 +25,7 @@ on:
       - '.github/workflows/python-package-mac*'
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
+      - '.github/workflows/test_*'
       - 'conda.recipe/*'
 
 jobs:

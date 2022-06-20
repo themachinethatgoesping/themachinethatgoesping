@@ -1,0 +1,86 @@
+# SPDX-FileCopyrightText: 2022 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+name: Test_PyPi
+
+on:
+  push:
+    branches: [ main ]
+    
+    paths-ignore:
+      - '.github/workflows/python-package*'
+      - '.github/workflows/ci*'
+      - '.github/workflows/conda*'
+      - 'conda.recipe/*'
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+  pull_request:
+    branches: [ main ]
+    
+    paths-ignore:
+      - '.github/workflows/python-package*'
+      - '.github/workflows/ci*'
+      - '.github/workflows/conda*'
+      - 'conda.recipe/*'
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+
+# env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  #BUILD_TYPE: Release
+  
+jobs:
+  install_pip:
+    name: Build and install with meson on ${{matrix.container}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest, macos-latest]
+        python_version: ['3.8','3.9','3.10']
+        # include:  
+        #   - os: ubuntu-latest
+        #   - os: ubuntu-latest
+        #     container: 'ubuntu:22.04'
+        #   - os: ubuntu-latest
+        #     container: 'archlinux'
+    
+    runs-on: ${{matrix.os}}
+    # if: ${{matrix.container}}
+    # container: ${{matrix.container}}
+
+    steps:
+    - name: install prequisits
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - uses: actions/setup-python@v3
+      with:
+        python-version: {{matrix.python_version}}
+
+    - name: install via pip
+      run: pip install themachinethatgoesping
+
+    - name: pytest from git repo
+      run: pytest -v
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: ${{matrix.container}}_Testlog
+        path: builddir/meson-logs/testlog.txt
+    
+
+    
+      
