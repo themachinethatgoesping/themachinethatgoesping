@@ -38,7 +38,7 @@ on:
   
 jobs:
   install_pip:
-    name: Build and install with meson on ${{matrix.container}}
+    name: Python ${{matrix.python_version}} on ${{matrix.os}}
     strategy:
       fail-fast: false
       matrix:
@@ -70,7 +70,7 @@ jobs:
         python-version: ${{matrix.python_version}}
 
     - name: install via pip
-      run: pip install themachinethatgoesping
+      run: pip install themachinethatgoesping pytest
 
     - name: pytest from git repo
       run: pytest -v
