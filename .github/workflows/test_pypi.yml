@@ -74,8 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python_version: ['3.8','3.9','3.10']
-        container: ['ubuntu:22.04','archlinux']
+        container: ['ubuntu:20.04','ubuntu:22.04','archlinux']
 
         include:  
           - container: 'ubuntu:22.04'
