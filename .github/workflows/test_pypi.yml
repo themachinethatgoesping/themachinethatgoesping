@@ -38,7 +38,7 @@ on:
   
 jobs:
   install_pip:
-    name: Python ${{matrix.python_version}} on ${{matrix.os}} / ${{matrix.container}}
+    name: Python ${{matrix.python_version}} on ${{matrix.os}}
     strategy:
       fail-fast: false
       matrix:
@@ -46,6 +46,49 @@ jobs:
         python_version: ['3.8','3.9','3.10']
   
     runs-on: ${{matrix.os}}
+
+    steps:
+    - name: install prequisits
+      if:  ${{matrix.pre-dep}}
+      run: ${{matrix.pre-dep}}
+
+    - name: checkout main repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - uses: actions/setup-python@v3
+      with:
+        python-version: ${{matrix.python_version}}
+
+    - name: install via pip
+      run: pip install themachinethatgoesping pytest
+
+    - name: pytest from git repo
+      run: pytest -v
+      
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: ${{matrix.container}}_Testlog
+        path: builddir/meson-logs/testlog.txt
+    
+  install_container:
+    name: Python ${{matrix.python_version}} on ${{matrix.container}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ubuntu-latest
+        python_version: ['3.8','3.9','3.10']
+
+        include:  
+          - { container: 'ubuntu:22.04', 
+              pre-dep : 'apt update && apt-get install -y sudo git'}
+          - { container: 'archlinux', 
+              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'}
+  
+    runs-on: ${{matrix.os}}
+    container: ${{matrix.container}}
 
     steps:
     - name: install prequisits
