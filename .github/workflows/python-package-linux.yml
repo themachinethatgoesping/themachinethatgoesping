@@ -137,7 +137,7 @@ jobs:
         packages_dir: ./dist/
   
   test_pypi:
-    needs: publish_wheel
+    needs: install_test_and_publish
     runs-on: ubuntu-latest
 
     strategy:

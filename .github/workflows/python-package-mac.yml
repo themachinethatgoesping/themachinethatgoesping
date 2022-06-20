@@ -149,7 +149,7 @@ jobs:
         packages_dir: ./dist/
 
   test_pypi:
-    needs: publish_wheel
+    needs: publish_wheels
     runs-on: macos-latest
 
     strategy:
