@@ -77,6 +77,10 @@ jobs:
         container: ['ubuntu:20.04','ubuntu:22.04','archlinux']
 
         include:  
+          - container: 'ubuntu:20.04'
+            pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
+            pip-command: 'python3 -m pip install themachinethatgoesping pytest'
+            pytest-command: 'python3 -m pytest'
           - container: 'ubuntu:22.04'
             pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
             pip-command: 'python3 -m pip install themachinethatgoesping pytest'
