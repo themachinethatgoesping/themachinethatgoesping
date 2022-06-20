@@ -73,15 +73,15 @@ jobs:
     name: Python ${{matrix.python_version}} on ${{matrix.container}}
     strategy:
       fail-fast: false
-      matrix:       
+      matrix:
+        python_version: ['3.8','3.9','3.10']
+        container: ['ubuntu:22.04','archlinux']
 
         include:  
-          - { container: 'ubuntu:22.04', 
-              pre-dep : 'apt update && apt-get install -y sudo git',
-              python_version: ['3.8','3.9','3.10']}
-          - { container: 'archlinux', 
-              pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm',
-              python_version: ['3.8','3.9','3.10']}
+          - container: 'ubuntu:22.04'
+            pre-dep : 'apt update && apt-get install -y sudo git'
+          - container: 'archlinux'
+            pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'
   
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
