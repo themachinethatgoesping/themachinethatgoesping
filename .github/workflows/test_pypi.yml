@@ -78,7 +78,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ubuntu-latest
         python_version: ['3.8','3.9','3.10']
 
         include:  
@@ -87,7 +86,7 @@ jobs:
           - { container: 'archlinux', 
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git --noconfirm'}
   
-    runs-on: ${{matrix.os}}
+    runs-on: ubuntu-latest
     container: ${{matrix.container}}
 
     steps:
