@@ -34,13 +34,21 @@ Types
 *****
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode
-   :members:
+   :members: 
+
+Class: AkimaInterpolator
+*************************
+
+.. autoclass:: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
+   :members: interpolate, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode
+
+   .. automethod:: __init__
 
 Class: LinearInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
-   :members: interpolate, set_extrapolation_mode, set_data_XY, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, checkX, sortX
+   :members: interpolate, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode
 
    .. automethod:: __init__
 
@@ -48,6 +56,6 @@ Class: NearestInterpolator
 **************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.NearestInterpolator
-   :members: interpolate, set_extrapolation_mode, set_data_XY, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, checkX, sortX
+   :members: interpolate, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode
 
    .. automethod:: __init__
