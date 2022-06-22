@@ -14,6 +14,7 @@ on:
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
+      - '*.md'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"
@@ -28,6 +29,7 @@ on:
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
+      - '*.md'
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"

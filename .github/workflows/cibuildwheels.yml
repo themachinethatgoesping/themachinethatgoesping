@@ -16,6 +16,7 @@ on:
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
+      - '*.md'
   pull_request:
     branches: [ main ]
     paths-ignore:
@@ -25,6 +26,7 @@ on:
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
+      - '*.md'
 
 jobs:
   cibuildwheel:
