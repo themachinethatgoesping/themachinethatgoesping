@@ -23,7 +23,7 @@ requirements:
     - python >=3.8
     - tomli
     - pyproject-metadata
-    - compilers
+    #- compilers
   run:
     - ipympl
     - numba
