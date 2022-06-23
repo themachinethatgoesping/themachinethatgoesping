@@ -174,7 +174,7 @@ jobs:
         include:  
           - container: 'ubuntu:20.04'
             pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
-            pip-command: 'python3 -m pip install themachinethatgoesping pytest'
+            pip-command: 'python3 -m pip install themachinethatgoesping pytest numpy==1.22' #numba dependcy error ...
             pytest-command: 'python3 -m pytest'
           - container: 'ubuntu:22.04'
             pre-dep : 'apt update && apt-get install -y sudo git python3 python3-pip'
