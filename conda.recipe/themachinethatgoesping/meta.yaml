@@ -16,14 +16,15 @@ build:
 
 requirements:
   build:
-    #- meson>=0.62
+    - meson>=0.62
+    - ninja
     - {{ compiler('cxx') }}
   host:
     - pip
     - python >=3.8
     - tomli
     - pyproject-metadata
-    #- compilers
+    - boost-cpp
   run:
     - ipympl
     - numba

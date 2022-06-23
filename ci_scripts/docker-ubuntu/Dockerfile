@@ -12,10 +12,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y sudo git git-lfs apt-utils
 RUN apt update -y; apt upgrade -y
+RUN rm -r /usr/include
+RUN apt install -y libboost-all-dev
+RUN pip install meson ninja
 
 RUN git clone https://github.com/themachinethatgoesping/themachinethatgoesping.git
 WORKDIR "/themachinethatgoesping"
 RUN git submodule update --init --recursive --remote
+WORKDIR "/themachinethatgoesping/conda.recipe"
 
 # # install prequisits
 # RUN apt-get update && apt-get install -y sudo git git-lfs apt-utils
