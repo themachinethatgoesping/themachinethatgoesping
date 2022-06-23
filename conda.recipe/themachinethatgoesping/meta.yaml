@@ -1,0 +1,54 @@
+{% set name = "themachinethatgoesping" %}
+{% set version = "0.0.3.10" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/themachinethatgoesping-{{ version }}.tar.gz
+  sha256: e66493c55e606c50872b170e61cd2ec2efb4e934f6406ac30fa44203b3ce0467
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  build:
+    #- meson>=0.62
+    - {{ compiler('cxx') }}
+  host:
+    - pip
+    - python >=3.8
+    - tomli
+    - pyproject-metadata
+    - compilers
+  run:
+    - ipympl
+    - numba
+    - python >=3.8
+    - tqdm
+
+test:
+  imports:
+    - themachinethatgoesping
+
+  source_files:
+    - subprojects/tools/python/tests
+  commands:
+    - pip check
+    - pytest
+  requires:
+    - pip
+    - pytest
+
+about:
+  home: https://github.com/themachinethatgoesping
+  summary: Enable advanced processing for multibeam and singlebeam echosounder data.THIS PROJECT IS IN DEVELOPMENT. NO USEFULL FUNCIONTALITY EXISTS SO FAR!
+  license: MPL-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - urp
