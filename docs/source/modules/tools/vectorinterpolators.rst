@@ -48,7 +48,7 @@ Class: LinearInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, copy
+   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, copy
 
    .. automethod:: __init__
 
@@ -56,7 +56,7 @@ Class: NearestInterpolator
 **************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.NearestInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, copy
+   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_XY, get_data_X, get_data_Y, copy
 
    .. automethod:: __init__
 
@@ -92,6 +92,6 @@ Class
 =====
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, copy
+   :members: __call__, set_data_XYPR, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_XYPR, get_data_X, get_data_YPR, copy
 
    .. automethod:: __init__
