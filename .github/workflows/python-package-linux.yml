@@ -138,8 +138,17 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ./dist/
   
-  test_pypi:
+  # delay for one minute before attempting to download the packages from pypi
+  delay_after_publish:
     needs: install_test_and_publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sleep for 60 seconds
+      run: sleep 60s
+      shell: bash
+
+  test_pypi:
+    needs: delay_after_publish
     runs-on: ubuntu-latest
 
     strategy:
@@ -164,7 +173,7 @@ jobs:
       run: pytest -v
       
   test_pypi_container:
-    needs: install_test_and_publish
+    needs: delay_after_publish
     name: Python ${{matrix.python_version}} on ${{matrix.container}}
     strategy:
       fail-fast: false

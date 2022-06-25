@@ -126,9 +126,8 @@ jobs:
     - name: test (pytest)
       run: pytest
     
-
   publish_wheels:
-    needs: install_and_test
+    needs: install_test_and_publish
     runs-on: ubuntu-latest
     steps:
     
@@ -150,8 +149,18 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ./dist/
 
-  test_pypi:
+
+  # delay for one minute before attempting to download the packages from pypi
+  delay_after_publish:
     needs: publish_wheels
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sleep for 60 seconds
+      run: sleep 60s
+      shell: bash
+
+  test_pypi:
+    needs: delay_after_publish
     runs-on: macos-latest
 
     strategy:
