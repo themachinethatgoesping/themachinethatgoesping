@@ -88,7 +88,6 @@ jobs:
       run: |
         pytest -v
         
-        
   install_and_test:
     name: Install and test macOS wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
@@ -127,7 +126,7 @@ jobs:
       run: pytest
     
   publish_wheels:
-    needs: install_test_and_publish
+    needs: install_and_test
     runs-on: ubuntu-latest
     steps:
     
@@ -148,7 +147,6 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ./dist/
-
 
   # delay for one minute before attempting to download the packages from pypi
   delay_after_publish:
