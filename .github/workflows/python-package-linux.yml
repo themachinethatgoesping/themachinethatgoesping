@@ -143,8 +143,8 @@ jobs:
     needs: install_test_and_publish
     runs-on: ubuntu-latest
     steps:
-    - name: Sleep for 60 seconds
-      run: sleep 60s
+    - name: Sleep for 120 seconds
+      run: sleep 120s
       shell: bash
 
   test_pypi:
