@@ -60,6 +60,8 @@ jobs:
       with:
         submodules: recursive
         lfs: true
+    # otherwise recursive lfs references are not properly pulled for archlinux and manylinux container
+    - run: git lfs pull
     
     - name: Install dependencies (pip)
       run: |
