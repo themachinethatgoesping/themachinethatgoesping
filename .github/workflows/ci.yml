@@ -71,6 +71,8 @@ jobs:
         submodules: recursive
         lfs: true
     # otherwise recursive lfs references are not properly pulled for archlinux and manylinux container
+    - name: checkoutLFS
+      uses: actions/checkout@v2
     - run: git lfs pull
 
     - name: install dependecies (c++)
