@@ -66,6 +66,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
+        lfs: true
     
     - name: Install Conda environment from environment.yml
       if: ${{matrix.container}} != mambaorg/micromamba
@@ -141,6 +142,7 @@ jobs:
   #     uses: actions/checkout@v3
   #     with:
   #       submodules: recursive
+  #       lfs: true
         
   #   - run: brew install libomp boost
     
