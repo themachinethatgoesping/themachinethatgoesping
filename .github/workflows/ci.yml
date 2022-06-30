@@ -72,8 +72,7 @@ jobs:
         lfs: true
     # otherwise recursive lfs references are not properly pulled for archlinux and manylinux container
     - name: checkoutLFS
-      uses: actions/checkout@v2
-    - run: git lfs pull
+    - run: cd $GITHUB_WORKSPACE && git lfs pull
 
     - name: install dependecies (c++)
       if:  ${{matrix.dep}}
