@@ -111,7 +111,7 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        meson test -C pybuild
+        meson test -C pybuild --print-errorlogs
         
     - name: Test with pytest
       run: |
