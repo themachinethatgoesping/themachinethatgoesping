@@ -44,7 +44,7 @@ jobs:
   linux:
     name: Build and install with meson on ${{matrix.container}}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:  
           - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
