@@ -70,9 +70,6 @@ jobs:
       with:
         submodules: recursive
         lfs: true
-    # otherwise recursive lfs references are not properly pulled for archlinux and manylinux container
-    - name: checkoutLFS
-      run: git config --global --add safe.directory $GITHUB_WORKSPACE && cd $GITHUB_WORKSPACE && git lfs pull
 
     - name: install dependecies (c++)
       if:  ${{matrix.dep}}
