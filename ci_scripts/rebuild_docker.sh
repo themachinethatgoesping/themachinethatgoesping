@@ -11,7 +11,7 @@ dpkg-query -l | grep -q docker || (sudo apt-get update; sudo apt-get install doc
 #Build image and push to registry
 echo $PAT | docker login ghcr.io --username themachinethatgoesping --password-stdin
 
-docker build docker-ubuntu -t ghcr.io/themachinethatgoesping/ubuntu-dep #--no-cache
+docker build docker-ubuntu -t ghcr.io/themachinethatgoesping/ubuntu-dep --no-cache
 docker push ghcr.io/themachinethatgoesping/ubuntu-dep
 
 docker build docker-manylinux_x86_64 -t ghcr.io/themachinethatgoesping/manylinux_x86_64-dep #--no-cache
