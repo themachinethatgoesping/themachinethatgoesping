@@ -18,6 +18,7 @@ on:
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
       - '*.md'
+      - 'doc/*'
   pull_request:
     branches: [ main ]
     paths-ignore:
@@ -29,6 +30,7 @@ on:
       - '.github/workflows/test_*'
       - 'conda.recipe/*'
       - '*.md'
+      - 'doc/*'
 
 jobs:
   build_wheel:
