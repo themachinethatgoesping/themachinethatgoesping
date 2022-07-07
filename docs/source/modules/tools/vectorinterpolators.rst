@@ -40,7 +40,7 @@ Class: AkimaInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary
+   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
 
@@ -48,7 +48,7 @@ Class: LinearInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary
+   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
 
@@ -56,7 +56,7 @@ Class: NearestInterpolator
 **************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.NearestInterpolator
-   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary
+   :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
 
@@ -92,6 +92,6 @@ Class
 =====
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
-   :members: __call__, set_data_XYPR, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_YPR, copy, to_binary, from_binary
+   :members: __call__, set_data_XYPR, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_YPR, copy, to_binary, from_binary, info_string, print 
 
    .. automethod:: __init__
