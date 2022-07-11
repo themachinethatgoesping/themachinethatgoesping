@@ -8,6 +8,7 @@ eigen*/*
 pybind11*/*
 Catch2*/*
 fmt*/*
+magic_enum*/*
 
 #inherited wrap files
 catch2.wrap
@@ -15,3 +16,4 @@ hinnant-date.wrap
 pybind11.wrap
 eigen.wrap
 fmt.wrap
+magic_enum.wrap
