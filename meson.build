@@ -11,7 +11,7 @@ project(
 
   version: '0.0.4.6',
   default_options: ['warning_level=3', 'buildtype=release', 'cpp_std=c++17'],
-  meson_version: '>=0.62' #force new meson version to limit necessary testing
+  meson_version: '>=0.63' #0.63 added preserve_path for install headers option
 )
 
 projectnamespace = 'themachinethatgoesping'
