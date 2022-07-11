@@ -18,8 +18,8 @@ projectnamespace = 'themachinethatgoesping'
 
 
 # load themachinethatgoesping projects
-tools_project = subproject('tools')
-tools_dep = tools_project.get_variable('tools_dep')
+tools_dep = subproject('tools').get_variable('tools_dep')
+tools_dep = subproject('navigation').get_variable('navigation_dep')
 
 # python only projects
 echogrids_project = subproject('gridding')
