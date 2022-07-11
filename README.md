@@ -56,6 +56,8 @@ If you are interested, contact peter.urban@ugent.be
 
 ## Relevant repositories
 
+- <a href="https://github.com/themachinethatgoesping/tutorials/actions/workflows/mybinder.yml"> <img src="https://github.com/themachinethatgoesping/tutorials/actions/workflows/mybinder.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/tutorials">**tutorials:**</a> Notebook examples and tutorials
+
 - <a href="https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/tools">**tools:**</a> Shared functions and interfaces 
 
 - <a href="https://github.com/themachinethatgoesping/echogrids/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/gridding">**gridding:**</a> Gridding functions (python only test repo) 
