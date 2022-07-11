@@ -164,6 +164,11 @@ jobs:
     needs: install_and_test
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/setup-python@v3
+
+    - name: install pip dependencies
+      # missing typing_extensions caused an error with pypi-publish ...
+      run: pip install typing_extensions 
     
     - name: Download all the dists
       uses: actions/download-artifact@v2

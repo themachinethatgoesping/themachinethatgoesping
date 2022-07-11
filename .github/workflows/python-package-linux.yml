@@ -121,7 +121,8 @@ jobs:
         path: dist/
 
     - name: install pip dependencies
-      run: pip install pytest
+      # missing typing_extensions caused an error with pypi-publish ...
+      run: pip install pytest typing_extensions 
 
     - name: install wheels
       run: |
