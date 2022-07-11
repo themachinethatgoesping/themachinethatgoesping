@@ -14,21 +14,22 @@ Example usage
     import themachinethatgoesping.tools.vectorinterpolators as vip
     
     # create value lists
-    timestamps = [100, 150, 1000] #x list, must be sorted, no duplicates
-    values     = [10, 50, -20]    #y list, same size as x list
+   timestamps = [100, 150, 300, 400, 950, 1000]
+   values     = [10, 50, 30, 500, -30,-20]
 
-    # create interpolator object (here a linear interpolator)
-    lip = vip.LinearInterpolator(X=timestamps, Y=values)
+   # create interpolator object (here a linear interpolator)
+   linear = vip.LinearInterpolator(X=timestamps, Y=values)
 
-    # find interpolated y value for a given x value (e.g. a random timestamp)
-    y_value = lip(target_x=125)
-    print(y_value) #<< 30.0
+   # find interpolated y value for a given x value (e.g. a random timestamp)
+   y_value = lip(target_x=125)
+   print(y_value) #<< 30.0
 
-    # find extrapolated y value for value outside timestamps boundary
-    y_value = lip(target_x=50)
-    print(y_value) #<< -30.0
+   # find extrapolated y value for value outside timestamps boundary
+   y_value = linear(target_x=50)
+   print(y_value) #<< -30.0
 
-  
+.. image:: images/vectorinterpolators_1.png
+
 
 Types
 *****
