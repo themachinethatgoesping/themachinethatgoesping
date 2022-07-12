@@ -9,7 +9,7 @@ Example usage
 =============
 
 .. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/0bde8b175ce9501f0f96e66ef0d88bafe47dae7b?urlpath=lab%2Ftree%2Ftools%2Ftimeconv.ipynb
+   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Ftools%2Ftimeconv.ipynb
 
 .. code-block:: python
 
