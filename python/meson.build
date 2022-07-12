@@ -9,7 +9,7 @@ conf_data = configuration_data()
 
 if get_option('pydev_install').enabled()
     conf_data.set('PYDEV_SRC_PATH','pydev_install_src_path = "' + meson.project_source_root() +'/subprojects/"')
-    conf_data.set('PYDEV_MODULES','pydev_install_modules = ["tools","gridding"]')
+    conf_data.set('PYDEV_MODULES','pydev_install_modules = ["tools", "navigation","gridding"]')
     conf_data.set('PYDEV_INSTALL',fs.read('themachinethatgoesping/in.pydev_install.py'))
 endif
 

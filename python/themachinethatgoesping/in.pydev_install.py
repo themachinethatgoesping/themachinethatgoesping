@@ -11,6 +11,6 @@ from pkgutil import extend_path as __extend_path__
 for __submodule in pydev_install_modules:
   __internal_module_sysy__.path.append("{}/{}/python/".format(pydev_install_src_path,__submodule))
 
-#append all paths in sys that contina themachinethatgoesping to this package
+#append all paths in sys that contain themachinethatgoesping to this package
 __path__ = __extend_path__(__path__, __name__)
 pydev_install_module_paths = __path__
