@@ -9,7 +9,7 @@ pybind11*/*
 Catch2*/*
 fmt*/*
 magic_enum*/*
-bitsery*/*
+bitsery*
 
 #inherited wrap files
 catch2.wrap
