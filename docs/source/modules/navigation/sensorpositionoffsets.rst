@@ -9,8 +9,6 @@ Example usage
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fnavigation%2Fsensorpositionoffsets.ipynb
 
-
-
 .. code-block:: python
 
     # import this module
