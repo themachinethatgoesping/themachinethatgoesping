@@ -4,4 +4,6 @@ navigation
 .. toctree::
    :caption: Module Usage
 
-   navigation/sensorpositionoffsets
+   navigation/tools
+   navigation/positionaloffsets
+   navigation/geolocation
