@@ -10,6 +10,7 @@ Catch2*/*
 fmt*/*
 magic_enum*/*
 bitsery*
+geographiclib*
 
 #inherited wrap files
 catch2.wrap
