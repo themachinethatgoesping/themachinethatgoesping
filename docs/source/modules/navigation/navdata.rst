@@ -57,5 +57,3 @@ Module API
 
 .. automodule:: themachinethatgoesping.navigation.navdata
    :members:
-   
-   :special-members: __init__
