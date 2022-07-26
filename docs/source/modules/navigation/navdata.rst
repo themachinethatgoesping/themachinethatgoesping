@@ -1,5 +1,5 @@
-GeoLocation
-###########
+navdata
+#######
 
 Simple structures to store georeferenced sensor locations and attitudes. 
 GeoLocation which records lat/lon can be implicitely converted to and from GeoLocationUTM which stores utm coordinates.
@@ -13,7 +13,7 @@ Example usage
 .. code-block:: python
 
     # import this module# import this module
-   from themachinethatgoesping.navigation import GeoLocation, GeoLocationUTM
+   from themachinethatgoesping.navigation.navdata import GeoLocation, GeoLocationUTM
     
    location = GeoLocationUTM(
       5427745.995,  # northing
@@ -52,16 +52,10 @@ Example usage
       # - pitch:     20.00  [° positve bow up]
       # - roll:      30.00  [° positive port up]
 
-Classes
-=======
+Module API
+==========
+
+.. automodule:: themachinethatgoesping.navigation.navdata
+   :members:
    
-.. autoclass:: themachinethatgoesping.navigation.GeoLocation
-   :members:
-
-   .. automethod:: __init__
-
-
-.. autoclass:: themachinethatgoesping.navigation.GeoLocationUTM
-   :members:
-
-   .. automethod:: __init__
+   :special-members: __init__
