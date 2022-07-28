@@ -5,5 +5,5 @@ navigation
    :caption: Module Usage
 
    navigation/sensorcoordinatesystem
-   navigation/navdata
+   navigation/datastructures
    navigation/navtools

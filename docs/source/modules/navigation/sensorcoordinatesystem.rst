@@ -1,13 +1,29 @@
 SensorCoordinateSystem
 ######################
 
-Simple conversion functions from lat/lon to string
+A simple coordinate system that allows for storing sensor and target offsets.
+
+Supported sensors are: 
+
+* compass: Affects :any:`SensorData.compass_heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
+* position system: Affects SensorData gps variables with x,y and z offset
+* depth sensor: Affects :any:`SensorData.gps_z<themachinethatgoesping.navigation.datastructures.SensorData.gps_z>` variables with x,y and z offset
+* motion system: Affects SensorData imu variables with yaw, pitch and roll offset
+
+The class allows for registering multiple targets (e.g. "MBES" and "SBES") with respective PositionOffsets.
+Once targets are registered, the system can be used to compute the georeferenced of the targets using a SensorData object. (see usage below)
+
+Note 1: The returned GeoLocation object type depends on the input SensorData object. 
+
+* A :any:`datastructures.SensorDataUTM<themachinethatgoesping.navigation.datastructures.SensorDataUTM>` object will cause compute_target_position to return :any:`datastructures.GeoLocationUTM<themachinethatgoesping.navigation.datastructures.GeoLocationUTM>`
+* A :any:`datastructures.SensorDataLatLon<themachinethatgoesping.navigation.datastructures.SensorDataLatLon>` will cause compute_target_position to return :any:`datastructures.GeoLocationLatLon<themachinethatgoesping.navigation.datastructures.GeoLocationLatLon>`
+* ... and so on
 
 Example usage
 =============
 
 .. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fnavigation%2Fnavtools.ipynb
+   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fnavigation%2Fsensorcoordinatesystem.ipynb
 
 .. code-block:: python
    
@@ -34,7 +50,7 @@ Example usage
       roll = 0)
 
    # create a object that contains sensor data
-   sensor_data = nav.navdata.SensorDataLatLon(
+   sensor_data = nav.datastructures.SensorDataLatLon(
       gps_latitude = 53, 
       gps_longitude = 10, 
       gps_z = 3, 
@@ -56,7 +72,7 @@ Example usage
    # - longitude: 53°0'0.0"E  [ddd°mm',ss.s''E/W]
    # - z:         6.51        [positive downwards, m]
    # - yaw:       36.00       [90 ° at east]
-   # - pitch:     10.72       [° positve bow up]
+   # - pitch:     10.72       [° positive bow up]
    # - roll:      30.90       [° positive port up]
 
 Module API
