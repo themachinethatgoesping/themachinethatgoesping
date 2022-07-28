@@ -36,8 +36,9 @@ class GeoLocation():
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, geolocation_latlon: themachinethatgoesping::navigation::navdata::GeoLocationLatLon) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new Position object
 
@@ -59,10 +60,6 @@ class GeoLocation():
         Parameter ``roll``:
             in °, positive means port up
         """
-    @typing.overload
-    def __init__(self, geolocation_local: themachinethatgoesping::navigation::navdata::GeoLocationLocal) -> None: ...
-    @typing.overload
-    def __init__(self, geolocation_utm: themachinethatgoesping::navigation::navdata::GeoLocationUTM) -> None: ...
     @typing.overload
     def __init__(self, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
@@ -165,8 +162,9 @@ class GeoLocationLatLon(GeoLocation):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, geolocationlatlon_utm: themachinethatgoesping::navigation::navdata::GeoLocationUTM) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -272,8 +270,9 @@ class GeoLocationLocal(GeoLocation):
     def __copy__(self) -> GeoLocationLocal: ...
     def __eq__(self, rhs: GeoLocationLocal) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, geolocation: GeoLocation, northing: float, easting: float) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new Sensor Position object (all offsets set to 0)
 
@@ -308,7 +307,7 @@ class GeoLocationLocal(GeoLocation):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, geolocationutm: themachinethatgoesping::navigation::navdata::GeoLocationUTM) -> None: ...
+    def __init__(self, geolocation: GeoLocation, northing: float, easting: float) -> None: ...
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
@@ -629,8 +628,9 @@ class SensorData():
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, arg0: themachinethatgoesping::navigation::navdata::SensorDataLatLon) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new SensorData object
 
@@ -659,10 +659,6 @@ class SensorData():
         Parameter ``imu_roll``:
             in °, positive means port up
         """
-    @typing.overload
-    def __init__(self, arg0: themachinethatgoesping::navigation::navdata::SensorDataLocal) -> None: ...
-    @typing.overload
-    def __init__(self, arg0: themachinethatgoesping::navigation::navdata::SensorDataUTM) -> None: ...
     @typing.overload
     def __init__(self, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
@@ -784,8 +780,9 @@ class SensorDataLatLon(SensorData):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -829,9 +826,9 @@ class SensorDataLatLon(SensorData):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: ...
+    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     @typing.overload
-    def __init__(self, sensordata_utm: themachinethatgoesping::navigation::navdata::SensorDataUTM) -> None: ...
+    def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -900,8 +897,9 @@ class SensorDataLocal(SensorData):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    @staticmethod
     @typing.overload
-    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: 
+    def __init__(*args, **kwargs) -> typing.Any: 
         """
         Construct a new Sensor Position object (all offsets set to 0)
 
@@ -944,9 +942,9 @@ class SensorDataLocal(SensorData):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, sensordata: SensorData, gps_northing: float, gps_easting: float) -> None: ...
+    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     @typing.overload
-    def __init__(self, sensordatautm: themachinethatgoesping::navigation::navdata::SensorDataUTM) -> None: ...
+    def __init__(self, sensordata: SensorData, gps_northing: float, gps_easting: float) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string

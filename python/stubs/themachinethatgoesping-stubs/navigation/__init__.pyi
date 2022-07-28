@@ -18,8 +18,65 @@ class SensorCoordinateSystem():
     the class and specify target_id and current sensor data to derive the
     geolocation and attitude of the specified targets
     """
+    def __copy__(self) -> SensorCoordinateSystem: ...
+    def __eq__(self, other: SensorCoordinateSystem) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: 
+        """
+        Construct a new, empty Sensor Coordinate System object After
+        construction: add sensor offsets and targets (offsets) Then compute
+        target positions for sensor data
+        """
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
     @typing.overload
-    def __call__(self, target_id: str, sensor_data: navdata.SensorData) -> navdata.GeoLocationLocal: 
+    def add_target(self, target_id: str, target_offsets: navdata.PositionalOffsets) -> None: 
+        """
+        add a target (e.g. MBES) with offsets to the sensor position system
+
+        Parameter ``target_id``:
+            name of the target for reference
+
+        Parameter ``x``:
+            x-offset of the target (in meters, positive forward)
+
+        Parameter ``y``:
+            y-offset of the target (in meters, positive starboard)
+
+        Parameter ``z``:
+            z-offset of the target (in meters, positive down)
+
+        Parameter ``yaw``:
+            yaw offset of the target (right-handed around the z-axis) (in
+            degrees, 90° = east)
+
+        Parameter ``pitch``:
+            pitch offset of the target (right-handed around the y-axis) (in
+            degrees, positive = bow up)
+
+        Parameter ``roll``:
+            roll offset of the target (right-handed around the x-axis) (in
+            degrees, positive = port up)
+
+        add a target (e.g. MBES) with offsets to the sensor position system
+
+        Parameter ``target_id``:
+            name of the target for reference
+
+        Parameter ``target_offsets``:
+            mounting offsets of the target
+        """
+    @typing.overload
+    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
+    @typing.overload
+    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorData) -> navdata.GeoLocationLocal: 
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -29,11 +86,11 @@ class SensorCoordinateSystem():
 
         Parameter ``sensor_data``:
             SensorDataLatLon / this structure includes latitude and longitude
-            informatoin
+            information
 
         Returns:
             navdata::GeoLocationLatLon / this structure includes latitude and
-            longitude informatoin
+            longitude information
 
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -43,11 +100,11 @@ class SensorCoordinateSystem():
 
         Parameter ``sensor_data``:
             SensorDataUTM / this structure includes northing/easting and utm
-            zone or hemisphere informatoin
+            zone or hemisphere information
 
         Returns:
             navdata::GeoLocationUTM / this structure includes northing/easting
-            and utm zone or hemisphere informatoin
+            and utm zone or hemisphere information
 
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -57,11 +114,11 @@ class SensorCoordinateSystem():
 
         Parameter ``sensor_data``:
             SensorDataLocal / this structure includes northing/easting but no
-            zone or hemisphere informatoin
+            zone or hemisphere information
 
         Returns:
             navdata::GeoLocationLocal / this structure includes
-            northing/easting but no zone or hemisphere informatoin
+            northing/easting but no zone or hemisphere information
 
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -78,29 +135,11 @@ class SensorCoordinateSystem():
             center
         """
     @typing.overload
-    def __call__(self, target_id: str, sensor_data: navdata.SensorDataLatLon) -> navdata.GeoLocationLatLon: ...
+    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataLatLon) -> navdata.GeoLocationLatLon: ...
     @typing.overload
-    def __call__(self, target_id: str, sensor_data: navdata.SensorDataLocal) -> navdata.GeoLocationLocal: ...
+    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataLocal) -> navdata.GeoLocationLocal: ...
     @typing.overload
-    def __call__(self, target_id: str, sensor_data: navdata.SensorDataUTM) -> navdata.GeoLocationUTM: ...
-    def __copy__(self) -> SensorCoordinateSystem: ...
-    def __eq__(self, other: SensorCoordinateSystem) -> bool: ...
-    def __getstate__(self) -> bytes: ...
-    def __init__(self) -> None: 
-        """
-        Construct a new, empty Sensor Coordinate System object After
-        construction: add sensor offsets and targets (offstes) Then compute
-        target positions for sensor data
-        """
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
+    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataUTM) -> navdata.GeoLocationUTM: ...
     def copy(self) -> SensorCoordinateSystem: 
         """
         return a copy using the c++ default copy constructor
@@ -157,53 +196,12 @@ class SensorCoordinateSystem():
         Print object information
         """
     @typing.overload
-    def register_target(self, target_id: str, target_offsets: navdata.PositionalOffsets) -> None: 
-        """
-        register a target (e.g. MBES) with offsets to the sensor position
-        system
-
-        Parameter ``target_id``:
-            name of the target for reference
-
-        Parameter ``x``:
-            x-offset of the target (in meters, positive forward)
-
-        Parameter ``y``:
-            y-offset of the target (in meters, positive starboard)
-
-        Parameter ``z``:
-            z-offset of the target (in meters, positive down)
-
-        Parameter ``yaw``:
-            yaw offset of the target (righthanded around the z-axis) (in
-            degrees, 90° = east)
-
-        Parameter ``pitch``:
-            pitch offset of the target (righthanded around the y-axis) (in
-            degrees, positive = bow up)
-
-        Parameter ``roll``:
-            roll offset of the target (righthanded around the x-axis) (in
-            degrees, positive = port up)
-
-        register a target (e.g. MBES) with offsets to the sensor position
-        system
-
-        Parameter ``target_id``:
-            name of the target for reference
-
-        Parameter ``target_offsets``:
-            mounting offsets of the target
-        """
-    @typing.overload
-    def register_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
-    @typing.overload
     def set_compass_offsets(self, sensor_offsets: navdata.PositionalOffsets) -> None: 
         """
         Set the compass offsets
 
         Parameter ``yaw``:
-            yaw offset of the compass (righthanded around the z-axis) (in
+            yaw offset of the compass (right-handed around the z-axis) (in
             degrees, 90° = east)
 
         Set the compass offsets
@@ -245,15 +243,15 @@ class SensorCoordinateSystem():
         Set the motion sensor offsets
 
         Parameter ``yaw``:
-            yaw offset of the motion sensor (righthanded around the z-axis)
+            yaw offset of the motion sensor (right-handed around the z-axis)
             (in degrees, 90° = east)
 
         Parameter ``pitch``:
-            pitch offset of the motion sensor (righthanded around the y-axis)
+            pitch offset of the motion sensor (right-handed around the y-axis)
             (in degrees, positive = bow up)
 
         Parameter ``roll``:
-            roll offset of the motion sensor (righthanded around the x-axis)
+            roll offset of the motion sensor (right-handed around the x-axis)
             (in degrees, positive = port up)
         """
     @typing.overload
