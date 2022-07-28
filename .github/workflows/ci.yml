@@ -71,7 +71,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
 
     - name: install dependecies (c++)
       if:  ${{matrix.dep}}
@@ -138,7 +138,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
 
     - name: Cache Boost
       id: cache-boost
@@ -205,7 +205,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
         
     - run: brew install libomp boost
     

@@ -54,7 +54,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
         
 
     - name: Install dependencies (homebrew)
@@ -111,7 +111,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
     
     - name: Download all the dists
       uses: actions/download-artifact@v2
@@ -180,7 +180,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        lfs: true
+        lfs: false
         
     - uses: actions/setup-python@v3
       with:
