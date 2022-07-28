@@ -21,7 +21,7 @@ RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-
 # install extra dependecies (instead of subprojects)
 RUN apt install -y catch2 libeigen3-dev pybind11-dev
 
-# install dependcies (meson & pythone)
+# install dependcies (meson & python)
 #RUN apt-get install -y meson ninja-build python3-pytest
 RUN pip install meson ninja pytest
 

@@ -40,7 +40,7 @@ RUN yum install -y git git-lfs ccache
 # RUN yum install -y ccache pkgconfig cmake libcurl-devel
 
 
-# install dependcies (meson & pythone)
+# install dependcies (meson & python)
 # this is best done in the ci scripts!
 # ENV PATH "/opt/_internal/cpython-3.10.4/bin:$PATH"
 # RUN python3.10 -m pip install --upgrade pip

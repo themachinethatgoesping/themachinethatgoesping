@@ -32,7 +32,7 @@ RUN pip install meson ninja
 # # install extra dependecies (instead of subprojects)
 # RUN apt-get install -y catch2 libeigen3-dev pybind11-dev
 #
-# # install dependcies (meson & pythone)
+# # install dependcies (meson & python)
 # #RUN apt-get install -y meson ninja-build python3-pytest
 # RUN pip install meson ninja pytest
 #
