@@ -13,9 +13,9 @@ class ObjectPrinter():
     Class that allows for easy pretty printing of class members usage: 1.
     Implement a __printer__ function as public class member this function
     should return a ObjectPrinter object. Register all, values,
-    containers, objects that are to be printerd. 2. Add the
+    containers, objects that are to be printed. 2. Add the
     __CLASSHELPERS_DEFAULT_PRINTING_FUNCTIONS__ macro to the public
-    fucntions. This macro implements std::string info_string() and
+    functions. This macro implements std::string info_string() and
     print(std::ostream) functions using the object printer 3. Add the
     __PYCLASS_DEFAULT_PRINTING__ to the python module defintion. This
     macro implements __str__(), __repr__(), info_string() and print() as

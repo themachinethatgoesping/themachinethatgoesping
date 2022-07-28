@@ -23,7 +23,7 @@ class AkimaInterpolator():
     @typing.overload
     def __call__(self, target_x: float) -> float: 
         """
-        get the interolated y value for given x target
+        get the interpolated y value for given x target
 
         Parameter ``target_x``:
             find the corresponding y value for this x value
@@ -34,7 +34,7 @@ class AkimaInterpolator():
         get nearest y values for given x targets (vectorized call)
 
         Parameter ``targets_x``:
-            vector of x values. For each of these values find the corrspondig
+            vector of x values. For each of these values find the corrsponding
             y value
 
         Returns:
@@ -87,7 +87,7 @@ class AkimaInterpolator():
         """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
-        append x and y value lists to the interplator data (vectorized call)
+        append x and y value lists to the interpolator data (vectorized call)
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -163,7 +163,7 @@ class LinearInterpolator():
     @typing.overload
     def __call__(self, target_x: float) -> float: 
         """
-        get the interolated y value for given x target
+        get the interpolated y value for given x target
 
         Parameter ``target_x``:
             find the corresponding y value for this x value
@@ -174,7 +174,7 @@ class LinearInterpolator():
         get nearest y values for given x targets (vectorized call)
 
         Parameter ``targets_x``:
-            vector of x values. For each of these values find the corrspondig
+            vector of x values. For each of these values find the corrsponding
             y value
 
         Returns:
@@ -227,7 +227,7 @@ class LinearInterpolator():
         """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
-        append x and y value lists to the interplator data (vectorized call)
+        append x and y value lists to the interpolator data (vectorized call)
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -303,7 +303,7 @@ class NearestInterpolator():
     @typing.overload
     def __call__(self, target_x: float) -> float: 
         """
-        get the interolated y value for given x target
+        get the interpolated y value for given x target
 
         Parameter ``target_x``:
             find the corresponding y value for this x value
@@ -314,7 +314,7 @@ class NearestInterpolator():
         get nearest y values for given x targets (vectorized call)
 
         Parameter ``targets_x``:
-            vector of x values. For each of these values find the corrspondig
+            vector of x values. For each of these values find the corrsponding
             y value
 
         Returns:
@@ -367,7 +367,7 @@ class NearestInterpolator():
         """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
-        append x and y value lists to the interplator data (vectorized call)
+        append x and y value lists to the interpolator data (vectorized call)
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -439,7 +439,7 @@ class NearestInterpolator():
 class SlerpInterpolator():
     """
     Class that implements a slerp interpolation for vectors. Data is
-    internaly represented in quaternions using libeigen. Interfaces to
+    internally represented in quaternions using libeigen. Interfaces to
     represent the data in yaw, pitch, roll angles are provided. the
     __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
@@ -447,7 +447,7 @@ class SlerpInterpolator():
     @typing.overload
     def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.List[float[3]]: 
         """
-        get the interolated yaw, pitch and roll values for given x target
+        get the interpolated yaw, pitch and roll values for given x target
 
         Parameter ``target_x``:
             find the corresponding y value for this x value
@@ -458,11 +458,11 @@ class SlerpInterpolator():
         Returns:
             corresponding y value
 
-        get the interolated yaw, pitch and roll values for given x target
+        get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
 
         Parameter ``targets_x``:
-            vector of x values. For each of these values find the corrspondig
+            vector of x values. For each of these values find the corrsponding
             yaw, pitch and roll value
 
         Parameter ``output_in_degrees``:
@@ -484,15 +484,15 @@ class SlerpInterpolator():
             vector; must be unique and sorted in ascending order
 
         Parameter ``yaw``:
-            vector with yaw data (rotation arround z axis). Must be same size
+            vector with yaw data (rotation around z axis). Must be same size
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation arround y axis). Must be same
+            vector with pitch data (rotation around y axis). Must be same
             size as X!
 
         Parameter ``roll``:
-            vector with roll data (rotation arround x axis). Must be same size
+            vector with roll data (rotation around x axis). Must be same size
             as X!
 
         Parameter ``input_in_degrees``:
@@ -521,13 +521,13 @@ class SlerpInterpolator():
             must be larger than all internal data points
 
         Parameter ``yaw``:
-            rotation arround z axis
+            rotation around z axis
 
         Parameter ``pitch``:
-            rotation arround y axis
+            rotation around y axis
 
         Parameter ``roll``:
-            rotation arround x axis
+            rotation around x axis
 
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
@@ -558,15 +558,15 @@ class SlerpInterpolator():
             vector; must be unique and sorted in ascending order
 
         Parameter ``yaw``:
-            vector with yaw data (rotation arround z axis). Must be same size
+            vector with yaw data (rotation around z axis). Must be same size
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation arround y axis). Must be same
+            vector with pitch data (rotation around y axis). Must be same
             size as X!
 
         Parameter ``roll``:
-            vector with roll data (rotation arround x axis). Must be same size
+            vector with roll data (rotation around x axis). Must be same size
             as X!
 
         Parameter ``input_in_degrees``:
@@ -628,43 +628,43 @@ class SlerpInterpolator():
     @typing.overload
     def set_data_XYPR(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
         """
-        change the input data to thes X, yaw, pitch, roll vectors (will be
-        converted to queternion)
+        change the input data to these X, yaw, pitch, roll vectors (will be
+        converted to quaternion)
 
         Parameter ``X``:
             vector; must be unique and sorted in ascending order
 
         Parameter ``yaw``:
-            vector with yaw data (rotation arround z axis). Must be same size
+            vector with yaw data (rotation around z axis). Must be same size
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation arround y axis). Must be same
+            vector with pitch data (rotation around y axis). Must be same
             size as X!
 
         Parameter ``roll``:
-            vector with roll data (rotation arround x axis). Must be same size
+            vector with roll data (rotation around x axis). Must be same size
             as X!
 
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
 
-        change the input data to thes X, yaw, pitch, roll vectors (will be
-        converted to queternion)
+        change the input data to these X, yaw, pitch, roll vectors (will be
+        converted to quaternion)
 
         Parameter ``X``:
             vector; must be unique and sorted in ascending order
 
         Parameter ``yaw``:
-            vector with yaw data (rotation arround z axis). Must be same size
+            vector with yaw data (rotation around z axis). Must be same size
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation arround y axis). Must be same
+            vector with pitch data (rotation around y axis). Must be same
             size as X!
 
         Parameter ``roll``:
-            vector with roll data (rotation arround x axis). Must be same size
+            vector with roll data (rotation around x axis). Must be same size
             as X!
 
         Parameter ``input_in_degrees``:

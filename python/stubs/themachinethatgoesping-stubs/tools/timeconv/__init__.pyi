@@ -11,7 +11,7 @@ __all__ = [
 
 def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
     """
-    Converting between date strings and UnixTime stampes (ref 1970)
+    Converting between date strings and UnixTime stamps (ref 1970)
 
     Parameter ``DateString:``:
         DateString to be converted. Must fit format string.
@@ -28,14 +28,14 @@ def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S'
     """
 def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
-    Converting between date strings and UnixTime stampes (ref 1970)
+    Converting between date strings and UnixTime stamps (ref 1970)
 
     Parameter ``UnixTime:``:
         seconds since 01.01.1970 as double
 
     Parameter ``fractionalSecondsDigits:``:
         How many digits to use for the split seconds. Minimum is 0 (second
-        resolution) Maximum is 6 (microsecond resolutiuon)
+        resolution) Maximum is 6 (microsecond resolution)
 
     Parameter ``format:``:
         Format string to convert Date string. Default Format:
