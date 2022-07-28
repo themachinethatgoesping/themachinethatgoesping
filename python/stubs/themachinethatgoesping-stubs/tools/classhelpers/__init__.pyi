@@ -77,19 +77,9 @@ class ObjectPrinter():
         Parameter ``value_info``:
             additional info (is printed in [] behind the variable)
 
-        register a 1D container for printing
-
-        Template parameter ``t_value``:
-            integer or floating point
-
-        Parameter ``name``:
-            name of the container
-
-        Parameter ``value``:
-            container values
-
-        Parameter ``value_info``:
-            additional info (is printed in [] behind the variable)
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
 
         register a 1D container for printing
 
@@ -104,6 +94,28 @@ class ObjectPrinter():
 
         Parameter ``value_info``:
             additional info (is printed in [] behind the variable)
+
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
+
+        register a 1D container for printing
+
+        Template parameter ``t_value``:
+            integer or floating point
+
+        Parameter ``name``:
+            name of the container
+
+        Parameter ``value``:
+            container values
+
+        Parameter ``value_info``:
+            additional info (is printed in [] behind the variable)
+
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
         """
     @typing.overload
     def register_container(self, name: str, value: typing.List[int], value_info: str = '', pos: int = -1) -> None: ...
@@ -115,6 +127,10 @@ class ObjectPrinter():
 
         Parameter ``name``:
             name of the following section
+
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
         """
     @typing.overload
     def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None: 
@@ -133,19 +149,9 @@ class ObjectPrinter():
         Parameter ``value_info``:
             additional info (is printed in [] behind the variable)
 
-        register a single integer of floating point value for printing
-
-        Template parameter ``t_value``:
-            double or floating point
-
-        Parameter ``name``:
-            name of the variable
-
-        Parameter ``value``:
-            value of the variable
-
-        Parameter ``value_info``:
-            additional info (is printed in [] behind the variable)
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
 
         register a single integer of floating point value for printing
 
@@ -160,6 +166,28 @@ class ObjectPrinter():
 
         Parameter ``value_info``:
             additional info (is printed in [] behind the variable)
+
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
+
+        register a single integer of floating point value for printing
+
+        Template parameter ``t_value``:
+            double or floating point
+
+        Parameter ``name``:
+            name of the variable
+
+        Parameter ``value``:
+            value of the variable
+
+        Parameter ``value_info``:
+            additional info (is printed in [] behind the variable)
+
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
         """
     @typing.overload
     def register_value(self, name: str, value: int, value_info: str = '', pos: int = -1) -> None: ...

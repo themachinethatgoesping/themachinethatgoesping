@@ -20,6 +20,6 @@ __all__ = [
 
 
 __submodule = 'gridding'
-pydev_install_module_paths = ['/ssd/local/lib/python3.10/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects//gridding/python/themachinethatgoesping']
+pydev_install_module_paths = ['/ssd/local/lib/python3/dist-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects//gridding/python/themachinethatgoesping']
 pydev_install_modules = ['tools', 'navigation', 'gridding']
 pydev_install_src_path = '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/'

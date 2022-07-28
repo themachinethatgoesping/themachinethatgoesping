@@ -5,7 +5,7 @@ import typing
 
 __all__ = [
     "SensorCoordinateSystem",
-    "navdata",
+    "datastructures",
     "navtools",
     "ostream_redirect"
 ]
@@ -37,7 +37,7 @@ class SensorCoordinateSystem():
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, target_offsets: navdata.PositionalOffsets) -> None: 
+    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: 
         """
         add a target (e.g. MBES) with offsets to the sensor position system
 
@@ -76,7 +76,7 @@ class SensorCoordinateSystem():
     @typing.overload
     def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorData) -> navdata.GeoLocationLocal: 
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorData) -> datastructures.GeoLocationLocal: 
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -89,8 +89,8 @@ class SensorCoordinateSystem():
             information
 
         Returns:
-            navdata::GeoLocationLatLon / this structure includes latitude and
-            longitude information
+            datastructures::GeoLocationLatLon / this structure includes
+            latitude and longitude information
 
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -103,8 +103,8 @@ class SensorCoordinateSystem():
             zone or hemisphere information
 
         Returns:
-            navdata::GeoLocationUTM / this structure includes northing/easting
-            and utm zone or hemisphere information
+            datastructures::GeoLocationUTM / this structure includes
+            northing/easting and utm zone or hemisphere information
 
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -117,7 +117,7 @@ class SensorCoordinateSystem():
             zone or hemisphere information
 
         Returns:
-            navdata::GeoLocationLocal / this structure includes
+            datastructures::GeoLocationLocal / this structure includes
             northing/easting but no zone or hemisphere information
 
         Compute the position of the target "target_id" based on the sensor
@@ -130,16 +130,16 @@ class SensorCoordinateSystem():
             SensorData / this structure includes no coordinate information
 
         Returns:
-            navdata::GeoLocationLocal / this structure includes northing and
-            east, which are set relative to the sensor coordinate system
-            center
+            datastructures::GeoLocationLocal / this structure includes
+            northing and east, which are set relative to the sensor coordinate
+            system center
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataLatLon) -> navdata.GeoLocationLatLon: ...
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLatLon) -> datastructures.GeoLocationLatLon: ...
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataLocal) -> navdata.GeoLocationLocal: ...
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLocal) -> datastructures.GeoLocationLocal: ...
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: navdata.SensorDataUTM) -> navdata.GeoLocationUTM: ...
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataUTM) -> datastructures.GeoLocationUTM: ...
     def copy(self) -> SensorCoordinateSystem: 
         """
         return a copy using the c++ default copy constructor
@@ -149,35 +149,38 @@ class SensorCoordinateSystem():
         """
         create T_CLASS object from bytearray
         """
-    def get_compass_offsets(self) -> navdata.PositionalOffsets: 
+    def get_compass_offsets(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered compass offsets
 
         Returns:
-            const navdata::PositionalOffsets& offsets of the compass
+            const datastructures::PositionalOffsets& offsets of the compass
         """
-    def get_depth_sensor_offsets(self) -> navdata.PositionalOffsets: 
+    def get_depth_sensor_offsets(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered depth sensor offsets
 
         Returns:
-            const navdata::PositionalOffsets& offsets of the depth sensor
+            const datastructures::PositionalOffsets& offsets of the depth
+            sensor
         """
-    def get_motion_sensor_offsets(self) -> navdata.PositionalOffsets: 
+    def get_motion_sensor_offsets(self) -> datastructures.PositionalOffsets: 
         """
         Get the motion sensor offsets
 
         Returns:
-            const navdata::PositionalOffsets& offsets of the motion sensor
+            const datastructures::PositionalOffsets& offsets of the motion
+            sensor
         """
-    def get_position_system_offsets(self) -> navdata.PositionalOffsets: 
+    def get_position_system_offsets(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered position system offsets
 
         Returns:
-            const navdata::PositionalOffsets& offsets of the position system
+            const datastructures::PositionalOffsets& offsets of the position
+            system
         """
-    def get_target_offsets(self, target_id: str) -> navdata.PositionalOffsets: 
+    def get_target_offsets(self, target_id: str) -> datastructures.PositionalOffsets: 
         """
         Get stored target offsets of a specified target
 
@@ -185,7 +188,7 @@ class SensorCoordinateSystem():
             name of the registered target
 
         Returns:
-            const navdata::PositionalOffsets& offsets of the target
+            const datastructures::PositionalOffsets& offsets of the target
         """
     def info_string(self) -> str: 
         """
@@ -196,7 +199,7 @@ class SensorCoordinateSystem():
         Print object information
         """
     @typing.overload
-    def set_compass_offsets(self, sensor_offsets: navdata.PositionalOffsets) -> None: 
+    def set_compass_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the compass offsets
 
@@ -212,7 +215,7 @@ class SensorCoordinateSystem():
     @typing.overload
     def set_compass_offsets(self, yaw: float) -> None: ...
     @typing.overload
-    def set_depth_sensor_offsets(self, sensor_offsets: navdata.PositionalOffsets) -> None: 
+    def set_depth_sensor_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the depth sensor offsets
 
@@ -233,7 +236,7 @@ class SensorCoordinateSystem():
     @typing.overload
     def set_depth_sensor_offsets(self, x: float, y: float, z: float) -> None: ...
     @typing.overload
-    def set_motion_sensor_offsets(self, sensor_offsets: navdata.PositionalOffsets) -> None: 
+    def set_motion_sensor_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the motion sensor offsets
 
@@ -257,7 +260,7 @@ class SensorCoordinateSystem():
     @typing.overload
     def set_motion_sensor_offsets(self, yaw: float, pitch: float, roll: float) -> None: ...
     @typing.overload
-    def set_position_system_offsets(self, sensor_offsets: navdata.PositionalOffsets) -> None: 
+    def set_position_system_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the position system offsets
 

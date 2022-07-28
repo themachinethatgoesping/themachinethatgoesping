@@ -1,6 +1,6 @@
-"""Submodule that contains navdata that store navigation data or navigation sensor input"""
+"""Submodule that contains datastructures that store navigation data or navigation sensor input"""
 from __future__ import annotations
-import themachinethatgoesping.navigation.navdata
+import themachinethatgoesping.navigation.datastructures
 import typing
 
 __all__ = [
@@ -95,51 +95,47 @@ class GeoLocation():
     @property
     def pitch(self) -> float:
         """
-        < in °, positive means bow up
+        in °, 0° is north, 90° is east
 
         :type: float
         """
     @pitch.setter
     def pitch(self, arg0: float) -> None:
         """
-        < in °, positive means bow up
+        in °, 0° is north, 90° is east
         """
     @property
     def roll(self) -> float:
         """
-        < in °, positive means port up
+        in °, positive means bow up
 
         :type: float
         """
     @roll.setter
     def roll(self, arg0: float) -> None:
         """
-        < in °, positive means port up
+        in °, positive means bow up
         """
     @property
     def yaw(self) -> float:
         """
-        < in °, 0° is north, 90° is east
+        in m, positive downwards
 
         :type: float
         """
     @yaw.setter
     def yaw(self, arg0: float) -> None:
         """
-        < in °, 0° is north, 90° is east
+        in m, positive downwards
         """
     @property
     def z(self) -> float:
         """
-        < in m, positive downwards
-
         :type: float
         """
     @z.setter
     def z(self, arg0: float) -> None:
-        """
-        < in m, positive downwards
-        """
+        pass
     __hash__ = None
     pass
 class GeoLocationLatLon(GeoLocation):
@@ -237,26 +233,22 @@ class GeoLocationLatLon(GeoLocation):
     @property
     def latitude(self) -> float:
         """
-        < in °, positive northwards
-
         :type: float
         """
     @latitude.setter
     def latitude(self, arg0: float) -> None:
-        """
-        < in °, positive northwards
-        """
+        pass
     @property
     def longitude(self) -> float:
         """
-        < in °, positive eastwards
+        in °, positive northwards
 
         :type: float
         """
     @longitude.setter
     def longitude(self, arg0: float) -> None:
         """
-        < in °, positive eastwards
+        in °, positive northwards
         """
     __hash__ = None
     pass
@@ -343,27 +335,23 @@ class GeoLocationLocal(GeoLocation):
     @property
     def easting(self) -> float:
         """
-        < in m, positive eastwards
+        in m, positive northwards
 
         :type: float
         """
     @easting.setter
     def easting(self, arg0: float) -> None:
         """
-        < in m, positive eastwards
+        in m, positive northwards
         """
     @property
     def northing(self) -> float:
         """
-        < in m, positive northwards
-
         :type: float
         """
     @northing.setter
     def northing(self, arg0: float) -> None:
-        """
-        < in m, positive northwards
-        """
+        pass
     __hash__ = None
     pass
 class GeoLocationUTM(GeoLocationLocal, GeoLocation):
@@ -451,27 +439,23 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
     @property
     def northern_hemisphere(self) -> bool:
         """
-        < if true: northern hemisphere, else: southern hemisphere
+        UTM/UPS zone number
 
         :type: bool
         """
     @northern_hemisphere.setter
     def northern_hemisphere(self, arg0: bool) -> None:
         """
-        < if true: northern hemisphere, else: southern hemisphere
+        UTM/UPS zone number
         """
     @property
     def zone(self) -> int:
         """
-        < UTM/UPS zone number
-
         :type: int
         """
     @zone.setter
     def zone(self, arg0: int) -> None:
-        """
-        < UTM/UPS zone number
-        """
+        pass
     __hash__ = None
     pass
 class PositionalOffsets():
@@ -496,7 +480,7 @@ class PositionalOffsets():
             in m, positive downwards
 
         Parameter ``yaw``:
-            in °, 0° is north, 90° is east
+            positive means clockwise rotation
 
         Parameter ``pitch``:
             in °, positive means bow up
@@ -537,74 +521,70 @@ class PositionalOffsets():
     @property
     def pitch(self) -> float:
         """
-        < in °, positive means bow up
+        in °, positive means clockwise rotation
 
         :type: float
         """
     @pitch.setter
     def pitch(self, arg0: float) -> None:
         """
-        < in °, positive means bow up
+        in °, positive means clockwise rotation
         """
     @property
     def roll(self) -> float:
         """
-        < in °, positive means port up
+        in °, positive means bow up
 
         :type: float
         """
     @roll.setter
     def roll(self, arg0: float) -> None:
         """
-        < in °, positive means port up
+        in °, positive means bow up
         """
     @property
     def x(self) -> float:
         """
-        < in m, positive forward
-
         :type: float
         """
     @x.setter
     def x(self, arg0: float) -> None:
-        """
-        < in m, positive forward
-        """
+        pass
     @property
     def y(self) -> float:
         """
-        < in m, positive starboard
+        in m, positive forward
 
         :type: float
         """
     @y.setter
     def y(self, arg0: float) -> None:
         """
-        < in m, positive starboard
+        in m, positive forward
         """
     @property
     def yaw(self) -> float:
         """
-        < in °, 0° is north, 90° is east
+        in m, positive downwards
 
         :type: float
         """
     @yaw.setter
     def yaw(self, arg0: float) -> None:
         """
-        < in °, 0° is north, 90° is east
+        in m, positive downwards
         """
     @property
     def z(self) -> float:
         """
-        < in m, positive downwards
+        in m, positive starboard
 
         :type: float
         """
     @z.setter
     def z(self, arg0: float) -> None:
         """
-        < in m, positive downwards
+        in m, positive starboard
         """
     __hash__ = None
     pass
@@ -694,70 +674,72 @@ class SensorData():
     @property
     def compass_heading(self) -> float:
         """
+        from heave sensor, will be added to gps_z in m, positive upwards
+
         :type: float
         """
     @compass_heading.setter
     def compass_heading(self, arg0: float) -> None:
-        pass
+        """
+        from heave sensor, will be added to gps_z in m, positive upwards
+        """
     @property
     def gps_z(self) -> float:
         """
-        < in m, positive downwards
-
         :type: float
         """
     @gps_z.setter
     def gps_z(self, arg0: float) -> None:
-        """
-        < in m, positive downwards
-        """
+        pass
     @property
     def heave_heave(self) -> float:
         """
-        < from heave sensor, will be added to gps_z in m, positive upwards
+        in m, positive downwards
 
         :type: float
         """
     @heave_heave.setter
     def heave_heave(self, arg0: float) -> None:
         """
-        < from heave sensor, will be added to gps_z in m, positive upwards
+        in m, positive downwards
         """
     @property
     def imu_pitch(self) -> float:
         """
-        < from motion sensor, in °, positive means bow up
+        from motion sensor, in °, 0° is north, 90° is east
 
         :type: float
         """
     @imu_pitch.setter
     def imu_pitch(self, arg0: float) -> None:
         """
-        < from motion sensor, in °, positive means bow up
+        from motion sensor, in °, 0° is north, 90° is east
         """
     @property
     def imu_roll(self) -> float:
         """
-        < from motion sensor, in °, positive means port up
+        from motion sensor, in °, positive means bow up
 
         :type: float
         """
     @imu_roll.setter
     def imu_roll(self, arg0: float) -> None:
         """
-        < from motion sensor, in °, positive means port up
+        from motion sensor, in °, positive means bow up
         """
     @property
     def imu_yaw(self) -> float:
         """
-        < from motion sensor, in °, 0° is north, 90° is east
+        from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90° is
+        east
 
         :type: float
         """
     @imu_yaw.setter
     def imu_yaw(self, arg0: float) -> None:
         """
-        < from motion sensor, in °, 0° is north, 90° is east
+        from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90° is
+        east
         """
     __hash__ = None
     pass
@@ -978,27 +960,23 @@ class SensorDataLocal(SensorData):
     @property
     def gps_easting(self) -> float:
         """
-        < in m, positive eastwards
+        in m, positive northwards
 
         :type: float
         """
     @gps_easting.setter
     def gps_easting(self, arg0: float) -> None:
         """
-        < in m, positive eastwards
+        in m, positive northwards
         """
     @property
     def gps_northing(self) -> float:
         """
-        < in m, positive northwards
-
         :type: float
         """
     @gps_northing.setter
     def gps_northing(self, arg0: float) -> None:
-        """
-        < in m, positive northwards
-        """
+        pass
     __hash__ = None
     pass
 class SensorDataUTM(SensorDataLocal, SensorData):
@@ -1148,22 +1126,22 @@ class SensorDataUTM(SensorDataLocal, SensorData):
     @property
     def gps_northern_hemisphere(self) -> bool:
         """
+        UTM/UPS zone number
+
         :type: bool
         """
     @gps_northern_hemisphere.setter
     def gps_northern_hemisphere(self, arg0: bool) -> None:
-        pass
+        """
+        UTM/UPS zone number
+        """
     @property
     def gps_zone(self) -> int:
         """
-        < UTM/UPS zone number
-
         :type: int
         """
     @gps_zone.setter
     def gps_zone(self, arg0: int) -> None:
-        """
-        < UTM/UPS zone number
-        """
+        pass
     __hash__ = None
     pass
