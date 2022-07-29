@@ -4,6 +4,6 @@ navigation
 .. toctree::
    :caption: Module Usage
 
-   navigation/sensorcoordinatesystem
+   navigation/sensorconfiguration
    navigation/datastructures
    navigation/navtools

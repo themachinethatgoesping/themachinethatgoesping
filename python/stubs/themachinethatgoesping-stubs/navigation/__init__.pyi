@@ -4,22 +4,22 @@ import themachinethatgoesping.navigation
 import typing
 
 __all__ = [
-    "SensorCoordinateSystem",
+    "SensorConfiguration",
     "datastructures",
     "navtools",
     "ostream_redirect"
 ]
 
 
-class SensorCoordinateSystem():
+class SensorConfiguration():
     """
     A coordinate system that allows for specifying sensor offsets (e.g.
     gps antenna and motion sensor) and target offsets (e.g. MBES). Call
     the class and specify target_id and current sensor data to derive the
     geolocation and attitude of the specified targets
     """
-    def __copy__(self) -> SensorCoordinateSystem: ...
-    def __eq__(self, other: SensorCoordinateSystem) -> bool: ...
+    def __copy__(self) -> SensorConfiguration: ...
+    def __eq__(self, other: SensorConfiguration) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: 
         """
@@ -140,12 +140,12 @@ class SensorCoordinateSystem():
     def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLocal) -> datastructures.GeoLocationLocal: ...
     @typing.overload
     def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataUTM) -> datastructures.GeoLocationUTM: ...
-    def copy(self) -> SensorCoordinateSystem: 
+    def copy(self) -> SensorConfiguration: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorCoordinateSystem: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorConfiguration: 
         """
         create T_CLASS object from bytearray
         """

@@ -1,5 +1,5 @@
-SensorCoordinateSystem
-######################
+SensorConfiguration
+###################
 
 A simple coordinate system that allows for storing sensor and target offsets.
 
@@ -7,7 +7,7 @@ Supported sensors are:
 
 * compass: Affects :any:`SensorData.compass_heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
 * position system: Affects SensorData gps variables with x,y and z offset
-* depth sensor: Affects :any:`SensorData.gps_z<themachinethatgoesping.navigation.datastructures.SensorData.gps_z>` variables with x,y and z offset
+* depth sensor: Affects SensorData.gps_z variables with x,y and z offset
 * motion system: Affects SensorData imu variables with yaw, pitch and roll offset
 
 The class allows for registering multiple targets (e.g. "MBES" and "SBES") with respective PositionOffsets.
@@ -23,7 +23,7 @@ Example usage
 =============
 
 .. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fnavigation%2Fsensorcoordinatesystem.ipynb
+   :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fnavigation%2Fsensorconfiguration.ipynb
 
 .. code-block:: python
    
@@ -31,7 +31,7 @@ Example usage
    import themachinethatgoesping.navigation as nav
 
    # initialize
-   scs = nav.SensorCoordinateSystem()
+   scs = nav.SensorConfiguration()
 
    # add sensor offsets
    scs.set_compass_offsets(yaw=9)
@@ -78,6 +78,6 @@ Example usage
 Module API
 ==========
    
-.. autoclass:: themachinethatgoesping.navigation.SensorCoordinateSystem
+.. autoclass:: themachinethatgoesping.navigation.SensorConfiguration
    :members:
    :special-members: __init__
