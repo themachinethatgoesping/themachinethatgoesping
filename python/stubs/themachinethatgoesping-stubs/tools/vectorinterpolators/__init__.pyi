@@ -439,7 +439,7 @@ class NearestInterpolator():
 class SlerpInterpolator():
     """
     Class that implements a slerp interpolation for vectors. Data is
-    internally represented in quaternions using libeigen. Interfaces to
+    internally represented in quaternions using lib eigen. Interfaces to
     represent the data in yaw, pitch, roll angles are provided. the
     __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
@@ -488,8 +488,8 @@ class SlerpInterpolator():
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation around y axis). Must be same
-            size as X!
+            vector with pitch data (rotation around y axis). Must be same size
+            as X!
 
         Parameter ``roll``:
             vector with roll data (rotation around x axis). Must be same size
@@ -562,8 +562,8 @@ class SlerpInterpolator():
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation around y axis). Must be same
-            size as X!
+            vector with pitch data (rotation around y axis). Must be same size
+            as X!
 
         Parameter ``roll``:
             vector with roll data (rotation around x axis). Must be same size
@@ -639,8 +639,8 @@ class SlerpInterpolator():
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation around y axis). Must be same
-            size as X!
+            vector with pitch data (rotation around y axis). Must be same size
+            as X!
 
         Parameter ``roll``:
             vector with roll data (rotation around x axis). Must be same size
@@ -660,8 +660,8 @@ class SlerpInterpolator():
             as X!
 
         Parameter ``pitch``:
-            vector with pitch data (rotation around y axis). Must be same
-            size as X!
+            vector with pitch data (rotation around y axis). Must be same size
+            as X!
 
         Parameter ``roll``:
             vector with roll data (rotation around x axis). Must be same size
