@@ -1,4 +1,4 @@
-"""Convinient functions for converting latlon and utm strings."""
+"""Convenient functions for converting latlon and utm strings."""
 from __future__ import annotations
 import themachinethatgoesping.navigation.navtools
 import typing

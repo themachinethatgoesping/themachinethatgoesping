@@ -23,9 +23,12 @@ class ObjectPrinter():
     """
     def __copy__(self) -> ObjectPrinter: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, name: str) -> None: 
+    def __init__(self, name: str, float_precission: int) -> None: 
         """
-        additional info (printed in [])
+        Construct a new Object Printer object
+
+        Parameter ``float_precision``:
+            default 2, set number of digits for floating point values
         """
     def __repr__(self) -> str: 
         """
@@ -52,11 +55,11 @@ class ObjectPrinter():
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -121,12 +124,15 @@ class ObjectPrinter():
     def register_container(self, name: str, value: typing.List[int], value_info: str = '', pos: int = -1) -> None: ...
     @typing.overload
     def register_container(self, name: str, value: typing.List[str], value_info: str = '', pos: int = -1) -> None: ...
-    def register_section(self, name: str, pos: int = -1) -> None: 
+    def register_section(self, name: str, underliner: str = '-', pos: int = -1) -> None: 
         """
         register a section break for printing
 
         Parameter ``name``:
             name of the following section
+
+        Parameter ``underliner``:
+            character used to underline the section name
 
         Parameter ``pos``:
             position where the value is registers (if negative, the value is

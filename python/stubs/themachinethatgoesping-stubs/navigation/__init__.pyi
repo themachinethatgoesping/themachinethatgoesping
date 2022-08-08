@@ -149,14 +149,14 @@ class SensorConfiguration():
         """
         create T_CLASS object from bytearray
         """
-    def get_compass_offsets(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_compass(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered compass offsets
 
         Returns:
             const datastructures::PositionalOffsets& offsets of the compass
         """
-    def get_depth_sensor_offsets(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_depth_sensor(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered depth sensor offsets
 
@@ -164,7 +164,7 @@ class SensorConfiguration():
             const datastructures::PositionalOffsets& offsets of the depth
             sensor
         """
-    def get_motion_sensor_offsets(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_motion_sensor(self) -> datastructures.PositionalOffsets: 
         """
         Get the motion sensor offsets
 
@@ -172,7 +172,7 @@ class SensorConfiguration():
             const datastructures::PositionalOffsets& offsets of the motion
             sensor
         """
-    def get_position_system_offsets(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_position_system(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered position system offsets
 
@@ -180,7 +180,7 @@ class SensorConfiguration():
             const datastructures::PositionalOffsets& offsets of the position
             system
         """
-    def get_target_offsets(self, target_id: str) -> datastructures.PositionalOffsets: 
+    def get_offsets_target(self, target_id: str) -> datastructures.PositionalOffsets: 
         """
         Get stored target offsets of a specified target
 
@@ -190,16 +190,16 @@ class SensorConfiguration():
         Returns:
             const datastructures::PositionalOffsets& offsets of the target
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @typing.overload
-    def set_compass_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_compass(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the compass offsets
 
@@ -213,9 +213,9 @@ class SensorConfiguration():
             offsets structure (only yaw is used)
         """
     @typing.overload
-    def set_compass_offsets(self, yaw: float) -> None: ...
+    def set_offsets_compass(self, yaw: float) -> None: ...
     @typing.overload
-    def set_depth_sensor_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_depth_sensor(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the depth sensor offsets
 
@@ -234,9 +234,9 @@ class SensorConfiguration():
             offsets structure (only x, y and z are used)
         """
     @typing.overload
-    def set_depth_sensor_offsets(self, x: float, y: float, z: float) -> None: ...
+    def set_offsets_depth_sensor(self, x: float, y: float, z: float) -> None: ...
     @typing.overload
-    def set_motion_sensor_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_motion_sensor(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the motion sensor offsets
 
@@ -258,9 +258,9 @@ class SensorConfiguration():
             (in degrees, positive = port up)
         """
     @typing.overload
-    def set_motion_sensor_offsets(self, yaw: float, pitch: float, roll: float) -> None: ...
+    def set_offsets_motion_sensor(self, yaw: float, pitch: float, roll: float) -> None: ...
     @typing.overload
-    def set_position_system_offsets(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_position_system(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the position system offsets
 
@@ -279,7 +279,7 @@ class SensorConfiguration():
             offsets structure (only x, y and z are used)
         """
     @typing.overload
-    def set_position_system_offsets(self, x: float, y: float, z: float) -> None: ...
+    def set_offsets_position_system(self, x: float, y: float, z: float) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray

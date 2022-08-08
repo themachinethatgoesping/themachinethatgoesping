@@ -80,11 +80,11 @@ class GeoLocation():
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -218,11 +218,11 @@ class GeoLocationLatLon(GeoLocation):
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -320,11 +320,11 @@ class GeoLocationLocal(GeoLocation):
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -424,11 +424,11 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -506,11 +506,11 @@ class PositionalOffsets():
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -659,11 +659,11 @@ class SensorData():
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -829,11 +829,11 @@ class SensorDataLatLon(SensorData):
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -945,11 +945,11 @@ class SensorDataLocal(SensorData):
         """
         create T_CLASS object from bytearray
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -1101,11 +1101,11 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         Returns:
             SensorDataUTM
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """

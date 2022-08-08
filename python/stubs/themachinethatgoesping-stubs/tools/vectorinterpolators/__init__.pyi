@@ -18,7 +18,8 @@ __all__ = [
 class AkimaInterpolator():
     """
     Interpolator class to perform a (modified) akima interpolation. Uses
-    boost makima interpolator.
+    boost makima interpolator. Note: this interpolator acts as linear
+    interpolator if less than 4 values are stored.
     """
     @typing.overload
     def __call__(self, target_x: float) -> float: 
@@ -44,7 +45,7 @@ class AkimaInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> AkimaInterpolator: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, X: typing.List[float] = [0.0, 1.0], Y: typing.List[float] = [0.0, 1.0], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -85,6 +86,10 @@ class AkimaInterpolator():
         """
         return a copy using the c++ default copy constructor
         """
+    def empty(self) -> bool: 
+        """
+        check if the interpolator contains data
+        """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
@@ -124,11 +129,11 @@ class AkimaInterpolator():
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -184,7 +189,7 @@ class LinearInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> LinearInterpolator: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, X: typing.List[float] = [0.0, 1.0], Y: typing.List[float] = [0.0, 1.0], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -225,6 +230,10 @@ class LinearInterpolator():
         """
         return a copy using the c++ default copy constructor
         """
+    def empty(self) -> bool: 
+        """
+        check if the interpolator contains data
+        """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
@@ -264,11 +273,11 @@ class LinearInterpolator():
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -324,7 +333,7 @@ class NearestInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> NearestInterpolator: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, X: typing.List[float] = [0.0, 1.0], Y: typing.List[float] = [0.0, 1.0], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -365,6 +374,10 @@ class NearestInterpolator():
         """
         return a copy using the c++ default copy constructor
         """
+    def empty(self) -> bool: 
+        """
+        check if the interpolator contains data
+        """
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
@@ -404,11 +417,11 @@ class NearestInterpolator():
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
@@ -475,7 +488,7 @@ class SlerpInterpolator():
     def __call__(self, targets_x: typing.List[float], output_in_degrees: bool = True) -> typing.List[typing.List[float[3]]]: ...
     def __copy__(self) -> SlerpInterpolator: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, X: typing.List[float] = [], Yaw: typing.List[float] = [], Pitch: typing.List[float] = [], Roll: typing.List[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -549,6 +562,10 @@ class SlerpInterpolator():
         """
         return a copy using the c++ default copy constructor
         """
+    def empty(self) -> bool: 
+        """
+        check if the interpolator contains data
+        """
     @typing.overload
     def extend(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
         """
@@ -617,11 +634,11 @@ class SlerpInterpolator():
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def info_string(self) -> str: 
+    def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def print(self) -> None: 
+    def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
