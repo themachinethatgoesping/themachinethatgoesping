@@ -34,10 +34,10 @@ Example usage
    scs = nav.SensorConfiguration()
 
    # add sensor offsets
-   scs.set_compass_offsets(yaw=9)
-   scs.set_depth_sensor_offsets(0, 0, 1)
-   scs.set_position_system_offsets(1, 2, 3)
-   scs.set_motion_sensor_offsets(10, -10, -30)
+   scs.set_offsets_compass(yaw=9)
+   scs.set_offsets_depth_sensor(0, 0, 1)
+   scs.set_offsets_position_system(1, 2, 3)
+   scs.set_offsets_motion_sensor(10, -10, -30)
 
    # add a target with target offsets
    scs.add_target(
