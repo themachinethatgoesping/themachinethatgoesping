@@ -8,7 +8,7 @@ Supported sensors are:
 * compass: Affects :any:`SensorData.compass_heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
 * position system: Affects SensorData gps variables with x,y and z offset
 * depth sensor: Affects SensorData.gps_z variables with x,y and z offset
-* motion system: Affects SensorData imu variables with yaw, pitch and roll offset
+* attitude system: Affects SensorData imu variables with yaw, pitch and roll offset
 
 The class allows for registering multiple targets (e.g. "MBES" and "SBES") with respective PositionOffsets.
 Once targets are registered, the system can be used to compute the georeferenced of the targets using a SensorData object. (see usage below)
@@ -37,7 +37,7 @@ Example usage
    scs.set_offsets_compass(yaw=9)
    scs.set_offsets_depth_sensor(0, 0, 1)
    scs.set_offsets_position_system(1, 2, 3)
-   scs.set_offsets_motion_sensor(10, -10, -30)
+   scs.set_offsets_attitude_sensor(10, -10, -30)
 
    # add a target with target offsets
    scs.add_target(
