@@ -640,27 +640,27 @@ class SensorData():
 
         Construct a new SensorData object
 
-        Parameter ``gps_z``:
+        Parameter ``depth``:
             in m, positive downwards
 
-        Parameter ``heave_heave``:
-            from heave sensor, will be added to gps_z in m, positive upwards
+        Parameter ``heave``:
+            from heave sensor, will be added to depth in m, positive upwards
 
-        Parameter ``heading_source``:
+        Parameter ``heading``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
             is east
 
         Parameter ``imu_yaw``:
             in °, 0° is north, 90° is east
 
-        Parameter ``imu_pitch``:
+        Parameter ``pitch``:
             in °, positive means bow up
 
-        Parameter ``imu_roll``:
+        Parameter ``roll``:
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, depth: float = 0, heave: float = 0, heading: float = 0, imu_yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -692,60 +692,36 @@ class SensorData():
         convert object to bytearray
         """
     @property
-    def gps_z(self) -> float:
+    def depth(self) -> float:
         """
         < in m, positive downwards
 
         :type: float
         """
-    @gps_z.setter
-    def gps_z(self, arg0: float) -> None:
+    @depth.setter
+    def depth(self, arg0: float) -> None:
         """
         < in m, positive downwards
         """
     @property
-    def heading_source(self) -> float:
+    def heading(self) -> float:
         """
         :type: float
         """
-    @heading_source.setter
-    def heading_source(self, arg0: float) -> None:
+    @heading.setter
+    def heading(self, arg0: float) -> None:
         pass
     @property
-    def heave_heave(self) -> float:
+    def heave(self) -> float:
         """
-        < from heave sensor, will be added to gps_z in m, positive upwards
+        < from heave sensor, will be added to depth in m, positive upwards
 
         :type: float
         """
-    @heave_heave.setter
-    def heave_heave(self, arg0: float) -> None:
+    @heave.setter
+    def heave(self, arg0: float) -> None:
         """
-        < from heave sensor, will be added to gps_z in m, positive upwards
-        """
-    @property
-    def imu_pitch(self) -> float:
-        """
-        < from attitude sensor, in °, positive means bow up
-
-        :type: float
-        """
-    @imu_pitch.setter
-    def imu_pitch(self, arg0: float) -> None:
-        """
-        < from attitude sensor, in °, positive means bow up
-        """
-    @property
-    def imu_roll(self) -> float:
-        """
-        < from attitude sensor, in °, positive means port up
-
-        :type: float
-        """
-    @imu_roll.setter
-    def imu_roll(self, arg0: float) -> None:
-        """
-        < from attitude sensor, in °, positive means port up
+        < from heave sensor, will be added to depth in m, positive upwards
         """
     @property
     def imu_yaw(self) -> float:
@@ -758,6 +734,30 @@ class SensorData():
     def imu_yaw(self, arg0: float) -> None:
         """
         < from attitude sensor, in °, 0° is north, 90° is east
+        """
+    @property
+    def pitch(self) -> float:
+        """
+        < from attitude sensor, in °, positive means bow up
+
+        :type: float
+        """
+    @pitch.setter
+    def pitch(self, arg0: float) -> None:
+        """
+        < from attitude sensor, in °, positive means bow up
+        """
+    @property
+    def roll(self) -> float:
+        """
+        < from attitude sensor, in °, positive means port up
+
+        :type: float
+        """
+    @roll.setter
+    def roll(self, arg0: float) -> None:
+        """
+        < from attitude sensor, in °, positive means port up
         """
     __hash__ = None
     pass
@@ -806,11 +806,11 @@ class SensorDataLatLon(SensorData):
         Parameter ``gps_longitude``:
             in °, positive eastwards
 
-        Parameter ``gps_z``:
+        Parameter ``depth``:
             in m, positive downwards
 
-        Parameter ``heave_heave``:
-            from heave sensor, will be added to gps_z in m, positive upwards
+        Parameter ``heave``:
+            from heave sensor, will be added to depth in m, positive upwards
 
         Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
@@ -819,14 +819,14 @@ class SensorDataLatLon(SensorData):
         Parameter ``imu_yaw``:
             in °, 0° is north, 90° is east
 
-        Parameter ``imu_pitch``:
+        Parameter ``pitch``:
             in °, positive means bow up
 
-        Parameter ``imu_roll``:
+        Parameter ``roll``:
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, depth: float = 0, heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     @typing.overload
     def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: ...
     def __repr__(self) -> str: 
@@ -907,26 +907,26 @@ class SensorDataLocal(SensorData):
         object
 
         Parameter ``data``:
-            $Parameter ``gps_northing``:
+            $Parameter ``northing``:
 
         in m, positive northwards
 
-        Parameter ``gps_easting``:
+        Parameter ``easting``:
             in m, positive eastwards
 
         Construct a new SensorDataLocal object
 
-        Parameter ``gps_northing``:
+        Parameter ``northing``:
             in m, positive northwards
 
         Parameter ``gpd_easting``:
             in m, positive eastwards
 
-        Parameter ``gps_z``:
+        Parameter ``depth``:
             in m, positive downwards
 
-        Parameter ``heave_heave``:
-            from heave sensor, will be added to gps_z in m, positive upwards
+        Parameter ``heave``:
+            from heave sensor, will be added to depth in m, positive upwards
 
         Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
@@ -935,16 +935,16 @@ class SensorDataLocal(SensorData):
         Parameter ``imu_yaw``:
             in °, 0° is north, 90° is east
 
-        Parameter ``imu_pitch``:
+        Parameter ``pitch``:
             in °, positive means bow up
 
-        Parameter ``imu_roll``:
+        Parameter ``roll``:
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     @typing.overload
-    def __init__(self, sensordata: SensorData, gps_northing: float, gps_easting: float) -> None: ...
+    def __init__(self, sensordata: SensorData, northing: float, easting: float) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -976,26 +976,26 @@ class SensorDataLocal(SensorData):
         convert object to bytearray
         """
     @property
-    def gps_easting(self) -> float:
+    def easting(self) -> float:
         """
         < in m, positive eastwards
 
         :type: float
         """
-    @gps_easting.setter
-    def gps_easting(self, arg0: float) -> None:
+    @easting.setter
+    def easting(self, arg0: float) -> None:
         """
         < in m, positive eastwards
         """
     @property
-    def gps_northing(self) -> float:
+    def northing(self) -> float:
         """
         < in m, positive northwards
 
         :type: float
         """
-    @gps_northing.setter
-    def gps_northing(self, arg0: float) -> None:
+    @northing.setter
+    def northing(self, arg0: float) -> None:
         """
         < in m, positive northwards
         """
@@ -1017,34 +1017,34 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         """
     def __getstate__(self) -> bytes: ...
     @typing.overload
-    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_zone: int = 0, gps_northern_hemisphere: bool = True, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: 
+    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: 
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
 
         Parameter ``data``:
-            $Parameter ``gps_northing``:
+            $Parameter ``northing``:
 
         in m, positive northwards
 
-        Parameter ``gps_easting``:
+        Parameter ``easting``:
             in m, positive eastwards
 
-        Parameter ``gps_zone``:
+        Parameter ``utm_zone``:
             UTM/UPS zone number
 
-        Parameter ``gps_northern_hemisphere``:
+        Parameter ``utm_northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
 
         Construct an SensorDataUTM object from an existing SensorDataLocal
         object (using a known zone and hemisphere)
 
         Parameter ``data_local``:
-            $Parameter ``gps_zone``:
+            $Parameter ``utm_zone``:
 
         UTM/UPS zone number
 
-        Parameter ``gps_northern_hemisphere``:
+        Parameter ``utm_northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
 
         Construct an SensorDataUTM object from an existing SensorDataLatLon
@@ -1053,23 +1053,23 @@ class SensorDataUTM(SensorDataLocal, SensorData):
 
         Construct a new SensorDataUTM object
 
-        Parameter ``gps_northing``:
+        Parameter ``northing``:
             in m, positive northwards
 
         Parameter ``gpd_easting``:
             in m, positive eastwards
 
-        Parameter ``gps_zone``:
+        Parameter ``utm_zone``:
             UTM/UPS zone number
 
-        Parameter ``gps_northern_hemisphere``:
+        Parameter ``utm_northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
 
-        Parameter ``gps_z``:
+        Parameter ``depth``:
             in m, positive downwards
 
-        Parameter ``heave_heave``:
-            from heave sensor, will be added to gps_z in m, positive upwards
+        Parameter ``heave``:
+            from heave sensor, will be added to depth in m, positive upwards
 
         Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
@@ -1078,18 +1078,18 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         Parameter ``imu_yaw``:
             in °, 0° is north, 90° is east
 
-        Parameter ``imu_pitch``:
+        Parameter ``pitch``:
             in °, positive means bow up
 
-        Parameter ``imu_roll``:
+        Parameter ``roll``:
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, sensordata_local: SensorDataLocal, gps_zone: int, gps_northern_hemisphere: bool) -> None: ...
+    def __init__(self, sensordata_local: SensorDataLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorData, gps_northing: float, gps_easting: float, gps_zone: int, gps_northern_hemisphere: bool) -> None: ...
+    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorDataLatLon, setgps_zone: int = -1) -> None: ...
+    def __init__(self, sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -1109,7 +1109,7 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_sensordata(sensordatalatlon: SensorDataLatLon, setgps_zone: int = -1) -> SensorDataUTM: 
+    def from_sensordata(sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> SensorDataUTM: 
         """
         Construct convert a SensorDataLatLon Object to UTM
 
@@ -1146,22 +1146,22 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         SensorDataLatLon
         """
     @property
-    def gps_northern_hemisphere(self) -> bool:
+    def utm_northern_hemisphere(self) -> bool:
         """
         :type: bool
         """
-    @gps_northern_hemisphere.setter
-    def gps_northern_hemisphere(self, arg0: bool) -> None:
+    @utm_northern_hemisphere.setter
+    def utm_northern_hemisphere(self, arg0: bool) -> None:
         pass
     @property
-    def gps_zone(self) -> int:
+    def utm_zone(self) -> int:
         """
         < UTM/UPS zone number
 
         :type: int
         """
-    @gps_zone.setter
-    def gps_zone(self, arg0: int) -> None:
+    @utm_zone.setter
+    def utm_zone(self, arg0: int) -> None:
         """
         < UTM/UPS zone number
         """

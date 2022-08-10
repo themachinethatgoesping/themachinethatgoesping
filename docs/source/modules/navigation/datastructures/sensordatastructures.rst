@@ -31,16 +31,16 @@ Example usage
 
    # SensorDataUTM
    # *************
-   # - gps_northing:            5427746.00 [positive northwards, m]
-   # - gps_easting:             314082.70  [positive eastwards, m]
-   # - gps_zone:                60         
-   # - gps_northern_hemisphere: false      
-   # - gps_z:                   3.00       [positive downwards, m]
-   # - heave_heave:             -2.00      [positive upwards, m]
+   # - northing:            5427746.00 [positive northwards, m]
+   # - easting:             314082.70  [positive eastwards, m]
+   # - utm_zone:                60         
+   # - utm_northern_hemisphere: false      
+   # - depth:                   3.00       [positive downwards, m]
+   # - heave:             -2.00      [positive upwards, m]
    # - heading_source:         45.00      [90 ° at east (valid)]
    # - imu_yaw:                 10.00      [90 ° at east (unused]
-   # - imu_pitch:               20.00      [° positive bow up]
-   # - imu_roll:                30.00      [° positive port up]
+   # - pitch:               20.00      [° positive bow up]
+   # - roll:                30.00      [° positive port up]
 
    # conversion to latlon data (works in both directions)
    data_latlot = SensorDataLatLon(data_utm)
@@ -52,12 +52,12 @@ Example usage
    # ****************
    # - gps_latitude:    41°16'49.2"S  [ddd°mm',ss.s''N/S]
    # - gps_longitude:   41°16'49.2"W  [ddd°mm',ss.s''E/W]
-   # - gps_z:           3.00          [positive downwards, m]
-   # - heave_heave:     -2.00         [positive upwards, m]
+   # - depth:           3.00          [positive downwards, m]
+   # - heave:     -2.00         [positive upwards, m]
    # - heading_source: 45.00         [90 ° at east (valid)]
    # - imu_yaw:         10.00         [90 ° at east (unused]
-   # - imu_pitch:       20.00         [° positive bow up]
-   # - imu_roll:        30.00         [° positive port up]
+   # - pitch:       20.00         [° positive bow up]
+   # - roll:        30.00         [° positive port up]
 
 Data structures
 ===============

@@ -5,9 +5,9 @@ A simple coordinate system that allows for storing sensor and target offsets.
 
 Supported sensors are: 
 
-* compass: Affects :any:`SensorData.heading_source<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
+* compass: Affects :any:`SensorData.heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
 * position system: Affects SensorData gps variables with x,y and z offset
-* depth sensor: Affects SensorData.gps_z variables with x,y and z offset
+* depth sensor: Affects SensorData.depth variables with x,y and z offset
 * attitude system: Affects SensorData imu variables with yaw, pitch and roll offset
 
 The class allows for registering multiple targets (e.g. "MBES" and "SBES") with respective PositionOffsets.
@@ -53,12 +53,12 @@ Example usage
    sensor_data = nav.datastructures.SensorDataLatLon(
       gps_latitude = 53, 
       gps_longitude = 10, 
-      gps_z = 3, 
-      heave_heave = -1,
+      depth = 3, 
+      heave = -1,
       heading_source = 45,
       imu_yaw = 0,
-      imu_roll = 2,
-      imu_pitch = -3)
+      roll = 2,
+      pitch = -3)
 
    # compute target position from the specified sensor data
    target_position = scs.compute_target_position("mbes", sensor_data)
