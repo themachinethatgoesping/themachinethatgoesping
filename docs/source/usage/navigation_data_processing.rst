@@ -54,9 +54,9 @@ Prior to transforming and interpolating, the user must create a SensorConfigurat
       x = 1,     # in m, positive forward
       y = 2,     # in m, positive starboard
       z = 3,     # in m, positive down
-      yaw = 0,   # in degrees, positive clockwise
+      yaw   = 0, # in degrees, positive clockwise
       pitch = 0, # in degrees, positive bow up
-      roll = 0)  # in degrees, positive port up
+      roll  = 0) # in degrees, positive port up
 
    # Note: The offsets are relative to the origin of the vessels coordinate system.
 
