@@ -7,5 +7,5 @@ However, many libraries, tools and applications will be implemented in Python di
 
 Most of the libraries will be released using the Mozilla Public License 2.0 (MPL 2.0) which implements a non-infecting copyleft on file basis. It should thus be compatible with proprietary applications, with GPL >2.0 but also MIT and BSD projects (if the license of the files is not changes). More detailed information will follow soon.
 
-We just started witht he development, so don't expect to many usefull features yet.
+We just started with he development, so don't expect to many useful features yet.
 If you are interested, contact peter.urban@ugent.be
