@@ -13,13 +13,13 @@ To gain the position and attitude of the sensor, the data must thus be rotated a
 Many sonar manufactures include this transformation into the software and the sonar data format. 
 For other formats, or if the data must be corrected (e.g. to correct offsets or use smoothed navigation) this must be done manually.
 
-Themachinethatgoesping provides two powerful classes to archive the interpolation and rotation of the data for common cases. We thereby support the following sensors:
+Themachinethatgoesping provides two powerful classes to archive the interpolation and rotation of the data for common cases. It supports the following sensors:
 
-- Position system: provides latitude and longitudes
-- Attitude sensor: provides roll, pitch and (optional) heading
-- Compass: provides heading (if compass is not used, the attitude sensor is assumed to provide heading)
-- Heave Sensor: provides measurements for the ship's heave (will be added to depth)
-- Depth Sensor: provides measurements for the ship's depth (etc. GPS RTK signal)
+- Position source: provides latitude and longitudes in ° or northing and easting in m
+- Attitude source: provides roll, pitch in °
+- Heading source: provides heading in °
+- Heave source: provides measurements for the ship's heave (will be added to depth)
+- Depth source: provides measurements for the ship's depth (e.g. GPS RTK signal)
 
 For the interpolation we use the vector interpolation classes from themachinethatgoesping.tools.vectorinterpolators.
 
