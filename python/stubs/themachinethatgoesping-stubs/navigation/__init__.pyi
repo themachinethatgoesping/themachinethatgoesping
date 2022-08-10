@@ -38,7 +38,7 @@ class NavigationInterpolatorLatLon():
     def __copy__(self) -> NavigationInterpolatorLatLon: ...
     def __eq__(self, other: NavigationInterpolatorLatLon) -> bool: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new i navigationinterpolator interface
 
@@ -134,7 +134,7 @@ class NavigationInterpolatorLatLon():
         Print object information
         """
     @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
+    def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
         Set the attitude data
 
@@ -150,48 +150,6 @@ class NavigationInterpolatorLatLon():
         Parameter ``roll``:
             in °, positive is port up
 
-        Set the attitude data and additionally specify the offsets of the
-        attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``offset_yaw``:
-            in °, positive clockwise
-
-        Parameter ``offset_pitch``:
-            in °, positive is bow up
-
-        Parameter ``offset_roll``:
-            in °, positive is port up
-
-        Set the attitude data and additionally specify the offsets of the
-        attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``sensor_offsets``:
-            structure that contains the attitude sensor offsets
-
         Set the attitude data (no yaw)
 
         Parameter ``timestamp``:
@@ -202,93 +160,9 @@ class NavigationInterpolatorLatLon():
 
         Parameter ``roll``:
             in °, positive is port up
-
-        Set the attitude data (no yaw) and additionally specify the offsets of
-        the attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``offset_yaw``:
-            in °, positive clockwise
-
-        Parameter ``offset_pitch``:
-            in °, positive is bow up
-
-        Parameter ``offset_roll``:
-            in °, positive is port up
-
-        Set the attitude data (no yaw) and additionally specify the offsets of
-        the attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``sensor_offsets``:
-            structure that contains the attitude sensor offsets
         """
     @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float], offset_yaw: float, offset_pitch: float, offset_roll: float) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float], offset_yaw: float, offset_pitch: float, offset_roll: float) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float]) -> None: 
-        """
-        Set the compass data
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Set the compass data and additionally specify the offsets of the
-        compass sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``offset_heading``:
-            in °, positive clockwise
-
-        Set the compass data and additionally specify the offsets of the
-        compass sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``sensor_offsets``:
-            structure that contains the compass sensor offsets
-        """
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float], offset_heading: float) -> None: ...
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
+    def set_data_attitude(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
     def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float]) -> None: 
         """
         Set the depth data
@@ -298,39 +172,17 @@ class NavigationInterpolatorLatLon():
 
         Parameter ``depth``:
             in meters, positive downwards
-
-        Set the depth data and specify the offsets of the depth sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``depth``:
-            in meters, positive downwards
-
-        Parameter ``offset_x``:
-            in meters, positive forwards
-
-        Parameter ``offset_y``:
-            in meters, positive starboard
-
-        Parameter ``offset_z``:
-            in meters, positive downwards
-
-        Set the depth data and specify the offsets of the depth sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``depth``:
-            in meters, positive downwards
-
-        Parameter ``sensor_offsets``:
-            structure that contains the depth sensor offsets
         """
-    @typing.overload
-    def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float], offset_x: float, offset_y: float, offset_z: float) -> None: ...
-    @typing.overload
-    def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
+    def set_data_heading(self, timestamp: typing.List[float], heading: typing.List[float]) -> None: 
+        """
+        Set the compass data
+
+        Parameter ``timestamp``:
+            in seconds since epoch
+
+        Parameter ``heading``:
+            in °, positive clockwise (north is 0°)
+        """
     def set_data_heave(self, timestamp: typing.List[float], heave: typing.List[float]) -> None: 
         """
         Set the heave data
@@ -341,8 +193,7 @@ class NavigationInterpolatorLatLon():
         Parameter ``heave``:
             in meters, positive upwards
         """
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], latitude: typing.List[float], longitude: typing.List[float]) -> None: 
+    def set_data_position(self, timestamp: typing.List[float], latitude: typing.List[float], longitude: typing.List[float]) -> None: 
         """
         Set the data of the position system (latitude, longitude)
 
@@ -354,47 +205,7 @@ class NavigationInterpolatorLatLon():
 
         Parameter ``longitude``:
             longitude in °
-
-        Set the data of the position system (latitude, longitude) and the
-        offsets of the position system
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``latitude``:
-            in °
-
-        Parameter ``longitude``:
-            in °
-
-        Parameter ``offset_x``:
-            in m, positive forward
-
-        Parameter ``offset_y``:
-            in m, positive starboard
-
-        Parameter ``offset_z``:
-            in m, positive down
-
-        Set the data of the position system (latitude, longitude) and the
-        offsets of the position system
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``latitude``:
-            in °
-
-        Parameter ``longitude``:
-            in °
-
-        Parameter ``sensor_offsets``:
-            structure containing the offsets of the position system
         """
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], latitude: typing.List[float], longitude: typing.List[float], offset_x: float, offset_y: float, offset_z: float) -> None: ...
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], latitude: typing.List[float], longitude: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
     def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Set the extrapolation mode for all interpolators
@@ -409,45 +220,47 @@ class NavigationInterpolatorLatLon():
     @property
     def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) yaw is
-        only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
+        is only used if the compass data is NAN [°]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_attitude.setter
     def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) yaw is
-        only used if the compass data is NAN [°]
-        """
-    @property
-    def interpolator_compass(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
-        """
-        < interpolator that stores compass data (yaw) [°]
-
-        :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
-        """
-    @interpolator_compass.setter
-    def interpolator_compass(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
-        """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
+        is only used if the compass data is NAN [°]
         """
     @property
     def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
         """
-        < interpolator that stores depth data (depth, positive downwards) [m]
+        < interpolator that stores depth data (depth, positive downwards) <
+        [m]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
         """
     @interpolator_depth.setter
     def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
-        < interpolator that stores depth data (depth, positive downwards) [m]
+        < interpolator that stores depth data (depth, positive downwards) <
+        [m]
+        """
+    @property
+    def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+        """
+        < interpolator that stores compass data (yaw) [°]
+
+        :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
+        """
+    @interpolator_heading.setter
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+        """
+        < interpolator that stores compass data (yaw) [°]
         """
     @property
     def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
         """
-        < interpolator that stores heave data (relative change in depth,
+        < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
@@ -455,7 +268,7 @@ class NavigationInterpolatorLatLon():
     @interpolator_heave.setter
     def interpolator_heave(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
-        < interpolator that stores heave data (relative change in depth,
+        < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
         """
     @property
@@ -520,7 +333,7 @@ class NavigationInterpolatorLocal():
     def __copy__(self) -> NavigationInterpolatorLocal: ...
     def __eq__(self, other: NavigationInterpolatorLocal) -> bool: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new i navigationinterpolator interface
 
@@ -616,7 +429,7 @@ class NavigationInterpolatorLocal():
         Print object information
         """
     @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
+    def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
         Set the attitude data
 
@@ -632,48 +445,6 @@ class NavigationInterpolatorLocal():
         Parameter ``roll``:
             in °, positive is port up
 
-        Set the attitude data and additionally specify the offsets of the
-        attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``offset_yaw``:
-            in °, positive clockwise
-
-        Parameter ``offset_pitch``:
-            in °, positive is bow up
-
-        Parameter ``offset_roll``:
-            in °, positive is port up
-
-        Set the attitude data and additionally specify the offsets of the
-        attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``sensor_offsets``:
-            structure that contains the attitude sensor offsets
-
         Set the attitude data (no yaw)
 
         Parameter ``timestamp``:
@@ -684,93 +455,9 @@ class NavigationInterpolatorLocal():
 
         Parameter ``roll``:
             in °, positive is port up
-
-        Set the attitude data (no yaw) and additionally specify the offsets of
-        the attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``offset_yaw``:
-            in °, positive clockwise
-
-        Parameter ``offset_pitch``:
-            in °, positive is bow up
-
-        Parameter ``offset_roll``:
-            in °, positive is port up
-
-        Set the attitude data (no yaw) and additionally specify the offsets of
-        the attitude sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Parameter ``sensor_offsets``:
-            structure that contains the attitude sensor offsets
         """
     @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float], offset_yaw: float, offset_pitch: float, offset_roll: float) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float], offset_yaw: float, offset_pitch: float, offset_roll: float) -> None: ...
-    @typing.overload
-    def set_data_attitude_sensor(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float]) -> None: 
-        """
-        Set the compass data
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Set the compass data and additionally specify the offsets of the
-        compass sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``offset_heading``:
-            in °, positive clockwise
-
-        Set the compass data and additionally specify the offsets of the
-        compass sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``heading``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``sensor_offsets``:
-            structure that contains the compass sensor offsets
-        """
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float], offset_heading: float) -> None: ...
-    @typing.overload
-    def set_data_compass(self, timestamp: typing.List[float], heading: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
-    @typing.overload
+    def set_data_attitude(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
     def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float]) -> None: 
         """
         Set the depth data
@@ -780,39 +467,17 @@ class NavigationInterpolatorLocal():
 
         Parameter ``depth``:
             in meters, positive downwards
-
-        Set the depth data and specify the offsets of the depth sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``depth``:
-            in meters, positive downwards
-
-        Parameter ``offset_x``:
-            in meters, positive forwards
-
-        Parameter ``offset_y``:
-            in meters, positive starboard
-
-        Parameter ``offset_z``:
-            in meters, positive downwards
-
-        Set the depth data and specify the offsets of the depth sensor
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``depth``:
-            in meters, positive downwards
-
-        Parameter ``sensor_offsets``:
-            structure that contains the depth sensor offsets
         """
-    @typing.overload
-    def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float], offset_x: float, offset_y: float, offset_z: float) -> None: ...
-    @typing.overload
-    def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
+    def set_data_heading(self, timestamp: typing.List[float], heading: typing.List[float]) -> None: 
+        """
+        Set the compass data
+
+        Parameter ``timestamp``:
+            in seconds since epoch
+
+        Parameter ``heading``:
+            in °, positive clockwise (north is 0°)
+        """
     def set_data_heave(self, timestamp: typing.List[float], heave: typing.List[float]) -> None: 
         """
         Set the heave data
@@ -823,8 +488,7 @@ class NavigationInterpolatorLocal():
         Parameter ``heave``:
             in meters, positive upwards
         """
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], northing: typing.List[float], easting: typing.List[float]) -> None: 
+    def set_data_position(self, timestamp: typing.List[float], northing: typing.List[float], easting: typing.List[float]) -> None: 
         """
         Set the data of the position system (northing, easting)
 
@@ -836,47 +500,7 @@ class NavigationInterpolatorLocal():
 
         Parameter ``easting``:
             easting in meters
-
-        Set the data of the position system (northing, easting) and the
-        offsets of the position system
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``northing``:
-            in meters
-
-        Parameter ``easting``:
-            in meters
-
-        Parameter ``offset_x``:
-            in m, positive forward
-
-        Parameter ``offset_y``:
-            in m, positive starboard
-
-        Parameter ``offset_z``:
-            in m, positive down
-
-        Set the data of the position system (northing, easting) and the
-        offsets of the position system
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``northing``:
-            in meters
-
-        Parameter ``easting``:
-            in meters
-
-        Parameter ``sensor_offsets``:
-            structure containing the offsets of the position system
         """
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], northing: typing.List[float], easting: typing.List[float], offset_x: float, offset_y: float, offset_z: float) -> None: ...
-    @typing.overload
-    def set_data_position_system(self, timestamp: typing.List[float], northing: typing.List[float], easting: typing.List[float], sensor_offsets: datastructures.PositionalOffsets) -> None: ...
     def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Set the extrapolation mode for all interpolators
@@ -891,40 +515,30 @@ class NavigationInterpolatorLocal():
     @property
     def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) yaw is
-        only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
+        is only used if the compass data is NAN [°]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_attitude.setter
     def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) yaw is
-        only used if the compass data is NAN [°]
-        """
-    @property
-    def interpolator_compass(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
-        """
-        < interpolator that stores compass data (yaw) [°]
-
-        :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
-        """
-    @interpolator_compass.setter
-    def interpolator_compass(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
-        """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
+        is only used if the compass data is NAN [°]
         """
     @property
     def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
         """
-        < interpolator that stores depth data (depth, positive downwards) [m]
+        < interpolator that stores depth data (depth, positive downwards) <
+        [m]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
         """
     @interpolator_depth.setter
     def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
-        < interpolator that stores depth data (depth, positive downwards) [m]
+        < interpolator that stores depth data (depth, positive downwards) <
+        [m]
         """
     @property
     def interpolator_easting(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
@@ -939,9 +553,21 @@ class NavigationInterpolatorLocal():
         < interpolator for the easting data
         """
     @property
+    def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+        """
+        < interpolator that stores compass data (yaw) [°]
+
+        :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
+        """
+    @interpolator_heading.setter
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+        """
+        < interpolator that stores compass data (yaw) [°]
+        """
+    @property
     def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
         """
-        < interpolator that stores heave data (relative change in depth,
+        < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
@@ -949,7 +575,7 @@ class NavigationInterpolatorLocal():
     @interpolator_heave.setter
     def interpolator_heave(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
-        < interpolator that stores heave data (relative change in depth,
+        < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
         """
     @property
@@ -1116,7 +742,7 @@ class SensorConfiguration():
         """
         create T_CLASS object from bytearray
         """
-    def get_offsets_attitude_sensor(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_attitude_source(self) -> datastructures.PositionalOffsets: 
         """
         Get the attitude sensor offsets
 
@@ -1124,14 +750,7 @@ class SensorConfiguration():
             const datastructures::PositionalOffsets& offsets of the attitude
             sensor
         """
-    def get_offsets_compass(self) -> datastructures.PositionalOffsets: 
-        """
-        Get the registered compass offsets
-
-        Returns:
-            const datastructures::PositionalOffsets& offsets of the compass
-        """
-    def get_offsets_depth_sensor(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_depth_source(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered depth sensor offsets
 
@@ -1139,7 +758,14 @@ class SensorConfiguration():
             const datastructures::PositionalOffsets& offsets of the depth
             sensor
         """
-    def get_offsets_position_system(self) -> datastructures.PositionalOffsets: 
+    def get_offsets_heading_source(self) -> datastructures.PositionalOffsets: 
+        """
+        Get the registered compass offsets
+
+        Returns:
+            const datastructures::PositionalOffsets& offsets of the compass
+        """
+    def get_offsets_position_source(self) -> datastructures.PositionalOffsets: 
         """
         Get the registered position system offsets
 
@@ -1166,7 +792,7 @@ class SensorConfiguration():
         Print object information
         """
     @typing.overload
-    def set_offsets_attitude_sensor(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_attitude_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the attitude sensor offsets
 
@@ -1188,9 +814,30 @@ class SensorConfiguration():
             x-axis) (in degrees, positive = port up)
         """
     @typing.overload
-    def set_offsets_attitude_sensor(self, yaw: float, pitch: float, roll: float) -> None: ...
+    def set_offsets_attitude_source(self, yaw: float, pitch: float, roll: float) -> None: ...
     @typing.overload
-    def set_offsets_compass(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_depth_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+        """
+        Set the depth sensor offsets
+
+        Parameter ``x``:
+            x-offset of the depth sensor (in meters, positive forward)
+
+        Parameter ``y``:
+            y-offset of the depth sensor (in meters, positive starboard)
+
+        Parameter ``z``:
+            z-offset of the depth sensor (in meters, positive down)
+
+        Set the depth sensor offsets
+
+        Parameter ``sensor_offsets``:
+            offsets structure (only x, y and z are used)
+        """
+    @typing.overload
+    def set_offsets_depth_source(self, x: float, y: float, z: float) -> None: ...
+    @typing.overload
+    def set_offsets_heading_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the compass offsets
 
@@ -1204,30 +851,9 @@ class SensorConfiguration():
             offsets structure (only yaw is used)
         """
     @typing.overload
-    def set_offsets_compass(self, yaw: float) -> None: ...
+    def set_offsets_heading_source(self, yaw: float) -> None: ...
     @typing.overload
-    def set_offsets_depth_sensor(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
-        """
-        Set the depth sensor offsets
-
-        Parameter ``x``:
-            x-offset of the depth sensor (in meters, positive forward)
-
-        Parameter ``y``:
-            y-offset of the depth sensor (in meters, positive starboard)
-
-        Parameter ``z``:
-            z-offset of the depth sensor (in meters, positive down)
-
-        Set the depth sensor offsets
-
-        Parameter ``sensor_offsets``:
-            offsets structure (only x, y and z are used)
-        """
-    @typing.overload
-    def set_offsets_depth_sensor(self, x: float, y: float, z: float) -> None: ...
-    @typing.overload
-    def set_offsets_position_system(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
+    def set_offsets_position_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None: 
         """
         Set the position system offsets
 
@@ -1246,7 +872,7 @@ class SensorConfiguration():
             offsets structure (only x, y and z are used)
         """
     @typing.overload
-    def set_offsets_position_system(self, x: float, y: float, z: float) -> None: ...
+    def set_offsets_position_source(self, x: float, y: float, z: float) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray

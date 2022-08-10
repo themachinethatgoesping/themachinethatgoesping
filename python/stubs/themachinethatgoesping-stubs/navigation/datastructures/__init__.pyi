@@ -646,7 +646,7 @@ class SensorData():
         Parameter ``heave_heave``:
             from heave sensor, will be added to gps_z in m, positive upwards
 
-        Parameter ``compass_heading``:
+        Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
             is east
 
@@ -660,7 +660,7 @@ class SensorData():
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -692,14 +692,6 @@ class SensorData():
         convert object to bytearray
         """
     @property
-    def compass_heading(self) -> float:
-        """
-        :type: float
-        """
-    @compass_heading.setter
-    def compass_heading(self, arg0: float) -> None:
-        pass
-    @property
     def gps_z(self) -> float:
         """
         < in m, positive downwards
@@ -711,6 +703,14 @@ class SensorData():
         """
         < in m, positive downwards
         """
+    @property
+    def heading_source(self) -> float:
+        """
+        :type: float
+        """
+    @heading_source.setter
+    def heading_source(self, arg0: float) -> None:
+        pass
     @property
     def heave_heave(self) -> float:
         """
@@ -812,7 +812,7 @@ class SensorDataLatLon(SensorData):
         Parameter ``heave_heave``:
             from heave sensor, will be added to gps_z in m, positive upwards
 
-        Parameter ``compass_heading``:
+        Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
             is east
 
@@ -826,7 +826,7 @@ class SensorDataLatLon(SensorData):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, gps_latitude: float = 0, gps_longitude: float = 0, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     @typing.overload
     def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: ...
     def __repr__(self) -> str: 
@@ -928,7 +928,7 @@ class SensorDataLocal(SensorData):
         Parameter ``heave_heave``:
             from heave sensor, will be added to gps_z in m, positive upwards
 
-        Parameter ``compass_heading``:
+        Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
             is east
 
@@ -942,7 +942,7 @@ class SensorDataLocal(SensorData):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
+    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: ...
     @typing.overload
     def __init__(self, sensordata: SensorData, gps_northing: float, gps_easting: float) -> None: ...
     def __repr__(self) -> str: 
@@ -1017,7 +1017,7 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         """
     def __getstate__(self) -> bytes: ...
     @typing.overload
-    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_zone: int = 0, gps_northern_hemisphere: bool = True, gps_z: float = 0, heave_heave: float = 0, compass_heading: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: 
+    def __init__(self, gps_northing: float = 0, gps_easting: float = 0, gps_zone: int = 0, gps_northern_hemisphere: bool = True, gps_z: float = 0, heave_heave: float = 0, heading_source: float = 0, imu_yaw: float = 0, imu_pitch: float = 0, imu_roll: float = 0) -> None: 
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -1071,7 +1071,7 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         Parameter ``heave_heave``:
             from heave sensor, will be added to gps_z in m, positive upwards
 
-        Parameter ``compass_heading``:
+        Parameter ``heading_source``:
             from compass, replaces imu_yaw if not NAN, in °, 0° is north, 90°
             is east
 

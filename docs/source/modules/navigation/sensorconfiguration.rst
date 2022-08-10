@@ -5,7 +5,7 @@ A simple coordinate system that allows for storing sensor and target offsets.
 
 Supported sensors are: 
 
-* compass: Affects :any:`SensorData.compass_heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
+* compass: Affects :any:`SensorData.heading_source<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
 * position system: Affects SensorData gps variables with x,y and z offset
 * depth sensor: Affects SensorData.gps_z variables with x,y and z offset
 * attitude system: Affects SensorData imu variables with yaw, pitch and roll offset
@@ -34,10 +34,10 @@ Example usage
    scs = nav.SensorConfiguration()
 
    # add sensor offsets
-   scs.set_offsets_compass(yaw=9)
-   scs.set_offsets_depth_sensor(0, 0, 1)
-   scs.set_offsets_position_system(1, 2, 3)
-   scs.set_offsets_attitude_sensor(10, -10, -30)
+   scs.set_offsets_heading_source(yaw=9)
+   scs.set_offsets_depth_source(0, 0, 1)
+   scs.set_offsets_position_source(1, 2, 3)
+   scs.set_offsets_attitude_source(10, -10, -30)
 
    # add a target with target offsets
    scs.add_target(
@@ -55,7 +55,7 @@ Example usage
       gps_longitude = 10, 
       gps_z = 3, 
       heave_heave = -1,
-      compass_heading = 45,
+      heading_source = 45,
       imu_yaw = 0,
       imu_roll = 2,
       imu_pitch = -3)

@@ -37,7 +37,7 @@ Example usage
    # - gps_northern_hemisphere: false      
    # - gps_z:                   3.00       [positive downwards, m]
    # - heave_heave:             -2.00      [positive upwards, m]
-   # - compass_heading:         45.00      [90 ° at east (valid)]
+   # - heading_source:         45.00      [90 ° at east (valid)]
    # - imu_yaw:                 10.00      [90 ° at east (unused]
    # - imu_pitch:               20.00      [° positive bow up]
    # - imu_roll:                30.00      [° positive port up]
@@ -54,7 +54,7 @@ Example usage
    # - gps_longitude:   41°16'49.2"W  [ddd°mm',ss.s''E/W]
    # - gps_z:           3.00          [positive downwards, m]
    # - heave_heave:     -2.00         [positive upwards, m]
-   # - compass_heading: 45.00         [90 ° at east (valid)]
+   # - heading_source: 45.00         [90 ° at east (valid)]
    # - imu_yaw:         10.00         [90 ° at east (unused]
    # - imu_pitch:       20.00         [° positive bow up]
    # - imu_roll:        30.00         [° positive port up]
