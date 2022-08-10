@@ -19,7 +19,7 @@ dynamic = [
   'version',
 ]
 #version = '0.0.1'
-description = 'Enable advanced processing for multibeam and singlebeam echosounder data.THIS PROJECT IS IN DEVELOPMENT. NO useful FUNCIONTALITY EXISTS SO FAR!'
+description = 'Enable advanced processing for multibeam and singlebeam echosounder data.THIS PROJECT IS IN DEVELOPMENT. NO useful FUNCTIONALITY EXISTS SO FAR!'
 readme = 'README-project.md'
 license = { file = 'LICENSE' }
 keyword = ['mbes', 'sbes', 'watercolumn','echosounder','quantification']
@@ -58,7 +58,7 @@ documentation = 'https://themachinethatgoesping.readthedocs.io/en/latest/'
 # -- cibuildwheel options ---
 [tool.cibuildwheel]
 #FUTURE: build against musllinux (there is currently no documentation on this image)
-#FUTURE: buildfor pypy (is not yet supported by mesonpy)
+#FUTURE: build for pypy (is not yet supported by mesonpy)
 # Skip pypy[pp*] and musllinux (for now)
 skip = 'pp* *musllinux*'
 
