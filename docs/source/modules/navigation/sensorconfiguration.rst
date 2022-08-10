@@ -51,12 +51,11 @@ Example usage
 
    # create a object that contains sensor data
    sensor_data = nav.datastructures.SensorDataLatLon(
-      gps_latitude = 53, 
-      gps_longitude = 10, 
+      latitude = 53, 
+      longitude = 10, 
       depth = 3, 
       heave = -1,
-      heading_source = 45,
-      imu_yaw = 0,
+      heading = 45,
       roll = 2,
       pitch = -3)
 

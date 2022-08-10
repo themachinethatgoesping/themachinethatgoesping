@@ -73,7 +73,7 @@ def latitude_to_string(latitude: float, format: t_latlon_format = t_latlon_forma
         degrees°minutes'seconds''N/S)
 
     Returns:
-        converteds latitude string
+        converted latitude string
 
     convert a latitude value to a string
 
@@ -88,7 +88,7 @@ def latitude_to_string(latitude: float, format: t_latlon_format = t_latlon_forma
         degrees°minutes'seconds''N/S)
 
     Returns:
-        converteds latitude string
+        converted latitude string
     """
 @typing.overload
 def latitude_to_string(latitude: typing.List[float], format: t_latlon_format = t_latlon_format.minutes, precision: int = 6) -> typing.List[str]:

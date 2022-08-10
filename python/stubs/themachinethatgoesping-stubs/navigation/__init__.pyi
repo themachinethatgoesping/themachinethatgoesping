@@ -32,7 +32,7 @@ class NavigationInterpolatorLatLon():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the position of the target in the
+            data structure that contains the position of the target in the
             world coordinate system
         """
     def __copy__(self) -> NavigationInterpolatorLatLon: ...
@@ -102,7 +102,7 @@ class NavigationInterpolatorLatLon():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the position of the target in the
+            data structure that contains the position of the target in the
             world coordinate system
         """
     def copy(self) -> NavigationInterpolatorLatLon: 
@@ -122,7 +122,7 @@ class NavigationInterpolatorLatLon():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the sensor data interpolated for the
+            data structure that contains the sensor data interpolated for the
             given timestamp stamp
         """
     def info_string(self, float_precision: int = 2) -> str: 
@@ -133,24 +133,9 @@ class NavigationInterpolatorLatLon():
         """
         Print object information
         """
-    @typing.overload
     def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
-        Set the attitude data
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Set the attitude data (no yaw)
+        Set the attitude data (no yaw, ythis is set in set_data_heading)
 
         Parameter ``timestamp``:
             in seconds since epoch
@@ -161,8 +146,6 @@ class NavigationInterpolatorLatLon():
         Parameter ``roll``:
             in °, positive is port up
         """
-    @typing.overload
-    def set_data_attitude(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
     def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float]) -> None: 
         """
         Set the depth data
@@ -220,16 +203,14 @@ class NavigationInterpolatorLatLon():
     @property
     def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
-        is only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (pitch and roll)
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_attitude.setter
     def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
-        is only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (pitch and roll)
         """
     @property
     def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
@@ -248,14 +229,14 @@ class NavigationInterpolatorLatLon():
     @property
     def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores compass data (yaw/heading) [°]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_heading.setter
     def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores compass data (yaw/heading) [°]
         """
     @property
     def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
@@ -311,7 +292,7 @@ class NavigationInterpolatorLatLon():
     pass
 class NavigationInterpolatorLocal():
     """
-    The NavInterpolator class: Interpolate navigation (northing/esting no
+    The NavInterpolator class: Interpolate navigation (northing/easting no
     zone specified) values and attitude information and transform the
     values using the offsets specified in the sensor configuration class
     """
@@ -327,7 +308,7 @@ class NavigationInterpolatorLocal():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the position of the target in the
+            data structure that contains the position of the target in the
             world coordinate system
         """
     def __copy__(self) -> NavigationInterpolatorLocal: ...
@@ -397,7 +378,7 @@ class NavigationInterpolatorLocal():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the position of the target in the
+            data structure that contains the position of the target in the
             world coordinate system
         """
     def copy(self) -> NavigationInterpolatorLocal: 
@@ -417,7 +398,7 @@ class NavigationInterpolatorLocal():
             timestamp in seconds since epoch
 
         Returns:
-            datastructure that contains the sensor data interpolated for the
+            data structure that contains the sensor data interpolated for the
             given timestamp stamp
         """
     def info_string(self, float_precision: int = 2) -> str: 
@@ -428,24 +409,9 @@ class NavigationInterpolatorLocal():
         """
         Print object information
         """
-    @typing.overload
     def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
-        Set the attitude data
-
-        Parameter ``timestamp``:
-            in seconds since epoch
-
-        Parameter ``yaw``:
-            in °, positive clockwise (north is 0°)
-
-        Parameter ``pitch``:
-            in °, positive is bow up
-
-        Parameter ``roll``:
-            in °, positive is port up
-
-        Set the attitude data (no yaw)
+        Set the attitude data (no yaw, ythis is set in set_data_heading)
 
         Parameter ``timestamp``:
             in seconds since epoch
@@ -456,8 +422,6 @@ class NavigationInterpolatorLocal():
         Parameter ``roll``:
             in °, positive is port up
         """
-    @typing.overload
-    def set_data_attitude(self, timestamp: typing.List[float], yaw: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: ...
     def set_data_depth(self, timestamp: typing.List[float], depth: typing.List[float]) -> None: 
         """
         Set the depth data
@@ -515,16 +479,14 @@ class NavigationInterpolatorLocal():
     @property
     def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
-        is only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (pitch and roll)
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_attitude.setter
     def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores attitude data (yaw, pitch and roll) < yaw
-        is only used if the compass data is NAN [°]
+        < interpolator that stores attitude data (pitch and roll)
         """
     @property
     def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
@@ -555,14 +517,14 @@ class NavigationInterpolatorLocal():
     @property
     def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
         """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores compass data (yaw/heading) [°]
 
         :type: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
         """
     @interpolator_heading.setter
     def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
         """
-        < interpolator that stores compass data (yaw) [°]
+        < interpolator that stores compass data (yaw/heading) [°]
         """
     @property
     def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:

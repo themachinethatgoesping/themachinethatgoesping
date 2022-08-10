@@ -82,15 +82,10 @@ In this example we use latitude and longitude.
 
    # add data
    navi.set_data_position(timestamps_possys, latitude, longitude)
-   navi.set_data_attitude(timestamps_attitude, yaw, pitch, roll)
+   navi.set_data_attitude(timestamps_attitude, pitch, roll)
+   navi.set_data_heading(timestamps_attitude, yaw)
 
-Notes:
-
-1. if data_position_source is not called, latitude and longitude are assumed to be always 0
-2. if set_data_attitude is not called, yaw, pitch, roll are   assumed to be always 0
-3. if set_data_heading is not called, heading is NAN. This means that the yaw value from the attitude sensor is used as heading
-4. if set_data_depth is not called depth is assumed to be always 0
-5. if set_data_heave is not called depth is assumed to be always 0 (depth value is used without modification)
+Note: data that are not set are assumed to be 0.0 (e.g depth in the above example)
 
 3) Get echo sounder position for random ping time points
 ========================================================
