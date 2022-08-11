@@ -21,6 +21,14 @@
 [submodule "subprojects/gridding"]
 	path = subprojects/gridding
 	url = ../gridding.git
+	branch = main
+
 [submodule "subprojects/meta"]
 	path = subprojects/meta
 	url = ../.meta.git
+	branch = main
+
+[submodule "subprojects/echosounders"]
+	path = subprojects/echosounders
+	url = ../echosounders.git
+	branch = main
