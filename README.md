@@ -62,6 +62,8 @@ If you are interested, contact peter.urban@ugent.be
 
 - <a href="https://github.com/themachinethatgoesping/navigation/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/navigation/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/navigation">**navigation:**</a> Module to store and transform navigation data
 
-- <a href="https://github.com/themachinethatgoesping/echogrids/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/gridding">**gridding:**</a> Gridding functions (python only test repo) 
+- <a href="https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/echosounders">**echosounders:**</a> Read, write, process single- and multibeam data files 
+
+- <a href="https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml"> <img src="https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg" alt='CI status'/> </a> <a href="https://github.com/themachinethatgoesping/gridding">**gridding:**</a> Gridding functions (python only test repo) 
 
 <!--
