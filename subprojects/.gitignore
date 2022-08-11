@@ -20,3 +20,4 @@ eigen.wrap
 fmt.wrap
 magic_enum.wrap
 bitsery.wrap
+indicators*
