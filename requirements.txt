@@ -1,5 +1,5 @@
 numba
 tqdm
-ipympl
+#ipympl
 #matplotlib, # implicit, already in ipympl
 #numpy # implicit, already in numba
