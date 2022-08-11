@@ -33,12 +33,11 @@ classifiers = [
 
 requires-python = '>=3.8'
 dependencies = [
-  'wheel',
   'numba',
-  'ipympl',
+  #'ipympl',
   #'matplotlib', #implicit already in ipympl
   #'numpy', #implicit already within numba and ipympl
-  'tqdm'
+  #'tqdm'
 ]
 
 
