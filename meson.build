@@ -21,6 +21,7 @@ projectnamespace = 'themachinethatgoesping'
 module_meta  = subproject('meta')
 module_tools = subproject('tools')
 module_navigation = subproject('navigation')
+module_echosounders = subproject('echosounders')
 
 # python only projects
 module_gridding = subproject('gridding')
