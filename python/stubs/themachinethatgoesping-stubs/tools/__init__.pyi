@@ -6,6 +6,7 @@ import typing
 __all__ = [
     "classhelpers",
     "ostream_redirect",
+    "progressbars",
     "timeconv",
     "vectorinterpolators"
 ]

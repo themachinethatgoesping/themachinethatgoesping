@@ -1,4 +1,4 @@
-"""Convinient functions for converting time strings."""
+"""Convenient functions for converting time strings."""
 from __future__ import annotations
 import themachinethatgoesping.tools.timeconv
 import typing
