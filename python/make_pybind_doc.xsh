@@ -17,3 +17,17 @@ for r,f in path_mkdoc:
     cd @(r)
     ./@(f) 2>> @(pwd)/log.txt
 
+
+# copy stubs dir and rename .pyi to .py files
+
+
+# for r,d,f in os.walk('stubs/themachinethatgoesping/'):
+#   for file in f:
+#     if file.endswith('.pyi'):
+#       fin = r + '/' + file
+#       fout = fin.replace('.pyi','.py')
+
+#       #print(fin,'->',fout)
+#       mv @(fin) @(fout) -v
+
+
