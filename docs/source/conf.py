@@ -18,15 +18,23 @@ version = '0.0.0'
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
+    #'sphinx.ext.autodoc',
+    #'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
+    'autoapi.extension'
 ]
+
+#autoapi
+autoapi_type = 'python'
+autoapi_dirs = ['../../python/stubs/themachinethatgoesping/']
+autoapi_generate_api_docs = False
 
 #autodoc
 add_module_names = False
 autodoc_member_order = 'bysource'
+autodoc_default_flags = ['members']
+autosummary_generate = True
 python_use_unqualified_type_names = True
 
 intersphinx_mapping = {

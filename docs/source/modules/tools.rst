@@ -7,3 +7,4 @@ tools
 
    tools/timeconv
    tools/vectorinterpolators
+   tools/progressbars

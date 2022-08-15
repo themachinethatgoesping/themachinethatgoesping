@@ -72,5 +72,5 @@ Functions (python extendet)
     # import this extended module
     from themachinethatgoesping.tools_ext import timeconv
 
-.. automodule:: themachinethatgoesping.tools_ext.timeconv_ext
-   :members:
+.. .. automodule:: themachinethatgoesping.tools_ext.timeconv_ext
+..    :members:

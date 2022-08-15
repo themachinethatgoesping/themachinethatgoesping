@@ -29,7 +29,6 @@ Contents
 .. toctree::
 
    usage
-   api
 
 .. toctree::
    :caption: Usage
