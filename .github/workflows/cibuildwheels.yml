@@ -55,10 +55,10 @@ jobs:
           submodules: recursive
           lfs: false
       
-    - name: ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: tmtgp-cibuildwheels-${{ matrix.arch }}  # name for the cache
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: tmtgp-cibuildwheels-${{ matrix.arch }}  # name for the cache
 
       #- uses: actions/setup-python@v2
         #if: runner.os == 'Linux'
