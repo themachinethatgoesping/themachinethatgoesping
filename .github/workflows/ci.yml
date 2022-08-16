@@ -51,12 +51,12 @@ jobs:
         include:  
           - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
               ccache: 'true'}
-          - { container: 'ubuntu:22.04', ,
-              ccache: 'true'
+          - { container: 'ubuntu:22.04',
+              ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
               pip : 'pip install meson ninja pytest' }
-          - { container: 'archlinux', ,
+          - { container: 'archlinux',
               #ccache: 'true'
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
               dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
