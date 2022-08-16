@@ -149,10 +149,12 @@ jobs:
         submodules: recursive
         lfs: false
 
-    - name: ccache
+    - name: sccache
+      if ${{ ccache }}
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-ci-windows  # name for the cache
+        key: tmtgp-ci-win # name for the cache
+        variant: sccache  # supports windows
 
     - name: Cache Boost
       id: cache-boost
