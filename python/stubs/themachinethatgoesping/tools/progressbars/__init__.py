@@ -111,7 +111,7 @@ class I_ProgressBarTimed(I_ProgressBar):
     def __init__(self) -> None: ...
     def callback_close(self, msg: str = 'done') -> None: 
         """
-        Finalize the progressbar This callback is guarded by a mutex.
+        Finalize the progressbar
 
         Parameter ``msg``:
             A message that can be appended as postfix
@@ -120,15 +120,12 @@ class I_ProgressBarTimed(I_ProgressBar):
         """
         Get the current progress state
 
-        This callback is guarded by a mutex
-
         Returns:
             progress state
         """
     def callback_init(self, first: float, last: float, process_name: str = 'process') -> None: 
         """
-        Initialize a new progressbar within the given range This callback is
-        guarded by a mutex.
+        Initialize a new progressbar within the given range
 
         Parameter ``first``:
             lowest number in the range (typically 0.0)
@@ -143,9 +140,9 @@ class I_ProgressBarTimed(I_ProgressBar):
         """
         Append a postfix message to the progressbar
 
-        This callback is guarded by a mutex and a timer (100ms). If skipped,
-        the postfix is stored to the internal state and will be applied with
-        the next successful call to set_progress(), tick() or set_postfix().
+        This callback is guarded by a timer (100ms). If skipped, the postfix
+        is stored to the internal state and will be applied with the next
+        successful call to set_progress(), tick() or set_postfix().
 
         Parameter ``postfix``:
             postfix message
@@ -155,9 +152,9 @@ class I_ProgressBarTimed(I_ProgressBar):
         Set the progress state to the given value. Note some implementations
         may require the new_progress to be higher than the current progress!
 
-        This callback is guarded by a mutex and a timer (100ms). If skipped,
-        the progress is stored to the internal state and will be applied with
-        the next successful call to set_progress(), tick() or set_postfix().
+        This callback is guarded by a timer (100ms). If skipped, the progress
+        is stored to the internal state and will be applied with the next
+        successful call to set_progress(), tick() or set_postfix().
 
         Parameter ``new_progress``:
             New progress state (within the given first/last range)
@@ -165,7 +162,7 @@ class I_ProgressBarTimed(I_ProgressBar):
     def callback_tick(self, increment: float = 1) -> None: 
         """
         Increment the progress state by the given amount This callback is
-        guarded by a mutex and a timer (100ms).
+        guarded a timer (100ms).
 
         If skipped, the increment is added to the internal counter and will be
         applied with the next unskipped call to tick().
