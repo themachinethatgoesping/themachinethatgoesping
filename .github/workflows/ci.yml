@@ -150,7 +150,6 @@ jobs:
         lfs: false
 
     - name: sccache
-      if: ${{ ccache }}
       uses: hendrikmuhs/ccache-action@v1.2
       with:
         key: tmtgp-ci-win # name for the cache
