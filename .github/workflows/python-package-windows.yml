@@ -58,6 +58,11 @@ jobs:
       with:
         submodules: recursive
         lfs: false
+
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: tmtgp-pypi-windows-${{ matrix.python-version }}  # name for the cache
         
     # make sure meson can find msvc
     - name: Prepare MSVC
@@ -178,7 +183,7 @@ jobs:
         
     - name: Publish package
       # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not upated)
+      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
       # Note 3: In the future this should better build against test.pypi repository!
       #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
       uses: pypa/gh-action-pypi-publish@release/v1
