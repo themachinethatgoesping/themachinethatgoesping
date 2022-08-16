@@ -73,6 +73,11 @@ jobs:
         submodules: recursive
         lfs: false
 
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: tmtgp-ci-linux-${{matrix.container}}  # name for the cache
+
     - name: install dependecies (c++)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
@@ -140,6 +145,11 @@ jobs:
         submodules: recursive
         lfs: false
 
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: tmtgp-ci-windows  # name for the cache
+
     - name: Cache Boost
       id: cache-boost
       uses: actions/cache@v3
@@ -191,12 +201,8 @@ jobs:
   macos:
     name: Build and install with meson on macOS
     runs-on: macos-latest
-    
-    env:
-      CC: msvc-14.3
       
-    steps:
-    
+    steps:    
     - uses: actions/setup-python@v3
       with:
         python-version: '3.x'
@@ -206,6 +212,11 @@ jobs:
       with:
         submodules: recursive
         lfs: false
+    
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: tmtgp-ci-macos  # name for the cache
         
     - run: brew install libomp boost
     
