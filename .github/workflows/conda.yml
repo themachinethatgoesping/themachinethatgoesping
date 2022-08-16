@@ -58,7 +58,7 @@ jobs:
         shell: ${{matrix.shell}}  
 
     steps:
-    - name: install build dependecies (prebuild)
+    - name: install build dependencies (prebuild)
       if:  ${{matrix.predep}}
       run: ${{matrix.predep}}
 
@@ -83,7 +83,7 @@ jobs:
     # - name: install conda dependencies
     #   run: conda install -y conda-build anaconda-client
   
-    - name: install build dependecies (c++)
+    - name: install build dependencies (c++)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
 
@@ -120,7 +120,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: ${{matrix.container}}_Testlog
+        name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt
     
 
@@ -166,7 +166,7 @@ jobs:
   #   - uses: actions/upload-artifact@v1
   #     if: failure()
   #     with:
-  #       name: ${{matrix.container}}_Testlog
+  #       name: ${{matrix.container}}_testlog
   #       path: builddir/meson-logs/testlog.txt
 
       

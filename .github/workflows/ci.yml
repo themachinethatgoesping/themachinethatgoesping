@@ -49,12 +49,15 @@ jobs:
       fail-fast: false
       matrix:
         include:  
-          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest'}
-          - { container: 'ubuntu:22.04', 
+          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
+              ccache: 'true'}
+          - { container: 'ubuntu:22.04', ,
+              ccache: 'true'
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
               pip : 'pip install meson ninja pytest' }
-          - { container: 'archlinux', 
+          - { container: 'archlinux', ,
+              #ccache: 'true'
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
               dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
               pip : 'pip install meson ninja pytest' }
@@ -63,7 +66,7 @@ jobs:
     container: ${{matrix.container}}
 
     steps:
-    - name: install prequisits
+    - name: install perquisites
       if:  ${{matrix.pre-dep}}
       run: ${{matrix.pre-dep}}
 
@@ -74,15 +77,16 @@ jobs:
         lfs: false
 
     - name: ccache
+      if:  ${{matrix.ccache}}
       uses: hendrikmuhs/ccache-action@v1.2
       with:
         key: tmtgp-ci-linux-${{matrix.container}}  # name for the cache
 
-    - name: install dependecies (c++)
+    - name: install dependencies (c++)
       if:  ${{matrix.dep}}
       run: ${{matrix.dep}}
       
-    - name: install dependcies (meson & python)
+    - name: install dependencies (meson & python)
       if:  ${{matrix.pip}}
       run: ${{matrix.pip}}
 
@@ -109,7 +113,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: ${{matrix.container}}_Testlog
+        name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt
     
 
@@ -170,7 +174,7 @@ jobs:
 
     # same as for linux
 
-    - name: install dependcies (meson & python)
+    - name: install dependencies (meson & python)
       run: pip install meson ninja pytest
 
     - name: configure meson
@@ -195,7 +199,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: Windows_Meson_Testlog
+        name: Windows_Meson_testlog
         path: builddir/meson-logs/testlog.txt
 
   macos:
@@ -243,7 +247,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: ${{matrix.container}}_Testlog
+        name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt
 
       

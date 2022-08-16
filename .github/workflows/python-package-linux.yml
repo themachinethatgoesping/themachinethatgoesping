@@ -204,7 +204,7 @@ jobs:
     container: ${{matrix.container}}
 
     steps:
-    - name: install prequisits
+    - name: install perquisites
       if:  ${{matrix.pre-dep}}
       run: ${{matrix.pre-dep}}
 
@@ -223,5 +223,5 @@ jobs:
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
-        name: ${{matrix.container}}_Testlog
+        name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt

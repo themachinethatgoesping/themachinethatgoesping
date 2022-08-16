@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# install source build dependcies
+# install source build dependencies
 yum install -y bzip2 curl zlib
 
 export BOOST_VERSION="1.74.0"
@@ -23,5 +23,5 @@ curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/s
 #yum install -y git git-lfs ccache
 
 
-# install dependecies (c++)
+# install dependencies (c++)
 yum install -y pkgconfig cmake libcurl-devel

@@ -18,7 +18,7 @@ RUN yum install -y git git-lfs ccache
 # ARG BOOST_MODULES="filesystem"
 #
 #
-# # install source build dependcies
+# # install source build dependencies
 # RUN yum install -y bzip2 curl zlib
 #
 #
@@ -36,11 +36,11 @@ RUN yum install -y git git-lfs ccache
 # # install build requirements
 # RUN yum install -y git git-lfs
 #
-# # install dependecies (c++)
+# # install dependencies (c++)
 # RUN yum install -y ccache pkgconfig cmake libcurl-devel
 
 
-# install dependcies (meson & python)
+# install dependencies (meson & python)
 # this is best done in the ci scripts!
 # ENV PATH "/opt/_internal/cpython-3.10.4/bin:$PATH"
 # RUN python3.10 -m pip install --upgrade pip

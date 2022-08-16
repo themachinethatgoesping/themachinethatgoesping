@@ -8,20 +8,20 @@
 FROM ubuntu:latest
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
-# install prequisits
+# install perquisites
 RUN apt update && apt install -y sudo git git-lfs apt-utils
 
 RUN apt update -qq
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# install dependecies (c++)
+# install dependencies (c++)
 RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev
 
-# install extra dependecies (instead of subprojects)
+# install extra dependencies (instead of subprojects)
 RUN apt install -y catch2 libeigen3-dev pybind11-dev
 
-# install dependcies (meson & python)
+# install dependencies (meson & python)
 #RUN apt-get install -y meson ninja-build python3-pytest
 RUN pip install meson ninja pytest
 
