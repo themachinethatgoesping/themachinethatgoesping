@@ -83,4 +83,5 @@ testpaths = [
     "subprojects/tools/python/tests/",
     "subprojects/gridding/python/tests/",
     "subprojects/navigation/python/tests/",
+    "subprojects/echosounders/python/tests/",
 ]
