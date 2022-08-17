@@ -3,11 +3,11 @@ import themachinethatgoesping.tools_ext.timeconv_ext
 import typing
 
 __all__ = [
+    "annotations",
     "datestring_to_datetime",
     "datestring_to_unixtime",
     "datetime",
     "datetime_to_datestring",
-    "time",
     "unixtime_to_datestring"
 ]
 
