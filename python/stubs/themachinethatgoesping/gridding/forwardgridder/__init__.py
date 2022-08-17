@@ -9,6 +9,7 @@ import themachinethatgoesping.gridding.functions.gridfunctions
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
+    "ArrayLike",
     "ForwardGridder",
     "grdf",
     "np"
@@ -17,8 +18,9 @@ __all__ = [
 
 class ForwardGridder():
     """
-    Simple class to generate 3D grids (images) and interpolate xyz data ontothem using simple forwardmapping algorithms.
-       (e.g. block mean, weighted mean interpolation)
-       
+    Simple class to generate 3D grids (images) and interpolate xyz data onto a grid using simple forward mapping algorithms.
+        (e.g. block mean, weighted mean interpolation)
+        
     """
     pass
+ArrayLike: typing._UnionGenericAlias # value = typing.Union[numpy.typing._array_like._SupportsArray[numpy.dtype], numpy.typing._nested_sequence._NestedSequence[numpy.typing._array_like._SupportsArray[numpy.dtype]], bool, int, float, complex, str, bytes, numpy.typing._nested_sequence._NestedSequence[typing.Union[bool, int, float, complex, str, bytes]]]
