@@ -10,11 +10,6 @@ __all__ = [
     "NoIndicator",
     "ProgressIndicator",
     "ProgressTqdm",
-    "config",
-    "pbar_Classic",
-    "pbar_Indicator",
-    "pbar_NoIndicator",
-    "t_BuiltInProgressBar",
     "test_loop"
 ]
 
@@ -212,51 +207,5 @@ class ProgressTqdm(I_ProgressBar):
             A python tqdm class object
         """
     pass
-class config():
-    DefaultProgressBarType: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_Indicator: 1>
-    pass
-class t_BuiltInProgressBar():
-    """
-    Members:
-
-      pbar_NoIndicator
-
-      pbar_Indicator
-
-      pbar_Classic
-    """
-    def __eq__(self, other: object) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    @typing.overload
-    def __init__(self, str: str) -> None: 
-        """
-        Construct this enum type from string
-        """
-    @typing.overload
-    def __init__(self, value: int) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: int) -> None: ...
-    @property
-    def name(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def value(self) -> int:
-        """
-        :type: int
-        """
-    __members__: dict # value = {'pbar_NoIndicator': <t_BuiltInProgressBar.pbar_NoIndicator: 0>, 'pbar_Indicator': <t_BuiltInProgressBar.pbar_Indicator: 1>, 'pbar_Classic': <t_BuiltInProgressBar.pbar_Classic: 2>}
-    pbar_Classic: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_Classic: 2>
-    pbar_Indicator: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_Indicator: 1>
-    pbar_NoIndicator: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_NoIndicator: 0>
-    pass
 def test_loop(ProgressBar: I_ProgressBar, loops: int = 1000, sleep_us: int = 10, show_progress: bool = True) -> float:
     pass
-pbar_Classic: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_Classic: 2>
-pbar_Indicator: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_Indicator: 1>
-pbar_NoIndicator: themachinethatgoesping.tools.progressbars.t_BuiltInProgressBar # value = <t_BuiltInProgressBar.pbar_NoIndicator: 0>

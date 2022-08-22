@@ -54,7 +54,7 @@ jobs:
           - { container: 'ubuntu:22.04',
               ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev',
               pip : 'pip install meson ninja pytest' }
           - { container: 'archlinux',
               #ccache: 'true'
