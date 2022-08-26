@@ -11,6 +11,11 @@ fmt*/*
 magic_enum*/*
 bitsery*
 geographiclib*
+xtensor*
+nlohmann_json*
+pugixml*
+xsimd*
+xtl*
 
 #inherited wrap files
 catch2.wrap
