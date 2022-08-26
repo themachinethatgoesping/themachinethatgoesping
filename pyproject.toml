@@ -37,7 +37,7 @@ dependencies = [
   'numba',
   #'ipympl',
   #'matplotlib', #implicit already in ipympl
-  'numpy',
+  'numpy >=1.20',
   'tqdm'
 ]
 
