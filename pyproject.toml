@@ -7,7 +7,8 @@ requires = [
     'meson-python >= 0.8',
     'meson >= 0.63',
     'pyproject-metadata',
-    'ninja'
+    'ninja',
+    'numpy'
 ]
 build-backend = 'mesonpy'
 backend-path = ['./subprojects/meson-python']
@@ -36,7 +37,7 @@ dependencies = [
   'numba',
   #'ipympl',
   #'matplotlib', #implicit already in ipympl
-  #'numpy', #implicit already within numba and ipympl
+  'numpy',
   'tqdm'
 ]
 

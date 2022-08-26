@@ -55,12 +55,12 @@ jobs:
               ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
               dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev',
-              pip : 'pip install meson ninja pytest' }
+              pip : 'pip install meson ninja pytest numpy' }
           - { container: 'archlinux',
               #ccache: 'true'
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
               dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
-              pip : 'pip install meson ninja pytest' }
+              pip : 'pip install meson ninja pytest numpy' }
     
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
@@ -178,6 +178,9 @@ jobs:
     - name: install dependencies (meson & python)
       run: pip install meson ninja pytest
 
+    - name: install pip requirements
+      run: pip install -r requirements.txt
+
     - name: configure meson
       run: |
         meson setup builddir/ -D"python.install_env=auto" -Dcpp_std=c++17 -Ddefault_library=static -D"python.install_env=auto"
@@ -190,9 +193,6 @@ jobs:
 
     - name: install project
       run: meson install -C builddir/
-
-    - name: install pip requirements
-      run: pip install -r requirements.txt
 
     - name: test (pytest)
       run: pytest -v
@@ -226,6 +226,9 @@ jobs:
     - run: brew install libomp boost
     
     - run: pip install meson ninja pytest
+
+    - name: install pip requirements
+      run: pip install -r requirements.txt
     
     - name: configure meson
       run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto
@@ -238,9 +241,6 @@ jobs:
 
     - name: install project
       run: meson install -C builddir/
-
-    - name: install pip requirements
-      run: pip install -r requirements.txt
 
     - name: test (pytest)
       run: pytest -v
