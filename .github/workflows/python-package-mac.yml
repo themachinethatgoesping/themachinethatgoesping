@@ -69,7 +69,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
-        pip install meson ninja pytest twine wheel pyproject-metadata delocate pep517 numpy
+        pip install meson ninja pytest twine wheel pyproject-metadata delocate pep517
          
     - name: build and install wheel
       run: |
