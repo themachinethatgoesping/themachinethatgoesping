@@ -27,7 +27,7 @@ RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-
 # update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-11 11
 # update-alternatives --install /usr/bin/cpp cpp /usr/bin/g++-11 11
 
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/g++-11 11
+# update-alternatives --install /usr/bin/gcc gcc /usr/bin/g++-11 11
 
 
 # install extra dependencies (instead of subprojects)
