@@ -40,7 +40,7 @@ jobs:
               #CC : msvc14-3,
               boostversion: '1.79.0',
               boostversion_: '1_79_0',
-              boostmodules: '--with-filesystem',
+              boostmodules: '--with-iostreams',
               shell : powershell}
           - { os: macos-latest,
               dep: brew install libomp boost,

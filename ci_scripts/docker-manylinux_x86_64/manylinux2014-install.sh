@@ -5,7 +5,7 @@ yum install -y bzip2 curl zlib
 
 export BOOST_VERSION="1.74.0"
 export BOOST_VERSION_="1_74_0"
-export BOOST_MODULES="--with-filesystem"
+export BOOST_MODULES="--with-iostreams"
 
 echo get https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
 
