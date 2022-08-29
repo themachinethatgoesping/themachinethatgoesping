@@ -69,8 +69,7 @@ test-command  = 'cd {project} && pytest'
 [tool.cibuildwheel.linux]
 # Install build dependencies
 before-all = './ci_scripts/docker-manylinux_x86_64/manylinux2014-install.sh'
-# manylinux-x86-64-image = quay.io/pypa/manylinux2014_x86_64
-manylinux-x86-64-image = ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
+manylinux-x86_64-image = ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
 
 [tool.cibuildwheel.macos]
 before-all = 'brew install boost libomp'
