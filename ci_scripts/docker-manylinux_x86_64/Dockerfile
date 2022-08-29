@@ -4,13 +4,17 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-FROM quay.io/pypa/manylinux2014_x86_64
+#FROM quay.io/pypa/manylinux2014_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
 ADD manylinux2014-install.sh manylinux2014-install.sh
+RUN yum makecache --refresh
+
 RUN bash manylinux2014-install.sh
 
-RUN yum install -y git git-lfs ccache
+RUN yum install -y git git-lfs
+#RUN yum install -y ccache
 #
 # # package versions
 # ARG BOOST_VERSION=1.74.0
