@@ -8,44 +8,42 @@
 FROM quay.io/pypa/manylinux_2_28_x86_64
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
-ADD manylinux2014-install.sh manylinux2014-install.sh
 RUN yum makecache --refresh
 
-RUN bash manylinux2014-install.sh
+# manual package versions
+ARG BOOST_VERSION="1.80.0"
+ARG BOOST_VERSION_="1_80_0"
+ARG BOOST_MODULES="--with-iostreams --with-filesystem"
 
+ARG CCACHE_VERSION="4.6.3"
+
+# install source build dependencies
 RUN yum install -y git git-lfs
-#RUN yum install -y ccache
-#
-# # package versions
-# ARG BOOST_VERSION=1.74.0
-# ARG BOOST_VERSION_=1_74_0
-# ARG BOOST_MODULES="filesystem"
-#
-#
-# # install source build dependencies
-# RUN yum install -y bzip2 curl zlib
-#
-#
-# # -- install package versions from source --
-# # BOOST
-# RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2 && \
-#     tar -xf boost_${BOOST_VERSION_}.tar.bz2 && \
-#     cd boost_* && \
-#     ./bootstrap.sh --with-libraries=${BOOST_MODULES} && \
-#     ./b2 install --variant=release --threading=multi --link=static && \
-#     cd .. && \
-#     rm -rv boost*
-#
-#
-# # install build requirements
-# RUN yum install -y git git-lfs
-#
-# # install dependencies (c++)
-# RUN yum install -y ccache pkgconfig cmake libcurl-devel
+RUN yum install -y bzip2 curl zlib
+RUN yum install -y pkgconfig cmake
+
+# -- install package versions from source --
+# BOOST
+RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
+RUN tar -xf boost_${BOOST_VERSION_}.tar.bz2
+RUN cd boost_${BOOST_VERSION_} && ./bootstrap.sh
+RUN cd boost_${BOOST_VERSION_} && ./b2 install --variant=release --threading=multi --link=static ${BOOST_MODULES} cxxflags=-fPIC cflags=-fPIC
+#RUN /usr/bin/rm -r boost*
 
 
-# install dependencies (meson & python)
-# this is best done in the ci scripts!
+# -- install ccache () --
+RUN curl -O -L https://github.com/ccache/ccache/releases/download/v${CCACHE_VERSION}/ccache-${CCACHE_VERSION}-linux-x86_64.tar.xz
+RUN tar -xf ccache-${CCACHE_VERSION}-linux-x86_64.tar.xz
+RUN mv ccache-${CCACHE_VERSION}-linux-x86_64/ccache /usr/local/bin/ -v
+#RUN /usr/bin/rm -r ccache*
+
+# --- for testing the image --
+# # install dependencies (meson & python)
+# # this is best done in the ci scripts!
 # ENV PATH "/opt/_internal/cpython-3.10.4/bin:$PATH"
 # RUN python3.10 -m pip install --upgrade pip
 # RUN python3.10 -m pip install --upgrade meson ninja pytest build twine auditwheel
+#
+# # test the installation
+# RUN git clone https://github.com/themachinethatgoesping/themachinethatgoesping.git --recursive -j2
+# RUN cd themachinethatgoesping && python3.10 -m build -w .
