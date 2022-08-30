@@ -6,22 +6,17 @@ Enable quantitative processing of multibeam and singlebeam echosounder systems
 from __future__ import annotations
 import themachinethatgoesping
 import typing
-import sys
 
 __all__ = [
+    "echosounders",
     "gridding",
-    "modules_installed",
+    "modules",
     "navigation",
-    "pydev_install_module_paths",
-    "pydev_install_modules",
-    "pydev_install_src_path",
     "tools",
-    "tools_ext"
+    "tools_ext",
+    "version"
 ]
 
 
-__submodule = '../'
-modules_installed = ['tools', 'tools_ext', 'navigation', 'gridding']
-pydev_install_module_paths = ['/ssd/local/lib/python3.10/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping']
-pydev_install_modules = ['tools', 'navigation', 'gridding', '../']
-pydev_install_src_path = '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/../'
+__modules_installed__ = [('tools', '0.5.3'), ('navigation', '0.4.3'), ('echosounders', '0.3.5'), ('gridding', '0.1.0')]
+__version__ = '0.2.14'

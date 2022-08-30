@@ -1,14 +1,11 @@
-"""Small python tool functions for themachinethatgoesping"""
+"""Python module to read, write and process single- and multibeam echosounder data formats"""
 from __future__ import annotations
-import themachinethatgoesping.tools
+import themachinethatgoesping.echosounders
 import typing
 
 __all__ = [
-    "classhelpers",
     "ostream_redirect",
-    "progressbars",
-    "timeconv",
-    "vectorinterpolators"
+    "simrad"
 ]
 
 
@@ -17,4 +14,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.5.3'
+__version__ = '0.3.5'

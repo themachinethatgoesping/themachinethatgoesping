@@ -9,7 +9,7 @@ project(
   'cpp',
   license: 'MPL-2.0',
 
-  version: '0.2.13',
+  version: '0.2.14',
   default_options: ['warning_level=3', 'buildtype=release', 'cpp_std=c++17'],
   meson_version: '>=0.63' #0.63 added preserve_path for install headers option
 )
@@ -18,7 +18,7 @@ projectnamespace = 'themachinethatgoesping'
 
 
 # load themachinethatgoesping projects
-module_meta  = subproject('meta')
+module_meta  = subproject('meta', default_options: ['main_project_version=' + meson.project_version()])
 module_tools = subproject('tools')
 module_navigation = subproject('navigation')
 module_echosounders = subproject('echosounders')
