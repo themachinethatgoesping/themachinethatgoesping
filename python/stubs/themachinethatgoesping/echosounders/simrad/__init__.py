@@ -11,6 +11,8 @@ __all__ = [
     "FileRawIterator_Header_mapped",
     "FileRawIterator_Unknown",
     "FileRawIterator_Unknown_mapped",
+    "FileRawIterator_Variant",
+    "FileRawIterator_Variant_mapped",
     "FileRaw_mapped",
     "MRU0",
     "NME0",
@@ -25,6 +27,10 @@ __all__ = [
 
 
 class FileRaw():
+    @typing.overload
+    def __call__(self, datagram_type: t_EK60_DatagramType, only_header: bool = False) -> object: ...
+    @typing.overload
+    def __call__(self, only_header: bool = False) -> object: ...
     def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
     @typing.overload
     def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
@@ -67,11 +73,6 @@ class FileRaw():
     def i_FIL1(self) -> FileRawIterator_Unknown:
         """
         :type: FileRawIterator_Unknown
-        """
-    @property
-    def i_Header(self) -> FileRawIterator_Header:
-        """
-        :type: FileRawIterator_Header
         """
     @property
     def i_MRU0(self) -> FileRawIterator_Unknown:
@@ -119,7 +120,21 @@ class FileRawIterator_Unknown_mapped():
     def __len__(self) -> int: ...
     def number_of_packages(self) -> int: ...
     pass
+class FileRawIterator_Variant():
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
+    def __len__(self) -> int: ...
+    def number_of_packages(self) -> int: ...
+    pass
+class FileRawIterator_Variant_mapped():
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
+    def __len__(self) -> int: ...
+    def number_of_packages(self) -> int: ...
+    pass
 class FileRaw_mapped():
+    @typing.overload
+    def __call__(self, datagram_type: t_EK60_DatagramType, only_header: bool = False) -> object: ...
+    @typing.overload
+    def __call__(self, only_header: bool = False) -> object: ...
     def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
     @typing.overload
     def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
@@ -162,11 +177,6 @@ class FileRaw_mapped():
     def i_FIL1(self) -> FileRawIterator_Unknown_mapped:
         """
         :type: FileRawIterator_Unknown_mapped
-        """
-    @property
-    def i_Header(self) -> FileRawIterator_Header_mapped:
-        """
-        :type: FileRawIterator_Header_mapped
         """
     @property
     def i_MRU0(self) -> FileRawIterator_Unknown_mapped:
