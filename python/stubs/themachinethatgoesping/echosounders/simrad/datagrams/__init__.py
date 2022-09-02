@@ -5,7 +5,8 @@ import typing
 
 __all__ = [
     "EK60_Datagram",
-    "EK60_Unknown"
+    "EK60_Unknown",
+    "EK80_MRU0"
 ]
 
 
@@ -178,6 +179,76 @@ class EK60_Unknown(EK60_Datagram):
         """
     @raw_content.setter
     def raw_content(self, arg1: bytes) -> None:
+        pass
+    __hash__ = None
+    pass
+class EK80_MRU0(EK60_Datagram):
+    def __copy__(self) -> EK80_MRU0: ...
+    def __deepcopy__(self, arg0: dict) -> EK80_MRU0: ...
+    def __eq__(self, other: EK80_MRU0) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> EK80_MRU0: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_MRU0: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def _raw_Heading(self) -> float:
+        """
+        :type: float
+        """
+    @_raw_Heading.setter
+    def _raw_Heading(self, arg0: float) -> None:
+        pass
+    @property
+    def _raw_Heave(self) -> float:
+        """
+        :type: float
+        """
+    @_raw_Heave.setter
+    def _raw_Heave(self, arg0: float) -> None:
+        pass
+    @property
+    def _raw_Pitch(self) -> float:
+        """
+        :type: float
+        """
+    @_raw_Pitch.setter
+    def _raw_Pitch(self, arg0: float) -> None:
+        pass
+    @property
+    def _raw_Roll(self) -> float:
+        """
+        :type: float
+        """
+    @_raw_Roll.setter
+    def _raw_Roll(self, arg0: float) -> None:
         pass
     __hash__ = None
     pass

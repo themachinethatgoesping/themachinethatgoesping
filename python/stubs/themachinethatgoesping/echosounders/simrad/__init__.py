@@ -2,12 +2,15 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad
 import typing
+import themachinethatgoesping.tools.progressbars
 
 __all__ = [
     "FIL1",
     "FileRaw",
     "FileRawIterator_Header",
     "FileRawIterator_Header_mapped",
+    "FileRawIterator_MRU0",
+    "FileRawIterator_MRU0_mapped",
     "FileRawIterator_Unknown",
     "FileRawIterator_Unknown_mapped",
     "FileRawIterator_Variant",
@@ -28,6 +31,20 @@ __all__ = [
 
 
 class FileRaw():
+    @typing.overload
+    def __call__(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def __call__(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    @typing.overload
+    def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def __init__(self, file_path: str, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def __init__(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
+    @typing.overload
+    def __init__(self, file_paths: typing.List[str], progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    def __len__(self) -> int: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -36,6 +53,19 @@ class FileRaw():
         """
         Return object information as string
         """
+    @typing.overload
+    def append_file(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def append_file(self, file_path: str, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def append_files(self, file_path: typing.List[str], progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def append_files(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
+    def datagram_identifier_info(self, datagram_identifier: t_EK60_DatagramType) -> str: ...
+    @typing.overload
+    def headers(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def headers(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -43,6 +73,44 @@ class FileRaw():
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def size(self) -> int: ...
+    def sort_packages_by_time(self) -> None: ...
+    def static_datagram_identifier_to_string(self, datagram_identifier: t_EK60_DatagramType) -> str: ...
+    @property
+    def i_FIL1(self) -> FileRawIterator_Unknown:
+        """
+        :type: FileRawIterator_Unknown
+        """
+    @property
+    def i_MRU0(self) -> FileRawIterator_MRU0:
+        """
+        :type: FileRawIterator_MRU0
+        """
+    @property
+    def i_NME0(self) -> FileRawIterator_Unknown:
+        """
+        :type: FileRawIterator_Unknown
+        """
+    @property
+    def i_RAW3(self) -> FileRawIterator_Unknown:
+        """
+        :type: FileRawIterator_Unknown
+        """
+    @property
+    def i_TAG0(self) -> FileRawIterator_Unknown:
+        """
+        :type: FileRawIterator_Unknown
+        """
+    @property
+    def i_XML0(self) -> FileRawIterator_Unknown:
+        """
+        :type: FileRawIterator_Unknown
+        """
+    @property
+    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
+        """
+        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
         """
     pass
 class FileRawIterator_Header():
@@ -54,6 +122,18 @@ class FileRawIterator_Header():
 class FileRawIterator_Header_mapped():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Header_mapped: ...
     def __getitem__(self, index: int) -> datagrams.EK60_Datagram: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class FileRawIterator_MRU0():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_MRU0: ...
+    def __getitem__(self, index: int) -> datagrams.EK80_MRU0: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class FileRawIterator_MRU0_mapped():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_MRU0_mapped: ...
+    def __getitem__(self, index: int) -> datagrams.EK80_MRU0: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
@@ -71,17 +151,31 @@ class FileRawIterator_Unknown_mapped():
     pass
 class FileRawIterator_Variant():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Variant: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
 class FileRawIterator_Variant_mapped():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Variant_mapped: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
 class FileRaw_mapped():
+    @typing.overload
+    def __call__(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def __call__(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    @typing.overload
+    def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def __init__(self, file_path: str, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def __init__(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
+    @typing.overload
+    def __init__(self, file_paths: typing.List[str], progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    def __len__(self) -> int: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -90,6 +184,19 @@ class FileRaw_mapped():
         """
         Return object information as string
         """
+    @typing.overload
+    def append_file(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def append_file(self, file_path: str, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def append_files(self, file_path: typing.List[str], progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def append_files(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
+    def datagram_identifier_info(self, datagram_identifier: t_EK60_DatagramType) -> str: ...
+    @typing.overload
+    def headers(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def headers(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -97,6 +204,44 @@ class FileRaw_mapped():
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def size(self) -> int: ...
+    def sort_packages_by_time(self) -> None: ...
+    def static_datagram_identifier_to_string(self, datagram_identifier: t_EK60_DatagramType) -> str: ...
+    @property
+    def i_FIL1(self) -> FileRawIterator_Unknown_mapped:
+        """
+        :type: FileRawIterator_Unknown_mapped
+        """
+    @property
+    def i_MRU0(self) -> FileRawIterator_MRU0_mapped:
+        """
+        :type: FileRawIterator_MRU0_mapped
+        """
+    @property
+    def i_NME0(self) -> FileRawIterator_Unknown_mapped:
+        """
+        :type: FileRawIterator_Unknown_mapped
+        """
+    @property
+    def i_RAW3(self) -> FileRawIterator_Unknown_mapped:
+        """
+        :type: FileRawIterator_Unknown_mapped
+        """
+    @property
+    def i_TAG0(self) -> FileRawIterator_Unknown_mapped:
+        """
+        :type: FileRawIterator_Unknown_mapped
+        """
+    @property
+    def i_XML0(self) -> FileRawIterator_Unknown_mapped:
+        """
+        :type: FileRawIterator_Unknown_mapped
+        """
+    @property
+    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
+        """
+        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
         """
     pass
 class t_EK60_DatagramType():
