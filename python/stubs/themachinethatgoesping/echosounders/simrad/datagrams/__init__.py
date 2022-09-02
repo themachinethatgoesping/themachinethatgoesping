@@ -183,6 +183,12 @@ class EK60_Unknown(EK60_Datagram):
     __hash__ = None
     pass
 class EK80_MRU0(EK60_Datagram):
+    """
+    Motion binary datagram (MRU0) This datagram holds heave, roll, pitch
+    and heading as float values. Conveniently, these values can be used
+    directly in themachinethatgoesping navigation processing because they
+    are defined in the default coordinate system / value range.
+    """
     def __copy__(self) -> EK80_MRU0: ...
     def __deepcopy__(self, arg0: dict) -> EK80_MRU0: ...
     def __eq__(self, other: EK80_MRU0) -> bool: ...
@@ -221,34 +227,98 @@ class EK80_MRU0(EK60_Datagram):
     @property
     def _raw_Heading(self) -> float:
         """
+        < Heading in degrees, 0° north, 90° east
+
         :type: float
         """
     @_raw_Heading.setter
     def _raw_Heading(self, arg0: float) -> None:
-        pass
+        """
+        < Heading in degrees, 0° north, 90° east
+        """
     @property
     def _raw_Heave(self) -> float:
         """
+        < Heave in m, positive up
+
         :type: float
         """
     @_raw_Heave.setter
     def _raw_Heave(self, arg0: float) -> None:
-        pass
+        """
+        < Heave in m, positive up
+        """
     @property
     def _raw_Pitch(self) -> float:
         """
+        < Pitch in degrees, positive nose up
+
         :type: float
         """
     @_raw_Pitch.setter
     def _raw_Pitch(self, arg0: float) -> None:
-        pass
+        """
+        < Pitch in degrees, positive nose up
+        """
     @property
     def _raw_Roll(self) -> float:
         """
+        < Roll in degrees, positive port up
+
         :type: float
         """
     @_raw_Roll.setter
     def _raw_Roll(self, arg0: float) -> None:
-        pass
+        """
+        < Roll in degrees, positive port up
+        """
+    @property
+    def heading(self) -> float:
+        """
+        < Heading in degrees, 0° north, 90° east
+
+        :type: float
+        """
+    @heading.setter
+    def heading(self, arg1: float) -> None:
+        """
+        < Heading in degrees, 0° north, 90° east
+        """
+    @property
+    def heave(self) -> float:
+        """
+        < Heave in m, positive up
+
+        :type: float
+        """
+    @heave.setter
+    def heave(self, arg1: float) -> None:
+        """
+        < Heave in m, positive up
+        """
+    @property
+    def pitch(self) -> float:
+        """
+        < Pitch in degrees, positive nose up
+
+        :type: float
+        """
+    @pitch.setter
+    def pitch(self, arg1: float) -> None:
+        """
+        < Pitch in degrees, positive nose up
+        """
+    @property
+    def roll(self) -> float:
+        """
+        < Roll in degrees, positive port up
+
+        :type: float
+        """
+    @roll.setter
+    def roll(self, arg1: float) -> None:
+        """
+        < Roll in degrees, positive port up
+        """
     __hash__ = None
     pass
