@@ -10,6 +10,7 @@ __all__ = [
     "SensorConfiguration",
     "datastructures",
     "navtools",
+    "nmea_0183",
     "ostream_redirect"
 ]
 

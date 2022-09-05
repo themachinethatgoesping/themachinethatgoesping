@@ -11,6 +11,8 @@ __all__ = [
     "FileRawIterator_Header_mapped",
     "FileRawIterator_MRU0",
     "FileRawIterator_MRU0_mapped",
+    "FileRawIterator_NME0",
+    "FileRawIterator_NME0_mapped",
     "FileRawIterator_Unknown",
     "FileRawIterator_Unknown_mapped",
     "FileRawIterator_Variant",
@@ -24,9 +26,10 @@ __all__ = [
     "datagrams",
     "ek60_datagram_type_from_string",
     "t_EK60_DatagramType",
-    "test_speed",
-    "test_speed_all",
-    "test_speed_header"
+    "test_speed_header",
+    "test_speed_raw",
+    "test_speed_raw_all",
+    "test_speed_type"
 ]
 
 
@@ -35,7 +38,7 @@ class FileRaw():
     def __call__(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     @typing.overload
     def __call__(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_NME0, datagrams.EK60_Unknown]: ...
     @typing.overload
     def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     @typing.overload
@@ -88,9 +91,9 @@ class FileRaw():
         :type: FileRawIterator_MRU0
         """
     @property
-    def i_NME0(self) -> FileRawIterator_Unknown:
+    def i_NME0(self) -> FileRawIterator_NME0:
         """
-        :type: FileRawIterator_Unknown
+        :type: FileRawIterator_NME0
         """
     @property
     def i_RAW3(self) -> FileRawIterator_Unknown:
@@ -108,9 +111,9 @@ class FileRaw():
         :type: FileRawIterator_Unknown
         """
     @property
-    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
+    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
         """
-        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
+        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, std::basic_ifstream<char, std::char_traits<char> >, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
         """
     pass
 class FileRawIterator_Header():
@@ -137,6 +140,18 @@ class FileRawIterator_MRU0_mapped():
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
+class FileRawIterator_NME0():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_NME0: ...
+    def __getitem__(self, index: int) -> datagrams.EK60_NME0: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class FileRawIterator_NME0_mapped():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_NME0_mapped: ...
+    def __getitem__(self, index: int) -> datagrams.EK60_NME0: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
 class FileRawIterator_Unknown():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Unknown: ...
     def __getitem__(self, index: int) -> datagrams.EK60_Unknown: ...
@@ -151,13 +166,13 @@ class FileRawIterator_Unknown_mapped():
     pass
 class FileRawIterator_Variant():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Variant: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_NME0, datagrams.EK60_Unknown]: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
 class FileRawIterator_Variant_mapped():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_Variant_mapped: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_NME0, datagrams.EK60_Unknown]: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
     pass
@@ -166,7 +181,7 @@ class FileRaw_mapped():
     def __call__(self, datagram_type: t_EK60_DatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     @typing.overload
     def __call__(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
-    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_Unknown]: ...
+    def __getitem__(self, index: int) -> typing.Union[datagrams.EK60_Datagram, datagrams.EK80_MRU0, datagrams.EK60_NME0, datagrams.EK60_Unknown]: ...
     @typing.overload
     def __init__(self, file_path: str, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     @typing.overload
@@ -219,9 +234,9 @@ class FileRaw_mapped():
         :type: FileRawIterator_MRU0_mapped
         """
     @property
-    def i_NME0(self) -> FileRawIterator_Unknown_mapped:
+    def i_NME0(self) -> FileRawIterator_NME0_mapped:
         """
-        :type: FileRawIterator_Unknown_mapped
+        :type: FileRawIterator_NME0_mapped
         """
     @property
     def i_RAW3(self) -> FileRawIterator_Unknown_mapped:
@@ -239,9 +254,9 @@ class FileRaw_mapped():
         :type: FileRawIterator_Unknown_mapped
         """
     @property
-    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
+    def i_all(self) -> themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >:
         """
-        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
+        :type: themachinethatgoesping::echosounders::fileinterfaces::I_InputFileIterator<std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown>, themachinethatgoesping::echosounders::simrad::t_EK60_DatagramType, themachinethatgoesping::echosounders::fileinterfaces::MappedFileStream, std::variant<themachinethatgoesping::echosounders::simrad::datagrams::EK60_Datagram, themachinethatgoesping::echosounders::simrad::datagrams::EK80_MRU0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_NME0, themachinethatgoesping::echosounders::simrad::datagrams::EK60_Unknown> >
         """
     pass
 class t_EK60_DatagramType():
@@ -294,11 +309,13 @@ def datagram_type_to_string(datagram_type: int) -> str:
     pass
 def ek60_datagram_type_from_string(datagram_type: str) -> int:
     pass
-def test_speed(arg0: FileRaw_mapped, arg1: t_EK60_DatagramType) -> None:
-    pass
-def test_speed_all(arg0: FileRaw_mapped) -> None:
-    pass
 def test_speed_header(arg0: FileRaw_mapped, arg1: t_EK60_DatagramType) -> None:
+    pass
+def test_speed_raw(arg0: FileRaw_mapped, arg1: t_EK60_DatagramType) -> None:
+    pass
+def test_speed_raw_all(arg0: FileRaw_mapped) -> None:
+    pass
+def test_speed_type(arg0: FileRaw_mapped, arg1: t_EK60_DatagramType) -> None:
     pass
 FIL1: themachinethatgoesping.echosounders.simrad.t_EK60_DatagramType # value = <t_EK60_DatagramType.FIL1: 827083078>
 MRU0: themachinethatgoesping.echosounders.simrad.t_EK60_DatagramType # value = <t_EK60_DatagramType.MRU0: 810897997>

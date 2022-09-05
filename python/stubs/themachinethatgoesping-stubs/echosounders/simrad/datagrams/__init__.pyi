@@ -2,9 +2,11 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad.datagrams
 import typing
+import themachinethatgoesping.navigation.nmea_0183
 
 __all__ = [
     "EK60_Datagram",
+    "EK60_NME0",
     "EK60_Unknown",
     "EK80_MRU0"
 ]
@@ -136,6 +138,73 @@ class EK60_Datagram():
         """
     __hash__ = None
     pass
+class EK60_NME0(EK60_Datagram):
+    """
+    NMEA text datagram (NME0) This datagram contains NMEA sentences
+    received by the EK60/EK80 transceiver.
+    """
+    def __copy__(self) -> EK60_NME0: ...
+    def __deepcopy__(self, arg0: dict) -> EK60_NME0: ...
+    def __eq__(self, other: EK60_NME0) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> EK60_NME0: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def field(self, arg0: int) -> str: ...
+    def field_double(self, arg0: int) -> float: ...
+    def field_int(self, arg0: int) -> int: ...
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK60_NME0: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_nmea_structure(self) -> themachinethatgoesping.navigation.nmea_0183.NMEABase: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def parse_fields(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def _raw_sentence(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def name(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def sender(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def type(self) -> str:
+        """
+        :type: str
+        """
+    __hash__ = None
+    pass
 class EK60_Unknown(EK60_Datagram):
     def __copy__(self) -> EK60_Unknown: ...
     def __deepcopy__(self, arg0: dict) -> EK60_Unknown: ...
@@ -184,10 +253,10 @@ class EK60_Unknown(EK60_Datagram):
     pass
 class EK80_MRU0(EK60_Datagram):
     """
-    Motion binary datagram (MRU0) This datagram holds heave, roll, pitch
-    and heading as float values. Conveniently, these values can be used
-    directly in themachinethatgoesping navigation processing because they
-    are defined in the default coordinate system / value range.
+    Motion binary datagram (MRU0) This datagram contains heave, roll,
+    pitch and heading as float values. Conveniently, these values can be
+    used directly in themachinethatgoesping navigation processing because
+    they are defined in the default coordinate system / value range.
     """
     def __copy__(self) -> EK80_MRU0: ...
     def __deepcopy__(self, arg0: dict) -> EK80_MRU0: ...
