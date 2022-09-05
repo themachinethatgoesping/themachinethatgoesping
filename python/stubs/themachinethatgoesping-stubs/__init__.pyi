@@ -18,5 +18,5 @@ __all__ = [
 ]
 
 
-__modules_installed__ = [('tools', '0.5.4'), ('navigation', '0.4.3'), ('echosounders', '0.4.1'), ('gridding', '0.1.0')]
+__modules_installed__ = [('tools', '0.5.5'), ('navigation', '0.5.0'), ('echosounders', '0.4.2'), ('gridding', '0.1.0')]
 __version__ = '0.2.14'
