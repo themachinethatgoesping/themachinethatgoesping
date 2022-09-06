@@ -26,6 +26,7 @@ __all__ = [
     "datagrams",
     "ek60_datagram_type_from_string",
     "t_EK60_DatagramType",
+    "test_speed_decode_nmea",
     "test_speed_header",
     "test_speed_raw",
     "test_speed_raw_all",
@@ -298,6 +299,8 @@ class t_EK60_DatagramType():
 def datagram_type_to_string(datagram_type: int) -> str:
     pass
 def ek60_datagram_type_from_string(datagram_type: str) -> int:
+    pass
+def test_speed_decode_nmea(arg0: FileRaw_mapped) -> None:
     pass
 def test_speed_header(arg0: FileRaw_mapped, arg1: t_EK60_DatagramType) -> None:
     pass

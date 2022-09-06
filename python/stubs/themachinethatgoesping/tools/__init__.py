@@ -5,6 +5,7 @@ import typing
 
 __all__ = [
     "classhelpers",
+    "helper",
     "ostream_redirect",
     "progressbars",
     "timeconv",
