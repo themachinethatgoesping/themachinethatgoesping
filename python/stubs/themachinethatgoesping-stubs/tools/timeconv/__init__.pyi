@@ -11,7 +11,7 @@ __all__ = [
 
 def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
     """
-    Converting between date strings and UnixTime stamps (ref 1970)
+    Converting between date strings and unixtime stamps (ref 1970)
 
     Parameter ``DateString:``:
         DateString to be converted. Must fit format string.
@@ -24,13 +24,13 @@ def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S'
         tml#format-string
 
     Returns:
-        UnixTime as double (seconds since 01.01.1970)
+        unixtime as double (seconds since 01.01.1970)
     """
 def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
-    Converting between date strings and UnixTime stamps (ref 1970)
+    Converting between date strings and unixtime stamps (ref 1970)
 
-    Parameter ``UnixTime:``:
+    Parameter ``unixtime:``:
         seconds since 01.01.1970 as double
 
     Parameter ``fractionalSecondsDigits:``:
