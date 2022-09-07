@@ -16,6 +16,7 @@ nlohmann_json*
 pugixml*
 xsimd*
 xtl*
+fast_float*
 
 #inherited wrap files
 catch2.wrap

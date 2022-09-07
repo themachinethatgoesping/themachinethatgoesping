@@ -13,7 +13,8 @@ __all__ = [
     "NMEA_VHW",
     "NMEA_VLW",
     "NMEA_VTG",
-    "NMEA_ZDA"
+    "NMEA_ZDA",
+    "decode"
 ]
 
 
@@ -44,10 +45,13 @@ class NMEA_Base():
         """
         create T_CLASS object from bytearray
         """
-    def get_name(self) -> str: ...
-    def get_sender(self) -> str: ...
+    def get_field(self, index: int) -> str: ...
+    def get_field_as_double(self, index: int) -> float: ...
+    def get_field_as_int(self, index: int) -> int: ...
+    def get_sender_id(self) -> str: ...
     def get_sentence(self) -> str: ...
-    def get_type(self) -> str: ...
+    def get_sentence_id(self) -> str: ...
+    def get_sentence_type(self) -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -98,6 +102,17 @@ class NMEA_GGA(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_age_of_differential_gps_data(self) -> float: ...
+    def get_altitude(self) -> float: ...
+    def get_differential_reference_station_id(self) -> int: ...
+    def get_geoidal_separation(self) -> float: ...
+    def get_horizontal_dilution_of_precision(self) -> float: ...
+    def get_latitude(self) -> float: ...
+    def get_longitude(self) -> float: ...
+    def get_number_of_satellites(self) -> int: ...
+    def get_quality(self) -> int: ...
+    def get_quality_explained(self) -> str: ...
+    def get_utc_time_string(self) -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -109,61 +124,6 @@ class NMEA_GGA(NMEA_Base):
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def age_of_differential_gps_data(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def altitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def coordinated_universal_time(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def differential_reference_station_id(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def geoidal_separation(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def horizontal_dilution_of_precision(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def latitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def longitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def number_of_satellites(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def quality(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def quality_explained(self) -> str:
-        """
-        :type: str
         """
     pass
 class NMEA_GLL(NMEA_Base):
@@ -202,6 +162,12 @@ class NMEA_GLL(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_latitude(self) -> float: ...
+    def get_longitude(self) -> float: ...
+    def get_mode(self) -> str: ...
+    def get_mode_explained(self) -> str: ...
+    def get_status(self) -> bool: ...
+    def get_utc_time_string(self) -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -213,36 +179,6 @@ class NMEA_GLL(NMEA_Base):
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def coordinated_universal_time(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def latitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def longitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def mode(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def mode_explained(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def status(self) -> bool:
-        """
-        :type: bool
         """
     pass
 class NMEA_HDT(NMEA_Base):
@@ -281,6 +217,7 @@ class NMEA_HDT(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_heading_degrees_true(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -292,11 +229,6 @@ class NMEA_HDT(NMEA_Base):
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def heading_degrees_true(self) -> float:
-        """
-        :type: float
         """
     pass
 class NMEA_RMC(NMEA_Base):
@@ -336,6 +268,16 @@ class NMEA_RMC(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_course_over_ground_degrees_true(self) -> float: ...
+    def get_latitude(self) -> float: ...
+    def get_longitude(self) -> float: ...
+    def get_magnetic_variation(self) -> float: ...
+    def get_mode(self) -> str: ...
+    def get_mode_explained(self) -> str: ...
+    def get_speed_over_ground_knots(self) -> float: ...
+    def get_status(self) -> bool: ...
+    def get_utc_date_string(self) -> str: ...
+    def get_utc_time_string(self) -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -366,56 +308,6 @@ class NMEA_RMC(NMEA_Base):
 
         Returns:
             unixtime (seconds since 1970-01-01 00:00:00 UTC)
-        """
-    @property
-    def coordinated_universal_time(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def course_over_ground_degrees_true(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def date(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def latitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def longitude(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def magnetic_variation(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def mode(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def mode_explained(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def speed_over_ground_knots(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def status(self) -> bool:
-        """
-        :type: bool
         """
     pass
 class NMEA_Unknown(NMEA_Base):
@@ -454,9 +346,6 @@ class NMEA_Unknown(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
-    def get_field(self, index: int) -> str: ...
-    def get_field_as_double(self, index: int) -> float: ...
-    def get_field_as_int(self, index: int) -> int: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -506,6 +395,10 @@ class NMEA_VHW(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_speed_over_water_kmh(self) -> float: ...
+    def get_speed_over_water_knots(self) -> float: ...
+    def get_vessel_heading_magnetic(self) -> float: ...
+    def get_vessel_heading_true(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -517,26 +410,6 @@ class NMEA_VHW(NMEA_Base):
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def speed_over_water_kmh(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def speed_over_water_knots(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def vessel_heading_magnetic(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def vessel_heading_true(self) -> float:
-        """
-        :type: float
         """
     pass
 class NMEA_VLW(NMEA_Base):
@@ -575,6 +448,10 @@ class NMEA_VLW(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_total_ground_distance_nautical_miles(self) -> float: ...
+    def get_total_water_distance_nautical_miles(self) -> float: ...
+    def get_trip_ground_distance_nautical_miles(self) -> float: ...
+    def get_trip_water_distance_nautical_miles(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -586,26 +463,6 @@ class NMEA_VLW(NMEA_Base):
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def total_ground_distance_nautical_miles(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def total_water_distance_nautical_miles(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def trip_ground_distance_nautical_miles(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def trip_water_distance_nautical_miles(self) -> float:
-        """
-        :type: float
         """
     pass
 class NMEA_VTG(NMEA_Base):
@@ -644,6 +501,12 @@ class NMEA_VTG(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_course_over_ground_degrees_magnetic(self) -> float: ...
+    def get_course_over_ground_degrees_true(self) -> float: ...
+    def get_mode(self) -> str: ...
+    def get_mode_explained(self) -> str: ...
+    def get_speed_over_ground_kmh(self) -> float: ...
+    def get_speed_over_ground_knots(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -656,31 +519,11 @@ class NMEA_VTG(NMEA_Base):
         """
         convert object to bytearray
         """
-    @property
-    def course_over_ground_degrees_magnetic(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def course_over_ground_degrees_true(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def speed_over_ground_kmh(self) -> float:
-        """
-        :type: float
-        """
-    @property
-    def speed_over_ground_knots(self) -> float:
-        """
-        :type: float
-        """
     pass
 class NMEA_ZDA(NMEA_Base):
     """
-    The NMEA ZDA datagram contains the universal time code (UTC), day,
-    month, year and local time zone offsets.
+    The NMEA ZDA datagram contains the universal time code (UTC), get_day,
+    get_month, get_year and local time zone offsets.
     """
     def __copy__(self) -> NMEA_ZDA: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_ZDA: ...
@@ -713,6 +556,12 @@ class NMEA_ZDA(NMEA_Base):
         """
         create T_CLASS object from bytearray
         """
+    def get_day(self) -> int: ...
+    def get_local_zone_hours(self) -> int: ...
+    def get_local_zone_minutes(self) -> int: ...
+    def get_month(self) -> int: ...
+    def get_utc_time_string(self) -> str: ...
+    def get_year(self) -> int: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -744,34 +593,6 @@ class NMEA_ZDA(NMEA_Base):
         Returns:
             unixtime (seconds since 1970-01-01 00:00:00 UTC)
         """
-    @property
-    def coordinated_universal_time(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def day(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def local_zone_hours(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def local_zone_minutes(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def month(self) -> int:
-        """
-        :type: int
-        """
-    @property
-    def year(self) -> int:
-        """
-        :type: int
-        """
+    pass
+def decode(nmea_sentence: str) -> typing.Union[NMEA_Unknown, NMEA_ZDA, NMEA_VLW, NMEA_VTG, NMEA_VHW, NMEA_RMC, NMEA_HDT, NMEA_GLL, NMEA_GGA]:
     pass

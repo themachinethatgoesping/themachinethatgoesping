@@ -36,6 +36,7 @@ class EK60_Datagram():
         """
         create T_CLASS object from bytearray
         """
+    def get_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string

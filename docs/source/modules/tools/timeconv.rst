@@ -37,13 +37,13 @@ Format string
         | z may only be at the beginning of the string!
         | If no z is given the string will be interpreted as utc 0
     * - %d:
-      - day as   int dd
+      - get_day as   int dd
     * - %m:
-      - month as int mm
+      - get_month as int mm
     * - %b:
-      - month as string bb
+      - get_month as string bb
     * - %Y:
-      - year is  int YYYY
+      - get_year is  int YYYY
     * - %H:
       - hours as int HH
     * - %M:
