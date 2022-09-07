@@ -7,6 +7,7 @@ __all__ = [
     "NMEA_Base",
     "NMEA_GGA",
     "NMEA_GLL",
+    "NMEA_GST",
     "NMEA_HDT",
     "NMEA_RMC",
     "NMEA_Unknown",
@@ -167,6 +168,63 @@ class NMEA_GLL(NMEA_Base):
     def get_mode(self) -> str: ...
     def get_mode_explained(self) -> str: ...
     def get_status(self) -> bool: ...
+    def get_utc_time_string(self) -> str: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class NMEA_GST(NMEA_Base):
+    """
+    The NMEA GST datagram contains Position error statistics. Typically
+    received from a global navigation satellite system (GNSS device).
+    """
+    def __copy__(self) -> NMEA_GST: ...
+    def __deepcopy__(self, arg0: dict) -> NMEA_GST: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
+        """
+        Construct a new nmea GST object from an existing NMEA_Base datagram
+
+        Parameter ``base``:
+            Underlying NMEA_Base datagram
+
+        Parameter ``check``:
+            Check if the NMEA string is valid
+        """
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> NMEA_GST: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GST: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_altitude_error_deviation(self) -> float: ...
+    def get_latitude_error_deviation(self) -> float: ...
+    def get_longitude_error_deviation(self) -> float: ...
+    def get_psuedorange_rms(self) -> float: ...
+    def get_semimajor_error(self) -> float: ...
+    def get_semimajor_error_orientation(self) -> float: ...
+    def get_semiminor_error(self) -> float: ...
     def get_utc_time_string(self) -> str: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -594,5 +652,5 @@ class NMEA_ZDA(NMEA_Base):
             unixtime (seconds since 1970-01-01 00:00:00 UTC)
         """
     pass
-def decode(nmea_sentence: str) -> typing.Union[NMEA_Unknown, NMEA_ZDA, NMEA_VLW, NMEA_VTG, NMEA_VHW, NMEA_RMC, NMEA_HDT, NMEA_GLL, NMEA_GGA]:
+def decode(nmea_sentence: str) -> typing.Union[NMEA_Unknown, NMEA_ZDA, NMEA_VLW, NMEA_VTG, NMEA_VHW, NMEA_RMC, NMEA_HDT, NMEA_GLL, NMEA_GGA, NMEA_GST]:
     pass
