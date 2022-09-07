@@ -166,8 +166,8 @@ jobs:
     needs: publish_wheels
     runs-on: ubuntu-latest
     steps:
-    - name: Sleep for 240s
-      run: sleep 240s
+    - name: Sleep for 10s
+      run: sleep 10s
       shell: bash
 
   test_pypi:
