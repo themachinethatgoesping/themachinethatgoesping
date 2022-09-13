@@ -22,7 +22,7 @@ __all__ = [
 ]
 
 
-__modules_installed__ = [('tools', '0.6.2'), ('navigation', '0.5.6'), ('echosounders', '0.4.7'), ('gridding', '@PROJECT_VERSION@')]
+__modules_installed__ = [('tools', '0.6.2'), ('navigation', '0.5.6'), ('echosounders', '0.4.8'), ('gridding', '@PROJECT_VERSION@')]
 __submodule = '../'
 __version__ = '0.2.21'
 pydev_install_module_paths = ['/ssd/local/lib/python3.10/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping']

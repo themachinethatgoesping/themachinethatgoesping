@@ -9,7 +9,8 @@ __all__ = [
     "EK60_NME0",
     "EK60_Unknown",
     "EK80_MRU0",
-    "EK80_XML0"
+    "EK80_XML0",
+    "XML0_datagrams"
 ]
 
 
@@ -163,6 +164,7 @@ class EK60_NME0(EK60_Datagram):
         """
         return a copy using the c++ default copy constructor
         """
+    def decode(self) -> typing.Union[themachinethatgoesping.navigation.nmea_0183.NMEA_Unknown, themachinethatgoesping.navigation.nmea_0183.NMEA_ZDA, themachinethatgoesping.navigation.nmea_0183.NMEA_VLW, themachinethatgoesping.navigation.nmea_0183.NMEA_VTG, themachinethatgoesping.navigation.nmea_0183.NMEA_VHW, themachinethatgoesping.navigation.nmea_0183.NMEA_RMC, themachinethatgoesping.navigation.nmea_0183.NMEA_HDT, themachinethatgoesping.navigation.nmea_0183.NMEA_GLL, themachinethatgoesping.navigation.nmea_0183.NMEA_GGA, themachinethatgoesping.navigation.nmea_0183.NMEA_GST]: ...
     def field(self, arg0: int) -> str: ...
     def field_double(self, arg0: int) -> float: ...
     def field_int(self, arg0: int) -> int: ...
@@ -171,7 +173,6 @@ class EK60_NME0(EK60_Datagram):
         """
         create T_CLASS object from bytearray
         """
-    def get_nmea_structure(self) -> typing.Union[themachinethatgoesping.navigation.nmea_0183.NMEA_Unknown, themachinethatgoesping.navigation.nmea_0183.NMEA_ZDA, themachinethatgoesping.navigation.nmea_0183.NMEA_VLW, themachinethatgoesping.navigation.nmea_0183.NMEA_VTG, themachinethatgoesping.navigation.nmea_0183.NMEA_VHW, themachinethatgoesping.navigation.nmea_0183.NMEA_RMC, themachinethatgoesping.navigation.nmea_0183.NMEA_HDT, themachinethatgoesping.navigation.nmea_0183.NMEA_GLL, themachinethatgoesping.navigation.nmea_0183.NMEA_GGA, themachinethatgoesping.navigation.nmea_0183.NMEA_GST]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -418,8 +419,7 @@ class EK80_XML0(EK60_Datagram):
         """
         return a copy using the c++ default copy constructor
         """
-    @staticmethod
-    def decode(*args, **kwargs) -> typing.Any: ...
+    def decode(self) -> typing.Union[XML0_datagrams.XML_Node, XML0_datagrams.XML_Parameter_Channel, XML0_datagrams.XML_InitialParameter, XML0_datagrams.XML_PingSequence, XML0_datagrams.XML_Environment, XML0_datagrams.XML_Sensor, XML0_datagrams.XML_Configuration]: ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_XML0: 
         """
@@ -434,8 +434,7 @@ class EK80_XML0(EK60_Datagram):
         """
         Print object information
         """
-    @staticmethod
-    def raw(*args, **kwargs) -> typing.Any: ...
+    def raw(self) -> XML0_datagrams.XML_Node: ...
     def test_xml(self) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
