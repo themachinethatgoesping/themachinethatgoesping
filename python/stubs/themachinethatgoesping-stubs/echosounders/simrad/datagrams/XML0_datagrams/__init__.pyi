@@ -27,8 +27,10 @@ __all__ = [
     "XML_Environment_Transducer",
     "XML_InitialParameter",
     "XML_Node",
+    "XML_Parameter",
     "XML_Parameter_Channel",
     "XML_PingSequence",
+    "XML_PingSequence_Ping",
     "XML_Sensor",
     "t_BeamType"
 ]
@@ -1592,6 +1594,7 @@ class XML_Node():
         """
         Return object information as string
         """
+    def name(self) -> str: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1600,6 +1603,54 @@ class XML_Node():
         """
         convert object to bytearray
         """
+    pass
+class XML_Parameter():
+    """
+    XML base datagram
+    """
+    def __copy__(self) -> XML_Parameter: ...
+    def __deepcopy__(self, arg0: dict) -> XML_Parameter: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> XML_Parameter: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def parsed_completely(self) -> bool: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def Channels(self) -> typing.List[XML_Parameter_Channel]:
+        """
+        :type: typing.List[XML_Parameter_Channel]
+        """
+    @Channels.setter
+    def Channels(self, arg0: typing.List[XML_Parameter_Channel]) -> None:
+        pass
     pass
 class XML_Parameter_Channel():
     """
@@ -1800,6 +1851,70 @@ class XML_PingSequence():
         """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def parsed_completely(self) -> bool: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def Pings(self) -> typing.List[XML_PingSequence_Ping]:
+        """
+        :type: typing.List[XML_PingSequence_Ping]
+        """
+    @Pings.setter
+    def Pings(self, arg0: typing.List[XML_PingSequence_Ping]) -> None:
+        pass
+    @property
+    def unknown_attributes(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: int) -> None:
+        pass
+    @property
+    def unknown_children(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_children.setter
+    def unknown_children(self, arg0: int) -> None:
+        pass
+    pass
+class XML_PingSequence_Ping():
+    """
+    XML base datagram
+    """
+    def __copy__(self) -> XML_PingSequence_Ping: ...
+    def __deepcopy__(self, arg0: dict) -> XML_PingSequence_Ping: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> XML_PingSequence_Ping: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence_Ping: 
         """
         create T_CLASS object from bytearray
         """
