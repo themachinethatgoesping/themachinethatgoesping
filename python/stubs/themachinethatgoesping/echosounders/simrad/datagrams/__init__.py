@@ -309,15 +309,15 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def _raw_Coefficients(self) -> typing.List[float]:
+    def _raw_Coefficients(self) -> typing.List[complex]:
         """
         < Filter coefficients (real, imag, real, imag, ...) < size =
         _NoOfCoefficients * 2
 
-        :type: typing.List[float]
+        :type: typing.List[complex]
         """
     @_raw_Coefficients.setter
-    def _raw_Coefficients(self, arg0: typing.List[float]) -> None:
+    def _raw_Coefficients(self, arg0: typing.List[complex]) -> None:
         """
         < Filter coefficients (real, imag, real, imag, ...) < size =
         _NoOfCoefficients * 2
@@ -395,15 +395,15 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def coefficients(self) -> typing.List[float]:
+    def coefficients(self) -> typing.List[complex]:
         """
         < Filter coefficients (real, imag, real, imag, ...) < size =
         _NoOfCoefficients * 2
 
-        :type: typing.List[float]
+        :type: typing.List[complex]
         """
     @coefficients.setter
-    def coefficients(self, arg1: typing.List[float]) -> None:
+    def coefficients(self, arg1: typing.List[complex]) -> None:
         """
         < Filter coefficients (real, imag, real, imag, ...) < size =
         _NoOfCoefficients * 2
