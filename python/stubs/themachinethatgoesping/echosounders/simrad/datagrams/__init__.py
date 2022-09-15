@@ -10,9 +10,9 @@ __all__ = [
     "EK60_Unknown",
     "EK80_FIL1",
     "EK80_MRU0",
-    "EK80_TAG0",
     "EK80_XML0",
-    "XML0_datagrams"
+    "XML0_datagrams",
+    "ek60_TAG0"
 ]
 
 
@@ -323,13 +323,17 @@ class EK80_FIL1(EK60_Datagram):
         _NoOfCoefficients * 2
         """
     @property
-    def _raw_DecimationFactor(self) -> float:
+    def _raw_DecimationFactor(self) -> int:
         """
-        :type: float
+        < Filter decimation factor
+
+        :type: int
         """
     @_raw_DecimationFactor.setter
-    def _raw_DecimationFactor(self, arg0: float) -> None:
-        pass
+    def _raw_DecimationFactor(self, arg0: int) -> None:
+        """
+        < Filter decimation factor
+        """
     @property
     def _raw_NoOfCoefficients(self) -> int:
         """
@@ -407,11 +411,15 @@ class EK80_FIL1(EK60_Datagram):
     @property
     def decimation_factor(self) -> int:
         """
+        < Filter decimation factor
+
         :type: int
         """
     @decimation_factor.setter
     def decimation_factor(self, arg1: int) -> None:
-        pass
+        """
+        < Filter decimation factor
+        """
     @property
     def no_of_coefficients(self) -> int:
         """
@@ -578,74 +586,6 @@ class EK80_MRU0(EK60_Datagram):
         """
     __hash__ = None
     pass
-class EK80_TAG0(EK60_Datagram):
-    """
-    Motion binary datagram (TAG0) This datagram contains heave, roll,
-    pitch and heading as float values. Conveniently, these values can be
-    used directly in themachinethatgoesping navigation processing because
-    they are defined in the default coordinate system / value range.
-    """
-    def __copy__(self) -> EK80_TAG0: ...
-    def __deepcopy__(self, arg0: dict) -> EK80_TAG0: ...
-    def __eq__(self, other: EK80_TAG0) -> bool: ...
-    def __getstate__(self) -> bytes: ...
-    def __init__(self) -> None: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> EK80_TAG0: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_TAG0: 
-        """
-        create T_CLASS object from bytearray
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def to_binary(self, resize_buffer: bool = True) -> bytes: 
-        """
-        convert object to bytearray
-        """
-    @property
-    def _raw_Text(self) -> str:
-        """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
-
-        :type: str
-        """
-    @_raw_Text.setter
-    def _raw_Text(self, arg0: str) -> None:
-        """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
-        """
-    @property
-    def text(self) -> str:
-        """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
-
-        :type: str
-        """
-    @text.setter
-    def text(self, arg1: str) -> None:
-        """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
-        """
-    __hash__ = None
-    pass
 class EK80_XML0(EK60_Datagram):
     """
     Motion binary datagram (XML0) This datagram contains heave, roll,
@@ -702,5 +642,73 @@ class EK80_XML0(EK60_Datagram):
     @_raw_xml_content.setter
     def _raw_xml_content(self, arg1: str) -> None:
         pass
+    __hash__ = None
+    pass
+class ek60_TAG0(EK60_Datagram):
+    """
+    Motion binary datagram (TAG0) This datagram contains heave, roll,
+    pitch and heading as float values. Conveniently, these values can be
+    used directly in themachinethatgoesping navigation processing because
+    they are defined in the default coordinate system / value range.
+    """
+    def __copy__(self) -> ek60_TAG0: ...
+    def __deepcopy__(self, arg0: dict) -> ek60_TAG0: ...
+    def __eq__(self, other: ek60_TAG0) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> ek60_TAG0: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ek60_TAG0: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def _raw_Text(self) -> str:
+        """
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
+
+        :type: str
+        """
+    @_raw_Text.setter
+    def _raw_Text(self, arg0: str) -> None:
+        """
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
+        """
+    @property
+    def text(self) -> str:
+        """
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
+
+        :type: str
+        """
+    @text.setter
+    def text(self, arg1: str) -> None:
+        """
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
+        """
     __hash__ = None
     pass
