@@ -152,7 +152,7 @@ jobs:
     - name: sccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-ci-win # name for the cache
+        key: tmtgp-ci-win-2 # name for the cache
         variant: sccache  # supports windows
 
     - name: Cache Boost
