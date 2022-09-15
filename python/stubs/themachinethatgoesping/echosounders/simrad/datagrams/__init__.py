@@ -8,6 +8,7 @@ __all__ = [
     "EK60_Datagram",
     "EK60_NME0",
     "EK60_Unknown",
+    "EK80_FIL1",
     "EK80_MRU0",
     "EK80_TAG0",
     "EK80_XML0",
@@ -253,6 +254,188 @@ class EK60_Unknown(EK60_Datagram):
     @raw_content.setter
     def raw_content(self, arg1: bytes) -> None:
         pass
+    __hash__ = None
+    pass
+class EK80_FIL1(EK60_Datagram):
+    """
+    Filter binary datagram (FIL1) This datagram contains filter
+    coefficients used by the EK80 to filter the received signal.
+    """
+    def __copy__(self) -> EK80_FIL1: ...
+    def __deepcopy__(self, arg0: dict) -> EK80_FIL1: ...
+    def __eq__(self, other: EK80_FIL1) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> EK80_FIL1: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_FIL1: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def _raw_ChannelID(self) -> str:
+        """
+        < Channel identification (size is always 128)
+
+        :type: str
+        """
+    @_raw_ChannelID.setter
+    def _raw_ChannelID(self, arg0: str) -> None:
+        """
+        < Channel identification (size is always 128)
+        """
+    @property
+    def _raw_Coefficients(self) -> typing.List[float]:
+        """
+        < Filter coefficients (real, imag, real, imag, ...) < size =
+        _NoOfCoefficients * 2
+
+        :type: typing.List[float]
+        """
+    @_raw_Coefficients.setter
+    def _raw_Coefficients(self, arg0: typing.List[float]) -> None:
+        """
+        < Filter coefficients (real, imag, real, imag, ...) < size =
+        _NoOfCoefficients * 2
+        """
+    @property
+    def _raw_DecimationFactor(self) -> float:
+        """
+        :type: float
+        """
+    @_raw_DecimationFactor.setter
+    def _raw_DecimationFactor(self, arg0: float) -> None:
+        pass
+    @property
+    def _raw_NoOfCoefficients(self) -> int:
+        """
+        < Number of complex filter coefficients
+
+        :type: int
+        """
+    @_raw_NoOfCoefficients.setter
+    def _raw_NoOfCoefficients(self, arg0: int) -> None:
+        """
+        < Number of complex filter coefficients
+        """
+    @property
+    def _raw_Spare_1(self) -> str:
+        """
+        < For future expansions
+
+        :type: str
+        """
+    @_raw_Spare_1.setter
+    def _raw_Spare_1(self, arg0: str) -> None:
+        """
+        < For future expansions
+        """
+    @property
+    def _raw_Spare_2(self) -> str:
+        """
+        < For future expansions
+
+        :type: str
+        """
+    @_raw_Spare_2.setter
+    def _raw_Spare_2(self, arg0: str) -> None:
+        """
+        < For future expansions
+        """
+    @property
+    def _raw_Stage(self) -> int:
+        """
+        < Filter stage number
+
+        :type: int
+        """
+    @_raw_Stage.setter
+    def _raw_Stage(self, arg0: int) -> None:
+        """
+        < Filter stage number
+        """
+    @property
+    def channel_id(self) -> str:
+        """
+        < Channel identification (size is always 128)
+
+        :type: str
+        """
+    @channel_id.setter
+    def channel_id(self, arg1: str) -> None:
+        """
+        < Channel identification (size is always 128)
+        """
+    @property
+    def coefficients(self) -> typing.List[float]:
+        """
+        < Filter coefficients (real, imag, real, imag, ...) < size =
+        _NoOfCoefficients * 2
+
+        :type: typing.List[float]
+        """
+    @coefficients.setter
+    def coefficients(self, arg1: typing.List[float]) -> None:
+        """
+        < Filter coefficients (real, imag, real, imag, ...) < size =
+        _NoOfCoefficients * 2
+        """
+    @property
+    def decimation_factor(self) -> int:
+        """
+        :type: int
+        """
+    @decimation_factor.setter
+    def decimation_factor(self, arg1: int) -> None:
+        pass
+    @property
+    def no_of_coefficients(self) -> int:
+        """
+        < Number of complex filter coefficients
+
+        :type: int
+        """
+    @no_of_coefficients.setter
+    def no_of_coefficients(self, arg1: int) -> None:
+        """
+        < Number of complex filter coefficients
+        """
+    @property
+    def stage(self) -> int:
+        """
+        < Filter stage number
+
+        :type: int
+        """
+    @stage.setter
+    def stage(self, arg1: int) -> None:
+        """
+        < Filter stage number
+        """
     __hash__ = None
     pass
 class EK80_MRU0(EK60_Datagram):
