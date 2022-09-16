@@ -309,14 +309,14 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def _raw_Coefficients(self) -> numpy.ndarray[numpy.complex64]:
+    def _raw_Coefficients(self) -> typing.List[complex]:
         """
         < Filter coefficients
 
-        :type: numpy.ndarray[numpy.complex64]
+        :type: typing.List[complex]
         """
     @_raw_Coefficients.setter
-    def _raw_Coefficients(self, arg0: numpy.ndarray[numpy.complex64]) -> None:
+    def _raw_Coefficients(self, arg0: typing.List[complex]) -> None:
         """
         < Filter coefficients
         """
@@ -393,14 +393,38 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def coefficients(self) -> numpy.ndarray[numpy.complex64]:
+    def coefficients(self) -> typing.List[complex]:
+        """
+        < Filter coefficients
+
+        :type: typing.List[complex]
+        """
+    @coefficients.setter
+    def coefficients(self, arg1: typing.List[complex]) -> None:
+        """
+        < Filter coefficients
+        """
+    @property
+    def coefficients_eigen(self) -> numpy.ndarray[numpy.complex64, _Shape[1, n]]:
+        """
+        < Filter coefficients
+
+        :type: numpy.ndarray[numpy.complex64, _Shape[1, n]]
+        """
+    @coefficients_eigen.setter
+    def coefficients_eigen(self, arg1: typing.List[complex]) -> None:
+        """
+        < Filter coefficients
+        """
+    @property
+    def coefficients_xtensor(self) -> numpy.ndarray[numpy.complex64]:
         """
         < Filter coefficients
 
         :type: numpy.ndarray[numpy.complex64]
         """
-    @coefficients.setter
-    def coefficients(self, arg1: numpy.ndarray[numpy.complex64]) -> None:
+    @coefficients_xtensor.setter
+    def coefficients_xtensor(self, arg1: typing.List[complex]) -> None:
         """
         < Filter coefficients
         """
