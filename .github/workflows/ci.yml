@@ -41,6 +41,12 @@ on:
 # env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   #BUILD_TYPE: Release
+
+# make sure that multiple jobs don't run for the same action (new commits cancel old jobs when they are still running)
+# Souce Ralf Gommers (commit to meson-python)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
   
 jobs:
   linux:
