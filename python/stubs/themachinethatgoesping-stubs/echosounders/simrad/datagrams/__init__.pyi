@@ -699,14 +699,14 @@ class EK80_RAW3(EK60_Datagram):
         convert object to bytearray
         """
     @property
-    def _raw_ChannelID(self) -> str:
+    def _raw_ChannelID(self) -> typing.List[str[128]]:
         """
         < Channel identification (size is always 128)
 
-        :type: str
+        :type: typing.List[str[128]]
         """
     @_raw_ChannelID.setter
-    def _raw_ChannelID(self, arg0: str) -> None:
+    def _raw_ChannelID(self, arg0: typing.List[str[128]]) -> None:
         """
         < Channel identification (size is always 128)
         """
@@ -725,19 +725,29 @@ class EK80_RAW3(EK60_Datagram):
     @property
     def _raw_Datatype(self) -> t_RAW3_DataType:
         """
+        < Datatype
+
         :type: t_RAW3_DataType
         """
     @_raw_Datatype.setter
     def _raw_Datatype(self, arg0: t_RAW3_DataType) -> None:
-        pass
+        """
+        < Datatype
+        """
     @property
     def _raw_NumberOfComplexSamples(self) -> int:
         """
+        < Number of transducer samples per sample (used when < Datatype is
+        complex)
+
         :type: int
         """
     @_raw_NumberOfComplexSamples.setter
     def _raw_NumberOfComplexSamples(self, arg0: int) -> None:
-        pass
+        """
+        < Number of transducer samples per sample (used when < Datatype is
+        complex)
+        """
     @property
     def _raw_Offset(self) -> int:
         """
