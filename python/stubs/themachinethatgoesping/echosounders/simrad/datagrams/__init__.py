@@ -384,16 +384,16 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def _raw_Coefficients(self) -> numpy.ndarray[numpy.complex64]:
+    def _raw_Coefficients(self) -> numpy.ndarray[numpy.float32]:
         """
-        < Filter coefficientsg, ...)
+        < Filter coefficients, ...)
 
-        :type: numpy.ndarray[numpy.complex64]
+        :type: numpy.ndarray[numpy.float32]
         """
     @_raw_Coefficients.setter
-    def _raw_Coefficients(self, arg0: numpy.ndarray[numpy.complex64]) -> None:
+    def _raw_Coefficients(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < Filter coefficientsg, ...)
+        < Filter coefficients, ...)
         """
     @property
     def _raw_DecimationFactor(self) -> int:
@@ -468,16 +468,16 @@ class EK80_FIL1(EK60_Datagram):
         < Channel identification (size is always 128)
         """
     @property
-    def coefficients(self) -> numpy.ndarray[numpy.complex64]:
+    def coefficients(self) -> numpy.ndarray[numpy.float32]:
         """
-        < Filter coefficientsg, ...)
+        < Filter coefficients, ...)
 
-        :type: numpy.ndarray[numpy.complex64]
+        :type: numpy.ndarray[numpy.float32]
         """
     @coefficients.setter
-    def coefficients(self, arg1: numpy.ndarray[numpy.complex64]) -> None:
+    def coefficients(self, arg1: numpy.ndarray[numpy.float32]) -> None:
         """
-        < Filter coefficientsg, ...)
+        < Filter coefficients, ...)
         """
     @property
     def decimation_factor(self) -> int:
