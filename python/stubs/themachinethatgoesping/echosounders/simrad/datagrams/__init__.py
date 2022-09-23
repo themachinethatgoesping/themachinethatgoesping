@@ -5,9 +5,6 @@ import typing
 import themachinethatgoesping.navigation.nmea_0183
 
 __all__ = [
-    "Angle",
-    "ComplexFloat16",
-    "ComplexFloat32",
     "EK60_Datagram",
     "EK60_NME0",
     "EK60_TAG0",
@@ -16,10 +13,8 @@ __all__ = [
     "EK80_MRU0",
     "EK80_RAW3",
     "EK80_XML0",
-    "Power",
-    "PowerAndAngle",
-    "XML0_datagrams",
-    "t_RAW3_DataType"
+    "RAW3_datatypes",
+    "XML0_datagrams"
 ]
 
 
@@ -723,14 +718,14 @@ class EK80_RAW3(EK60_Datagram):
         < Number of samples in the datagram
         """
     @property
-    def _raw_Datatype(self) -> t_RAW3_DataType:
+    def _raw_Datatype(self) -> RAW3_datatypes.t_RAW3_DataType:
         """
         < Datatype
 
-        :type: t_RAW3_DataType
+        :type: RAW3_datatypes.t_RAW3_DataType
         """
     @_raw_Datatype.setter
-    def _raw_Datatype(self, arg0: t_RAW3_DataType) -> None:
+    def _raw_Datatype(self, arg0: RAW3_datatypes.t_RAW3_DataType) -> None:
         """
         < Datatype
         """
@@ -809,12 +804,12 @@ class EK80_RAW3(EK60_Datagram):
         < Number of samples in the datagram
         """
     @property
-    def data_type(self) -> t_RAW3_DataType:
+    def data_type(self) -> RAW3_datatypes.t_RAW3_DataType:
         """
-        :type: t_RAW3_DataType
+        :type: RAW3_datatypes.t_RAW3_DataType
         """
     @data_type.setter
-    def data_type(self, arg1: t_RAW3_DataType) -> None:
+    def data_type(self, arg1: RAW3_datatypes.t_RAW3_DataType) -> None:
         pass
     @property
     def number_of_complex_samples(self) -> int:
@@ -847,6 +842,26 @@ class EK80_RAW3(EK60_Datagram):
     def offset(self, arg1: int) -> None:
         """
         < First sample number in the datagram
+        """
+    @property
+    def sample_data(self) -> typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]:
+        """
+        Get the sample data. The sample data is stored in a variant of xtensor
+        containers. The exact type depends on the data type.
+
+        Returns:
+            RAW3_datatypes::RAW3_DataVariant
+
+        :type: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]
+        """
+    @sample_data.setter
+    def sample_data(self, arg1: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]) -> None:
+        """
+        Get the sample data. The sample data is stored in a variant of xtensor
+        containers. The exact type depends on the data type.
+
+        Returns:
+            RAW3_datatypes::RAW3_DataVariant
         """
     __hash__ = None
     pass
@@ -908,54 +923,3 @@ class EK80_XML0(EK60_Datagram):
         pass
     __hash__ = None
     pass
-class t_RAW3_DataType():
-    """
-    Members:
-
-      Power : 
-
-      Angle : 
-
-      PowerAndAngle : 
-
-      ComplexFloat16 : 
-
-      ComplexFloat32 : 
-    """
-    def __eq__(self, other: object) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    @typing.overload
-    def __init__(self, str: str) -> None: 
-        """
-        Construct this enum type from string
-        """
-    @typing.overload
-    def __init__(self, value: int) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: int) -> None: ...
-    @property
-    def name(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def value(self) -> int:
-        """
-        :type: int
-        """
-    Angle: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.Angle: 2>
-    ComplexFloat16: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.ComplexFloat16: 4>
-    ComplexFloat32: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.ComplexFloat32: 8>
-    Power: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.Power: 1>
-    PowerAndAngle: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.PowerAndAngle: 3>
-    __members__: dict # value = {'Power': <t_RAW3_DataType.Power: 1>, 'Angle': <t_RAW3_DataType.Angle: 2>, 'PowerAndAngle': <t_RAW3_DataType.PowerAndAngle: 3>, 'ComplexFloat16': <t_RAW3_DataType.ComplexFloat16: 4>, 'ComplexFloat32': <t_RAW3_DataType.ComplexFloat32: 8>}
-    pass
-Angle: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.Angle: 2>
-ComplexFloat16: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.ComplexFloat16: 4>
-ComplexFloat32: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.ComplexFloat32: 8>
-Power: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.Power: 1>
-PowerAndAngle: themachinethatgoesping.echosounders.simrad.datagrams.t_RAW3_DataType # value = <t_RAW3_DataType.PowerAndAngle: 3>
