@@ -125,7 +125,7 @@ class RAW3_DataPowerAndAngle(i_RAW3_Data):
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
-    def __init__(self, power_and_angle: numpy.ndarray[numpy.int16]) -> None: ...
+    def __init__(self, power: numpy.ndarray[numpy.int16], angle: numpy.ndarray[numpy.uint8]) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -140,7 +140,6 @@ class RAW3_DataPowerAndAngle(i_RAW3_Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]: ...
     def get_power(self) -> numpy.ndarray[numpy.float32]: ...
-    def get_power2(self) -> numpy.ndarray[numpy.float32]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -150,14 +149,26 @@ class RAW3_DataPowerAndAngle(i_RAW3_Data):
         Print object information
         """
     @property
-    def power_and_angle(self) -> numpy.ndarray[numpy.int16]:
+    def angle(self) -> numpy.ndarray[numpy.int8]:
+        """
+        < [along, athwart] 180/128 electrical degrees
+
+        :type: numpy.ndarray[numpy.int8]
+        """
+    @angle.setter
+    def angle(self, arg0: numpy.ndarray[numpy.int8]) -> None:
+        """
+        < [along, athwart] 180/128 electrical degrees
+        """
+    @property
+    def power(self) -> numpy.ndarray[numpy.int16]:
         """
         < Sample data
 
         :type: numpy.ndarray[numpy.int16]
         """
-    @power_and_angle.setter
-    def power_and_angle(self, arg0: numpy.ndarray[numpy.int16]) -> None:
+    @power.setter
+    def power(self, arg0: numpy.ndarray[numpy.int16]) -> None:
         """
         < Sample data
         """
@@ -220,14 +231,14 @@ class RAW3_DataAngle(i_RAW3_Data):
         Print object information
         """
     @property
-    def angle(self) -> numpy.ndarray[numpy.uint8]:
+    def angle(self) -> numpy.ndarray[numpy.int8]:
         """
         < Sample data
 
-        :type: numpy.ndarray[numpy.uint8]
+        :type: numpy.ndarray[numpy.int8]
         """
     @angle.setter
-    def angle(self, arg0: numpy.ndarray[numpy.uint8]) -> None:
+    def angle(self, arg0: numpy.ndarray[numpy.int8]) -> None:
         """
         < Sample data
         """
