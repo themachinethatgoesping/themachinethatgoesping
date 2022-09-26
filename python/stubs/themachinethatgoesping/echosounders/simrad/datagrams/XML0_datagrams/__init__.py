@@ -2,6 +2,7 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
 import typing
+import themachinethatgoesping.navigation.datastructures
 
 __all__ = [
     "BeamTypeRef",
@@ -13,6 +14,7 @@ __all__ = [
     "BeamTypeSplit3C",
     "BeamTypeSplit3CN",
     "BeamTypeSplit3CW",
+    "ChannelConfiguration",
     "XML_Configuration",
     "XML_Configuration_ActivePingMode",
     "XML_Configuration_Sensor",
@@ -36,6 +38,73 @@ __all__ = [
 ]
 
 
+class ChannelConfiguration():
+    """
+    XML base datagram
+    """
+    def __copy__(self) -> ChannelConfiguration: ...
+    def __deepcopy__(self, arg0: dict) -> ChannelConfiguration: ...
+    def __getstate__(self) -> bytes: ...
+    @typing.overload
+    def __init__(self) -> None: ...
+    @typing.overload
+    def __init__(self, ChannelID: str, Channel: XML_Configuration_Transceiver_Channel, Transceiver: XML_Configuration_Transceiver, Transducer: XML_Configuration_Transducer) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> ChannelConfiguration: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ChannelConfiguration: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def Channel(self) -> XML_Configuration_Transceiver_Channel:
+        """
+        :type: XML_Configuration_Transceiver_Channel
+        """
+    @property
+    def ChannelID(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def Transceiver(self) -> XML_Configuration_Transceiver:
+        """
+        :type: XML_Configuration_Transceiver
+        """
+    @property
+    def Transducer(self) -> XML_Configuration_Transducer:
+        """
+        :type: XML_Configuration_Transducer
+        """
+    @property
+    def sensor_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+        """
+        :type: themachinethatgoesping.navigation.datastructures.PositionalOffsets
+        """
+    pass
 class XML_Configuration():
     """
     XML base datagram
@@ -90,6 +159,14 @@ class XML_Configuration():
         """
     @ApplicationName.setter
     def ApplicationName(self, arg0: str) -> None:
+        pass
+    @property
+    def ChannelConfigurations(self) -> typing.Dict[str, ChannelConfiguration]:
+        """
+        :type: typing.Dict[str, ChannelConfiguration]
+        """
+    @ChannelConfigurations.setter
+    def ChannelConfigurations(self, arg0: typing.Dict[str, ChannelConfiguration]) -> None:
         pass
     @property
     def ConfiguredSensors(self) -> typing.List[XML_Configuration_Sensor]:
@@ -234,6 +311,14 @@ class XML_Configuration_Sensor():
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor: 
         """
         create T_CLASS object from bytearray
+        """
+    def get_sensor_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Return the sensor offsets as
+        navigation::datastructures::PositionalOffsets structure
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
         """
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1167,6 +1252,14 @@ class XML_Configuration_Transducer():
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transducer: 
         """
         create T_CLASS object from bytearray
+        """
+    def get_sensor_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Return the offsets as navigation::datastructures::PositionalOffsets
+        structure
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
         """
     def info_string(self, float_precision: int = 2) -> str: 
         """
