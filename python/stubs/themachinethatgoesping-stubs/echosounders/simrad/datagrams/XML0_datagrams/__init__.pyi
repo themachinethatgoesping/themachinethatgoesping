@@ -2,6 +2,7 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
 import typing
+import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 
 __all__ = [
@@ -131,6 +132,8 @@ class XML_Configuration():
         """
         create T_CLASS object from bytearray
         """
+    def get_prioritized_sensor(self, prio_values: typing.List[str]) -> XML_Configuration_Sensor: ...
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -191,6 +194,14 @@ class XML_Configuration():
         """
     @FileFormatVersion.setter
     def FileFormatVersion(self, arg0: str) -> None:
+        pass
+    @property
+    def SensorConfigurations(self) -> typing.Dict[str, typing.List[XML_Configuration_Sensor]]:
+        """
+        :type: typing.Dict[str, typing.List[XML_Configuration_Sensor]]
+        """
+    @SensorConfigurations.setter
+    def SensorConfigurations(self, arg0: typing.Dict[str, typing.List[XML_Configuration_Sensor]]) -> None:
         pass
     @property
     def TimeBias(self) -> str:

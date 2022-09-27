@@ -43,10 +43,10 @@ Prior to transforming and interpolating, the user must create a SensorConfigurat
    scs = nav.SensorConfiguration()
 
    # add sensor offsets
-   scs.set_offsets_heading_source(9)               # yaw
-   scs.set_offsets_depth_source(0, 0, 1)           # x, y, z
-   scs.set_offsets_position_source(1, 2, 3)        # x, y, z
-   scs.set_offsets_attitude_source(10, -10, -30)   # yaw, pitch, roll
+   scs.set_heading_source(9)               # yaw
+   scs.set_depth_source(0, 0, 1)           # x, y, z
+   scs.set_position_source(1, 2, 3)        # x, y, z
+   scs.set_attitude_source(10, -10, -30)   # yaw, pitch, roll
 
    # add a target sensor with offsets
    scs.add_target(

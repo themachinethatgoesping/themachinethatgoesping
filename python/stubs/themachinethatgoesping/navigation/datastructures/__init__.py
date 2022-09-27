@@ -487,9 +487,12 @@ class PositionalOffsets():
     def __deepcopy__(self, arg0: dict) -> PositionalOffsets: ...
     def __eq__(self, other: PositionalOffsets) -> bool: ...
     def __getstate__(self) -> bytes: ...
-    def __init__(self, x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: 
+    def __init__(self, name: str = '', x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: 
         """
         Construct a new PositionalOffsets object
+
+        Parameter ``name``:
+            The name of the sensor
 
         Parameter ``x``:
             in m, positive forward
@@ -538,6 +541,18 @@ class PositionalOffsets():
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
+        """
+    @property
+    def name(self) -> str:
+        """
+        < The name of the sensor
+
+        :type: str
+        """
+    @name.setter
+    def name(self, arg0: str) -> None:
+        """
+        < The name of the sensor
         """
     @property
     def pitch(self) -> float:
