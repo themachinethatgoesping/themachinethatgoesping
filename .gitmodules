@@ -2,11 +2,13 @@
 	path = subprojects/tools
 	url = ../tools.git
 	branch = main
+	update = rebase
 
 [submodule "subprojects/meson-python"]
 	path = subprojects/meson-python
 	url = ../meson-python.git
 	branch = main
+	update = rebase
 
 [submodule "subprojects/pybind11_mkdoc"]
 	path = subprojects/pybind11_mkdoc
@@ -17,18 +19,22 @@
 	path = subprojects/navigation
 	url  = ../navigation.git
 	branch = main
+	update = rebase
 
 [submodule "subprojects/gridding"]
 	path = subprojects/gridding
 	url = ../gridding.git
 	branch = main
+	update = rebase
 
 [submodule "subprojects/meta"]
 	path = subprojects/meta
 	url = ../.meta.git
 	branch = main
+	update = rebase
 
 [submodule "subprojects/echosounders"]
 	path = subprojects/echosounders
 	url = ../echosounders.git
 	branch = main
+	update = rebase
