@@ -4,4 +4,4 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-git submodule update --init --recursive
+git submodule update --init --recursive --rebase
