@@ -15,6 +15,7 @@ Example usage
    from themachinethatgoesping.navigation.datastructures import PositionalOffsets
 
    sensor_offsets = PositionalOffsets(
+   "sensor-name", # name of the sensor
    10, # x (in m, positive forward)
    -3, # y (in m, positive starboard)
    3,  # z (in m, positive downwards)
@@ -25,6 +26,7 @@ Example usage
    print(sensor_offsets)
    # PositionalOffsets
    # *****************
+   # - name:  "sensor-name"
    # - x:     10.00 [positive forwards, m]
    # - y:     -3.00 [positive starboard, m]
    # - z:     3.00  [positive downwards, m]

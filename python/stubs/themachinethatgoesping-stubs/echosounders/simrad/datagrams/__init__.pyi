@@ -5,23 +5,23 @@ import typing
 import themachinethatgoesping.navigation.nmea_0183
 
 __all__ = [
-    "EK60_Datagram",
-    "EK60_NME0",
-    "EK60_TAG0",
-    "EK60_Unknown",
-    "EK80_FIL1",
-    "EK80_MRU0",
-    "EK80_RAW3",
-    "EK80_XML0",
+    "FIL1",
+    "MRU0",
+    "NME0",
+    "RAW3",
     "RAW3_datatypes",
+    "SimradDatagram",
+    "SimradUnknown",
+    "TAG0",
+    "XML0",
     "XML0_datagrams"
 ]
 
 
-class EK60_Datagram():
-    def __copy__(self) -> EK60_Datagram: ...
-    def __deepcopy__(self, arg0: dict) -> EK60_Datagram: ...
-    def __eq__(self, other: EK60_Datagram) -> bool: ...
+class SimradDatagram():
+    def __copy__(self) -> SimradDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> SimradDatagram: ...
+    def __eq__(self, other: SimradDatagram) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -33,12 +33,12 @@ class EK60_Datagram():
         """
         Return object information as string
         """
-    def copy(self) -> EK60_Datagram: 
+    def copy(self) -> SimradDatagram: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK60_Datagram: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradDatagram: 
         """
         create T_CLASS object from bytearray
         """
@@ -104,14 +104,14 @@ class EK60_Datagram():
         < Raw: Low part of Windows NT FILETIME (100ns ticks since 1601-01-01)
         """
     @property
-    def datagram_type(self) -> themachinethatgoesping.echosounders.simrad.t_EK60_DatagramType:
+    def datagram_type(self) -> themachinethatgoesping.echosounders.simrad.t_SimradDatagramType:
         """
         Ek60 datagram type (XML0, FIL1, NME0, MRU0, RAW3, ...)
 
-        :type: themachinethatgoesping.echosounders.simrad.t_EK60_DatagramType
+        :type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramType
         """
     @datagram_type.setter
-    def datagram_type(self, arg1: themachinethatgoesping.echosounders.simrad.t_EK60_DatagramType) -> None:
+    def datagram_type(self, arg1: themachinethatgoesping.echosounders.simrad.t_SimradDatagramType) -> None:
         """
         Ek60 datagram type (XML0, FIL1, NME0, MRU0, RAW3, ...)
         """
@@ -145,14 +145,16 @@ class EK60_Datagram():
         """
     __hash__ = None
     pass
-class EK60_NME0(EK60_Datagram):
+class MRU0(SimradDatagram):
     """
-    NMEA text datagram (NME0) This datagram contains NMEA sentences
-    received by the EK60/EK80 transceiver.
+    Motion binary datagram (MRU0) This datagram contains heave, roll,
+    pitch and heading as float values. Conveniently, these values can be
+    used directly in themachinethatgoesping navigation processing because
+    they are defined in the default coordinate system / value range.
     """
-    def __copy__(self) -> EK60_NME0: ...
-    def __deepcopy__(self, arg0: dict) -> EK60_NME0: ...
-    def __eq__(self, other: EK60_NME0) -> bool: ...
+    def __copy__(self) -> MRU0: ...
+    def __deepcopy__(self, arg0: dict) -> MRU0: ...
+    def __eq__(self, other: MRU0) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -164,7 +166,145 @@ class EK60_NME0(EK60_Datagram):
         """
         Return object information as string
         """
-    def copy(self) -> EK60_NME0: 
+    def copy(self) -> MRU0: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MRU0: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def _raw_Heading(self) -> float:
+        """
+        < Heading in degrees, 0° north, 90° east
+
+        :type: float
+        """
+    @_raw_Heading.setter
+    def _raw_Heading(self, arg0: float) -> None:
+        """
+        < Heading in degrees, 0° north, 90° east
+        """
+    @property
+    def _raw_Heave(self) -> float:
+        """
+        < Heave in m, positive up
+
+        :type: float
+        """
+    @_raw_Heave.setter
+    def _raw_Heave(self, arg0: float) -> None:
+        """
+        < Heave in m, positive up
+        """
+    @property
+    def _raw_Pitch(self) -> float:
+        """
+        < Pitch in degrees, positive nose up
+
+        :type: float
+        """
+    @_raw_Pitch.setter
+    def _raw_Pitch(self, arg0: float) -> None:
+        """
+        < Pitch in degrees, positive nose up
+        """
+    @property
+    def _raw_Roll(self) -> float:
+        """
+        < Roll in degrees, positive port up
+
+        :type: float
+        """
+    @_raw_Roll.setter
+    def _raw_Roll(self, arg0: float) -> None:
+        """
+        < Roll in degrees, positive port up
+        """
+    @property
+    def heading(self) -> float:
+        """
+        < Heading in degrees, 0° north, 90° east
+
+        :type: float
+        """
+    @heading.setter
+    def heading(self, arg1: float) -> None:
+        """
+        < Heading in degrees, 0° north, 90° east
+        """
+    @property
+    def heave(self) -> float:
+        """
+        < Heave in m, positive up
+
+        :type: float
+        """
+    @heave.setter
+    def heave(self, arg1: float) -> None:
+        """
+        < Heave in m, positive up
+        """
+    @property
+    def pitch(self) -> float:
+        """
+        < Pitch in degrees, positive nose up
+
+        :type: float
+        """
+    @pitch.setter
+    def pitch(self, arg1: float) -> None:
+        """
+        < Pitch in degrees, positive nose up
+        """
+    @property
+    def roll(self) -> float:
+        """
+        < Roll in degrees, positive port up
+
+        :type: float
+        """
+    @roll.setter
+    def roll(self, arg1: float) -> None:
+        """
+        < Roll in degrees, positive port up
+        """
+    __hash__ = None
+    pass
+class NME0(SimradDatagram):
+    """
+    NMEA text datagram (NME0) This datagram contains NMEA sentences
+    received by the EK60/EK80 transceiver.
+    """
+    def __copy__(self) -> NME0: ...
+    def __deepcopy__(self, arg0: dict) -> NME0: ...
+    def __eq__(self, other: NME0) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> NME0: 
         """
         return a copy using the c++ default copy constructor
         """
@@ -173,7 +313,7 @@ class EK60_NME0(EK60_Datagram):
     def field_double(self, arg0: int) -> float: ...
     def field_int(self, arg0: int) -> int: ...
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK60_NME0: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NME0: 
         """
         create T_CLASS object from bytearray
         """
@@ -212,16 +352,15 @@ class EK60_NME0(EK60_Datagram):
         """
     __hash__ = None
     pass
-class EK60_TAG0(EK60_Datagram):
+class RAW3(SimradDatagram):
     """
-    Motion binary datagram (TAG0) This datagram contains heave, roll,
-    pitch and heading as float values. Conveniently, these values can be
-    used directly in themachinethatgoesping navigation processing because
-    they are defined in the default coordinate system / value range.
+    Sample binary datagram (RAW3) This datagram contains the sample data
+    for each ping. The exact datatype and size depends on the Datatype
+    field!
     """
-    def __copy__(self) -> EK60_TAG0: ...
-    def __deepcopy__(self, arg0: dict) -> EK60_TAG0: ...
-    def __eq__(self, other: EK60_TAG0) -> bool: ...
+    def __copy__(self) -> RAW3: ...
+    def __deepcopy__(self, arg0: dict) -> RAW3: ...
+    def __eq__(self, other: RAW3) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -233,12 +372,12 @@ class EK60_TAG0(EK60_Datagram):
         """
         Return object information as string
         """
-    def copy(self) -> EK60_TAG0: 
+    def copy(self) -> RAW3: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK60_TAG0: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RAW3: 
         """
         create T_CLASS object from bytearray
         """
@@ -255,85 +394,185 @@ class EK60_TAG0(EK60_Datagram):
         convert object to bytearray
         """
     @property
-    def _raw_Text(self) -> str:
+    def _raw_ChannelID(self) -> typing.List[str[128]]:
         """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
+        < Channel identification (size is always 128)
+
+        :type: typing.List[str[128]]
+        """
+    @_raw_ChannelID.setter
+    def _raw_ChannelID(self, arg0: typing.List[str[128]]) -> None:
+        """
+        < Channel identification (size is always 128)
+        """
+    @property
+    def _raw_Count(self) -> int:
+        """
+        < Number of samples in the datagram
+
+        :type: int
+        """
+    @_raw_Count.setter
+    def _raw_Count(self, arg0: int) -> None:
+        """
+        < Number of samples in the datagram
+        """
+    @property
+    def _raw_Datatype(self) -> RAW3_datatypes.t_RAW3_DataType:
+        """
+        < Datatype
+
+        :type: RAW3_datatypes.t_RAW3_DataType
+        """
+    @_raw_Datatype.setter
+    def _raw_Datatype(self, arg0: RAW3_datatypes.t_RAW3_DataType) -> None:
+        """
+        < Datatype
+        """
+    @property
+    def _raw_NumberOfComplexSamples(self) -> int:
+        """
+        < Number of transducer samples per sample (used when < Datatype is
+        complex)
+
+        :type: int
+        """
+    @_raw_NumberOfComplexSamples.setter
+    def _raw_NumberOfComplexSamples(self, arg0: int) -> None:
+        """
+        < Number of transducer samples per sample (used when < Datatype is
+        complex)
+        """
+    @property
+    def _raw_Offset(self) -> int:
+        """
+        < First sample number in the datagram
+
+        :type: int
+        """
+    @_raw_Offset.setter
+    def _raw_Offset(self, arg0: int) -> None:
+        """
+        < First sample number in the datagram
+        """
+    @property
+    def _raw_Spare_1(self) -> str:
+        """
+        < Spare 1
 
         :type: str
         """
-    @_raw_Text.setter
-    def _raw_Text(self, arg0: str) -> None:
+    @_raw_Spare_1.setter
+    def _raw_Spare_1(self, arg0: str) -> None:
         """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
+        < Spare 1
         """
     @property
-    def text(self) -> str:
+    def _raw_Spare_2(self) -> str:
         """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
+        < Spare 2
 
         :type: str
         """
-    @text.setter
-    def text(self, arg1: str) -> None:
+    @_raw_Spare_2.setter
+    def _raw_Spare_2(self, arg0: str) -> None:
         """
-        < _Text annotation string (e.g. interesting fish shoal in echogram)
-        """
-    __hash__ = None
-    pass
-class EK60_Unknown(EK60_Datagram):
-    def __copy__(self) -> EK60_Unknown: ...
-    def __deepcopy__(self, arg0: dict) -> EK60_Unknown: ...
-    def __eq__(self, other: EK60_Unknown) -> bool: ...
-    def __getstate__(self) -> bytes: ...
-    def __init__(self) -> None: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> EK60_Unknown: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK60_Unknown: 
-        """
-        create T_CLASS object from bytearray
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def to_binary(self, resize_buffer: bool = True) -> bytes: 
-        """
-        convert object to bytearray
+        < Spare 2
         """
     @property
-    def raw_content(self) -> bytes:
+    def channel_id(self) -> str:
         """
-        :type: bytes
+        < Channel identification (size is always 128)
+
+        :type: str
         """
-    @raw_content.setter
-    def raw_content(self, arg1: bytes) -> None:
+    @channel_id.setter
+    def channel_id(self, arg1: str) -> None:
+        """
+        < Channel identification (size is always 128)
+        """
+    @property
+    def count(self) -> int:
+        """
+        < Number of samples in the datagram
+
+        :type: int
+        """
+    @count.setter
+    def count(self, arg1: int) -> None:
+        """
+        < Number of samples in the datagram
+        """
+    @property
+    def data_type(self) -> RAW3_datatypes.t_RAW3_DataType:
+        """
+        :type: RAW3_datatypes.t_RAW3_DataType
+        """
+    @data_type.setter
+    def data_type(self, arg1: RAW3_datatypes.t_RAW3_DataType) -> None:
         pass
+    @property
+    def number_of_complex_samples(self) -> int:
+        """
+        Get the number of complex samples. This corresponds to the number of
+        transducer elements. This field is only valid for complex data types.
+
+        Returns:
+            simrad_short
+
+        :type: int
+        """
+    @number_of_complex_samples.setter
+    def number_of_complex_samples(self, arg1: int) -> None:
+        """
+        Get the number of complex samples. This corresponds to the number of
+        transducer elements. This field is only valid for complex data types.
+
+        Returns:
+            simrad_short
+        """
+    @property
+    def offset(self) -> int:
+        """
+        < First sample number in the datagram
+
+        :type: int
+        """
+    @offset.setter
+    def offset(self, arg1: int) -> None:
+        """
+        < First sample number in the datagram
+        """
+    @property
+    def sample_data(self) -> typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]:
+        """
+        Get the sample data. The sample data is stored in a variant of xtensor
+        containers. The exact type depends on the data type.
+
+        Returns:
+            RAW3_datatypes::RAW3_DataVariant
+
+        :type: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]
+        """
+    @sample_data.setter
+    def sample_data(self, arg1: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]) -> None:
+        """
+        Get the sample data. The sample data is stored in a variant of xtensor
+        containers. The exact type depends on the data type.
+
+        Returns:
+            RAW3_datatypes::RAW3_DataVariant
+        """
     __hash__ = None
     pass
-class EK80_FIL1(EK60_Datagram):
+class FIL1(SimradDatagram):
     """
     Filter binary datagram (FIL1) This datagram contains filter
     coefficients used by the EK80 to filter the received signal.
     """
-    def __copy__(self) -> EK80_FIL1: ...
-    def __deepcopy__(self, arg0: dict) -> EK80_FIL1: ...
-    def __eq__(self, other: EK80_FIL1) -> bool: ...
+    def __copy__(self) -> FIL1: ...
+    def __deepcopy__(self, arg0: dict) -> FIL1: ...
+    def __eq__(self, other: FIL1) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -345,12 +584,12 @@ class EK80_FIL1(EK60_Datagram):
         """
         Return object information as string
         """
-    def copy(self) -> EK80_FIL1: 
+    def copy(self) -> FIL1: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_FIL1: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FIL1: 
         """
         create T_CLASS object from bytearray
         """
@@ -512,16 +751,62 @@ class EK80_FIL1(EK60_Datagram):
         """
     __hash__ = None
     pass
-class EK80_MRU0(EK60_Datagram):
+class SimradUnknown(SimradDatagram):
+    def __copy__(self) -> SimradUnknown: ...
+    def __deepcopy__(self, arg0: dict) -> SimradUnknown: ...
+    def __eq__(self, other: SimradUnknown) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradUnknown: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradUnknown: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def raw_content(self) -> bytes:
+        """
+        :type: bytes
+        """
+    @raw_content.setter
+    def raw_content(self, arg1: bytes) -> None:
+        pass
+    __hash__ = None
+    pass
+class TAG0(SimradDatagram):
     """
-    Motion binary datagram (MRU0) This datagram contains heave, roll,
+    Motion binary datagram (TAG0) This datagram contains heave, roll,
     pitch and heading as float values. Conveniently, these values can be
     used directly in themachinethatgoesping navigation processing because
     they are defined in the default coordinate system / value range.
     """
-    def __copy__(self) -> EK80_MRU0: ...
-    def __deepcopy__(self, arg0: dict) -> EK80_MRU0: ...
-    def __eq__(self, other: EK80_MRU0) -> bool: ...
+    def __copy__(self) -> TAG0: ...
+    def __deepcopy__(self, arg0: dict) -> TAG0: ...
+    def __eq__(self, other: TAG0) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -533,12 +818,12 @@ class EK80_MRU0(EK60_Datagram):
         """
         Return object information as string
         """
-    def copy(self) -> EK80_MRU0: 
+    def copy(self) -> TAG0: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_MRU0: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> TAG0: 
         """
         create T_CLASS object from bytearray
         """
@@ -555,326 +840,41 @@ class EK80_MRU0(EK60_Datagram):
         convert object to bytearray
         """
     @property
-    def _raw_Heading(self) -> float:
+    def _raw_Text(self) -> str:
         """
-        < Heading in degrees, 0° north, 90° east
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
 
-        :type: float
+        :type: str
         """
-    @_raw_Heading.setter
-    def _raw_Heading(self, arg0: float) -> None:
+    @_raw_Text.setter
+    def _raw_Text(self, arg0: str) -> None:
         """
-        < Heading in degrees, 0° north, 90° east
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
         """
     @property
-    def _raw_Heave(self) -> float:
+    def text(self) -> str:
         """
-        < Heave in m, positive up
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
 
-        :type: float
+        :type: str
         """
-    @_raw_Heave.setter
-    def _raw_Heave(self, arg0: float) -> None:
+    @text.setter
+    def text(self, arg1: str) -> None:
         """
-        < Heave in m, positive up
-        """
-    @property
-    def _raw_Pitch(self) -> float:
-        """
-        < Pitch in degrees, positive nose up
-
-        :type: float
-        """
-    @_raw_Pitch.setter
-    def _raw_Pitch(self, arg0: float) -> None:
-        """
-        < Pitch in degrees, positive nose up
-        """
-    @property
-    def _raw_Roll(self) -> float:
-        """
-        < Roll in degrees, positive port up
-
-        :type: float
-        """
-    @_raw_Roll.setter
-    def _raw_Roll(self, arg0: float) -> None:
-        """
-        < Roll in degrees, positive port up
-        """
-    @property
-    def heading(self) -> float:
-        """
-        < Heading in degrees, 0° north, 90° east
-
-        :type: float
-        """
-    @heading.setter
-    def heading(self, arg1: float) -> None:
-        """
-        < Heading in degrees, 0° north, 90° east
-        """
-    @property
-    def heave(self) -> float:
-        """
-        < Heave in m, positive up
-
-        :type: float
-        """
-    @heave.setter
-    def heave(self, arg1: float) -> None:
-        """
-        < Heave in m, positive up
-        """
-    @property
-    def pitch(self) -> float:
-        """
-        < Pitch in degrees, positive nose up
-
-        :type: float
-        """
-    @pitch.setter
-    def pitch(self, arg1: float) -> None:
-        """
-        < Pitch in degrees, positive nose up
-        """
-    @property
-    def roll(self) -> float:
-        """
-        < Roll in degrees, positive port up
-
-        :type: float
-        """
-    @roll.setter
-    def roll(self, arg1: float) -> None:
-        """
-        < Roll in degrees, positive port up
+        < _Text annotation string (e.g. interesting fish shoal in echogram)
         """
     __hash__ = None
     pass
-class EK80_RAW3(EK60_Datagram):
-    """
-    Sample binary datagram (RAW3) This datagram contains the sample data
-    for each ping. The exact datatype and size depends on the Datatype
-    field!
-    """
-    def __copy__(self) -> EK80_RAW3: ...
-    def __deepcopy__(self, arg0: dict) -> EK80_RAW3: ...
-    def __eq__(self, other: EK80_RAW3) -> bool: ...
-    def __getstate__(self) -> bytes: ...
-    def __init__(self) -> None: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> EK80_RAW3: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_RAW3: 
-        """
-        create T_CLASS object from bytearray
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def to_binary(self, resize_buffer: bool = True) -> bytes: 
-        """
-        convert object to bytearray
-        """
-    @property
-    def _raw_ChannelID(self) -> typing.List[str[128]]:
-        """
-        < Channel identification (size is always 128)
-
-        :type: typing.List[str[128]]
-        """
-    @_raw_ChannelID.setter
-    def _raw_ChannelID(self, arg0: typing.List[str[128]]) -> None:
-        """
-        < Channel identification (size is always 128)
-        """
-    @property
-    def _raw_Count(self) -> int:
-        """
-        < Number of samples in the datagram
-
-        :type: int
-        """
-    @_raw_Count.setter
-    def _raw_Count(self, arg0: int) -> None:
-        """
-        < Number of samples in the datagram
-        """
-    @property
-    def _raw_Datatype(self) -> RAW3_datatypes.t_RAW3_DataType:
-        """
-        < Datatype
-
-        :type: RAW3_datatypes.t_RAW3_DataType
-        """
-    @_raw_Datatype.setter
-    def _raw_Datatype(self, arg0: RAW3_datatypes.t_RAW3_DataType) -> None:
-        """
-        < Datatype
-        """
-    @property
-    def _raw_NumberOfComplexSamples(self) -> int:
-        """
-        < Number of transducer samples per sample (used when < Datatype is
-        complex)
-
-        :type: int
-        """
-    @_raw_NumberOfComplexSamples.setter
-    def _raw_NumberOfComplexSamples(self, arg0: int) -> None:
-        """
-        < Number of transducer samples per sample (used when < Datatype is
-        complex)
-        """
-    @property
-    def _raw_Offset(self) -> int:
-        """
-        < First sample number in the datagram
-
-        :type: int
-        """
-    @_raw_Offset.setter
-    def _raw_Offset(self, arg0: int) -> None:
-        """
-        < First sample number in the datagram
-        """
-    @property
-    def _raw_Spare_1(self) -> str:
-        """
-        < Spare 1
-
-        :type: str
-        """
-    @_raw_Spare_1.setter
-    def _raw_Spare_1(self, arg0: str) -> None:
-        """
-        < Spare 1
-        """
-    @property
-    def _raw_Spare_2(self) -> str:
-        """
-        < Spare 2
-
-        :type: str
-        """
-    @_raw_Spare_2.setter
-    def _raw_Spare_2(self, arg0: str) -> None:
-        """
-        < Spare 2
-        """
-    @property
-    def channel_id(self) -> str:
-        """
-        < Channel identification (size is always 128)
-
-        :type: str
-        """
-    @channel_id.setter
-    def channel_id(self, arg1: str) -> None:
-        """
-        < Channel identification (size is always 128)
-        """
-    @property
-    def count(self) -> int:
-        """
-        < Number of samples in the datagram
-
-        :type: int
-        """
-    @count.setter
-    def count(self, arg1: int) -> None:
-        """
-        < Number of samples in the datagram
-        """
-    @property
-    def data_type(self) -> RAW3_datatypes.t_RAW3_DataType:
-        """
-        :type: RAW3_datatypes.t_RAW3_DataType
-        """
-    @data_type.setter
-    def data_type(self, arg1: RAW3_datatypes.t_RAW3_DataType) -> None:
-        pass
-    @property
-    def number_of_complex_samples(self) -> int:
-        """
-        Get the number of complex samples. This corresponds to the number of
-        transducer elements. This field is only valid for complex data types.
-
-        Returns:
-            ek60_short
-
-        :type: int
-        """
-    @number_of_complex_samples.setter
-    def number_of_complex_samples(self, arg1: int) -> None:
-        """
-        Get the number of complex samples. This corresponds to the number of
-        transducer elements. This field is only valid for complex data types.
-
-        Returns:
-            ek60_short
-        """
-    @property
-    def offset(self) -> int:
-        """
-        < First sample number in the datagram
-
-        :type: int
-        """
-    @offset.setter
-    def offset(self, arg1: int) -> None:
-        """
-        < First sample number in the datagram
-        """
-    @property
-    def sample_data(self) -> typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]:
-        """
-        Get the sample data. The sample data is stored in a variant of xtensor
-        containers. The exact type depends on the data type.
-
-        Returns:
-            RAW3_datatypes::RAW3_DataVariant
-
-        :type: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]
-        """
-    @sample_data.setter
-    def sample_data(self, arg1: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]) -> None:
-        """
-        Get the sample data. The sample data is stored in a variant of xtensor
-        containers. The exact type depends on the data type.
-
-        Returns:
-            RAW3_datatypes::RAW3_DataVariant
-        """
-    __hash__ = None
-    pass
-class EK80_XML0(EK60_Datagram):
+class XML0(SimradDatagram):
     """
     Motion binary datagram (XML0) This datagram contains heave, roll,
     pitch and heading as float values. Conveniently, these values can be
     used directly in themachinethatgoesping navigation processing because
     they are defined in the default coordinate system / value range.
     """
-    def __copy__(self) -> EK80_XML0: ...
-    def __deepcopy__(self, arg0: dict) -> EK80_XML0: ...
-    def __eq__(self, other: EK80_XML0) -> bool: ...
+    def __copy__(self) -> XML0: ...
+    def __deepcopy__(self, arg0: dict) -> XML0: ...
+    def __eq__(self, other: XML0) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
@@ -886,13 +886,13 @@ class EK80_XML0(EK60_Datagram):
         """
         Return object information as string
         """
-    def copy(self) -> EK80_XML0: 
+    def copy(self) -> XML0: 
         """
         return a copy using the c++ default copy constructor
         """
     def decode(self) -> typing.Union[XML0_datagrams.XML_Node, XML0_datagrams.XML_Parameter, XML0_datagrams.XML_InitialParameter, XML0_datagrams.XML_PingSequence, XML0_datagrams.XML_Environment, XML0_datagrams.XML_Sensor, XML0_datagrams.XML_Configuration]: ...
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EK80_XML0: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML0: 
         """
         create T_CLASS object from bytearray
         """
