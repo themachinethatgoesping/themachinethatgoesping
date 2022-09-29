@@ -73,6 +73,11 @@ jobs:
         #with:
           #python-version: '3.x'
 
+      # if runner.os 
+      - name: Set llvm vers
+        if: matrix.os == 'macos-latest'
+        run: brew install llvm@14
+
       - name: Set up QEMU
         if: runner.os == 'Linux'
         uses: docker/setup-qemu-action@v2

@@ -232,8 +232,10 @@ jobs:
       with:
         key: tmtgp-ci-macos  # name for the cache
         
-    - run: brew install libomp boost llvm
-    - run: brew upgrade libomp boost llvm
+    - run: brew install libomp boost
+    - run: brew upgrade libomp boost
+    # install clang 14
+    - run: brew install llvm@14
     
     - run: pip install meson ninja pytest
 
