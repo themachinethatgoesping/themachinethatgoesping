@@ -232,15 +232,12 @@ jobs:
       with:
         key: tmtgp-ci-macos  # name for the cache
         
-    - run: brew install libomp boost
-    - run: brew upgrade libomp boost
     # install clang 14
     - run: brew install llvm@14
+        
+    - run: brew install libomp boost
     
     - run: pip install meson ninja pytest
-
-    - name: install pip requirements
-      run: pip install -r requirements.txt
     
     - name: configure meson
       run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto
@@ -254,6 +251,9 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
+    - name: install pip requirements
+      run: pip install -r requirements.txt
+
     - name: test (pytest)
       run: pytest -v
       
@@ -262,5 +262,3 @@ jobs:
       with:
         name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt
-
-      
