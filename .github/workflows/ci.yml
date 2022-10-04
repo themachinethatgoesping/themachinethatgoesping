@@ -38,15 +38,16 @@ on:
     #  - "**.c"
     #  - "**.h"
 
-# env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  #BUILD_TYPE: Release
 
 # make sure that multiple jobs don't run for the same action (new commits cancel old jobs when they are still running)
 # Souce Ralf Gommers (commit to meson-python)
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
+
+# env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  #BUILD_TYPE: Release
   
 jobs:
   linux:
@@ -57,13 +58,12 @@ jobs:
         include:  
           - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
               ccache: 'true'}
-          - { container: 'ubuntu:22.04',
+          - { container: 'ubuntu:22.04', 
               ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev',
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
               pip : 'pip install meson ninja pytest numpy' }
-          - { container: 'archlinux',
-              #ccache: 'true'
+          - { container: 'archlinux', 
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
               dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
               pip : 'pip install meson ninja pytest numpy' }
@@ -81,12 +81,12 @@ jobs:
       with:
         submodules: recursive
         lfs: false
-
+    
     - name: ccache
-      if:  ${{matrix.ccache}}
+      if: ${{ matrix.ccache }}
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-ci-linux-${{matrix.container}}  # name for the cache
+        key: super-ci-${{ matrix.container }}  # name for the cache
 
     - name: install dependencies (c++)
       if:  ${{matrix.dep}}
@@ -105,7 +105,7 @@ jobs:
       run: meson compile -C builddir/
 
     - name: test (cpp)
-      run: meson test -C builddir/ --print-errorlogs
+      run: meson test -C builddir/
 
     - name: install project
       run: meson install -C builddir/
@@ -127,11 +127,10 @@ jobs:
     name: Build and install with meson on windows
     strategy:
         matrix:
-          boost-version: [1.80.0]
-          boost-version_: [1_80_0]
+          boost-version: [1.79.0]
+          boost-version_: [1_79_0]
           boost-modules: [--with-iostreams]
           
-    
     env:
       CC: msvc-14.3
 
@@ -158,8 +157,9 @@ jobs:
     - name: sccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-ci-win-2 # name for the cache
+        key: super-ci-win       # name for the cache
         variant: sccache  # supports windows
+
 
     - name: Cache Boost
       id: cache-boost
@@ -182,10 +182,7 @@ jobs:
     # same as for linux
 
     - name: install dependencies (meson & python)
-      run: pip install meson ninja pytest
-
-    - name: install pip requirements
-      run: pip install -r requirements.txt
+      run: pip install meson ninja pytest numpy
 
     - name: configure meson
       run: |
@@ -200,6 +197,9 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
+    - name: install pip requirements
+      run: pip install -r requirements.txt
+
     - name: test (pytest)
       run: pytest -v
     
@@ -213,10 +213,8 @@ jobs:
     name: Build and install with meson on macOS
     runs-on: macos-latest
       
-    env:
-      CXX: /usr/local/opt/llvm/bin/clang++
-
-    steps:    
+    steps:
+    
     - uses: actions/setup-python@v3
       with:
         python-version: '3.x'
@@ -226,18 +224,18 @@ jobs:
       with:
         submodules: recursive
         lfs: false
-    
+
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-ci-macos  # name for the cache
+        key: super-ci-mac  # name for the cache
         
     # install clang 14
     - run: brew install llvm@14
         
     - run: brew install libomp boost
     
-    - run: pip install meson ninja pytest
+    - run: pip install meson ninja pytest numpy
     
     - name: configure meson
       run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto
@@ -262,3 +260,5 @@ jobs:
       with:
         name: ${{matrix.container}}_testlog
         path: builddir/meson-logs/testlog.txt
+
+      
