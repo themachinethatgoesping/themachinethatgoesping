@@ -6,8 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/themachinethatgoesping-{{ version }}.tar.gz
-  sha256: e66493c55e606c50872b170e61cd2ec2efb4e934f6406ac30fa44203b3ce0467
+  path: ../../
 
 build:
   noarch: python
@@ -16,7 +15,7 @@ build:
 
 requirements:
   build:
-    - meson>=0.62
+    - meson>=0.63
     - ninja
     - {{ compiler('cxx') }}
   host:
@@ -24,11 +23,12 @@ requirements:
     - python >=3.8
     - tomli
     - pyproject-metadata
+    - numpy
     - boost-cpp
   run:
-    - ipympl
-    - numba
     - python >=3.8
+    - numba
+    - numpy
     - tqdm
 
 test:
@@ -37,6 +37,9 @@ test:
 
   source_files:
     - subprojects/tools/python/tests
+    - subprojects/echosounders/python/tests
+    - subprojects/navigation/python/tests
+    - subprojects/gridding/python/tests
   commands:
     - pip check
     - pytest
