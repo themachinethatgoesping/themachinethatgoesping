@@ -106,7 +106,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: c:\Boost
-        key: windows-msvc-14.3-boost-${{matrix.boostversion}}-${{matrix.boostmodules}}
+        key: windows-msvc-14.32-boost-${{matrix.boostversion}}-${{matrix.boostmodules}}
   
     - name: Install dependencies on windows
       if: (runner.os == 'Windows') && (steps.cache-boost.outputs.cache-hit != 'true')

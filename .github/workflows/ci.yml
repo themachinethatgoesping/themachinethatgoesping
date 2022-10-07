@@ -132,7 +132,7 @@ jobs:
           boost-modules: [--with-iostreams]
           
     env:
-      CC: msvc-14.3
+      CC: msvc-14.32
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
@@ -166,7 +166,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: c:\Boost
-        key: windows-msvc-14.3-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+        key: windows-msvc-14.32-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
   
     - name: Install dependencies on windows
       if: steps.cache-boost.outputs.cache-hit != 'true'
