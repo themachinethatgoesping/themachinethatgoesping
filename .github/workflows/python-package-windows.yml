@@ -49,7 +49,7 @@ jobs:
         boost-version: [1.80.0]
         boost-version_: [1_80_0]
         boost-modules: [--with-iostreams]
-        compiler: [msvc-14.3]
+        compiler: [msvc-14.32]
 
     env:
       CC: ${{matrix.compiler}}
@@ -87,7 +87,7 @@ jobs:
       if: steps.cache-boost.outputs.cache-hit != 'true'
       run: |
           #vcpkg install boost
-          #choco install boost-msvc-14.3
+          #choco install boost-msvc-14.32
           Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
           7z x boost.7z
           cd .\boost_${{matrix.boost-version_}}\
