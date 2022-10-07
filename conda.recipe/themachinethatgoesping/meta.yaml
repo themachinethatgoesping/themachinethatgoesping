@@ -24,11 +24,11 @@ requirements:
     - tomli
     - pyproject-metadata
     - numpy
-    - boost-cpp
+    - boost
   run:
     - python >=3.8
     - numba
-    - numpy
+    - {{ pin_compatible('numpy') }}
     - tqdm
 
 test:

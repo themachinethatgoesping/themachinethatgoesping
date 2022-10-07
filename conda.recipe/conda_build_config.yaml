@@ -4,11 +4,11 @@
 
 python:
 #  - 3.8
-  - 3.9
-#  - 3.10
+#  - 3.9
+  - 3.10
 
-#cxx_compiler_version:  # [linux]
-#    - 10              # [linux]
+cxx_compiler_version:
+  - 11 # [linux]
 
 #cxx_compiler:
   #- gxx
