@@ -24,7 +24,7 @@ requirements:
     - tomli
     - pyproject-metadata
     - numpy
-    - boost
+    - boost-cpp
   run:
     - python >=3.8
     - numba
