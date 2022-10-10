@@ -94,7 +94,7 @@ class FileRaw():
         """
         Return object information as string
         """
-    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> SimradPingIterator: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -308,7 +308,7 @@ class FileRaw_mapped():
         """
         Return object information as string
         """
-    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> SimradPingIterator_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
