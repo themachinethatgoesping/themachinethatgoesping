@@ -52,7 +52,7 @@ class RAW3_DataComplexFloat32(i_RAW3_Data):
         return a copy using the c++ default copy constructor
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]: ...
-    def get_power(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -95,7 +95,7 @@ class RAW3_DataPower(i_RAW3_Data):
         """
         return a copy using the c++ default copy constructor
         """
-    def get_power(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -139,7 +139,7 @@ class RAW3_DataPowerAndAngle(i_RAW3_Data):
         return a copy using the c++ default copy constructor
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]: ...
-    def get_power(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
