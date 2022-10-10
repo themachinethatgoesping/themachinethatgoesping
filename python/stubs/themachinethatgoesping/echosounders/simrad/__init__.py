@@ -2,6 +2,7 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad
 import typing
+import themachinethatgoesping.navigation
 import themachinethatgoesping.tools.progressbars
 
 __all__ = [
@@ -16,6 +17,8 @@ __all__ = [
     "FileRawIterator_NME0",
     "FileRawIterator_NME0_mapped",
     "FileRawIterator_RAW3",
+    "FileRawIterator_RAW3_header",
+    "FileRawIterator_RAW3_header_mapped",
     "FileRawIterator_RAW3_mapped",
     "FileRawIterator_TAG0",
     "FileRawIterator_TAG0_mapped",
@@ -30,6 +33,12 @@ __all__ = [
     "NME0",
     "RAW3",
     "SimradDatagram_type_from_string",
+    "SimradPing",
+    "SimradPingIterator",
+    "SimradPingIterator_mapped",
+    "SimradPing_RawData",
+    "SimradPing_mapped",
+    "SimradPing_mapped_RawData",
     "TAG0",
     "XML0",
     "datagram_type_to_string",
@@ -76,6 +85,7 @@ class FileRaw():
     @typing.overload
     def append_files(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
     def datagram_identifier_info(self, datagram_identifier: t_SimradDatagramType) -> str: ...
+    def get_navigation_interpolators(self) -> typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]: ...
     @typing.overload
     def headers(self, datagram_type: t_SimradDatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     @typing.overload
@@ -84,6 +94,7 @@ class FileRaw():
         """
         Return object information as string
         """
+    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -95,11 +106,6 @@ class FileRaw():
     def size(self) -> int: ...
     def sort_packages_by_time(self) -> None: ...
     def static_datagram_identifier_to_string(self, datagram_identifier: t_SimradDatagramType) -> str: ...
-    @property
-    def get_navigation_interpolators(self) -> typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        """
-        :type: typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]
-        """
     @property
     def i_FIL1(self) -> FileRawIterator_FIL1:
         """
@@ -116,9 +122,19 @@ class FileRaw():
         :type: FileRawIterator_NME0
         """
     @property
+    def i_Pings(self) -> SimradPingIterator:
+        """
+        :type: SimradPingIterator
+        """
+    @property
     def i_RAW3(self) -> FileRawIterator_RAW3:
         """
         :type: FileRawIterator_RAW3
+        """
+    @property
+    def i_RAW3_header(self) -> FileRawIterator_RAW3_header:
+        """
+        :type: FileRawIterator_RAW3_header
         """
     @property
     def i_TAG0(self) -> FileRawIterator_TAG0:
@@ -181,6 +197,18 @@ class FileRawIterator_NME0_mapped():
     pass
 class FileRawIterator_RAW3():
     def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_RAW3: ...
+    def __getitem__(self, index: int) -> datagrams.RAW3: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class FileRawIterator_RAW3_header():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_RAW3_header: ...
+    def __getitem__(self, index: int) -> datagrams.RAW3: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class FileRawIterator_RAW3_header_mapped():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> FileRawIterator_RAW3_header_mapped: ...
     def __getitem__(self, index: int) -> datagrams.RAW3: ...
     def __len__(self) -> int: ...
     def size(self) -> int: ...
@@ -271,6 +299,7 @@ class FileRaw_mapped():
     @typing.overload
     def append_files(self, file_path: typing.List[str], show_progress: bool = True) -> None: ...
     def datagram_identifier_info(self, datagram_identifier: t_SimradDatagramType) -> str: ...
+    def get_navigation_interpolators(self) -> typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]: ...
     @typing.overload
     def headers(self, datagram_type: t_SimradDatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     @typing.overload
@@ -279,6 +308,7 @@ class FileRaw_mapped():
         """
         Return object information as string
         """
+    def pings(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -290,11 +320,6 @@ class FileRaw_mapped():
     def size(self) -> int: ...
     def sort_packages_by_time(self) -> None: ...
     def static_datagram_identifier_to_string(self, datagram_identifier: t_SimradDatagramType) -> str: ...
-    @property
-    def get_navigation_interpolators(self) -> typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        """
-        :type: typing.List[themachinethatgoesping.navigation.NavigationInterpolatorLatLon]
-        """
     @property
     def i_FIL1(self) -> FileRawIterator_FIL1_mapped:
         """
@@ -311,9 +336,19 @@ class FileRaw_mapped():
         :type: FileRawIterator_NME0_mapped
         """
     @property
+    def i_Pings(self) -> SimradPingIterator_mapped:
+        """
+        :type: SimradPingIterator_mapped
+        """
+    @property
     def i_RAW3(self) -> FileRawIterator_RAW3_mapped:
         """
         :type: FileRawIterator_RAW3_mapped
+        """
+    @property
+    def i_RAW3_header(self) -> FileRawIterator_RAW3_header_mapped:
+        """
+        :type: FileRawIterator_RAW3_header_mapped
         """
     @property
     def i_TAG0(self) -> FileRawIterator_TAG0_mapped:
@@ -324,6 +359,46 @@ class FileRaw_mapped():
     def i_XML0(self) -> FileRawIterator_XML0_mapped:
         """
         :type: FileRawIterator_XML0_mapped
+        """
+    pass
+class SimradPing():
+    def raw(self) -> SimradPing_RawData: ...
+    pass
+class SimradPingIterator():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> SimradPingIterator: ...
+    @staticmethod
+    def __getitem__(*args, **kwargs) -> typing.Any: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class SimradPingIterator_mapped():
+    def __call__(self, index_min: int = 0, index_max: int = 18446744073709551615, index_step: int = 1) -> SimradPingIterator_mapped: ...
+    @staticmethod
+    def __getitem__(*args, **kwargs) -> typing.Any: ...
+    def __len__(self) -> int: ...
+    def size(self) -> int: ...
+    pass
+class SimradPing_RawData():
+    @property
+    def ping_data(self) -> datagrams.RAW3:
+        """
+        < when implementing EK60, this must become a variant type (RAW3 or
+        RAW0)
+
+        :type: datagrams.RAW3
+        """
+    pass
+class SimradPing_mapped():
+    def raw(self) -> SimradPing_mapped_RawData: ...
+    pass
+class SimradPing_mapped_RawData():
+    @property
+    def ping_data(self) -> datagrams.RAW3:
+        """
+        < when implementing EK60, this must become a variant type (RAW3 or
+        RAW0)
+
+        :type: datagrams.RAW3
         """
     pass
 class t_SimradDatagramType():
