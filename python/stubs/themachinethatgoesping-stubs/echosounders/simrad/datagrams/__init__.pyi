@@ -492,6 +492,11 @@ class RAW3(SimradDatagram):
         < Channel identification (size is always 128)
         """
     @property
+    def channel_id_stripped(self) -> str:
+        """
+        :type: str
+        """
+    @property
     def count(self) -> int:
         """
         < Number of samples in the datagram
