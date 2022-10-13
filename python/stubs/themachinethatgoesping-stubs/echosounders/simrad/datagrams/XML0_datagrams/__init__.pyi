@@ -853,6 +853,14 @@ class XML_Configuration_Transceiver_Channel():
     def ChannelIdShort(self, arg0: str) -> None:
         pass
     @property
+    def ChannelNumber(self) -> int:
+        """
+        :type: int
+        """
+    @ChannelNumber.setter
+    def ChannelNumber(self, arg0: int) -> None:
+        pass
+    @property
     def HWChannelConfiguration(self) -> int:
         """
         :type: int
@@ -891,6 +899,14 @@ class XML_Configuration_Transceiver_Channel():
         """
     @PulseDurationFM.setter
     def PulseDurationFM(self, arg0: typing.List[float]) -> None:
+        pass
+    @property
+    def PulseLength(self) -> typing.List[float]:
+        """
+        :type: typing.List[float]
+        """
+    @PulseLength.setter
+    def PulseLength(self, arg0: typing.List[float]) -> None:
         pass
     @property
     def Transducer(self) -> XML_Configuration_Transceiver_Channel_Transducer:
@@ -1800,6 +1816,18 @@ class XML_Parameter_Channel():
         convert object to bytearray
         """
     @property
+    def BandWidth(self) -> float:
+        """
+        < TODO: when is this one used
+
+        :type: float
+        """
+    @BandWidth.setter
+    def BandWidth(self, arg0: float) -> None:
+        """
+        < TODO: when is this one used
+        """
+    @property
     def ChannelID(self) -> str:
         """
         :type: str
@@ -1911,6 +1939,18 @@ class XML_Parameter_Channel():
     @SoundVelocity.setter
     def SoundVelocity(self, arg0: float) -> None:
         pass
+    @property
+    def TransducerDepth(self) -> float:
+        """
+        < when is this one used? only old format?
+
+        :type: float
+        """
+    @TransducerDepth.setter
+    def TransducerDepth(self, arg0: float) -> None:
+        """
+        < when is this one used? only old format?
+        """
     @property
     def TransmitPower(self) -> float:
         """
