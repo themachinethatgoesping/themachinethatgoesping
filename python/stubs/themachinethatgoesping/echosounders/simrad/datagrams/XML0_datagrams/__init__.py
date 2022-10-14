@@ -909,6 +909,14 @@ class XML_Configuration_Transceiver_Channel():
     def PulseLength(self, arg0: typing.List[float]) -> None:
         pass
     @property
+    def SampleInterval(self) -> typing.List[float]:
+        """
+        :type: typing.List[float]
+        """
+    @SampleInterval.setter
+    def SampleInterval(self, arg0: typing.List[float]) -> None:
+        pass
+    @property
     def Transducer(self) -> XML_Configuration_Transceiver_Channel_Transducer:
         """
         :type: XML_Configuration_Transceiver_Channel_Transducer
@@ -1306,6 +1314,18 @@ class XML_Configuration_Transducer():
         convert object to bytearray
         """
     @property
+    def HeadingQuickCalibration(self) -> float:
+        """
+        < Seems to be used seldomly?
+
+        :type: float
+        """
+    @HeadingQuickCalibration.setter
+    def HeadingQuickCalibration(self, arg0: float) -> None:
+        """
+        < Seems to be used seldomly?
+        """
+    @property
     def TransducerAlphaX(self) -> float:
         """
         :type: float
@@ -1522,12 +1542,12 @@ class XML_Environment():
     def Temperature(self, arg0: float) -> None:
         pass
     @property
-    def Transducer(self) -> XML_Environment_Transducer:
+    def Transducers(self) -> typing.List[XML_Environment_Transducer]:
         """
-        :type: XML_Environment_Transducer
+        :type: typing.List[XML_Environment_Transducer]
         """
-    @Transducer.setter
-    def Transducer(self, arg0: XML_Environment_Transducer) -> None:
+    @Transducers.setter
+    def Transducers(self, arg0: typing.List[XML_Environment_Transducer]) -> None:
         pass
     @property
     def WaterLevelDraft(self) -> float:
@@ -1563,6 +1583,9 @@ class XML_Environment():
         pass
     pass
 class XML_Environment_Transducer():
+    """
+    XML base datagram
+    """
     def __copy__(self) -> XML_Environment_Transducer: ...
     def __deepcopy__(self, arg0: dict) -> XML_Environment_Transducer: ...
     def __getstate__(self) -> bytes: ...
