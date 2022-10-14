@@ -36,6 +36,8 @@ __all__ = [
     "RAW3",
     "SimradDatagram_type_from_string",
     "SimradFileData",
+    "SimradNavigationDataInterface",
+    "SimradNavigationDataInterface_mapped",
     "SimradPing",
     "SimradPingContainer",
     "SimradPingContainer_mapped",
@@ -98,6 +100,7 @@ class FileRaw():
         """
         Return object information as string
         """
+    def navigation(self) -> SimradNavigationDataInterface: ...
     @typing.overload
     def pings(self) -> SimradPingContainer: ...
     @typing.overload
@@ -318,6 +321,7 @@ class FileRaw_mapped():
         """
         Return object information as string
         """
+    def navigation(self) -> SimradNavigationDataInterface_mapped: ...
     @typing.overload
     def pings(self) -> SimradPingContainer_mapped: ...
     @typing.overload
@@ -383,6 +387,18 @@ class SimradFileData():
     def XML0_Environment(self) -> typing.List[datagrams.XML0_datagrams.XML_Environment]: ...
     def XML0_InitialParameter(self) -> typing.List[datagrams.XML0_datagrams.XML_InitialParameter]: ...
     def XML0_Other(self) -> typing.Dict[str, typing.List[datagrams.XML0]]: ...
+    pass
+class SimradNavigationDataInterface():
+    @typing.overload
+    def packages(self, datagram_type: t_SimradDatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def packages(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    pass
+class SimradNavigationDataInterface_mapped():
+    @typing.overload
+    def packages(self, datagram_type: t_SimradDatagramType, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
+    @typing.overload
+    def packages(self, index_min: int = 0, index_max: int = 9223372036854775807, index_step: int = 1) -> object: ...
     pass
 class SimradPing():
     def file_data(self) -> SimradFileData: ...
@@ -523,7 +539,11 @@ class t_SimradDatagramType():
     pass
 def SimradDatagram_type_from_string(datagram_type: str) -> int:
     pass
+@typing.overload
 def datagram_type_to_string(datagram_type: int) -> str:
+    pass
+@typing.overload
+def datagram_type_to_string(datagram_type: t_SimradDatagramType) -> str:
     pass
 def test_speed_decode_nmea(arg0: FileRaw_mapped) -> None:
     pass
