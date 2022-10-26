@@ -8,7 +8,7 @@ python:
   - 3.10
 
 cxx_compiler_version:
-  - 11 # [linux]
+  - 12 # [linux]
 
 #cxx_compiler:
   #- gxx
