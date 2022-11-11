@@ -34,10 +34,18 @@ __all__ = [
     "MRU0",
     "NME0",
     "RAW3",
+    "SimradAnnotationDataInterface",
+    "SimradAnnotationDataInterface_mapped",
+    "SimradConfigurationDataInterface",
+    "SimradConfigurationDataInterface_mapped",
     "SimradDatagram_type_from_string",
+    "SimradEnvironmentDataInterface",
+    "SimradEnvironmentDataInterface_mapped",
     "SimradFileData",
     "SimradNavigationDataInterface",
     "SimradNavigationDataInterface_mapped",
+    "SimradOtherDataInterface",
+    "SimradOtherDataInterface_mapped",
     "SimradPackageContainer",
     "SimradPackageContainer_mapped",
     "SimradPing",
@@ -91,7 +99,6 @@ class FileRaw():
         """
         Return object information as string
         """
-    def navigation(self) -> SimradNavigationDataInterface: ...
     @typing.overload
     def pings(self) -> SimradPingContainer: ...
     @typing.overload
@@ -103,9 +110,34 @@ class FileRaw():
         Print object information
         """
     @property
+    def annotation_interface(self) -> SimradAnnotationDataInterface:
+        """
+        :type: SimradAnnotationDataInterface
+        """
+    @property
+    def configuration_interface(self) -> SimradConfigurationDataInterface:
+        """
+        :type: SimradConfigurationDataInterface
+        """
+    @property
+    def environment_interface(self) -> SimradEnvironmentDataInterface:
+        """
+        :type: SimradEnvironmentDataInterface
+        """
+    @property
     def i_Pings(self) -> SimradPingContainer:
         """
         :type: SimradPingContainer
+        """
+    @property
+    def navigation_interface(self) -> SimradNavigationDataInterface:
+        """
+        :type: SimradNavigationDataInterface
+        """
+    @property
+    def otherdata_interface(self) -> SimradOtherDataInterface:
+        """
+        :type: SimradOtherDataInterface
         """
     @property
     def packages(self) -> SimradPackageContainer:
@@ -264,7 +296,6 @@ class FileRaw_mapped():
         """
         Return object information as string
         """
-    def navigation(self) -> SimradNavigationDataInterface_mapped: ...
     @typing.overload
     def pings(self) -> SimradPingContainer_mapped: ...
     @typing.overload
@@ -276,14 +307,81 @@ class FileRaw_mapped():
         Print object information
         """
     @property
+    def annotation_interface(self) -> SimradAnnotationDataInterface_mapped:
+        """
+        :type: SimradAnnotationDataInterface_mapped
+        """
+    @property
+    def configuration_interface(self) -> SimradConfigurationDataInterface_mapped:
+        """
+        :type: SimradConfigurationDataInterface_mapped
+        """
+    @property
+    def environment_interface(self) -> SimradEnvironmentDataInterface_mapped:
+        """
+        :type: SimradEnvironmentDataInterface_mapped
+        """
+    @property
     def i_Pings(self) -> SimradPingContainer_mapped:
         """
         :type: SimradPingContainer_mapped
         """
     @property
+    def navigation_interface(self) -> SimradNavigationDataInterface_mapped:
+        """
+        :type: SimradNavigationDataInterface_mapped
+        """
+    @property
+    def otherdata_interface(self) -> SimradOtherDataInterface_mapped:
+        """
+        :type: SimradOtherDataInterface_mapped
+        """
+    @property
     def packages(self) -> SimradPackageContainer_mapped:
         """
         :type: SimradPackageContainer_mapped
+        """
+    pass
+class SimradAnnotationDataInterface():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+        """
+        :type: typing.List[SimradPackageContainer]
+        """
+    pass
+class SimradAnnotationDataInterface_mapped():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+        """
+        :type: typing.List[SimradPackageContainer_mapped]
+        """
+    pass
+class SimradConfigurationDataInterface():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+        """
+        :type: typing.List[SimradPackageContainer]
+        """
+    pass
+class SimradConfigurationDataInterface_mapped():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+        """
+        :type: typing.List[SimradPackageContainer_mapped]
+        """
+    pass
+class SimradEnvironmentDataInterface():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+        """
+        :type: typing.List[SimradPackageContainer]
+        """
+    pass
+class SimradEnvironmentDataInterface_mapped():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+        """
+        :type: typing.List[SimradPackageContainer_mapped]
         """
     pass
 class SimradFileData():
@@ -295,16 +393,32 @@ class SimradFileData():
     def XML0_Other(self) -> typing.Dict[str, typing.List[datagrams.XML0]]: ...
     pass
 class SimradNavigationDataInterface():
-    @typing.overload
-    def packages(self, datagram_type: t_SimradDatagramIdentifier, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
-    @typing.overload
-    def packages(self, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+        """
+        :type: typing.List[SimradPackageContainer]
+        """
     pass
 class SimradNavigationDataInterface_mapped():
-    @typing.overload
-    def packages(self, datagram_type: t_SimradDatagramIdentifier, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
-    @typing.overload
-    def packages(self, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+        """
+        :type: typing.List[SimradPackageContainer_mapped]
+        """
+    pass
+class SimradOtherDataInterface():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+        """
+        :type: typing.List[SimradPackageContainer]
+        """
+    pass
+class SimradOtherDataInterface_mapped():
+    @property
+    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+        """
+        :type: typing.List[SimradPackageContainer_mapped]
+        """
     pass
 class SimradPackageContainer():
     @typing.overload
