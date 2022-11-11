@@ -104,14 +104,14 @@ class SimradDatagram():
         < Raw: Low part of Windows NT FILETIME (100ns ticks since 1601-01-01)
         """
     @property
-    def datagram_type(self) -> themachinethatgoesping.echosounders.simrad.t_SimradDatagramType:
+    def datagram_type(self) -> themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier:
         """
         Ek60 datagram type (XML0, FIL1, NME0, MRU0, RAW3, ...)
 
-        :type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramType
+        :type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier
         """
     @datagram_type.setter
-    def datagram_type(self, arg1: themachinethatgoesping.echosounders.simrad.t_SimradDatagramType) -> None:
+    def datagram_type(self, arg1: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> None:
         """
         Ek60 datagram type (XML0, FIL1, NME0, MRU0, RAW3, ...)
         """

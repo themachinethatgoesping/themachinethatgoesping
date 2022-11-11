@@ -4,7 +4,7 @@ import themachinethatgoesping.tools
 import typing
 
 __all__ = [
-    "classhelpers",
+    "classhelper",
     "helper",
     "ostream_redirect",
     "progressbars",
@@ -18,4 +18,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.9.3'
+__version__ = '0.10.3'
