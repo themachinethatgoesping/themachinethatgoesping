@@ -5,6 +5,7 @@ import typing
 import numpy
 import themachinethatgoesping.navigation
 import themachinethatgoesping.tools.progressbars
+import themachinethatgoesping.tools.pyhelper
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
@@ -46,8 +47,8 @@ __all__ = [
     "SimradNavigationDataInterface_mapped",
     "SimradOtherDataInterface",
     "SimradOtherDataInterface_mapped",
-    "SimradPackageContainer",
-    "SimradPackageContainer_mapped",
+    "SimradPackageDataInterface",
+    "SimradPackageDataInterface_mapped",
     "SimradPing",
     "SimradPingContainer",
     "SimradPingContainer_mapped",
@@ -140,9 +141,9 @@ class FileRaw():
         :type: SimradOtherDataInterface
         """
     @property
-    def packages(self) -> SimradPackageContainer:
+    def package_data_interface(self) -> SimradPackageDataInterface:
         """
-        :type: SimradPackageContainer
+        :type: SimradPackageDataInterface
         """
     pass
 class FileRawIterator_FIL1():
@@ -337,51 +338,51 @@ class FileRaw_mapped():
         :type: SimradOtherDataInterface_mapped
         """
     @property
-    def packages(self) -> SimradPackageContainer_mapped:
+    def package_data_interface(self) -> SimradPackageDataInterface_mapped:
         """
-        :type: SimradPackageContainer_mapped
+        :type: SimradPackageDataInterface_mapped
         """
     pass
 class SimradAnnotationDataInterface():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface]:
         """
-        :type: typing.List[SimradPackageContainer]
+        :type: typing.List[SimradPackageDataInterface]
         """
     pass
 class SimradAnnotationDataInterface_mapped():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface_mapped]:
         """
-        :type: typing.List[SimradPackageContainer_mapped]
+        :type: typing.List[SimradPackageDataInterface_mapped]
         """
     pass
 class SimradConfigurationDataInterface():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface]:
         """
-        :type: typing.List[SimradPackageContainer]
+        :type: typing.List[SimradPackageDataInterface]
         """
     pass
 class SimradConfigurationDataInterface_mapped():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface_mapped]:
         """
-        :type: typing.List[SimradPackageContainer_mapped]
+        :type: typing.List[SimradPackageDataInterface_mapped]
         """
     pass
 class SimradEnvironmentDataInterface():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface]:
         """
-        :type: typing.List[SimradPackageContainer]
+        :type: typing.List[SimradPackageDataInterface]
         """
     pass
 class SimradEnvironmentDataInterface_mapped():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface_mapped]:
         """
-        :type: typing.List[SimradPackageContainer_mapped]
+        :type: typing.List[SimradPackageDataInterface_mapped]
         """
     pass
 class SimradFileData():
@@ -394,33 +395,33 @@ class SimradFileData():
     pass
 class SimradNavigationDataInterface():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface]:
         """
-        :type: typing.List[SimradPackageContainer]
+        :type: typing.List[SimradPackageDataInterface]
         """
     pass
 class SimradNavigationDataInterface_mapped():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface_mapped]:
         """
-        :type: typing.List[SimradPackageContainer_mapped]
+        :type: typing.List[SimradPackageDataInterface_mapped]
         """
     pass
 class SimradOtherDataInterface():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface]:
         """
-        :type: typing.List[SimradPackageContainer]
+        :type: typing.List[SimradPackageDataInterface]
         """
     pass
 class SimradOtherDataInterface_mapped():
     @property
-    def packages_per_file(self) -> typing.List[SimradPackageContainer_mapped]:
+    def package_data_interface_per_file(self) -> typing.List[SimradPackageDataInterface_mapped]:
         """
-        :type: typing.List[SimradPackageContainer_mapped]
+        :type: typing.List[SimradPackageDataInterface_mapped]
         """
     pass
-class SimradPackageContainer():
+class SimradPackageDataInterface():
     @typing.overload
     def __call__(self, datagram_type: t_SimradDatagramIdentifier, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
     @typing.overload
@@ -485,7 +486,7 @@ class SimradPackageContainer():
         :type: FileRawIterator_XML0
         """
     pass
-class SimradPackageContainer_mapped():
+class SimradPackageDataInterface_mapped():
     @typing.overload
     def __call__(self, datagram_type: t_SimradDatagramIdentifier, start: int = 0, end: int = 9223372036854775807, step: int = 1) -> object: ...
     @typing.overload
@@ -567,8 +568,12 @@ class SimradPingContainer():
     def __call__(self, channel_id: str) -> SimradPingContainer: ...
     @typing.overload
     def __call__(self, start: int = 0, end: int = 18446744073709551615, step: int = 1) -> SimradPingContainer: ...
+    @typing.overload
     def __getitem__(self, index: int) -> SimradPing: ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradPingContainer: ...
     def __len__(self) -> int: ...
+    def __reversed__(self) -> SimradPingContainer: ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[SimradPingContainer]: ...
     def filter_by_channel_ids(self, channel_ids: typing.List[str]) -> SimradPingContainer: ...
     def find_channel_ids(self) -> typing.List[str]: ...
@@ -581,8 +586,12 @@ class SimradPingContainer_mapped():
     def __call__(self, channel_id: str) -> SimradPingContainer_mapped: ...
     @typing.overload
     def __call__(self, start: int = 0, end: int = 18446744073709551615, step: int = 1) -> SimradPingContainer_mapped: ...
+    @typing.overload
     def __getitem__(self, index: int) -> SimradPing_mapped: ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradPingContainer_mapped: ...
     def __len__(self) -> int: ...
+    def __reversed__(self) -> SimradPingContainer_mapped: ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[SimradPingContainer_mapped]: ...
     def filter_by_channel_ids(self, channel_ids: typing.List[str]) -> SimradPingContainer_mapped: ...
     def find_channel_ids(self) -> typing.List[str]: ...

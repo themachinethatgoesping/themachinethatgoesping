@@ -5,6 +5,7 @@ from themachinethatgoesping.tools import ostream_redirect
 import themachinethatgoesping.tools.classhelper
 import themachinethatgoesping.tools.helper
 import themachinethatgoesping.tools.progressbars
+import themachinethatgoesping.tools.pyhelper
 import themachinethatgoesping.tools.vectorinterpolators
 
 __all__ = [
@@ -12,6 +13,7 @@ __all__ = [
     "helper",
     "ostream_redirect",
     "progressbars",
+    "pyhelper",
     "timeconv",
     "timeconv_ext",
     "vectorinterpolators"

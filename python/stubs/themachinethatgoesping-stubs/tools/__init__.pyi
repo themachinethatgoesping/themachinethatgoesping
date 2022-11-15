@@ -8,6 +8,7 @@ __all__ = [
     "helper",
     "ostream_redirect",
     "progressbars",
+    "pyhelper",
     "timeconv",
     "vectorinterpolators"
 ]
@@ -18,4 +19,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.10.3'
+__version__ = '0.10.9'
