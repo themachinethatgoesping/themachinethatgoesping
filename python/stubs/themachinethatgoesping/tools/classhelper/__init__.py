@@ -14,7 +14,7 @@ class ObjectPrinter():
     Implement a __printer__ function as public class member this function
     should return a ObjectPrinter object. Register all, values,
     containers, objects that are to be printed. 2. Add the
-    __CLASShelper_DEFAULT_PRINTING_FUNCTIONS__ macro to the public
+    __CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__ macro to the public
     functions. This macro implements std::string info_string() and
     print(std::ostream) functions using the object printer 3. Add the
     __PYCLASS_DEFAULT_PRINTING__ to the python module defintion. This
@@ -55,6 +55,13 @@ class ObjectPrinter():
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ObjectPrinter: 
         """
         create T_CLASS object from bytearray
+        """
+    def get_name(self) -> str: 
+        """
+        Get the registered name of the object
+
+        Returns:
+            std::string
         """
     def info_string(self, float_precision: int = 2) -> str: 
         """

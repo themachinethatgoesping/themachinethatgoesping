@@ -1,7 +1,6 @@
 tools
 *****
 
-
 .. toctree::
    :caption: Module Usage
 
