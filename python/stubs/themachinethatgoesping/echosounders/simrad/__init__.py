@@ -223,6 +223,22 @@ class FileSimradRaw_mapped():
         """
     pass
 class SimradAnnotationDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
@@ -230,6 +246,22 @@ class SimradAnnotationDataInterface():
         """
     pass
 class SimradAnnotationDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
@@ -257,6 +289,39 @@ class SimradConfigurationDataCollection():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all attitude sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
+    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all depth sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all heading sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all position sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -290,6 +355,39 @@ class SimradConfigurationDataCollection_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all attitude sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
+    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all depth sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all heading sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all position sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -303,6 +401,22 @@ class SimradConfigurationDataCollection_mapped():
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
 class SimradConfigurationDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradConfigurationDataCollection]:
         """
@@ -310,6 +424,22 @@ class SimradConfigurationDataInterface():
         """
     pass
 class SimradConfigurationDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradConfigurationDataCollection_mapped]:
         """
@@ -377,6 +507,22 @@ class SimradDatagramInterface_mapped():
         """
     pass
 class SimradEnvironmentDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
@@ -384,6 +530,22 @@ class SimradEnvironmentDataInterface():
         """
     pass
 class SimradEnvironmentDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
@@ -391,6 +553,22 @@ class SimradEnvironmentDataInterface_mapped():
         """
     pass
 class SimradNavigationDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
@@ -398,6 +576,22 @@ class SimradNavigationDataInterface():
         """
     pass
 class SimradNavigationDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
@@ -405,6 +599,22 @@ class SimradNavigationDataInterface_mapped():
         """
     pass
 class SimradOtherDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
@@ -412,6 +622,22 @@ class SimradOtherDataInterface():
         """
     pass
 class SimradOtherDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     @property
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
