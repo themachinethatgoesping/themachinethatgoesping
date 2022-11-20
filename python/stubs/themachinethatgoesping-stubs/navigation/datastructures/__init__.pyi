@@ -37,6 +37,10 @@ class GeoLocation():
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -141,7 +145,6 @@ class GeoLocation():
         """
         < in m, positive downwards
         """
-    __hash__ = None
     pass
 class GeoLocationLatLon(GeoLocation):
     """
@@ -164,6 +167,10 @@ class GeoLocationLatLon(GeoLocation):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -260,7 +267,6 @@ class GeoLocationLatLon(GeoLocation):
         """
         < in °, positive eastwards
         """
-    __hash__ = None
     pass
 class GeoLocationLocal(GeoLocation):
     """
@@ -273,6 +279,10 @@ class GeoLocationLocal(GeoLocation):
     def __deepcopy__(self, arg0: dict) -> GeoLocationLocal: ...
     def __eq__(self, other: GeoLocationLocal) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -367,13 +377,16 @@ class GeoLocationLocal(GeoLocation):
         """
         < in m, positive northwards
         """
-    __hash__ = None
     pass
 class GeoLocationUTM(GeoLocationLocal, GeoLocation):
     def __copy__(self) -> GeoLocationUTM: ...
     def __deepcopy__(self, arg0: dict) -> GeoLocationUTM: ...
     def __eq__(self, other: GeoLocationUTM) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @typing.overload
     def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = -1) -> None: 
         """
@@ -476,7 +489,6 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         """
         < UTM/UPS zone number
         """
-    __hash__ = None
     pass
 class PositionalOffsets():
     """
@@ -487,6 +499,10 @@ class PositionalOffsets():
     def __deepcopy__(self, arg0: dict) -> PositionalOffsets: ...
     def __eq__(self, other: PositionalOffsets) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, name: str = '', x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: 
         """
         Construct a new PositionalOffsets object
@@ -626,7 +642,6 @@ class PositionalOffsets():
         """
         < in m, positive downwards
         """
-    __hash__ = None
     pass
 class SensorData():
     """
@@ -649,6 +664,10 @@ class SensorData():
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -768,7 +787,6 @@ class SensorData():
         """
         < from attitude source, in °, positive means port up
         """
-    __hash__ = None
     pass
 class SensorDataLatLon(SensorData):
     """
@@ -790,6 +808,10 @@ class SensorDataLatLon(SensorData):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -881,7 +903,6 @@ class SensorDataLatLon(SensorData):
     @longitude.setter
     def longitude(self, arg0: float) -> None:
         pass
-    __hash__ = None
     pass
 class SensorDataLocal(SensorData):
     """
@@ -904,6 +925,10 @@ class SensorDataLocal(SensorData):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @staticmethod
     @typing.overload
     def __init__(*args, **kwargs) -> typing.Any: 
@@ -1002,7 +1027,6 @@ class SensorDataLocal(SensorData):
         """
         < in m, positive northwards
         """
-    __hash__ = None
     pass
 class SensorDataUTM(SensorDataLocal, SensorData):
     def __copy__(self) -> SensorDataUTM: ...
@@ -1020,6 +1044,10 @@ class SensorDataUTM(SensorDataLocal, SensorData):
             false if not equal
         """
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: 
         """
@@ -1165,5 +1193,4 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         """
         < UTM/UPS zone number
         """
-    __hash__ = None
     pass

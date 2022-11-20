@@ -24,6 +24,10 @@ class NMEA_Base():
     def __deepcopy__(self, arg0: dict) -> NMEA_Base: ...
     def __eq__(self, other: NMEA_Base) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -65,7 +69,6 @@ class NMEA_Base():
         """
         convert object to bytearray
         """
-    __hash__ = None
     pass
 class NMEA_GGA(NMEA_Base):
     """
@@ -75,6 +78,10 @@ class NMEA_GGA(NMEA_Base):
     def __copy__(self) -> NMEA_GGA: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_GGA: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea gga object from an existing NMEA_Base datagram
@@ -135,6 +142,10 @@ class NMEA_GLL(NMEA_Base):
     def __copy__(self) -> NMEA_GLL: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_GLL: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea gll object from an existing NMEA_Base datagram
@@ -190,6 +201,10 @@ class NMEA_GST(NMEA_Base):
     def __copy__(self) -> NMEA_GST: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_GST: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea GST object from an existing NMEA_Base datagram
@@ -247,6 +262,10 @@ class NMEA_HDT(NMEA_Base):
     def __copy__(self) -> NMEA_HDT: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_HDT: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea hdt object from an existing NMEA_Base datagram
@@ -298,6 +317,10 @@ class NMEA_RMC(NMEA_Base):
     def __copy__(self) -> NMEA_RMC: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_RMC: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea rmc object from an existing NMEA_Base datagram
@@ -375,6 +398,10 @@ class NMEA_Unknown(NMEA_Base):
     def __copy__(self) -> NMEA_Unknown: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_Unknown: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea Unknown object from an existing NMEA_Base
@@ -425,6 +452,10 @@ class NMEA_VHW(NMEA_Base):
     def __copy__(self) -> NMEA_VHW: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_VHW: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea vhw object from an existing NMEA_Base datagram
@@ -478,6 +509,10 @@ class NMEA_VLW(NMEA_Base):
     def __copy__(self) -> NMEA_VLW: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_VLW: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea vlw object from an existing NMEA_Base datagram
@@ -531,6 +566,10 @@ class NMEA_VTG(NMEA_Base):
     def __copy__(self) -> NMEA_VTG: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_VTG: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea vtg object from an existing NMEA_Base datagram
@@ -586,6 +625,10 @@ class NMEA_ZDA(NMEA_Base):
     def __copy__(self) -> NMEA_ZDA: ...
     def __deepcopy__(self, arg0: dict) -> NMEA_ZDA: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None: 
         """
         Construct a new nmea zda object from an existing NMEA_Base datagram

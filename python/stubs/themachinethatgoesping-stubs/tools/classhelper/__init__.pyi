@@ -24,6 +24,10 @@ class ObjectPrinter():
     def __copy__(self) -> ObjectPrinter: ...
     def __deepcopy__(self, arg0: dict) -> ObjectPrinter: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, name: str, float_precission: int) -> None: 
         """
         Construct a new Object Printer object

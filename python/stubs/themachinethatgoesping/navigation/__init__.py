@@ -40,6 +40,10 @@ class NavigationInterpolatorLatLon():
     def __deepcopy__(self, arg0: dict) -> NavigationInterpolatorLatLon: ...
     def __eq__(self, other: NavigationInterpolatorLatLon) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new i navigationinterpolator interface
@@ -290,7 +294,6 @@ class NavigationInterpolatorLatLon():
         """
         < sensor configuration that stores the offsets
         """
-    __hash__ = None
     pass
 class NavigationInterpolatorLocal():
     """
@@ -317,6 +320,10 @@ class NavigationInterpolatorLocal():
     def __deepcopy__(self, arg0: dict) -> NavigationInterpolatorLocal: ...
     def __eq__(self, other: NavigationInterpolatorLocal) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new i navigationinterpolator interface
@@ -567,7 +574,6 @@ class NavigationInterpolatorLocal():
         """
         < sensor configuration that stores the offsets
         """
-    __hash__ = None
     pass
 class SensorConfiguration():
     """
@@ -580,6 +586,10 @@ class SensorConfiguration():
     def __deepcopy__(self, arg0: dict) -> SensorConfiguration: ...
     def __eq__(self, other: SensorConfiguration) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: 
         """
         Construct a new, empty Sensor Coordinate System object After
@@ -634,6 +644,23 @@ class SensorConfiguration():
         """
     @typing.overload
     def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
+    def add_targets(self, targets: typing.Dict[str, datastructures.PositionalOffsets]) -> None: 
+        """
+        add targets (e.g. MBES) with given target_ids and offsets to the
+        sensor position system
+
+        Parameter ``targets``:
+            map<target_id, target_offsets> of target offsets
+        """
+    def can_merge_targets_with(self, other: SensorConfiguration) -> bool: 
+        """
+        Check if the given SensorConfiguration includes a target (offsets)
+        that is incompatible with the given SensorConfiguration targets
+
+        Returns:
+            false if the same target_id is registered with different offsets,
+            true otherwise
+        """
     @typing.overload
     def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorData) -> datastructures.GeoLocationLocal: 
         """
@@ -756,6 +783,14 @@ class SensorConfiguration():
         Returns:
             std::vector<std::string_view>
         """
+    def get_targets(self) -> typing.Dict[str, datastructures.PositionalOffsets]: 
+        """
+        Get the map of stored target offsets objects
+
+        Returns:
+            const std::unordered_map<std::string,
+            datastructures::PositionalOffsets>&
+        """
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -763,6 +798,17 @@ class SensorConfiguration():
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def remove_target(self, target_id: str) -> None: 
+        """
+        Remove the target with the specified target_id
+
+        Parameter ``target_id``:
+            name of the registered target
+        """
+    def remove_targets(self) -> None: 
+        """
+        Remove all stored targets
         """
     @typing.overload
     def set_attitude_source(self, name: str, yaw: float, pitch: float, roll: float) -> None: 
@@ -850,11 +896,17 @@ class SensorConfiguration():
         """
         convert object to bytearray
         """
-    __hash__ = None
+    def without_targets(self) -> SensorConfiguration: 
+        """
+        Return the SensorConfiguration object without registered targets
+
+        Returns:
+            SensorConfiguration
+        """
     pass
 class ostream_redirect():
     def __enter__(self) -> None: ...
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.6.3'
+__version__ = '0.6.5'

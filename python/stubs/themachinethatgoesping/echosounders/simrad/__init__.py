@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad
 import typing
 import numpy
+import themachinethatgoesping.navigation
 import themachinethatgoesping.tools.progressbars
 import themachinethatgoesping.tools.pyhelper
 _Shape = typing.Tuple[int, ...]
@@ -16,6 +17,8 @@ __all__ = [
     "RAW3",
     "SimradAnnotationDataInterface",
     "SimradAnnotationDataInterface_mapped",
+    "SimradConfigurationDataCollection",
+    "SimradConfigurationDataCollection_mapped",
     "SimradConfigurationDataInterface",
     "SimradConfigurationDataInterface_mapped",
     "SimradDatagramInterface",
@@ -23,7 +26,6 @@ __all__ = [
     "SimradDatagram_type_from_string",
     "SimradEnvironmentDataInterface",
     "SimradEnvironmentDataInterface_mapped",
-    "SimradFileData",
     "SimradNavigationDataInterface",
     "SimradNavigationDataInterface_mapped",
     "SimradOtherDataInterface",
@@ -222,30 +224,96 @@ class FileSimradRaw_mapped():
     pass
 class SimradAnnotationDataInterface():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
         :type: typing.List[SimradDatagramInterface]
         """
     pass
 class SimradAnnotationDataInterface_mapped():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
         :type: typing.List[SimradDatagramInterface_mapped]
         """
     pass
+class SimradConfigurationDataCollection():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    pass
+class SimradConfigurationDataCollection_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    pass
 class SimradConfigurationDataInterface():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradConfigurationDataCollection]:
         """
-        :type: typing.List[SimradDatagramInterface]
+        :type: typing.List[SimradConfigurationDataCollection]
         """
     pass
 class SimradConfigurationDataInterface_mapped():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradConfigurationDataCollection_mapped]:
         """
-        :type: typing.List[SimradDatagramInterface_mapped]
+        :type: typing.List[SimradConfigurationDataCollection_mapped]
         """
     pass
 class SimradDatagramInterface():
@@ -310,56 +378,47 @@ class SimradDatagramInterface_mapped():
     pass
 class SimradEnvironmentDataInterface():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
         :type: typing.List[SimradDatagramInterface]
         """
     pass
 class SimradEnvironmentDataInterface_mapped():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
         :type: typing.List[SimradDatagramInterface_mapped]
         """
     pass
-class SimradFileData():
-    def FIL1(self) -> typing.List[datagrams.FIL1]: ...
-    def TAG0(self) -> typing.List[datagrams.TAG0]: ...
-    def XML0_Configuration(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
-    def XML0_Environment(self) -> typing.List[datagrams.XML0_datagrams.XML_Environment]: ...
-    def XML0_InitialParameter(self) -> typing.List[datagrams.XML0_datagrams.XML_InitialParameter]: ...
-    def XML0_Other(self) -> typing.Dict[str, typing.List[datagrams.XML0]]: ...
-    pass
 class SimradNavigationDataInterface():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
         :type: typing.List[SimradDatagramInterface]
         """
     pass
 class SimradNavigationDataInterface_mapped():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
         :type: typing.List[SimradDatagramInterface_mapped]
         """
     pass
 class SimradOtherDataInterface():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradDatagramInterface]:
         """
         :type: typing.List[SimradDatagramInterface]
         """
     pass
 class SimradOtherDataInterface_mapped():
     @property
-    def datagram_interface_per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
         """
         :type: typing.List[SimradDatagramInterface_mapped]
         """
     pass
 class SimradPing():
-    def file_data(self) -> SimradFileData: ...
     def get_angle(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: ...
     def get_number_of_samples(self) -> int: ...
@@ -474,11 +533,6 @@ class SimradPing_RawData():
     def load_data(self) -> None: ...
     def release_data(self) -> None: ...
     @property
-    def file_data(self) -> SimradFileData:
-        """
-        :type: SimradFileData
-        """
-    @property
     def ping_data(self) -> datagrams.RAW3:
         """
         < when implementing EK60, this must become a variant type (RAW3 or
@@ -488,7 +542,6 @@ class SimradPing_RawData():
         """
     pass
 class SimradPing_mapped():
-    def file_data(self) -> SimradFileData: ...
     def get_angle(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: ...
     def get_number_of_samples(self) -> int: ...
@@ -504,11 +557,6 @@ class SimradPing_mapped_RawData():
     def get_sample_data(self) -> typing.Union[datagrams.RAW3_datatypes.RAW3_DataSkipped, datagrams.RAW3_datatypes.RAW3_DataComplexFloat32, datagrams.RAW3_datatypes.RAW3_DataPowerAndAngle, datagrams.RAW3_datatypes.RAW3_DataPower, datagrams.RAW3_datatypes.RAW3_DataAngle]: ...
     def load_data(self) -> None: ...
     def release_data(self) -> None: ...
-    @property
-    def file_data(self) -> SimradFileData:
-        """
-        :type: SimradFileData
-        """
     @property
     def ping_data(self) -> datagrams.RAW3:
         """

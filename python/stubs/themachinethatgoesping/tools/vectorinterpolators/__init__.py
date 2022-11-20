@@ -46,6 +46,10 @@ class AkimaInterpolator():
     def __copy__(self) -> AkimaInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> AkimaInterpolator: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
@@ -191,6 +195,10 @@ class LinearInterpolator():
     def __copy__(self) -> LinearInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> LinearInterpolator: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
@@ -336,6 +344,10 @@ class NearestInterpolator():
     def __copy__(self) -> NearestInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> NearestInterpolator: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, X: typing.List[float] = [], Y: typing.List[float] = [], extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Interpolator object from a vector of pairs usage:
@@ -492,6 +504,10 @@ class SlerpInterpolator():
     def __copy__(self) -> SlerpInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> SlerpInterpolator: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self, X: typing.List[float] = [], Yaw: typing.List[float] = [], Pitch: typing.List[float] = [], Roll: typing.List[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None: 
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,

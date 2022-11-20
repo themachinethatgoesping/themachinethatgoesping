@@ -23,6 +23,10 @@ class SimradDatagram():
     def __deepcopy__(self, arg0: dict) -> SimradDatagram: ...
     def __eq__(self, other: SimradDatagram) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -143,7 +147,6 @@ class SimradDatagram():
         unix timestamp in seconds since epoch (1970-01-01). Data is converted
         to/from internal windows high/low timestamp representation.
         """
-    __hash__ = None
     pass
 class MRU0(SimradDatagram):
     """
@@ -156,6 +159,10 @@ class MRU0(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> MRU0: ...
     def __eq__(self, other: MRU0) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -283,7 +290,6 @@ class MRU0(SimradDatagram):
         """
         < Roll in degrees, positive port up
         """
-    __hash__ = None
     pass
 class NME0(SimradDatagram):
     """
@@ -294,6 +300,10 @@ class NME0(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> NME0: ...
     def __eq__(self, other: NME0) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -350,7 +360,6 @@ class NME0(SimradDatagram):
         """
         :type: str
         """
-    __hash__ = None
     pass
 class RAW3(SimradDatagram):
     """
@@ -362,6 +371,10 @@ class RAW3(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> RAW3: ...
     def __eq__(self, other: RAW3) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -568,7 +581,6 @@ class RAW3(SimradDatagram):
         Returns:
             RAW3_datatypes::RAW3_DataVariant
         """
-    __hash__ = None
     pass
 class FIL1(SimradDatagram):
     """
@@ -579,6 +591,10 @@ class FIL1(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> FIL1: ...
     def __eq__(self, other: FIL1) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -754,13 +770,16 @@ class FIL1(SimradDatagram):
         """
         < Filter stage number
         """
-    __hash__ = None
     pass
 class SimradUnknown(SimradDatagram):
     def __copy__(self) -> SimradUnknown: ...
     def __deepcopy__(self, arg0: dict) -> SimradUnknown: ...
     def __eq__(self, other: SimradUnknown) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -800,7 +819,6 @@ class SimradUnknown(SimradDatagram):
     @raw_content.setter
     def raw_content(self, arg1: bytes) -> None:
         pass
-    __hash__ = None
     pass
 class TAG0(SimradDatagram):
     """
@@ -813,6 +831,10 @@ class TAG0(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> TAG0: ...
     def __eq__(self, other: TAG0) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -868,7 +890,6 @@ class TAG0(SimradDatagram):
         """
         < _Text annotation string (e.g. interesting fish shoal in echogram)
         """
-    __hash__ = None
     pass
 class XML0(SimradDatagram):
     """
@@ -881,6 +902,10 @@ class XML0(SimradDatagram):
     def __deepcopy__(self, arg0: dict) -> XML0: ...
     def __eq__(self, other: XML0) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -926,5 +951,4 @@ class XML0(SimradDatagram):
     @_raw_xml_content.setter
     def _raw_xml_content(self, arg1: str) -> None:
         pass
-    __hash__ = None
     pass

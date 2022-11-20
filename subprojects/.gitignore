@@ -17,6 +17,7 @@ pugixml*
 xsimd*
 xtl*
 fast_float*
+xxhash_cpp**
 
 #inherited wrap files
 catch2.wrap

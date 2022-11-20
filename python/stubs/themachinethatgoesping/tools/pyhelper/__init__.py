@@ -16,6 +16,10 @@ class PyIndexerSlice():
     def __deepcopy__(self, arg0: dict) -> PyIndexerSlice: ...
     def __eq__(self, other: PyIndexerSlice) -> bool: ...
     def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     @typing.overload
     def __init__(self, slice: object) -> None: ...
     @typing.overload
@@ -88,5 +92,4 @@ class PyIndexerSlice():
         < the stop index of the slice (None if not sliced) < (stop is
         exclusive)
         """
-    __hash__ = None
     pass
