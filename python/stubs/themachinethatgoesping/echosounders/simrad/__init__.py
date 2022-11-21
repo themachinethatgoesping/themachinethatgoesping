@@ -327,6 +327,7 @@ class SimradConfigurationDataCollection():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -393,6 +394,7 @@ class SimradConfigurationDataCollection_mapped():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -409,10 +411,12 @@ class SimradConfigurationDataInterface():
         """
         Return object information as string
         """
+    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -432,10 +436,12 @@ class SimradConfigurationDataInterface_mapped():
         """
         Return object information as string
         """
+    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
