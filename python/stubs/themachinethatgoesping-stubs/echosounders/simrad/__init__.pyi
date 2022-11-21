@@ -17,19 +17,27 @@ __all__ = [
     "RAW3",
     "SimradAnnotationDataInterface",
     "SimradAnnotationDataInterface_mapped",
-    "SimradConfigurationDataCollection",
-    "SimradConfigurationDataCollection_mapped",
+    "SimradAnnotationPerFileDataInterface",
+    "SimradAnnotationPerFileDataInterface_mapped",
     "SimradConfigurationDataInterface",
     "SimradConfigurationDataInterface_mapped",
+    "SimradConfigurationPerFileDataInterface",
+    "SimradConfigurationPerFileDataInterface_mapped",
     "SimradDatagramInterface",
     "SimradDatagramInterface_mapped",
     "SimradDatagram_type_from_string",
     "SimradEnvironmentDataInterface",
     "SimradEnvironmentDataInterface_mapped",
+    "SimradEnvironmentPerFileDataInterface",
+    "SimradEnvironmentPerFileDataInterface_mapped",
     "SimradNavigationDataInterface",
     "SimradNavigationDataInterface_mapped",
+    "SimradNavigationPerFileDataInterface",
+    "SimradNavigationPerFileDataInterface_mapped",
     "SimradOtherDataInterface",
     "SimradOtherDataInterface_mapped",
+    "SimradOtherPerFileDataInterface",
+    "SimradOtherPerFileDataInterface_mapped",
     "SimradPing",
     "SimradPingContainer",
     "SimradPingContainer_mapped",
@@ -235,14 +243,15 @@ class SimradAnnotationDataInterface():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradAnnotationPerFileDataInterface]:
         """
-        :type: typing.List[SimradDatagramInterface]
+        :type: typing.List[SimradAnnotationPerFileDataInterface]
         """
     pass
 class SimradAnnotationDataInterface_mapped():
@@ -258,17 +267,18 @@ class SimradAnnotationDataInterface_mapped():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradAnnotationPerFileDataInterface_mapped]:
         """
-        :type: typing.List[SimradDatagramInterface_mapped]
+        :type: typing.List[SimradAnnotationPerFileDataInterface_mapped]
         """
     pass
-class SimradConfigurationDataCollection():
+class SimradAnnotationPerFileDataInterface():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -289,40 +299,22 @@ class SimradConfigurationDataCollection():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
-    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+    def get_file_nr(self) -> int: 
         """
-        Return all attitude sources registered in the configuration datagram
-        (sorted by priority)
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
 
         Returns:
-            std::vector<XML_Configuration_Sensor>
+            size_t
         """
-    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
-    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+    def get_file_path(self) -> str: 
         """
-        Return all depth sources registered in the configuration datagram
-        (sorted by priority)
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
 
         Returns:
-            std::vector<XML_Configuration_Sensor>
+            std::string
         """
-    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
-        """
-        Return all heading sources registered in the configuration datagram
-        (sorted by priority)
-
-        Returns:
-            std::vector<XML_Configuration_Sensor>
-        """
-    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
-        """
-        Return all position sources registered in the configuration datagram
-        (sorted by priority)
-
-        Returns:
-            std::vector<XML_Configuration_Sensor>
-        """
-    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -332,10 +324,8 @@ class SimradConfigurationDataCollection():
         """
         Print object information
         """
-    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
-    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
-class SimradConfigurationDataCollection_mapped():
+class SimradAnnotationPerFileDataInterface_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -356,40 +346,22 @@ class SimradConfigurationDataCollection_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
-    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+    def get_file_nr(self) -> int: 
         """
-        Return all attitude sources registered in the configuration datagram
-        (sorted by priority)
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
 
         Returns:
-            std::vector<XML_Configuration_Sensor>
+            size_t
         """
-    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
-    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+    def get_file_path(self) -> str: 
         """
-        Return all depth sources registered in the configuration datagram
-        (sorted by priority)
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
 
         Returns:
-            std::vector<XML_Configuration_Sensor>
+            std::string
         """
-    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
-        """
-        Return all heading sources registered in the configuration datagram
-        (sorted by priority)
-
-        Returns:
-            std::vector<XML_Configuration_Sensor>
-        """
-    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
-        """
-        Return all position sources registered in the configuration datagram
-        (sorted by priority)
-
-        Returns:
-            std::vector<XML_Configuration_Sensor>
-        """
-    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -399,8 +371,6 @@ class SimradConfigurationDataCollection_mapped():
         """
         Print object information
         """
-    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
-    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
 class SimradConfigurationDataInterface():
     def __repr__(self) -> str: 
@@ -422,9 +392,9 @@ class SimradConfigurationDataInterface():
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradConfigurationDataCollection]:
+    def per_file(self) -> typing.List[SimradConfigurationPerFileDataInterface]:
         """
-        :type: typing.List[SimradConfigurationDataCollection]
+        :type: typing.List[SimradConfigurationPerFileDataInterface]
         """
     pass
 class SimradConfigurationDataInterface_mapped():
@@ -447,10 +417,176 @@ class SimradConfigurationDataInterface_mapped():
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradConfigurationDataCollection_mapped]:
+    def per_file(self) -> typing.List[SimradConfigurationPerFileDataInterface_mapped]:
         """
-        :type: typing.List[SimradConfigurationDataCollection_mapped]
+        :type: typing.List[SimradConfigurationPerFileDataInterface_mapped]
         """
+    pass
+class SimradConfigurationPerFileDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all attitude sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
+    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all depth sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all heading sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all position sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    pass
+class SimradConfigurationPerFileDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_attitude_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all attitude sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_configuration_datagram(self) -> datagrams.XML0_datagrams.XML_Configuration: ...
+    def get_depth_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all depth sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def get_heading_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all heading sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_position_sources(self) -> typing.List[datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
+        """
+        Return all position sources registered in the configuration datagram
+        (sorted by priority)
+
+        Returns:
+            std::vector<XML_Configuration_Sensor>
+        """
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
 class SimradDatagramInterface():
     def __repr__(self) -> str: 
@@ -525,14 +661,15 @@ class SimradEnvironmentDataInterface():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradEnvironmentPerFileDataInterface]:
         """
-        :type: typing.List[SimradDatagramInterface]
+        :type: typing.List[SimradEnvironmentPerFileDataInterface]
         """
     pass
 class SimradEnvironmentDataInterface_mapped():
@@ -548,14 +685,109 @@ class SimradEnvironmentDataInterface_mapped():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradEnvironmentPerFileDataInterface_mapped]:
         """
-        :type: typing.List[SimradDatagramInterface_mapped]
+        :type: typing.List[SimradEnvironmentPerFileDataInterface_mapped]
+        """
+    pass
+class SimradEnvironmentPerFileDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradEnvironmentPerFileDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
         """
     pass
 class SimradNavigationDataInterface():
@@ -571,14 +803,15 @@ class SimradNavigationDataInterface():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradNavigationPerFileDataInterface]:
         """
-        :type: typing.List[SimradDatagramInterface]
+        :type: typing.List[SimradNavigationPerFileDataInterface]
         """
     pass
 class SimradNavigationDataInterface_mapped():
@@ -594,14 +827,109 @@ class SimradNavigationDataInterface_mapped():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradNavigationPerFileDataInterface_mapped]:
         """
-        :type: typing.List[SimradDatagramInterface_mapped]
+        :type: typing.List[SimradNavigationPerFileDataInterface_mapped]
+        """
+    pass
+class SimradNavigationPerFileDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradNavigationPerFileDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
         """
     pass
 class SimradOtherDataInterface():
@@ -617,14 +945,15 @@ class SimradOtherDataInterface():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface]:
+    def per_file(self) -> typing.List[SimradOtherPerFileDataInterface]:
         """
-        :type: typing.List[SimradDatagramInterface]
+        :type: typing.List[SimradOtherPerFileDataInterface]
         """
     pass
 class SimradOtherDataInterface_mapped():
@@ -640,14 +969,109 @@ class SimradOtherDataInterface_mapped():
         """
         Return object information as string
         """
+    def init_from_file(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @property
-    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]:
+    def per_file(self) -> typing.List[SimradOtherPerFileDataInterface_mapped]:
         """
-        :type: typing.List[SimradDatagramInterface_mapped]
+        :type: typing.List[SimradOtherPerFileDataInterface_mapped]
+        """
+    pass
+class SimradOtherPerFileDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradOtherPerFileDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
         """
     pass
 class SimradPing():
