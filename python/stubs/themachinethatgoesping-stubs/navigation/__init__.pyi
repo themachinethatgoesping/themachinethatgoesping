@@ -120,6 +120,13 @@ class NavigationInterpolatorLatLon():
         """
         create T_CLASS object from bytearray
         """
+    def get_sensor_configuration(self) -> SensorConfiguration: 
+        """
+        direct reference to the sensor configuration
+
+        Returns:
+            SensorConfiguration&
+        """
     def get_sensor_data(self, timestamp: float) -> datastructures.SensorDataLatLon: 
         """
         Interpolate the saved sensor data for a specified timestamp stamp
@@ -202,6 +209,7 @@ class NavigationInterpolatorLatLon():
         Parameter ``extrapolation_mode``:
             extrapolate, fail or nearest
         """
+    def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
@@ -281,18 +289,6 @@ class NavigationInterpolatorLatLon():
     def interpolator_longitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
         < interpolator for the longitude data
-        """
-    @property
-    def sensor_configuration(self) -> SensorConfiguration:
-        """
-        < sensor configuration that stores the offsets
-
-        :type: SensorConfiguration
-        """
-    @sensor_configuration.setter
-    def sensor_configuration(self, arg1: SensorConfiguration) -> None:
-        """
-        < sensor configuration that stores the offsets
         """
     pass
 class NavigationInterpolatorLocal():
@@ -400,6 +396,13 @@ class NavigationInterpolatorLocal():
         """
         create T_CLASS object from bytearray
         """
+    def get_sensor_configuration(self) -> SensorConfiguration: 
+        """
+        direct reference to the sensor configuration
+
+        Returns:
+            SensorConfiguration&
+        """
     def get_sensor_data(self, timestamp: float) -> datastructures.SensorDataLocal: 
         """
         Interpolate the saved sensor data for a specified timestamp stamp
@@ -482,6 +485,7 @@ class NavigationInterpolatorLocal():
         Parameter ``extrapolation_mode``:
             extrapolate, fail or nearest
         """
+    def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
@@ -561,18 +565,6 @@ class NavigationInterpolatorLocal():
     def interpolator_northing(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
         """
         < interpolator for the northing data
-        """
-    @property
-    def sensor_configuration(self) -> SensorConfiguration:
-        """
-        < sensor configuration that stores the offsets
-
-        :type: SensorConfiguration
-        """
-    @sensor_configuration.setter
-    def sensor_configuration(self, arg1: SensorConfiguration) -> None:
-        """
-        < sensor configuration that stores the offsets
         """
     pass
 class SensorConfiguration():
@@ -909,4 +901,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.6.6'
+__version__ = '0.7.0'
