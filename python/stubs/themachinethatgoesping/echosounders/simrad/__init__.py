@@ -244,14 +244,10 @@ class SimradAnnotationDataInterface():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradAnnotationPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradAnnotationPerFileDataInterface]:
-        """
-        :type: typing.List[SimradAnnotationPerFileDataInterface]
         """
     pass
 class SimradAnnotationDataInterface_mapped():
@@ -268,14 +264,10 @@ class SimradAnnotationDataInterface_mapped():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradAnnotationPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradAnnotationPerFileDataInterface_mapped]:
-        """
-        :type: typing.List[SimradAnnotationPerFileDataInterface_mapped]
         """
     pass
 class SimradAnnotationPerFileDataInterface():
@@ -387,14 +379,10 @@ class SimradConfigurationDataInterface():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradConfigurationPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradConfigurationPerFileDataInterface]:
-        """
-        :type: typing.List[SimradConfigurationPerFileDataInterface]
         """
     pass
 class SimradConfigurationDataInterface_mapped():
@@ -412,14 +400,10 @@ class SimradConfigurationDataInterface_mapped():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradConfigurationPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradConfigurationPerFileDataInterface_mapped]:
-        """
-        :type: typing.List[SimradConfigurationPerFileDataInterface_mapped]
         """
     pass
 class SimradConfigurationPerFileDataInterface():
@@ -662,14 +646,10 @@ class SimradEnvironmentDataInterface():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradEnvironmentPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradEnvironmentPerFileDataInterface]:
-        """
-        :type: typing.List[SimradEnvironmentPerFileDataInterface]
         """
     pass
 class SimradEnvironmentDataInterface_mapped():
@@ -686,14 +666,10 @@ class SimradEnvironmentDataInterface_mapped():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradEnvironmentPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradEnvironmentPerFileDataInterface_mapped]:
-        """
-        :type: typing.List[SimradEnvironmentPerFileDataInterface_mapped]
         """
     pass
 class SimradEnvironmentPerFileDataInterface():
@@ -799,19 +775,16 @@ class SimradNavigationDataInterface():
         """
         Return object information as string
         """
+    def get_configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradNavigationPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradNavigationPerFileDataInterface]:
-        """
-        :type: typing.List[SimradNavigationPerFileDataInterface]
         """
     pass
 class SimradNavigationDataInterface_mapped():
@@ -823,19 +796,16 @@ class SimradNavigationDataInterface_mapped():
         """
         Return object information as string
         """
+    def get_configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradNavigationPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradNavigationPerFileDataInterface_mapped]:
-        """
-        :type: typing.List[SimradNavigationPerFileDataInterface_mapped]
         """
     pass
 class SimradNavigationPerFileDataInterface():
@@ -859,6 +829,7 @@ class SimradNavigationPerFileDataInterface():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_configuration_data_interface(self) -> SimradConfigurationPerFileDataInterface: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -906,6 +877,7 @@ class SimradNavigationPerFileDataInterface_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def get_configuration_data_interface(self) -> SimradConfigurationPerFileDataInterface_mapped: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -946,14 +918,10 @@ class SimradOtherDataInterface():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradOtherPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradOtherPerFileDataInterface]:
-        """
-        :type: typing.List[SimradOtherPerFileDataInterface]
         """
     pass
 class SimradOtherDataInterface_mapped():
@@ -970,14 +938,10 @@ class SimradOtherDataInterface_mapped():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def per_file(self, file_nr: int) -> SimradOtherPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
-        """
-    @property
-    def per_file(self) -> typing.List[SimradOtherPerFileDataInterface_mapped]:
-        """
-        :type: typing.List[SimradOtherPerFileDataInterface_mapped]
         """
     pass
 class SimradOtherPerFileDataInterface():
