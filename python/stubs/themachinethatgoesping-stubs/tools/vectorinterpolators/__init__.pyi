@@ -45,6 +45,7 @@ class AkimaInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> AkimaInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> AkimaInterpolator: ...
+    def __eq__(self, other: AkimaInterpolator) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -80,6 +81,7 @@ class AkimaInterpolator():
     def append(self, x: float, y: float) -> None: 
         """
         append an x- and the corresponding y value to the interpolator data.
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``x``:
             value, must be > than all existing x values
@@ -98,6 +100,7 @@ class AkimaInterpolator():
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -137,6 +140,19 @@ class AkimaInterpolator():
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
+        """
+    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+        """
+        append x and y value lists to the interpolator data (vectorized call)
+        This call is much more expensive than extend as it requires copying
+        data and sorting. Exception: raises domain error, strong exception
+        guarantee
+
+        Parameter ``X``:
+            list of x values. (Does not have to be sorted. But must be unique)
+
+        Parameter ``Y``:
+            list of corresponding Y values. Must be same size as X
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -194,6 +210,7 @@ class LinearInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> LinearInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> LinearInterpolator: ...
+    def __eq__(self, other: LinearInterpolator) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -229,6 +246,7 @@ class LinearInterpolator():
     def append(self, x: float, y: float) -> None: 
         """
         append an x- and the corresponding y value to the interpolator data.
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``x``:
             value, must be > than all existing x values
@@ -247,6 +265,7 @@ class LinearInterpolator():
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -286,6 +305,19 @@ class LinearInterpolator():
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
+        """
+    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+        """
+        append x and y value lists to the interpolator data (vectorized call)
+        This call is much more expensive than extend as it requires copying
+        data and sorting. Exception: raises domain error, strong exception
+        guarantee
+
+        Parameter ``X``:
+            list of x values. (Does not have to be sorted. But must be unique)
+
+        Parameter ``Y``:
+            list of corresponding Y values. Must be same size as X
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -343,6 +375,7 @@ class NearestInterpolator():
     def __call__(self, targets_x: typing.List[float]) -> typing.List[float]: ...
     def __copy__(self) -> NearestInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> NearestInterpolator: ...
+    def __eq__(self, other: NearestInterpolator) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -378,6 +411,7 @@ class NearestInterpolator():
     def append(self, x: float, y: float) -> None: 
         """
         append an x- and the corresponding y value to the interpolator data.
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``x``:
             value, must be > than all existing x values
@@ -396,6 +430,7 @@ class NearestInterpolator():
     def extend(self, X: typing.List[float], Y: typing.List[float]) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
+        Exception: raises domain error, strong exception guarantee
 
         Parameter ``X``:
             list of x values. Must be sorted in ascending order. All x values
@@ -435,6 +470,19 @@ class NearestInterpolator():
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
+        """
+    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+        """
+        append x and y value lists to the interpolator data (vectorized call)
+        This call is much more expensive than extend as it requires copying
+        data and sorting. Exception: raises domain error, strong exception
+        guarantee
+
+        Parameter ``X``:
+            list of x values. (Does not have to be sorted. But must be unique)
+
+        Parameter ``Y``:
+            list of corresponding Y values. Must be same size as X
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -503,6 +551,7 @@ class SlerpInterpolator():
     def __call__(self, targets_x: typing.List[float], output_in_degrees: bool = True) -> typing.List[typing.List[float[3]]]: ...
     def __copy__(self) -> SlerpInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> SlerpInterpolator: ...
+    def __eq__(self, other: SlerpInterpolator) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -658,6 +707,43 @@ class SlerpInterpolator():
         """
         Return object information as string
         """
+    @typing.overload
+    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
+        """
+        append data with lists of x, yaw, pitch, roll data (vectorized call)
+
+        Parameter ``X``:
+            vector; must be unique
+
+        Parameter ``yaw``:
+            vector with yaw data (rotation around z axis). Must be same size
+            as X!
+
+        Parameter ``pitch``:
+            vector with pitch data (rotation around y axis). Must be same size
+            as X!
+
+        Parameter ``roll``:
+            vector with roll data (rotation around x axis). Must be same size
+            as X!
+
+        Parameter ``input_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+
+        append data with list of x, yaw, pitch, roll data (vectorized call)
+
+        Parameter ``X``:
+            vector; must be unique
+
+        Parameter ``ypr``:
+            vector with yaw, pitch and roll data points. Must be same size as
+            X!
+
+        Parameter ``input_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        """
+    @typing.overload
+    def insert(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

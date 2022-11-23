@@ -142,6 +142,13 @@ class NavigationInterpolatorLatLon():
         """
         Return object information as string
         """
+    def merge(self, other: NavigationInterpolatorLatLon) -> None: 
+        """
+        Merge data from another interpolator. Only works of the
+        SensorConfiguration is compatible.
+
+        Parameter ``other``:
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -227,15 +234,15 @@ class NavigationInterpolatorLatLon():
         < interpolator that stores attitude data (pitch and roll)
         """
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
 
-        :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
+        :type: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator) -> None:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
@@ -418,6 +425,13 @@ class NavigationInterpolatorLocal():
         """
         Return object information as string
         """
+    def merge(self, other: NavigationInterpolatorLocal) -> None: 
+        """
+        Merge data from another interpolator. Only works of the
+        SensorConfiguration is compatible.
+
+        Parameter ``other``:
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -503,15 +517,15 @@ class NavigationInterpolatorLocal():
         < interpolator that stores attitude data (pitch and roll)
         """
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
 
-        :type: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
+        :type: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator) -> None:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
@@ -576,7 +590,19 @@ class SensorConfiguration():
     """
     def __copy__(self) -> SensorConfiguration: ...
     def __deepcopy__(self, arg0: dict) -> SensorConfiguration: ...
-    def __eq__(self, other: SensorConfiguration) -> bool: ...
+    def __eq__(self, other: SensorConfiguration) -> bool: 
+        """
+        Compare two SensorConfiguration objects for equality
+
+        Parameter ``other``:
+            SensorConfiguration object to compare to
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -901,4 +927,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.7.0'
+__version__ = '0.8.1'

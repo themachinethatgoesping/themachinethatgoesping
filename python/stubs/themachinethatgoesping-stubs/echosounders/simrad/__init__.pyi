@@ -776,6 +776,7 @@ class SimradNavigationDataInterface():
         Return object information as string
         """
     def get_configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
+    def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -786,6 +787,7 @@ class SimradNavigationDataInterface():
         """
         Print object information
         """
+    def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     pass
 class SimradNavigationDataInterface_mapped():
     def __repr__(self) -> str: 
@@ -797,6 +799,7 @@ class SimradNavigationDataInterface_mapped():
         Return object information as string
         """
     def get_configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
+    def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -807,6 +810,7 @@ class SimradNavigationDataInterface_mapped():
         """
         Print object information
         """
+    def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     pass
 class SimradNavigationPerFileDataInterface():
     def __repr__(self) -> str: 
@@ -846,6 +850,7 @@ class SimradNavigationPerFileDataInterface():
         Returns:
             std::string
         """
+    def get_min_gga_quality(self) -> int: ...
     def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -857,6 +862,7 @@ class SimradNavigationPerFileDataInterface():
         Print object information
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
+    def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_navigation_data(self, navigation_interpolator_latlon: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None: ...
     def update_configuration(self) -> None: ...
     pass
@@ -898,6 +904,7 @@ class SimradNavigationPerFileDataInterface_mapped():
         Returns:
             std::string
         """
+    def get_min_gga_quality(self) -> int: ...
     def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -909,6 +916,7 @@ class SimradNavigationPerFileDataInterface_mapped():
         Print object information
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
+    def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_navigation_data(self, navigation_interpolator_latlon: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None: ...
     def update_configuration(self) -> None: ...
     pass
