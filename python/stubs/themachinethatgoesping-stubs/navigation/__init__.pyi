@@ -608,7 +608,7 @@ class SensorConfiguration():
         """
         hash function implemented using slow_hash
         """
-    def __init__(self) -> None: 
+    def __init__(self, default_sensor_name: str = 'zero-referenced') -> None: 
         """
         Construct a new, empty Sensor Coordinate System object After
         construction: add sensor offsets and targets (offsets) Then compute
@@ -927,4 +927,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.8.1'
+__version__ = '0.8.3'

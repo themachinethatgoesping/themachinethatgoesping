@@ -41,6 +41,10 @@ __all__ = [
     "SimradPing",
     "SimradPingContainer",
     "SimradPingContainer_mapped",
+    "SimradPingDataInterface",
+    "SimradPingDataInterface_mapped",
+    "SimradPingPerFileDataInterface",
+    "SimradPingPerFileDataInterface_mapped",
     "SimradPing_RawData",
     "SimradPing_mapped",
     "SimradPing_mapped_RawData",
@@ -153,6 +157,11 @@ class FileSimradRaw():
         """
         :type: SimradOtherDataInterface
         """
+    @property
+    def ping_interface(self) -> SimradPingDataInterface:
+        """
+        :type: SimradPingDataInterface
+        """
     pass
 class FileSimradRaw_mapped():
     @typing.overload
@@ -228,6 +237,11 @@ class FileSimradRaw_mapped():
     def otherdata_interface(self) -> SimradOtherDataInterface_mapped:
         """
         :type: SimradOtherDataInterface_mapped
+        """
+    @property
+    def ping_interface(self) -> SimradPingDataInterface_mapped:
+        """
+        :type: SimradPingDataInterface_mapped
         """
     pass
 class SimradAnnotationDataInterface():
@@ -653,6 +667,7 @@ class SimradEnvironmentDataInterface():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -661,6 +676,7 @@ class SimradEnvironmentDataInterface():
     def init_from_file(self, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     @typing.overload
     def init_from_file(self, show_progress: bool = True) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     def per_file(self, file_nr: int) -> SimradEnvironmentPerFileDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -676,6 +692,7 @@ class SimradEnvironmentDataInterface_mapped():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -684,6 +701,7 @@ class SimradEnvironmentDataInterface_mapped():
     def init_from_file(self, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     @typing.overload
     def init_from_file(self, show_progress: bool = True) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     def per_file(self, file_nr: int) -> SimradEnvironmentPerFileDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -699,6 +717,7 @@ class SimradEnvironmentPerFileDataInterface():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
     @typing.overload
@@ -732,6 +751,7 @@ class SimradEnvironmentPerFileDataInterface():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -746,6 +766,7 @@ class SimradEnvironmentPerFileDataInterface_mapped():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
     @typing.overload
@@ -779,6 +800,7 @@ class SimradEnvironmentPerFileDataInterface_mapped():
         Return object information as string
         """
     def init_from_file(self) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -793,7 +815,7 @@ class SimradNavigationDataInterface():
         """
         Return object information as string
         """
-    def get_configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
     def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -820,7 +842,7 @@ class SimradNavigationDataInterface_mapped():
         """
         Return object information as string
         """
-    def get_configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
     def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -847,6 +869,7 @@ class SimradNavigationPerFileDataInterface():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
     @typing.overload
@@ -859,7 +882,6 @@ class SimradNavigationPerFileDataInterface():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
-    def get_configuration_data_interface(self) -> SimradConfigurationPerFileDataInterface: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -900,6 +922,7 @@ class SimradNavigationPerFileDataInterface_mapped():
         """
         Return object information as string
         """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
     @typing.overload
@@ -912,7 +935,6 @@ class SimradNavigationPerFileDataInterface_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
-    def get_configuration_data_interface(self) -> SimradConfigurationPerFileDataInterface_mapped: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1192,6 +1214,158 @@ class SimradPingContainer_mapped():
         Print object information
         """
     def size(self) -> int: ...
+    pass
+class SimradPingDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
+    def environment_data_interface(self) -> SimradEnvironmentDataInterface: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def init_from_file(self, show_progress: bool = True) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
+    def per_file(self, file_nr: int) -> SimradPingPerFileDataInterface: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradPingDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
+    def environment_data_interface(self) -> SimradEnvironmentDataInterface_mapped: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def init_from_file(self, show_progress: bool = True) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
+    def per_file(self, file_nr: int) -> SimradPingPerFileDataInterface_mapped: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradPingPerFileDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface: ...
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def environment_data_interface(self) -> SimradEnvironmentDataInterface: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class SimradPingPerFileDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped: ...
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: t_SimradDatagramIdentifier) -> object: ...
+    def environment_data_interface(self) -> SimradEnvironmentDataInterface_mapped: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self) -> None: ...
+    def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     pass
 class SimradPing_RawData():
     def get_parameter(self) -> datagrams.XML0_datagrams.XML_Parameter_Channel: ...
