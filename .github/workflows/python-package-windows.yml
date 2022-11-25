@@ -107,7 +107,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
-        pip install meson ninja pytest twine wheel pyproject-metadata oldest-supported-numpy
+        pip install meson meson-python ninja pytest twine wheel pyproject-metadata oldest-supported-numpy
          
     - name: build and install wheel
       run: |

@@ -4,14 +4,14 @@
 
 [build-system]
 requires = [
-    'meson-python >= 0.8',
-    'meson >= 0.63',
+    'meson-python >= 0.11',
+    'meson >= 0.64',
     'pyproject-metadata',
     'ninja',
     'oldest-supported-numpy'
 ]
 build-backend = 'mesonpy'
-backend-path = ['./subprojects/meson-python']
+#backend-path = ['./subprojects/meson-python']
 
 
 [project]
@@ -87,3 +87,9 @@ testpaths = [
     "subprojects/navigation/python/tests/",
     "subprojects/echosounders/python/tests/",
 ]
+
+[tool.meson-python.args]
+dist = []
+setup = []
+compile = []
+install = ['--tags', 'runtime,python-runtime']

@@ -15,7 +15,7 @@ build:
 
 requirements:
   build:
-    - meson>=0.63
+    - meson>=0.64
     - ninja
     - {{ compiler('cxx') }}
   host:
