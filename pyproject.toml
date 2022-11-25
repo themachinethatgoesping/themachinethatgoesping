@@ -11,7 +11,7 @@ requires = [
     'oldest-supported-numpy'
 ]
 build-backend = 'mesonpy'
-#backend-path = ['./subprojects/meson-python']
+backend-path = ['./subprojects/meson-python']
 
 
 [project]
@@ -90,6 +90,7 @@ testpaths = [
 
 [tool.meson-python.args]
 dist = []
-setup = []
+setup = ["--default-library=static"]
 compile = []
-install = ['--tags', 'runtime,python-runtime']
+install = []
+install-tags = ['runtime','python-runtime']
