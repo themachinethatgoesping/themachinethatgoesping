@@ -48,9 +48,9 @@ jobs:
         include:
           - { os: ubuntu-latest, arch: auto64 }
           #these run very slow at the moment maybe activate for releases
-          #- { os: ubuntu-latest, arch: aarch64 }
-          #- { os: ubuntu-latest, arch: ppc64le }
-          #- { os: ubuntu-latest, arch: s390x }
+          - { os: ubuntu-latest, arch: aarch64 }
+          - { os: ubuntu-latest, arch: ppc64le }
+          - { os: ubuntu-latest, arch: s390x }
           #- { os: macos-latest,  arch: auto64 }
           - { os: macos-latest,  arch: universal2 }
 
