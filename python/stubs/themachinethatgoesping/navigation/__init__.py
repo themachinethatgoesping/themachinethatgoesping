@@ -48,6 +48,9 @@ class NavigationInterpolatorLatLon():
         """
         Construct a new i navigationinterpolator interface
 
+        Parameter ``sensor_configuration``:
+            sensor configuration used for this navigation interpolator
+
         Parameter ``extrapolation_mode``:
             extrapolate, fail or nearest
         """
@@ -927,4 +930,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.8.3'
+__version__ = '0.8.4'
