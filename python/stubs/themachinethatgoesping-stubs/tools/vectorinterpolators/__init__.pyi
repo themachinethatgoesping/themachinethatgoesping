@@ -141,7 +141,7 @@ class AkimaInterpolator():
         """
         Return object information as string
         """
-    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+    def insert(self, X: typing.List[float], Y: typing.List[float], bool: bool = False) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -153,6 +153,10 @@ class AkimaInterpolator():
 
         Parameter ``Y``:
             list of corresponding Y values. Must be same size as X
+
+        Parameter ``is_sorted``:
+            this indicates that X is already sorted in ascending order.
+            (default: false)
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -306,7 +310,7 @@ class LinearInterpolator():
         """
         Return object information as string
         """
-    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+    def insert(self, X: typing.List[float], Y: typing.List[float], bool: bool = False) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -318,6 +322,10 @@ class LinearInterpolator():
 
         Parameter ``Y``:
             list of corresponding Y values. Must be same size as X
+
+        Parameter ``is_sorted``:
+            this indicates that X is already sorted in ascending order.
+            (default: false)
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -471,7 +479,7 @@ class NearestInterpolator():
         """
         Return object information as string
         """
-    def insert(self, X: typing.List[float], Y: typing.List[float]) -> None: 
+    def insert(self, X: typing.List[float], Y: typing.List[float], bool: bool = False) -> None: 
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -483,6 +491,10 @@ class NearestInterpolator():
 
         Parameter ``Y``:
             list of corresponding Y values. Must be same size as X
+
+        Parameter ``is_sorted``:
+            this indicates that X is already sorted in ascending order.
+            (default: false)
         """
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -708,7 +720,7 @@ class SlerpInterpolator():
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
+    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True, bool: bool = False) -> None: 
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -743,7 +755,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: ...
+    def insert(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True, bool: bool = False) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

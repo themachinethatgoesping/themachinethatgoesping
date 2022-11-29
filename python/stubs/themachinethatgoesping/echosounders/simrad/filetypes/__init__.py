@@ -5,6 +5,7 @@ import typing
 import numpy
 import themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
+import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
@@ -25,6 +26,12 @@ class SimradPing():
     def load_data(self) -> None: ...
     def raw(self) -> SimradPing_RawData: ...
     def release_data(self) -> None: ...
+    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
+    @property
+    def geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+        """
+        :type: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon
+        """
     pass
 class SimradPing_RawData():
     def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
@@ -50,6 +57,12 @@ class SimradPing_mapped():
     def load_data(self) -> None: ...
     def raw(self) -> SimradPing_mapped_RawData: ...
     def release_data(self) -> None: ...
+    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
+    @property
+    def geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+        """
+        :type: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon
+        """
     pass
 class SimradPing_mapped_RawData():
     def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
