@@ -31,6 +31,7 @@ class SimradPing():
         """
         return a copy using the c++ default copy constructor
         """
+    def feature_string(self, has_features: bool = True) -> str: ...
     def get_angle(self) -> numpy.ndarray[numpy.float32]: 
         """
         Returns the single target detection launch angle for each sample.
@@ -124,6 +125,8 @@ class SimradPing():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def has_angle(self) -> bool: ...
+    def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -153,15 +156,39 @@ class SimradPing():
         :type: str
         """
     @property
-    def raw(self) -> SimradPing_RawData:
+    def raw_data(self) -> SimradPing_RawData:
         """
         :type: SimradPing_RawData
         """
     pass
 class SimradPing_RawData():
+    def __copy__(self) -> SimradPing_RawData: ...
+    def __deepcopy__(self, arg0: dict) -> SimradPing_RawData: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradPing_RawData: 
+        """
+        return a copy using the c++ default copy constructor
+        """
     def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
     def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPower, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataAngle]: ...
+    def has_angle(self) -> bool: ...
+    def has_power(self) -> bool: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
     def load_data(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     def release_data(self) -> None: ...
     @property
     def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
@@ -187,6 +214,7 @@ class SimradPing_mapped():
         """
         return a copy using the c++ default copy constructor
         """
+    def feature_string(self, has_features: bool = True) -> str: ...
     def get_angle(self) -> numpy.ndarray[numpy.float32]: 
         """
         Returns the single target detection launch angle for each sample.
@@ -280,6 +308,8 @@ class SimradPing_mapped():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def has_angle(self) -> bool: ...
+    def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -309,15 +339,39 @@ class SimradPing_mapped():
         :type: str
         """
     @property
-    def raw(self) -> SimradPing_mapped_RawData:
+    def raw_data(self) -> SimradPing_mapped_RawData:
         """
         :type: SimradPing_mapped_RawData
         """
     pass
 class SimradPing_mapped_RawData():
+    def __copy__(self) -> SimradPing_mapped_RawData: ...
+    def __deepcopy__(self, arg0: dict) -> SimradPing_mapped_RawData: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradPing_mapped_RawData: 
+        """
+        return a copy using the c++ default copy constructor
+        """
     def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
     def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPower, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataAngle]: ...
+    def has_angle(self) -> bool: ...
+    def has_power(self) -> bool: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
     def load_data(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
     def release_data(self) -> None: ...
     @property
     def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
