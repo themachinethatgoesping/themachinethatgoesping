@@ -1,5 +1,7 @@
 numba
 tqdm
 numpy
+pybind11-stubgen
+pytest
 #ipympl
 #matplotlib, # implicit, already in ipympl
