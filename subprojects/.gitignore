@@ -6,7 +6,7 @@ packagecache/*
 date*/*
 eigen*/*
 pybind11*/*
-Catch2*/*
+Catch2**
 fmt*/*
 magic_enum*/*
 bitsery*
