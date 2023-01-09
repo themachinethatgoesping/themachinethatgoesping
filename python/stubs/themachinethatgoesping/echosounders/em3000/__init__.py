@@ -7,7 +7,8 @@ import themachinethatgoesping.tools.progressbars
 __all__ = [
     "FileEM3000",
     "FileEM3000_mapped",
-    "datagrams"
+    "datagrams",
+    "filedataInterfaces"
 ]
 
 
@@ -41,9 +42,9 @@ class FileEM3000():
         Print object information
         """
     @property
-    def datagram_interface(self) -> themachinethatgoesping::echosounders::em3000::filedatainterfaces::EM3000DatagramInterface<std::basic_ifstream<char, std::char_traits<char> > >:
+    def datagram_interface(self) -> filedataInterfaces.EM3000DatagramInterface:
         """
-        :type: themachinethatgoesping::echosounders::em3000::filedatainterfaces::EM3000DatagramInterface<std::basic_ifstream<char, std::char_traits<char> > >
+        :type: filedataInterfaces.EM3000DatagramInterface
         """
     pass
 class FileEM3000_mapped():
@@ -76,8 +77,8 @@ class FileEM3000_mapped():
         Print object information
         """
     @property
-    def datagram_interface(self) -> themachinethatgoesping::echosounders::em3000::filedatainterfaces::EM3000DatagramInterface<themachinethatgoesping::echosounders::filetemplates::datastreams::MappedFileStream>:
+    def datagram_interface(self) -> filedataInterfaces.EM3000DatagramInterface_mapped:
         """
-        :type: themachinethatgoesping::echosounders::em3000::filedatainterfaces::EM3000DatagramInterface<themachinethatgoesping::echosounders::filetemplates::datastreams::MappedFileStream>
+        :type: filedataInterfaces.EM3000DatagramInterface_mapped
         """
     pass
