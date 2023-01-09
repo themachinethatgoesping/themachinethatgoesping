@@ -8,7 +8,8 @@ __all__ = [
     "datestring_to_unixtime",
     "datetime",
     "datetime_to_datestring",
-    "unixtime_to_datestring"
+    "unixtime_to_datestring",
+    "year_month_day_to_unixtime"
 ]
 
 

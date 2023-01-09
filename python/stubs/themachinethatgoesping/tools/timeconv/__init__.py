@@ -5,7 +5,8 @@ import typing
 
 __all__ = [
     "datestring_to_unixtime",
-    "unixtime_to_datestring"
+    "unixtime_to_datestring",
+    "year_month_day_to_unixtime"
 ]
 
 
@@ -46,4 +47,19 @@ def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, fo
 
     Returns:
         DateString that fits to the specified format
+    """
+def year_month_day_to_unixtime(year: int, month: int, day: int, micro_seconds: int = 0) -> float:
+    """
+    Convert a year, month and day to a unixtime stamp (ref 1970)
+
+    Parameter ``year``:
+        $Parameter ``month``:
+
+    Parameter ``day``:
+        $Parameter ``micro_seconds``:
+
+    microseconds since midnight
+
+    Returns:
+        double
     """

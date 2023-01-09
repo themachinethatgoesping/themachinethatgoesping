@@ -2,6 +2,7 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.filedataInterfaces
 import typing
+import themachinethatgoesping.echosounders.em3000
 
 __all__ = [
     "EM3000DatagramInterface",
@@ -18,21 +19,18 @@ class EM3000DatagramInterface():
         """
         Return object information as string
         """
-    @staticmethod
-    @typing.overload
-    def datagram_headers(*args, **kwargs) -> typing.Any: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
-    @staticmethod
     @typing.overload
-    def datagrams(*args, **kwargs) -> typing.Any: ...
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
     def datagrams(self) -> object: ...
-    @staticmethod
     @typing.overload
-    def datagrams_raw(*args, **kwargs) -> typing.Any: ...
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
     def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -51,21 +49,18 @@ class EM3000DatagramInterface_mapped():
         """
         Return object information as string
         """
-    @staticmethod
-    @typing.overload
-    def datagram_headers(*args, **kwargs) -> typing.Any: ...
     @typing.overload
     def datagram_headers(self) -> object: ...
-    @staticmethod
     @typing.overload
-    def datagrams(*args, **kwargs) -> typing.Any: ...
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
     def datagrams(self) -> object: ...
-    @staticmethod
     @typing.overload
-    def datagrams_raw(*args, **kwargs) -> typing.Any: ...
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
     def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
