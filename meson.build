@@ -11,7 +11,7 @@ project(
 
   version: '0.5.4',
   default_options: ['warning_level=2', 'buildtype=release', 'cpp_std=c++17'],
-  meson_version: '>=0.64' #last meson version that was tested
+  meson_version: '>=1.0' #last meson version that was tested
 )
 
 projectnamespace = 'themachinethatgoesping'
