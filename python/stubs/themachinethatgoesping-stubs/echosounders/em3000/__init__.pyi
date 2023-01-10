@@ -115,7 +115,7 @@ class t_EM3000DatagramIdentifier():
 
       XYZDatagram : 
 
-      ExtraDetections : < TODO: implement!
+      ExtraDetections : 
 
       RawRangeAndAngle : 
 
