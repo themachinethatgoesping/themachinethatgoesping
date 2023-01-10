@@ -5,19 +5,11 @@ import typing
 import themachinethatgoesping.echosounders.em3000
 
 __all__ = [
-    "AmplitudeDetect",
     "EM3000Datagram",
     "EM3000Unknown",
-    "Estimated",
-    "Interpolated",
-    "Invalid",
-    "InvalidNormalDetection",
-    "NoDetection",
-    "PhaseDetect",
-    "Rejected",
-    "XYZBeam",
-    "XYZBeam_t_DetectionType",
-    "XYZDatagram"
+    "ExtraDetections",
+    "XYZDatagram",
+    "substructures"
 ]
 
 
@@ -161,68 +153,139 @@ class EM3000Unknown(EM3000Datagram):
         convert object to bytearray
         """
     pass
-class XYZBeam():
+class ExtraDetections(EM3000Datagram):
     """
-    The beam data are given re the transmit transducer or sonar head depth
-    and the horizontal location (x,y) of the active positioning system's
-    reference point. Heave, roll, pitch, sound speed at the transducer
-    depth and ray bending through the water column have been applied.
+    This datagram is used for the models EM 2040 and EM 2040C with Slim
+    Processing Unit.
     """
-    def __copy__(self) -> XYZBeam: ...
-    def __deepcopy__(self, arg0: dict) -> XYZBeam: ...
-    def __eq__(self, other: XYZBeam) -> bool: ...
+    def __copy__(self) -> ExtraDetections: ...
+    def __deepcopy__(self, arg0: dict) -> ExtraDetections: ...
+    def __eq__(self, other: ExtraDetections) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
         """
+    def __setstate__(self, arg0: bytes) -> None: ...
     def __str__(self) -> str: 
         """
         Return object information as string
         """
-    def copy(self) -> XYZBeam: 
+    def copy(self) -> ExtraDetections: 
         """
         return a copy using the c++ default copy constructor
         """
-    def get_acrosstrack_distance(self) -> float: 
+    def detection_classes(self) -> typing.List[substructures.ExtraDetectionsDetectionClasses]: ...
+    def extra_detections(self) -> typing.List[substructures.ExtraDetectionsExtraDetections]: ...
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraDetections: 
         """
-        < distance (y) in meter
+        create T_CLASS object from bytearray
         """
-    def get_alongtrack_distance(self) -> float: 
+    def get_checksum(self) -> int: ...
+    def get_datagram_counter(self) -> int: 
         """
-        < distance (x) in meter
+        <
         """
-    def get_backscatter(self) -> float: ...
-    def get_backscatter_is_compensated(self) -> bool: ...
-    def get_beam_incidence_angle_adjustment(self) -> int: 
+    def get_datagram_version_id(self) -> int: 
         """
-        < (IBA) in 0.1 degree
+        <
         """
-    def get_beam_incidence_angle_adjustment_in_degrees(self) -> float: ...
-    def get_depth(self) -> float: 
+    def get_depth_of_reference_point(self) -> float: 
         """
-        < (Z) from transmit transducer in meter
+        < m
         """
-    def get_detection_information(self) -> int: 
+    def get_detection_classes(self) -> typing.List[substructures.ExtraDetectionsDetectionClasses]: 
         """
-        < Flag that indicates the type and validity of detection
+        < substructure 1
         """
-    def get_detection_type(self) -> XYZBeam_t_DetectionType: ...
-    def get_detection_window_length(self) -> int: 
+    def get_etx(self) -> int: 
         """
-        < in samples
+        < end identifier (always 0x03)
         """
-    def get_quality_factor(self) -> int: 
+    def get_extra_detections(self) -> typing.List[substructures.ExtraDetectionsExtraDetections]: 
         """
-        < 0-254 Scaled standard deviation (sd) of the range detection <
-        divided by the detected range (dr) (qf = 250*sd/sr)
+        < substructure 2
         """
-    def get_realtime_cleaning_information(self) -> int: 
+    def get_heading(self) -> int: 
         """
-        < Flag that indicates if the beam was flagged by real < time cleaning
-        (negative values indicate that this < beam is flagged out)
+        < 0.01°
         """
-    def get_reflectivity(self) -> int: ...
+    def get_heading_in_degrees(self) -> float: 
+        """
+        Get heading in degrees
+
+        Returns:
+            _heading * 0.01° (double)
+        """
+    def get_number_of_alarm_flags(self) -> int: 
+        """
+        <
+        """
+    def get_number_of_bytes_per_class(self) -> int: 
+        """
+        <
+        """
+    def get_number_of_bytes_per_detection(self) -> int: 
+        """
+        <
+        """
+    def get_number_of_detection_classes(self) -> int: 
+        """
+        <
+        """
+    def get_number_of_extra_detections(self) -> int: 
+        """
+        < Nd
+        """
+    def get_ping_counter(self) -> int: 
+        """
+        <
+        """
+    def get_raw_amplitude_sample_rate(self) -> float: 
+        """
+        < (SIsr)
+        """
+    def get_raw_amplitude_samples(self) -> typing.List[typing.List[int]]: 
+        """
+        < 0.01 dB
+        """
+    def get_rx_transducer_index(self) -> int: 
+        """
+        <
+        """
+    def get_sound_speed(self) -> int: 
+        """
+        < dm/s
+        """
+    def get_sound_speed_in_m_per_s(self) -> float: 
+        """
+        Get sound velocity in m/s
+
+        Returns:
+            _sound_speed * 0.1 m/s (double)
+        """
+    def get_swath_counter(self) -> int: 
+        """
+        <
+        """
+    def get_swath_index(self) -> int: 
+        """
+        <
+        """
+    def get_system_serial_number(self) -> int: 
+        """
+        <
+        """
+    def get_water_column_sample_rate(self) -> float: 
+        """
+        < (WCsr)
+        """
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -231,98 +294,96 @@ class XYZBeam():
         """
         Print object information
         """
-    def set_acrosstrack_distance(self, arg0: float) -> None: 
+    def raw_amplitude_samples(self) -> typing.List[typing.List[int]]: ...
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_datagram_counter(self, arg0: int) -> None: 
         """
-        < distance (y) in meter
+        <
         """
-    def set_alongtrack_distance(self, arg0: float) -> None: 
+    def set_datagram_version_id(self, arg0: int) -> None: 
         """
-        < distance (x) in meter
+        <
         """
-    def set_beam_incidence_angle_adjustment(self, arg0: float) -> None: 
+    def set_depth_of_reference_point(self, arg0: float) -> None: 
         """
-        < (IBA) in 0.1 degree
+        < m
         """
-    def set_depth(self, arg0: float) -> None: 
+    def set_detection_classes(self, arg0: typing.List[substructures.ExtraDetectionsDetectionClasses]) -> None: 
         """
-        < (Z) from transmit transducer in meter
+        < substructure 1
         """
-    def set_detection_information(self, arg0: int) -> None: 
+    def set_etx(self, arg0: int) -> None: 
         """
-        < Flag that indicates the type and validity of detection
+        < end identifier (always 0x03)
         """
-    def set_detection_window_length(self, arg0: int) -> None: 
+    def set_extra_detections(self, arg0: typing.List[substructures.ExtraDetectionsExtraDetections]) -> None: 
         """
-        < in samples
+        < substructure 2
         """
-    def set_quality_factor(self, arg0: int) -> None: 
+    def set_heading(self, arg0: int) -> None: 
         """
-        < 0-254 Scaled standard deviation (sd) of the range detection <
-        divided by the detected range (dr) (qf = 250*sd/sr)
+        < 0.01°
         """
-    def set_realtime_cleaning_information(self, arg0: int) -> None: 
+    def set_number_of_alarm_flags(self, arg0: int) -> None: 
         """
-        < Flag that indicates if the beam was flagged by real < time cleaning
-        (negative values indicate that this < beam is flagged out)
+        <
         """
-    def set_reflectivity(self, arg0: int) -> None: ...
-    __hash__ = None
-    pass
-class XYZBeam_t_DetectionType():
-    """
-    Members:
-
-      AmplitudeDetect : 
-
-      PhaseDetect : 
-
-      InvalidNormalDetection : < Invalid: Normal detection
-
-      Interpolated : < Invalid: Therefor interpolated or extrapolated
-
-      Estimated : < Invalid: Therefor estimated
-
-      Rejected : < Invalid: Therefor rejected
-
-      NoDetection : < Invalid: No detection data is available for this beam
-
-      Invalid : 
-    """
-    def __eq__(self, other: object) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    @typing.overload
-    def __init__(self, str: str) -> None: 
+    def set_number_of_bytes_per_class(self, arg0: int) -> None: 
         """
-        Construct this enum type from string
+        <
         """
-    @typing.overload
-    def __init__(self, value: int) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: int) -> None: ...
-    def str(self) -> str: ...
-    @property
-    def name(self) -> str:
+    def set_number_of_bytes_per_detection(self, arg0: int) -> None: 
         """
-        :type: str
+        <
         """
-    @property
-    def value(self) -> int:
+    def set_number_of_detection_classes(self, arg0: int) -> None: 
         """
-        :type: int
+        <
         """
-    AmplitudeDetect: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.AmplitudeDetect: 0>
-    Estimated: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Estimated: 130>
-    Interpolated: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Interpolated: 129>
-    Invalid: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Invalid: 133>
-    InvalidNormalDetection: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.InvalidNormalDetection: 128>
-    NoDetection: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.NoDetection: 132>
-    PhaseDetect: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.PhaseDetect: 1>
-    Rejected: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Rejected: 131>
-    __members__: dict # value = {'AmplitudeDetect': <XYZBeam_t_DetectionType.AmplitudeDetect: 0>, 'PhaseDetect': <XYZBeam_t_DetectionType.PhaseDetect: 1>, 'InvalidNormalDetection': <XYZBeam_t_DetectionType.InvalidNormalDetection: 128>, 'Interpolated': <XYZBeam_t_DetectionType.Interpolated: 129>, 'Estimated': <XYZBeam_t_DetectionType.Estimated: 130>, 'Rejected': <XYZBeam_t_DetectionType.Rejected: 131>, 'NoDetection': <XYZBeam_t_DetectionType.NoDetection: 132>, 'Invalid': <XYZBeam_t_DetectionType.Invalid: 133>}
+    def set_number_of_extra_detections(self, arg0: int) -> None: 
+        """
+        < Nd
+        """
+    def set_ping_counter(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_raw_amplitude_sample_rate(self, arg0: float) -> None: 
+        """
+        < (SIsr)
+        """
+    def set_raw_amplitude_samples(self, arg0: typing.List[typing.List[int]]) -> None: 
+        """
+        < 0.01 dB
+        """
+    def set_rx_transducer_index(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sound_speed(self, arg0: int) -> None: 
+        """
+        < dm/s
+        """
+    def set_swath_counter(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_swath_index(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_system_serial_number(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_water_column_sample_rate(self, arg0: float) -> None: 
+        """
+        < (WCsr)
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
     pass
 class XYZDatagram(EM3000Datagram):
     """
@@ -348,7 +409,7 @@ class XYZDatagram(EM3000Datagram):
         """
         Return object information as string
         """
-    def beams(self) -> typing.List[XYZBeam]: 
+    def beams(self) -> typing.List[substructures.XYZDatagramBeam]: 
         """
         < beam detection information
         """
@@ -361,7 +422,7 @@ class XYZDatagram(EM3000Datagram):
         """
         create T_CLASS object from bytearray
         """
-    def get_beams(self) -> typing.List[XYZBeam]: 
+    def get_beams(self) -> typing.List[substructures.XYZDatagramBeam]: 
         """
         < beam detection information
         """
@@ -374,7 +435,13 @@ class XYZDatagram(EM3000Datagram):
         """
         < (at TX time) in 0.01 degree
         """
-    def get_heading_of_vessel_in_degrees(self) -> float: ...
+    def get_heading_of_vessel_in_degrees(self) -> float: 
+        """
+        Get the vessel heading in degrees
+
+        Returns:
+            heading_of_vessel * 0.01 degrees (double)
+        """
     def get_number_of_beams(self) -> int: 
         """
         < in Datagram
@@ -396,7 +463,13 @@ class XYZDatagram(EM3000Datagram):
         """
         < at transducer in dm/s
         """
-    def get_sound_speed_in_meters_per_seconds(self) -> float: ...
+    def get_sound_speed_in_m_per_s(self) -> float: 
+        """
+        Get the sound speed in meters per seconds
+
+        Returns:
+            sound_speed * 0.1 meters per seconds (double)
+        """
     def get_system_serial_number(self) -> int: 
         """
         < 100 -
@@ -413,7 +486,7 @@ class XYZDatagram(EM3000Datagram):
         """
         Print object information
         """
-    def set_beams(self, arg0: typing.List[XYZBeam]) -> None: 
+    def set_beams(self, arg0: typing.List[substructures.XYZDatagramBeam]) -> None: 
         """
         < beam detection information
         """
@@ -460,11 +533,3 @@ class XYZDatagram(EM3000Datagram):
         convert object to bytearray
         """
     pass
-AmplitudeDetect: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.AmplitudeDetect: 0>
-Estimated: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Estimated: 130>
-Interpolated: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Interpolated: 129>
-Invalid: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Invalid: 133>
-InvalidNormalDetection: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.InvalidNormalDetection: 128>
-NoDetection: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.NoDetection: 132>
-PhaseDetect: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.PhaseDetect: 1>
-Rejected: themachinethatgoesping.echosounders.em3000.datagrams.XYZBeam_t_DetectionType # value = <XYZBeam_t_DetectionType.Rejected: 131>
