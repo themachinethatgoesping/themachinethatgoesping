@@ -8,6 +8,7 @@ __all__ = [
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
+    "RawRangeAndAngle",
     "XYZDatagram",
     "substructures"
 ]
@@ -384,6 +385,115 @@ class ExtraDetections(EM3000Datagram):
         """
         convert object to bytearray
         """
+    pass
+class RawRangeAndAngle(EM3000Datagram):
+    """
+    This datagram is used for the models EM 2040, EM 2040C, EM 710, EM
+    122, EM 302 and ME70BO. All receiver beams are included, check
+    detection info and real time cleaning for beam status (note 4 and 5).
+    """
+    def __copy__(self) -> RawRangeAndAngle: ...
+    def __deepcopy__(self, arg0: dict) -> RawRangeAndAngle: ...
+    def __eq__(self, other: RawRangeAndAngle) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def beams(self) -> typing.List[substructures.RawRangeAndAngleBeam]: ...
+    def copy(self) -> RawRangeAndAngle: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RawRangeAndAngle: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_beams(self) -> typing.List[substructures.RawRangeAndAngleBeam]: ...
+    def get_checksum(self) -> int: ...
+    def get_d_scale(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_number_of_receiver_beams(self) -> int: 
+        """
+        < in Datagram nrx
+        """
+    def get_number_of_transmit_sectors(self) -> int: 
+        """
+        < ntx
+        """
+    def get_number_of_valid_detections(self) -> int: ...
+    def get_ping_counter(self) -> int: 
+        """
+        < sequential number
+        """
+    def get_sampling_frequency(self) -> float: ...
+    def get_sound_speed_at_transducer(self) -> int: 
+        """
+        < in 0.1 m/s
+        """
+    def get_sound_speed_at_transducer_in_m_per_s(self) -> float: 
+        """
+        Get the sound speed at the transducerin meters per seconds
+
+        Returns:
+            _sound_speed_at_transducer * 0.1 meters per seconds (float)
+        """
+    def get_system_serial_number(self) -> int: ...
+    def get_transmit_sectors(self) -> typing.List[substructures.RawRangeAndAngleTransmitSector]: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_beams(self, arg0: typing.List[substructures.RawRangeAndAngleBeam]) -> None: ...
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_d_scale(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_number_of_receiver_beams(self, arg0: int) -> None: 
+        """
+        < in Datagram nrx
+        """
+    def set_number_of_transmit_sectors(self, arg0: int) -> None: 
+        """
+        < ntx
+        """
+    def set_number_of_valid_detections(self, arg0: int) -> None: ...
+    def set_ping_counter(self, arg0: int) -> None: 
+        """
+        < sequential number
+        """
+    def set_sampling_frequency(self, arg0: float) -> None: ...
+    def set_sound_speed_at_transducer(self, arg0: int) -> None: 
+        """
+        < in 0.1 m/s
+        """
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_transmit_sectors(self, arg0: typing.List[substructures.RawRangeAndAngleTransmitSector]) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    def transmit_sectors(self) -> typing.List[substructures.RawRangeAndAngleTransmitSector]: ...
     pass
 class XYZDatagram(EM3000Datagram):
     """

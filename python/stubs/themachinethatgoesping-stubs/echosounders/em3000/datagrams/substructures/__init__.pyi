@@ -13,6 +13,8 @@ __all__ = [
     "InvalidNormalDetection",
     "NoDetection",
     "PhaseDetect",
+    "RawRangeAndAngleBeam",
+    "RawRangeAndAngleTransmitSector",
     "Rejected",
     "XYZDatagramBeam",
     "XYZDatagramBeam_t_DetectionType"
@@ -396,6 +398,225 @@ class ExtraDetectionsExtraDetections():
         """
         <
         """
+    __hash__ = None
+    pass
+class RawRangeAndAngleBeam():
+    """
+    The beam data are given re the transmit transducer or sonar head depth
+    and the horizontal location (x,y) of the active positioning system's
+    reference point. Heave, roll, pitch, sound speed at the transducer
+    depth and ray bending through the water column have been applied.
+    """
+    def __copy__(self) -> RawRangeAndAngleBeam: ...
+    def __deepcopy__(self, arg0: dict) -> RawRangeAndAngleBeam: ...
+    def __eq__(self, other: RawRangeAndAngleBeam) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RawRangeAndAngleBeam: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_beam_pointing_angle(self) -> int: ...
+    def get_beam_pointing_angle_in_degrees(self) -> float: 
+        """
+        Get the beam pointing angle in °
+
+        Returns:
+            _beam_pointing_angle * 0.01 (float)
+        """
+    def get_d_corr(self) -> int: ...
+    def get_detection_info(self) -> int: ...
+    def get_detection_is_valid(self) -> bool: 
+        """
+        This function evaluates the detection information flag. If the last
+        bit is set to 1, the detection is valid. If the last bit is set to 0,
+        the detection is invalid.
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType: 
+        """
+        This function evaluates the detection information flag. The first 3
+        bits indicate the type of detection.
+
+        Returns:
+            t_DetectionType
+        """
+    def get_detection_window_length_in_samples(self) -> int: ...
+    def get_quality_factor(self) -> int: ...
+    def get_realtime_cleaning_info(self) -> int: ...
+    def get_reflectivity(self) -> int: 
+        """
+        < in 0.1 dB resolution
+        """
+    def get_reflectivity_in_db(self) -> float: 
+        """
+        Get the reflectivity in db
+
+        Returns:
+            _reflectivity * 0.1 (float)
+        """
+    def get_spare(self) -> int: ...
+    def get_transmit_sector_number(self) -> int: 
+        """
+        M relative RX array in 0.01°
+        """
+    def get_two_way_travel_time(self) -> float: 
+        """
+        < in s
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_beam_pointing_angle(self, arg0: int) -> None: ...
+    def set_d_corr(self, arg0: int) -> None: ...
+    def set_detection_info(self, arg0: int) -> None: ...
+    def set_detection_window_length_in_samples(self, arg0: int) -> None: ...
+    def set_quality_factor(self, arg0: int) -> None: ...
+    def set_realtime_cleaning_info(self, arg0: int) -> None: ...
+    def set_reflectivity(self, arg0: int) -> None: 
+        """
+        < in 0.1 dB resolution
+        """
+    def set_spare(self, arg0: int) -> None: ...
+    def set_transmit_sector_number(self, arg0: int) -> None: 
+        """
+        M relative RX array in 0.01°
+        """
+    def set_two_way_travel_time(self, arg0: float) -> None: 
+        """
+        < in s
+        """
+    __hash__ = None
+    pass
+class RawRangeAndAngleTransmitSector():
+    """
+    The beam data are given re the transmit transducer or sonar head depth
+    and the horizontal location (x,y) of the active positioning system's
+    reference point. Heave, roll, pitch, sound speed at the transducer
+    depth and ray bending through the water column have been applied.
+    """
+    def __copy__(self) -> RawRangeAndAngleTransmitSector: ...
+    def __deepcopy__(self, arg0: dict) -> RawRangeAndAngleTransmitSector: ...
+    def __eq__(self, other: RawRangeAndAngleTransmitSector) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RawRangeAndAngleTransmitSector: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_centre_frequency(self) -> float: 
+        """
+        < in Hz
+        """
+    def get_focus_range(self) -> int: 
+        """
+        < in 0.1m 0 = no focus applied
+        """
+    def get_focus_range_in_m(self) -> float: 
+        """
+        Get the focus range in m
+
+        Returns:
+            _focus_range * 0.1 (float)
+        """
+    def get_mean_absorption_coefficient(self) -> int: 
+        """
+        < in 0.01 dB/km
+        """
+    def get_mean_absorption_coefficient_in_dB_per_m(self) -> float: 
+        """
+        Get the mean absorption coefficient in dB/m
+
+        Returns:
+            _mean_absorption_coefficient * 10 (float)
+        """
+    def get_sector_transmit_delay(self) -> float: 
+        """
+        < relative first TX pulse, in s
+        """
+    def get_signal_bandwidth(self) -> float: 
+        """
+        < in Hz
+        """
+    def get_signal_length(self) -> float: 
+        """
+        < in s
+        """
+    def get_signal_waveform_identifier(self) -> int: ...
+    def get_tilt_angle(self) -> int: 
+        """
+        < re TX array in 0.01°
+        """
+    def get_tilt_angle_in_degrees(self) -> float: 
+        """
+        Get the tilt angle in °
+
+        Returns:
+            _tilt_angle * 0.01 (float)
+        """
+    def get_transmit_sector_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_centre_frequency(self, arg0: float) -> None: 
+        """
+        < in Hz
+        """
+    def set_focus_range(self, arg0: int) -> None: 
+        """
+        < in 0.1m 0 = no focus applied
+        """
+    def set_mean_absorption_coefficient(self, arg0: int) -> None: 
+        """
+        < in 0.01 dB/km
+        """
+    def set_sector_transmit_delay(self, arg0: float) -> None: 
+        """
+        < relative first TX pulse, in s
+        """
+    def set_signal_bandwidth(self, arg0: float) -> None: 
+        """
+        < in Hz
+        """
+    def set_signal_length(self, arg0: float) -> None: 
+        """
+        < in s
+        """
+    def set_signal_waveform_identifier(self, arg0: int) -> None: ...
+    def set_tilt_angle(self, arg0: int) -> None: 
+        """
+        < re TX array in 0.01°
+        """
+    def set_transmit_sector_number(self, arg0: int) -> None: ...
     __hash__ = None
     pass
 class XYZDatagramBeam():
