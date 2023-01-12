@@ -2,6 +2,8 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.datagrams.substructures
 import typing
+import numpy
+_Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "AmplitudeDetect",
@@ -16,6 +18,8 @@ __all__ = [
     "RawRangeAndAngleBeam",
     "RawRangeAndAngleTransmitSector",
     "Rejected",
+    "SampleAmplitudesStructure_int16_t",
+    "SeabedImageDataBeam",
     "XYZDatagramBeam",
     "XYZDatagramBeam_t_DetectionType"
 ]
@@ -619,6 +623,163 @@ class RawRangeAndAngleTransmitSector():
     def set_transmit_sector_number(self, arg0: int) -> None: ...
     __hash__ = None
     pass
+class SampleAmplitudesStructure_int16_t():
+    """
+    A structure to store the sample amplitudes of multiple beams in a
+    single array. Each beam may have a different number of samples. One of
+    the main reasons behind this structure is read/write performance and
+    the possibility to use xsimd on the data (stored as xtensor).
+
+    Template parameter ``t_sample``:
+    """
+    def __copy__(self) -> SampleAmplitudesStructure_int16_t: ...
+    def __deepcopy__(self, arg0: dict) -> SampleAmplitudesStructure_int16_t: ...
+    def __eq__(self, other: SampleAmplitudesStructure_int16_t) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleAmplitudesStructure_int16_t: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_beam(self, arg0: int) -> numpy.ndarray[numpy.int16]: 
+        """
+        return a view of the sample amplitudes of a single beam
+
+        Parameter ``beam_index``:
+            $Returns:
+
+        xt::xtensor<t_sample, 1>
+        """
+    def get_beam_in_db(self, arg0: int) -> numpy.ndarray[numpy.float32]: 
+        """
+        return a xtensor of the sample amplitudes of a single beam converted
+        to db
+
+        Parameter ``beam_index``:
+            $Returns:
+
+        xt::xtensor<float, 1>
+        """
+    def get_sample_amplitudes(self) -> numpy.ndarray[numpy.int16]: 
+        """
+        < in db steps
+        """
+    def get_sample_amplitudes_in_db(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        Convert the sample amplitudes to db using _db_step_size.
+
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    def get_samples_per_beam(self) -> typing.List[int]: ...
+    def get_start_index_per_beam(self) -> typing.List[int]: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_sample_amplitudes(self, arg0: numpy.ndarray[numpy.int16]) -> None: 
+        """
+        < in db steps
+        """
+    def set_samples_per_beam(self, arg0: typing.List[int]) -> None: ...
+    def set_start_index_per_beam(self, arg0: typing.List[int]) -> None: ...
+    @typing.overload
+    def size(self) -> int: ...
+    @typing.overload
+    def size(self, beam_index: int) -> int: ...
+    __hash__ = None
+    pass
+class SeabedImageDataBeam():
+    """
+    The beam data are given re the transmit transducer or sonar head depth
+    and the horizontal location (x,y) of the active positioning system's
+    reference point. Heave, roll, pitch, sound speed at the transducer
+    depth and ray bending through the water column have been applied.
+    """
+    def __copy__(self) -> SeabedImageDataBeam: ...
+    def __deepcopy__(self, arg0: dict) -> SeabedImageDataBeam: ...
+    def __eq__(self, other: SeabedImageDataBeam) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SeabedImageDataBeam: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_backscatter_is_compensated(self) -> bool: 
+        """
+        This function evaluates the detection information flag. If the 4th bit
+        is set to 1, the detection is compensated for beam incident angle. If
+        the 4th bit is set to 0, the detection is not compensated for beam
+        incident angle.
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_centre_sample_number(self) -> int: ...
+    def get_detection_info(self) -> int: ...
+    def get_detection_is_valid(self) -> bool: 
+        """
+        This function evaluates the detection information flag. If the last
+        bit is set to 1, the detection is valid. If the last bit is set to 0,
+        the detection is invalid.
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType: 
+        """
+        This function evaluates the detection information flag. The first 3
+        bits indicate the type of detection.
+
+        Returns:
+            t_DetectionType
+        """
+    def get_number_of_samples(self) -> int: 
+        """
+        < per beam
+        """
+    def get_sorting_direction(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_centre_sample_number(self, arg0: int) -> None: ...
+    def set_detection_info(self, arg0: int) -> None: ...
+    def set_number_of_samples(self, arg0: int) -> None: 
+        """
+        < per beam
+        """
+    def set_sorting_direction(self, arg0: int) -> None: ...
+    __hash__ = None
+    pass
 class XYZDatagramBeam():
     """
     The beam data are given re the transmit transducer or sonar head depth
@@ -689,6 +850,18 @@ class XYZDatagramBeam():
     def get_detection_info(self) -> int: 
         """
         < Flag that indicates the type and validity of detection
+        """
+    def get_detection_is_valid(self) -> bool: 
+        """
+        This function evaluates the detection information flag. If the last
+        bit is set to 1, the detection is valid. If the last bit is set to 0,
+        the detection is invalid.
+
+        Returns:
+            true
+
+        Returns:
+            false
         """
     def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType: 
         """

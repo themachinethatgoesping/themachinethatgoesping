@@ -9,6 +9,7 @@ __all__ = [
     "EM3000Unknown",
     "ExtraDetections",
     "RawRangeAndAngle",
+    "SeabedImageData",
     "XYZDatagram",
     "substructures"
 ]
@@ -252,9 +253,9 @@ class ExtraDetections(EM3000Datagram):
         """
         < (SIsr)
         """
-    def get_raw_amplitude_samples(self) -> typing.List[typing.List[int]]: 
+    def get_raw_amplitude_samples(self) -> substructures.SampleAmplitudesStructure_int16_t: 
         """
-        < 0.01 dB
+        < 0.1 dB
         """
     def get_rx_transducer_index(self) -> int: 
         """
@@ -295,7 +296,7 @@ class ExtraDetections(EM3000Datagram):
         """
         Print object information
         """
-    def raw_amplitude_samples(self) -> typing.List[typing.List[int]]: ...
+    def raw_amplitude_samples(self) -> substructures.SampleAmplitudesStructure_int16_t: ...
     def set_checksum(self, arg0: int) -> None: ...
     def set_datagram_counter(self, arg0: int) -> None: 
         """
@@ -353,9 +354,9 @@ class ExtraDetections(EM3000Datagram):
         """
         < (SIsr)
         """
-    def set_raw_amplitude_samples(self, arg0: typing.List[typing.List[int]]) -> None: 
+    def set_raw_amplitude_samples(self, arg0: substructures.SampleAmplitudesStructure_int16_t) -> None: 
         """
-        < 0.01 dB
+        < 0.1 dB
         """
     def set_rx_transducer_index(self, arg0: int) -> None: 
         """
@@ -494,6 +495,167 @@ class RawRangeAndAngle(EM3000Datagram):
         convert object to bytearray
         """
     def transmit_sectors(self) -> typing.List[substructures.RawRangeAndAngleTransmitSector]: ...
+    pass
+class SeabedImageData(EM3000Datagram):
+    """
+    This datagram is used for the models EM 2040, EM 2040C, EM 710, EM
+    122, EM 302 and ME70BO. All receiver beams are included, check
+    detection info and real time cleaning for beam status (note 4 and 5).
+    """
+    def __copy__(self) -> SeabedImageData: ...
+    def __deepcopy__(self, arg0: dict) -> SeabedImageData: ...
+    def __eq__(self, other: SeabedImageData) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def beams(self) -> typing.List[substructures.SeabedImageDataBeam]: ...
+    def copy(self) -> SeabedImageData: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SeabedImageData: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_beams(self) -> typing.List[substructures.SeabedImageDataBeam]: ...
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_normal_incidence_backscatter(self) -> int: 
+        """
+        < in 0.01 dB (BSN)
+        """
+    def get_normal_incidence_backscatter_in_db(self) -> float: 
+        """
+        Get the normal incidence backscatter in db
+
+        Returns:
+            _normal_incidence_backscatter * 0.01f (float)
+        """
+    def get_number_of_valid_beams(self) -> int: ...
+    def get_oblique_backscatter(self) -> int: 
+        """
+        < in 0.01 dB (BSO)
+        """
+    def get_oblique_backscatter_in_db(self) -> float: 
+        """
+        Get the oblique backscatter in db
+
+        Returns:
+            _oblique_backscatter * 0.01f (float)
+        """
+    def get_ping_counter(self) -> int: 
+        """
+        < sequential number
+        """
+    def get_range_to_normal_incidence(self) -> int: 
+        """
+        < used to correct sample amplitudes in no. of samples
+        """
+    def get_sample_amplitudes(self) -> substructures.SampleAmplitudesStructure_int16_t: 
+        """
+        < in 0.1 dB (size = sum of _Number_of_samples of all Beams
+        """
+    def get_sampling_frequency(self) -> float: 
+        """
+        < in Hz
+        """
+    def get_spare_byte(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_tvg_law_crossover_angle(self) -> int: 
+        """
+        < in 0.1 degree
+        """
+    def get_tvg_law_crossover_angle_in_degrees(self) -> float: 
+        """
+        get the tvg law crossover angle in degrees
+
+        Returns:
+            _tvg_law_crossover_angle * 0.1f (float)
+        """
+    def get_tx_beamwidth_along(self) -> int: 
+        """
+        < in 0.1 degree
+        """
+    def get_tx_beamwidth_along_in_degrees(self) -> float: 
+        """
+        get the tx beamwidth along in degrees
+
+        Returns:
+            _tx_beamwidth_along * 0.1f (float)
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def sample_amplitudes(self) -> substructures.SampleAmplitudesStructure_int16_t: 
+        """
+        < in 0.1 dB (size = sum of _Number_of_samples of all Beams
+        """
+    def set_beams(self, arg0: typing.List[substructures.SeabedImageDataBeam]) -> None: ...
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_normal_incidence_backscatter(self, arg0: int) -> None: 
+        """
+        < in 0.01 dB (BSN)
+        """
+    def set_number_of_valid_beams(self, arg0: int) -> None: ...
+    def set_oblique_backscatter(self, arg0: int) -> None: 
+        """
+        < in 0.01 dB (BSO)
+        """
+    def set_ping_counter(self, arg0: int) -> None: 
+        """
+        < sequential number
+        """
+    def set_range_to_normal_incidence(self, arg0: int) -> None: 
+        """
+        < used to correct sample amplitudes in no. of samples
+        """
+    def set_sample_amplitudes(self, arg0: substructures.SampleAmplitudesStructure_int16_t) -> None: 
+        """
+        < in 0.1 dB (size = sum of _Number_of_samples of all Beams
+        """
+    def set_sampling_frequency(self, arg0: float) -> None: 
+        """
+        < in Hz
+        """
+    def set_spare_byte(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_tvg_law_crossover_angle(self, arg0: int) -> None: 
+        """
+        < in 0.1 degree
+        """
+    def set_tx_beamwidth_along(self, arg0: int) -> None: 
+        """
+        < in 0.1 degree
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
     pass
 class XYZDatagram(EM3000Datagram):
     """
