@@ -20,6 +20,8 @@ __all__ = [
     "Rejected",
     "SampleAmplitudesStructure_int16_t",
     "SeabedImageDataBeam",
+    "WaterColumnDatagramBeam",
+    "WaterColumnDatagramTransmitSector",
     "XYZDatagramBeam",
     "XYZDatagramBeam_t_DetectionType"
 ]
@@ -778,6 +780,145 @@ class SeabedImageDataBeam():
         < per beam
         """
     def set_sorting_direction(self, arg0: int) -> None: ...
+    __hash__ = None
+    pass
+class WaterColumnDatagramBeam():
+    def __copy__(self) -> WaterColumnDatagramBeam: ...
+    def __deepcopy__(self, arg0: dict) -> WaterColumnDatagramBeam: ...
+    def __eq__(self, other: WaterColumnDatagramBeam) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: 
+        """
+        < in 0.5 dB steps
+        """
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> WaterColumnDatagramBeam: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WaterColumnDatagramBeam: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_beam_number(self) -> int: 
+        """
+        < redundant info, max 255 even if more beams exist
+        """
+    def get_beam_pointing_angle(self) -> int: 
+        """
+        < re vertical in 0.01 steps°
+        """
+    def get_beam_pointing_angle_in_degrees(self) -> float: 
+        """
+        get the tilt angle in °
+
+        Returns:
+            _beam_pointing_angle * 0.1° (float)
+        """
+    def get_detected_range_in_samples(self) -> int: ...
+    def get_number_of_samples(self) -> int: ...
+    def get_samples(self) -> numpy.ndarray[numpy.int8]: ...
+    def get_start_range_sample_number(self) -> int: ...
+    def get_transmit_sector_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def samples(self) -> numpy.ndarray[numpy.int8]: ...
+    def set_beam_number(self, arg0: int) -> None: 
+        """
+        < redundant info, max 255 even if more beams exist
+        """
+    def set_beam_pointing_angle(self, arg0: int) -> None: 
+        """
+        < re vertical in 0.01 steps°
+        """
+    def set_detected_range_in_samples(self, arg0: int) -> None: ...
+    def set_number_of_samples(self, arg0: int) -> None: ...
+    def set_samples(self, arg0: numpy.ndarray[numpy.int8]) -> None: ...
+    def set_start_range_sample_number(self, arg0: int) -> None: ...
+    def set_transmit_sector_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class WaterColumnDatagramTransmitSector():
+    def __copy__(self) -> WaterColumnDatagramTransmitSector: ...
+    def __deepcopy__(self, arg0: dict) -> WaterColumnDatagramTransmitSector: ...
+    def __eq__(self, other: WaterColumnDatagramTransmitSector) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> WaterColumnDatagramTransmitSector: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_center_frequency(self) -> int: 
+        """
+        < in 10 Hz
+        """
+    def get_center_frequency_in_hz(self) -> float: 
+        """
+        get the center frequency in Hz
+
+        Returns:
+            _center_frequency * 10 Hz (float)
+        """
+    def get_spare(self) -> int: ...
+    def get_tilt_angle(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_tilt_angle_in_degrees(self) -> float: 
+        """
+        get the tilt angle in °
+
+        Returns:
+            _tilt_angle * 0.01° (float)
+        """
+    def get_transmit_sector_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_center_frequency(self, arg0: int) -> None: 
+        """
+        < in 10 Hz
+        """
+    def set_spare(self, arg0: int) -> None: ...
+    def set_tilt_angle(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_transmit_sector_number(self, arg0: int) -> None: ...
     __hash__ = None
     pass
 class XYZDatagramBeam():
