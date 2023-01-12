@@ -379,6 +379,11 @@ class GeoLocationLocal(GeoLocation):
         """
     pass
 class GeoLocationUTM(GeoLocationLocal, GeoLocation):
+    """
+    A structure to store a georeferenced location and attitude (e.g. of a
+    sensor) unlike the default GeoLocation structure, this object stores
+    utm coordinates
+    """
     def __copy__(self) -> GeoLocationUTM: ...
     def __deepcopy__(self, arg0: dict) -> GeoLocationUTM: ...
     def __eq__(self, other: GeoLocationUTM) -> bool: ...
@@ -1029,6 +1034,11 @@ class SensorDataLocal(SensorData):
         """
     pass
 class SensorDataUTM(SensorDataLocal, SensorData):
+    """
+    A structure to store a georeferenced data and attitude data from
+    different sensors (e.g. GPS, IMU, etc.) Unlike SensorDataLatLon, this
+    structure stores UTM coordinates.
+    """
     def __copy__(self) -> SensorDataUTM: ...
     def __deepcopy__(self, arg0: dict) -> SensorDataUTM: ...
     def __eq__(self, other: SensorDataUTM) -> bool: 

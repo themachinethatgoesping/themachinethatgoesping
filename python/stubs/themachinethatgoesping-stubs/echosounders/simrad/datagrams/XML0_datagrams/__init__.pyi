@@ -16,15 +16,15 @@ __all__ = [
     "BeamTypeSplit3CN",
     "BeamTypeSplit3CW",
     "ChannelConfiguration",
+    "XMLConfigurationActivePingMode",
+    "XMLConfigurationTransceiverChannelTransducer",
     "XML_Configuration",
-    "XML_Configuration_ActivePingMode",
     "XML_Configuration_Sensor",
     "XML_Configuration_Sensor_Telegram",
     "XML_Configuration_Sensor_TelegramValue",
     "XML_Configuration_Transceiver",
     "XML_Configuration_Transceiver_Channel",
     "XML_Configuration_Transceiver_Channel_FrequencyPar",
-    "XML_Configuration_Transceiver_Channel_Transducer",
     "XML_Configuration_Transducer",
     "XML_Environment",
     "XML_Environment_Transducer",
@@ -110,6 +110,286 @@ class ChannelConfiguration():
         :type: themachinethatgoesping.navigation.datastructures.PositionalOffsets
         """
     pass
+class XMLConfigurationActivePingMode():
+    """
+    XML base datagram
+    """
+    def __copy__(self) -> XMLConfigurationActivePingMode: ...
+    def __deepcopy__(self, arg0: dict) -> XMLConfigurationActivePingMode: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> XMLConfigurationActivePingMode: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationActivePingMode: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def parsed_completely(self) -> bool: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def Mode(self) -> str:
+        """
+        :type: str
+        """
+    @Mode.setter
+    def Mode(self, arg0: str) -> None:
+        pass
+    @property
+    def unknown_attributes(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: int) -> None:
+        pass
+    @property
+    def unknown_children(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_children.setter
+    def unknown_children(self, arg0: int) -> None:
+        pass
+    pass
+class XMLConfigurationTransceiverChannelTransducer():
+    """
+    XML base datagram
+    """
+    def __copy__(self) -> XMLConfigurationTransceiverChannelTransducer: ...
+    def __deepcopy__(self, arg0: dict) -> XMLConfigurationTransceiverChannelTransducer: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> XMLConfigurationTransceiverChannelTransducer: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationTransceiverChannelTransducer: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def parsed_completely(self) -> bool: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def AngleOffsetAlongship(self) -> float:
+        """
+        :type: float
+        """
+    @AngleOffsetAlongship.setter
+    def AngleOffsetAlongship(self, arg0: float) -> None:
+        pass
+    @property
+    def AngleOffsetAthwartship(self) -> float:
+        """
+        :type: float
+        """
+    @AngleOffsetAthwartship.setter
+    def AngleOffsetAthwartship(self, arg0: float) -> None:
+        pass
+    @property
+    def AngleSensitivityAlongship(self) -> float:
+        """
+        :type: float
+        """
+    @AngleSensitivityAlongship.setter
+    def AngleSensitivityAlongship(self, arg0: float) -> None:
+        pass
+    @property
+    def AngleSensitivityAthwartship(self) -> float:
+        """
+        :type: float
+        """
+    @AngleSensitivityAthwartship.setter
+    def AngleSensitivityAthwartship(self, arg0: float) -> None:
+        pass
+    @property
+    def ArticleNumber(self) -> str:
+        """
+        :type: str
+        """
+    @ArticleNumber.setter
+    def ArticleNumber(self, arg0: str) -> None:
+        pass
+    @property
+    def BeamType(self) -> t_BeamType:
+        """
+        :type: t_BeamType
+        """
+    @BeamType.setter
+    def BeamType(self, arg0: t_BeamType) -> None:
+        pass
+    @property
+    def BeamWidthAlongship(self) -> float:
+        """
+        :type: float
+        """
+    @BeamWidthAlongship.setter
+    def BeamWidthAlongship(self, arg0: float) -> None:
+        pass
+    @property
+    def BeamWidthAthwartship(self) -> float:
+        """
+        :type: float
+        """
+    @BeamWidthAthwartship.setter
+    def BeamWidthAthwartship(self, arg0: float) -> None:
+        pass
+    @property
+    def DirectivityDropAt2XBeamWidth(self) -> float:
+        """
+        :type: float
+        """
+    @DirectivityDropAt2XBeamWidth.setter
+    def DirectivityDropAt2XBeamWidth(self, arg0: float) -> None:
+        pass
+    @property
+    def EquivalentBeamAngle(self) -> float:
+        """
+        :type: float
+        """
+    @EquivalentBeamAngle.setter
+    def EquivalentBeamAngle(self, arg0: float) -> None:
+        pass
+    @property
+    def Frequency(self) -> float:
+        """
+        :type: float
+        """
+    @Frequency.setter
+    def Frequency(self, arg0: float) -> None:
+        pass
+    @property
+    def FrequencyMaximum(self) -> float:
+        """
+        :type: float
+        """
+    @FrequencyMaximum.setter
+    def FrequencyMaximum(self, arg0: float) -> None:
+        pass
+    @property
+    def FrequencyMinimum(self) -> float:
+        """
+        :type: float
+        """
+    @FrequencyMinimum.setter
+    def FrequencyMinimum(self, arg0: float) -> None:
+        pass
+    @property
+    def FrequencyPars(self) -> typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]:
+        """
+        :type: typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]
+        """
+    @FrequencyPars.setter
+    def FrequencyPars(self, arg0: typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]) -> None:
+        pass
+    @property
+    def Gain(self) -> typing.List[float]:
+        """
+        :type: typing.List[float]
+        """
+    @Gain.setter
+    def Gain(self, arg0: typing.List[float]) -> None:
+        pass
+    @property
+    def MaxTxPowerTransducer(self) -> float:
+        """
+        :type: float
+        """
+    @MaxTxPowerTransducer.setter
+    def MaxTxPowerTransducer(self, arg0: float) -> None:
+        pass
+    @property
+    def SaCorrection(self) -> typing.List[float]:
+        """
+        :type: typing.List[float]
+        """
+    @SaCorrection.setter
+    def SaCorrection(self, arg0: typing.List[float]) -> None:
+        pass
+    @property
+    def SerialNumber(self) -> int:
+        """
+        :type: int
+        """
+    @SerialNumber.setter
+    def SerialNumber(self, arg0: int) -> None:
+        pass
+    @property
+    def TransducerName(self) -> str:
+        """
+        :type: str
+        """
+    @TransducerName.setter
+    def TransducerName(self, arg0: str) -> None:
+        pass
+    @property
+    def unknown_attributes(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: int) -> None:
+        pass
+    @property
+    def unknown_children(self) -> int:
+        """
+        :type: int
+        """
+    @unknown_children.setter
+    def unknown_children(self, arg0: int) -> None:
+        pass
+    pass
 class XML_Configuration():
     """
     XML base datagram
@@ -161,12 +441,12 @@ class XML_Configuration():
         convert object to bytearray
         """
     @property
-    def ActivePingMode(self) -> XML_Configuration_ActivePingMode:
+    def ActivePingMode(self) -> XMLConfigurationActivePingMode:
         """
-        :type: XML_Configuration_ActivePingMode
+        :type: XMLConfigurationActivePingMode
         """
     @ActivePingMode.setter
-    def ActivePingMode(self, arg0: XML_Configuration_ActivePingMode) -> None:
+    def ActivePingMode(self, arg0: XMLConfigurationActivePingMode) -> None:
         pass
     @property
     def ApplicationName(self) -> str:
@@ -247,71 +527,6 @@ class XML_Configuration():
         """
     @Version.setter
     def Version(self, arg0: str) -> None:
-        pass
-    pass
-class XML_Configuration_ActivePingMode():
-    def __copy__(self) -> XML_Configuration_ActivePingMode: ...
-    def __deepcopy__(self, arg0: dict) -> XML_Configuration_ActivePingMode: ...
-    def __getstate__(self) -> bytes: ...
-    def __hash__(self) -> int: 
-        """
-        hash function implemented using slow_hash
-        """
-    def __init__(self) -> None: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> XML_Configuration_ActivePingMode: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_ActivePingMode: 
-        """
-        create T_CLASS object from bytearray
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def parsed_completely(self) -> bool: ...
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def to_binary(self, resize_buffer: bool = True) -> bytes: 
-        """
-        convert object to bytearray
-        """
-    @property
-    def Mode(self) -> str:
-        """
-        :type: str
-        """
-    @Mode.setter
-    def Mode(self, arg0: str) -> None:
-        pass
-    @property
-    def unknown_attributes(self) -> int:
-        """
-        :type: int
-        """
-    @unknown_attributes.setter
-    def unknown_attributes(self, arg0: int) -> None:
-        pass
-    @property
-    def unknown_children(self) -> int:
-        """
-        :type: int
-        """
-    @unknown_children.setter
-    def unknown_children(self, arg0: int) -> None:
         pass
     pass
 class XML_Configuration_Sensor():
@@ -950,12 +1165,12 @@ class XML_Configuration_Transceiver_Channel():
     def SampleInterval(self, arg0: typing.List[float]) -> None:
         pass
     @property
-    def Transducer(self) -> XML_Configuration_Transceiver_Channel_Transducer:
+    def Transducer(self) -> XMLConfigurationTransceiverChannelTransducer:
         """
-        :type: XML_Configuration_Transceiver_Channel_Transducer
+        :type: XMLConfigurationTransceiverChannelTransducer
         """
     @Transducer.setter
-    def Transducer(self, arg0: XML_Configuration_Transceiver_Channel_Transducer) -> None:
+    def Transducer(self, arg0: XMLConfigurationTransceiverChannelTransducer) -> None:
         pass
     @property
     def unknown_attributes(self) -> int:
@@ -1080,215 +1295,6 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar():
         """
     @Phase.setter
     def Phase(self, arg0: float) -> None:
-        pass
-    @property
-    def unknown_attributes(self) -> int:
-        """
-        :type: int
-        """
-    @unknown_attributes.setter
-    def unknown_attributes(self, arg0: int) -> None:
-        pass
-    @property
-    def unknown_children(self) -> int:
-        """
-        :type: int
-        """
-    @unknown_children.setter
-    def unknown_children(self, arg0: int) -> None:
-        pass
-    pass
-class XML_Configuration_Transceiver_Channel_Transducer():
-    def __copy__(self) -> XML_Configuration_Transceiver_Channel_Transducer: ...
-    def __deepcopy__(self, arg0: dict) -> XML_Configuration_Transceiver_Channel_Transducer: ...
-    def __getstate__(self) -> bytes: ...
-    def __hash__(self) -> int: 
-        """
-        hash function implemented using slow_hash
-        """
-    def __init__(self) -> None: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None: ...
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> XML_Configuration_Transceiver_Channel_Transducer: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel_Transducer: 
-        """
-        create T_CLASS object from bytearray
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def parsed_completely(self) -> bool: ...
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def to_binary(self, resize_buffer: bool = True) -> bytes: 
-        """
-        convert object to bytearray
-        """
-    @property
-    def AngleOffsetAlongship(self) -> float:
-        """
-        :type: float
-        """
-    @AngleOffsetAlongship.setter
-    def AngleOffsetAlongship(self, arg0: float) -> None:
-        pass
-    @property
-    def AngleOffsetAthwartship(self) -> float:
-        """
-        :type: float
-        """
-    @AngleOffsetAthwartship.setter
-    def AngleOffsetAthwartship(self, arg0: float) -> None:
-        pass
-    @property
-    def AngleSensitivityAlongship(self) -> float:
-        """
-        :type: float
-        """
-    @AngleSensitivityAlongship.setter
-    def AngleSensitivityAlongship(self, arg0: float) -> None:
-        pass
-    @property
-    def AngleSensitivityAthwartship(self) -> float:
-        """
-        :type: float
-        """
-    @AngleSensitivityAthwartship.setter
-    def AngleSensitivityAthwartship(self, arg0: float) -> None:
-        pass
-    @property
-    def ArticleNumber(self) -> str:
-        """
-        :type: str
-        """
-    @ArticleNumber.setter
-    def ArticleNumber(self, arg0: str) -> None:
-        pass
-    @property
-    def BeamType(self) -> t_BeamType:
-        """
-        :type: t_BeamType
-        """
-    @BeamType.setter
-    def BeamType(self, arg0: t_BeamType) -> None:
-        pass
-    @property
-    def BeamWidthAlongship(self) -> float:
-        """
-        :type: float
-        """
-    @BeamWidthAlongship.setter
-    def BeamWidthAlongship(self, arg0: float) -> None:
-        pass
-    @property
-    def BeamWidthAthwartship(self) -> float:
-        """
-        :type: float
-        """
-    @BeamWidthAthwartship.setter
-    def BeamWidthAthwartship(self, arg0: float) -> None:
-        pass
-    @property
-    def DirectivityDropAt2XBeamWidth(self) -> float:
-        """
-        :type: float
-        """
-    @DirectivityDropAt2XBeamWidth.setter
-    def DirectivityDropAt2XBeamWidth(self, arg0: float) -> None:
-        pass
-    @property
-    def EquivalentBeamAngle(self) -> float:
-        """
-        :type: float
-        """
-    @EquivalentBeamAngle.setter
-    def EquivalentBeamAngle(self, arg0: float) -> None:
-        pass
-    @property
-    def Frequency(self) -> float:
-        """
-        :type: float
-        """
-    @Frequency.setter
-    def Frequency(self, arg0: float) -> None:
-        pass
-    @property
-    def FrequencyMaximum(self) -> float:
-        """
-        :type: float
-        """
-    @FrequencyMaximum.setter
-    def FrequencyMaximum(self, arg0: float) -> None:
-        pass
-    @property
-    def FrequencyMinimum(self) -> float:
-        """
-        :type: float
-        """
-    @FrequencyMinimum.setter
-    def FrequencyMinimum(self, arg0: float) -> None:
-        pass
-    @property
-    def FrequencyPars(self) -> typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]:
-        """
-        :type: typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]
-        """
-    @FrequencyPars.setter
-    def FrequencyPars(self, arg0: typing.List[XML_Configuration_Transceiver_Channel_FrequencyPar]) -> None:
-        pass
-    @property
-    def Gain(self) -> typing.List[float]:
-        """
-        :type: typing.List[float]
-        """
-    @Gain.setter
-    def Gain(self, arg0: typing.List[float]) -> None:
-        pass
-    @property
-    def MaxTxPowerTransducer(self) -> float:
-        """
-        :type: float
-        """
-    @MaxTxPowerTransducer.setter
-    def MaxTxPowerTransducer(self, arg0: float) -> None:
-        pass
-    @property
-    def SaCorrection(self) -> typing.List[float]:
-        """
-        :type: typing.List[float]
-        """
-    @SaCorrection.setter
-    def SaCorrection(self, arg0: typing.List[float]) -> None:
-        pass
-    @property
-    def SerialNumber(self) -> int:
-        """
-        :type: int
-        """
-    @SerialNumber.setter
-    def SerialNumber(self, arg0: int) -> None:
-        pass
-    @property
-    def TransducerName(self) -> str:
-        """
-        :type: str
-        """
-    @TransducerName.setter
-    def TransducerName(self, arg0: str) -> None:
         pass
     @property
     def unknown_attributes(self) -> int:
