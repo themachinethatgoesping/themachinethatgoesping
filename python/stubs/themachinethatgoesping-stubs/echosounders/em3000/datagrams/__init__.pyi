@@ -9,6 +9,7 @@ _Shape = typing.Tuple[int, ...]
 __all__ = [
     "AttitudeDatagram",
     "ClockDatagram",
+    "DepthOrHeightDatagram",
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
@@ -216,6 +217,102 @@ class ClockDatagram(EM3000Datagram):
         """
         < in ms from external clock datagram
         """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class DepthOrHeightDatagram(EM3000Datagram):
+    """
+    Clock datagrams
+    """
+    def __copy__(self) -> DepthOrHeightDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> DepthOrHeightDatagram: ...
+    def __eq__(self, other: DepthOrHeightDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> DepthOrHeightDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> DepthOrHeightDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_height(self) -> int: 
+        """
+        < in cm
+        """
+    def get_height_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_height_in_meters(self) -> float: 
+        """
+        Get the height in meters
+
+        Returns:
+            _height * 0.01m (float)
+        """
+    def get_height_type(self) -> int: 
+        """
+        < 0: derived from GGK or GGA, 1-99 ???, 100 depth is taken from the <
+        DepthOrheight datagram, 200: Input from depth sensor
+        """
+    def get_height_type_explained(self) -> str: 
+        """
+        Get a string description of the height_type
+
+        Returns:
+            std::string
+        """
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_height(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_height_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_height_type(self, arg0: int) -> None: 
+        """
+        < 0: derived from GGK or GGA, 1-99 ???, 100 depth is taken from the <
+        DepthOrheight datagram, 200: Input from depth sensor
+        """
+    def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
