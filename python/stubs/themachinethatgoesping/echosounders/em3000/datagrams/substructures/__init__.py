@@ -7,12 +7,14 @@ _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "AmplitudeDetect",
+    "AttitudeDatagramAttitude",
     "Estimated",
     "ExtraDetectionsDetectionClasses",
     "ExtraDetectionsExtraDetections",
     "Interpolated",
     "Invalid",
     "InvalidNormalDetection",
+    "NetworkAttitudeVelocityDatagramAttitude",
     "NoDetection",
     "PhaseDetect",
     "RawRangeAndAngleBeam",
@@ -27,6 +29,116 @@ __all__ = [
 ]
 
 
+class AttitudeDatagramAttitude():
+    """
+    The beam data are given re the transmit transducer or sonar head depth
+    and the horizontal location (x,y) of the active positioning system's
+    reference point. Heave, roll, pitch, sound speed at the transducer
+    depth and ray bending through the water column have been applied.
+    """
+    def __copy__(self) -> AttitudeDatagramAttitude: ...
+    def __deepcopy__(self, arg0: dict) -> AttitudeDatagramAttitude: ...
+    def __eq__(self, other: AttitudeDatagramAttitude) -> bool: ...
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> AttitudeDatagramAttitude: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_heading(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_heading_in_degrees(self) -> float: 
+        """
+        Returns the heading in degrees.
+
+        Returns:
+            _heading * 0.01f (float)
+        """
+    def get_heave(self) -> int: 
+        """
+        < in cm
+        """
+    def get_heave_in_meters(self) -> float: 
+        """
+        Returns the heave in meters.
+
+        Returns:
+            _heave * 0.01f (float)
+        """
+    def get_pitch(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_pitch_in_degrees(self) -> float: 
+        """
+        Returns the pitch in degrees.
+
+        Returns:
+            _pitch * 0.01f (float)
+        """
+    def get_roll(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_roll_in_degrees(self) -> float: 
+        """
+        Returns the roll in degrees.
+
+        Returns:
+            _roll * 0.01f (float)
+        """
+    def get_sensor_status(self) -> int: ...
+    def get_time(self) -> float: 
+        """
+        < in_milliseconds_since_record_start
+        """
+    def get_time_in_seconds(self) -> float: 
+        """
+        Returns the time in seconds since record start.
+
+        Returns:
+            _time * 0.001f (float)
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_heading(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_heave(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_pitch(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_roll(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_sensor_status(self, arg0: int) -> None: ...
+    def set_time(self, arg0: int) -> None: 
+        """
+        < in_milliseconds_since_record_start
+        """
+    __hash__ = None
+    pass
 class ExtraDetectionsDetectionClasses():
     """
     Extra Detections Detection Classes
@@ -405,6 +517,144 @@ class ExtraDetectionsExtraDetections():
         <
         """
     __hash__ = None
+    pass
+class NetworkAttitudeVelocityDatagramAttitude():
+    """
+    The beam data are given re the transmit transducer or sonar head depth
+    and the horizontal location (x,y) of the active positioning system's
+    reference point. Heave, roll, pitch, sound speed at the transducer
+    depth and ray bending through the water column have been applied.
+    """
+    def __copy__(self) -> NetworkAttitudeVelocityDatagramAttitude: ...
+    def __deepcopy__(self, arg0: dict) -> NetworkAttitudeVelocityDatagramAttitude: ...
+    def __eq__(self, other: NetworkAttitudeVelocityDatagramAttitude) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> NetworkAttitudeVelocityDatagramAttitude: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagramAttitude: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_heading(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_heading_in_degrees(self) -> float: 
+        """
+        Returns the heading in degrees.
+
+        Returns:
+            _heading * 0.01f (float)
+        """
+    def get_heave(self) -> int: 
+        """
+        < in cm
+        """
+    def get_heave_in_meters(self) -> float: 
+        """
+        Returns the heave in meters.
+
+        Returns:
+            _heave * 0.01f (float)
+        """
+    def get_input_datagram(self) -> bytes: 
+        """
+        < as received from the network
+        """
+    def get_number_of_bytes_in_input_datagram(self) -> int: 
+        """
+        < Nx
+        """
+    def get_pitch(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_pitch_in_degrees(self) -> float: 
+        """
+        Returns the pitch in degrees.
+
+        Returns:
+            _pitch * 0.01f (float)
+        """
+    def get_roll(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_roll_in_degrees(self) -> float: 
+        """
+        Returns the roll in degrees.
+
+        Returns:
+            _roll * 0.01f (float)
+        """
+    def get_time(self) -> float: 
+        """
+        < in_milliseconds_since_record_start
+        """
+    def get_time_in_seconds(self) -> float: 
+        """
+        Returns the time in seconds since record start.
+
+        Returns:
+            _time * 0.001f (float)
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_heading(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_heave(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_input_datagram(self, arg0: str) -> None: 
+        """
+        < as received from the network
+        """
+    def set_number_of_bytes_in_input_datagram(self, arg0: int) -> None: 
+        """
+        < Nx
+        """
+    def set_pitch(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_roll(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_time(self, arg0: int) -> None: 
+        """
+        < in_milliseconds_since_record_start
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
     pass
 class RawRangeAndAngleBeam():
     """

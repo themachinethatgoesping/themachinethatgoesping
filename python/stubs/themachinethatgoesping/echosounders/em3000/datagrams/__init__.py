@@ -7,9 +7,11 @@ import themachinethatgoesping.echosounders.em3000
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
+    "AttitudeDatagram",
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
+    "NetworkAttitudeVelocityDatagram",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
     "SeabedImageData",
@@ -107,6 +109,130 @@ class EM3000Datagram():
         < (start identifier)
         """
     def set_time_since_midnight(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class AttitudeDatagram(EM3000Datagram):
+    """
+    This datagram is used for the models EM 2040, EM 2040C, EM 710, EM
+    122, EM 302 and ME70BO. All receiver beams are included, check
+    detection info and real time cleaning for beam status (note 4 and 5).
+    """
+    def __copy__(self) -> AttitudeDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> AttitudeDatagram: ...
+    def __eq__(self, other: AttitudeDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def attitudes(self) -> typing.List[substructures.AttitudeDatagramAttitude]: 
+        """
+        < N x Attitude data
+        """
+    def copy(self) -> AttitudeDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AttitudeDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_attitude_counter(self) -> int: ...
+    def get_attitudes(self) -> typing.List[substructures.AttitudeDatagramAttitude]: 
+        """
+        < N x Attitude data
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_heading_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the heading sensor is active using sensor system
+        descriptor field. 0bxxxxxxx1 : heading is active 0bxxxxxxx1 : heading
+        is inactive
+
+        Returns:
+            bool
+        """
+    def get_heave_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the heave sensor is active using sensor system descriptor
+        field. 0bxxxx1xxx : heave is active 0bxxxx0xxx : heave is inactive
+
+        Returns:
+            bool
+        """
+    def get_motion_sensor_number(self) -> int: 
+        """
+        Get the number of motion sensor from the sensor system descriptor
+        field. xx00 xxxx – motion sensor number 1 xx01 xxxx – motion sensor
+        number 1
+
+        Returns:
+            1 or 2
+        """
+    def get_number_of_entries(self) -> int: 
+        """
+        < N
+        """
+    def get_pitch_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the pitch sensor is active using sensor system descriptor
+        field. 0bxxxxx1xx : pitch is active 0bxxxxx0xx : pitch is inactive
+
+        Returns:
+            bool
+        """
+    def get_roll_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the roll sensor is active using sensor system descriptor
+        field. 0bxxxxxx1x : roll is active 0bxxxxxx0x : roll is inactive
+
+        Returns:
+            bool
+        """
+    def get_sensor_system_descriptor(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_attitude_counter(self, arg0: int) -> None: ...
+    def set_attitudes(self, arg0: typing.List[substructures.AttitudeDatagramAttitude]) -> None: 
+        """
+        < N x Attitude data
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_number_of_entries(self, arg0: int) -> None: 
+        """
+        < N
+        """
+    def set_sensor_system_descriptor(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
@@ -386,6 +512,150 @@ class ExtraDetections(EM3000Datagram):
         """
         < (WCsr)
         """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class NetworkAttitudeVelocityDatagram(EM3000Datagram):
+    """
+    This datagram is used for the models EM 2040, EM 2040C, EM 710, EM
+    122, EM 302 and ME70BO. All receiver beams are included, check
+    detection info and real time cleaning for beam status (note 4 and 5).
+    """
+    def __copy__(self) -> NetworkAttitudeVelocityDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> NetworkAttitudeVelocityDatagram: ...
+    def __eq__(self, other: NetworkAttitudeVelocityDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def attitudes(self) -> typing.List[substructures.NetworkAttitudeVelocityDatagramAttitude]: 
+        """
+        < N x Attitude data
+        """
+    def copy(self) -> NetworkAttitudeVelocityDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_attitude_velocity_sensor_number(self) -> int: 
+        """
+        Get the number of motion sensor from the sensor system descriptor
+        field. xx10 xxxx – attitude velocity sensor 1 (UDP5) xx11 xxxx –
+        attitude velocity sensor 2 (UDP6)
+
+        Returns:
+            1 or 2
+        """
+    def get_attitudes(self) -> typing.List[substructures.NetworkAttitudeVelocityDatagramAttitude]: 
+        """
+        < N x Attitude data
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_function_is_used(self) -> bool: 
+        """
+        Evaluate if the function is used. -1 : function is not used
+
+        Returns:
+            bool
+        """
+    def get_heading_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the heading sensor is active using sensor system
+        descriptor field. 0bxxxxxxx1 : heading is active 0bxxxxxxx1 : heading
+        is inactive
+
+        Returns:
+            bool
+        """
+    def get_heave_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the heave sensor is active using sensor system descriptor
+        field. 0bxxxx1xxx : heave is active 0bxxxx0xxx : heave is inactive
+
+        Returns:
+            bool
+        """
+    def get_network_attitude_counter(self) -> int: ...
+    def get_number_of_entries(self) -> int: 
+        """
+        < N
+        """
+    def get_pitch_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the pitch sensor is active using sensor system descriptor
+        field. 0bxxxxx1xx : pitch is active 0bxxxxx0xx : pitch is inactive
+
+        Returns:
+            bool
+        """
+    def get_roll_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the roll sensor is active using sensor system descriptor
+        field. 0bxxxxxx1x : roll is active 0bxxxxxx0x : roll is inactive
+
+        Returns:
+            bool
+        """
+    def get_sensor_system_descriptor(self) -> int: ...
+    def get_spare(self) -> int: ...
+    def get_spare_align(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_velocity_sensor_is_active(self) -> bool: 
+        """
+        Evaluate if the velocity sensor is active using sensor system
+        descriptor field. 0bxxxxxxx1 : velocity is active 0bxxxxxxx1 :
+        velocity is inactive
+
+        Returns:
+            bool
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_attitudes(self, arg0: typing.List[substructures.NetworkAttitudeVelocityDatagramAttitude]) -> None: 
+        """
+        < N x Attitude data
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_network_attitude_counter(self, arg0: int) -> None: ...
+    def set_number_of_entries(self, arg0: int) -> None: 
+        """
+        < N
+        """
+    def set_sensor_system_descriptor(self, arg0: int) -> None: ...
+    def set_spare(self, arg0: int) -> None: ...
+    def set_spare_align(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
