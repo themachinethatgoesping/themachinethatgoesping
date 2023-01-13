@@ -8,6 +8,7 @@ _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "AttitudeDatagram",
+    "ClockDatagram",
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
@@ -109,6 +110,112 @@ class EM3000Datagram():
         < (start identifier)
         """
     def set_time_since_midnight(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class ClockDatagram(EM3000Datagram):
+    """
+    Clock datagrams
+    """
+    def __copy__(self) -> ClockDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> ClockDatagram: ...
+    def __eq__(self, other: ClockDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> ClockDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ClockDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_clock_counter(self) -> int: 
+        """
+        < sequential number
+        """
+    def get_date_external(self) -> int: 
+        """
+        < from external clock input year*1000 + month*100 + day(Example:Jun <
+        27, 2020 = 20200627)
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_pps_active(self) -> int: 
+        """
+        < 0 = inactive (Shows if the system clock is synchronized to an
+        external < PPS signal or not)
+        """
+    def get_system_serial_number(self) -> int: ...
+    def get_time_since_midnight_external(self) -> int: 
+        """
+        < in ms from external clock datagram
+        """
+    def get_timestamp_external(self) -> float: 
+        """
+        convert the date and time_since_midnight field to a unix timestamp
+
+        Returns:
+            unixtime as double
+        """
+    def get_timestamp_offset(self) -> float: 
+        """
+        difference between timestamp and timestamp_external
+
+        Returns:
+            timestamp_external - timestamp
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_clock_counter(self, arg0: int) -> None: 
+        """
+        < sequential number
+        """
+    def set_date_external(self, arg0: int) -> None: 
+        """
+        < from external clock input year*1000 + month*100 + day(Example:Jun <
+        27, 2020 = 20200627)
+        """
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_pps_active(self, arg0: int) -> None: 
+        """
+        < 0 = inactive (Shows if the system clock is synchronized to an
+        external < PPS signal or not)
+        """
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_time_since_midnight_external(self, arg0: int) -> None: 
+        """
+        < in ms from external clock datagram
+        """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
@@ -1271,6 +1378,8 @@ class XYZDatagram(EM3000Datagram):
         Returns:
             sound_speed * 0.1 meters per seconds (double)
         """
+    def get_spare_byte(self) -> int: ...
+    def get_spare_bytes(self) -> typing.List[int[3]]: ...
     def get_system_serial_number(self) -> int: 
         """
         < 100 -
@@ -1321,6 +1430,8 @@ class XYZDatagram(EM3000Datagram):
         """
         < at transducer in dm/s
         """
+    def set_spare_byte(self, arg0: int) -> None: ...
+    def set_spare_bytes(self, arg0: typing.List[int[3]]) -> None: ...
     def set_system_serial_number(self, arg0: int) -> None: 
         """
         < 100 -
