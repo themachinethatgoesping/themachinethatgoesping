@@ -2,12 +2,15 @@
 from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.datagrams
 import typing
+import numpy
 import themachinethatgoesping.echosounders.em3000
+_Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
+    "QualityFactorDatagram",
     "RawRangeAndAngle",
     "SeabedImageData",
     "WaterColumnDatagram",
@@ -382,6 +385,127 @@ class ExtraDetections(EM3000Datagram):
     def set_water_column_sample_rate(self, arg0: float) -> None: 
         """
         < (WCsr)
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class QualityFactorDatagram(EM3000Datagram):
+    """
+    The Quality Factor is an estimate of the standard deviation of the
+    detected depth. QF = − log(Est(dz)/z) QF = 3.0 means an estimated
+    standard deviation of 0.1% of the detected depth. QF = 2.0 means an
+    estimated standard deviation of 1.0% of the detected depth. QF = 0
+    means that the Quality Factor could not be computed. The Quality
+    Factor is calculated by the echo sounder according to formulas
+    provided by IFREMER. Used for EM 122, EM 302, EM 710, EM 2040, EM
+    2040C, EM 3002 and ME70BO.
+    """
+    def __copy__(self) -> QualityFactorDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> QualityFactorDatagram: ...
+    def __eq__(self, other: QualityFactorDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> QualityFactorDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> QualityFactorDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_number_of_parameters_per_beam(self) -> int: 
+        """
+        < Npar
+        """
+    def get_number_of_receive_beams(self) -> int: 
+        """
+        < Nrx
+        """
+    def get_ping_counter(self) -> int: 
+        """
+        < 0-65535 ping number (in this file)
+        """
+    def get_quality_factors(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        < dimension is [Nrx, Npar]
+        """
+    def get_spare(self) -> int: 
+        """
+        < always 0
+        """
+    def get_system_serial_number(self) -> int: 
+        """
+        < 100 -
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def qf_shape(self) -> typing.List[int[2]]: 
+        """
+        return the shape of the quality factor array Computed as
+        [_number_of_receive_beams, _number_of_parameters_per_beam]
+
+        Returns:
+            xt::xtensor<float, 2>::shape_type
+        """
+    def quality_factors(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        < dimension is [Nrx, Npar]
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_number_of_parameters_per_beam(self, arg0: int) -> None: 
+        """
+        < Npar
+        """
+    def set_number_of_receive_beams(self, arg0: int) -> None: 
+        """
+        < Nrx
+        """
+    def set_ping_counter(self, arg0: int) -> None: 
+        """
+        < 0-65535 ping number (in this file)
+        """
+    def set_quality_factors(self, arg0: numpy.ndarray[numpy.float32]) -> None: 
+        """
+        < dimension is [Nrx, Npar]
+        """
+    def set_spare(self, arg0: int) -> None: 
+        """
+        < always 0
+        """
+    def set_system_serial_number(self, arg0: int) -> None: 
+        """
+        < 100 -
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
