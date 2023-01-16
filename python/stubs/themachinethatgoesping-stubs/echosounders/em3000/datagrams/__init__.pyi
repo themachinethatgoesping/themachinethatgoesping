@@ -20,6 +20,8 @@ __all__ = [
     "RawRangeAndAngle",
     "SeabedImageData",
     "SingleBeamEchoSounderDepth",
+    "SoundSpeedProfileDatagram",
+    "SurfaceSoundSpeedDatagram",
     "WaterColumnDatagram",
     "XYZDatagram",
     "substructures"
@@ -796,7 +798,7 @@ class HeadingDatagram(EM3000Datagram):
         < 0 = inactive
         """
     def get_system_serial_number(self) -> int: ...
-    def get_times_headings(self) -> numpy.ndarray[numpy.uint16]: 
+    def get_times_and_headings(self) -> numpy.ndarray[numpy.uint16]: 
         """
         < 2xN array of time in ms since record start and heading in 0.01°
         """
@@ -826,11 +828,11 @@ class HeadingDatagram(EM3000Datagram):
         < N
         """
     def set_system_serial_number(self, arg0: int) -> None: ...
-    def set_times_headings(self, arg0: numpy.ndarray[numpy.uint16]) -> None: 
+    def set_times_and_headings(self, arg0: numpy.ndarray[numpy.uint16]) -> None: 
         """
         < 2xN array of time in ms since record start and heading in 0.01°
         """
-    def times_headings(self) -> numpy.ndarray[numpy.uint16]: 
+    def times_and_headings(self) -> numpy.ndarray[numpy.uint16]: 
         """
         < 2xN array of time in ms since record start and heading in 0.01°
         """
@@ -1670,6 +1672,254 @@ class SingleBeamEchoSounderDepth(EM3000Datagram):
         < 'S', 'T', '1', '2' or '3'
         """
     def set_system_serial_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class SoundSpeedProfileDatagram(EM3000Datagram):
+    """
+    This datagram will contain the profile actually used in the real time
+    raybending calculations to convert range and angle to xyz data. It
+    will usually be issued together with the installation parameter
+    datagram.
+    """
+    def __copy__(self) -> SoundSpeedProfileDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> SoundSpeedProfileDatagram: ...
+    def __eq__(self, other: SoundSpeedProfileDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SoundSpeedProfileDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def depths_and_sound_speeds(self) -> numpy.ndarray[numpy.uint32]: 
+        """
+        < 2xN array of depth in cm and sound speed in dm/s
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SoundSpeedProfileDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_depth_resolution(self) -> int: 
+        """
+        < in cm
+        """
+    def get_depth_resolution_in_meters(self) -> float: 
+        """
+        return the depths in meters
+
+        Returns:
+            _depth_resolution * 0.01 (float)
+        """
+    def get_depths_and_sound_speeds(self) -> numpy.ndarray[numpy.uint32]: 
+        """
+        < 2xN array of depth in cm and sound speed in dm/s
+        """
+    def get_depths_in_meters(self) -> numpy.ndarray[numpy.float64]: 
+        """
+        return the depths in meters by multiplying the depths by 0.01
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float64)
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_number_of_entries(self) -> int: ...
+    def get_profile_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_profile_date(self) -> int: 
+        """
+        < year*10000 + month*100 + day (when profile was taken)
+        """
+    def get_profile_date_string(self, arg0: int, arg1: str) -> str: 
+        """
+        Get the profile time as string
+
+        Parameter ``fractionalSecondsDigits``:
+            $Parameter ``format``:
+
+        Returns:
+            std::string
+        """
+    def get_profile_time_since_midnight(self) -> int: 
+        """
+        < time since midnight in milliseconds (when profile < was taken)
+        """
+    def get_profile_timestamp(self) -> float: 
+        """
+        convert the profile date and time_since_midnight field to a unix
+        timestamp
+
+        Returns:
+            unixtime as double
+        """
+    def get_sound_speeds_in_meters_per_second(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        return sound speeds in meter per second by multiplying the
+        sound_speeds by 0.1
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float32)
+        """
+    def get_spare(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_depth_resolution(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_depths_and_sound_speeds(self, arg0: numpy.ndarray[numpy.uint32]) -> None: 
+        """
+        < 2xN array of depth in cm and sound speed in dm/s
+        """
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_number_of_entries(self, arg0: int) -> None: 
+        """
+        < N
+        """
+    def set_profile_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_profile_date(self, arg0: int) -> None: 
+        """
+        < year*10000 + month*100 + day (when profile was taken)
+        """
+    def set_profile_time_since_midnight(self, arg0: int) -> None: 
+        """
+        < time since midnight in milliseconds (when profile < was taken)
+        """
+    def set_spare(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class SurfaceSoundSpeedDatagram(EM3000Datagram):
+    """
+    Sound_speed datagrams
+    """
+    def __copy__(self) -> SurfaceSoundSpeedDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> SurfaceSoundSpeedDatagram: ...
+    def __eq__(self, other: SurfaceSoundSpeedDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SurfaceSoundSpeedDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SurfaceSoundSpeedDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_number_of_entries(self) -> int: ...
+    def get_sound_speed_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_sound_speed_timestamps(self) -> numpy.ndarray[numpy.float64]: 
+        """
+        return the times converted to unix timestamps
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float64)
+        """
+    def get_sound_speeds_in_meters_per_second(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        return sound_speeds in meters by multiplying the surface sound_speed
+        by 0.1
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float32)
+        """
+    def get_spare(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_times_and_sound_speeds(self) -> numpy.ndarray[numpy.uint16]: 
+        """
+        < 2xN array of time in ms since record < start and sound_speed in dm/s
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_number_of_entries(self, arg0: int) -> None: 
+        """
+        < N
+        """
+    def set_sound_speed_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_spare(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_times_and_sound_speeds(self, arg0: numpy.ndarray[numpy.uint16]) -> None: 
+        """
+        < 2xN array of time in ms since record < start and sound_speed in dm/s
+        """
+    def times_and_sound_speeds(self) -> numpy.ndarray[numpy.uint16]: 
+        """
+        < 2xN array of time in ms since record < start and sound_speed in dm/s
+        """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray

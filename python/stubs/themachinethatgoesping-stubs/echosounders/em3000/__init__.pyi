@@ -138,7 +138,7 @@ class t_EM3000DatagramIdentifier():
 
       SingleBeamEchoSounderDepth : 
 
-      SurfaceSoundSpeedDatagram : < TODO: implement!
+      SurfaceSoundSpeedDatagram : 
 
       SoundSpeedProfileDatagram : < TODO: implement!
 
