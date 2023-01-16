@@ -13,10 +13,13 @@ __all__ = [
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
+    "HeadingDatagram",
     "NetworkAttitudeVelocityDatagram",
+    "PositionDatagram",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
     "SeabedImageData",
+    "SingleBeamEchoSounderDepth",
     "WaterColumnDatagram",
     "XYZDatagram",
     "substructures"
@@ -64,7 +67,16 @@ class EM3000Datagram():
         """
         < year*1000 + month*100 + day(Example:Jun 27, 2020 = 20200627)
         """
-    def get_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str: ...
+    def get_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str: 
+        """
+        Get the time as string
+
+        Parameter ``fractionalSecondsDigits``:
+            $Parameter ``format``:
+
+        Returns:
+            std::string
+        """
     def get_model_number(self) -> int: 
         """
         < EM3000 model number (example: EM 3002 = 3002)
@@ -224,7 +236,7 @@ class ClockDatagram(EM3000Datagram):
     pass
 class DepthOrHeightDatagram(EM3000Datagram):
     """
-    Clock datagrams
+    Depth (pressure) or height datagrams
     """
     def __copy__(self) -> DepthOrHeightDatagram: ...
     def __deepcopy__(self, arg0: dict) -> DepthOrHeightDatagram: ...
@@ -721,6 +733,112 @@ class ExtraDetections(EM3000Datagram):
         convert object to bytearray
         """
     pass
+class HeadingDatagram(EM3000Datagram):
+    """
+    Heading datagrams
+    """
+    def __copy__(self) -> HeadingDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> HeadingDatagram: ...
+    def __eq__(self, other: HeadingDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> HeadingDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> HeadingDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_heading_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_heading_indicator(self) -> int: 
+        """
+        < 0 = inactive
+        """
+    def get_heading_timestamps(self) -> numpy.ndarray[numpy.float64]: 
+        """
+        return the times converted to unix timestamps
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float64)
+        """
+    def get_headings_in_degrees(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        return headings in degrees by multiplying the heading by 0.01
+
+        Returns:
+            np.array([_number_of_entries], dtype = np.float32)
+        """
+    def get_number_of_entries(self) -> int: 
+        """
+        < 0 = inactive
+        """
+    def get_system_serial_number(self) -> int: ...
+    def get_times_headings(self) -> numpy.ndarray[numpy.uint16]: 
+        """
+        < 2xN array of time in ms since record start and heading in 0.01°
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_heading_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_heading_indicator(self, arg0: int) -> None: 
+        """
+        < 0 = inactive
+        """
+    def set_number_of_entries(self, arg0: int) -> None: 
+        """
+        < N
+        """
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_times_headings(self, arg0: numpy.ndarray[numpy.uint16]) -> None: 
+        """
+        < 2xN array of time in ms since record start and heading in 0.01°
+        """
+    def times_headings(self) -> numpy.ndarray[numpy.uint16]: 
+        """
+        < 2xN array of time in ms since record start and heading in 0.01°
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
 class NetworkAttitudeVelocityDatagram(EM3000Datagram):
     """
     This datagram is used for the models EM 2040, EM 2040C, EM 710, EM
@@ -859,6 +977,185 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
     def set_sensor_system_descriptor(self, arg0: int) -> None: ...
     def set_spare(self, arg0: int) -> None: ...
     def set_spare_align(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class PositionDatagram(EM3000Datagram):
+    """
+    Depth (pressure) or height datagrams
+    """
+    def __copy__(self) -> PositionDatagram: ...
+    def __deepcopy__(self, arg0: dict) -> PositionDatagram: ...
+    def __eq__(self, other: PositionDatagram) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> PositionDatagram: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionDatagram: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_course_of_vessel(self) -> int: 
+        """
+        < over ground in 0.01°
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_heading_of_vessel(self) -> int: 
+        """
+        < in 0.01°
+        """
+    def get_latitude(self) -> int: 
+        """
+        < latitude in 0.00000005° negative if southern hemishpere
+        """
+    def get_latitude_in_degrees(self) -> float: 
+        """
+        Get the latitude in degrees
+
+        Returns:
+            _latitude * 0.00000005° (double)
+        """
+    def get_longitude(self) -> int: 
+        """
+        < longitude in 0.0000001° negative if western hemishpere
+        """
+    def get_longitude_in_degrees(self) -> float: 
+        """
+        Get the longitude in degrees
+
+        Returns:
+            _longitude * 0.0000001° (double)
+        """
+    def get_position_counter(self) -> int: ...
+    def get_position_fix_quality(self) -> int: 
+        """
+        < fix quality in cm;
+        """
+    def get_position_fix_quality_in_meters(self) -> float: 
+        """
+        Get the position fix quality in meters
+
+        Returns:
+            _position_fix_quality * 0.01m (float)
+        """
+    def get_position_system_SIMRAD90_flag(self) -> bool: 
+        """
+        Evaluate if the position_system_descriptor for the used system number
+
+        xxxx 1xxx – the position may have to be derived from the input
+        datagram which is then in SIMRAD 90 format.
+
+        Returns:
+            true or false (bool)
+        """
+    def get_position_system_descriptor(self) -> int: ...
+    def get_position_system_number(self) -> int: 
+        """
+        Evaluate if the position_system_descriptor for the used system number
+
+        Returns:
+            1, 2 or 3 (uint8_t )
+        """
+    def get_position_system_system_time_has_been_used(self) -> bool: 
+        """
+        Evaluate the position_system_descriptor for the used time
+
+        Returns:
+            true: system time has been used
+
+        Returns:
+            false: input datagram time has been used
+        """
+    def get_size_of_input_datagram(self) -> int: 
+        """
+        < in input datagram;
+        """
+    def get_spare(self) -> int: 
+        """
+        < only if required to make the datagram size even
+        """
+    def get_speed_of_vessel(self) -> int: 
+        """
+        < over ground in cm/s
+        """
+    def get_speed_of_vessel_in_meters_per_second(self) -> float: 
+        """
+        Get the speed of vessel in meter per second
+
+        Returns:
+            _speed_of_vessel * 0.01m/s (float)
+        """
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_course_of_vessel(self, arg0: int) -> None: 
+        """
+        < over ground in 0.01°
+        """
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_heading_of_vessel(self, arg0: int) -> None: 
+        """
+        < in 0.01°
+        """
+    def set_latitude(self, arg0: int) -> None: 
+        """
+        < latitude in 0.00000005° negative if southern hemishpere
+        """
+    def set_longitude(self, arg0: int) -> None: 
+        """
+        < longitude in 0.0000001° negative if western hemishpere
+        """
+    def set_position_counter(self, arg0: int) -> None: ...
+    def set_position_fix_quality(self, arg0: int) -> None: 
+        """
+        < fix quality in cm;
+        """
+    def set_position_system_descriptor(self, arg0: int) -> None: ...
+    def set_size_of_input_datagram(self, arg0: int) -> None: 
+        """
+        < in input datagram;
+        """
+    def set_spare(self, arg0: int) -> None: 
+        """
+        < only if required to make the datagram size even
+        """
+    def set_speed_of_vessel(self, arg0: int) -> None: 
+        """
+        < over ground in cm/s
+        """
     def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
@@ -1251,6 +1548,128 @@ class SeabedImageData(EM3000Datagram):
         """
         < in 0.1 degree
         """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class SingleBeamEchoSounderDepth(EM3000Datagram):
+    """
+    Single beam echo sounder depth datagram
+    """
+    def __copy__(self) -> SingleBeamEchoSounderDepth: ...
+    def __deepcopy__(self, arg0: dict) -> SingleBeamEchoSounderDepth: ...
+    def __eq__(self, other: SingleBeamEchoSounderDepth) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SingleBeamEchoSounderDepth: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SingleBeamEchoSounderDepth: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_echo_sounder_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_echo_sounder_depth(self) -> int: 
+        """
+        < from waterline in cm
+        """
+    def get_echo_sounder_depth_in_meters(self) -> float: 
+        """
+        Get the echo sounder depth in meters
+
+        Returns:
+            _echo_sounder_depth * 0.01f (float)
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_input_date(self) -> int: 
+        """
+        < year*10000 + month*100 + day (from input datagram if available)
+        """
+    def get_input_date_string(self, arg0: int, arg1: str) -> str: 
+        """
+        Get the time as string
+
+        Parameter ``fractionalSecondsDigits``:
+            $Parameter ``format``:
+
+        Returns:
+            std::string
+        """
+    def get_input_time_since_midnight(self) -> int: 
+        """
+        < time since midnight in milliseconds (from input < datagram if
+        available)
+        """
+    def get_input_timestamp(self) -> float: 
+        """
+        convert the date and time_since_midnight field to a unix timestamp
+
+        Returns:
+            unixtime as double
+        """
+    def get_source_identifier(self) -> str: 
+        """
+        < 'S', 'T', '1', '2' or '3'
+        """
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_echo_sounder_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_echo_sounder_depth(self, arg0: int) -> None: 
+        """
+        < from waterline in cm
+        """
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_input_date(self, arg0: int) -> None: 
+        """
+        < year*10000 + month*100 + day (from input datagram if available)
+        """
+    def set_input_time_since_midnight(self, arg0: int) -> None: 
+        """
+        < time since midnight in milliseconds (from input < datagram if
+        available)
+        """
+    def set_source_identifier(self, arg0: str) -> None: 
+        """
+        < 'S', 'T', '1', '2' or '3'
+        """
+    def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
