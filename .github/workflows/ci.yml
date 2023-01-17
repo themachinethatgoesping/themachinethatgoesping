@@ -51,7 +51,7 @@ concurrency:
   
 jobs:
   linux:
-    name: Build and install with meson on ${{matrix.container}}
+    name: ci on ${{matrix.container}}
     strategy:
       fail-fast: false
       matrix:
@@ -122,7 +122,7 @@ jobs:
     
 
   build-on-windows:
-    name: Build and install with meson on windows
+    name: ci on windows
     strategy:
       fail-fast: false
       matrix:
@@ -133,8 +133,8 @@ jobs:
           
     env:
       #CC: msvc-14.32
-      CC: ${{matrix.toolset}}
-      CXX: ${{matrix.toolset}}
+      CC: sccache ${{matrix.toolset}}
+      CXX: sccache ${{matrix.toolset}}
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
@@ -218,7 +218,7 @@ jobs:
         path: builddir/meson-logs/testlog.txt
 
   macos:
-    name: Build and install with meson on macOS
+    name: ci on macOS
     runs-on: macos-latest
       
     steps:

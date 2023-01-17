@@ -53,8 +53,8 @@ jobs:
         toolset: [clang-cl]
 
     env:
-      CC: ${{matrix.toolset}}
-      CXX: ${{matrix.toolset}}
+      CC: sccache ${{matrix.toolset}}
+      CXX: sccache ${{matrix.toolset}}
 
     steps:
     - uses: actions/setup-python@v3

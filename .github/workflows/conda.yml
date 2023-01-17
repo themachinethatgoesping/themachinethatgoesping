@@ -132,7 +132,7 @@ jobs:
 
 
   # macos:
-  #   name: Build and install with meson on macOS
+  #   name: ci on macOS
   #   runs-on: macos-latest
     
   #   env:
