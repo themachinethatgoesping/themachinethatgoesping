@@ -49,10 +49,11 @@ jobs:
         boost-version: [1.80.0]
         boost-version_: [1_80_0]
         boost-modules: [--with-iostreams]
-        compiler: [msvc-14.32]
+        #toolset: [msvc-14.32]
+        toolset: [gcc]
 
     env:
-      CC: ${{matrix.compiler}}
+      CC: ${{matrix.toolset}}
 
     steps:
     - uses: actions/setup-python@v3
@@ -71,27 +72,25 @@ jobs:
         key: tmtgp-pypi-windows-${{ matrix.python-version }}  # name for the cache
         
     # make sure meson can find msvc
-    - name: Prepare MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
-      with:
-        architecture: x64
+    # - name: Prepare MSVC
+    #   uses: bus1/cabuild/action/msdevshell@v1
+    #   with:
+    #     architecture: x64
 
     - name: Cache Boost
       id: cache-boost
       uses: actions/cache@v3
       with:
         path: c:\Boost
-        key: windows-${{matrix.compiler}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+        key: windows-${{matrix.toolset}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
     - name: Install boost
       if: steps.cache-boost.outputs.cache-hit != 'true'
       run: |
-          #vcpkg install boost
-          #choco install boost-msvc-14.32
           Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
           7z x boost.7z
           cd .\boost_${{matrix.boost-version_}}\
-          .\bootstrap.bat
+          .\bootstrap.bat ${{matrix.toolset}}
           .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
           cd ..
           #rm -rv boost*

@@ -130,9 +130,11 @@ jobs:
           boost-version: [1.79.0]
           boost-version_: [1_79_0]
           boost-modules: [--with-iostreams]
+          toolset: [gcc]
           
     env:
-      CC: msvc-14.32
+      #CC: msvc-14.32
+      CC: ${{matrix.toolset}}
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
@@ -143,10 +145,10 @@ jobs:
         python-version: '3.10'
     
     # make sure meson can find msvc
-    - name: Prepare MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
-      with:
-        architecture: x64
+    # - name: Prepare MSVC
+    #   uses: bus1/cabuild/action/msdevshell@v1
+    #   with:
+    #     architecture: x64
 
     - name: checkout main repository
       uses: actions/checkout@v3
@@ -166,7 +168,8 @@ jobs:
       uses: actions/cache@v3
       with:
         path: c:\Boost
-        key: windows-msvc-14.32-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+        #key: windows-msvc-14.32-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+        key: windows-${{matrix.toolset}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
   
     - name: Install dependencies on windows
       if: steps.cache-boost.outputs.cache-hit != 'true'
@@ -174,7 +177,7 @@ jobs:
         Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
         7z x boost.7z 
         cd .\boost_${{matrix.boost-version_}}\
-        .\bootstrap.bat
+        .\bootstrap.bat ${{matrix.toolset}}
         .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
         cd ..
         #rm -rv boost*
