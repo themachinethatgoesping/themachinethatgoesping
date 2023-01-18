@@ -129,7 +129,7 @@ jobs:
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
         boost-modules: [--with-iostreams]
-        toolset: [clang-cl, msvc]
+        toolset: [clang-cl, msvc-14.34]
           
     env:
       #CC: msvc-14.32
