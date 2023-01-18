@@ -131,7 +131,7 @@ jobs:
         boost-modules: [--with-iostreams]
         include:
           - toolset: clang-cl
-            compiler: sccache clang-cll
+            compiler: clang-cll
           - toolset: msvc
             compiler: sccache cl
             
@@ -155,10 +155,10 @@ jobs:
         version: latest
     
     # make sure meson can find msvc
-    - name: Prepare MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
+    - uses: TheMrMilchmann/setup-msvc-dev@v2
       with:
-        architecture: x64
+        arch: x64
+        #toolset: 14.34
 
     - name: checkout main repository
       uses: actions/checkout@v3
