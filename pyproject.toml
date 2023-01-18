@@ -92,5 +92,4 @@ testpaths = [
 dist = []
 setup = ["--default-library=static"]
 compile = []
-install = []
-install-tags = ['runtime','python-runtime']
+install = ['--tags=runtime,python-runtime'] 
