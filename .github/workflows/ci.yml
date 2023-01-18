@@ -129,7 +129,7 @@ jobs:
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
         boost-modules: [--with-iostreams]
-        toolset: [clang-cl]
+        toolset: [clang-cl, msvc]
           
     env:
       #CC: msvc-14.32
@@ -194,7 +194,7 @@ jobs:
 
     - name: configure meson
       run: |
-        meson setup builddir/ -D"python.install_env=auto" -Dcpp_std=c++17 -Ddefault_library=static -D"python.install_env=auto"
+        meson setup builddir/ -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto"
 
     - name: compile project
       run: meson compile -C builddir/
