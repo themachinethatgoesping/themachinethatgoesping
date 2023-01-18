@@ -133,7 +133,7 @@ jobs:
           - toolset: clang-cl
             compiler: clang-cll
           - toolset: msvc
-            compiler: sccache cl
+            compiler: cl
             
           
     env:
