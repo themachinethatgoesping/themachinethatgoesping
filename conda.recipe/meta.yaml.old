@@ -20,7 +20,7 @@ requirements:
     - pip
     - tomli
     - pyproject-metadata
-    - meson>=0.62
+    - meson>=1.0
   run:
     - python
 

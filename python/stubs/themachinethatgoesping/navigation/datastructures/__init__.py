@@ -187,7 +187,7 @@ class GeoLocationLatLon(GeoLocation):
             in °, positive eastwards
 
         Construct an GeoLocationLatLon object from an existing GeoLocationUTM
-        object (this allows for implicit conversion from GeoLocationUTM class)
+        object (this allows for explicit conversion from GeoLocationUTM class)
 
         Construct a new GeoLocationLatLon object
 
@@ -407,7 +407,7 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
             if true: northern hemisphere, else: southern hemisphere
 
         Construct an GeoLocationUTM object from an existing GeoLocationLatLon
-        object (this allows for implicit conversion from GeoLocationLatLon
+        object (this allows for explicit conversion from GeoLocationLatLon
         class)
 
         Construct a new GeoLocationUTM object
@@ -833,7 +833,7 @@ class SensorDataLatLon(SensorData):
             in °, positive eastwards
 
         Construct an SensorDataLatLon object from an existing SensorDataUTM
-        object (this allows for implicit conversion from SensorDataUTM class)
+        object (this allows for explicit conversion from SensorDataUTM class)
 
         Construct a new SensorDataLatLon object
 
@@ -1090,7 +1090,7 @@ class SensorDataUTM(SensorDataLocal, SensorData):
             if true: northern hemisphere, else: southern hemisphere
 
         Construct an SensorDataUTM object from an existing SensorDataLatLon
-        object (this allows for implicit conversion from SensorDataLatLon
+        object (this allows for explicit conversion from SensorDataLatLon
         class)
 
         Construct a new SensorDataUTM object
