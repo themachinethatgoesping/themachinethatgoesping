@@ -129,12 +129,17 @@ jobs:
         boost-version: [1.79.0]
         boost-version_: [1_79_0]
         boost-modules: [--with-iostreams]
-        toolset: [clang-cl, msvc-14.34]
+        include:
+          - toolset: clang-cl
+            compiler: sccache clang-cll
+          - toolset: msvc
+            compiler: sccache cl
+            
           
     env:
       #CC: msvc-14.32
-      CC: sccache ${{matrix.toolset}}
-      CXX: sccache ${{matrix.toolset}}
+      CC: sccache ${{matrix.compiler}}
+      CXX: sccache ${{matrix.compiler}}
 
     runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
