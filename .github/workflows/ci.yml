@@ -132,8 +132,10 @@ jobs:
         include:
           - toolset: clang-cl
             compiler: sccache clang-cll
+            cpp_std: c++latest
           - toolset: msvc
-            compiler: cl
+            compiler: sccache cl
+            cpp_std: c++20
             
           
     env:
@@ -199,7 +201,7 @@ jobs:
 
     - name: configure meson
       run: |
-        meson setup builddir/ -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto"
+        meson setup builddir/ -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{cpp_std}}
 
     - name: compile project
       run: meson compile -C builddir/

@@ -13,18 +13,17 @@ project(
   default_options: ['warning_level=2', 'buildtype=release', 'cpp_std=c++20'],
   meson_version: '>=1.0' #last meson version that was tested
 )
-
+#Set-Item -Path Env:\CXX -Value 'sccache clang-cl'
 projectnamespace = 'themachinethatgoesping'
 
-
 # load themachinethatgoesping projects
-module_meta  = subproject('meta', default_options: ['main_project_version=' + meson.project_version()])
-module_tools = subproject('tools')
-module_navigation = subproject('navigation')
-module_echosounders = subproject('echosounders')
+module_meta  = subproject('meta', default_options: ['main_project_version=' + meson.project_version(), 'cpp_std=' + get_option('cpp_std')])
+module_tools = subproject('tools', default_options: ['cpp_std=' + get_option('cpp_std')])
+module_navigation = subproject('navigation', default_options: ['cpp_std=' + get_option('cpp_std')])
+module_echosounders = subproject('echosounders', default_options: ['cpp_std=' + get_option('cpp_std')])
 
 # python only projects
-module_gridding = subproject('gridding')
+module_gridding = subproject('gridding', default_options: ['cpp_std=' + get_option('cpp_std')])
 
 # add python files
 subdir('python')
