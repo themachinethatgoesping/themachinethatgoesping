@@ -126,8 +126,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        boost-version: [1.79.0]
-        boost-version_: [1_79_0]
+        boost-version: [1.81.0]
+        boost-version_: [1_81_0]
         boost-modules: [--with-iostreams]
         include:
           - toolset: clang-cl

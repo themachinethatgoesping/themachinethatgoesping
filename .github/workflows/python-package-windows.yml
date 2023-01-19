@@ -46,15 +46,19 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8','3.9','3.10']
-        boost-version: [1.80.0]
-        boost-version_: [1_80_0]
+        boost-version: [1.81.0]
+        boost-version_: [1_81_0]
         boost-modules: [--with-iostreams]
         #toolset: [msvc-14.32]
-        toolset: [clang-cl]
+        #toolset: [clang-cl]
+        include:
+        - toolset: clang-cl
+          compiler: sccache clang-cl
+          cpp_std: c++latest
 
     env:
-      CC: sccache ${{matrix.toolset}}
-      CXX: sccache ${{matrix.toolset}}
+      CC: sccache ${{matrix.compiler}}
+      CXX: sccache ${{matrix.compiler}}
 
     steps:
     - uses: actions/setup-python@v3
