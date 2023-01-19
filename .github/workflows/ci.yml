@@ -131,7 +131,7 @@ jobs:
         boost-modules: [--with-iostreams]
         include:
           - toolset: clang-cl
-            compiler: sccache clang-cll
+            compiler: sccache clang-cl
             cpp_std: c++latest
           # - toolset: msvc
           #   compiler: sccache cl
