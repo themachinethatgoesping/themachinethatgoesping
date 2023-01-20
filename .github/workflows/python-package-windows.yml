@@ -52,7 +52,7 @@ jobs:
         #toolset: [msvc-14.32]
         #toolset: [clang-cl]
         include:
-        - toolset: clang-cl
+        - vc143
           compiler: sccache clang-cl
           cpp_std: c++17
 
