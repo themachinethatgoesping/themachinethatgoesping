@@ -54,7 +54,7 @@ jobs:
         include:
         - toolset: clang-cl
           compiler: sccache clang-cl
-          cpp_std: c++latest
+          cpp_std: c++17
 
     env:
       CC: sccache ${{matrix.compiler}}
