@@ -46,14 +46,14 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8','3.9','3.10']
-        boost-version: [1.81.0]
-        boost-version_: [1_81_0]
+        boost-version: [1.80.0]
+        boost-version_: [1_80_0]
         boost-modules: [--with-iostreams]
         #toolset: [msvc-14.32]
         #toolset: [clang-cl]
         include:
         - toolset: vc143
-          compiler: sccache clang-cl
+          compiler: clang-cl
           cpp_std: c++17
 
     env:
