@@ -130,7 +130,7 @@ jobs:
         boost-version_: [1_81_0]
         boost-modules: [--with-iostreams]
         include:
-          - vc143
+          - toolset: vc143
             compiler: sccache clang-cl
             cpp_std: c++17
           # - toolset: msvc
