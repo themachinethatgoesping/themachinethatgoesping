@@ -57,8 +57,8 @@ jobs:
           cpp_std: c++17
 
     env:
-      CC: sccache ${{matrix.compiler}}
-      CXX: sccache ${{matrix.compiler}}
+      CC: ${{matrix.compiler}}
+      CXX: ${{matrix.compiler}}
 
     steps:
     - uses: actions/setup-python@v3
