@@ -14,6 +14,7 @@ __all__ = [
     "EM3000Unknown",
     "ExtraDetections",
     "HeadingDatagram",
+    "InstallationParameters",
     "NetworkAttitudeVelocityDatagram",
     "PositionDatagram",
     "QualityFactorDatagram",
@@ -836,6 +837,94 @@ class HeadingDatagram(EM3000Datagram):
         """
         < 2xN array of time in ms since record start and heading in 0.01°
         """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class InstallationParameters(EM3000Datagram):
+    """
+    This datagram is an ASCII datagram except for the header which is
+    formatted as in all other output datagrams. The datagram is issued as
+    a start datagram when logging is switched on and as a stop datagram
+    when logging is turned off, i.e. at the start and end of a survey
+    line. It may also be sent to a remote port as an information datagram.
+    It is usually followed by a sound speed profile datagram. In the
+    datagram all ASCII fields start with a unique three character
+    identifier followed by “=”. This should be used when searching for a
+    specific field as the position of a field within the datagram is not
+    guaranteed. The number or character part following is in a variable
+    format with a minus sign and decimal point if needed, and with “,” as
+    the field delimiter. The format may at any time later be expanded with
+    the addition of new fields at any place in the datagram.
+    """
+    def __copy__(self) -> InstallationParameters: ...
+    def __deepcopy__(self, arg0: dict) -> InstallationParameters: ...
+    def __eq__(self, other: InstallationParameters) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> InstallationParameters: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> InstallationParameters: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_installation_parameters(self) -> str: ...
+    def get_installation_parameters_counter(self) -> int: 
+        """
+        < Sequential Number
+        """
+    def get_installation_parameters_parsed(self) -> typing.Dict[str, str]: ...
+    def get_secondary_system_serial_number(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def installation_parameters(self) -> str: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def reparse_installation_parameters(self) -> None: 
+        """
+        parse the installation parameters string into a map This happens when
+        the datagram is read from a file, but must be called manually when the
+        installation parameters string is changed manually.
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_installation_parameters(self, arg0: str) -> None: ...
+    def set_installation_parameters_counter(self, arg0: int) -> None: 
+        """
+        < Sequential Number
+        """
+    def set_secondary_system_serial_number(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
