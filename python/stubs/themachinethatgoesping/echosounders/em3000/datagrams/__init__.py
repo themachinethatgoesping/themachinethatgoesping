@@ -19,6 +19,7 @@ __all__ = [
     "PositionDatagram",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
+    "RuntimeParameters",
     "SeabedImageData",
     "SingleBeamEchoSounderDepth",
     "SoundSpeedProfileDatagram",
@@ -1482,6 +1483,246 @@ class RawRangeAndAngle(EM3000Datagram):
         convert object to bytearray
         """
     def transmit_sectors(self) -> typing.List[substructures.RawRangeAndAngleTransmitSector]: ...
+    pass
+class RuntimeParameters(EM3000Datagram):
+    """
+    Clock datagrams
+    """
+    def __copy__(self) -> RuntimeParameters: ...
+    def __deepcopy__(self, arg0: dict) -> RuntimeParameters: ...
+    def __eq__(self, other: RuntimeParameters) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RuntimeParameters: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RuntimeParameters: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_absorption_coefficient(self) -> int: 
+        """
+        < in 0.01 dB/km
+        """
+    def get_absorption_coefficient_in_db_per_meter(self) -> float: 
+        """
+        Get the absorption coefficient in db per meter
+
+        Returns:
+            _absorption_coefficient * 0.00001f (float)
+        """
+    def get_beam_spacing(self) -> int: ...
+    def get_bsp_status(self) -> int: ...
+    def get_checksum(self) -> int: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_filter_identifier(self) -> int: ...
+    def get_filter_identifier2(self) -> int: ...
+    def get_maximum_depth(self) -> int: 
+        """
+        < in meter
+        """
+    def get_maximum_port_coverage(self) -> int: 
+        """
+        < in degrees
+        """
+    def get_maximum_port_swath_width(self) -> int: 
+        """
+        < in meter
+        """
+    def get_maximum_starboard_coverage(self) -> int: 
+        """
+        < in degrees
+        """
+    def get_maximum_starboard_swath_width(self) -> int: 
+        """
+        < in meter
+        """
+    def get_minimum_depth(self) -> int: 
+        """
+        < in meter
+        """
+    def get_mode(self) -> int: ...
+    def get_mode2_or_receiver_fixed_gain_setting(self) -> int: 
+        """
+        < in dB
+        """
+    def get_operator_station_status(self) -> int: ...
+    def get_ping_counter(self) -> int: ...
+    def get_processing_unit_status(self) -> int: ...
+    def get_receive_bandwidth_50hz(self) -> int: 
+        """
+        < in 50 Hz resolution
+        """
+    def get_receive_bandwidth_degree(self) -> int: 
+        """
+        < in 0.1 degrees
+        """
+    def get_receive_bandwidth_in_degrees(self) -> float: 
+        """
+        Get the receive bandwidth in degrees
+
+        Returns:
+            _receive_bandwidth_degree * 0.1f (float)
+        """
+    def get_receive_bandwidth_in_hertz(self) -> float: 
+        """
+        Get the receive bandwidth in Hz
+
+        Returns:
+            _receive_bandwidth_50hz * 50.f (float)
+        """
+    def get_sonar_head_or_transceiver_status(self) -> int: ...
+    def get_source_of_sound_speed_at_transducer(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_transmit_along_tilt(self) -> int: 
+        """
+        < in 0.1 degree
+        """
+    def get_transmit_along_tilt_in_degrees(self) -> float: 
+        """
+        Get the transmit along tilt in degrees
+
+        Returns:
+            _transmit_along_tilt * 0.1f (float)
+        """
+    def get_transmit_beamwidth(self) -> int: 
+        """
+        < in 0.1 degrees
+        """
+    def get_transmit_beamwidth_in_degrees(self) -> float: 
+        """
+        Get the transmit beamwidth in degrees
+
+        Returns:
+            _transmit_beamwidth * 0.1f (float)
+        """
+    def get_transmit_power_relative_maximum(self) -> int: 
+        """
+        < in dB
+        """
+    def get_transmit_pulse_length(self) -> int: 
+        """
+        < in μs
+        """
+    def get_transmit_pulse_length_in_seconds(self) -> float: 
+        """
+        Get the transmit pulse length in seconds
+
+        Returns:
+            _transmit_pulse_length * 0.000001f (float)
+        """
+    def get_tvg_law_crossover_angle(self) -> int: 
+        """
+        < in degrees
+        """
+    def get_yaw_and_pitch_stabilization_mode(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_absorption_coefficient(self, arg0: int) -> None: 
+        """
+        < in 0.01 dB/km
+        """
+    def set_beam_spacing(self, arg0: int) -> None: ...
+    def set_bsp_status(self, arg0: int) -> None: ...
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_filter_identifier(self, arg0: int) -> None: ...
+    def set_filter_identifier2(self, arg0: int) -> None: ...
+    def set_maximum_depth(self, arg0: int) -> None: 
+        """
+        < in meter
+        """
+    def set_maximum_port_coverage(self, arg0: int) -> None: 
+        """
+        < in degrees
+        """
+    def set_maximum_port_swath_width(self, arg0: int) -> None: 
+        """
+        < in meter
+        """
+    def set_maximum_starboard_coverage(self, arg0: int) -> None: 
+        """
+        < in degrees
+        """
+    def set_maximum_starboard_swath_width(self, arg0: int) -> None: 
+        """
+        < in meter
+        """
+    def set_minimum_depth(self, arg0: int) -> None: 
+        """
+        < in meter
+        """
+    def set_mode(self, arg0: int) -> None: ...
+    def set_mode2_or_receiver_fixed_gain_setting(self, arg0: int) -> None: 
+        """
+        < in dB
+        """
+    def set_operator_station_status(self, arg0: int) -> None: ...
+    def set_ping_counter(self, arg0: int) -> None: ...
+    def set_processing_unit_status(self, arg0: int) -> None: ...
+    def set_receive_bandwidth_50hz(self, arg0: int) -> None: 
+        """
+        < in 50 Hz resolution
+        """
+    def set_receive_bandwidth_degree(self, arg0: int) -> None: 
+        """
+        < in 0.1 degrees
+        """
+    def set_sonar_head_or_transceiver_status(self, arg0: int) -> None: ...
+    def set_source_of_sound_speed_at_transducer(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_transmit_along_tilt(self, arg0: int) -> None: 
+        """
+        < in 0.1 degree
+        """
+    def set_transmit_beamwidth(self, arg0: int) -> None: 
+        """
+        < in 0.1 degrees
+        """
+    def set_transmit_power_relative_maximum(self, arg0: int) -> None: 
+        """
+        < in dB
+        """
+    def set_transmit_pulse_length(self, arg0: int) -> None: 
+        """
+        < in μs
+        """
+    def set_tvg_law_crossover_angle(self, arg0: int) -> None: 
+        """
+        < in degrees
+        """
+    def set_yaw_and_pitch_stabilization_mode(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
     pass
 class SeabedImageData(EM3000Datagram):
     """
