@@ -8,14 +8,22 @@ _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "AttitudeDatagram",
+    "Bscorr",
+    "CalibTxt",
     "ClockDatagram",
     "DepthOrHeightDatagram",
     "EM3000Datagram",
     "EM3000Unknown",
     "ExtraDetections",
+    "ExtraParameters",
+    "ExtraParameters_t_ContentIdentifier",
     "HeadingDatagram",
     "InstallationParameters",
+    "LogAllHeights",
+    "MultiCastInputStatus",
     "NetworkAttitudeVelocityDatagram",
+    "PUIDOutput",
+    "PUStatusOutput",
     "PositionDatagram",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
@@ -23,6 +31,8 @@ __all__ = [
     "SeabedImageData",
     "SingleBeamEchoSounderDepth",
     "SoundSpeedProfileDatagram",
+    "SoundVelocityAtTransducer",
+    "SoundVelocityProfile",
     "SurfaceSoundSpeedDatagram",
     "WaterColumnDatagram",
     "XYZDatagram",
@@ -737,6 +747,126 @@ class ExtraDetections(EM3000Datagram):
         convert object to bytearray
         """
     pass
+class ExtraParameters(EM3000Datagram):
+    """
+    Clock datagrams
+    """
+    def __copy__(self) -> ExtraParameters: ...
+    def __deepcopy__(self, arg0: dict) -> ExtraParameters: ...
+    def __eq__(self, other: ExtraParameters) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> ExtraParameters: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraParameters: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_checksum(self) -> int: ...
+    def get_content_identifier(self) -> ExtraParameters_t_ContentIdentifier: ...
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_ping_counter(self) -> int: ...
+    def get_raw_content(self) -> str: 
+        """
+        < depends on the content identifier
+        """
+    def get_spare(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_content_identifier(self, arg0: ExtraParameters_t_ContentIdentifier) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_ping_counter(self, arg0: int) -> None: ...
+    def set_raw_content(self, arg0: str) -> None: 
+        """
+        < depends on the content identifier
+        """
+    def set_spare(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class ExtraParameters_t_ContentIdentifier():
+    """
+    Members:
+
+      CalibTxt : < Calib.txt file for angle offset
+
+      LogAllHeights : < Log of all heights
+
+      SoundVelocityAtTransducer : < Sound velocity at transducer
+
+      SoundVelocityProfile : < Sound velocity profile
+
+      MultiCastInputStatus : < Multicast input status
+
+      Bscorr : < Bscorr.txt file
+    """
+    def __eq__(self, other: object) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    @typing.overload
+    def __init__(self, str: str) -> None: 
+        """
+        Construct this enum type from string
+        """
+    @typing.overload
+    def __init__(self, value: int) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: object) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: int) -> None: ...
+    def str(self) -> str: ...
+    @property
+    def name(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def value(self) -> int:
+        """
+        :type: int
+        """
+    Bscorr: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.Bscorr: 6>
+    CalibTxt: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.CalibTxt: 1>
+    LogAllHeights: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.LogAllHeights: 2>
+    MultiCastInputStatus: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.MultiCastInputStatus: 5>
+    SoundVelocityAtTransducer: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>
+    SoundVelocityProfile: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>
+    __members__: dict # value = {'CalibTxt': <ExtraParameters_t_ContentIdentifier.CalibTxt: 1>, 'LogAllHeights': <ExtraParameters_t_ContentIdentifier.LogAllHeights: 2>, 'SoundVelocityAtTransducer': <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>, 'SoundVelocityProfile': <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>, 'MultiCastInputStatus': <ExtraParameters_t_ContentIdentifier.MultiCastInputStatus: 5>, 'Bscorr': <ExtraParameters_t_ContentIdentifier.Bscorr: 6>}
+    pass
 class HeadingDatagram(EM3000Datagram):
     """
     Heading datagrams
@@ -1070,6 +1200,665 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
     def set_spare(self, arg0: int) -> None: ...
     def set_spare_align(self, arg0: int) -> None: ...
     def set_system_serial_number(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class PUIDOutput(EM3000Datagram):
+    """
+    The PU Status datagram is sent out every second if requested by the
+    host processor. It has two functions, to indicate that the system is
+    alive and receiving sensor data, and to give sensor data regularly for
+    a potential screen update.
+    """
+    def __copy__(self) -> PUIDOutput: ...
+    def __deepcopy__(self, arg0: dict) -> PUIDOutput: ...
+    def __eq__(self, other: PUIDOutput) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> PUIDOutput: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUIDOutput: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_bsp_software_date(self) -> str: ...
+    def get_byte_order_flag(self) -> int: ...
+    def get_checksum(self) -> int: ...
+    def get_cpu_configuration(self) -> str: 
+        """
+        Convert the system descriptor flag to a cpu configuration
+
+        Returns:
+            std::string
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_has_bsp67B(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system is a
+        BSP67B system
+
+        This means it is not a CBMF system
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_cbmf(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system is a
+        CBMF system
+
+        This means it is not a BSP67B system
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_deep_water_sonar_head(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system has a
+        deep water sonar head
+
+        Returns:
+            true (deep water sonar head)
+
+        Returns:
+            false (shallow water sonar head)s
+        """
+    def get_has_dual_head(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system is a
+        dual head system
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_dual_swath(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system is a
+        dual swath system
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_extra_detections_support(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system has
+        extra detections support
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_ptp_support(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system is a
+        PTP (IEEE 1588 clock sync) support
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_rs422_support(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system has
+        RS422 serial lines support
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_has_shallow_water_sonar_head(self) -> bool: 
+        """
+        Evaluate the system_descriptor flag to determine if the system has a
+        shallow water sonar head
+
+        Returns:
+            true (shallow water sonar head)
+
+        Returns:
+            false (deep water sonar head)
+        """
+    def get_host_ip_address(self) -> typing.List[int[4]]: ...
+    def get_host_ip_address_as_string(self) -> str: 
+        """
+        Get the host ip address as string
+
+        Returns:
+            std::string
+        """
+    def get_pu_software_version(self) -> str: ...
+    def get_rx_opening_angle(self) -> int: ...
+    def get_sonar_transceiver_1_software_version(self) -> str: ...
+    def get_sonar_transceiver_2_software_version(self) -> str: ...
+    def get_spare(self) -> typing.List[int[7]]: ...
+    def get_system_descriptor(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_tx_opening_angle(self) -> int: ...
+    def get_udp_port_no_1(self) -> int: ...
+    def get_udp_port_no_2(self) -> int: ...
+    def get_udp_port_no_3(self) -> int: ...
+    def get_udp_port_no_4(self) -> int: ...
+    def get_which_em2040(self) -> str: 
+        """
+        Evaluate the system_descriptor flag to determine the em2040 flag
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_which_em710(self) -> str: 
+        """
+        Evaluate the system_descriptor flag to determine the EM710 flag
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def get_which_old_sounder(self) -> str: 
+        """
+        Evaluate the system_descriptor flag to determine the old sounder flag
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_bsp_software_date(self, arg0: str) -> None: ...
+    def set_byte_order_flag(self, arg0: int) -> None: ...
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_host_ip_address(self, arg0: typing.List[int[4]]) -> None: ...
+    def set_pu_software_version(self, arg0: str) -> None: ...
+    def set_rx_opening_angle(self, arg0: int) -> None: ...
+    def set_sonar_transceiver_1_software_version(self, arg0: str) -> None: ...
+    def set_sonar_transceiver_2_software_version(self, arg0: str) -> None: ...
+    def set_spare(self, arg0: typing.List[int[7]]) -> None: ...
+    def set_system_descriptor(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_tx_opening_angle(self, arg0: int) -> None: ...
+    def set_udp_port_no_1(self, arg0: int) -> None: ...
+    def set_udp_port_no_2(self, arg0: int) -> None: ...
+    def set_udp_port_no_3(self, arg0: int) -> None: ...
+    def set_udp_port_no_4(self, arg0: int) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
+class PUStatusOutput(EM3000Datagram):
+    """
+    The PU Status datagram is sent out every second if requested by the
+    host processor. It has two functions, to indicate that the system is
+    alive and receiving sensor data, and to give sensor data regularly for
+    a potential screen update.
+    """
+    def __copy__(self) -> PUStatusOutput: ...
+    def __deepcopy__(self, arg0: dict) -> PUStatusOutput: ...
+    def __eq__(self, other: PUStatusOutput) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> PUStatusOutput: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUStatusOutput: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_across_ship_velocity(self) -> int: 
+        """
+        < in cm/s (or port coverage or spare)
+        """
+    def get_across_ship_velocity_in_meters_per_second(self) -> float: 
+        """
+        Get the across ship velocity in m/s
+
+        Returns:
+            _across_ship_velocity * 0.01f (float )
+        """
+    def get_along_ship_velocity(self) -> int: 
+        """
+        < in cm/s
+        """
+    def get_along_ship_velocity_in_meters_per_second(self) -> float: 
+        """
+        Get the along ship velocity in m/s
+
+        Returns:
+            _along_ship_velocity * 0.01f (float )
+        """
+    def get_attitude_status(self) -> int: 
+        """
+        <
+        """
+    def get_attitude_velocity_sensor_status(self) -> int: 
+        """
+        <
+        """
+    def get_backscatter_at_normal_incidence(self) -> int: 
+        """
+        < in dB
+        """
+    def get_backscatter_at_oblique_angle(self) -> int: 
+        """
+        < in dB
+        """
+    def get_checksum(self) -> int: ...
+    def get_clock_status(self) -> int: 
+        """
+        <
+        """
+    def get_depth_to_normal_incidence(self) -> int: 
+        """
+        < in m
+        """
+    def get_distance_between_swath(self) -> int: 
+        """
+        < in 10%
+        """
+    def get_distance_between_swath_in_percent(self) -> float: 
+        """
+        Get the distance between swath in percent
+
+        Returns:
+            _distance_between_swath * 0.1f (float )
+        """
+    def get_downward_velocity(self) -> int: 
+        """
+        < in cm/s (or starboard coverage or spare)
+        """
+    def get_downward_velocity_in_meters_per_second(self) -> float: 
+        """
+        Get the downward velocity in m/s
+
+        Returns:
+            _downward_velocity * 0.01f (float )
+        """
+    def get_em2040_cpu_temperature(self) -> int: 
+        """
+        < in degree Celsius (or spare)
+        """
+    def get_etx(self) -> int: 
+        """
+        < end identifier (always 0x03)
+        """
+    def get_fixed_gain(self) -> int: 
+        """
+        < in dB
+        """
+    def get_heading_status(self) -> int: 
+        """
+        <
+        """
+    def get_last_received_depth(self) -> int: 
+        """
+        < in cm
+        """
+    def get_last_received_depth_in_meters(self) -> float: 
+        """
+        Get the last received depth in meters
+
+        Returns:
+            _last_received_depth * 0.01f (float )
+        """
+    def get_last_received_heading(self) -> int: 
+        """
+        < in 0.01 degree
+        """
+    def get_last_received_heading_in_degrees(self) -> float: 
+        """
+        Get the last received heading in degrees
+
+        Returns:
+            _last_received_heading * 0.01f (float )
+        """
+    def get_last_received_heave_at_sonar_head(self) -> int: 
+        """
+        < in cm
+        """
+    def get_last_received_pitch(self) -> int: 
+        """
+        < in 0.01 degree
+        """
+    def get_last_received_pitch_in_degrees(self) -> float: 
+        """
+        Get the last received pitch in degrees
+
+        Returns:
+            _last_received_pitch * 0.01f (float )
+        """
+    def get_last_received_roll(self) -> int: 
+        """
+        < in 0.01 degree
+        """
+    def get_last_received_roll_in_degrees(self) -> float: 
+        """
+        Get the last received roll in degrees
+
+        Returns:
+            _last_received_roll * 0.01f (float )
+        """
+    def get_mammal_protection_ramp(self) -> int: 
+        """
+        <
+        """
+    def get_ping_counter(self) -> int: 
+        """
+        < of latest ping
+        """
+    def get_ping_rate(self) -> int: 
+        """
+        < in 0.01 Hz
+        """
+    def get_ping_rate_hertz(self) -> float: 
+        """
+        Get the ping rate in Hz
+
+        Returns:
+            _ping_rate * 0.01 Hz (float)
+        """
+    def get_port_coverage(self) -> int: 
+        """
+        < in degrees
+        """
+    def get_position_status(self) -> int: 
+        """
+        <
+        """
+    def get_pps_status(self) -> int: 
+        """
+        <
+        """
+    def get_pu_status(self) -> int: 
+        """
+        <
+        """
+    def get_range_to_normal_incidence(self) -> int: 
+        """
+        < in m
+        """
+    def get_sensor_input_status_serial_port_1(self) -> int: 
+        """
+        <
+        """
+    def get_sensor_input_status_serial_port_2(self) -> int: 
+        """
+        <
+        """
+    def get_sensor_input_status_serial_port_3(self) -> int: 
+        """
+        <
+        """
+    def get_sensor_input_status_serial_port_4(self) -> int: 
+        """
+        <
+        """
+    def get_sensor_input_status_udp_port_2(self) -> int: 
+        """
+        <
+        """
+    def get_sound_speed_at_transducer(self) -> int: 
+        """
+        < in dm/s
+        """
+    def get_sound_speed_at_transducer_from_profile(self) -> int: 
+        """
+        < in dm/s
+        """
+    def get_sound_speed_at_transducer_from_profile_in_meters_per_second(self) -> float: 
+        """
+        Get the sound speed at transducer (derived from profile) in m/s
+
+        Returns:
+            _sound_speed_at_transducer_from_profile * 0.1f (float )
+        """
+    def get_sound_speed_at_transducer_in_meters_per_second(self) -> float: 
+        """
+        Get the last received heave at sonar head in meters per second
+
+        Returns:
+            _sound_speed_at_transducer * 0.1f (float )
+        """
+    def get_starboard_coverage(self) -> int: 
+        """
+        < in degrees
+        """
+    def get_status_datagram_counter(self) -> int: ...
+    def get_system_serial_number(self) -> int: ...
+    def get_yaw_stabilization_angle(self) -> int: 
+        """
+        < in 0.01 degree, or tilt used at 3D scanning
+        """
+    def get_yaw_stabilization_angle_in_degrees(self) -> float: 
+        """
+        Get the yaw stabilization angle in degrees
+
+        Returns:
+            _yaw_stabilization_angle * 0.01f (float )
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_across_ship_velocity(self, arg0: int) -> None: 
+        """
+        < in cm/s (or port coverage or spare)
+        """
+    def set_along_ship_velocity(self, arg0: int) -> None: 
+        """
+        < in cm/s
+        """
+    def set_attitude_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_attitude_velocity_sensor_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_backscatter_at_normal_incidence(self, arg0: int) -> None: 
+        """
+        < in dB
+        """
+    def set_backscatter_at_oblique_angle(self, arg0: int) -> None: 
+        """
+        < in dB
+        """
+    def set_checksum(self, arg0: int) -> None: ...
+    def set_clock_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_depth_to_normal_incidence(self, arg0: int) -> None: 
+        """
+        < in m
+        """
+    def set_distance_between_swath(self, arg0: int) -> None: 
+        """
+        < in 10%
+        """
+    def set_downward_velocity(self, arg0: int) -> None: 
+        """
+        < in cm/s (or starboard coverage or spare)
+        """
+    def set_em2040_cpu_temperature(self, arg0: int) -> None: 
+        """
+        < in degree Celsius (or spare)
+        """
+    def set_etx(self, arg0: int) -> None: 
+        """
+        < end identifier (always 0x03)
+        """
+    def set_fixed_gain(self, arg0: int) -> None: 
+        """
+        < in dB
+        """
+    def set_heading_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_last_received_depth(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_last_received_heading(self, arg0: int) -> None: 
+        """
+        < in 0.01 degree
+        """
+    def set_last_received_heave_at_sonar_head(self, arg0: int) -> None: 
+        """
+        < in cm
+        """
+    def set_last_received_pitch(self, arg0: int) -> None: 
+        """
+        < in 0.01 degree
+        """
+    def set_last_received_roll(self, arg0: int) -> None: 
+        """
+        < in 0.01 degree
+        """
+    def set_mammal_protection_ramp(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_ping_counter(self, arg0: int) -> None: 
+        """
+        < of latest ping
+        """
+    def set_ping_rate(self, arg0: int) -> None: 
+        """
+        < in 0.01 Hz
+        """
+    def set_port_coverage(self, arg0: int) -> None: 
+        """
+        < in degrees
+        """
+    def set_position_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_pps_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_pu_status(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_range_to_normal_incidence(self, arg0: int) -> None: 
+        """
+        < in m
+        """
+    def set_sensor_input_status_serial_port_1(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sensor_input_status_serial_port_2(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sensor_input_status_serial_port_3(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sensor_input_status_serial_port_4(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sensor_input_status_udp_port_2(self, arg0: int) -> None: 
+        """
+        <
+        """
+    def set_sound_speed_at_transducer(self, arg0: int) -> None: 
+        """
+        < in dm/s
+        """
+    def set_sound_speed_at_transducer_from_profile(self, arg0: int) -> None: 
+        """
+        < in dm/s
+        """
+    def set_starboard_coverage(self, arg0: int) -> None: 
+        """
+        < in degrees
+        """
+    def set_status_datagram_counter(self, arg0: int) -> None: ...
+    def set_system_serial_number(self, arg0: int) -> None: ...
+    def set_yaw_stabilization_angle(self, arg0: int) -> None: 
+        """
+        < in 0.01 degree, or tilt used at 3D scanning
+        """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
@@ -1486,7 +2275,7 @@ class RawRangeAndAngle(EM3000Datagram):
     pass
 class RuntimeParameters(EM3000Datagram):
     """
-    Clock datagrams
+    Runtime parameters datagrams
     """
     def __copy__(self) -> RuntimeParameters: ...
     def __deepcopy__(self, arg0: dict) -> RuntimeParameters: ...
@@ -2541,3 +3330,9 @@ class XYZDatagram(EM3000Datagram):
         convert object to bytearray
         """
     pass
+Bscorr: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.Bscorr: 6>
+CalibTxt: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.CalibTxt: 1>
+LogAllHeights: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.LogAllHeights: 2>
+MultiCastInputStatus: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.MultiCastInputStatus: 5>
+SoundVelocityAtTransducer: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>
+SoundVelocityProfile: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>

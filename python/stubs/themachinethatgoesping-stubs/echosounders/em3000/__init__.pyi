@@ -18,8 +18,8 @@ __all__ = [
     "InstallationParametersStop",
     "NetworkAttitudeVelocityDatagram",
     "PUIDOutput",
+    "PUStatusOutput",
     "PositionDatagram",
-    "PuStatusOutput",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
     "RuntimeParameters",
@@ -146,13 +146,13 @@ class t_EM3000DatagramIdentifier():
 
       InstallationParametersStop : 
 
-      RuntimeParameters : < TODO: implement!
+      RuntimeParameters : 
 
-      ExtraParameters : < TODO: implement!
+      ExtraParameters : 
 
-      PuStatusOutput : < TODO: implement!
+      PUStatusOutput : 
 
-      PUIDOutput : < TODO: implement!
+      PUIDOutput : 
 
       unspecified : 
     """
@@ -192,8 +192,8 @@ class t_EM3000DatagramIdentifier():
     InstallationParametersStop: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.InstallationParametersStop: 105>
     NetworkAttitudeVelocityDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>
     PUIDOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUIDOutput: 48>
+    PUStatusOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUStatusOutput: 49>
     PositionDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PositionDatagram: 80>
-    PuStatusOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PuStatusOutput: 49>
     QualityFactorDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.QualityFactorDatagram: 79>
     RawRangeAndAngle: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RawRangeAndAngle: 78>
     RuntimeParameters: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RuntimeParameters: 82>
@@ -203,7 +203,7 @@ class t_EM3000DatagramIdentifier():
     SurfaceSoundSpeedDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.SurfaceSoundSpeedDatagram: 71>
     WaterColumnDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.WaterColumnDatagram: 107>
     XYZDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.XYZDatagram: 88>
-    __members__: dict # value = {'XYZDatagram': <t_EM3000DatagramIdentifier.XYZDatagram: 88>, 'ExtraDetections': <t_EM3000DatagramIdentifier.ExtraDetections: 108>, 'RawRangeAndAngle': <t_EM3000DatagramIdentifier.RawRangeAndAngle: 78>, 'SeabedImageData': <t_EM3000DatagramIdentifier.SeabedImageData: 89>, 'WaterColumnDatagram': <t_EM3000DatagramIdentifier.WaterColumnDatagram: 107>, 'QualityFactorDatagram': <t_EM3000DatagramIdentifier.QualityFactorDatagram: 79>, 'AttitudeDatagram': <t_EM3000DatagramIdentifier.AttitudeDatagram: 65>, 'NetworkAttitudeVelocityDatagram': <t_EM3000DatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>, 'ClockDatagram': <t_EM3000DatagramIdentifier.ClockDatagram: 67>, 'DepthOrHeightDatagram': <t_EM3000DatagramIdentifier.DepthOrHeightDatagram: 104>, 'HeadingDatagram': <t_EM3000DatagramIdentifier.HeadingDatagram: 72>, 'PositionDatagram': <t_EM3000DatagramIdentifier.PositionDatagram: 80>, 'SingleBeamEchoSounderDepth': <t_EM3000DatagramIdentifier.SingleBeamEchoSounderDepth: 69>, 'SurfaceSoundSpeedDatagram': <t_EM3000DatagramIdentifier.SurfaceSoundSpeedDatagram: 71>, 'SoundSpeedProfileDatagram': <t_EM3000DatagramIdentifier.SoundSpeedProfileDatagram: 85>, 'InstallationParametersStart': <t_EM3000DatagramIdentifier.InstallationParametersStart: 73>, 'InstallationParametersStop': <t_EM3000DatagramIdentifier.InstallationParametersStop: 105>, 'RuntimeParameters': <t_EM3000DatagramIdentifier.RuntimeParameters: 82>, 'ExtraParameters': <t_EM3000DatagramIdentifier.ExtraParameters: 51>, 'PuStatusOutput': <t_EM3000DatagramIdentifier.PuStatusOutput: 49>, 'PUIDOutput': <t_EM3000DatagramIdentifier.PUIDOutput: 48>, 'unspecified': <t_EM3000DatagramIdentifier.unspecified: 0>}
+    __members__: dict # value = {'XYZDatagram': <t_EM3000DatagramIdentifier.XYZDatagram: 88>, 'ExtraDetections': <t_EM3000DatagramIdentifier.ExtraDetections: 108>, 'RawRangeAndAngle': <t_EM3000DatagramIdentifier.RawRangeAndAngle: 78>, 'SeabedImageData': <t_EM3000DatagramIdentifier.SeabedImageData: 89>, 'WaterColumnDatagram': <t_EM3000DatagramIdentifier.WaterColumnDatagram: 107>, 'QualityFactorDatagram': <t_EM3000DatagramIdentifier.QualityFactorDatagram: 79>, 'AttitudeDatagram': <t_EM3000DatagramIdentifier.AttitudeDatagram: 65>, 'NetworkAttitudeVelocityDatagram': <t_EM3000DatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>, 'ClockDatagram': <t_EM3000DatagramIdentifier.ClockDatagram: 67>, 'DepthOrHeightDatagram': <t_EM3000DatagramIdentifier.DepthOrHeightDatagram: 104>, 'HeadingDatagram': <t_EM3000DatagramIdentifier.HeadingDatagram: 72>, 'PositionDatagram': <t_EM3000DatagramIdentifier.PositionDatagram: 80>, 'SingleBeamEchoSounderDepth': <t_EM3000DatagramIdentifier.SingleBeamEchoSounderDepth: 69>, 'SurfaceSoundSpeedDatagram': <t_EM3000DatagramIdentifier.SurfaceSoundSpeedDatagram: 71>, 'SoundSpeedProfileDatagram': <t_EM3000DatagramIdentifier.SoundSpeedProfileDatagram: 85>, 'InstallationParametersStart': <t_EM3000DatagramIdentifier.InstallationParametersStart: 73>, 'InstallationParametersStop': <t_EM3000DatagramIdentifier.InstallationParametersStop: 105>, 'RuntimeParameters': <t_EM3000DatagramIdentifier.RuntimeParameters: 82>, 'ExtraParameters': <t_EM3000DatagramIdentifier.ExtraParameters: 51>, 'PUStatusOutput': <t_EM3000DatagramIdentifier.PUStatusOutput: 49>, 'PUIDOutput': <t_EM3000DatagramIdentifier.PUIDOutput: 48>, 'unspecified': <t_EM3000DatagramIdentifier.unspecified: 0>}
     unspecified: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.unspecified: 0>
     pass
 def EM3000Datagram_type_from_string(datagram_type: str) -> t_EM3000DatagramIdentifier:
@@ -220,8 +220,8 @@ InstallationParametersStart: themachinethatgoesping.echosounders.em3000.t_EM3000
 InstallationParametersStop: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.InstallationParametersStop: 105>
 NetworkAttitudeVelocityDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>
 PUIDOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUIDOutput: 48>
+PUStatusOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUStatusOutput: 49>
 PositionDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PositionDatagram: 80>
-PuStatusOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PuStatusOutput: 49>
 QualityFactorDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.QualityFactorDatagram: 79>
 RawRangeAndAngle: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RawRangeAndAngle: 78>
 RuntimeParameters: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RuntimeParameters: 82>
