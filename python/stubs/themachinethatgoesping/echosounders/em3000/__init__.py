@@ -33,6 +33,7 @@ __all__ = [
     "datagrams",
     "filedatacontainers",
     "filedatainterfaces",
+    "filetypes",
     "t_EM3000DatagramIdentifier",
     "unspecified"
 ]
@@ -97,6 +98,11 @@ class FileEM3000():
         """
         :type: filedatainterfaces.EM3000OtherFileDataInterface
         """
+    @property
+    def ping_interface(self) -> filedatainterfaces.EM3000PingDataInterface:
+        """
+        :type: filedatainterfaces.EM3000PingDataInterface
+        """
     pass
 class FileEM3000_mapped():
     @typing.overload
@@ -156,6 +162,11 @@ class FileEM3000_mapped():
     def otherfiledata_interface(self) -> filedatainterfaces.EM3000OtherFileDataInterface_mapped:
         """
         :type: filedatainterfaces.EM3000OtherFileDataInterface_mapped
+        """
+    @property
+    def ping_interface(self) -> filedatainterfaces.EM3000PingDataInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000PingDataInterface_mapped
         """
     pass
 class t_EM3000DatagramIdentifier():

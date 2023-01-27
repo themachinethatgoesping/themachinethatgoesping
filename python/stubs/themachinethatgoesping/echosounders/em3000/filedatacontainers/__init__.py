@@ -4,6 +4,7 @@ import themachinethatgoesping.echosounders.em3000.filedatacontainers
 import typing
 import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.echosounders.em3000.datagrams
+import themachinethatgoesping.echosounders.em3000.filetypes
 import themachinethatgoesping.tools.pyhelper
 
 __all__ = [
@@ -52,7 +53,9 @@ __all__ = [
     "EM3000DatagramContainer_WaterColumnDatagram",
     "EM3000DatagramContainer_WaterColumnDatagram_mapped",
     "EM3000DatagramContainer_XYZDatagram",
-    "EM3000DatagramContainer_XYZDatagram_mapped"
+    "EM3000DatagramContainer_XYZDatagram_mapped",
+    "EM3000PingContainer",
+    "EM3000PingContainer_mapped"
 ]
 
 
@@ -1844,6 +1847,106 @@ class EM3000DatagramContainer_XYZDatagram_mapped():
         """
         Return object information as string
         """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def size(self) -> int: ...
+    pass
+class EM3000PingContainer():
+    @typing.overload
+    def __call__(self, channel_id: str) -> EM3000PingContainer: ...
+    @typing.overload
+    def __call__(self, channel_ids: typing.List[str]) -> EM3000PingContainer: ...
+    def __copy__(self) -> EM3000PingContainer: ...
+    def __deepcopy__(self, arg0: dict) -> EM3000PingContainer: ...
+    @typing.overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping: ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> EM3000PingContainer: ...
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new empty PingContainer object
+
+        Construct a new empty PingContainer object
+        """
+    @typing.overload
+    def __init__(self, arg0: typing.List[themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping]) -> None: ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __reversed__(self) -> EM3000PingContainer: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer]: ...
+    def copy(self) -> EM3000PingContainer: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def count_pings_per_channel_id(self) -> typing.Dict[str, int]: ...
+    def find_channel_ids(self) -> typing.List[str]: ...
+    def get_pings(self) -> typing.List[themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping]: ...
+    def get_sorted_by_time(self) -> EM3000PingContainer: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def max_number_of_samples(self) -> int: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def size(self) -> int: ...
+    pass
+class EM3000PingContainer_mapped():
+    @typing.overload
+    def __call__(self, channel_id: str) -> EM3000PingContainer_mapped: ...
+    @typing.overload
+    def __call__(self, channel_ids: typing.List[str]) -> EM3000PingContainer_mapped: ...
+    def __copy__(self) -> EM3000PingContainer_mapped: ...
+    def __deepcopy__(self, arg0: dict) -> EM3000PingContainer_mapped: ...
+    @typing.overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping_mapped: ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> EM3000PingContainer_mapped: ...
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new empty PingContainer object
+
+        Construct a new empty PingContainer object
+        """
+    @typing.overload
+    def __init__(self, arg0: typing.List[themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping_mapped]) -> None: ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __reversed__(self) -> EM3000PingContainer_mapped: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer_mapped]: ...
+    def copy(self) -> EM3000PingContainer_mapped: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def count_pings_per_channel_id(self) -> typing.Dict[str, int]: ...
+    def find_channel_ids(self) -> typing.List[str]: ...
+    def get_pings(self) -> typing.List[themachinethatgoesping.echosounders.em3000.filetypes.EM3000Ping_mapped]: ...
+    def get_sorted_by_time(self) -> EM3000PingContainer_mapped: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def max_number_of_samples(self) -> int: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

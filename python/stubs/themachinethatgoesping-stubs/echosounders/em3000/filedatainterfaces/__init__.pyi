@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.filedatainterfaces
 import typing
 import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.echosounders.em3000.filedatacontainers
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools.progressbars
@@ -29,7 +30,11 @@ __all__ = [
     "EM3000OtherFileDataInterface",
     "EM3000OtherFileDataInterfacePerFile",
     "EM3000OtherFileDataInterfacePerFile_mapped",
-    "EM3000OtherFileDataInterface_mapped"
+    "EM3000OtherFileDataInterface_mapped",
+    "EM3000PingDataInterface",
+    "EM3000PingDataInterfacePerFile",
+    "EM3000PingDataInterfacePerFile_mapped",
+    "EM3000PingDataInterface_mapped"
 ]
 
 
@@ -944,6 +949,178 @@ class EM3000OtherFileDataInterface_mapped():
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
+    @staticmethod
+    def per_file(*args, **kwargs) -> typing.Any: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class EM3000PingDataInterface():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def channel_ids(self) -> typing.List[str]: ...
+    def configuration_data_interface(self) -> EM3000ConfigurationDataInterface: ...
+    def deinitialize(self) -> None: ...
+    def environment_data_interface(self) -> EM3000EnvironmentDataInterface: ...
+    @typing.overload
+    def get_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer: ...
+    @typing.overload
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    def initialized(self) -> bool: ...
+    def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
+    @staticmethod
+    def per_file(*args, **kwargs) -> typing.Any: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class EM3000PingDataInterfacePerFile():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> EM3000ConfigurationDataInterface: ...
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def deinitialize(self) -> None: ...
+    def environment_data_interface(self) -> EM3000EnvironmentDataInterface: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None: ...
+    def initialized(self) -> bool: ...
+    def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class EM3000PingDataInterfacePerFile_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def configuration_data_interface(self) -> EM3000ConfigurationDataInterface_mapped: ...
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def deinitialize(self) -> None: ...
+    def environment_data_interface(self) -> EM3000EnvironmentDataInterface_mapped: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None: ...
+    def initialized(self) -> bool: ...
+    def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class EM3000PingDataInterface_mapped():
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def channel_ids(self) -> typing.List[str]: ...
+    def configuration_data_interface(self) -> EM3000ConfigurationDataInterface_mapped: ...
+    def deinitialize(self) -> None: ...
+    def environment_data_interface(self) -> EM3000EnvironmentDataInterface_mapped: ...
+    @typing.overload
+    def get_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped: ...
+    @typing.overload
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None: ...
+    @typing.overload
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    def initialized(self) -> bool: ...
+    def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
     @staticmethod
     def per_file(*args, **kwargs) -> typing.Any: ...
     def print(self, float_precision: int = 2) -> None: 

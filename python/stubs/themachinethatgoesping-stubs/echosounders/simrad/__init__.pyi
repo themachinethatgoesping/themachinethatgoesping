@@ -16,8 +16,8 @@ __all__ = [
     "XML0",
     "datagram_type_to_string",
     "datagrams",
-    "filedataInterfaces",
     "filedatacontainers",
+    "filedatainterfaces",
     "filetypes",
     "t_SimradDatagramIdentifier",
     "test_speed_decode_nmea",
@@ -66,39 +66,39 @@ class FileSimradRaw():
         Print object information
         """
     @property
-    def annotation_interface(self) -> filedataInterfaces.SimradAnnotationDataInterface:
+    def annotation_interface(self) -> filedatainterfaces.SimradAnnotationDataInterface:
         """
-        :type: filedataInterfaces.SimradAnnotationDataInterface
-        """
-    @property
-    def configuration_interface(self) -> filedataInterfaces.SimradConfigurationDataInterface:
-        """
-        :type: filedataInterfaces.SimradConfigurationDataInterface
+        :type: filedatainterfaces.SimradAnnotationDataInterface
         """
     @property
-    def datagram_interface(self) -> filedataInterfaces.SimradDatagramInterface:
+    def configuration_interface(self) -> filedatainterfaces.SimradConfigurationDataInterface:
         """
-        :type: filedataInterfaces.SimradDatagramInterface
-        """
-    @property
-    def environment_interface(self) -> filedataInterfaces.SimradEnvironmentDataInterface:
-        """
-        :type: filedataInterfaces.SimradEnvironmentDataInterface
+        :type: filedatainterfaces.SimradConfigurationDataInterface
         """
     @property
-    def navigation_interface(self) -> filedataInterfaces.SimradNavigationDataInterface:
+    def datagram_interface(self) -> filedatainterfaces.SimradDatagramInterface:
         """
-        :type: filedataInterfaces.SimradNavigationDataInterface
-        """
-    @property
-    def otherfiledata_interface(self) -> filedataInterfaces.SimradOtherFileDataInterface:
-        """
-        :type: filedataInterfaces.SimradOtherFileDataInterface
+        :type: filedatainterfaces.SimradDatagramInterface
         """
     @property
-    def ping_interface(self) -> filedataInterfaces.SimradPingDataInterface:
+    def environment_interface(self) -> filedatainterfaces.SimradEnvironmentDataInterface:
         """
-        :type: filedataInterfaces.SimradPingDataInterface
+        :type: filedatainterfaces.SimradEnvironmentDataInterface
+        """
+    @property
+    def navigation_interface(self) -> filedatainterfaces.SimradNavigationDataInterface:
+        """
+        :type: filedatainterfaces.SimradNavigationDataInterface
+        """
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.SimradOtherFileDataInterface:
+        """
+        :type: filedatainterfaces.SimradOtherFileDataInterface
+        """
+    @property
+    def ping_interface(self) -> filedatainterfaces.SimradPingDataInterface:
+        """
+        :type: filedatainterfaces.SimradPingDataInterface
         """
     pass
 class FileSimradRaw_mapped():
@@ -138,39 +138,39 @@ class FileSimradRaw_mapped():
         Print object information
         """
     @property
-    def annotation_interface(self) -> filedataInterfaces.SimradAnnotationDataInterface_mapped:
+    def annotation_interface(self) -> filedatainterfaces.SimradAnnotationDataInterface_mapped:
         """
-        :type: filedataInterfaces.SimradAnnotationDataInterface_mapped
-        """
-    @property
-    def configuration_interface(self) -> filedataInterfaces.SimradConfigurationDataInterface_mapped:
-        """
-        :type: filedataInterfaces.SimradConfigurationDataInterface_mapped
+        :type: filedatainterfaces.SimradAnnotationDataInterface_mapped
         """
     @property
-    def datagram_interface(self) -> filedataInterfaces.SimradDatagramInterface_mapped:
+    def configuration_interface(self) -> filedatainterfaces.SimradConfigurationDataInterface_mapped:
         """
-        :type: filedataInterfaces.SimradDatagramInterface_mapped
-        """
-    @property
-    def environment_interface(self) -> filedataInterfaces.SimradEnvironmentDataInterface_mapped:
-        """
-        :type: filedataInterfaces.SimradEnvironmentDataInterface_mapped
+        :type: filedatainterfaces.SimradConfigurationDataInterface_mapped
         """
     @property
-    def navigation_interface(self) -> filedataInterfaces.SimradNavigationDataInterface_mapped:
+    def datagram_interface(self) -> filedatainterfaces.SimradDatagramInterface_mapped:
         """
-        :type: filedataInterfaces.SimradNavigationDataInterface_mapped
-        """
-    @property
-    def otherfiledata_interface(self) -> filedataInterfaces.SimradOtherFileDataInterface_mapped:
-        """
-        :type: filedataInterfaces.SimradOtherFileDataInterface_mapped
+        :type: filedatainterfaces.SimradDatagramInterface_mapped
         """
     @property
-    def ping_interface(self) -> filedataInterfaces.SimradPingDataInterface_mapped:
+    def environment_interface(self) -> filedatainterfaces.SimradEnvironmentDataInterface_mapped:
         """
-        :type: filedataInterfaces.SimradPingDataInterface_mapped
+        :type: filedatainterfaces.SimradEnvironmentDataInterface_mapped
+        """
+    @property
+    def navigation_interface(self) -> filedatainterfaces.SimradNavigationDataInterface_mapped:
+        """
+        :type: filedatainterfaces.SimradNavigationDataInterface_mapped
+        """
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.SimradOtherFileDataInterface_mapped:
+        """
+        :type: filedatainterfaces.SimradOtherFileDataInterface_mapped
+        """
+    @property
+    def ping_interface(self) -> filedatainterfaces.SimradPingDataInterface_mapped:
+        """
+        :type: filedatainterfaces.SimradPingDataInterface_mapped
         """
     pass
 class t_SimradDatagramIdentifier():

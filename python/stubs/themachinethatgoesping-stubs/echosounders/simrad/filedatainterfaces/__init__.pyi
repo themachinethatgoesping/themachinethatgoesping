@@ -1,6 +1,6 @@
 """Simrad EK60 and EK80 file data interface classes"""
 from __future__ import annotations
-import themachinethatgoesping.echosounders.simrad.filedataInterfaces
+import themachinethatgoesping.echosounders.simrad.filedatainterfaces
 import typing
 import themachinethatgoesping.echosounders.simrad
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
