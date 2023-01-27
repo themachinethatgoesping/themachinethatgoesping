@@ -9,12 +9,12 @@ __all__ = [
     "MRU0",
     "NME0",
     "RAW3",
-    "RAW3_datatypes",
     "SimradDatagram",
     "SimradUnknown",
     "TAG0",
     "XML0",
-    "XML0_datagrams"
+    "XML0_datagrams",
+    "raw3datatypes"
 ]
 
 
@@ -431,14 +431,14 @@ class RAW3(SimradDatagram):
         < Number of samples in the datagram
         """
     @property
-    def _raw_Datatype(self) -> RAW3_datatypes.t_RAW3_DataType:
+    def _raw_Datatype(self) -> raw3datatypes.t_RAW3DataType:
         """
         < Datatype
 
-        :type: RAW3_datatypes.t_RAW3_DataType
+        :type: raw3datatypes.t_RAW3DataType
         """
     @_raw_Datatype.setter
-    def _raw_Datatype(self, arg0: RAW3_datatypes.t_RAW3_DataType) -> None:
+    def _raw_Datatype(self, arg0: raw3datatypes.t_RAW3DataType) -> None:
         """
         < Datatype
         """
@@ -522,12 +522,12 @@ class RAW3(SimradDatagram):
         < Number of samples in the datagram
         """
     @property
-    def data_type(self) -> RAW3_datatypes.t_RAW3_DataType:
+    def data_type(self) -> raw3datatypes.t_RAW3DataType:
         """
-        :type: RAW3_datatypes.t_RAW3_DataType
+        :type: raw3datatypes.t_RAW3DataType
         """
     @data_type.setter
-    def data_type(self, arg1: RAW3_datatypes.t_RAW3_DataType) -> None:
+    def data_type(self, arg1: raw3datatypes.t_RAW3DataType) -> None:
         pass
     @property
     def number_of_complex_samples(self) -> int:
@@ -562,24 +562,24 @@ class RAW3(SimradDatagram):
         < First sample number in the datagram
         """
     @property
-    def sample_data(self) -> typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]:
+    def sample_data(self) -> typing.Union[raw3datatypes.RAW3DataSkipped, raw3datatypes.RAW3DataComplexFloat32, raw3datatypes.RAW3DataPowerAndAngle, raw3datatypes.RAW3DataPower, raw3datatypes.RAW3DataAngle]:
         """
         Get the sample data. The sample data is stored in a variant of xtensor
         containers. The exact type depends on the data type.
 
         Returns:
-            RAW3_datatypes::RAW3_DataVariant
+            raw3datatypes::RAW3DataVariant
 
-        :type: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]
+        :type: typing.Union[raw3datatypes.RAW3DataSkipped, raw3datatypes.RAW3DataComplexFloat32, raw3datatypes.RAW3DataPowerAndAngle, raw3datatypes.RAW3DataPower, raw3datatypes.RAW3DataAngle]
         """
     @sample_data.setter
-    def sample_data(self, arg1: typing.Union[RAW3_datatypes.RAW3_DataSkipped, RAW3_datatypes.RAW3_DataComplexFloat32, RAW3_datatypes.RAW3_DataPowerAndAngle, RAW3_datatypes.RAW3_DataPower, RAW3_datatypes.RAW3_DataAngle]) -> None:
+    def sample_data(self, arg1: typing.Union[raw3datatypes.RAW3DataSkipped, raw3datatypes.RAW3DataComplexFloat32, raw3datatypes.RAW3DataPowerAndAngle, raw3datatypes.RAW3DataPower, raw3datatypes.RAW3DataAngle]) -> None:
         """
         Get the sample data. The sample data is stored in a variant of xtensor
         containers. The exact type depends on the data type.
 
         Returns:
-            RAW3_datatypes::RAW3_DataVariant
+            raw3datatypes::RAW3DataVariant
         """
     pass
 class FIL1(SimradDatagram):

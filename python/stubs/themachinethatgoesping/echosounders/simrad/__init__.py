@@ -91,9 +91,9 @@ class FileSimradRaw():
         :type: filedataInterfaces.SimradNavigationDataInterface
         """
     @property
-    def otherdata_interface(self) -> filedataInterfaces.SimradOtherDataInterface:
+    def otherfiledata_interface(self) -> filedataInterfaces.SimradOtherFileDataInterface:
         """
-        :type: filedataInterfaces.SimradOtherDataInterface
+        :type: filedataInterfaces.SimradOtherFileDataInterface
         """
     @property
     def ping_interface(self) -> filedataInterfaces.SimradPingDataInterface:
@@ -163,9 +163,9 @@ class FileSimradRaw_mapped():
         :type: filedataInterfaces.SimradNavigationDataInterface_mapped
         """
     @property
-    def otherdata_interface(self) -> filedataInterfaces.SimradOtherDataInterface_mapped:
+    def otherfiledata_interface(self) -> filedataInterfaces.SimradOtherFileDataInterface_mapped:
         """
-        :type: filedataInterfaces.SimradOtherDataInterface_mapped
+        :type: filedataInterfaces.SimradOtherFileDataInterface_mapped
         """
     @property
     def ping_interface(self) -> filedataInterfaces.SimradPingDataInterface_mapped:

@@ -31,8 +31,8 @@ __all__ = [
     "XYZDatagram",
     "datagram_type_to_string",
     "datagrams",
-    "filedataInterfaces",
     "filedatacontainers",
+    "filedatainterfaces",
     "t_EM3000DatagramIdentifier",
     "unspecified"
 ]
@@ -68,9 +68,34 @@ class FileEM3000():
         Print object information
         """
     @property
-    def datagram_interface(self) -> filedataInterfaces.EM3000DatagramInterface:
+    def annotation_interface(self) -> filedatainterfaces.EM3000AnnotationDataInterface:
         """
-        :type: filedataInterfaces.EM3000DatagramInterface
+        :type: filedatainterfaces.EM3000AnnotationDataInterface
+        """
+    @property
+    def configuration_interface(self) -> filedatainterfaces.EM3000ConfigurationDataInterface:
+        """
+        :type: filedatainterfaces.EM3000ConfigurationDataInterface
+        """
+    @property
+    def datagram_interface(self) -> filedatainterfaces.EM3000DatagramInterface:
+        """
+        :type: filedatainterfaces.EM3000DatagramInterface
+        """
+    @property
+    def environment_interface(self) -> filedatainterfaces.EM3000EnvironmentDataInterface:
+        """
+        :type: filedatainterfaces.EM3000EnvironmentDataInterface
+        """
+    @property
+    def navigation_interface(self) -> filedatainterfaces.EM3000NavigationDataInterface:
+        """
+        :type: filedatainterfaces.EM3000NavigationDataInterface
+        """
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.EM3000OtherFileDataInterface:
+        """
+        :type: filedatainterfaces.EM3000OtherFileDataInterface
         """
     pass
 class FileEM3000_mapped():
@@ -103,9 +128,34 @@ class FileEM3000_mapped():
         Print object information
         """
     @property
-    def datagram_interface(self) -> filedataInterfaces.EM3000DatagramInterface_mapped:
+    def annotation_interface(self) -> filedatainterfaces.EM3000AnnotationDataInterface_mapped:
         """
-        :type: filedataInterfaces.EM3000DatagramInterface_mapped
+        :type: filedatainterfaces.EM3000AnnotationDataInterface_mapped
+        """
+    @property
+    def configuration_interface(self) -> filedatainterfaces.EM3000ConfigurationDataInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000ConfigurationDataInterface_mapped
+        """
+    @property
+    def datagram_interface(self) -> filedatainterfaces.EM3000DatagramInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000DatagramInterface_mapped
+        """
+    @property
+    def environment_interface(self) -> filedatainterfaces.EM3000EnvironmentDataInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000EnvironmentDataInterface_mapped
+        """
+    @property
+    def navigation_interface(self) -> filedatainterfaces.EM3000NavigationDataInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000NavigationDataInterface_mapped
+        """
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.EM3000OtherFileDataInterface_mapped:
+        """
+        :type: filedatainterfaces.EM3000OtherFileDataInterface_mapped
         """
     pass
 class t_EM3000DatagramIdentifier():

@@ -11,35 +11,44 @@ import themachinethatgoesping.tools.progressbars
 
 __all__ = [
     "SimradAnnotationDataInterface",
-    "SimradAnnotationDataInterface_PerFile",
-    "SimradAnnotationDataInterface_PerFile_mapped",
+    "SimradAnnotationDataInterfacePerFile",
+    "SimradAnnotationDataInterfacePerFile_mapped",
     "SimradAnnotationDataInterface_mapped",
     "SimradConfigurationDataInterface",
-    "SimradConfigurationDataInterface_PerFile",
-    "SimradConfigurationDataInterface_PerFile_mapped",
+    "SimradConfigurationDataInterfacePerFile",
+    "SimradConfigurationDataInterfacePerFile_mapped",
     "SimradConfigurationDataInterface_mapped",
     "SimradDatagramInterface",
     "SimradDatagramInterface_mapped",
     "SimradEnvironmentDataInterface",
-    "SimradEnvironmentDataInterface_PerFile",
-    "SimradEnvironmentDataInterface_PerFile_mapped",
+    "SimradEnvironmentDataInterfacePerFile",
+    "SimradEnvironmentDataInterfacePerFile_mapped",
     "SimradEnvironmentDataInterface_mapped",
     "SimradNavigationDataInterface",
-    "SimradNavigationDataInterface_PerFile",
-    "SimradNavigationDataInterface_PerFile_mapped",
+    "SimradNavigationDataInterfacePerFile",
+    "SimradNavigationDataInterfacePerFile_mapped",
     "SimradNavigationDataInterface_mapped",
-    "SimradOtherDataInterface",
-    "SimradOtherDataInterface_mapped",
-    "SimradOtherFileDataInterface_PerFile",
-    "SimradOtherFileDataInterface_PerFile_mapped",
+    "SimradOtherFileDataInterface",
+    "SimradOtherFileDataInterface_mapped",
     "SimradPingDataInterface",
-    "SimradPingDataInterface_PerFile",
-    "SimradPingDataInterface_PerFile_mapped",
-    "SimradPingDataInterface_mapped"
+    "SimradPingDataInterfacePerFile",
+    "SimradPingDataInterfacePerFile_mapped",
+    "SimradPingDataInterface_mapped",
+    "init_c_simradotherfiledatainterfaceperfile",
+    "init_c_simradotherfiledatainterfaceperfile_mapped"
 ]
 
 
 class SimradAnnotationDataInterface():
+    """
+    Interface to read Simrad annotation data (TAG0) from a file (multiple
+    files)
+
+    Only sorts the supported datagrams. No caching is done. Gives access
+    to SimradAnnotationDataInterfacePerFile using the per_file function.
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -65,7 +74,15 @@ class SimradAnnotationDataInterface():
         Print object information
         """
     pass
-class SimradAnnotationDataInterface_PerFile():
+class SimradAnnotationDataInterfacePerFile():
+    """
+    Interface to read annotation data (TAG0) from a file (per file)
+
+    This class can be accessed using the per_file function of the
+    AnnotationDataInterface.
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -114,7 +131,15 @@ class SimradAnnotationDataInterface_PerFile():
         Print object information
         """
     pass
-class SimradAnnotationDataInterface_PerFile_mapped():
+class SimradAnnotationDataInterfacePerFile_mapped():
+    """
+    Interface to read annotation data (TAG0) from a file (per file)
+
+    This class can be accessed using the per_file function of the
+    AnnotationDataInterface.
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -164,6 +189,15 @@ class SimradAnnotationDataInterface_PerFile_mapped():
         """
     pass
 class SimradAnnotationDataInterface_mapped():
+    """
+    Interface to read Simrad annotation data (TAG0) from a file (multiple
+    files)
+
+    Only sorts the supported datagrams. No caching is done. Gives access
+    to SimradAnnotationDataInterfacePerFile using the per_file function.
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -216,7 +250,7 @@ class SimradConfigurationDataInterface():
         Print object information
         """
     pass
-class SimradConfigurationDataInterface_PerFile():
+class SimradConfigurationDataInterfacePerFile():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -301,7 +335,7 @@ class SimradConfigurationDataInterface_PerFile():
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
-class SimradConfigurationDataInterface_PerFile_mapped():
+class SimradConfigurationDataInterfacePerFile_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -501,7 +535,7 @@ class SimradEnvironmentDataInterface():
         Print object information
         """
     pass
-class SimradEnvironmentDataInterface_PerFile():
+class SimradEnvironmentDataInterfacePerFile():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -552,7 +586,7 @@ class SimradEnvironmentDataInterface_PerFile():
         Print object information
         """
     pass
-class SimradEnvironmentDataInterface_PerFile_mapped():
+class SimradEnvironmentDataInterfacePerFile_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -665,7 +699,7 @@ class SimradNavigationDataInterface():
     def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
-class SimradNavigationDataInterface_PerFile():
+class SimradNavigationDataInterfacePerFile():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -720,7 +754,7 @@ class SimradNavigationDataInterface_PerFile():
     def set_max_gga_quality(self, max_gga_quality: int) -> None: ...
     def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     pass
-class SimradNavigationDataInterface_PerFile_mapped():
+class SimradNavigationDataInterfacePerFile_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -809,7 +843,17 @@ class SimradNavigationDataInterface_mapped():
     def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
-class SimradOtherDataInterface():
+class SimradOtherFileDataInterface():
+    """
+    FileDataInterface (for multiple files) for packages that fit neither
+    of the other FileDataInterfaces (Configuration, Navigation,
+    Annotation, Environment, Ping)
+
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -835,7 +879,17 @@ class SimradOtherDataInterface():
         Print object information
         """
     pass
-class SimradOtherDataInterface_mapped():
+class SimradOtherFileDataInterface_mapped():
+    """
+    FileDataInterface (for multiple files) for packages that fit neither
+    of the other FileDataInterfaces (Configuration, Navigation,
+    Annotation, Environment, Ping)
+
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+
+    Template parameter ``t_ifstream``:
+    """
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -856,104 +910,6 @@ class SimradOtherDataInterface_mapped():
     def initialized(self) -> bool: ...
     @staticmethod
     def per_file(*args, **kwargs) -> typing.Any: ...
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    pass
-class SimradOtherFileDataInterface_PerFile():
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def datagram_headers(self) -> object: ...
-    @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    @typing.overload
-    def datagrams(self) -> object: ...
-    @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    @typing.overload
-    def datagrams_raw(self) -> object: ...
-    @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    def deinitialize(self) -> None: ...
-    def get_file_nr(self) -> int: 
-        """
-        Get the file nr This function assumes that the file nr is the same for
-        all datagrams in the file
-
-        Returns:
-            size_t
-        """
-    def get_file_path(self) -> str: 
-        """
-        Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
-
-        Returns:
-            std::string
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def init_from_file(self, force: bool = False) -> None: ...
-    def initialized(self) -> bool: ...
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    pass
-class SimradOtherFileDataInterface_PerFile_mapped():
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def datagram_headers(self) -> object: ...
-    @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    @typing.overload
-    def datagrams(self) -> object: ...
-    @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    @typing.overload
-    def datagrams_raw(self) -> object: ...
-    @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
-    def deinitialize(self) -> None: ...
-    def get_file_nr(self) -> int: 
-        """
-        Get the file nr This function assumes that the file nr is the same for
-        all datagrams in the file
-
-        Returns:
-            size_t
-        """
-    def get_file_path(self) -> str: 
-        """
-        Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
-
-        Returns:
-            std::string
-        """
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def init_from_file(self, force: bool = False) -> None: ...
-    def initialized(self) -> bool: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -993,7 +949,7 @@ class SimradPingDataInterface():
         Print object information
         """
     pass
-class SimradPingDataInterface_PerFile():
+class SimradPingDataInterfacePerFile():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -1046,7 +1002,7 @@ class SimradPingDataInterface_PerFile():
         Print object information
         """
     pass
-class SimradPingDataInterface_PerFile_mapped():
+class SimradPingDataInterfacePerFile_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -1128,6 +1084,124 @@ class SimradPingDataInterface_mapped():
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     @staticmethod
     def per_file(*args, **kwargs) -> typing.Any: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class init_c_simradotherfiledatainterfaceperfile():
+    """
+    FileDataInterface (for single files) for packages that fit neither of
+    the other FileDataInterfaces (Configuration, Navigation, Annotation,
+    Environment, Ping)
+
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+
+    Template parameter ``t_ifstream``:
+    """
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    def deinitialize(self) -> None: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None: ...
+    def initialized(self) -> bool: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class init_c_simradotherfiledatainterfaceperfile_mapped():
+    """
+    FileDataInterface (for single files) for packages that fit neither of
+    the other FileDataInterfaces (Configuration, Navigation, Annotation,
+    Environment, Ping)
+
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+
+    Template parameter ``t_ifstream``:
+    """
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> object: ...
+    def deinitialize(self) -> None: ...
+    def get_file_nr(self) -> int: 
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str: 
+        """
+        Get the file name This function assumes that the file name is the same
+        for all datagrams in the file
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None: ...
+    def initialized(self) -> bool: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

@@ -3,16 +3,16 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad.filetypes
 import typing
 import numpy
-import themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
+import themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "SimradPing",
-    "SimradPing_RawData",
-    "SimradPing_mapped",
-    "SimradPing_mapped_RawData"
+    "SimradPingRawData",
+    "SimradPingRawData_mapped",
+    "SimradPing_mapped"
 ]
 
 
@@ -156,14 +156,14 @@ class SimradPing():
         :type: str
         """
     @property
-    def raw_data(self) -> SimradPing_RawData:
+    def raw_data(self) -> SimradPingRawData:
         """
-        :type: SimradPing_RawData
+        :type: SimradPingRawData
         """
     pass
-class SimradPing_RawData():
-    def __copy__(self) -> SimradPing_RawData: ...
-    def __deepcopy__(self, arg0: dict) -> SimradPing_RawData: ...
+class SimradPingRawData():
+    def __copy__(self) -> SimradPingRawData: ...
+    def __deepcopy__(self, arg0: dict) -> SimradPingRawData: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -172,12 +172,50 @@ class SimradPing_RawData():
         """
         Return object information as string
         """
-    def copy(self) -> SimradPing_RawData: 
+    def copy(self) -> SimradPingRawData: 
         """
         return a copy using the c++ default copy constructor
         """
     def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
-    def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPower, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataAngle]: ...
+    def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPower, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataAngle]: ...
+    def has_angle(self) -> bool: ...
+    def has_power(self) -> bool: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def load_data(self) -> None: ...
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def release_data(self) -> None: ...
+    @property
+    def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+        """
+        < when implementing EK60, this must become a variant type (RAW3 or
+        RAW0)
+
+        :type: themachinethatgoesping.echosounders.simrad.datagrams.RAW3
+        """
+    pass
+class SimradPingRawData_mapped():
+    def __copy__(self) -> SimradPingRawData_mapped: ...
+    def __deepcopy__(self, arg0: dict) -> SimradPingRawData_mapped: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradPingRawData_mapped: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
+    def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPower, themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataAngle]: ...
     def has_angle(self) -> bool: ...
     def has_power(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
@@ -339,46 +377,8 @@ class SimradPing_mapped():
         :type: str
         """
     @property
-    def raw_data(self) -> SimradPing_mapped_RawData:
+    def raw_data(self) -> SimradPingRawData_mapped:
         """
-        :type: SimradPing_mapped_RawData
-        """
-    pass
-class SimradPing_mapped_RawData():
-    def __copy__(self) -> SimradPing_mapped_RawData: ...
-    def __deepcopy__(self, arg0: dict) -> SimradPing_mapped_RawData: ...
-    def __repr__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def __str__(self) -> str: 
-        """
-        Return object information as string
-        """
-    def copy(self) -> SimradPing_mapped_RawData: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
-    def get_sample_data(self) -> typing.Union[themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataSkipped, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataComplexFloat32, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPowerAndAngle, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataPower, themachinethatgoesping.echosounders.simrad.datagrams.RAW3_datatypes.RAW3_DataAngle]: ...
-    def has_angle(self) -> bool: ...
-    def has_power(self) -> bool: ...
-    def info_string(self, float_precision: int = 2) -> str: 
-        """
-        Return object information as string
-        """
-    def load_data(self) -> None: ...
-    def print(self, float_precision: int = 2) -> None: 
-        """
-        Print object information
-        """
-    def release_data(self) -> None: ...
-    @property
-    def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
-        """
-        < when implementing EK60, this must become a variant type (RAW3 or
-        RAW0)
-
-        :type: themachinethatgoesping.echosounders.simrad.datagrams.RAW3
+        :type: SimradPingRawData_mapped
         """
     pass
