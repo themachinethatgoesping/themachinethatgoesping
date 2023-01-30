@@ -4,6 +4,7 @@ import themachinethatgoesping.echosounders.em3000.datagrams
 import typing
 import numpy
 import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
@@ -1018,6 +1019,14 @@ class InstallationParameters(EM3000Datagram):
         create T_CLASS object from bytearray
         """
     def get_checksum(self) -> int: ...
+    def get_compass_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the compass sensor offsets (Gyrocompass) Includes heading offset
+        only
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
     def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Get the depth sensor offsets
@@ -1040,12 +1049,25 @@ class InstallationParameters(EM3000Datagram):
         Get the motion sensor offsets of sensor 1 or 2
 
         Parameter ``sensor_number``:
-            must by 1 or 2
+            must be 1 or 2
 
         Returns:
             navigation::datastructures::PositionalOffsets
         """
+    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the position system offsets of system 1, 2 or 3
+
+        Parameter ``position_system_number``:
+            must be 1, 2 or 3
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
+    def get_rx2_serial_number(self) -> int: ...
+    def get_rx_array_size(self) -> str: ...
     def get_secondary_system_serial_number(self) -> int: ...
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Internal function to get the sensor offsets from the installation
@@ -1069,7 +1091,23 @@ class InstallationParameters(EM3000Datagram):
         Returns:
             PositionalOffsets
         """
+    def get_system_main_head_serial_number(self) -> int: ...
     def get_system_serial_number(self) -> int: ...
+    def get_system_transducer_configuration(self) -> str: ...
+    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the transducer offsets of transducer 0, 1, 2 or 3
+
+        Parameter ``position_system_number``:
+            must be 0, 1, 2 or 3
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
+    def get_tx2_serial_number(self) -> int: ...
+    def get_tx_array_size(self) -> str: ...
+    def get_tx_serial_number(self) -> int: ...
+    def get_water_line_vertical_location_in_meters(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
