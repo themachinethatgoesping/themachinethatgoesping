@@ -4,6 +4,7 @@ import themachinethatgoesping.echosounders.em3000.datagrams
 import typing
 import numpy
 import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
@@ -1017,6 +1018,13 @@ class InstallationParameters(EM3000Datagram):
         create T_CLASS object from bytearray
         """
     def get_checksum(self) -> int: ...
+    def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the depth sensor offsets
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
     def get_etx(self) -> int: 
         """
         < end identifier (always 0x03)
@@ -1027,13 +1035,45 @@ class InstallationParameters(EM3000Datagram):
         < Sequential Number
         """
     def get_installation_parameters_parsed(self) -> typing.Dict[str, str]: ...
+    def get_motion_sensor_offsets(self, sensor_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the motion sensor offsets of sensor 1 or 2
+
+        Parameter ``sensor_number``:
+            must by 1 or 2
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
     def get_secondary_system_serial_number(self) -> int: ...
+    def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Internal function to get the sensor offsets from the installation
+        parameters. Possible sensor prefixes are: - MS for motion sensor 1 -
+        NS for motion sensor 2 - P1 for position system 1 - P2 for position
+        system 2 - P3 for position system 3 - S1 for transducer 1 - S2 for
+        transducer 2 - S3 for transducer 3 - DS for depth (pressure) sensor
+
+        Parameter ``sensor_name``:
+            e.g. Motion Sensor 1
+
+        Parameter ``sensor_prefix``:
+            see above
+
+        Parameter ``has_xyz``:
+            sensor has xyz offsets
+
+        Parameter ``has_ypr``:
+            sensor has yaw pitch roll offsets
+
+        Returns:
+            PositionalOffsets
+        """
     def get_system_serial_number(self) -> int: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def installation_parameters(self) -> str: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
