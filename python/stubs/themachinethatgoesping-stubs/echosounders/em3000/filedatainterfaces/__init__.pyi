@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.filedatainterfaces
 import typing
 import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.echosounders.em3000.datagrams
 import themachinethatgoesping.echosounders.em3000.filedatacontainers
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
@@ -67,7 +68,14 @@ class EM3000AnnotationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -126,6 +134,7 @@ class EM3000AnnotationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -184,6 +193,7 @@ class EM3000AnnotationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -218,7 +228,14 @@ class EM3000AnnotationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -245,7 +262,14 @@ class EM3000ConfigurationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -289,6 +313,7 @@ class EM3000ConfigurationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters: ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -296,6 +321,7 @@ class EM3000ConfigurationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -341,6 +367,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters: ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -348,6 +375,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -376,7 +404,14 @@ class EM3000ConfigurationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -407,6 +442,7 @@ class EM3000DatagramInterface():
         """
         Return object information as string
         """
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -437,6 +473,7 @@ class EM3000DatagramInterface_mapped():
         """
         Return object information as string
         """
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -464,7 +501,14 @@ class EM3000EnvironmentDataInterface():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -516,6 +560,7 @@ class EM3000EnvironmentDataInterfacePerFile():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -567,6 +612,7 @@ class EM3000EnvironmentDataInterfacePerFile_mapped():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -594,7 +640,14 @@ class EM3000EnvironmentDataInterface_mapped():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -625,7 +678,14 @@ class EM3000NavigationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -677,6 +737,7 @@ class EM3000NavigationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -728,6 +789,7 @@ class EM3000NavigationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -759,7 +821,14 @@ class EM3000NavigationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -796,7 +865,14 @@ class EM3000OtherFileDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -856,6 +932,7 @@ class EM3000OtherFileDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -915,6 +992,7 @@ class EM3000OtherFileDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -950,7 +1028,14 @@ class EM3000OtherFileDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -984,7 +1069,14 @@ class EM3000PingDataInterface():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1037,6 +1129,7 @@ class EM3000PingDataInterfacePerFile():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1089,6 +1182,7 @@ class EM3000PingDataInterfacePerFile_mapped():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
+    def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1122,7 +1216,14 @@ class EM3000PingDataInterface_mapped():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

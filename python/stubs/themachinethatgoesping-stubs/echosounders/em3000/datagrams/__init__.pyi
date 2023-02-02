@@ -4,7 +4,6 @@ import themachinethatgoesping.echosounders.em3000.datagrams
 import typing
 import numpy
 import themachinethatgoesping.echosounders.em3000
-import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
@@ -1067,7 +1066,6 @@ class InstallationParameters(EM3000Datagram):
     def get_rx2_serial_number(self) -> int: ...
     def get_rx_array_size(self) -> str: ...
     def get_secondary_system_serial_number(self) -> int: ...
-    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
     def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Internal function to get the sensor offsets from the installation

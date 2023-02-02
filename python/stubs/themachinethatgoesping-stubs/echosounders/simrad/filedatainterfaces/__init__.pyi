@@ -68,7 +68,14 @@ class SimradAnnotationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -126,6 +133,7 @@ class SimradAnnotationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -183,6 +191,7 @@ class SimradAnnotationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -217,7 +226,14 @@ class SimradAnnotationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -244,7 +260,14 @@ class SimradConfigurationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -328,6 +351,7 @@ class SimradConfigurationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -413,6 +437,7 @@ class SimradConfigurationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -441,7 +466,14 @@ class SimradConfigurationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -472,6 +504,7 @@ class SimradDatagramInterface():
         """
         Return object information as string
         """
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -502,6 +535,7 @@ class SimradDatagramInterface_mapped():
         """
         Return object information as string
         """
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -529,7 +563,14 @@ class SimradEnvironmentDataInterface():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -581,6 +622,7 @@ class SimradEnvironmentDataInterfacePerFile():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -632,6 +674,7 @@ class SimradEnvironmentDataInterfacePerFile_mapped():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -659,7 +702,14 @@ class SimradEnvironmentDataInterface_mapped():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -690,7 +740,14 @@ class SimradNavigationDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -746,6 +803,7 @@ class SimradNavigationDataInterfacePerFile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -801,6 +859,7 @@ class SimradNavigationDataInterfacePerFile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -834,7 +893,14 @@ class SimradNavigationDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -873,7 +939,14 @@ class SimradOtherFileDataInterface():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -909,7 +982,14 @@ class SimradOtherFileDataInterface_mapped():
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
     def initialized(self) -> bool: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -943,7 +1023,14 @@ class SimradPingDataInterface():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -997,6 +1084,7 @@ class SimradPingDataInterfacePerFile():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1050,6 +1138,7 @@ class SimradPingDataInterfacePerFile_mapped():
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1083,7 +1172,14 @@ class SimradPingDataInterface_mapped():
     def initialized(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     @staticmethod
-    def per_file(*args, **kwargs) -> typing.Any: ...
+    def per_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1143,6 +1239,7 @@ class init_c_simradotherfiledatainterfaceperfile():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -1202,6 +1299,7 @@ class init_c_simradotherfiledatainterfaceperfile_mapped():
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
