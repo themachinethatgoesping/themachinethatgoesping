@@ -1110,6 +1110,19 @@ class InstallationParameters(EM3000Datagram):
         """
         Return object information as string
         """
+    @staticmethod
+    def merge(datagram_1: InstallationParameters, datagram_2: InstallationParameters) -> InstallationParameters: 
+        """
+        Merge two InstallationParameters datagrams into one If the datagrams
+        differ because an uncritical key does not exist in one of them, the
+        uncritical key will be added to the resulting datagram.
+
+        Parameter ``first``:
+            $Parameter ``second``:
+
+        Returns:
+            InstallationParameters
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
