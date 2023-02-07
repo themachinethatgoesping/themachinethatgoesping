@@ -299,8 +299,8 @@ class EM3000ConfigurationDataInterfacePerFile():
     def deinitialize(self) -> None: ...
     def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_active_position_system_number(self) -> int: ...
-    def get_active_roll_pitch_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -347,6 +347,14 @@ class EM3000ConfigurationDataInterfacePerFile():
 
         Parameter ``sensor``:
         """
+    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None: 
+        """
+        Set the active roll pitch sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        t_EM3000ActiveSensor
+
+        Parameter ``sensor``:
+        """
     def set_active_position_system_number(self, number: int) -> None: 
         """
         Set the active position system number 0: this will be overwritten by
@@ -354,14 +362,6 @@ class EM3000ConfigurationDataInterfacePerFile():
         1-3
 
         Parameter ``number``:
-        """
-    def set_active_roll_pitch_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None: 
-        """
-        Set the active roll pitch sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_EM3000ActiveSensor
-
-        Parameter ``sensor``:
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass
@@ -389,8 +389,8 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
     def deinitialize(self) -> None: ...
     def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_active_position_system_number(self) -> int: ...
-    def get_active_roll_pitch_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: ...
     def get_file_nr(self) -> int: 
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -437,6 +437,14 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
 
         Parameter ``sensor``:
         """
+    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None: 
+        """
+        Set the active roll pitch sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        t_EM3000ActiveSensor
+
+        Parameter ``sensor``:
+        """
     def set_active_position_system_number(self, number: int) -> None: 
         """
         Set the active position system number 0: this will be overwritten by
@@ -444,14 +452,6 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
         1-3
 
         Parameter ``number``:
-        """
-    def set_active_roll_pitch_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None: 
-        """
-        Set the active roll pitch sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_EM3000ActiveSensor
-
-        Parameter ``sensor``:
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
     pass

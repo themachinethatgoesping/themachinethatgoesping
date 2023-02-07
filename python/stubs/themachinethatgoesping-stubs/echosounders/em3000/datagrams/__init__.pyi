@@ -387,7 +387,7 @@ class AttitudeDatagram(EM3000Datagram):
         """
         Get the number of attitude sensor from the sensor system descriptor
         field. xx00 xxxx – attitude sensor number 1 xx01 xxxx – attitude
-        sensor number 1
+        sensor number 2
 
         Returns:
             1 or 2
@@ -1041,20 +1041,20 @@ class InstallationParameters(EM3000Datagram):
         Returns:
             t_EM3000ActiveSensor
         """
-    def get_active_position_system_number(self) -> int: 
-        """
-        Get the active position system number (APS + 1)
-
-        Returns:
-            uint8_t
-        """
-    def get_active_roll_pitch_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: 
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: 
         """
         Get the active roll pitch sensor (2, 3, 8 or 9) here returned as an
         enum
 
         Returns:
             t_EM3000ActiveSensor
+        """
+    def get_active_position_system_number(self) -> int: 
+        """
+        Get the active position system number (APS + 1)
+
+        Returns:
+            uint8_t
         """
     @typing.overload
     def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
@@ -2040,31 +2040,31 @@ class PositionDatagram(EM3000Datagram):
         create T_CLASS object from bytearray
         """
     def get_checksum(self) -> int: ...
-    def get_course_of_vessel(self) -> int: 
+    def get_course(self) -> int: 
         """
         < over ground in 0.01°
         """
-    def get_course_of_vessel_in_degrees(self) -> float: 
+    def get_course_in_degrees(self) -> float: 
         """
         Get the course of vessel in degrees
 
         Returns:
-            _course_of_vessel * 0.01° (float)
+            _course * 0.01° (float)
         """
     def get_etx(self) -> int: 
         """
         < end identifier (always 0x03)
         """
-    def get_heading_of_vessel(self) -> int: 
+    def get_heading(self) -> int: 
         """
         < in 0.01°
         """
-    def get_heading_of_vessel_in_degrees(self) -> float: 
+    def get_heading_in_degrees(self) -> float: 
         """
         Get the heading of vessel in degrees
 
         Returns:
-            _heading_of_vessel * 0.01° (float)
+            _heading * 0.01° (float)
         """
     def get_latitude(self) -> int: 
         """
@@ -2136,16 +2136,16 @@ class PositionDatagram(EM3000Datagram):
         """
         < only if required to make the datagram size even
         """
-    def get_speed_of_vessel(self) -> int: 
+    def get_speed(self) -> int: 
         """
         < over ground in cm/s
         """
-    def get_speed_of_vessel_in_meters_per_second(self) -> float: 
+    def get_speed_in_meters_per_second(self) -> float: 
         """
         Get the speed of vessel in meter per second
 
         Returns:
-            _speed_of_vessel * 0.01m/s (float)
+            _speed * 0.01m/s (float)
         """
     def get_system_serial_number(self) -> int: ...
     def info_string(self, float_precision: int = 2) -> str: 
@@ -2157,7 +2157,7 @@ class PositionDatagram(EM3000Datagram):
         Print object information
         """
     def set_checksum(self, arg0: int) -> None: ...
-    def set_course_of_vessel(self, arg0: int) -> None: 
+    def set_course(self, arg0: int) -> None: 
         """
         < over ground in 0.01°
         """
@@ -2165,7 +2165,7 @@ class PositionDatagram(EM3000Datagram):
         """
         < end identifier (always 0x03)
         """
-    def set_heading_of_vessel(self, arg0: int) -> None: 
+    def set_heading(self, arg0: int) -> None: 
         """
         < in 0.01°
         """
@@ -2191,7 +2191,7 @@ class PositionDatagram(EM3000Datagram):
         """
         < only if required to make the datagram size even
         """
-    def set_speed_of_vessel(self, arg0: int) -> None: 
+    def set_speed(self, arg0: int) -> None: 
         """
         < over ground in cm/s
         """
@@ -3382,16 +3382,16 @@ class XYZDatagram(EM3000Datagram):
         """
         < end identifier (always 0x03)
         """
-    def get_heading_of_vessel(self) -> int: 
+    def get_heading(self) -> int: 
         """
         < (at TX time) in 0.01 degree
         """
-    def get_heading_of_vessel_in_degrees(self) -> float: 
+    def get_heading_in_degrees(self) -> float: 
         """
         Get the vessel heading in degrees
 
         Returns:
-            heading_of_vessel * 0.01 degrees (double)
+            heading * 0.01 degrees (double)
         """
     def get_number_of_beams(self) -> int: 
         """
@@ -3448,7 +3448,7 @@ class XYZDatagram(EM3000Datagram):
         """
         < end identifier (always 0x03)
         """
-    def set_heading_of_vessel(self, arg0: int) -> None: 
+    def set_heading(self, arg0: int) -> None: 
         """
         < (at TX time) in 0.01 degree
         """
