@@ -6,6 +6,8 @@ import themachinethatgoesping.tools.progressbars
 
 __all__ = [
     "AttitudeDatagram",
+    "AttitudeVelocitySensor1",
+    "AttitudeVelocitySensor2",
     "ClockDatagram",
     "DepthOrHeightDatagram",
     "EM3000Datagram_type_from_string",
@@ -16,10 +18,19 @@ __all__ = [
     "HeadingDatagram",
     "InstallationParametersStart",
     "InstallationParametersStop",
+    "MotionSensor1",
+    "MotionSensor2",
+    "MultiCast1",
+    "MultiCast2",
+    "MultiCast3",
     "NetworkAttitudeVelocityDatagram",
+    "NotSet",
     "PUIDOutput",
     "PUStatusOutput",
     "PositionDatagram",
+    "PositionSystem1",
+    "PositionSystem2",
+    "PositionSystem3",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
     "RuntimeParameters",
@@ -34,6 +45,7 @@ __all__ = [
     "filedatacontainers",
     "filedatainterfaces",
     "filetypes",
+    "t_EM3000ActiveSensor",
     "t_EM3000DatagramIdentifier",
     "unspecified"
 ]
@@ -169,6 +181,74 @@ class FileEM3000_mapped():
         :type: filedatainterfaces.EM3000PingDataInterface_mapped
         """
     pass
+class t_EM3000ActiveSensor():
+    """
+    This enum is used to identify the active sensor in the
+    InstallationParameters datagram
+
+    Members:
+
+      PositionSystem3 : < UDP2 or COM4
+
+      PositionSystem1 : < COM1
+
+      PositionSystem2 : 
+
+      MotionSensor1 : < COM2
+
+      MotionSensor2 : < COM3
+
+      MultiCast1 : <
+
+      MultiCast2 : <
+
+      MultiCast3 : <
+
+      AttitudeVelocitySensor1 : < UDP5
+
+      AttitudeVelocitySensor2 : < UDP6
+
+      NotSet : < this is not a valid value
+    """
+    def __eq__(self, other: object) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    @typing.overload
+    def __init__(self, str: str) -> None: 
+        """
+        Construct this enum type from string
+        """
+    @typing.overload
+    def __init__(self, value: int) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: object) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: int) -> None: ...
+    def str(self) -> str: ...
+    @property
+    def name(self) -> str:
+        """
+        :type: str
+        """
+    @property
+    def value(self) -> int:
+        """
+        :type: int
+        """
+    AttitudeVelocitySensor1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.AttitudeVelocitySensor1: 8>
+    AttitudeVelocitySensor2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.AttitudeVelocitySensor2: 9>
+    MotionSensor1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MotionSensor1: 2>
+    MotionSensor2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MotionSensor2: 3>
+    MultiCast1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast1: 5>
+    MultiCast2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast2: 6>
+    MultiCast3: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast3: 7>
+    NotSet: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.NotSet: -1>
+    PositionSystem1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem1: 1>
+    PositionSystem2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem2: 32>
+    PositionSystem3: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem3: 0>
+    __members__: dict # value = {'PositionSystem3': <t_EM3000ActiveSensor.PositionSystem3: 0>, 'PositionSystem1': <t_EM3000ActiveSensor.PositionSystem1: 1>, 'PositionSystem2': <t_EM3000ActiveSensor.PositionSystem2: 32>, 'MotionSensor1': <t_EM3000ActiveSensor.MotionSensor1: 2>, 'MotionSensor2': <t_EM3000ActiveSensor.MotionSensor2: 3>, 'MultiCast1': <t_EM3000ActiveSensor.MultiCast1: 5>, 'MultiCast2': <t_EM3000ActiveSensor.MultiCast2: 6>, 'MultiCast3': <t_EM3000ActiveSensor.MultiCast3: 7>, 'AttitudeVelocitySensor1': <t_EM3000ActiveSensor.AttitudeVelocitySensor1: 8>, 'AttitudeVelocitySensor2': <t_EM3000ActiveSensor.AttitudeVelocitySensor2: 9>, 'NotSet': <t_EM3000ActiveSensor.NotSet: -1>}
+    pass
 class t_EM3000DatagramIdentifier():
     """
     Members:
@@ -272,6 +352,8 @@ def EM3000Datagram_type_from_string(datagram_type: str) -> t_EM3000DatagramIdent
 def datagram_type_to_string(datagram_type: t_EM3000DatagramIdentifier) -> str:
     pass
 AttitudeDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.AttitudeDatagram: 65>
+AttitudeVelocitySensor1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.AttitudeVelocitySensor1: 8>
+AttitudeVelocitySensor2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.AttitudeVelocitySensor2: 9>
 ClockDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.ClockDatagram: 67>
 DepthOrHeightDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.DepthOrHeightDatagram: 104>
 ExtraDetections: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.ExtraDetections: 108>
@@ -279,10 +361,19 @@ ExtraParameters: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIden
 HeadingDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.HeadingDatagram: 72>
 InstallationParametersStart: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.InstallationParametersStart: 73>
 InstallationParametersStop: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.InstallationParametersStop: 105>
+MotionSensor1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MotionSensor1: 2>
+MotionSensor2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MotionSensor2: 3>
+MultiCast1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast1: 5>
+MultiCast2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast2: 6>
+MultiCast3: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.MultiCast3: 7>
 NetworkAttitudeVelocityDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>
+NotSet: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.NotSet: -1>
 PUIDOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUIDOutput: 48>
 PUStatusOutput: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PUStatusOutput: 49>
 PositionDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.PositionDatagram: 80>
+PositionSystem1: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem1: 1>
+PositionSystem2: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem2: 32>
+PositionSystem3: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor # value = <t_EM3000ActiveSensor.PositionSystem3: 0>
 QualityFactorDatagram: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.QualityFactorDatagram: 79>
 RawRangeAndAngle: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RawRangeAndAngle: 78>
 RuntimeParameters: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier # value = <t_EM3000DatagramIdentifier.RuntimeParameters: 82>

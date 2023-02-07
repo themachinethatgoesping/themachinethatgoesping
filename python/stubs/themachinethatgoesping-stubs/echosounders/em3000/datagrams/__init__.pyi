@@ -9,8 +9,6 @@ _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "AttitudeDatagram",
-    "AttitudeVelocitySensor1",
-    "AttitudeVelocitySensor2",
     "Bscorr",
     "CalibTxt",
     "ClockDatagram",
@@ -22,22 +20,12 @@ __all__ = [
     "ExtraParameters_t_ContentIdentifier",
     "HeadingDatagram",
     "InstallationParameters",
-    "InstallationParameters_t_ActiveAttitudeSensor",
-    "InstallationParameters_t_ActiveHeadingSensor",
     "LogAllHeights",
-    "MotionSensor1",
-    "MotionSensor2",
-    "MultiCast1",
-    "MultiCast2",
-    "MultiCast3",
     "MultiCastInputStatus",
     "NetworkAttitudeVelocityDatagram",
     "PUIDOutput",
     "PUStatusOutput",
     "PositionDatagram",
-    "PositionSystem1",
-    "PositionSystem2",
-    "PositionSystem3",
     "QualityFactorDatagram",
     "RawRangeAndAngle",
     "RuntimeParameters",
@@ -395,6 +383,15 @@ class AttitudeDatagram(EM3000Datagram):
         create T_CLASS object from bytearray
         """
     def get_attitude_counter(self) -> int: ...
+    def get_attitude_sensor_number(self) -> int: 
+        """
+        Get the number of attitude sensor from the sensor system descriptor
+        field. xx00 xxxx – attitude sensor number 1 xx01 xxxx – attitude
+        sensor number 1
+
+        Returns:
+            1 or 2
+        """
     def get_attitudes(self) -> typing.List[substructures.AttitudeDatagramAttitude]: 
         """
         < N x Attitude data
@@ -420,15 +417,6 @@ class AttitudeDatagram(EM3000Datagram):
 
         Returns:
             bool
-        """
-    def get_motion_sensor_number(self) -> int: 
-        """
-        Get the number of motion sensor from the sensor system descriptor
-        field. xx00 xxxx – motion sensor number 1 xx01 xxxx – motion sensor
-        number 1
-
-        Returns:
-            1 or 2
         """
     def get_number_of_entries(self) -> int: 
         """
@@ -1033,25 +1021,25 @@ class InstallationParameters(EM3000Datagram):
         """
         Get the active attitude velocity sensor (not active, 1 or 2) 0: not
         used 1: Attitude Velocity Sensor 1 (assumed to be physical equal to
-        Motion Sensor 1) 2: Attitude Velocity Sensor 2 (assumed to be physical
-        equal to Motion Sensor 2)
+        Attitude sensor 1) 2: Attitude Velocity Sensor 2 (assumed to be
+        physical equal to Attitude sensor 2)
 
         Returns:
-            t_ActiveAttitudeSensor
+            t_EM3000ActiveSensor
         """
-    def get_active_heading_sensor(self) -> InstallationParameters_t_ActiveHeadingSensor: 
+    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: 
         """
         Get the active heading sensor (0-9) here returned as an enum
 
         Returns:
-            t_ActiveHeadingSensor
+            t_EM3000ActiveSensor
         """
-    def get_active_heave_sensor(self) -> InstallationParameters_t_ActiveAttitudeSensor: 
+    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: 
         """
         Get the active heave sensor (2, 3, 8 or 9) here returned as an enum
 
         Returns:
-            t_ActiveAttitudeSensor
+            t_EM3000ActiveSensor
         """
     def get_active_position_system_number(self) -> int: 
         """
@@ -1060,14 +1048,35 @@ class InstallationParameters(EM3000Datagram):
         Returns:
             uint8_t
         """
-    def get_active_roll_pitch_sensor(self) -> InstallationParameters_t_ActiveAttitudeSensor: 
+    def get_active_roll_pitch_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor: 
         """
         Get the active roll pitch sensor (2, 3, 8 or 9) here returned as an
         enum
 
         Returns:
-            t_ActiveAttitudeSensor
+            t_EM3000ActiveSensor
         """
+    @typing.overload
+    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+        """
+        Get the attitude sensor offsets of sensor 1 or 2
+
+        Parameter ``sensor_number``:
+            t_EM3000ActiveSensor (enum)
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+
+        Get the attitude sensor offsets of sensor 1 or 2
+
+        Parameter ``sensor_number``:
+            t_EM3000ActiveSensor (enum)
+
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
+    @typing.overload
+    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: ...
     def get_checksum(self) -> int: ...
     def get_compass_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
@@ -1094,16 +1103,6 @@ class InstallationParameters(EM3000Datagram):
         < Sequential Number
         """
     def get_installation_parameters_parsed(self) -> typing.Dict[str, str]: ...
-    def get_motion_sensor_offsets(self, sensor_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
-        """
-        Get the motion sensor offsets of sensor 1 or 2
-
-        Parameter ``sensor_number``:
-            must be 1 or 2
-
-        Returns:
-            navigation::datastructures::PositionalOffsets
-        """
     def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Get the position system offsets of system 1, 2 or 3
@@ -1120,13 +1119,13 @@ class InstallationParameters(EM3000Datagram):
     def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Internal function to get the sensor offsets from the installation
-        parameters. Possible sensor prefixes are: - MS for motion sensor 1 -
-        NS for motion sensor 2 - P1 for position system 1 - P2 for position
+        parameters. Possible sensor prefixes are: - MS for attitude sensor 1 -
+        NS for attitude sensor 2 - P1 for position system 1 - P2 for position
         system 2 - P3 for position system 3 - S1 for transducer 1 - S2 for
         transducer 2 - S3 for transducer 3 - DS for depth (pressure) sensor
 
         Parameter ``sensor_name``:
-            e.g. Motion Sensor 1
+            e.g. Attitude sensor 1
 
         Parameter ``sensor_prefix``:
             see above
@@ -1201,112 +1200,6 @@ class InstallationParameters(EM3000Datagram):
         convert object to bytearray
         """
     pass
-class InstallationParameters_t_ActiveAttitudeSensor():
-    """
-    Members:
-
-      MotionSensor1
-
-      MotionSensor2
-
-      AttitudeVelocitySensor1
-
-      AttitudeVelocitySensor2
-    """
-    def __eq__(self, other: object) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    @typing.overload
-    def __init__(self, str: str) -> None: 
-        """
-        Construct this enum type from string
-        """
-    @typing.overload
-    def __init__(self, value: int) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: int) -> None: ...
-    def str(self) -> str: ...
-    @property
-    def name(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def value(self) -> int:
-        """
-        :type: int
-        """
-    AttitudeVelocitySensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveAttitudeSensor # value = <InstallationParameters_t_ActiveAttitudeSensor.AttitudeVelocitySensor1: 8>
-    AttitudeVelocitySensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveAttitudeSensor # value = <InstallationParameters_t_ActiveAttitudeSensor.AttitudeVelocitySensor2: 9>
-    MotionSensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveAttitudeSensor # value = <InstallationParameters_t_ActiveAttitudeSensor.MotionSensor1: 2>
-    MotionSensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveAttitudeSensor # value = <InstallationParameters_t_ActiveAttitudeSensor.MotionSensor2: 3>
-    __members__: dict # value = {'MotionSensor1': <InstallationParameters_t_ActiveAttitudeSensor.MotionSensor1: 2>, 'MotionSensor2': <InstallationParameters_t_ActiveAttitudeSensor.MotionSensor2: 3>, 'AttitudeVelocitySensor1': <InstallationParameters_t_ActiveAttitudeSensor.AttitudeVelocitySensor1: 8>, 'AttitudeVelocitySensor2': <InstallationParameters_t_ActiveAttitudeSensor.AttitudeVelocitySensor2: 9>}
-    pass
-class InstallationParameters_t_ActiveHeadingSensor():
-    """
-    Members:
-
-      PositionSystem3
-
-      PositionSystem1
-
-      PositionSystem2
-
-      MotionSensor1
-
-      MotionSensor2
-
-      MultiCast1
-
-      MultiCast2
-
-      MultiCast3
-
-      AttitudeVelocitySensor1
-
-      AttitudeVelocitySensor2
-    """
-    def __eq__(self, other: object) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    @typing.overload
-    def __init__(self, str: str) -> None: 
-        """
-        Construct this enum type from string
-        """
-    @typing.overload
-    def __init__(self, value: int) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: int) -> None: ...
-    def str(self) -> str: ...
-    @property
-    def name(self) -> str:
-        """
-        :type: str
-        """
-    @property
-    def value(self) -> int:
-        """
-        :type: int
-        """
-    AttitudeVelocitySensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor1: 8>
-    AttitudeVelocitySensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor2: 9>
-    MotionSensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MotionSensor1: 2>
-    MotionSensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MotionSensor2: 3>
-    MultiCast1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast1: 5>
-    MultiCast2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast2: 6>
-    MultiCast3: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast3: 7>
-    PositionSystem1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem1: 1>
-    PositionSystem2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem2: 32>
-    PositionSystem3: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem3: 0>
-    __members__: dict # value = {'PositionSystem3': <InstallationParameters_t_ActiveHeadingSensor.PositionSystem3: 0>, 'PositionSystem1': <InstallationParameters_t_ActiveHeadingSensor.PositionSystem1: 1>, 'PositionSystem2': <InstallationParameters_t_ActiveHeadingSensor.PositionSystem2: 32>, 'MotionSensor1': <InstallationParameters_t_ActiveHeadingSensor.MotionSensor1: 2>, 'MotionSensor2': <InstallationParameters_t_ActiveHeadingSensor.MotionSensor2: 3>, 'MultiCast1': <InstallationParameters_t_ActiveHeadingSensor.MultiCast1: 5>, 'MultiCast2': <InstallationParameters_t_ActiveHeadingSensor.MultiCast2: 6>, 'MultiCast3': <InstallationParameters_t_ActiveHeadingSensor.MultiCast3: 7>, 'AttitudeVelocitySensor1': <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor1: 8>, 'AttitudeVelocitySensor2': <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor2: 9>}
-    pass
 class NetworkAttitudeVelocityDatagram(EM3000Datagram):
     """
     Network attitude velocity datagram 110. This datagram is currently not
@@ -1346,7 +1239,7 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
         """
     def get_attitude_velocity_sensor_number(self) -> int: 
         """
-        Get the number of motion sensor from the sensor system descriptor
+        Get the number of attitude sensor from the sensor system descriptor
         field. If this field is xx10 xxxx – attitude velocity sensor 1 (UDP5)
         xx11 xxxx – attitude velocity sensor 2 (UDP6)
 
@@ -3595,19 +3488,9 @@ class XYZDatagram(EM3000Datagram):
         convert object to bytearray
         """
     pass
-AttitudeVelocitySensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor1: 8>
-AttitudeVelocitySensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.AttitudeVelocitySensor2: 9>
 Bscorr: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.Bscorr: 6>
 CalibTxt: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.CalibTxt: 1>
 LogAllHeights: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.LogAllHeights: 2>
-MotionSensor1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MotionSensor1: 2>
-MotionSensor2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MotionSensor2: 3>
-MultiCast1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast1: 5>
-MultiCast2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast2: 6>
-MultiCast3: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.MultiCast3: 7>
 MultiCastInputStatus: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.MultiCastInputStatus: 5>
-PositionSystem1: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem1: 1>
-PositionSystem2: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem2: 32>
-PositionSystem3: themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters_t_ActiveHeadingSensor # value = <InstallationParameters_t_ActiveHeadingSensor.PositionSystem3: 0>
 SoundVelocityAtTransducer: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>
 SoundVelocityProfile: themachinethatgoesping.echosounders.em3000.datagrams.ExtraParameters_t_ContentIdentifier # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>
