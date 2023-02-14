@@ -76,9 +76,33 @@ class EM3000AnnotationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000AnnotationDataInterfacePerFile():
@@ -128,12 +152,29 @@ class EM3000AnnotationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -187,12 +228,29 @@ class EM3000AnnotationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -236,9 +294,33 @@ class EM3000AnnotationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000ConfigurationDataInterface():
@@ -270,9 +352,33 @@ class EM3000ConfigurationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000ConfigurationDataInterfacePerFile():
@@ -318,13 +424,30 @@ class EM3000ConfigurationDataInterfacePerFile():
             std::string
         """
     def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters: ...
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -408,13 +531,30 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
             std::string
         """
     def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters: ...
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -484,9 +624,33 @@ class EM3000ConfigurationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000DatagramInterface():
@@ -581,9 +745,33 @@ class EM3000EnvironmentDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000EnvironmentDataInterfacePerFile():
@@ -625,12 +813,29 @@ class EM3000EnvironmentDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -677,12 +882,29 @@ class EM3000EnvironmentDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -720,9 +942,33 @@ class EM3000EnvironmentDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000NavigationDataInterface():
@@ -758,11 +1004,35 @@ class EM3000NavigationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
     pass
 class EM3000NavigationDataInterfacePerFile():
     def __repr__(self) -> str: 
@@ -803,12 +1073,29 @@ class EM3000NavigationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -855,12 +1142,29 @@ class EM3000NavigationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -901,11 +1205,35 @@ class EM3000NavigationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
     pass
 class EM3000OtherFileDataInterface():
     """
@@ -945,9 +1273,33 @@ class EM3000OtherFileDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000OtherFileDataInterfacePerFile():
@@ -998,12 +1350,29 @@ class EM3000OtherFileDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -1058,12 +1427,29 @@ class EM3000OtherFileDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -1108,9 +1494,33 @@ class EM3000OtherFileDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000PingDataInterface():
@@ -1149,9 +1559,33 @@ class EM3000PingDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class EM3000PingDataInterfacePerFile():
@@ -1194,12 +1628,29 @@ class EM3000PingDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -1247,12 +1698,29 @@ class EM3000PingDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped: ...
     def per_file(self) -> typing.List[EM3000DatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -1296,8 +1764,32 @@ class EM3000PingDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass

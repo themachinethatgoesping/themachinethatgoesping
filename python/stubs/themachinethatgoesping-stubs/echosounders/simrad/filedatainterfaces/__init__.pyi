@@ -76,9 +76,33 @@ class SimradAnnotationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradAnnotationDataInterfacePerFile():
@@ -127,12 +151,29 @@ class SimradAnnotationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -185,12 +226,29 @@ class SimradAnnotationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -234,9 +292,33 @@ class SimradAnnotationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradConfigurationDataInterface():
@@ -268,9 +350,33 @@ class SimradConfigurationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradConfigurationDataInterfacePerFile():
@@ -336,6 +442,20 @@ class SimradConfigurationDataInterfacePerFile():
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_position_sources(self) -> typing.List[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
         """
         Return all position sources registered in the configuration datagram
@@ -345,12 +465,15 @@ class SimradConfigurationDataInterfacePerFile():
             std::vector<XML_Configuration_Sensor>
         """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -422,6 +545,20 @@ class SimradConfigurationDataInterfacePerFile_mapped():
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_position_sources(self) -> typing.List[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]: 
         """
         Return all position sources registered in the configuration datagram
@@ -431,12 +568,15 @@ class SimradConfigurationDataInterfacePerFile_mapped():
             std::vector<XML_Configuration_Sensor>
         """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -474,9 +614,33 @@ class SimradConfigurationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradDatagramInterface():
@@ -571,9 +735,33 @@ class SimradEnvironmentDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradEnvironmentDataInterfacePerFile():
@@ -615,12 +803,29 @@ class SimradEnvironmentDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -667,12 +872,29 @@ class SimradEnvironmentDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -710,9 +932,33 @@ class SimradEnvironmentDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradNavigationDataInterface():
@@ -748,6 +994,26 @@ class SimradNavigationDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -755,6 +1021,10 @@ class SimradNavigationDataInterface():
     def set_max_gga_quality(self, max_gga_quality: int) -> None: ...
     def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
     pass
 class SimradNavigationDataInterfacePerFile():
     def __repr__(self) -> str: 
@@ -795,14 +1065,31 @@ class SimradNavigationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_max_gga_quality(self) -> int: ...
     def get_min_gga_quality(self) -> int: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -851,14 +1138,31 @@ class SimradNavigationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
     def get_max_gga_quality(self) -> int: ...
     def get_min_gga_quality(self) -> int: ...
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -901,6 +1205,26 @@ class SimradNavigationDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -908,6 +1232,10 @@ class SimradNavigationDataInterface_mapped():
     def set_max_gga_quality(self, max_gga_quality: int) -> None: ...
     def set_min_gga_quality(self, min_gga_quality: int) -> None: ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None: ...
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
     pass
 class SimradOtherFileDataInterface():
     """
@@ -947,9 +1275,33 @@ class SimradOtherFileDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradOtherFileDataInterface_mapped():
@@ -990,9 +1342,33 @@ class SimradOtherFileDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradPingDataInterface():
@@ -1031,9 +1407,33 @@ class SimradPingDataInterface():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class SimradPingDataInterfacePerFile():
@@ -1077,12 +1477,29 @@ class SimradPingDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -1131,12 +1548,29 @@ class SimradPingDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -1180,9 +1614,33 @@ class SimradPingDataInterface_mapped():
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
+    @staticmethod
+    def per_primary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @staticmethod
+    def per_secondary_file(*args, **kwargs) -> typing.Any: 
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None: 
+        """
+        This functions throws if linked file interfaces are not consistent
         """
     pass
 class init_c_simradotherfiledatainterfaceperfile():
@@ -1233,12 +1691,29 @@ class init_c_simradotherfiledatainterfaceperfile():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
@@ -1293,12 +1768,29 @@ class init_c_simradotherfiledatainterfaceperfile_mapped():
         Returns:
             std::string
         """
+    def get_linked_file_nr(self) -> int: 
+        """
+        Get the file nr of the linked file
+
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str: 
+        """
+        Get the file name of the linked file
+
+        Returns:
+            std::string
+        """
+    def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
     def init_from_file(self, force: bool = False) -> None: ...
     def initialized(self) -> bool: ...
+    def is_primary_file(self) -> bool: ...
+    def is_secondary_file(self) -> bool: ...
     def per_file(self) -> typing.List[SimradDatagramInterface_mapped]: ...
     def print(self, float_precision: int = 2) -> None: 
         """
