@@ -1008,6 +1008,7 @@ class InstallationParameters(EM3000Datagram):
         """
         Return object information as string
         """
+    def build_channel_id(self) -> str: ...
     def copy(self) -> InstallationParameters: 
         """
         return a copy using the c++ default copy constructor

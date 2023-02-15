@@ -81,6 +81,7 @@ class EM3000Ping():
         """
         Return object information as string
         """
+    def is_dual_rx(self) -> bool: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -271,6 +272,7 @@ class EM3000Ping_mapped():
         """
         Return object information as string
         """
+    def is_dual_rx(self) -> bool: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information

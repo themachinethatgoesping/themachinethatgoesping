@@ -76,6 +76,7 @@ class FileEM3000():
         """
         Return object information as string
         """
+    def channel_ids(self) -> typing.List[str]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -84,6 +85,12 @@ class FileEM3000():
     def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None: ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def pings(self) -> filedatacontainers.EM3000PingContainer: ...
+    @typing.overload
+    def pings(self, channel_id: str) -> filedatacontainers.EM3000PingContainer: ...
+    @typing.overload
+    def pings(self, channel_ids: typing.List[str]) -> filedatacontainers.EM3000PingContainer: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -141,6 +148,7 @@ class FileEM3000_mapped():
         """
         Return object information as string
         """
+    def channel_ids(self) -> typing.List[str]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -149,6 +157,12 @@ class FileEM3000_mapped():
     def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None: ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None: ...
+    @typing.overload
+    def pings(self) -> filedatacontainers.EM3000PingContainer_mapped: ...
+    @typing.overload
+    def pings(self, channel_id: str) -> filedatacontainers.EM3000PingContainer_mapped: ...
+    @typing.overload
+    def pings(self, channel_ids: typing.List[str]) -> filedatacontainers.EM3000PingContainer_mapped: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
