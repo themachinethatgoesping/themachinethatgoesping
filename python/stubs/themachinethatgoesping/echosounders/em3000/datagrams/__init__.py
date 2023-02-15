@@ -1141,7 +1141,7 @@ class InstallationParameters(EM3000Datagram):
         """
     def get_system_main_head_serial_number(self) -> int: ...
     def get_system_serial_number(self) -> int: ...
-    def get_system_transducer_configuration(self) -> str: ...
+    def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000SystemTransducerConfiguration: ...
     def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Get the transducer offsets of transducer 0, 1, 2 or 3
@@ -1160,6 +1160,7 @@ class InstallationParameters(EM3000Datagram):
         """
         Return object information as string
         """
+    def is_dual_rx(self) -> bool: ...
     @staticmethod
     def merge(datagram_1: InstallationParameters, datagram_2: InstallationParameters) -> InstallationParameters: 
         """
