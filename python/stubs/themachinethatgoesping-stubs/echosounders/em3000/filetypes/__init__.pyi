@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.filetypes
 import typing
 import numpy
+import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
@@ -104,6 +105,11 @@ class EM3000Ping():
 
         :type: str
         """
+    @property
+    def raw_data(self) -> EM3000PingRawData:
+        """
+        :type: EM3000PingRawData
+        """
     pass
 class EM3000PingRawData():
     def __copy__(self) -> EM3000PingRawData: ...
@@ -111,21 +117,44 @@ class EM3000PingRawData():
     def __repr__(self) -> str: 
         """
         Return object information as string
+
+        Return object information as string
         """
     def __str__(self) -> str: 
         """
+        Return object information as string
+
         Return object information as string
         """
     def copy(self) -> EM3000PingRawData: 
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
+
+        Return object information as string
         """
+    def keys(self) -> typing.List[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]: ...
+    @staticmethod
+    def per_file(*args, **kwargs) -> typing.Any: ...
     def print(self, float_precision: int = 2) -> None: 
         """
+        Print object information
+
         Print object information
         """
     pass
@@ -135,21 +164,44 @@ class EM3000PingRawData_mapped():
     def __repr__(self) -> str: 
         """
         Return object information as string
+
+        Return object information as string
         """
     def __str__(self) -> str: 
         """
+        Return object information as string
+
         Return object information as string
         """
     def copy(self) -> EM3000PingRawData_mapped: 
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def datagram_headers(self) -> object: ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams(self) -> object: ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    @typing.overload
+    def datagrams_raw(self) -> object: ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
+
+        Return object information as string
         """
+    def keys(self) -> typing.List[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]: ...
+    @staticmethod
+    def per_file(*args, **kwargs) -> typing.Any: ...
     def print(self, float_precision: int = 2) -> None: 
         """
+        Print object information
+
         Print object information
         """
     pass
@@ -242,5 +294,10 @@ class EM3000Ping_mapped():
         < channel id of the transducer
 
         :type: str
+        """
+    @property
+    def raw_data(self) -> EM3000PingRawData_mapped:
+        """
+        :type: EM3000PingRawData_mapped
         """
     pass
