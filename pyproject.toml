@@ -89,7 +89,7 @@ testpaths = [
 ]
 
 [tool.meson-python.args]
-dist = []
-setup = ["--default-library=static"]
+#dist = []
+setup = ["--default-library=static", "-Doptimization=3"]
 compile = []
 install = ['--tags=runtime,python-runtime'] 
