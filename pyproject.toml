@@ -36,7 +36,7 @@ requires-python = '>=3.8, <3.11'
 dependencies = [
   'numba',
   #'ipympl',
-  #'matplotlib', #implicit already in ipympl
+  'matplotlib',
   'numpy >=1.20',
   'tqdm'
 ]
