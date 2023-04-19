@@ -79,6 +79,7 @@ jobs:
       run: |
         python${{ matrix.python-version }} -m pip install --upgrade pip
         python${{ matrix.python-version }} -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
+        pip install -r requirements.txt
         
          
     - name: Build and install wheel

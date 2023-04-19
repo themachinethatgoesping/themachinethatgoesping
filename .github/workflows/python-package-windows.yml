@@ -117,6 +117,7 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install meson meson-python ninja pytest twine wheel pyproject-metadata oldest-supported-numpy
+        pip install -r requirements.txt
          
     - name: build and install wheel
       run: |
