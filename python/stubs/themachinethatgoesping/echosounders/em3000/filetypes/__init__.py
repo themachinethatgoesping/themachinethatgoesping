@@ -42,10 +42,9 @@ class EM3000Ping():
         """
     def get_file_nr(self) -> int: ...
     def get_file_path(self) -> str: ...
-    def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
+    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
         """
-        < Geolocation of the transducer (object that hold lat,lon and attitude
-        of
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     def get_number_of_samples(self) -> int: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
@@ -90,10 +89,9 @@ class EM3000Ping():
         """
         < channel id of the transducer
         """
-    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
+    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
-        < Geolocation of the transducer (object that hold lat,lon and attitude
-        of
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     def set_timestamp(self, timestamp: float) -> None: 
         """
@@ -235,10 +233,9 @@ class EM3000Ping_mapped():
         """
     def get_file_nr(self) -> int: ...
     def get_file_path(self) -> str: ...
-    def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
+    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
         """
-        < Geolocation of the transducer (object that hold lat,lon and attitude
-        of
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     def get_number_of_samples(self) -> int: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
@@ -283,10 +280,9 @@ class EM3000Ping_mapped():
         """
         < channel id of the transducer
         """
-    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
+    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
-        < Geolocation of the transducer (object that hold lat,lon and attitude
-        of
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     def set_timestamp(self, timestamp: float) -> None: 
         """
