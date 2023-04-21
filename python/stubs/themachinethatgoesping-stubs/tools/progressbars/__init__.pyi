@@ -63,6 +63,13 @@ class I_ProgressBar():
         Parameter ``postfix``:
             postfix message
         """
+    def set_prefix(self, prefix: str) -> None: 
+        """
+        Append a prefix message to the progressbar
+
+        Parameter ``prefix``:
+            prefix message
+        """
     def set_progress(self, progress: float) -> None: 
         """
         Set the progress state to the given value. Note some implementations
@@ -146,6 +153,17 @@ class I_ProgressBarTimed(I_ProgressBar):
 
         Parameter ``postfix``:
             postfix message
+        """
+    def callback_set_prefix(self, prefix: str) -> None: 
+        """
+        Set the prefix message to the progressbar
+
+        This callback is guarded by a timer (100ms). If skipped, the prefix is
+        stored to the internal state and will be applied with the next
+        successful call to set_progress(), tick() or set_prefix().
+
+        Parameter ``prefix``:
+            prefix message
         """
     def callback_set_progress(self, progress: float) -> None: 
         """

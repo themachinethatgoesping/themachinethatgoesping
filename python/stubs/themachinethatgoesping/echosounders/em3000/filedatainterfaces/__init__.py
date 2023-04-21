@@ -166,6 +166,7 @@ class EM3000AnnotationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -243,6 +244,7 @@ class EM3000AnnotationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -441,6 +443,7 @@ class EM3000ConfigurationDataInterfacePerFile():
             std::string
         """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -549,6 +552,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped():
             std::string
         """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration: ...
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -678,6 +682,7 @@ class EM3000DatagramInterface():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_timestamp_first(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -710,6 +715,7 @@ class EM3000DatagramInterface_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_timestamp_first(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -833,6 +839,7 @@ class EM3000EnvironmentDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -903,6 +910,7 @@ class EM3000EnvironmentDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1095,6 +1103,7 @@ class EM3000NavigationDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1165,6 +1174,7 @@ class EM3000NavigationDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1374,6 +1384,7 @@ class EM3000OtherFileDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1452,6 +1463,7 @@ class EM3000OtherFileDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1655,6 +1667,7 @@ class EM3000PingDataInterfacePerFile():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -1728,6 +1741,7 @@ class EM3000PingDataInterfacePerFile_mapped():
         Returns:
             std::string
         """
+    def get_timestamp_first(self) -> float: ...
     def has_linked_file(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """

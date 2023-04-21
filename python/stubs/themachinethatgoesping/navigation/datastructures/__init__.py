@@ -399,11 +399,11 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         object (using a known zone and hemisphere)
 
         Parameter ``location_local``:
-            $Parameter ``zone``:
+            $Parameter ``utm_zone``:
 
         UTM/UPS zone number
 
-        Parameter ``northern_hemisphere``:
+        Parameter ``utm_northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
 
         Construct an GeoLocationUTM object from an existing GeoLocationLatLon
@@ -418,10 +418,10 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         Parameter ``easting``:
             in m, positive eastwards
 
-        Parameter ``zone``:
+        Parameter ``utm_zone``:
             UTM/UPS zone number
 
-        Parameter ``northern_hemisphere``:
+        Parameter ``utm_northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
 
         Parameter ``z``:
@@ -437,9 +437,9 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLocal, zone: int, northern_hemisphere: bool) -> None: ...
+    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
+    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -471,26 +471,22 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         convert object to bytearray
         """
     @property
-    def northern_hemisphere(self) -> bool:
+    def utm_northern_hemisphere(self) -> bool:
         """
-        < if true: northern hemisphere, else: southern hemisphere
-
         :type: bool
         """
-    @northern_hemisphere.setter
-    def northern_hemisphere(self, arg0: bool) -> None:
-        """
-        < if true: northern hemisphere, else: southern hemisphere
-        """
+    @utm_northern_hemisphere.setter
+    def utm_northern_hemisphere(self, arg0: bool) -> None:
+        pass
     @property
-    def zone(self) -> int:
+    def utm_zone(self) -> int:
         """
         < UTM/UPS zone number
 
         :type: int
         """
-    @zone.setter
-    def zone(self, arg0: int) -> None:
+    @utm_zone.setter
+    def utm_zone(self, arg0: int) -> None:
         """
         < UTM/UPS zone number
         """
@@ -550,6 +546,24 @@ class PositionalOffsets():
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionalOffsets: 
         """
         create T_CLASS object from bytearray
+        """
+    @staticmethod
+    def from_txrx(tx: PositionalOffsets, rx: PositionalOffsets, name: str) -> PositionalOffsets: 
+        """
+        Construct a new PositionalOffsets object from a transmitter and
+        receiver unit
+
+        Parameter ``tx``:
+            Multibeam transmitter offsets
+
+        Parameter ``rx``:
+            Multibeam receiver offsets
+
+        Parameter ``name``:
+            Name of the newly constructed transceiver offsets
+
+        Returns:
+            Transceiver PositionalOffsets
         """
     def info_string(self, float_precision: int = 2) -> str: 
         """
