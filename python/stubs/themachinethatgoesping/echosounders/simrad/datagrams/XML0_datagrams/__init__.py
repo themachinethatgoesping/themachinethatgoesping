@@ -1909,6 +1909,7 @@ class XML_Parameter_Channel():
         """
         Print object information
         """
+    def slow_hash(self) -> int: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray

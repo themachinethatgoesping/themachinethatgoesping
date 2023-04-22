@@ -134,14 +134,18 @@ class SimradPing():
         """
         Print object information
         """
+    def raw_data(self) -> SimradPingRawData: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
         """
-    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
+    @typing.overload
+    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
         """
+    @typing.overload
+    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     def set_timestamp(self, timestamp: float) -> None: 
         """
         < Unix timestamp in seconds (saved in UTC0)
@@ -152,11 +156,6 @@ class SimradPing():
         < channel id of the transducer
 
         :type: str
-        """
-    @property
-    def raw_data(self) -> SimradPingRawData:
-        """
-        :type: SimradPingRawData
         """
     pass
 class SimradPingRawData():
@@ -353,14 +352,18 @@ class SimradPing_mapped():
         """
         Print object information
         """
+    def raw_data(self) -> SimradPingRawData_mapped: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
         """
-    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
+    @typing.overload
+    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
         """
+    @typing.overload
+    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     def set_timestamp(self, timestamp: float) -> None: 
         """
         < Unix timestamp in seconds (saved in UTC0)
@@ -371,10 +374,5 @@ class SimradPing_mapped():
         < channel id of the transducer
 
         :type: str
-        """
-    @property
-    def raw_data(self) -> SimradPingRawData_mapped:
-        """
-        :type: SimradPingRawData_mapped
         """
     pass

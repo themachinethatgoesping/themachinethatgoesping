@@ -4,6 +4,7 @@ import themachinethatgoesping.echosounders.em3000.filetypes
 import typing
 import numpy
 import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.echosounders.em3000.datagrams
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
@@ -74,17 +75,22 @@ class EM3000Ping():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def get_transducer_ids(self) -> typing.List[str]: ...
     def has_angle(self) -> bool: ...
     def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def is_dual_rx(self) -> bool: ...
+    def load_datagrams(self, skip_data: bool = True) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
+    @typing.overload
+    def raw_data(self) -> typing.Dict[str, EM3000PingRawData]: ...
+    @typing.overload
+    def raw_data(self, transducer_id: str) -> EM3000PingRawData: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -103,11 +109,6 @@ class EM3000Ping():
         < channel id of the transducer
 
         :type: str
-        """
-    @property
-    def raw_data(self) -> EM3000PingRawData:
-        """
-        :type: EM3000PingRawData
         """
     pass
 class EM3000PingRawData():
@@ -134,13 +135,14 @@ class EM3000PingRawData():
     @typing.overload
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
-    def datagrams(self) -> object: ...
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> object: ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def datagrams(self, skip_data: bool = False) -> object: ...
     @typing.overload
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
     def get_timestamp_first(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -149,6 +151,7 @@ class EM3000PingRawData():
         Return object information as string
         """
     def keys(self) -> typing.List[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]: ...
+    def load_datagrams(self, skip_data: bool = True) -> None: ...
     @staticmethod
     def per_file(*args, **kwargs) -> typing.Any: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -157,6 +160,7 @@ class EM3000PingRawData():
 
         Print object information
         """
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     pass
 class EM3000PingRawData_mapped():
     def __copy__(self) -> EM3000PingRawData_mapped: ...
@@ -182,13 +186,14 @@ class EM3000PingRawData_mapped():
     @typing.overload
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
     @typing.overload
-    def datagrams(self) -> object: ...
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> object: ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def datagrams(self, skip_data: bool = False) -> object: ...
     @typing.overload
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
     def get_timestamp_first(self) -> float: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
@@ -197,6 +202,7 @@ class EM3000PingRawData_mapped():
         Return object information as string
         """
     def keys(self) -> typing.List[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]: ...
+    def load_datagrams(self, skip_data: bool = True) -> None: ...
     @staticmethod
     def per_file(*args, **kwargs) -> typing.Any: ...
     def print(self, float_precision: int = 2) -> None: 
@@ -205,6 +211,7 @@ class EM3000PingRawData_mapped():
 
         Print object information
         """
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     pass
 class EM3000Ping_mapped():
     def __copy__(self) -> EM3000Ping_mapped: ...
@@ -265,17 +272,22 @@ class EM3000Ping_mapped():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def get_transducer_ids(self) -> typing.List[str]: ...
     def has_angle(self) -> bool: ...
     def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
         """
-    def is_dual_rx(self) -> bool: ...
+    def load_datagrams(self, skip_data: bool = True) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
+    @typing.overload
+    def raw_data(self) -> typing.Dict[str, EM3000PingRawData_mapped]: ...
+    @typing.overload
+    def raw_data(self, transducer_id: str) -> EM3000PingRawData_mapped: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -294,10 +306,5 @@ class EM3000Ping_mapped():
         < channel id of the transducer
 
         :type: str
-        """
-    @property
-    def raw_data(self) -> EM3000PingRawData_mapped:
-        """
-        :type: EM3000PingRawData_mapped
         """
     pass
