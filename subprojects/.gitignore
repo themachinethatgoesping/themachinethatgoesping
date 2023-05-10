@@ -9,7 +9,6 @@ pybind11*/*
 Catch2**
 fmt*/*
 magic_enum*/*
-bitsery*
 geographiclib*
 xtensor*
 nlohmann_json*
@@ -26,5 +25,4 @@ pybind11.wrap
 eigen.wrap
 fmt.wrap
 magic_enum.wrap
-bitsery.wrap
 indicators*
