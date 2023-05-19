@@ -46,7 +46,7 @@ If you are interested, contact peter.urban@ugent.be
 ## Information
 
 <a href="https://pypi.org/project/themachinethatgoesping/">
-  <img src="https://img.shields.io/badge/pypi python versions-3.8 | 3.9 | 3.10-informational" alt='Python versions 3.8 | 3.9 | 3.10'/>
+  <img src="https://img.shields.io/badge/pypi python versions-3.8 | 3.9 | 3.10 | 3.11-informational" alt='Python versions 3.8 | 3.9 | 3.10 | 3.11'/>
 </a>
 </br>
 <a href="https://themachinethatgoesping.readthedocs.io">

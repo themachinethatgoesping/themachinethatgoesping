@@ -46,7 +46,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: ['3.8','3.9','3.10']
+        python-version: ['3.8','3.9','3.10','3.11']
         compiler: [clang]
 
     env:
@@ -188,7 +188,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.8','3.9','3.10']
+        python-version: ['3.8','3.9','3.10','3.11']
       
     steps:    
     - name: checkout main repository

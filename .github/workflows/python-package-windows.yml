@@ -45,9 +45,9 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: ['3.8','3.9','3.10']
-        boost-version: [1.80.0]
-        boost-version_: [1_80_0]
+        python-version: ['3.8','3.9','3.10','3.11']
+        boost-version: [1.82.0]
+        boost-version_: [1_82_0]
         boost-modules: [--with-iostreams]
         #toolset: [msvc-14.32]
         #toolset: [clang-cl]
@@ -225,7 +225,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.8','3.9','3.10']
+        python-version: ['3.8','3.9','3.10','3.11']
 
     steps:
     - name: checkout main repository

@@ -5,11 +5,11 @@ yum install -y bzip2 curl zlib
 
 #export BOOST_VERSION="1.74.0"
 #export BOOST_VERSION_="1_74_0"
-export BOOST_VERSION="1.80.0"
-export BOOST_VERSION_="1_80_0"
+export BOOST_VERSION="1.82.0"
+export BOOST_VERSION_="1_82_0"
 export BOOST_MODULES="--with-iostreams"
 
-export CCACHE_VERSION="4.6.3"
+export CCACHE_VERSION="4.7.5"
 
 
 # -- install package versions from source --
