@@ -19,9 +19,9 @@ build:
       - git config filter.lfs.process "`pwd`/git-lfs filter-process"
       - git config filter.lfs.smudge  "`pwd`/git-lfs smudge -- %f"
       - git config filter.lfs.clean "`pwd`/git-lfs clean -- %f"
-      - ./git-lfs install
-      - ./git-lfs fetch
-      - ./git-lfs checkout
+      - ./git-lfs-3.3.0/git-lfs install
+      - ./git-lfs-3.3.0/git-lfs fetch
+      - ./git-lfs-3.3.0/git-lfs checkout
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
