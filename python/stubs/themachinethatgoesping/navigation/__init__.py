@@ -64,7 +64,7 @@ class NavigationInterpolatorLatLon():
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: 
+    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: 
         """
         add a target sensor with positional offsets
 
@@ -98,7 +98,7 @@ class NavigationInterpolatorLatLon():
             structure that contains the sensor position
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
+    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: ...
     def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLatLon: 
         """
         Compute the position of the target "target_id" based on the sensor
@@ -158,7 +158,7 @@ class NavigationInterpolatorLatLon():
         """
     def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
-        Set the attitude data (no yaw, ythis is set in set_data_heading)
+        Set the attitude data (no yaw, this is set in set_data_heading)
 
         Parameter ``timestamp``:
             in seconds since epoch
@@ -334,6 +334,9 @@ class NavigationInterpolatorLocal():
         """
         Construct a new i navigationinterpolator interface
 
+        Parameter ``sensor_configuration``:
+            sensor configuration used for this navigation interpolator
+
         Parameter ``extrapolation_mode``:
             extrapolate, fail or nearest
         """
@@ -347,7 +350,7 @@ class NavigationInterpolatorLocal():
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: 
+    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: 
         """
         add a target sensor with positional offsets
 
@@ -381,7 +384,7 @@ class NavigationInterpolatorLocal():
             structure that contains the sensor position
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
+    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: ...
     def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLocal: 
         """
         Compute the position of the target "target_id" based on the sensor
@@ -441,7 +444,7 @@ class NavigationInterpolatorLocal():
         """
     def set_data_attitude(self, timestamp: typing.List[float], pitch: typing.List[float], roll: typing.List[float]) -> None: 
         """
-        Set the attitude data (no yaw, ythis is set in set_data_heading)
+        Set the attitude data (no yaw, this is set in set_data_heading)
 
         Parameter ``timestamp``:
             in seconds since epoch
@@ -627,7 +630,7 @@ class SensorConfiguration():
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: 
+    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: 
         """
         add a target (e.g. MBES) with offsets to the sensor position system
 
@@ -664,7 +667,7 @@ class SensorConfiguration():
             mounting offsets of the target
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None: ...
+    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None: ...
     def add_targets(self, targets: typing.Dict[str, datastructures.PositionalOffsets]) -> None: 
         """
         add targets (e.g. MBES) with given target_ids and offsets to the
@@ -683,7 +686,7 @@ class SensorConfiguration():
             true otherwise
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorData) -> datastructures.GeoLocationLocal: 
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLatLon) -> datastructures.GeoLocationLatLon: 
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -742,11 +745,11 @@ class SensorConfiguration():
             system center
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLatLon) -> datastructures.GeoLocationLatLon: ...
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataUTM) -> datastructures.GeoLocationUTM: ...
     @typing.overload
     def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLocal) -> datastructures.GeoLocationLocal: ...
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataUTM) -> datastructures.GeoLocationUTM: ...
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorData) -> datastructures.GeoLocationLocal: ...
     def copy(self) -> SensorConfiguration: 
         """
         return a copy using the c++ default copy constructor

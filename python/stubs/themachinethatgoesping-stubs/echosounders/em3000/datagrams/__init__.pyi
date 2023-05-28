@@ -839,12 +839,12 @@ class ExtraParameters_t_ContentIdentifier():
     def __hash__(self) -> int: ...
     def __index__(self) -> int: ...
     @typing.overload
-    def __init__(self, str: str) -> None: 
+    def __init__(self, value: int) -> None: 
         """
         Construct this enum type from string
         """
     @typing.overload
-    def __init__(self, value: int) -> None: ...
+    def __init__(self, str: str) -> None: ...
     def __int__(self) -> int: ...
     def __ne__(self, other: object) -> bool: ...
     def __repr__(self) -> str: ...
@@ -1058,7 +1058,7 @@ class InstallationParameters(EM3000Datagram):
             uint8_t
         """
     @typing.overload
-    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
+    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
         Get the attitude sensor offsets of sensor 1 or 2
 
@@ -1077,7 +1077,7 @@ class InstallationParameters(EM3000Datagram):
             navigation::datastructures::PositionalOffsets
         """
     @typing.overload
-    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: ...
+    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: ...
     def get_checksum(self) -> int: ...
     def get_compass_offsets(self) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets: 
         """
@@ -3244,16 +3244,16 @@ class WaterColumnDatagram(EM3000Datagram):
     def get_datagram_number(self) -> int: ...
     def get_etx(self) -> int: 
         """
-        end identifier (always 0x03)
+        < end identifier (always 0x03)
         """
     def get_number_of_beams_in_datagram(self) -> int: 
         """
-        Beam vector of 2 elements
+        < Beam vector of 2 elements
         """
     def get_number_of_datagrams(self) -> int: ...
     def get_number_of_transmit_sectors(self) -> int: 
         """
-        Transmit_sector vector of 2 elements
+        < Transmit_sector vector of 2 elements
         """
     def get_ping_counter(self) -> int: ...
     def get_samples(self) -> numpy.ndarray[numpy.float32]: ...
@@ -3268,7 +3268,7 @@ class WaterColumnDatagram(EM3000Datagram):
     def get_scanning_info(self) -> int: ...
     def get_sound_speed(self) -> int: 
         """
-        in 0.1 m/s
+        < in 0.1 m/s
         """
     def get_sound_speed_m_s(self) -> float: 
         """
@@ -3285,7 +3285,7 @@ class WaterColumnDatagram(EM3000Datagram):
     def get_tvg_offset_in_db(self) -> int: ...
     def get_tx_time_heave(self) -> int: 
         """
-        in cm
+        < in cm
         """
     def get_tx_time_heave_in_m(self) -> float: 
         """
@@ -3307,23 +3307,23 @@ class WaterColumnDatagram(EM3000Datagram):
     def set_datagram_number(self, arg0: int) -> None: ...
     def set_etx(self, arg0: int) -> None: 
         """
-        end identifier (always 0x03)
+        < end identifier (always 0x03)
         """
     def set_number_of_beams_in_datagram(self, arg0: int) -> None: 
         """
-        Beam vector of 2 elements
+        < Beam vector of 2 elements
         """
     def set_number_of_datagrams(self, arg0: int) -> None: ...
     def set_number_of_transmit_sectors(self, arg0: int) -> None: 
         """
-        Transmit_sector vector of 2 elements
+        < Transmit_sector vector of 2 elements
         """
     def set_ping_counter(self, arg0: int) -> None: ...
     def set_sampling_frequency(self, arg0: int) -> None: ...
     def set_scanning_info(self, arg0: int) -> None: ...
     def set_sound_speed(self, arg0: int) -> None: 
         """
-        in 0.1 m/s
+        < in 0.1 m/s
         """
     def set_spare(self, arg0: typing.List[int[3]]) -> None: ...
     def set_system_serial_number(self, arg0: int) -> None: ...
@@ -3333,7 +3333,7 @@ class WaterColumnDatagram(EM3000Datagram):
     def set_tvg_offset_in_db(self, arg0: int) -> None: ...
     def set_tx_time_heave(self, arg0: int) -> None: 
         """
-        in cm
+        < in cm
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """

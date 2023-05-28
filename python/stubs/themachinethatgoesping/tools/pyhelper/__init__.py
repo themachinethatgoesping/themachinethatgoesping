@@ -21,9 +21,9 @@ class PyIndexerSlice():
         hash function implemented using slow_hash
         """
     @typing.overload
-    def __init__(self, slice: object) -> None: ...
-    @typing.overload
     def __init__(self, start: int = 9223372036854775807, stop: int = 9223372036854775807, step: int = 1) -> None: ...
+    @typing.overload
+    def __init__(self, slice: object) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string

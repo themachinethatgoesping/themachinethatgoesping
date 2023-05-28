@@ -84,7 +84,19 @@ class EM3000DatagramContainer_AttitudeDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_AttitudeDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_AttitudeDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_AttitudeDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -123,7 +135,19 @@ class EM3000DatagramContainer_AttitudeDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_AttitudeDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_AttitudeDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_AttitudeDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -162,7 +186,19 @@ class EM3000DatagramContainer_ClockDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ClockDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ClockDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ClockDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -201,7 +237,19 @@ class EM3000DatagramContainer_ClockDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ClockDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ClockDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ClockDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -240,7 +288,19 @@ class EM3000DatagramContainer_DepthOrHeightDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_DepthOrHeightDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_DepthOrHeightDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_DepthOrHeightDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -279,7 +339,19 @@ class EM3000DatagramContainer_DepthOrHeightDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_DepthOrHeightDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_DepthOrHeightDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_DepthOrHeightDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -318,7 +390,19 @@ class EM3000DatagramContainer_ExtraDetections():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraDetections]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraDetections]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ExtraDetections: 
         """
         return a copy using the c++ default copy constructor
@@ -357,7 +441,19 @@ class EM3000DatagramContainer_ExtraDetections_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraDetections_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraDetections_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ExtraDetections_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -396,7 +492,19 @@ class EM3000DatagramContainer_ExtraParameters():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraParameters]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraParameters]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ExtraParameters: 
         """
         return a copy using the c++ default copy constructor
@@ -435,7 +543,19 @@ class EM3000DatagramContainer_ExtraParameters_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraParameters_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_ExtraParameters_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_ExtraParameters_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -474,7 +594,19 @@ class EM3000DatagramContainer_Header():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Header]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Header]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Header: 
         """
         return a copy using the c++ default copy constructor
@@ -513,7 +645,19 @@ class EM3000DatagramContainer_Header_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Header_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Header_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Header_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -552,7 +696,19 @@ class EM3000DatagramContainer_HeadingDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_HeadingDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_HeadingDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_HeadingDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -591,7 +747,19 @@ class EM3000DatagramContainer_HeadingDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_HeadingDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_HeadingDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_HeadingDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -630,7 +798,19 @@ class EM3000DatagramContainer_InstallationParameters():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_InstallationParameters]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_InstallationParameters]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_InstallationParameters: 
         """
         return a copy using the c++ default copy constructor
@@ -669,7 +849,19 @@ class EM3000DatagramContainer_InstallationParameters_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_InstallationParameters_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_InstallationParameters_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_InstallationParameters_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -708,7 +900,19 @@ class EM3000DatagramContainer_NetworkAttitudeVelocityDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_NetworkAttitudeVelocityDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_NetworkAttitudeVelocityDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_NetworkAttitudeVelocityDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -747,7 +951,19 @@ class EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -786,7 +1002,19 @@ class EM3000DatagramContainer_PUIDOutput():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUIDOutput]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUIDOutput]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PUIDOutput: 
         """
         return a copy using the c++ default copy constructor
@@ -825,7 +1053,19 @@ class EM3000DatagramContainer_PUIDOutput_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUIDOutput_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUIDOutput_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PUIDOutput_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -864,7 +1104,19 @@ class EM3000DatagramContainer_PUStatusOutput():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUStatusOutput]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUStatusOutput]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PUStatusOutput: 
         """
         return a copy using the c++ default copy constructor
@@ -903,7 +1155,19 @@ class EM3000DatagramContainer_PUStatusOutput_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUStatusOutput_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PUStatusOutput_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PUStatusOutput_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -942,7 +1206,19 @@ class EM3000DatagramContainer_PositionDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PositionDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PositionDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PositionDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -981,7 +1257,19 @@ class EM3000DatagramContainer_PositionDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PositionDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_PositionDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_PositionDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1020,7 +1308,19 @@ class EM3000DatagramContainer_QualityFactorDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_QualityFactorDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_QualityFactorDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_QualityFactorDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -1059,7 +1359,19 @@ class EM3000DatagramContainer_QualityFactorDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_QualityFactorDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_QualityFactorDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_QualityFactorDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1098,7 +1410,19 @@ class EM3000DatagramContainer_RawRangeAndAngle():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RawRangeAndAngle]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RawRangeAndAngle]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_RawRangeAndAngle: 
         """
         return a copy using the c++ default copy constructor
@@ -1137,7 +1461,19 @@ class EM3000DatagramContainer_RawRangeAndAngle_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RawRangeAndAngle_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RawRangeAndAngle_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_RawRangeAndAngle_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1176,7 +1512,19 @@ class EM3000DatagramContainer_RuntimeParameters():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RuntimeParameters]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RuntimeParameters]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_RuntimeParameters: 
         """
         return a copy using the c++ default copy constructor
@@ -1215,7 +1563,19 @@ class EM3000DatagramContainer_RuntimeParameters_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RuntimeParameters_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_RuntimeParameters_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_RuntimeParameters_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1254,7 +1614,19 @@ class EM3000DatagramContainer_SeabedImageData():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SeabedImageData]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SeabedImageData]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SeabedImageData: 
         """
         return a copy using the c++ default copy constructor
@@ -1293,7 +1665,19 @@ class EM3000DatagramContainer_SeabedImageData_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SeabedImageData_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SeabedImageData_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SeabedImageData_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1332,7 +1716,19 @@ class EM3000DatagramContainer_SingleBeamEchoSounderDepth():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SingleBeamEchoSounderDepth]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SingleBeamEchoSounderDepth]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SingleBeamEchoSounderDepth: 
         """
         return a copy using the c++ default copy constructor
@@ -1371,7 +1767,19 @@ class EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1410,7 +1818,19 @@ class EM3000DatagramContainer_SoundSpeedProfileDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SoundSpeedProfileDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SoundSpeedProfileDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SoundSpeedProfileDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -1449,7 +1869,19 @@ class EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1488,7 +1920,19 @@ class EM3000DatagramContainer_SurfaceSoundSpeedDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SurfaceSoundSpeedDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SurfaceSoundSpeedDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SurfaceSoundSpeedDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -1527,7 +1971,19 @@ class EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1566,7 +2022,19 @@ class EM3000DatagramContainer_Unknown():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Unknown]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Unknown]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Unknown: 
         """
         return a copy using the c++ default copy constructor
@@ -1605,7 +2073,19 @@ class EM3000DatagramContainer_Unknown_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Unknown_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Unknown_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Unknown_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1644,7 +2124,19 @@ class EM3000DatagramContainer_Variant():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Variant: 
         """
         return a copy using the c++ default copy constructor
@@ -1683,7 +2175,19 @@ class EM3000DatagramContainer_Variant_SkippedData():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_SkippedData]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_SkippedData]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Variant_SkippedData: 
         """
         return a copy using the c++ default copy constructor
@@ -1722,7 +2226,19 @@ class EM3000DatagramContainer_Variant_SkippedData_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_SkippedData_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_SkippedData_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Variant_SkippedData_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1761,7 +2277,19 @@ class EM3000DatagramContainer_Variant_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_Variant_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_Variant_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1800,7 +2328,19 @@ class EM3000DatagramContainer_WaterColumnDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_WaterColumnDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -1839,7 +2379,19 @@ class EM3000DatagramContainer_WaterColumnDatagram_SkippedData():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_SkippedData]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_SkippedData]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_WaterColumnDatagram_SkippedData: 
         """
         return a copy using the c++ default copy constructor
@@ -1878,7 +2430,19 @@ class EM3000DatagramContainer_WaterColumnDatagram_SkippedData_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_SkippedData_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_SkippedData_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_WaterColumnDatagram_SkippedData_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1917,7 +2481,19 @@ class EM3000DatagramContainer_WaterColumnDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_WaterColumnDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_WaterColumnDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -1956,7 +2532,19 @@ class EM3000DatagramContainer_XYZDatagram():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_XYZDatagram]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_XYZDatagram]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_XYZDatagram: 
         """
         return a copy using the c++ default copy constructor
@@ -1995,7 +2583,19 @@ class EM3000DatagramContainer_XYZDatagram_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_XYZDatagram_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000DatagramContainer_XYZDatagram_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<DatagramContainer>
+        """
     def copy(self) -> EM3000DatagramContainer_XYZDatagram_mapped: 
         """
         return a copy using the c++ default copy constructor
@@ -2043,7 +2643,19 @@ class EM3000PingContainer():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<PingContainer<type_Ping>>
+        """
     def copy(self) -> EM3000PingContainer: 
         """
         return a copy using the c++ default copy constructor
@@ -2093,7 +2705,19 @@ class EM3000PingContainer_mapped():
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer_mapped]: ...
+    def break_by_time_diff(self, max_time_diff_seconds: float) -> typing.List[EM3000PingContainer_mapped]: 
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+
+        Returns:
+            std::vector<PingContainer<type_Ping>>
+        """
     def copy(self) -> EM3000PingContainer_mapped: 
         """
         return a copy using the c++ default copy constructor

@@ -648,7 +648,7 @@ class SlerpInterpolator():
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
+    def extend(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: 
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -683,7 +683,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: ...
+    def extend(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolator: 
         """
@@ -720,7 +720,7 @@ class SlerpInterpolator():
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True, bool: bool = False) -> None: 
+    def insert(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True, bool: bool = False) -> None: 
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -755,13 +755,13 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True, bool: bool = False) -> None: ...
+    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True, bool: bool = False) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: 
+    def set_data_XYPR(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: 
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -806,7 +806,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: typing.List[float], Yaw: typing.List[float], Pitch: typing.List[float], Roll: typing.List[float], input_in_degrees: bool = True) -> None: ...
+    def set_data_XYPR(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: ...
     def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None: 
         """
         Set the extrapolation mode
@@ -838,12 +838,12 @@ class t_extr_mode():
     def __hash__(self) -> int: ...
     def __index__(self) -> int: ...
     @typing.overload
-    def __init__(self, str: str) -> None: 
+    def __init__(self, value: int) -> None: 
         """
         Construct this enum type from string
         """
     @typing.overload
-    def __init__(self, value: int) -> None: ...
+    def __init__(self, str: str) -> None: ...
     def __int__(self) -> int: ...
     def __ne__(self, other: object) -> bool: ...
     def __repr__(self) -> str: ...

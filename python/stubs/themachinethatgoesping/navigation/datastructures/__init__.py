@@ -171,9 +171,8 @@ class GeoLocationLatLon(GeoLocation):
         """
         hash function implemented using slow_hash
         """
-    @staticmethod
     @typing.overload
-    def __init__(*args, **kwargs) -> typing.Any: 
+    def __init__(self, location: GeoLocation, latitude: float, longitude: float) -> None: 
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -209,10 +208,11 @@ class GeoLocationLatLon(GeoLocation):
         Parameter ``roll``:
             in °, positive means port up
         """
+    @staticmethod
+    @typing.overload
+    def __init__(*args, **kwargs) -> typing.Any: ...
     @typing.overload
     def __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
-    @typing.overload
-    def __init__(self, location: GeoLocation, latitude: float, longitude: float) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -393,7 +393,7 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
         hash function implemented using slow_hash
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = -1) -> None: 
+    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None: 
         """
         Construct an GeoLocationUTM object from an existing GeoLocationLocal
         object (using a known zone and hemisphere)
@@ -437,7 +437,7 @@ class GeoLocationUTM(GeoLocationLocal, GeoLocation):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
+    def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = -1) -> None: ...
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
@@ -831,9 +831,8 @@ class SensorDataLatLon(SensorData):
         """
         hash function implemented using slow_hash
         """
-    @staticmethod
     @typing.overload
-    def __init__(*args, **kwargs) -> typing.Any: 
+    def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: 
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -872,10 +871,11 @@ class SensorDataLatLon(SensorData):
         Parameter ``roll``:
             in °, positive means port up
         """
+    @staticmethod
+    @typing.overload
+    def __init__(*args, **kwargs) -> typing.Any: ...
     @typing.overload
     def __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
-    @typing.overload
-    def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -989,9 +989,9 @@ class SensorDataLocal(SensorData):
             in °, positive means port up
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
-    @typing.overload
     def __init__(self, sensordata: SensorData, northing: float, easting: float) -> None: ...
+    @typing.overload
+    def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -1073,7 +1073,7 @@ class SensorDataUTM(SensorDataLocal, SensorData):
         hash function implemented using slow_hash
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: 
+    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, utm_northern_hemisphere: bool) -> None: 
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -1139,9 +1139,9 @@ class SensorDataUTM(SensorDataLocal, SensorData):
     @typing.overload
     def __init__(self, sensordata_local: SensorDataLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, utm_northern_hemisphere: bool) -> None: ...
-    @typing.overload
     def __init__(self, sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> None: ...
+    @typing.overload
+    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, utm_northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string

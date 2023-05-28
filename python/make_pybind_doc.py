@@ -4,6 +4,13 @@ import os
 import sys
 import subprocess
 
+FORCE_REGENERATE = False #ignore hash
+FORCE_RENEW = False      #delete all docstring folders first
+
+more_args = []
+if FORCE_REGENERATE: more_args.append("--regenerate")
+if FORCE_RENEW: more_args.append("--renew")
+
 path_mkdoc = []
 for r,d,f in os.walk('../'):
     for file in f:
@@ -15,9 +22,14 @@ pwd = os.path.abspath(os.curdir) + '/'
 
 with open("log.txt", "w") as log_out:
     for r,f in path_mkdoc:
-        print (f"executing {r} {f}")
+        print (f"executing {r} {f} {[arg for arg in more_args]}")
+
+        command = [sys.executable, f]
+        if more_args:
+            command.extend(more_args)
+        print(command)
         
         os.chdir(r)
-        subprocess.call([sys.executable, f])
+        subprocess.call(command)
 
 
