@@ -4,7 +4,7 @@
 
 [build-system]
 requires = [
-    'meson-python >= 0.13',
+    'meson-python >= 0.13.1',
     'meson >= 1.0',
     'pyproject-metadata',
     'ninja',
@@ -12,7 +12,6 @@ requires = [
 ]
 build-backend = 'mesonpy'
 backend-path = ['./subprojects/meson-python']
-
 
 [project]
 name = 'themachinethatgoesping'

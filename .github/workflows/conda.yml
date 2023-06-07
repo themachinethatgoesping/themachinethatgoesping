@@ -39,18 +39,10 @@ jobs:
       matrix:
         include:  
           - { os : ubuntu-latest,
-              dep: 'DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libboost-all-dev',
-              #CC : gcc,
               shell : 'bash -l {0}'}
           - { os: windows-latest,
-              #CC : msvc14-3,
-              boostversion: '1.79.0',
-              boostversion_: '1_79_0',
-              boostmodules: '--with-iostreams',
               shell : powershell}
           - { os: macos-latest,
-              dep: brew install libomp boost,
-              #CC : clang,
               shell: 'bash -l {0}'}
           
     container: ${{matrix.container}}
@@ -99,25 +91,6 @@ jobs:
       uses: bus1/cabuild/action/msdevshell@v1
       with:
         architecture: x64
-
-    - name: Cache Boost
-      if: runner.os == 'Windows'
-      id: cache-boost
-      uses: actions/cache@v3
-      with:
-        path: c:\Boost
-        key: windows-msvc-14.32-boost-${{matrix.boostversion}}-${{matrix.boostmodules}}
-  
-    - name: Install dependencies on windows
-      if: (runner.os == 'Windows') && (steps.cache-boost.outputs.cache-hit != 'true')
-      run: |
-        Invoke-WebRequest -Uri https://boostorg.jfrog.io/artifactory/main/release/${{matrix.boostversion}}/source/boost_${{matrix.boostversion_}}.7z -outfile boost.7z
-        7z x boost.7z 
-        cd .\boost_${{matrix.boostversion_}}\
-        .\bootstrap.bat
-        .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
-        cd ..
-        #rm -rv boost*
 
     - name: Build and test conda packages 
       #run: conda mambabuild conda.recipe/ --user themachinethatgoesping --token ${{ secrets.ANACONDA_API_TOKEN }}
