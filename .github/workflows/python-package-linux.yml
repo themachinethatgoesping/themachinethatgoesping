@@ -208,7 +208,7 @@ jobs:
             pytest-command: 'python3 -m pytest'
           - container: 'archlinux'
             pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs python python-pip --noconfirm'
-            pip-command: 'python -m pip install themachinethatgoesping pytest'
+            pip-command: 'python -m pip install themachinethatgoesping pytest --break-system-packages'
             pytest-command: 'python -m pytest'
   
     runs-on: ubuntu-latest
