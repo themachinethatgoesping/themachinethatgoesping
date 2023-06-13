@@ -109,7 +109,7 @@ jobs:
       run: meson install -C builddir/
 
     - name: install pip requirements
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt --break-system-packages
 
     - name: test (pytest)
       run: pytest -v
