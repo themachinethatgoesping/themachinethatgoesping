@@ -1,4 +1,6 @@
-sphinx>=5.3
+sphinx>=6.2.1
 sphinx-autoapi
+sphinx-design
+furo
 themachinethatgoesping
 
