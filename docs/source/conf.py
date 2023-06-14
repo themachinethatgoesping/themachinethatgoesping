@@ -34,6 +34,7 @@ autoapi_type = 'python'
 autoapi_dirs = ['../../python/stubs/themachinethatgoesping/']
 autoapi_generate_api_docs = False
 
+
 #autodoc
 add_module_names = False
 autodoc_member_order = 'bysource'
@@ -52,15 +53,26 @@ templates_path = ['_templates']
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
-#html_theme = 'furo'
+#html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 
 html_static_path = ['_static']
 html_logo  = 'themachinethatgoesping.svg'
 html_theme_options = {
     'logo_only': False,
+
+    # "light_css_variables": {
+    #     "color-brand-primary": "darkgray",
+    #     "color-brand-content": "#008a9a",
+    # },
+
+    # "dark_css_variables": {
+    #     "color-brand-primary": "lightgray",
+    #     "color-brand-content": "#008a9a",
+    # },
     #'display_version': False,
 }
+#html_title = 'themachinethat\ngoesping\n' + themachinethatgoesping.__version__
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
