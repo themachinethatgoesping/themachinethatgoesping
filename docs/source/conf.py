@@ -66,7 +66,14 @@ html_theme_options = {
     #'logo_only': False,
     "logo": {
         "text": "themachinethatgoesping\n"+themachinethatgoesping.__version__,
-    }
+    },
+
+    "repository_url": "https://github.com/themachinethatgoesping/themachinethatgoesping",
+    "path_to_docs": "docs/source",
+    "use_source_button": True,
+    "use_edit_page_button": True,
+    "use_repository_button": True,
+    "use_issues_button": True,
 
     # "light_css_variables": {
     #     "color-brand-primary": "darkgray",
