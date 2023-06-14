@@ -75,6 +75,7 @@ You may also want to check out the :ref:`contribute` section.
    :maxdepth: 2
    :hidden:
 
+   Where to start<self>
    first_steps/new_to_python
    first_steps/installation_user
    first_steps/hello_ping

@@ -53,13 +53,20 @@ templates_path = ['_templates']
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+#html_theme = 'sphinx_rtd_theme'
 #html_theme = 'furo'
+html_theme = 'sphinx_book_theme'
+#html_theme = 'sphinx_pdj_theme'
+
+#documentation for theme: https://sphinx-book-theme.readthedocs.io/en/latest/index.html
 
 html_static_path = ['_static']
 html_logo  = 'themachinethatgoesping.svg'
 html_theme_options = {
-    'logo_only': False,
+    #'logo_only': False,
+    "logo": {
+        "text": "themachinethatgoesping\n"+themachinethatgoesping.__version__,
+    }
 
     # "light_css_variables": {
     #     "color-brand-primary": "darkgray",
