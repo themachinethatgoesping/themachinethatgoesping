@@ -9,11 +9,11 @@ project(
   'cpp',
   license: 'MPL-2.0',
 
-  version: '0.6.14',
-  default_options: ['warning_level=2', 'buildtype=release', 'cpp_std=c++17'],
+  version: '0.6.15',
+  default_options: ['warning_level=2', 'buildtype=release', 'cpp_std=c++20'],
   meson_version: '>=1.0' #last meson version that was tested
 )
-#Set-Item -Path Env:\CXX -Value 'sccache clang-cl'
+# Set-Item -Path Env:\CXX -Value 'sccache clang-cl'
 projectnamespace = 'themachinethatgoesping'
 
 # load themachinethatgoesping projects
