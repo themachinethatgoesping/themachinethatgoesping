@@ -2521,23 +2521,23 @@ class RuntimeParameters(EM3000Datagram):
         """
         < in 50 Hz resolution
         """
-    def get_receive_bandwidth_degree(self) -> int: 
-        """
-        < in 0.1 degrees
-        """
-    def get_receive_bandwidth_in_degrees(self) -> float: 
-        """
-        Get the receive bandwidth in degrees
-
-        Returns:
-            _receive_bandwidth_degree * 0.1f (float)
-        """
     def get_receive_bandwidth_in_hertz(self) -> float: 
         """
         Get the receive bandwidth in Hz
 
         Returns:
             _receive_bandwidth_50hz * 50.f (float)
+        """
+    def get_receive_beamwidth_degree(self) -> int: 
+        """
+        < in 0.1 degrees
+        """
+    def get_receive_beamwidth_in_degrees(self) -> float: 
+        """
+        Get the receive beamwidth in degrees
+
+        Returns:
+            _receive_beamwidth_degree * 0.1f (float)
         """
     def get_sonar_head_or_transceiver_status(self) -> int: ...
     def get_source_of_sound_speed_at_transducer(self) -> int: ...
@@ -2642,7 +2642,7 @@ class RuntimeParameters(EM3000Datagram):
         """
         < in 50 Hz resolution
         """
-    def set_receive_bandwidth_degree(self, arg0: int) -> None: 
+    def set_receive_beamwidth_degree(self, arg0: int) -> None: 
         """
         < in 0.1 degrees
         """
