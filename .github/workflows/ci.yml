@@ -136,7 +136,7 @@ jobs:
         include:
           - toolset: vc143
             compiler: clang-cl
-            cpp_std: c++17
+            cpp_std: c++20
           # - toolset: msvc
           #   compiler: sccache cl
           #   cpp_std: c++20
