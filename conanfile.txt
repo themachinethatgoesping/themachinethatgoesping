@@ -1,0 +1,7 @@
+[requires]
+boost/[>=1.75]
+proj/[>=9]
+
+[generators]
+PkgConfigDeps
+MesonToolchain

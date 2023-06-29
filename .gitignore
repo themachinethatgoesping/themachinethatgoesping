@@ -12,6 +12,7 @@
 */build/*
 */builddir/*
 *.vscode/*
+conanbuild/*
 
 #pip build
 .mesonpy-native-file.ini
