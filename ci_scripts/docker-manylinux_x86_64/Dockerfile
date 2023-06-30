@@ -21,6 +21,7 @@ ARG CCACHE_VERSION="4.7.5"
 RUN yum install -y git git-lfs
 RUN yum install -y bzip2 curl zlib
 RUN yum install -y pkgconfig cmake
+RUN yum install -y proj
 
 # -- install package versions from source --
 # BOOST
