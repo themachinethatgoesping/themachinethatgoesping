@@ -52,12 +52,21 @@ class SimradPing():
         Returns:
             xt::xtensor<float, 2>
         """
+    def get_channel_id(self) -> str: 
+        """
+        < channel id of the transducer
+        """
     def get_file_nr(self) -> int: ...
     def get_file_path(self) -> str: ...
-    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
+    @typing.overload
+    def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
+
+        < Geolocation of the transducer with the specified transducer_id. A
         """
+    @typing.overload
+    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
     def get_number_of_samples(self) -> int: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
@@ -124,6 +133,27 @@ class SimradPing():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def get_transducer_id(self) -> str: 
+        """
+        Get the transducer id of the ping. In case multiple transducer ids are
+        associated with a single ping, this function will return the one
+        selected with the "select_transducer_id" function.
+        """
+    def get_transducer_ids(self) -> typing.Set[str]: 
+        """
+        Get all registered transducer ids (in case multiple transducers are
+        associated with a single ping)
+
+        Returns:
+            std::set<std::string>
+        """
+    def get_transducer_ids_as_string(self) -> str: 
+        """
+        Get all register transducer ids as a string (useful for printing)
+
+        Returns:
+            std::string
+        """
     def has_angle(self) -> bool: ...
     def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
@@ -135,6 +165,23 @@ class SimradPing():
         Print object information
         """
     def raw_data(self) -> SimradPingRawData: ...
+    @typing.overload
+    def select_transducer_id(self, transducer_id: str) -> None: 
+        """
+        Select a transducer id that will be used by default when calling
+        functions on this ping. (Useful when multiple transducers are
+        associated with a single ping.)
+
+        Parameter ``id``:
+
+        Select a transducer id that will be used by default when calling
+        functions on this ping. (Useful when multiple transducers are
+        associated with a single ping.)
+
+        Parameter ``id``:
+        """
+    @typing.overload
+    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -143,19 +190,14 @@ class SimradPing():
     def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
+
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     @typing.overload
     def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     def set_timestamp(self, timestamp: float) -> None: 
         """
         < Unix timestamp in seconds (saved in UTC0)
-        """
-    @property
-    def get_channel_id(self) -> str:
-        """
-        < channel id of the transducer
-
-        :type: str
         """
     pass
 class SimradPingRawData():
@@ -270,12 +312,21 @@ class SimradPing_mapped():
         Returns:
             xt::xtensor<float, 2>
         """
+    def get_channel_id(self) -> str: 
+        """
+        < channel id of the transducer
+        """
     def get_file_nr(self) -> int: ...
     def get_file_path(self) -> str: ...
-    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
+    @typing.overload
+    def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
+
+        < Geolocation of the transducer with the specified transducer_id. A
         """
+    @typing.overload
+    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
     def get_number_of_samples(self) -> int: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
@@ -342,6 +393,27 @@ class SimradPing_mapped():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
+    def get_transducer_id(self) -> str: 
+        """
+        Get the transducer id of the ping. In case multiple transducer ids are
+        associated with a single ping, this function will return the one
+        selected with the "select_transducer_id" function.
+        """
+    def get_transducer_ids(self) -> typing.Set[str]: 
+        """
+        Get all registered transducer ids (in case multiple transducers are
+        associated with a single ping)
+
+        Returns:
+            std::set<std::string>
+        """
+    def get_transducer_ids_as_string(self) -> str: 
+        """
+        Get all register transducer ids as a string (useful for printing)
+
+        Returns:
+            std::string
+        """
     def has_angle(self) -> bool: ...
     def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
@@ -353,6 +425,23 @@ class SimradPing_mapped():
         Print object information
         """
     def raw_data(self) -> SimradPingRawData_mapped: ...
+    @typing.overload
+    def select_transducer_id(self, transducer_id: str) -> None: 
+        """
+        Select a transducer id that will be used by default when calling
+        functions on this ping. (Useful when multiple transducers are
+        associated with a single ping.)
+
+        Parameter ``id``:
+
+        Select a transducer id that will be used by default when calling
+        functions on this ping. (Useful when multiple transducers are
+        associated with a single ping.)
+
+        Parameter ``id``:
+        """
+    @typing.overload
+    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -361,18 +450,13 @@ class SimradPing_mapped():
     def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
         < Geolocation of the transducer with the specified transducer_id. A
+
+        < Geolocation of the transducer with the specified transducer_id. A
         """
     @typing.overload
     def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     def set_timestamp(self, timestamp: float) -> None: 
         """
         < Unix timestamp in seconds (saved in UTC0)
-        """
-    @property
-    def get_channel_id(self) -> str:
-        """
-        < channel id of the transducer
-
-        :type: str
         """
     pass
