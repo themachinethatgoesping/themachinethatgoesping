@@ -6,6 +6,7 @@ import typing
 __all__ = [
     "em3000",
     "ostream_redirect",
+    "pingtools",
     "simrad"
 ]
 
@@ -15,4 +16,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.17.14'
+__version__ = '0.17.18'

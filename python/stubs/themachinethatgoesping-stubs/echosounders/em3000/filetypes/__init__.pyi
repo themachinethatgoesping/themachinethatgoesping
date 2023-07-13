@@ -186,8 +186,24 @@ class EM3000PingRawData():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_beam_numbers(self) -> typing.List[int]: ...
+    def get_beam_pointing_angles(self) -> typing.List[float]: ...
+    def get_detected_range_in_samples(self) -> typing.List[int]: ...
+    def get_first_sample_ensemble(self) -> int: ...
+    def get_number_of_beams(self) -> int: ...
+    def get_number_of_samples_ensemble(self) -> int: ...
+    def get_number_of_samples_per_beam(self) -> typing.List[int]: ...
+    def get_number_of_selected_beams(self) -> int: ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
+    @staticmethod
+    def get_sample_positions(*args, **kwargs) -> typing.Any: ...
+    def get_selected_beam_numbers(self) -> typing.List[int]: ...
+    def get_selected_beam_pointing_angles(self) -> typing.List[float]: ...
+    def get_selected_first_sample_per_beam(self) -> typing.List[int]: ...
+    def get_selected_number_of_samples_per_beam(self) -> typing.List[int]: ...
+    def get_start_range_sample_numbers(self) -> typing.List[int]: ...
     def get_timestamp_first(self) -> float: ...
+    def get_transmit_sector_number(self) -> typing.List[int]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -205,6 +221,50 @@ class EM3000PingRawData():
         Print object information
         """
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
+    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        read the selected samples from the selected beams and convert them to
+        float
+
+        Returns:
+            xt::xtensor<float, 2>
+        """
+    def select_beams_by_angle(self, min_angle: float, max_angle: float) -> None: 
+        """
+        select the beams to be read from the water column datagram
+
+        Parameter ``min_beam_angle``:
+            Minimum beam angle in degrees
+
+        Parameter ``max_beam_angle``:
+            Maximum beam angle in degrees
+        """
+    def select_beams_by_number(self, beam_numbers: typing.List[int]) -> None: 
+        """
+        select the beams to be read from the water column datagram
+
+        Parameter ``selected_beam_numbers``:
+        """
+    def select_samples_by_first_last(self, first_sample: int, last_sample: int) -> None: 
+        """
+        select the samples to be read from the water column datagram
+
+        Parameter ``first_sample``:
+            first sample number in the datagram
+
+        Parameter ``last_sample``:
+            last sample number in the datagram
+        """
+    def select_samples_by_range(self, first_sample: int, number_of_samples: int) -> None: 
+        """
+        select the samples to be read from the water column datagram
+
+        Parameter ``first_sample``:
+            First sample number in the datagram
+
+        Parameter ``number_of_samples``:
+            Number of samples to read
+        """
     pass
 class EM3000PingRawData_mapped():
     def __copy__(self) -> EM3000PingRawData_mapped: ...
@@ -237,8 +297,24 @@ class EM3000PingRawData_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
+    def get_beam_numbers(self) -> typing.List[int]: ...
+    def get_beam_pointing_angles(self) -> typing.List[float]: ...
+    def get_detected_range_in_samples(self) -> typing.List[int]: ...
+    def get_first_sample_ensemble(self) -> int: ...
+    def get_number_of_beams(self) -> int: ...
+    def get_number_of_samples_ensemble(self) -> int: ...
+    def get_number_of_samples_per_beam(self) -> typing.List[int]: ...
+    def get_number_of_selected_beams(self) -> int: ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
+    @staticmethod
+    def get_sample_positions(*args, **kwargs) -> typing.Any: ...
+    def get_selected_beam_numbers(self) -> typing.List[int]: ...
+    def get_selected_beam_pointing_angles(self) -> typing.List[float]: ...
+    def get_selected_first_sample_per_beam(self) -> typing.List[int]: ...
+    def get_selected_number_of_samples_per_beam(self) -> typing.List[int]: ...
+    def get_start_range_sample_numbers(self) -> typing.List[int]: ...
     def get_timestamp_first(self) -> float: ...
+    def get_transmit_sector_number(self) -> typing.List[int]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -256,6 +332,50 @@ class EM3000PingRawData_mapped():
         Print object information
         """
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
+    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        read the selected samples from the selected beams and convert them to
+        float
+
+        Returns:
+            xt::xtensor<float, 2>
+        """
+    def select_beams_by_angle(self, min_angle: float, max_angle: float) -> None: 
+        """
+        select the beams to be read from the water column datagram
+
+        Parameter ``min_beam_angle``:
+            Minimum beam angle in degrees
+
+        Parameter ``max_beam_angle``:
+            Maximum beam angle in degrees
+        """
+    def select_beams_by_number(self, beam_numbers: typing.List[int]) -> None: 
+        """
+        select the beams to be read from the water column datagram
+
+        Parameter ``selected_beam_numbers``:
+        """
+    def select_samples_by_first_last(self, first_sample: int, last_sample: int) -> None: 
+        """
+        select the samples to be read from the water column datagram
+
+        Parameter ``first_sample``:
+            first sample number in the datagram
+
+        Parameter ``last_sample``:
+            last sample number in the datagram
+        """
+    def select_samples_by_range(self, first_sample: int, number_of_samples: int) -> None: 
+        """
+        select the samples to be read from the water column datagram
+
+        Parameter ``first_sample``:
+            First sample number in the datagram
+
+        Parameter ``number_of_samples``:
+            Number of samples to read
+        """
     pass
 class EM3000Ping_mapped():
     def __copy__(self) -> EM3000Ping_mapped: ...
