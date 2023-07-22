@@ -2,6 +2,7 @@
 from __future__ import annotations
 import themachinethatgoesping.tools.vectorinterpolators
 import typing
+import pybind11_stubgen.typing_ext
 
 __all__ = [
     "AkimaInterpolator",
@@ -533,7 +534,7 @@ class SlerpInterpolator():
     function
     """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.List[float[3]]: 
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]: 
         """
         get the interpolated yaw, pitch and roll values for given x target
 
@@ -560,7 +561,7 @@ class SlerpInterpolator():
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: typing.List[float], output_in_degrees: bool = True) -> typing.List[typing.List[float[3]]]: ...
+    def __call__(self, targets_x: typing.List[float], output_in_degrees: bool = True) -> typing.List[typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]]: ...
     def __copy__(self) -> SlerpInterpolator: ...
     def __deepcopy__(self, arg0: dict) -> SlerpInterpolator: ...
     def __eq__(self, other: SlerpInterpolator) -> bool: ...
@@ -638,7 +639,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.List[float[3]], input_in_degrees: bool = True) -> None: ...
+    def append(self, x: float, ypr: typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None: ...
     def copy(self) -> SlerpInterpolator: 
         """
         return a copy using the c++ default copy constructor
@@ -683,7 +684,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: ...
+    def extend(self, X: typing.List[float], YPR: typing.List[typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None: ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolator: 
         """
@@ -696,7 +697,7 @@ class SlerpInterpolator():
         Returns:
             std::vector<double>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> typing.List[typing.List[float[3]]]: 
+    def get_data_YPR(self, output_in_degrees: bool = True) -> typing.List[typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]]: 
         """
         return the internal yrp data vector
 
@@ -755,7 +756,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True, bool: bool = False) -> None: ...
+    def insert(self, X: typing.List[float], YPR: typing.List[typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
@@ -806,7 +807,7 @@ class SlerpInterpolator():
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: typing.List[float], YPR: typing.List[typing.List[float[3]]], input_in_degrees: bool = True) -> None: ...
+    def set_data_XYPR(self, X: typing.List[float], YPR: typing.List[typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None: ...
     def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None: 
         """
         Set the extrapolation mode
