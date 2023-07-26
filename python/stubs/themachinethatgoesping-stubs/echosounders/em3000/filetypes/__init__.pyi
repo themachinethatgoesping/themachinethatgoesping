@@ -5,6 +5,7 @@ import typing
 import numpy
 import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.echosounders.em3000.datagrams
+import themachinethatgoesping.echosounders.filetemplates
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
@@ -16,7 +17,7 @@ __all__ = [
 ]
 
 
-class EM3000Ping():
+class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def __copy__(self) -> EM3000Ping: ...
     def __deepcopy__(self, arg0: dict) -> EM3000Ping: ...
     def __repr__(self) -> str: 
@@ -377,7 +378,7 @@ class EM3000PingRawData_mapped():
             Number of samples to read
         """
     pass
-class EM3000Ping_mapped():
+class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def __copy__(self) -> EM3000Ping_mapped: ...
     def __deepcopy__(self, arg0: dict) -> EM3000Ping_mapped: ...
     def __repr__(self) -> str: 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.simrad.filetypes
 import typing
 import numpy
+import themachinethatgoesping.echosounders.filetemplates
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes
 import themachinethatgoesping.navigation.datastructures
@@ -16,7 +17,7 @@ __all__ = [
 ]
 
 
-class SimradPing():
+class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def __copy__(self) -> SimradPing: ...
     def __deepcopy__(self, arg0: dict) -> SimradPing: ...
     def __repr__(self) -> str: 
@@ -276,7 +277,7 @@ class SimradPingRawData_mapped():
         :type: themachinethatgoesping.echosounders.simrad.datagrams.RAW3
         """
     pass
-class SimradPing_mapped():
+class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def __copy__(self) -> SimradPing_mapped: ...
     def __deepcopy__(self, arg0: dict) -> SimradPing_mapped: ...
     def __repr__(self) -> str: 
