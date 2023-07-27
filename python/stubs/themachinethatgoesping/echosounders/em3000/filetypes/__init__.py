@@ -42,6 +42,26 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         Returns:
             xt::xtensor<float, 2>
         """
+    @typing.overload
+    def get_beam_pointing_angles(self, transducer_id: str) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get the beam pointing angles from a specific transducer in °. (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+
+        Get the beam pointing angles in °.
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: 
         """
         < channel id of the transducer
@@ -57,7 +77,44 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         """
     @typing.overload
     def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
-    def get_number_of_samples(self) -> int: ...
+    @typing.overload
+    def get_number_of_beams(self, transducer_id: str) -> int: 
+        """
+        Get the number of beams from a specific transducer (Useful when
+        multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        size_t
+
+        Get the number of beams
+
+        Returns:
+            size_t
+        """
+    @typing.overload
+    def get_number_of_beams(self) -> int: ...
+    @typing.overload
+    def get_number_of_samples_per_beam(self, transducer_id: str) -> numpy.ndarray[numpy.uint16]: 
+        """
+        Get the number of samples per beam from a specific transducer (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+
+        Get the number of samples per beam
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+        """
+    @typing.overload
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
         Compute volume backscattering. If you see this comment, this function
@@ -187,24 +244,13 @@ class EM3000PingRawData():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
-    def get_beam_numbers(self) -> typing.List[int]: ...
-    def get_beam_pointing_angles(self) -> typing.List[float]: ...
-    def get_detected_range_in_samples(self) -> typing.List[int]: ...
-    def get_first_sample_ensemble(self) -> int: ...
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_detected_range_in_samples(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_number_of_beams(self) -> int: ...
-    def get_number_of_samples_ensemble(self) -> int: ...
-    def get_number_of_samples_per_beam(self) -> typing.List[int]: ...
-    def get_number_of_selected_beams(self) -> int: ...
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
-    @staticmethod
-    def get_sample_positions(*args, **kwargs) -> typing.Any: ...
-    def get_selected_beam_numbers(self) -> typing.List[int]: ...
-    def get_selected_beam_pointing_angles(self) -> typing.List[float]: ...
-    def get_selected_first_sample_per_beam(self) -> typing.List[int]: ...
-    def get_selected_number_of_samples_per_beam(self) -> typing.List[int]: ...
-    def get_start_range_sample_numbers(self) -> typing.List[int]: ...
     def get_timestamp_first(self) -> float: ...
-    def get_transmit_sector_number(self) -> typing.List[int]: ...
+    def get_transmit_sector_numbers(self) -> numpy.ndarray[numpy.uint8]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -222,50 +268,7 @@ class EM3000PingRawData():
         Print object information
         """
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
-    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: 
-        """
-        read the selected samples from the selected beams and convert them to
-        float
-
-        Returns:
-            xt::xtensor<float, 2>
-        """
-    def select_beams_by_angle(self, min_angle: float, max_angle: float) -> None: 
-        """
-        select the beams to be read from the water column datagram
-
-        Parameter ``min_beam_angle``:
-            Minimum beam angle in degrees
-
-        Parameter ``max_beam_angle``:
-            Maximum beam angle in degrees
-        """
-    def select_beams_by_number(self, beam_numbers: typing.List[int]) -> None: 
-        """
-        select the beams to be read from the water column datagram
-
-        Parameter ``selected_beam_numbers``:
-        """
-    def select_samples_by_first_last(self, first_sample: int, last_sample: int) -> None: 
-        """
-        select the samples to be read from the water column datagram
-
-        Parameter ``first_sample``:
-            first sample number in the datagram
-
-        Parameter ``last_sample``:
-            last sample number in the datagram
-        """
-    def select_samples_by_range(self, first_sample: int, number_of_samples: int) -> None: 
-        """
-        select the samples to be read from the water column datagram
-
-        Parameter ``first_sample``:
-            First sample number in the datagram
-
-        Parameter ``number_of_samples``:
-            Number of samples to read
-        """
+    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: ...
     pass
 class EM3000PingRawData_mapped():
     def __copy__(self) -> EM3000PingRawData_mapped: ...
@@ -298,24 +301,13 @@ class EM3000PingRawData_mapped():
     def datagrams_raw(self) -> object: ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> object: ...
-    def get_beam_numbers(self) -> typing.List[int]: ...
-    def get_beam_pointing_angles(self) -> typing.List[float]: ...
-    def get_detected_range_in_samples(self) -> typing.List[int]: ...
-    def get_first_sample_ensemble(self) -> int: ...
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_detected_range_in_samples(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_number_of_beams(self) -> int: ...
-    def get_number_of_samples_ensemble(self) -> int: ...
-    def get_number_of_samples_per_beam(self) -> typing.List[int]: ...
-    def get_number_of_selected_beams(self) -> int: ...
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters: ...
-    @staticmethod
-    def get_sample_positions(*args, **kwargs) -> typing.Any: ...
-    def get_selected_beam_numbers(self) -> typing.List[int]: ...
-    def get_selected_beam_pointing_angles(self) -> typing.List[float]: ...
-    def get_selected_first_sample_per_beam(self) -> typing.List[int]: ...
-    def get_selected_number_of_samples_per_beam(self) -> typing.List[int]: ...
-    def get_start_range_sample_numbers(self) -> typing.List[int]: ...
     def get_timestamp_first(self) -> float: ...
-    def get_transmit_sector_number(self) -> typing.List[int]: ...
+    def get_transmit_sector_numbers(self) -> numpy.ndarray[numpy.uint8]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -333,50 +325,7 @@ class EM3000PingRawData_mapped():
         Print object information
         """
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
-    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: 
-        """
-        read the selected samples from the selected beams and convert them to
-        float
-
-        Returns:
-            xt::xtensor<float, 2>
-        """
-    def select_beams_by_angle(self, min_angle: float, max_angle: float) -> None: 
-        """
-        select the beams to be read from the water column datagram
-
-        Parameter ``min_beam_angle``:
-            Minimum beam angle in degrees
-
-        Parameter ``max_beam_angle``:
-            Maximum beam angle in degrees
-        """
-    def select_beams_by_number(self, beam_numbers: typing.List[int]) -> None: 
-        """
-        select the beams to be read from the water column datagram
-
-        Parameter ``selected_beam_numbers``:
-        """
-    def select_samples_by_first_last(self, first_sample: int, last_sample: int) -> None: 
-        """
-        select the samples to be read from the water column datagram
-
-        Parameter ``first_sample``:
-            first sample number in the datagram
-
-        Parameter ``last_sample``:
-            last sample number in the datagram
-        """
-    def select_samples_by_range(self, first_sample: int, number_of_samples: int) -> None: 
-        """
-        select the samples to be read from the water column datagram
-
-        Parameter ``first_sample``:
-            First sample number in the datagram
-
-        Parameter ``number_of_samples``:
-            Number of samples to read
-        """
+    def read_selected_samples(self) -> numpy.ndarray[numpy.float32]: ...
     pass
 class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def __copy__(self) -> EM3000Ping_mapped: ...
@@ -403,6 +352,26 @@ class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         Returns:
             xt::xtensor<float, 2>
         """
+    @typing.overload
+    def get_beam_pointing_angles(self, transducer_id: str) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get the beam pointing angles from a specific transducer in °. (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+
+        Get the beam pointing angles in °.
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: 
         """
         < channel id of the transducer
@@ -418,7 +387,44 @@ class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         """
     @typing.overload
     def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
-    def get_number_of_samples(self) -> int: ...
+    @typing.overload
+    def get_number_of_beams(self, transducer_id: str) -> int: 
+        """
+        Get the number of beams from a specific transducer (Useful when
+        multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        size_t
+
+        Get the number of beams
+
+        Returns:
+            size_t
+        """
+    @typing.overload
+    def get_number_of_beams(self) -> int: ...
+    @typing.overload
+    def get_number_of_samples_per_beam(self, transducer_id: str) -> numpy.ndarray[numpy.uint16]: 
+        """
+        Get the number of samples per beam from a specific transducer (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+
+        Get the number of samples per beam
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+        """
+    @typing.overload
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
         Compute volume backscattering. If you see this comment, this function

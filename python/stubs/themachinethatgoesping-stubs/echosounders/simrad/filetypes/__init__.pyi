@@ -53,6 +53,26 @@ class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         Returns:
             xt::xtensor<float, 2>
         """
+    @typing.overload
+    def get_beam_pointing_angles(self, transducer_id: str) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get the beam pointing angles from a specific transducer in °. (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+
+        Get the beam pointing angles in °.
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: 
         """
         < channel id of the transducer
@@ -68,7 +88,44 @@ class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         """
     @typing.overload
     def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
-    def get_number_of_samples(self) -> int: ...
+    @typing.overload
+    def get_number_of_beams(self, transducer_id: str) -> int: 
+        """
+        Get the number of beams from a specific transducer (Useful when
+        multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        size_t
+
+        Get the number of beams
+
+        Returns:
+            size_t
+        """
+    @typing.overload
+    def get_number_of_beams(self) -> int: ...
+    @typing.overload
+    def get_number_of_samples_per_beam(self, transducer_id: str) -> numpy.ndarray[numpy.uint16]: 
+        """
+        Get the number of samples per beam from a specific transducer (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+
+        Get the number of samples per beam
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+        """
+    @typing.overload
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
         Compute volume backscattering strength (Sv) from raw data.
@@ -313,6 +370,26 @@ class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         Returns:
             xt::xtensor<float, 2>
         """
+    @typing.overload
+    def get_beam_pointing_angles(self, transducer_id: str) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get the beam pointing angles from a specific transducer in °. (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+
+        Get the beam pointing angles in °.
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<float, 1> in °
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: ...
     def get_channel_id(self) -> str: 
         """
         < channel id of the transducer
@@ -328,7 +405,44 @@ class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         """
     @typing.overload
     def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
-    def get_number_of_samples(self) -> int: ...
+    @typing.overload
+    def get_number_of_beams(self, transducer_id: str) -> int: 
+        """
+        Get the number of beams from a specific transducer (Useful when
+        multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        size_t
+
+        Get the number of beams
+
+        Returns:
+            size_t
+        """
+    @typing.overload
+    def get_number_of_beams(self) -> int: ...
+    @typing.overload
+    def get_number_of_samples_per_beam(self, transducer_id: str) -> numpy.ndarray[numpy.uint16]: 
+        """
+        Get the number of samples per beam from a specific transducer (Useful
+        when multiple transducers are associated with a single ping.)
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+
+        Get the number of samples per beam
+
+        Parameter ``transducer_id``:
+            $Returns:
+
+        xt::xtensor<uint16_t, 1>
+        """
+    @typing.overload
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
         """
         Compute volume backscattering strength (Sv) from raw data.

@@ -13,7 +13,7 @@ __all__ = [
 
 class BeamSampleSelection():
     """
-    A struct to hold the selected beams/sample range for a single
+    A class to hold the selected beams/sample range for a single
     transducer
     """
     def __copy__(self) -> BeamSampleSelection: ...
@@ -26,7 +26,7 @@ class BeamSampleSelection():
         """
     def __init__(self) -> None: 
         """
-        A struct to hold the selected beams/sample range for a single
+        A class to hold the selected beams/sample range for a single
         transducer
         """
     def __repr__(self) -> str: 
@@ -38,6 +38,13 @@ class BeamSampleSelection():
         """
         Return object information as string
         """
+    def add_beam(self, beam_number: int, first_sample_number: int, max_number_of_samples: int) -> None: 
+        """
+        Add a beam to the selection
+
+        Parameter ``beam_nr``:
+            beam number
+        """
     def copy(self) -> BeamSampleSelection: 
         """
         return a copy using the c++ default copy constructor
@@ -47,6 +54,34 @@ class BeamSampleSelection():
         """
         create T_CLASS object from bytearray
         """
+    def get_beam_numbers(self) -> typing.List[int]: 
+        """
+        Return the beam numbers
+
+        Returns:
+            std::vector<uint16_t>
+        """
+    def get_first_sample_number_per_beam(self) -> typing.List[int]: 
+        """
+        Return the first sample number per beam
+
+        Returns:
+            std::vector<uint16_t>
+        """
+    def get_max_number_of_samples_per_beam(self) -> typing.List[int]: 
+        """
+        Return the max number of samples per beam
+
+        Returns:
+            std::vector<uint16_t>
+        """
+    def get_number_of_beams(self) -> int: 
+        """
+        Return the number of beams
+
+        Returns:
+            size_t
+        """
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -55,57 +90,10 @@ class BeamSampleSelection():
         """
         Print object information
         """
+    def set_sample_step_ensemble(self, sample_step_ensemble: int) -> None: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
-        """
-    @property
-    def beam_numbers(self) -> typing.List[int]:
-        """
-        < selected beam numbers
-
-        :type: typing.List[int]
-        """
-    @beam_numbers.setter
-    def beam_numbers(self, arg0: typing.List[int]) -> None:
-        """
-        < selected beam numbers
-        """
-    @property
-    def first_sample_number_per_beam(self) -> typing.List[int]:
-        """
-        < first sample number per beam
-
-        :type: typing.List[int]
-        """
-    @first_sample_number_per_beam.setter
-    def first_sample_number_per_beam(self, arg0: typing.List[int]) -> None:
-        """
-        < first sample number per beam
-        """
-    @property
-    def max_number_of_samples_per_beam(self) -> typing.List[int]:
-        """
-        < max number of samples per beam
-
-        :type: typing.List[int]
-        """
-    @max_number_of_samples_per_beam.setter
-    def max_number_of_samples_per_beam(self, arg0: typing.List[int]) -> None:
-        """
-        < max number of samples per beam
-        """
-    @property
-    def sample_step_ensemble(self) -> int:
-        """
-        < sample step size (same for the entire ensemble)
-
-        :type: int
-        """
-    @sample_step_ensemble.setter
-    def sample_step_ensemble(self, arg0: int) -> None:
-        """
-        < sample step size (same for the entire ensemble)
         """
     pass
 class PingSampleSelection():
@@ -182,7 +170,7 @@ class PingSampleSelector():
         """
         Return object information as string
         """
-    def apply_selection(self, ping: themachinethatgoesping.echosounders.filetemplates.I_Ping) -> typing.Set[str]: ...
+    def apply_selection(self, ping: themachinethatgoesping.echosounders.filetemplates.I_Ping) -> PingSampleSelection: ...
     def clear(self) -> None: ...
     def clear_beam_angle_range(self) -> None: ...
     def clear_beam_number_range(self) -> None: ...
@@ -212,11 +200,11 @@ class PingSampleSelector():
         """
     def get_max_beam_number(self) -> typing.Optional[int]: 
         """
-        < max beam number to select (negative numbers count from end)
+        < max beam number to select
         """
     def get_max_sample_number(self) -> typing.Optional[int]: 
         """
-        < max sample number to select (negative numbers count from end)
+        < max sample number to select
         """
     def get_max_sample_range(self) -> typing.Optional[float]: 
         """
@@ -228,11 +216,11 @@ class PingSampleSelector():
         """
     def get_min_beam_number(self) -> typing.Optional[int]: 
         """
-        < min beam number to select (negative numbers count from end)
+        < min beam number to select
         """
     def get_min_sample_number(self) -> typing.Optional[int]: 
         """
-        < min sample number to select (negative numbers count from end)
+        < min sample number to select
         """
     def get_min_sample_range(self) -> typing.Optional[float]: 
         """
