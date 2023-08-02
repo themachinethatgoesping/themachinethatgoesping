@@ -249,8 +249,8 @@ jobs:
       with:
         key: super-ci-mac  # name for the cache
         
-    # install clang 14
-    - run: brew install llvm@14
+    # install clang 16
+    - run: brew install llvm@16
         
     - run: brew install libomp boost
     
