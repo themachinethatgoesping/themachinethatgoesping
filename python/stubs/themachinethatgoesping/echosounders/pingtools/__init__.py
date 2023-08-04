@@ -329,7 +329,7 @@ class PingSampleSelector():
         """
     def get_beam_step(self) -> int: 
         """
-        < step size for beam numbers (negative numbers reverse beam order)
+        < step size for beam numbers
         """
     def get_ignored_transducer_ids(self) -> typing.Optional[typing.Set[str]]: ...
     def get_max_beam_angle(self) -> typing.Optional[float]: 
@@ -366,7 +366,7 @@ class PingSampleSelector():
         """
     def get_sample_step(self) -> int: 
         """
-        < step size for sample numbers (negative numbers reverse sample order)
+        < step size for sample numbers
         """
     def get_transducer_ids(self) -> typing.Optional[typing.Set[str]]: ...
     def info_string(self, float_precision: int = 2) -> str: 
