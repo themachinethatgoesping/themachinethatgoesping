@@ -134,7 +134,7 @@ jobs:
   #     run: meson compile -C builddir/
 
   #   - name: test (cpp)
-  #     run: meson test -C builddir/
+  #     run: meson test -C builddir/ --print-errorlogs
 
   #   - name: install project
   #     run: meson install -C builddir/

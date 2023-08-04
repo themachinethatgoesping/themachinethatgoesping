@@ -188,6 +188,17 @@ class PingSampleSelection():
         Parameter ``last_sample_number``:
             last sample to select (>0)
         """
+    def add_beam_sample_selection(self, transducer_id: str, BeamSampleSelection: BeamSampleSelection) -> None: 
+        """
+        Add a beam sample selection for the specified transducer Note: if the
+        transducer id exists, it will be overwritten
+
+        Parameter ``transducer_id``:
+            transducer id of the beam
+
+        Parameter ``BeamSampleSelection``:
+            BeamSampleSelection for this transducer.
+        """
     def copy(self) -> PingSampleSelection: 
         """
         return a copy using the c++ default copy constructor
