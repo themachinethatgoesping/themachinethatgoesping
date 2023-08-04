@@ -47,10 +47,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8','3.9','3.10','3.11']
-        compiler: [clang]
-
-    env:
-      CC: ${{matrix.compiler}}
+        cxx_compiler: ["$(brew --prefix llvm@16)/bin/clang++"] 
 
     steps:
     - uses: actions/setup-python@v3
@@ -85,7 +82,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+        CXX=${{ matrix.cxx_compiler }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
         delocate-wheel -w wheelhouse dist/* -v
         # install wheel
