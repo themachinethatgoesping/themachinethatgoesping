@@ -138,7 +138,8 @@ jobs:
             compiler: clang-cl
             cpp_std: c++20
           - toolset: msvc
-            compiler: sccache cl
+            #compiler: sccache cl
+            compiler: cl
             cpp_std: c++20
             
           
