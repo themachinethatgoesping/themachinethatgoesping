@@ -48,7 +48,11 @@
    
 .. |badge-echosounders| image:: https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/themachinethatgoesping/echosounders/
-   :alt: echosoudners
+   :alt: echosounders
+
+.. |badge-pingprocessing| image:: https://github.com/themachinethatgoesping/pingprocessing/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/themachinethatgoesping/pingprocessing/
+   :alt: pingprocessing
    
 .. |badge-gridding| image:: https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/themachinethatgoesping/gridding/

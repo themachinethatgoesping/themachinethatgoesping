@@ -38,6 +38,9 @@
 	url = ../echosounders.git
 	branch = main
 	update = rebase
+
 [submodule "subprojects/pingprocessing"]
 	path = subprojects/pingprocessing
 	url = ../pingprocessing.git
+	branch = main
+	update = rebase

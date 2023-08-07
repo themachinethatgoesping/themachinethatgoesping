@@ -10,6 +10,8 @@ dirs = [
     "subprojects/echosounders/src/",
     "subprojects/navigation/python/",
     "subprojects/navigation/src/",
+    "subprojects/pingprocessing/python/",
+    "subprojects/pingprocessing/src/",
     "subprojects/meta/python/",
     "subprojects/meta/src/",
     "subprojects/gridding/python/",

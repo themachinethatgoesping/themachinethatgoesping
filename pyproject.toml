@@ -85,6 +85,7 @@ testpaths = [
     "subprojects/gridding/python/tests/",
     "subprojects/navigation/python/tests/",
     "subprojects/echosounders/python/tests/",
+    "subprojects/pingprocessing/python/tests/",
 ]
 
 [tool.meson-python.args]
