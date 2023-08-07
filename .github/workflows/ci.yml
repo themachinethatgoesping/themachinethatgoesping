@@ -201,7 +201,7 @@ jobs:
     # same as for linux
 
     - name: install dependencies (meson & python)
-      run: pip install meson meson-python ninja pytest numpy
+      run: pip install meson==1.1 meson-python ninja pytest numpy
 
     - name: configure meson
       run: |
