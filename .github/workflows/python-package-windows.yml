@@ -116,8 +116,22 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
-        pip install meson meson-python ninja pytest twine wheel pyproject-metadata oldest-supported-numpy
+        pip install meson meson-python pytest twine wheel pyproject-metadata oldest-supported-numpy
         pip install -r requirements.txt
+        
+    - name: download ninja long path
+      run : |
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile ninja.exe 
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA.exe 
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA  
+        
+    - name: add workspace to path (to access ninja.exe)
+      run: echo "${env:GITHUB_WORKSPACE}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+    - name: check ninja executable path
+      run: |
+        Get-Command ninja
+        Get-Command NINJA
          
     - name: build and install wheel
       run: |
@@ -134,7 +148,7 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        meson test -C pybuild --print-errorlogs
+        ninja test -C pybuild --verbose
         
     - name: Test with pytest
       run: |
