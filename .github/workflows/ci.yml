@@ -224,6 +224,9 @@ jobs:
     - name: compile project
       run: meson compile -C builddir/
 
+    - name: install ninja for test
+      run: pip install ninja
+
     - name: test (cpp)
       run: meson test -C builddir/ --print-errorlogs
 
