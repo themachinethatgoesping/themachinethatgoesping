@@ -137,10 +137,9 @@ jobs:
           - toolset: vc143
             compiler: clang-cl
             cpp_std: c++20
-          - toolset: msvc
-            #compiler: sccache cl
-            compiler: cl
-            cpp_std: c++20
+          # - toolset: msvc
+          #   compiler: sccache cl
+          #   cpp_std: c++20
             
           
     env:
@@ -152,7 +151,8 @@ jobs:
     #container: python:latest #pull directly from dockerhub   
     steps:
 
-    - uses: actions/setup-python@v3
+    - name: setup python
+      uses: actions/setup-python@v3
       with:
         python-version: '3.11'
 
@@ -199,10 +199,23 @@ jobs:
         cd ..
         #rm -rv boost*
 
-    # same as for linux
-
     - name: install dependencies (meson & python)
-      run: pip install meson==1.1 meson-python ninja pytest numpy
+      run: pip install meson meson-python pytest numpy 
+      #run: pip install meson meson-python pytest numpy ninja
+
+    - name: download ninja long path
+      run : |
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile ninja.exe 
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA.exe 
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA  
+        
+    - name: add workspace to path (to access ninja.exe)
+      run: echo "${env:GITHUB_WORKSPACE}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+    - name: check ninja executable path
+      run: |
+        Get-Command ninja
+        Get-Command NINJA
 
     - name: configure meson
       run: |
