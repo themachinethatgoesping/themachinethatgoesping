@@ -59,6 +59,7 @@ jobs:
     env:
       CC: ${{matrix.compiler}}
       CXX: ${{matrix.compiler}}
+      NINJA: d:\ninja.exe
 
     steps:
     - uses: actions/setup-python@v3
@@ -119,14 +120,14 @@ jobs:
         pip install meson meson-python pytest twine wheel pyproject-metadata oldest-supported-numpy
         pip install -r requirements.txt
         
-    - name: Install ninja long path
-      uses: engineerd/configurator@v0.0.10
-      with:
-        name: "ninja"
-        url: "https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe"
-    - name: Testing
+    - name: download ninja long path
+      run : |
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile d:\ninja.exe
+
+    - name: check ninja executable path
       run: |
-        ninja --version
+        $env:NINJA
+        d:\ninja.exe --version
          
     - name: build and install wheel
       run: |
