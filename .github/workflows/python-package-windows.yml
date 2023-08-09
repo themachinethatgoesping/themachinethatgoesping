@@ -119,19 +119,14 @@ jobs:
         pip install meson meson-python pytest twine wheel pyproject-metadata oldest-supported-numpy
         pip install -r requirements.txt
         
-    - name: download ninja long path
-      run : |
-        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile ninja.exe 
-        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA.exe 
-        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile NINJA  
-        
-    - name: add workspace to path (to access ninja.exe)
-      run: echo "${env:GITHUB_WORKSPACE}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
-    - name: check ninja executable path
+    - name: Install ninja long path
+      uses: engineerd/configurator@v0.0.10
+      with:
+        name: "ninja"
+        url: "https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe"
+    - name: Testing
       run: |
-        Get-Command ninja
-        Get-Command NINJA
+        ninja --version
          
     - name: build and install wheel
       run: |
