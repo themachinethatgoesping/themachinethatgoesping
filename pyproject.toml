@@ -7,7 +7,6 @@ requires = [
     'meson-python >= 0.13.1',
     'meson >= 1.1',
     'pyproject-metadata',
-    'ninja',
     'oldest-supported-numpy'
 ]
 build-backend = 'mesonpy'
