@@ -4,6 +4,7 @@ import themachinethatgoesping.algorithms
 import typing
 
 __all__ = [
+    "geoprocessing",
     "ostream_redirect"
 ]
 
@@ -13,4 +14,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.1.0'
+__version__ = '0.1.1'
