@@ -6,6 +6,8 @@ from collections import defaultdict
 dirs = [
     "subprojects/tools/python/",
     "subprojects/tools/src/",
+    "subprojects/algorithms/python/",
+    "subprojects/algorithms/src/",
     "subprojects/echosounders/python/",
     "subprojects/echosounders/src/",
     "subprojects/navigation/python/",

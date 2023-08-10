@@ -9,6 +9,7 @@ import typing
 import sys
 
 __all__ = [
+    "algorithms",
     "echosounders",
     "gridding",
     "modules",
@@ -23,7 +24,7 @@ __all__ = [
 ]
 
 
-__modules_installed__ = [('tools', '0.18.10'), ('navigation', '0.10.5'), ('echosounders', '0.18.0'), ('pingprocessing', '0.1.0'), ('gridding', '@PROJECT_VERSION@')]
+__modules_installed__ = [('tools', '0.18.10'), ('algorithms', '0.1.0'), ('navigation', '0.10.5'), ('echosounders', '0.18.0'), ('pingprocessing', '0.1.0'), ('gridding', '@PROJECT_VERSION@')]
 __submodule = '../'
 __version__ = '0.6.17'
 pydev_install_module_paths = ['/home/ssd/local/lib/python3.11/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping']

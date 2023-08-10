@@ -42,6 +42,10 @@
    :target: https://github.com/themachinethatgoesping/tools/
    :alt: tools
    
+.. |badge-algorithms| image:: https://github.com/themachinethatgoesping/algorithms/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/themachinethatgoesping/algorithms/
+   :alt: algorithms
+
 .. |badge-navigation| image:: https://github.com/themachinethatgoesping/navigation/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/themachinethatgoesping/navgiation/
    :alt: navigation
@@ -160,9 +164,13 @@ Ping consists of a number of repositories that represent individual modules. It 
 
 - |badge-tools| `tools <https://github.com/themachinethatgoesping/tools>`_: Shared functions and interfaces 
 
+- |badge-algorithms| `algorithms <https://github.com/themachinethatgoesping/algorithms>`_: Algorithms for e.g. applying absorption, raytracing, bottomdetection on echograms and more.
+
 - |badge-navigation| `navigation <https://github.com/themachinethatgoesping/navigation>`_: Store and transform navigation data
 
 - |badge-echosounders| `echosounders <https://github.com/themachinethatgoesping/echosounders>`_: Read, write and process single- and multibeam echo sounder files.
+
+- |badge-pingprocessing| `pingprocessing <https://github.com/themachinethatgoesping/pingprocessing>`_: Process ping files (e.g. create echograms).
 
 - |badge-gridding| `gridding <https://github.com/themachinethatgoesping/gridding>`_: Gridding functions (python only test repo) 
 
