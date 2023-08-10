@@ -44,3 +44,6 @@
 	url = ../pingprocessing.git
 	branch = main
 	update = rebase
+[submodule "subprojects/algorithms"]
+	path = subprojects/algorithms
+	url = ../algorithms.git
