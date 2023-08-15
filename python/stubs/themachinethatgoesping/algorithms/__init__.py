@@ -1,16 +1,11 @@
-"""Small python tool functions for themachinethatgoesping"""
+"""Python module process ping data, e.g. apply absorption, spreading loss, compute range/depth, raytrace ..."""
 from __future__ import annotations
-import themachinethatgoesping.tools
+import themachinethatgoesping.algorithms
 import typing
 
 __all__ = [
-    "classhelper",
-    "helper",
-    "ostream_redirect",
-    "progressbars",
-    "pyhelper",
-    "timeconv",
-    "vectorinterpolators"
+    "geoprocessing",
+    "ostream_redirect"
 ]
 
 
@@ -19,4 +14,4 @@ class ostream_redirect():
     def __exit__(self, *args) -> None: ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None: ...
     pass
-__version__ = '0.19.1'
+__version__ = '0.1.6'
