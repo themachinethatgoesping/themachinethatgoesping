@@ -232,13 +232,13 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         associated with a single ping, this function will return the one
         selected with the "select_transducer_id" function.
         """
-    def get_transducer_ids(self) -> typing.Set[str]: 
+    def get_transducer_ids(self) -> typing.List[str]: 
         """
         Get all registered transducer ids (in case multiple transducers are
         associated with a single ping)
 
         Returns:
-            std::set<std::string>
+            std::vector<std::string>
         """
     def get_transducer_ids_as_string(self) -> str: 
         """
@@ -262,23 +262,6 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def raw_data(self, transducer_id: str) -> EM3000PingRawData: ...
     @typing.overload
     def raw_data(self) -> EM3000PingRawData: ...
-    @typing.overload
-    def select_transducer_id(self, transducer_id: str) -> None: 
-        """
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-        """
-    @typing.overload
-    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -339,6 +322,7 @@ class EM3000PingRawData():
     def get_start_range_sample_numbers(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_timestamp_first(self) -> float: ...
     def get_transmit_sector_numbers(self) -> numpy.ndarray[numpy.uint8]: ...
+    def get_water_column_datagram(self) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -401,6 +385,7 @@ class EM3000PingRawData_mapped():
     def get_start_range_sample_numbers(self) -> numpy.ndarray[numpy.uint16]: ...
     def get_timestamp_first(self) -> float: ...
     def get_transmit_sector_numbers(self) -> numpy.ndarray[numpy.uint8]: ...
+    def get_water_column_datagram(self) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -635,13 +620,13 @@ class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         associated with a single ping, this function will return the one
         selected with the "select_transducer_id" function.
         """
-    def get_transducer_ids(self) -> typing.Set[str]: 
+    def get_transducer_ids(self) -> typing.List[str]: 
         """
         Get all registered transducer ids (in case multiple transducers are
         associated with a single ping)
 
         Returns:
-            std::set<std::string>
+            std::vector<std::string>
         """
     def get_transducer_ids_as_string(self) -> str: 
         """
@@ -665,23 +650,6 @@ class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
     def raw_data(self, transducer_id: str) -> EM3000PingRawData_mapped: ...
     @typing.overload
     def raw_data(self) -> EM3000PingRawData_mapped: ...
-    @typing.overload
-    def select_transducer_id(self, transducer_id: str) -> None: 
-        """
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-        """
-    @typing.overload
-    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer

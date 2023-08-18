@@ -329,7 +329,7 @@ class RTConstantSVP(I_Raytracer):
         """
     @typing.overload
     def scale_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_target: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationLocal, scale_time: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: ...
-    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_target: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1, scale_time: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_2: 
+    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_targets: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1, scale_times: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_2: 
         """
         Compute the sample locations of a swath by scaling between the
         transducer location and known target locations

@@ -281,12 +281,12 @@ class PingSampleSelection():
         """
         convert object to bytearray
         """
-    def transducer_ids(self) -> typing.Set[str]: 
+    def transducer_ids(self) -> typing.List[str]: 
         """
         Return the names of the transducers
 
         Returns:
-            std::set<std::string>
+            std::vector<std::string>
         """
     pass
 class PingSampleSelector():

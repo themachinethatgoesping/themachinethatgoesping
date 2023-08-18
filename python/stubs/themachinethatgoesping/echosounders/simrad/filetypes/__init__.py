@@ -232,13 +232,13 @@ class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         associated with a single ping, this function will return the one
         selected with the "select_transducer_id" function.
         """
-    def get_transducer_ids(self) -> typing.Set[str]: 
+    def get_transducer_ids(self) -> typing.List[str]: 
         """
         Get all registered transducer ids (in case multiple transducers are
         associated with a single ping)
 
         Returns:
-            std::set<std::string>
+            std::vector<std::string>
         """
     def get_transducer_ids_as_string(self) -> str: 
         """
@@ -258,23 +258,6 @@ class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
         Print object information
         """
     def raw_data(self) -> SimradPingRawData: ...
-    @typing.overload
-    def select_transducer_id(self, transducer_id: str) -> None: 
-        """
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-        """
-    @typing.overload
-    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
@@ -583,13 +566,13 @@ class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         associated with a single ping, this function will return the one
         selected with the "select_transducer_id" function.
         """
-    def get_transducer_ids(self) -> typing.Set[str]: 
+    def get_transducer_ids(self) -> typing.List[str]: 
         """
         Get all registered transducer ids (in case multiple transducers are
         associated with a single ping)
 
         Returns:
-            std::set<std::string>
+            std::vector<std::string>
         """
     def get_transducer_ids_as_string(self) -> str: 
         """
@@ -609,23 +592,6 @@ class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         Print object information
         """
     def raw_data(self) -> SimradPingRawData_mapped: ...
-    @typing.overload
-    def select_transducer_id(self, transducer_id: str) -> None: 
-        """
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-
-        Select a transducer id that will be used by default when calling
-        functions on this ping. (Useful when multiple transducers are
-        associated with a single ping.)
-
-        Parameter ``id``:
-        """
-    @typing.overload
-    def select_transducer_id(self, transducer_number: int) -> None: ...
     def set_channel_id(self, channel_id: str) -> None: 
         """
         < channel id of the transducer
