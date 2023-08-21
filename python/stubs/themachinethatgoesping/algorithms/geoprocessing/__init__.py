@@ -4,6 +4,7 @@ import themachinethatgoesping.algorithms.geoprocessing
 import typing
 
 __all__ = [
+    "backtracers",
     "datastructures",
     "raytracers"
 ]

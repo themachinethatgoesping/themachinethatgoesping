@@ -60,7 +60,7 @@ class I_Raytracer():
         convert object to bytearray
         """
     @typing.overload
-    def trace_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: 
+    def trace_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1: 
         """
         Trace the sample locations of a single beam.
 
@@ -80,7 +80,7 @@ class I_Raytracer():
             Across track angle in °
 
         Returns:
-            datastructures::SamplelocationsLocal<1>
+            datastructures::RaytraceResults<1>
 
         Trace the sample locations of a single beam.
 
@@ -106,11 +106,11 @@ class I_Raytracer():
             Across track angle in °
 
         Returns:
-            datastructures::SampleLocationsLocal<1>
+            datastructures::RaytraceResults<1>
         """
     @typing.overload
-    def trace_beam(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: ...
-    def trace_point(self, two_way_travel_time: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationLocal: 
+    def trace_beam(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1: ...
+    def trace_point(self, two_way_travel_time: float, alongtrack_angle: float, crosstrack_angle: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResult: 
         """
         Trace the location of a single point.
 
@@ -124,10 +124,10 @@ class I_Raytracer():
             Across track angle in °
 
         Returns:
-            datastructures::SampleLocationLocal
+            datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: 
+    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1: 
         """
         Trace the location of a set of points.
 
@@ -144,7 +144,7 @@ class I_Raytracer():
             Number of cores to use for parallelization
 
         Returns:
-            datastructures::SampleLocationLocal
+            datastructures::RaytraceResult
 
         Trace the location of a set of points.
 
@@ -161,12 +161,12 @@ class I_Raytracer():
             Number of cores to use for parallelization
 
         Returns:
-            datastructures::SampleLocationLocal
+            datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: ...
+    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1: ...
     @typing.overload
-    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_2: 
+    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2: 
         """
         Trace the sample locations of a multiple beams in a swath. Note: a 2d
         Array for sample numbers is expected where the first dimension is the
@@ -192,7 +192,7 @@ class I_Raytracer():
             Number of cores to use for parallelization
 
         Returns:
-            datastructures::SamplelocationsLocal<2>
+            datastructures::RaytraceResults<2>
 
         Trace the sample locations of a multiple beams in a swath. Note: The
         number of beams is controlled by the dimension of crosstrack_angles
@@ -222,10 +222,10 @@ class I_Raytracer():
             Number of cores to use for parallelization
 
         Returns:
-            datastructures::SamplelocationsLocal<2>
+            datastructures::RaytraceResults<2>
         """
     @typing.overload
-    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_2: ...
+    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2: ...
     pass
 class RTConstantSVP(I_Raytracer):
     def __copy__(self) -> RTConstantSVP: ...
@@ -273,8 +273,7 @@ class RTConstantSVP(I_Raytracer):
         """
         Print object information
         """
-    @typing.overload
-    def scale_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_x: float, scale_y: float, scale_z: float, scale_true_range: float, scale_time: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: 
+    def scale_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_x: float, scale_y: float, scale_z: float, scale_true_range: float, scale_time: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1: 
         """
         Compute the sample locations of a single beam by scaling between the
         transducer location and a known target location
@@ -304,32 +303,9 @@ class RTConstantSVP(I_Raytracer):
             known target two way travel time
 
         Returns:
-            datastructures::SamplelocationsLocal<1>
-
-        Compute the sample locations of a single beam by scaling between the
-        transducer location and a known target location
-
-        Parameter ``sample_numbers``:
-            Sample numbers to trace (starting from 0)
-
-        Parameter ``sampling_time``:
-            Time betweens samples in s
-
-        Parameter ``sampling_time_offset``:
-            Time offset for sample number 0 in s
-
-        Parameter ``scale_target``:
-            known target location at scale_time
-
-        Parameter ``scale_time``:
-            known target two way travel time
-
-        Returns:
-            datastructures::SamplelocationsLocal<1>
+            datastructures::RaytraceResults<1>
         """
-    @typing.overload
-    def scale_beam(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_target: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationLocal, scale_time: float) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1: ...
-    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_targets: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_1, scale_times: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleLocationsLocal_2: 
+    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_targets: themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1, scale_times: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2: 
         """
         Compute the sample locations of a swath by scaling between the
         transducer location and known target locations
@@ -353,7 +329,7 @@ class RTConstantSVP(I_Raytracer):
             number of cores to use for parallelization
 
         Returns:
-            datastructures::SamplelocationsLocal<1>
+            datastructures::RaytraceResults<1>
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """

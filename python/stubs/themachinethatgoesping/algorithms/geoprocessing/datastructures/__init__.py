@@ -7,14 +7,18 @@ import pybind11_stubgen.typing_ext
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
-    "SampleLocationLocal",
-    "SampleLocationsLocal_1",
-    "SampleLocationsLocal_2",
-    "SampleLocationsLocal_3"
+    "RaytraceResult",
+    "RaytraceResults_1",
+    "RaytraceResults_2",
+    "RaytraceResults_3",
+    "SampleDirections_1",
+    "SampleDirections_2",
+    "SampleDirections_3",
+    "SampleIndices"
 ]
 
 
-class SampleLocationLocal():
+class RaytraceResult():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
@@ -22,9 +26,9 @@ class SampleLocationLocal():
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
-    def __copy__(self) -> SampleLocationLocal: ...
-    def __deepcopy__(self, arg0: dict) -> SampleLocationLocal: ...
-    def __eq__(self, other: SampleLocationLocal) -> bool: ...
+    def __copy__(self) -> RaytraceResult: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResult: ...
+    def __eq__(self, other: RaytraceResult) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -35,7 +39,7 @@ class SampleLocationLocal():
         """
         Construct a new sample location object (all values set to 0)
 
-        Construct a new SampleLocationLocal object
+        Construct a new RaytraceResult object
 
         Parameter ``x``:
             in m, positive forward
@@ -60,12 +64,12 @@ class SampleLocationLocal():
         """
         Return object information as string
         """
-    def copy(self) -> SampleLocationLocal: 
+    def copy(self) -> RaytraceResult: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleLocationLocal: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResult: 
         """
         create T_CLASS object from bytearray
         """
@@ -130,7 +134,7 @@ class SampleLocationLocal():
         < in m, positive downwards
         """
     pass
-class SampleLocationsLocal_1():
+class RaytraceResults_1():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
@@ -138,9 +142,9 @@ class SampleLocationsLocal_1():
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
-    def __copy__(self) -> SampleLocationsLocal_1: ...
-    def __deepcopy__(self, arg0: dict) -> SampleLocationsLocal_1: ...
-    def __eq__(self, other: SampleLocationsLocal_1) -> bool: ...
+    def __copy__(self) -> RaytraceResults_1: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_1: ...
+    def __eq__(self, other: RaytraceResults_1) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -157,7 +161,7 @@ class SampleLocationsLocal_1():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new SampleLocationsLocal object
+        Construct a new RaytraceResults object
 
         Parameter ``x``:
             in m, positive forward
@@ -184,12 +188,12 @@ class SampleLocationsLocal_1():
         """
         Return object information as string
         """
-    def copy(self) -> SampleLocationsLocal_1: 
+    def copy(self) -> RaytraceResults_1: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleLocationsLocal_1: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_1: 
         """
         create T_CLASS object from bytearray
         """
@@ -255,7 +259,7 @@ class SampleLocationsLocal_1():
         < in m, positive downwards
         """
     pass
-class SampleLocationsLocal_2():
+class RaytraceResults_2():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
@@ -263,9 +267,9 @@ class SampleLocationsLocal_2():
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
-    def __copy__(self) -> SampleLocationsLocal_2: ...
-    def __deepcopy__(self, arg0: dict) -> SampleLocationsLocal_2: ...
-    def __eq__(self, other: SampleLocationsLocal_2) -> bool: ...
+    def __copy__(self) -> RaytraceResults_2: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_2: ...
+    def __eq__(self, other: RaytraceResults_2) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -282,7 +286,7 @@ class SampleLocationsLocal_2():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new SampleLocationsLocal object
+        Construct a new RaytraceResults object
 
         Parameter ``x``:
             in m, positive forward
@@ -309,12 +313,12 @@ class SampleLocationsLocal_2():
         """
         Return object information as string
         """
-    def copy(self) -> SampleLocationsLocal_2: 
+    def copy(self) -> RaytraceResults_2: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleLocationsLocal_2: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_2: 
         """
         create T_CLASS object from bytearray
         """
@@ -380,7 +384,7 @@ class SampleLocationsLocal_2():
         < in m, positive downwards
         """
     pass
-class SampleLocationsLocal_3():
+class RaytraceResults_3():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
@@ -388,9 +392,9 @@ class SampleLocationsLocal_3():
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
-    def __copy__(self) -> SampleLocationsLocal_3: ...
-    def __deepcopy__(self, arg0: dict) -> SampleLocationsLocal_3: ...
-    def __eq__(self, other: SampleLocationsLocal_3) -> bool: ...
+    def __copy__(self) -> RaytraceResults_3: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_3: ...
+    def __eq__(self, other: RaytraceResults_3) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -407,7 +411,7 @@ class SampleLocationsLocal_3():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new SampleLocationsLocal object
+        Construct a new RaytraceResults object
 
         Parameter ``x``:
             in m, positive forward
@@ -434,12 +438,12 @@ class SampleLocationsLocal_3():
         """
         Return object information as string
         """
-    def copy(self) -> SampleLocationsLocal_3: 
+    def copy(self) -> RaytraceResults_3: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleLocationsLocal_3: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_3: 
         """
         create T_CLASS object from bytearray
         """
@@ -503,5 +507,395 @@ class SampleLocationsLocal_3():
     def z(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
         < in m, positive downwards
+        """
+    pass
+class SampleDirections_1():
+    """
+    A structure to store beamsample directsion (along angle, across angle
+    and range).
+    """
+    def __copy__(self) -> SampleDirections_1: ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirections_1: ...
+    def __eq__(self, other: SampleDirections_1) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new SampleDirections object
+
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None: ...
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirections_1: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_1: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def size(self) -> int: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def alongtrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive bow up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @alongtrack_angle.setter
+    def alongtrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive bow up, 0 == downwards
+        """
+    @property
+    def crosstrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive starboard up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @crosstrack_angle.setter
+    def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive starboard up, 0 == downwards
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
+        """
+    pass
+class SampleDirections_2():
+    """
+    A structure to store beamsample directsion (along angle, across angle
+    and range).
+    """
+    def __copy__(self) -> SampleDirections_2: ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirections_2: ...
+    def __eq__(self, other: SampleDirections_2) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new SampleDirections object
+
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None: ...
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirections_2: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_2: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def size(self) -> int: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def alongtrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive bow up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @alongtrack_angle.setter
+    def alongtrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive bow up, 0 == downwards
+        """
+    @property
+    def crosstrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive starboard up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @crosstrack_angle.setter
+    def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive starboard up, 0 == downwards
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
+        """
+    pass
+class SampleDirections_3():
+    """
+    A structure to store beamsample directsion (along angle, across angle
+    and range).
+    """
+    def __copy__(self) -> SampleDirections_3: ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirections_3: ...
+    def __eq__(self, other: SampleDirections_3) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new SampleDirections object
+
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None: ...
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirections_3: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_3: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def size(self) -> int: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def alongtrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive bow up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @alongtrack_angle.setter
+    def alongtrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive bow up, 0 == downwards
+        """
+    @property
+    def crosstrack_angle(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in °, positive starboard up, 0 == downwards
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @crosstrack_angle.setter
+    def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in °, positive starboard up, 0 == downwards
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
+        """
+    pass
+class SampleIndices():
+    """
+    A structure to store sample indices (sample nr, beam nr) for a set of
+    beams. It is used as output for the backmapper functions and as input
+    for the get_wci_amplitude functions.
+    """
+    def __copy__(self) -> SampleIndices: ...
+    def __deepcopy__(self, arg0: dict) -> SampleIndices: ...
+    def __eq__(self, other: SampleIndices) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new SampleIndices object (all values set to 0)
+
+        Construct a new SampleIndices object
+
+        Parameter ``beam_sample_map_``:
+            map <beam number, sample_number>
+        """
+    @typing.overload
+    def __init__(self, beam_sample_map: typing.Dict[int, typing.List[int]]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleIndices: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleIndices: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def beam_sample_map(self) -> typing.Dict[int, typing.List[int]]:
+        """
+        < map <beam number, sample_number>
+
+        :type: typing.Dict[int, typing.List[int]]
+        """
+    @beam_sample_map.setter
+    def beam_sample_map(self, arg0: typing.Dict[int, typing.List[int]]) -> None:
+        """
+        < map <beam number, sample_number>
         """
     pass
