@@ -33,6 +33,25 @@ class I_Backtracer():
         """
         Return object information as string
         """
+    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_2: 
+        """
+        Backtrace the location of a set of points.
+
+        Parameter ``x``:
+            in m, positive forward
+
+        Parameter ``y``:
+            in m, positive starboard
+
+        Parameter ``z``:
+            in m, positive downwards
+
+        Parameter ``mp_cores``:
+            Number of cores to use for parallelization
+
+        Returns:
+            datastructures::SampleDirections
+        """
     def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_1: 
         """
         Backtrace the location of a set of points.
