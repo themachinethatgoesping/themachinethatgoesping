@@ -11,6 +11,8 @@ _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "EM3000Ping",
+    "EM3000PingBottom",
+    "EM3000PingBottom_mapped",
     "EM3000PingRawData",
     "EM3000PingRawData_mapped",
     "EM3000Ping_mapped"
@@ -30,6 +32,30 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     def raw_data(self, transducer_id: str) -> EM3000PingRawData: ...
     @typing.overload
     def raw_data(self) -> typing.Dict[str, EM3000PingRawData]: ...
+    pass
+class EM3000PingBottom(themachinethatgoesping.echosounders.filetemplates.I_PingBottom):
+    def __copy__(self) -> EM3000PingBottom: ...
+    def __deepcopy__(self, arg0: dict) -> EM3000PingBottom: ...
+    def copy(self) -> EM3000PingBottom: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @typing.overload
+    def raw_data(self, transducer_id: str) -> EM3000PingRawData: ...
+    @typing.overload
+    def raw_data(self) -> typing.Dict[str, EM3000PingRawData]: ...
+    pass
+class EM3000PingBottom_mapped(themachinethatgoesping.echosounders.filetemplates.I_PingBottom):
+    def __copy__(self) -> EM3000PingBottom_mapped: ...
+    def __deepcopy__(self, arg0: dict) -> EM3000PingBottom_mapped: ...
+    def copy(self) -> EM3000PingBottom_mapped: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @typing.overload
+    def raw_data(self, transducer_id: str) -> EM3000PingRawData_mapped: ...
+    @typing.overload
+    def raw_data(self) -> typing.Dict[str, EM3000PingRawData_mapped]: ...
     pass
 class EM3000PingRawData():
     def __copy__(self) -> EM3000PingRawData: ...
