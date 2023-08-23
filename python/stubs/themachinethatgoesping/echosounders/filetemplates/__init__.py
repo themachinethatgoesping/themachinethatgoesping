@@ -273,9 +273,9 @@ class I_Ping():
         < Unix timestamp in seconds (saved in UTC0)
         """
     @property
-    def bottom(self) -> themachinethatgoesping::echosounders::filetemplates::datatypes::I_PingBottom:
+    def bottom(self) -> I_PingBottom:
         """
-        :type: themachinethatgoesping::echosounders::filetemplates::datatypes::I_PingBottom
+        :type: I_PingBottom
         """
     pass
 class I_PingBottom():
