@@ -14,7 +14,10 @@ __all__ = [
     "SampleDirections_1",
     "SampleDirections_2",
     "SampleDirections_3",
-    "SampleIndices"
+    "SampleIndices",
+    "XYZ_1",
+    "XYZ_2",
+    "XYZ_3"
 ]
 
 
@@ -134,17 +137,17 @@ class RaytraceResult():
         < in m, positive downwards
         """
     pass
-class RaytraceResults_1():
+class XYZ_1():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
-    (forward coordinate), y (starboard coordinate) depth and true range.
-    These coordinates can be converted to UTM or Lat/Lon if a reference
-    position (for coordinate 0) is known.
+    (forward coordinate), y (starboard coordinate) and z (depth). These
+    coordinates can be converted to UTM or Lat/Lon if a reference position
+    (for coordinate 0) is known.
     """
-    def __copy__(self) -> RaytraceResults_1: ...
-    def __deepcopy__(self, arg0: dict) -> RaytraceResults_1: ...
-    def __eq__(self, other: RaytraceResults_1) -> bool: ...
+    def __copy__(self) -> XYZ_1: ...
+    def __deepcopy__(self, arg0: dict) -> XYZ_1: ...
+    def __eq__(self, other: XYZ_1) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -161,7 +164,7 @@ class RaytraceResults_1():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new RaytraceResults object
+        Construct a new XYZ object
 
         Parameter ``x``:
             in m, positive forward
@@ -171,14 +174,11 @@ class RaytraceResults_1():
 
         Parameter ``z``:
             in m, positive downwards
-
-        Parameter ``true_range``:
-            in m, accumulated ray path length
         """
     @typing.overload
     def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None: ...
     @typing.overload
-    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32]) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -188,12 +188,12 @@ class RaytraceResults_1():
         """
         Return object information as string
         """
-    def copy(self) -> RaytraceResults_1: 
+    def copy(self) -> XYZ_1: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_1: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XYZ_1: 
         """
         create T_CLASS object from bytearray
         """
@@ -205,71 +205,60 @@ class RaytraceResults_1():
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(1)]: ...
     def size(self) -> int: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
         """
     @property
-    def true_range(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-
-        :type: numpy.ndarray[numpy.float32]
-        """
-    @true_range.setter
-    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        """
-        < in m, accumulated ray path length
-        """
-    @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
 
         :type: numpy.ndarray[numpy.float32]
         """
     @x.setter
     def x(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
         """
     @property
     def y(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
 
         :type: numpy.ndarray[numpy.float32]
         """
     @y.setter
     def y(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
         """
     @property
     def z(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
 
         :type: numpy.ndarray[numpy.float32]
         """
     @z.setter
     def z(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
         """
     pass
-class RaytraceResults_2():
+class XYZ_2():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
-    (forward coordinate), y (starboard coordinate) depth and true range.
-    These coordinates can be converted to UTM or Lat/Lon if a reference
-    position (for coordinate 0) is known.
+    (forward coordinate), y (starboard coordinate) and z (depth). These
+    coordinates can be converted to UTM or Lat/Lon if a reference position
+    (for coordinate 0) is known.
     """
-    def __copy__(self) -> RaytraceResults_2: ...
-    def __deepcopy__(self, arg0: dict) -> RaytraceResults_2: ...
-    def __eq__(self, other: RaytraceResults_2) -> bool: ...
+    def __copy__(self) -> XYZ_2: ...
+    def __deepcopy__(self, arg0: dict) -> XYZ_2: ...
+    def __eq__(self, other: XYZ_2) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -286,7 +275,7 @@ class RaytraceResults_2():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new RaytraceResults object
+        Construct a new XYZ object
 
         Parameter ``x``:
             in m, positive forward
@@ -296,14 +285,11 @@ class RaytraceResults_2():
 
         Parameter ``z``:
             in m, positive downwards
-
-        Parameter ``true_range``:
-            in m, accumulated ray path length
         """
     @typing.overload
     def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None: ...
     @typing.overload
-    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32]) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -313,12 +299,12 @@ class RaytraceResults_2():
         """
         Return object information as string
         """
-    def copy(self) -> RaytraceResults_2: 
+    def copy(self) -> XYZ_2: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_2: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XYZ_2: 
         """
         create T_CLASS object from bytearray
         """
@@ -330,71 +316,60 @@ class RaytraceResults_2():
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
     def size(self) -> int: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
         """
     @property
-    def true_range(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-
-        :type: numpy.ndarray[numpy.float32]
-        """
-    @true_range.setter
-    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        """
-        < in m, accumulated ray path length
-        """
-    @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
 
         :type: numpy.ndarray[numpy.float32]
         """
     @x.setter
     def x(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
         """
     @property
     def y(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
 
         :type: numpy.ndarray[numpy.float32]
         """
     @y.setter
     def y(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
         """
     @property
     def z(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
 
         :type: numpy.ndarray[numpy.float32]
         """
     @z.setter
     def z(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
         """
     pass
-class RaytraceResults_3():
+class XYZ_3():
     """
     A structure to store a georeferenced sample location. It is used as
     output for the raytracers functions. This object stores local x
-    (forward coordinate), y (starboard coordinate) depth and true range.
-    These coordinates can be converted to UTM or Lat/Lon if a reference
-    position (for coordinate 0) is known.
+    (forward coordinate), y (starboard coordinate) and z (depth). These
+    coordinates can be converted to UTM or Lat/Lon if a reference position
+    (for coordinate 0) is known.
     """
-    def __copy__(self) -> RaytraceResults_3: ...
-    def __deepcopy__(self, arg0: dict) -> RaytraceResults_3: ...
-    def __eq__(self, other: RaytraceResults_3) -> bool: ...
+    def __copy__(self) -> XYZ_3: ...
+    def __deepcopy__(self, arg0: dict) -> XYZ_3: ...
+    def __eq__(self, other: XYZ_3) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -411,7 +386,7 @@ class RaytraceResults_3():
         Parameter ``shape``:
             shape of the internal tensors
 
-        Construct a new RaytraceResults object
+        Construct a new XYZ object
 
         Parameter ``x``:
             in m, positive forward
@@ -421,14 +396,11 @@ class RaytraceResults_3():
 
         Parameter ``z``:
             in m, positive downwards
-
-        Parameter ``true_range``:
-            in m, accumulated ray path length
         """
     @typing.overload
     def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None: ...
     @typing.overload
-    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32]) -> None: ...
     def __repr__(self) -> str: 
         """
         Return object information as string
@@ -438,12 +410,12 @@ class RaytraceResults_3():
         """
         Return object information as string
         """
-    def copy(self) -> RaytraceResults_3: 
+    def copy(self) -> XYZ_3: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_3: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XYZ_3: 
         """
         create T_CLASS object from bytearray
         """
@@ -455,58 +427,47 @@ class RaytraceResults_3():
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(3)]: ...
     def size(self) -> int: ...
     def to_binary(self, resize_buffer: bool = True) -> bytes: 
         """
         convert object to bytearray
         """
     @property
-    def true_range(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-
-        :type: numpy.ndarray[numpy.float32]
-        """
-    @true_range.setter
-    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        """
-        < in m, accumulated ray path length
-        """
-    @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
 
         :type: numpy.ndarray[numpy.float32]
         """
     @x.setter
     def x(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive forward
+        < x coordinate in m, positive forward
         """
     @property
     def y(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
 
         :type: numpy.ndarray[numpy.float32]
         """
     @y.setter
     def y(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive starboard
+        < y coordinate in m, positive starboard
         """
     @property
     def z(self) -> numpy.ndarray[numpy.float32]:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
 
         :type: numpy.ndarray[numpy.float32]
         """
     @z.setter
     def z(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         """
-        < in m, positive downwards
+        < z coordinate in m, positive downwards
         """
     pass
 class SampleDirections_1():
@@ -897,5 +858,266 @@ class SampleIndices():
     def beam_sample_map(self, arg0: typing.Dict[int, typing.List[int]]) -> None:
         """
         < map <beam number, sample_number>
+        """
+    pass
+class RaytraceResults_1(XYZ_1):
+    """
+    A structure to store a georeferenced sample location. It is used as
+    output for the raytracers functions. This object stores local x
+    (forward coordinate), y (starboard coordinate) depth and true range.
+    These coordinates can be converted to UTM or Lat/Lon if a reference
+    position (for coordinate 0) is known.
+    """
+    def __copy__(self) -> RaytraceResults_1: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_1: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new RaytraceResults object
+
+        Parameter ``x``:
+            in m, positive forward
+
+        Parameter ``y``:
+            in m, positive starboard
+
+        Parameter ``z``:
+            in m, positive downwards
+
+        Parameter ``true_range``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None: ...
+    @typing.overload
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RaytraceResults_1: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_1: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def true_range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @true_range.setter
+    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
+        """
+    pass
+class RaytraceResults_2(XYZ_2):
+    """
+    A structure to store a georeferenced sample location. It is used as
+    output for the raytracers functions. This object stores local x
+    (forward coordinate), y (starboard coordinate) depth and true range.
+    These coordinates can be converted to UTM or Lat/Lon if a reference
+    position (for coordinate 0) is known.
+    """
+    def __copy__(self) -> RaytraceResults_2: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_2: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new RaytraceResults object
+
+        Parameter ``x``:
+            in m, positive forward
+
+        Parameter ``y``:
+            in m, positive starboard
+
+        Parameter ``z``:
+            in m, positive downwards
+
+        Parameter ``true_range``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None: ...
+    @typing.overload
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RaytraceResults_2: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_2: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def true_range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @true_range.setter
+    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
+        """
+    pass
+class RaytraceResults_3(XYZ_3):
+    """
+    A structure to store a georeferenced sample location. It is used as
+    output for the raytracers functions. This object stores local x
+    (forward coordinate), y (starboard coordinate) depth and true range.
+    These coordinates can be converted to UTM or Lat/Lon if a reference
+    position (for coordinate 0) is known.
+    """
+    def __copy__(self) -> RaytraceResults_3: ...
+    def __deepcopy__(self, arg0: dict) -> RaytraceResults_3: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None: 
+        """
+        Construct a new sample location object (all values set to 0)
+
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+
+        Parameter ``shape``:
+            shape of the internal tensors
+
+        Construct a new RaytraceResults object
+
+        Parameter ``x``:
+            in m, positive forward
+
+        Parameter ``y``:
+            in m, positive starboard
+
+        Parameter ``z``:
+            in m, positive downwards
+
+        Parameter ``true_range``:
+            in m, accumulated ray path length
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[typing.List[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None: ...
+    @typing.overload
+    def __init__(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], true_range: numpy.ndarray[numpy.float32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> RaytraceResults_3: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResults_3: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    @property
+    def true_range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path length
+
+        :type: numpy.ndarray[numpy.float32]
+        """
+    @true_range.setter
+    def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        """
+        < in m, accumulated ray path length
         """
     pass

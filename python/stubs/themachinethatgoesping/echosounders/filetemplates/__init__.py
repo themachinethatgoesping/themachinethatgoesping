@@ -3,16 +3,94 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.filetemplates
 import typing
 import numpy
+import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
     "I_Ping",
-    "I_PingBottom"
+    "I_PingBottom",
+    "I_PingCommon"
 ]
 
 
-class I_Ping():
+class I_PingCommon():
+    def __copy__(self) -> I_PingCommon: ...
+    def __deepcopy__(self, arg0: dict) -> I_PingCommon: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> I_PingCommon: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def feature_string(self, has_features: bool = True) -> str: ...
+    def get_transducer_id(self) -> str: 
+        """
+        Get the transducer id of the ping. In case multiple transducer ids are
+        associated with a single ping, this function will return the one
+        selected with the "select_transducer_id" function.
+        """
+    def get_transducer_ids(self) -> typing.List[str]: 
+        """
+        Get all registered transducer ids (in case multiple transducers are
+        associated with a single ping)
+
+        Returns:
+            std::vector<std::string>
+        """
+    def get_transducer_ids_as_string(self) -> str: 
+        """
+        Get all register transducer ids as a string (useful for printing)
+
+        Returns:
+            std::string
+        """
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    pass
+class I_PingBottom(I_PingCommon):
+    """
+    Interface for all ping bottom detection functions
+    """
+    def __copy__(self) -> I_PingBottom: ...
+    def __deepcopy__(self, arg0: dict) -> I_PingBottom: ...
+    def copy(self) -> I_PingBottom: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: 
+        """
+        Get an XYZ object containing the XYZ position of the bottom detection
+        Note: XYZ is in the local coordinate system of the ping! To convert it
+        use algorithms::geoprocessing::georeferencer class or - Use
+        get_xyz_utm() to get the bottom detection in UTM coordinates - Use
+        get_xyz_latlon() to get the bottom detection in Latitude/Longitude
+        coordinates
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+        """
+    def has_xyz(self) -> bool: 
+        """
+        Get the base ping object
+
+        Returns:
+            std::shared_ptr<I_Ping>
+        """
+    pass
+class I_Ping(I_PingCommon):
     def __copy__(self) -> I_Ping: ...
     def __deepcopy__(self, arg0: dict) -> I_Ping: ...
     def __repr__(self) -> str: 
@@ -27,7 +105,6 @@ class I_Ping():
         """
         return a copy using the c++ default copy constructor
         """
-    def feature_string(self, has_features: bool = True) -> str: ...
     def get_angle(self) -> numpy.ndarray[numpy.float32]: 
         """
         Compute the launch angle of the (single) target within each sample. If
@@ -224,27 +301,6 @@ class I_Ping():
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
-    def get_transducer_id(self) -> str: 
-        """
-        Get the transducer id of the ping. In case multiple transducer ids are
-        associated with a single ping, this function will return the one
-        selected with the "select_transducer_id" function.
-        """
-    def get_transducer_ids(self) -> typing.List[str]: 
-        """
-        Get all registered transducer ids (in case multiple transducers are
-        associated with a single ping)
-
-        Returns:
-            std::vector<std::string>
-        """
-    def get_transducer_ids_as_string(self) -> str: 
-        """
-        Get all register transducer ids as a string (useful for printing)
-
-        Returns:
-            std::string
-        """
     def has_angle(self) -> bool: ...
     def has_sv(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
@@ -276,23 +332,5 @@ class I_Ping():
     def bottom(self) -> I_PingBottom:
         """
         :type: I_PingBottom
-        """
-    pass
-class I_PingBottom():
-    """
-    Interface for all ping bottom detection functions
-    """
-    def __copy__(self) -> I_PingBottom: ...
-    def __deepcopy__(self, arg0: dict) -> I_PingBottom: ...
-    def copy(self) -> I_PingBottom: 
-        """
-        return a copy using the c++ default copy constructor
-        """
-    def has_xyz(self) -> bool: 
-        """
-        Get the base ping object
-
-        Returns:
-            std::shared_ptr<I_Ping>
         """
     pass

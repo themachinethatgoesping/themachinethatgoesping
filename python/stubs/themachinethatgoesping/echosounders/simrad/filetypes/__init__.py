@@ -15,7 +15,7 @@ __all__ = [
 ]
 
 
-class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
+class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping, themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
     def __copy__(self) -> SimradPing: ...
     def __deepcopy__(self, arg0: dict) -> SimradPing: ...
     def copy(self) -> SimradPing: 
@@ -101,7 +101,7 @@ class SimradPingRawData_mapped():
         :type: themachinethatgoesping.echosounders.simrad.datagrams.RAW3
         """
     pass
-class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping):
+class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping, themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
     def __copy__(self) -> SimradPing_mapped: ...
     def __deepcopy__(self, arg0: dict) -> SimradPing_mapped: ...
     def copy(self) -> SimradPing_mapped: 
