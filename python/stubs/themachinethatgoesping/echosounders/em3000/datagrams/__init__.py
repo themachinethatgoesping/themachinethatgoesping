@@ -4,6 +4,7 @@ import themachinethatgoesping.echosounders.em3000.datagrams
 import typing
 import numpy
 import pybind11_stubgen.typing_ext
+import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.navigation.datastructures
 _Shape = typing.Tuple[int, ...]
@@ -3437,6 +3438,25 @@ class XYZDatagram(EM3000Datagram):
         """
         < in meter relative water level at time of ping
         """
+    @typing.overload
+    def get_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: 
+        """
+        Convert the XYZDatagramBeams to a XYZ structure
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+
+        Convert the XYZDatagramBeams for a given beam_number vector to a XYZ
+        structure Note: if a beam number is not found, the corresponding XYZ
+        value will be NaN
+
+        Parameter ``beam_numbers``:
+            $Returns:
+
+        algorithms::geoprocessing::datastructures::XYZ<1>
+        """
+    @typing.overload
+    def get_xyz(self, beam_numbers: typing.List[int]) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string

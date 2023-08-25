@@ -5,7 +5,6 @@ import typing
 import themachinethatgoesping.echosounders.filetemplates
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes
-import themachinethatgoesping.navigation.datastructures
 
 __all__ = [
     "SimradPing",
@@ -23,7 +22,6 @@ class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping, thema
         return a copy using the c++ default copy constructor
         """
     def raw_data(self) -> SimradPingRawData: ...
-    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     pass
 class SimradPingRawData():
     def __copy__(self) -> SimradPingRawData: ...
@@ -109,5 +107,4 @@ class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         return a copy using the c++ default copy constructor
         """
     def raw_data(self) -> SimradPingRawData_mapped: ...
-    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     pass

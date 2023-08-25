@@ -3,6 +3,7 @@ from __future__ import annotations
 import themachinethatgoesping.echosounders.em3000.filetypes
 import typing
 import numpy
+import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.echosounders.em3000.datagrams
 import themachinethatgoesping.echosounders.filetemplates
@@ -28,10 +29,11 @@ class EM3000PingCommon(themachinethatgoesping.echosounders.filetemplates.I_PingC
         """
         return a copy using the c++ default copy constructor
         """
-    @typing.overload
-    def raw_data(self, transducer_id: str) -> EM3000PingRawData: ...
-    @typing.overload
-    def raw_data(self) -> typing.Dict[str, EM3000PingRawData]: ...
+    @property
+    def raw_data(self) -> EM3000PingRawData:
+        """
+        :type: EM3000PingRawData
+        """
     pass
 class EM3000PingBottom(themachinethatgoesping.echosounders.filetemplates.I_PingBottom, EM3000PingCommon, themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
     def __copy__(self) -> EM3000PingBottom: ...
@@ -48,10 +50,11 @@ class EM3000PingCommon_mapped(themachinethatgoesping.echosounders.filetemplates.
         """
         return a copy using the c++ default copy constructor
         """
-    @typing.overload
-    def raw_data(self, transducer_id: str) -> EM3000PingRawData_mapped: ...
-    @typing.overload
-    def raw_data(self) -> typing.Dict[str, EM3000PingRawData_mapped]: ...
+    @property
+    def raw_data(self) -> EM3000PingRawData_mapped:
+        """
+        :type: EM3000PingRawData_mapped
+        """
     pass
 class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM3000PingCommon, themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
     def __copy__(self) -> EM3000Ping: ...
@@ -132,6 +135,26 @@ class EM3000PingRawData():
     def read_all_samples(self) -> numpy.ndarray[numpy.float32]: ...
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     def read_selected_samples(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]: ...
+    @typing.overload
+    def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: 
+        """
+        read XYZ for the bottom detection datagram
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+
+        read XYZ for the specified beams from the bottom detection datagram
+        Note: if the beam numbers from the beam selection exceed the number of
+        beams in the datagram, the corresponding XYZ values will be NaN
+
+        Parameter ``bs``:
+            beam selection
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+        """
+    @typing.overload
+    def read_xyz(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: ...
     pass
 class EM3000PingRawData_mapped():
     def __copy__(self) -> EM3000PingRawData_mapped: ...
@@ -195,6 +218,26 @@ class EM3000PingRawData_mapped():
     def read_all_samples(self) -> numpy.ndarray[numpy.float32]: ...
     def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WaterColumnDatagram: ...
     def read_selected_samples(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]: ...
+    @typing.overload
+    def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: 
+        """
+        read XYZ for the bottom detection datagram
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+
+        read XYZ for the specified beams from the bottom detection datagram
+        Note: if the beam numbers from the beam selection exceed the number of
+        beams in the datagram, the corresponding XYZ values will be NaN
+
+        Parameter ``bs``:
+            beam selection
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
+        """
+    @typing.overload
+    def read_xyz(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: ...
     pass
 class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM3000PingCommon_mapped, themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
     def __copy__(self) -> EM3000Ping_mapped: ...

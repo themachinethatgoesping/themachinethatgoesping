@@ -30,27 +30,6 @@ class I_PingCommon():
         return a copy using the c++ default copy constructor
         """
     def feature_string(self, has_features: bool = True) -> str: ...
-    def get_transducer_id(self) -> str: 
-        """
-        Get the transducer id of the ping. In case multiple transducer ids are
-        associated with a single ping, this function will return the one
-        selected with the "select_transducer_id" function.
-        """
-    def get_transducer_ids(self) -> typing.List[str]: 
-        """
-        Get all registered transducer ids (in case multiple transducers are
-        associated with a single ping)
-
-        Returns:
-            std::vector<std::string>
-        """
-    def get_transducer_ids_as_string(self) -> str: 
-        """
-        Get all register transducer ids as a string (useful for printing)
-
-        Returns:
-            std::string
-        """
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -84,10 +63,13 @@ class I_PingBottom(I_PingCommon):
         """
     def has_xyz(self) -> bool: 
         """
-        Get the base ping object
+        Check this pings supports XYZ data
 
         Returns:
-            std::shared_ptr<I_Ping>
+            true
+
+        Returns:
+            false
         """
     pass
 class I_Ping(I_PingCommon):
@@ -119,18 +101,8 @@ class I_Ping(I_PingCommon):
         """
         Get the beam pointing angles in °.
 
-        Parameter ``transducer_id``:
-            $Returns:
-
-        xt::xtensor<float, 1> in °
-
-        Get the beam pointing angles from a specific transducer in °. (Useful
-        when multiple transducers are associated with a single ping.)
-
-        Parameter ``transducer_id``:
-            $Returns:
-
-        xt::xtensor<float, 1> in °
+        Returns:
+            xt::xtensor<float, 1> in °
 
         Get the beam pointing angles in ° when specifying the beams and
         samples to select.
@@ -142,8 +114,6 @@ class I_Ping(I_PingCommon):
         Returns:
             xt::xtensor<float, 1> in °
         """
-    @typing.overload
-    def get_beam_pointing_angles(self, transducer_id: str) -> numpy.ndarray[numpy.float32]: ...
     @staticmethod
     @typing.overload
     def get_beam_pointing_angles(*args, **kwargs) -> typing.Any: ...
@@ -153,28 +123,17 @@ class I_Ping(I_PingCommon):
         """
     def get_file_nr(self) -> int: ...
     def get_file_path(self) -> str: ...
-    @typing.overload
     def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: 
         """
-        < Geolocation of the transducer with the specified transducer_id. A
+        Get the geolocation of the transducer.
 
-        < Geolocation of the transducer with the specified transducer_id. A
+        Returns:
+            const navigation::datastructures::GeoLocationLatLon&
         """
-    @typing.overload
-    def get_geolocation(self, transducer_id: str) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon: ...
     @typing.overload
     def get_number_of_beams(self) -> int: 
         """
         Get the number of beams
-
-        Returns:
-            size_t
-
-        Get the number of beams from a specific transducer (Useful when
-        multiple transducers are associated with a single ping.)
-
-        Parameter ``transducer_id``:
-            transducer id
 
         Returns:
             size_t
@@ -190,8 +149,6 @@ class I_Ping(I_PingCommon):
         Returns:
             size_t
         """
-    @typing.overload
-    def get_number_of_beams(self, transducer_id: str) -> int: ...
     @staticmethod
     @typing.overload
     def get_number_of_beams(*args, **kwargs) -> typing.Any: ...
@@ -200,40 +157,20 @@ class I_Ping(I_PingCommon):
         """
         Get the number of samples per beam
 
-        Parameter ``transducer_id``:
-            $Returns:
-
-        xt::xtensor<uint16_t, 1>
-
-        Get the number of samples per beam of a specific transducer. (Useful
-        when multiple transducers are associated with a single ping.)
-
-        Parameter ``transducer_id:``:
-            id of the transducer
-
         Returns:
             xt::xtensor<uint16_t, 1>
 
-        Get the number of samples per beam of a specific transducer. (Useful
-        when multiple transducers are associated with a single ping.)
+        Get the number of samples per beam when specifying the beams and
+        samples to select. Note: this function just returns an array of
+        selection.get_number_of_samples_ensemble()
 
-        Parameter ``transducer_id:``:
-            id of the transducer
-
-        Returns:
-            xt::xtensor<uint16_t, 1>
-
-        Get the number of samples per beam of a specific transducer. (Useful
-        when multiple transducers are associated with a single ping.)
-
-        Parameter ``transducer_id:``:
-            id of the transducer
+        Parameter ``selection:``:
+            Structure containing information about which beams and samples to
+            select.
 
         Returns:
             xt::xtensor<uint16_t, 1>
         """
-    @typing.overload
-    def get_number_of_samples_per_beam(self, transducer_id: str) -> numpy.ndarray[numpy.uint16]: ...
     @staticmethod
     @typing.overload
     def get_number_of_samples_per_beam(*args, **kwargs) -> typing.Any: ...
@@ -249,26 +186,11 @@ class I_Ping(I_PingCommon):
         Returns:
             xt::xtensor<float, 2>
 
-        Compute volume backscattering of a specific transducer. (Useful when
-        multiple transducers are associated with a single ping.) If you see
-        this comment, this function was not implemented for the current ping
-        type.
-
-        Parameter ``transducer_id``:
-            transducer id
-
-        Parameter ``dB``:
-            Output Sv in dB if true, or linear if false (default).
-
-        Returns:
-            xt::xtensor<float, 2>
-
         Compute volume backscattering. If you see this comment, this function
         was not implemented for the current ping type.
 
         Parameter ``selection``:
-            structure with selected transducer_ids/beams/samples considered
-            for this function
+            structure with selected beams/samples considered for this function
 
         Parameter ``dB``:
             Output Sv in dB if true, or linear if false (default).
@@ -276,8 +198,6 @@ class I_Ping(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
-    @typing.overload
-    def get_sv(self, transducer_id: str, dB: bool = False) -> numpy.ndarray[numpy.float32]: ...
     @staticmethod
     @typing.overload
     def get_sv(*args, **kwargs) -> typing.Any: ...
@@ -288,8 +208,7 @@ class I_Ping(I_PingCommon):
         type.
 
         Parameter ``selection``:
-            structure with selected transducer_ids/beams/samples considered
-            for this function
+            structure with selected beams/samples considered for this function
 
         Parameter ``dB``:
             Output Sv in dB if true, or linear if false (default).
@@ -315,15 +234,13 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    @typing.overload
     def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: 
         """
-        < Geolocation of the transducer with the specified transducer_id. A
+        Get the geolocation of the transducer.
 
-        < Geolocation of the transducer with the specified transducer_id. A
+        Returns:
+            const navigation::datastructures::GeoLocationLatLon&
         """
-    @typing.overload
-    def set_geolocation(self, transducer_id: str, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None: ...
     def set_timestamp(self, timestamp: float) -> None: 
         """
         < Unix timestamp in seconds (saved in UTC0)
