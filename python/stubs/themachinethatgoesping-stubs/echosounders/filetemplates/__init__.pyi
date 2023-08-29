@@ -49,6 +49,23 @@ class I_PingBottom(I_PingCommon):
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def get_two_way_travel_times(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get the two way travel times of the bottom detection samples
+
+        Returns:
+            xt::xtensor<float, 1>
+
+        Get the two way travel times of the bottom detection samples
+
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @staticmethod
+    @typing.overload
+    def get_two_way_travel_times(*args, **kwargs) -> typing.Any: ...
+    @typing.overload
     def get_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1: 
         """
         Get an XYZ object containing the XYZ position of the bottom detection
@@ -60,7 +77,20 @@ class I_PingBottom(I_PingCommon):
 
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
+
+        Get an XYZ object containing the XYZ position of the bottom detection
+        Note: XYZ is in the local coordinate system of the ping! To convert it
+        use algorithms::geoprocessing::georeferencer class or - Use
+        get_xyz_utm() to get the bottom detection in UTM coordinates - Use
+        get_xyz_latlon() to get the bottom detection in Latitude/Longitude
+        coordinates
+
+        Returns:
+            algorithms::geoprocessing::datastructures::XYZ<1>
         """
+    @staticmethod
+    @typing.overload
+    def get_xyz(*args, **kwargs) -> typing.Any: ...
     def has_xyz(self) -> bool: 
         """
         Check this pings supports XYZ data

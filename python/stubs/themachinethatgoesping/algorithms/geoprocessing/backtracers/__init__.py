@@ -35,23 +35,23 @@ class I_Backtracer():
         """
     def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_2: 
         """
-        Backtrace the location of a set of points.
+        Backtrace the location of an image specified by two coordinate vectors
+        x is assumed to be 0
 
-        Parameter ``x``:
-            in m, positive forward
-
-        Parameter ``y``:
+        Parameter ``y_coordinates``:
             in m, positive starboard
 
-        Parameter ``z``:
+        Parameter ``z_coordinates``:
             in m, positive downwards
 
         Parameter ``mp_cores``:
             Number of cores to use for parallelization
 
         Returns:
-            datastructures::SampleDirections
+            datastructures::SampleDirections<2>, shape is
+            (y_coordinates.size(), z_coordinates.size())
         """
+    @typing.overload
     def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_1: 
         """
         Backtrace the location of a set of points.
@@ -70,7 +70,26 @@ class I_Backtracer():
 
         Returns:
             datastructures::SampleDirections
+
+        Backtrace the location of a set of points.
+
+        Parameter ``x``:
+            in m, positive forward
+
+        Parameter ``y``:
+            in m, positive starboard
+
+        Parameter ``z``:
+            in m, positive downwards
+
+        Parameter ``mp_cores``:
+            Number of cores to use for parallelization
+
+        Returns:
+            datastructures::SampleDirections
         """
+    @typing.overload
+    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_1: ...
     def copy(self) -> I_Backtracer: 
         """
         return a copy using the c++ default copy constructor

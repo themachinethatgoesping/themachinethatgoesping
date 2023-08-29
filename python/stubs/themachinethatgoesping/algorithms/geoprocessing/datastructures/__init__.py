@@ -7,6 +7,7 @@ import pybind11_stubgen.typing_ext
 _Shape = typing.Tuple[int, ...]
 
 __all__ = [
+    "BeamSampleParameters",
     "RaytraceResult",
     "RaytraceResults_1",
     "RaytraceResults_2",
@@ -21,6 +22,75 @@ __all__ = [
 ]
 
 
+class BeamSampleParameters():
+    """
+    A structure to store directional parameters of multibeam system.
+    Usefull as input for raytracing water column images.
+    """
+    def __copy__(self) -> BeamSampleParameters: ...
+    def __deepcopy__(self, arg0: dict) -> BeamSampleParameters: ...
+    def __eq__(self, other: BeamSampleParameters) -> bool: ...
+    def __getstate__(self) -> bytes: ...
+    def __hash__(self) -> int: 
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self, number_of_beams: int) -> None: 
+        """
+        Construct a new BeamSampleParameters object (all values uninitialized)
+
+        Parameter ``number_of_beams``:
+            number of beams
+
+        Construct a new BeamSampleParameters object (all values uninitialized)
+
+        Parameter ``number_of_beams``:
+            number of beams
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], first_sample_offset: numpy.ndarray[numpy.float32], sample_interval: numpy.ndarray[numpy.float32], number_of_samples: numpy.ndarray[numpy.uint32]) -> None: ...
+    def __repr__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None: ...
+    def __str__(self) -> str: 
+        """
+        Return object information as string
+        """
+    def copy(self) -> BeamSampleParameters: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSampleParameters: 
+        """
+        create T_CLASS object from bytearray
+        """
+    def get_alongtrack_angles(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_crosstrack_angles(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_first_sample_offset(self) -> numpy.ndarray[numpy.float32]: ...
+    def get_number_of_samples(self) -> numpy.ndarray[numpy.uint32]: ...
+    def get_sample_interval(self) -> numpy.ndarray[numpy.float32]: ...
+    def info_string(self, float_precision: int = 2) -> str: 
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None: 
+        """
+        Print object information
+        """
+    def set_alongtrack_angles(self, alongtrack_angles: numpy.ndarray[numpy.float32]) -> None: ...
+    def set_crosstrack_angles(self, crosstrack_angles: numpy.ndarray[numpy.float32]) -> None: ...
+    def set_first_sample_offset(self, first_sample_offset: numpy.ndarray[numpy.float32]) -> None: ...
+    def set_number_of_samples(self, number_of_samples: numpy.ndarray[numpy.uint32]) -> None: ...
+    def set_sample_interval(self, sample_interval: numpy.ndarray[numpy.float32]) -> None: ...
+    def to_binary(self, resize_buffer: bool = True) -> bytes: 
+        """
+        convert object to bytearray
+        """
+    pass
 class RaytraceResult():
     """
     A structure to store a georeferenced sample location. It is used as
@@ -197,6 +267,9 @@ class XYZ_1():
         """
         create T_CLASS object from bytearray
         """
+    def get_minmax_x(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_y(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_z(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -308,6 +381,9 @@ class XYZ_2():
         """
         create T_CLASS object from bytearray
         """
+    def get_minmax_x(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_y(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_z(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -419,6 +495,9 @@ class XYZ_3():
         """
         create T_CLASS object from bytearray
         """
+    def get_minmax_x(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_y(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
+    def get_minmax_z(self) -> typing.Annotated[typing.List[float], pybind11_stubgen.typing_ext.FixedSize(2)]: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
