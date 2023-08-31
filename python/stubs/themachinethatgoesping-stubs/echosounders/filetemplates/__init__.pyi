@@ -30,7 +30,38 @@ class I_PingCommon():
         """
         return a copy using the c++ default copy constructor
         """
-    def feature_string(self, has_features: bool = True) -> str: ...
+    def feature_string(self, available: bool = True) -> str: 
+        """
+        Get a string of all registered features that are available or not
+        available
+
+        Parameter ``available``:
+            if True (default) return available features, else return not
+            available features
+
+        Returns:
+            std::string
+        """
+    def has_feature(self, feature_name: str) -> bool: 
+        """
+        Check if any of the registered features is available
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
+    def has_features(self) -> bool: 
+        """
+        Check if any of the registered features is available
+
+        Returns:
+            true
+
+        Returns:
+            false
+        """
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -40,6 +71,13 @@ class I_PingCommon():
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
+        """
+    def registered_features(self) -> str: 
+        """
+        Get a string of all registered features for this ping class
+
+        Returns:
+            std::string
         """
     def release(self) -> None: ...
     pass

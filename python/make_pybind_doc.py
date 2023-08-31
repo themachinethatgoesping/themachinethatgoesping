@@ -4,8 +4,17 @@ import os
 import sys
 import subprocess
 
-FORCE_REGENERATE = False #ignore hash
-FORCE_RENEW = False      #delete all docstring folders first
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--regenerate", help="Regenerate all docstrings", action="store_true")
+parser.add_argument("--renew", help="Delete all docstring folders first", action="store_true")
+args = parser.parse_args()
+
+FORCE_REGENERATE = args.regenerate
+FORCE_RENEW = args.renew
+
+# FORCE_RENEW = False
+# FORCE_REGENERATE = False
 
 more_args = []
 if FORCE_REGENERATE: more_args.append("--regenerate")
