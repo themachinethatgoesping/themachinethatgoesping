@@ -22,8 +22,8 @@ __all__ = [
     "Rejected",
     "SampleAmplitudesStructure_int16_t",
     "SeabedImageDataBeam",
-    "WaterColumnDatagramBeam",
-    "WaterColumnDatagramTransmitSector",
+    "WatercolumnDatagramBeam",
+    "WatercolumnDatagramTransmitSector",
     "XYZDatagramBeam",
     "XYZDatagramBeam_t_DetectionType"
 ]
@@ -1032,10 +1032,10 @@ class SeabedImageDataBeam():
     def set_sorting_direction(self, arg0: int) -> None: ...
     __hash__ = None
     pass
-class WaterColumnDatagramBeam():
-    def __copy__(self) -> WaterColumnDatagramBeam: ...
-    def __deepcopy__(self, arg0: dict) -> WaterColumnDatagramBeam: ...
-    def __eq__(self, other: WaterColumnDatagramBeam) -> bool: ...
+class WatercolumnDatagramBeam():
+    def __copy__(self) -> WatercolumnDatagramBeam: ...
+    def __deepcopy__(self, arg0: dict) -> WatercolumnDatagramBeam: ...
+    def __eq__(self, other: WatercolumnDatagramBeam) -> bool: ...
     def __getstate__(self) -> bytes: ...
     def __hash__(self) -> int: 
         """
@@ -1051,12 +1051,12 @@ class WaterColumnDatagramBeam():
         """
         Return object information as string
         """
-    def copy(self) -> WaterColumnDatagramBeam: 
+    def copy(self) -> WatercolumnDatagramBeam: 
         """
         return a copy using the c++ default copy constructor
         """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WaterColumnDatagramBeam: 
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WatercolumnDatagramBeam: 
         """
         create T_CLASS object from bytearray
         """
@@ -1112,10 +1112,10 @@ class WaterColumnDatagramBeam():
         convert object to bytearray
         """
     pass
-class WaterColumnDatagramTransmitSector():
-    def __copy__(self) -> WaterColumnDatagramTransmitSector: ...
-    def __deepcopy__(self, arg0: dict) -> WaterColumnDatagramTransmitSector: ...
-    def __eq__(self, other: WaterColumnDatagramTransmitSector) -> bool: ...
+class WatercolumnDatagramTransmitSector():
+    def __copy__(self) -> WatercolumnDatagramTransmitSector: ...
+    def __deepcopy__(self, arg0: dict) -> WatercolumnDatagramTransmitSector: ...
+    def __eq__(self, other: WatercolumnDatagramTransmitSector) -> bool: ...
     def __init__(self) -> None: ...
     def __repr__(self) -> str: 
         """
@@ -1125,7 +1125,7 @@ class WaterColumnDatagramTransmitSector():
         """
         Return object information as string
         """
-    def copy(self) -> WaterColumnDatagramTransmitSector: 
+    def copy(self) -> WatercolumnDatagramTransmitSector: 
         """
         return a copy using the c++ default copy constructor
         """

@@ -10,7 +10,8 @@ _Shape = typing.Tuple[int, ...]
 __all__ = [
     "I_Ping",
     "I_PingBottom",
-    "I_PingCommon"
+    "I_PingCommon",
+    "I_PingWatercolumn"
 ]
 
 
@@ -34,10 +35,13 @@ class I_PingCommon():
         """
         Return object information as string
         """
+    def load(self) -> None: ...
+    def loaded(self) -> bool: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
+    def release(self) -> None: ...
     pass
 class I_PingBottom(I_PingCommon):
     """
@@ -117,15 +121,6 @@ class I_Ping(I_PingCommon):
         """
         return a copy using the c++ default copy constructor
         """
-    def get_angle(self) -> numpy.ndarray[numpy.float32]: 
-        """
-        Compute the launch angle of the (single) target within each sample. If
-        you see this comment, this function was not implemented for the
-        current ping type.
-
-        Returns:
-            xt::xtensor<float, 2>
-        """
     @typing.overload
     def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]: 
         """
@@ -204,54 +199,12 @@ class I_Ping(I_PingCommon):
     @staticmethod
     @typing.overload
     def get_number_of_samples_per_beam(*args, **kwargs) -> typing.Any: ...
-    @typing.overload
-    def get_sv(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
-        """
-        Compute volume backscattering. If you see this comment, this function
-        was not implemented for the current ping type.
-
-        Parameter ``dB``:
-            Output Sv in dB if true, or linear if false (default).
-
-        Returns:
-            xt::xtensor<float, 2>
-
-        Compute volume backscattering. If you see this comment, this function
-        was not implemented for the current ping type.
-
-        Parameter ``selection``:
-            structure with selected beams/samples considered for this function
-
-        Parameter ``dB``:
-            Output Sv in dB if true, or linear if false (default).
-
-        Returns:
-            xt::xtensor<float, 1>
-        """
-    @staticmethod
-    @typing.overload
-    def get_sv(*args, **kwargs) -> typing.Any: ...
-    def get_sv_stacked(self, dB: bool = False) -> numpy.ndarray[numpy.float32]: 
-        """
-        Compute stacked volume backscattering (sum over all beams). If you see
-        this comment, this function was not implemented for the current ping
-        type.
-
-        Parameter ``selection``:
-            structure with selected beams/samples considered for this function
-
-        Parameter ``dB``:
-            Output Sv in dB if true, or linear if false (default).
-
-        Returns:
-            xt::xtensor<float, 1>
-        """
     def get_timestamp(self) -> float: 
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
-    def has_angle(self) -> bool: ...
-    def has_sv(self) -> bool: ...
+    def has_bottom(self) -> bool: ...
+    def has_watercolumn(self) -> bool: ...
     def info_string(self, float_precision: int = 2) -> str: 
         """
         Return object information as string
@@ -279,5 +232,47 @@ class I_Ping(I_PingCommon):
     def bottom(self) -> I_PingBottom:
         """
         :type: I_PingBottom
+        """
+    @property
+    def watercolumn(self) -> I_PingWatercolumn:
+        """
+        :type: I_PingWatercolumn
+        """
+    pass
+class I_PingWatercolumn(I_PingCommon):
+    """
+    Interface for all ping watercolumn functions
+    """
+    def __copy__(self) -> I_PingWatercolumn: ...
+    def __deepcopy__(self, arg0: dict) -> I_PingWatercolumn: ...
+    def copy(self) -> I_PingWatercolumn: 
+        """
+        return a copy using the c++ default copy constructor
+        """
+    @typing.overload
+    def get_amplitudes(self) -> numpy.ndarray[numpy.float32]: 
+        """
+        Get tha raw water amplitude data converted to float(32bit)
+
+        Returns:
+            xt::xtensor<float,2>
+
+        Get tha raw water amplitude data converted to float(32bit)
+
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @staticmethod
+    @typing.overload
+    def get_amplitudes(*args, **kwargs) -> typing.Any: ...
+    def has_amplitudes(self) -> bool: 
+        """
+        Check this pings supports AMPLITUDES data
+
+        Returns:
+            true
+
+        Returns:
+            false
         """
     pass

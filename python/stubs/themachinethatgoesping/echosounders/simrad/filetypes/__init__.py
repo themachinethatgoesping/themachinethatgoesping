@@ -46,12 +46,11 @@ class SimradPingRawData():
         """
         Return object information as string
         """
-    def load_data(self) -> None: ...
+    def load(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
-    def release_data(self) -> None: ...
     @property
     def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
         """
@@ -84,12 +83,11 @@ class SimradPingRawData_mapped():
         """
         Return object information as string
         """
-    def load_data(self) -> None: ...
+    def load(self) -> None: ...
     def print(self, float_precision: int = 2) -> None: 
         """
         Print object information
         """
-    def release_data(self) -> None: ...
     @property
     def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
         """
