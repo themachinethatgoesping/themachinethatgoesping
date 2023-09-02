@@ -2542,6 +2542,26 @@ class RawRangeAndAngle(EM3000Datagram):
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> ...:
+        """
+        Read the beam pointing angles from the RawRangeAndAngle structure
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self, beam_numbers: list[int]) -> ...:
+        """
+        Read the two way travel times for given beam_number vector from the
+        RawRangeAndAngle structure Note: if a beam number is not found, the
+        corresponding time value will be NaN
+        
+        Parameter ``beam_numbers``:
+            $Returns:
+        
+        xt::xtensor<float, 1>
+        """
     def get_beams(self) -> list[substructures.RawRangeAndAngleBeam]:
         ...
     def get_checksum(self) -> int:
@@ -2583,6 +2603,26 @@ class RawRangeAndAngle(EM3000Datagram):
         ...
     def get_transmit_sectors(self) -> list[substructures.RawRangeAndAngleTransmitSector]:
         ...
+    @typing.overload
+    def get_two_way_travel_times(self) -> ...:
+        """
+        Read the two way travel times from the RawRangeAndAngle structure
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_two_way_travel_times(self, beam_numbers: list[int]) -> ...:
+        """
+        Read the two way travel times for given beam_number vector from the
+        RawRangeAndAngle structure Note: if a beam number is not found, the
+        corresponding time value will be NaN
+        
+        Parameter ``beam_numbers``:
+            $Returns:
+        
+        xt::xtensor<float, 1>
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
