@@ -27,7 +27,7 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using slow_hash
         """
-    def __init__(self, sensor_location: ..., sound_velocity: float) -> None:
+    def __init__(self, sensor_location: ...) -> None:
         """
         Construct a new BTConstantSVP object
         
@@ -95,7 +95,7 @@ class I_Backtracer:
         """
         Return object information as string
         """
-    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_2:
+    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2:
         """
         Backtrace the location of an image specified by two coordinate vectors
         x is assumed to be 0
@@ -110,11 +110,11 @@ class I_Backtracer:
             Number of cores to use for parallelization
         
         Returns:
-            datastructures::SampleDirections<2>, shape is
+            datastructures::SampleDirectionsRange<2>, shape is
             (y_coordinates.size(), z_coordinates.size())
         """
     @typing.overload
-    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_1:
+    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -131,10 +131,10 @@ class I_Backtracer:
             Number of cores to use for parallelization
         
         Returns:
-            datastructures::SampleDirections
+            datastructures::SampleDirectionsRange
         """
     @typing.overload
-    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirections_1:
+    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -151,7 +151,7 @@ class I_Backtracer:
             Number of cores to use for parallelization
         
         Returns:
-            datastructures::SampleDirections
+            datastructures::SampleDirectionsRange
         """
     def copy(self) -> I_Backtracer:
         """

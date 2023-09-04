@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['BeamSampleParameters', 'RaytraceResult', 'RaytraceResults_1', 'RaytraceResults_2', 'RaytraceResults_3', 'SampleDirections_1', 'SampleDirections_2', 'SampleDirections_3', 'SampleIndices', 'XYZ_1', 'XYZ_2', 'XYZ_3']
+__all__ = ['BeamSampleParameters', 'RaytraceResult', 'RaytraceResults_1', 'RaytraceResults_2', 'RaytraceResults_3', 'SampleDirectionsRange_1', 'SampleDirectionsRange_2', 'SampleDirectionsRange_3', 'SampleDirectionsTime_1', 'SampleDirectionsTime_2', 'SampleDirectionsTime_3', 'SampleDirections_1', 'SampleDirections_2', 'SampleDirections_3', 'SampleIndices', 'XYZ_1', 'XYZ_2', 'XYZ_3']
 class BeamSampleParameters:
     """
     A structure to store directional parameters of multibeam system.
@@ -459,10 +459,568 @@ class RaytraceResults_3(XYZ_3):
     @true_range.setter
     def true_range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         ...
+class SampleDirectionsRange_1(SampleDirections_1):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsRange_1:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsRange_1:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsRange_1:
+        ...
+    def __eq__(self, other: SampleDirectionsRange_1) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_1, range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``range``:
+            in m, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsRange object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``range``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsRange_1:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path time
+        """
+    @range.setter
+    def range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
+class SampleDirectionsRange_2(SampleDirections_2):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsRange_2:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsRange_2:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsRange_2:
+        ...
+    def __eq__(self, other: SampleDirectionsRange_2) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_2, range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``range``:
+            in m, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsRange object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``range``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsRange_2:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path time
+        """
+    @range.setter
+    def range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
+class SampleDirectionsRange_3(SampleDirections_3):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsRange_3:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsRange_3:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsRange_3:
+        ...
+    def __eq__(self, other: SampleDirectionsRange_3) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_3, range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``range``:
+            in m, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], range: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsRange object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``range``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsRange_3:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def range(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in m, accumulated ray path time
+        """
+    @range.setter
+    def range(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
+class SampleDirectionsTime_1(SampleDirections_1):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsTime_1:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsTime_1:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsTime_1:
+        ...
+    def __eq__(self, other: SampleDirectionsTime_1) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_1, two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``two_way_travel_time``:
+            in s, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsTime object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsTime_1:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in s, accumulated ray path time
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
+class SampleDirectionsTime_2(SampleDirections_2):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsTime_2:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsTime_2:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsTime_2:
+        ...
+    def __eq__(self, other: SampleDirectionsTime_2) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_2, two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``two_way_travel_time``:
+            in s, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsTime object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsTime_2:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in s, accumulated ray path time
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
+class SampleDirectionsTime_3(SampleDirections_3):
+    """
+    A structure to store beamsample directions (along angle, across angle
+    and range).
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirectionsTime_3:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> SampleDirectionsTime_3:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SampleDirectionsTime_3:
+        ...
+    def __eq__(self, other: SampleDirectionsTime_3) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Construct a new SampleDirections object (all values set to 0)
+        """
+    @typing.overload
+    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+        """
+        Construct a new SampleDirections object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    @typing.overload
+    def __init__(self, sample_directions: SampleDirections_3, two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirections object (from a SampleDirections
+        object)
+        
+        Parameter ``two_way_travel_time``:
+            in s, accumulated ray path time
+        """
+    @typing.overload
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+        """
+        Construct a new SampleDirectionsTime object
+        
+        Parameter ``alongtrack_angle``:
+            in °, positive bow up, 0 == downwards
+        
+        Parameter ``crosstrack_angle``:
+            in °, positive starboard up, 0 == downwards
+        
+        Parameter ``two_way_travel_time``:
+            in m, accumulated ray path length
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SampleDirectionsTime_3:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
+        """
+        < in s, accumulated ray path time
+        """
+    @two_way_travel_time.setter
+    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+        ...
 class SampleDirections_1:
     """
-    A structure to store beamsample directsion (along angle, across angle
-    and range).
+    A structure to store beamsample directions (along angle, across
+    angle).
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirections_1:
@@ -496,7 +1054,7 @@ class SampleDirections_1:
             shape of the internal tensors
         """
     @typing.overload
-    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32]) -> None:
         """
         Construct a new SampleDirections object
         
@@ -505,9 +1063,6 @@ class SampleDirections_1:
         
         Parameter ``crosstrack_angle``:
             in °, positive starboard up, 0 == downwards
-        
-        Parameter ``two_way_travel_time``:
-            in m, accumulated ray path length
         """
     def __repr__(self) -> str:
         """
@@ -518,6 +1073,10 @@ class SampleDirections_1:
     def __str__(self) -> str:
         """
         Return object information as string
+        """
+    def check_shape(self) -> None:
+        """
+        check if the internal variables have the same shape
         """
     def copy(self) -> SampleDirections_1:
         """
@@ -531,6 +1090,8 @@ class SampleDirections_1:
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]:
+        ...
     def size(self) -> int:
         ...
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
@@ -553,18 +1114,10 @@ class SampleDirections_1:
     @crosstrack_angle.setter
     def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         ...
-    @property
-    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-        """
-    @two_way_travel_time.setter
-    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        ...
 class SampleDirections_2:
     """
-    A structure to store beamsample directsion (along angle, across angle
-    and range).
+    A structure to store beamsample directions (along angle, across
+    angle).
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirections_2:
@@ -598,7 +1151,7 @@ class SampleDirections_2:
             shape of the internal tensors
         """
     @typing.overload
-    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32]) -> None:
         """
         Construct a new SampleDirections object
         
@@ -607,9 +1160,6 @@ class SampleDirections_2:
         
         Parameter ``crosstrack_angle``:
             in °, positive starboard up, 0 == downwards
-        
-        Parameter ``two_way_travel_time``:
-            in m, accumulated ray path length
         """
     def __repr__(self) -> str:
         """
@@ -620,6 +1170,10 @@ class SampleDirections_2:
     def __str__(self) -> str:
         """
         Return object information as string
+        """
+    def check_shape(self) -> None:
+        """
+        check if the internal variables have the same shape
         """
     def copy(self) -> SampleDirections_2:
         """
@@ -633,6 +1187,8 @@ class SampleDirections_2:
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        ...
     def size(self) -> int:
         ...
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
@@ -655,18 +1211,10 @@ class SampleDirections_2:
     @crosstrack_angle.setter
     def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         ...
-    @property
-    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-        """
-    @two_way_travel_time.setter
-    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        ...
 class SampleDirections_3:
     """
-    A structure to store beamsample directsion (along angle, across angle
-    and range).
+    A structure to store beamsample directions (along angle, across
+    angle).
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SampleDirections_3:
@@ -700,7 +1248,7 @@ class SampleDirections_3:
             shape of the internal tensors
         """
     @typing.overload
-    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32], two_way_travel_time: numpy.ndarray[numpy.float32]) -> None:
+    def __init__(self, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angle: numpy.ndarray[numpy.float32]) -> None:
         """
         Construct a new SampleDirections object
         
@@ -709,9 +1257,6 @@ class SampleDirections_3:
         
         Parameter ``crosstrack_angle``:
             in °, positive starboard up, 0 == downwards
-        
-        Parameter ``two_way_travel_time``:
-            in m, accumulated ray path length
         """
     def __repr__(self) -> str:
         """
@@ -722,6 +1267,10 @@ class SampleDirections_3:
     def __str__(self) -> str:
         """
         Return object information as string
+        """
+    def check_shape(self) -> None:
+        """
+        check if the internal variables have the same shape
         """
     def copy(self) -> SampleDirections_3:
         """
@@ -735,6 +1284,8 @@ class SampleDirections_3:
         """
         Print object information
         """
+    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+        ...
     def size(self) -> int:
         ...
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
@@ -756,14 +1307,6 @@ class SampleDirections_3:
         """
     @crosstrack_angle.setter
     def crosstrack_angle(self, arg0: numpy.ndarray[numpy.float32]) -> None:
-        ...
-    @property
-    def two_way_travel_time(self) -> numpy.ndarray[numpy.float32]:
-        """
-        < in m, accumulated ray path length
-        """
-    @two_way_travel_time.setter
-    def two_way_travel_time(self, arg0: numpy.ndarray[numpy.float32]) -> None:
         ...
 class SampleIndices:
     """

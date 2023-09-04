@@ -299,6 +299,22 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             pingtools::BeamSampleSelection
         """
+    @typing.overload
+    def get_bottom_range_samples(self) -> numpy.ndarray[numpy.uint16]:
+        """
+        Get the sample number of the bottom detection for each beam
+        
+        Returns:
+            xt::xtensor<uint16_t, 1>
+        """
+    @typing.overload
+    def get_bottom_range_samples(self, beam_selection: ...) -> numpy.ndarray[numpy.uint16]:
+        """
+        Get the sample number of the bottom detection for each beam
+        
+        Returns:
+            xt::xtensor<uint16_t, 1>
+        """
     def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint16]:
         ...
     def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]:
@@ -306,6 +322,16 @@ class I_PingWatercolumn(I_PingCommon):
     def has_amplitudes(self) -> bool:
         """
         Check this pings supports AMPLITUDES data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_bottom_range_samples(self) -> bool:
+        """
+        Check this pings supports bottom range samples
         
         Returns:
             true
