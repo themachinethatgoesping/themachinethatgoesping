@@ -91,6 +91,36 @@ class I_PingBottom(I_PingCommon):
         return a copy using the c++ default copy constructor
         """
     @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam pointing angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam pointing angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    def get_beam_selection_all(self) -> ...:
+        """
+        Get a beam selection object that selects all beams
+        
+        Returns:
+            pingtools::BeamSelection
+        """
+    def get_number_of_beams(self) -> int:
+        """
+        Get the number of beams for this ping
+        
+        Returns:
+            uint16_t
+        """
+    @typing.overload
     def get_two_way_travel_times(self) -> numpy.ndarray[numpy.float32]:
         """
         Get the two way travel times of the bottom detection samples
@@ -193,36 +223,6 @@ class I_PingCommon:
         Returns:
             std::string
         """
-    @typing.overload
-    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]:
-        """
-        Get the beam pointing angles for this ping in °
-        
-        Returns:
-            xt::xtensor<float, 1>
-        """
-    @typing.overload
-    def get_beam_pointing_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
-        """
-        Get the beam pointing angles for this ping in °
-        
-        Returns:
-            xt::xtensor<float, 1>
-        """
-    def get_beam_selection_all(self) -> ...:
-        """
-        Get a beam selection object that selects all beams
-        
-        Returns:
-            pingtools::BeamSelection
-        """
-    def get_number_of_beams(self) -> int:
-        """
-        Get the number of beams for this ping
-        
-        Returns:
-            uint16_t
-        """
     def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
@@ -292,12 +292,35 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<float,2>
         """
+    @typing.overload
+    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam pointing angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_beam_pointing_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam pointing angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
     def get_beam_sample_selection_all(self) -> ...:
         """
         Get beam sample selection that selects all beams and samples
         
         Returns:
             pingtools::BeamSampleSelection
+        """
+    def get_beam_selection_all(self) -> ...:
+        """
+        Get a beam selection object that selects all beams
+        
+        Returns:
+            pingtools::BeamSelection
         """
     @typing.overload
     def get_bottom_range_samples(self) -> numpy.ndarray[numpy.uint16]:
@@ -317,6 +340,13 @@ class I_PingWatercolumn(I_PingCommon):
         """
     def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint16]:
         ...
+    def get_number_of_beams(self) -> int:
+        """
+        Get the number of beams for this ping
+        
+        Returns:
+            uint16_t
+        """
     def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]:
         ...
     def has_amplitudes(self) -> bool:
