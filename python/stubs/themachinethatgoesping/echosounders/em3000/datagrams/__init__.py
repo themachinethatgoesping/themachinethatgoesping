@@ -2232,6 +2232,8 @@ class PositionDatagram(EM3000Datagram):
         Returns:
             _heading * 0.01° (float)
         """
+    def get_input_datagram(self) -> str:
+        ...
     def get_latitude(self) -> int:
         """
         < latitude in 0.00000005° negative if southern hemishpere
@@ -2339,6 +2341,8 @@ class PositionDatagram(EM3000Datagram):
         """
         < in 0.01°
         """
+    def set_input_datagram(self, arg0: str) -> None:
+        ...
     def set_latitude(self, arg0: int) -> None:
         """
         < latitude in 0.00000005° negative if southern hemishpere

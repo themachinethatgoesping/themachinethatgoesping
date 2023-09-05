@@ -27,7 +27,7 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using slow_hash
         """
-    def __init__(self, sensor_location: ...) -> None:
+    def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
         """
         Construct a new BTConstantSVP object
         
@@ -83,7 +83,7 @@ class I_Backtracer:
         """
         hash function implemented using slow_hash
         """
-    def __init__(self, sensor_location: ..., backtracer_name: str) -> None:
+    def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float, backtracer_name: str) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -161,6 +161,10 @@ class I_Backtracer:
         ...
     def get_sensor_orientation_quat_ypr(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
         ...
+    def get_sensor_x(self) -> float:
+        ...
+    def get_sensor_y(self) -> float:
+        ...
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -169,7 +173,7 @@ class I_Backtracer:
         """
         Print object information
         """
-    def set_sensor_location(self, sensor_location: ...) -> None:
+    def set_sensor_location(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
         ...
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

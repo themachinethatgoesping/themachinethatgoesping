@@ -4,6 +4,7 @@ Trampoline classes for abstract file template classes
 from __future__ import annotations
 import numpy
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
+import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
 __all__ = ['I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingWatercolumn']
@@ -34,13 +35,17 @@ class I_Ping(I_PingCommon):
         ...
     def get_file_path(self) -> str:
         ...
-    def get_geolocation(self) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+    def get_geolocation(self, target_id: str = ...) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         """
         Get the geolocation of the transducer.
         
         Returns:
             const navigation::datastructures::GeoLocationLatLon&
         """
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
+        ...
+    def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
+        ...
     def get_timestamp(self) -> float:
         """
         < Unix timestamp in seconds (saved in UTC0)
@@ -61,13 +66,10 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    def set_geolocation(self, geolocation_latlon: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon) -> None:
-        """
-        Get the geolocation of the transducer.
-        
-        Returns:
-            const navigation::datastructures::GeoLocationLatLon&
-        """
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
+        ...
+    def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensorDataLatLon) -> None:
+        ...
     def set_timestamp(self, timestamp: float) -> None:
         """
         < Unix timestamp in seconds (saved in UTC0)

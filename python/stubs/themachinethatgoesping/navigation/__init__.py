@@ -776,6 +776,14 @@ class SensorConfiguration:
             const std::unordered_map<std::string,
             datastructures::PositionalOffsets>&
         """
+    def get_waterline_offset(self) -> float:
+        """
+        Get the waterline offset Negative waterline offset means that z=0 is
+        below the waterline
+        
+        Returns:
+            waterline_offset
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -881,6 +889,13 @@ class SensorConfiguration:
         Parameter ``sensor_offsets``:
             offsets structure (only x, y and z are used)
         """
+    def set_waterline_offset(self, z: float) -> None:
+        """
+        Set the waterline offset Negative waterline offset means that z=0 is
+        below the waterline
+        
+        Parameter ``waterline_offset``:
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -899,4 +914,4 @@ class ostream_redirect:
         ...
     def __init__(self, stdout: bool = ..., stderr: bool = ...) -> None:
         ...
-__version__: str = '0.11.0'
+__version__: str = '0.12.0'
