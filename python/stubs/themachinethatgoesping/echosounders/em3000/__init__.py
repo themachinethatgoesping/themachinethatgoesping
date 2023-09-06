@@ -8,21 +8,21 @@ from . import datagrams
 from . import filedatacontainers
 from . import filedatainterfaces
 from . import filetypes
-__all__ = ['AttitudeDatagram', 'AttitudeVelocitySensor1', 'AttitudeVelocitySensor2', 'ClockDatagram', 'DepthOrHeightDatagram', 'DualHead', 'DualTXDualRX', 'EM3000Datagram_type_from_string', 'ExtraDetections', 'ExtraParameters', 'FileEM3000', 'FileEM3000_mapped', 'HeadingDatagram', 'InstallationParametersStart', 'InstallationParametersStop', 'Modular', 'MotionSensor1', 'MotionSensor2', 'MultiCast1', 'MultiCast2', 'MultiCast3', 'NetworkAttitudeVelocityDatagram', 'NotSet', 'PUIDOutput', 'PUStatusOutput', 'PortableSingleHead', 'PositionDatagram', 'PositionSystem1', 'PositionSystem2', 'PositionSystem3', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SingleHead', 'SingleTXDualRX', 'SingleTXSingleRX', 'SoundSpeedProfileDatagram', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_EM3000ActiveSensor', 't_EM3000DatagramIdentifier', 't_EM3000SystemTransducerConfiguration', 'unspecified']
+__all__ = ['AttitudeDatagram', 'AttitudeVelocitySensor1', 'AttitudeVelocitySensor2', 'ClockDatagram', 'DepthOrHeightDatagram', 'DualHead', 'DualTXDualRX', 'EM3000Datagram_type_from_string', 'ExtraDetections', 'ExtraParameters', 'FileEM3000', 'FileEM3000_FileInfoData', 'FileEM3000_mapped', 'FileEM3000_mapped_FileInfoData', 'HeadingDatagram', 'InstallationParametersStart', 'InstallationParametersStop', 'Modular', 'MotionSensor1', 'MotionSensor2', 'MultiCast1', 'MultiCast2', 'MultiCast3', 'NetworkAttitudeVelocityDatagram', 'NotSet', 'PUIDOutput', 'PUStatusOutput', 'PortableSingleHead', 'PositionDatagram', 'PositionSystem1', 'PositionSystem2', 'PositionSystem3', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SingleHead', 'SingleTXDualRX', 'SingleTXSingleRX', 'SoundSpeedProfileDatagram', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_EM3000ActiveSensor', 't_EM3000DatagramIdentifier', 't_EM3000SystemTransducerConfiguration', 'unspecified']
 class FileEM3000:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileEM3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileEM3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, FileEM3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, FileEM3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -33,6 +33,8 @@ class FileEM3000:
         Return object information as string
         """
     def channel_ids(self) -> list[str]:
+        ...
+    def get_cached_file_index(self) -> dict[str, FileEM3000_FileInfoData]:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -78,20 +80,78 @@ class FileEM3000:
     @property
     def ping_interface(self) -> filedatainterfaces.EM3000PingDataInterface:
         ...
+class FileEM3000_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileEM3000_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileEM3000_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileEM3000_FileInfoData:
+        ...
+    def __eq__(self, other: FileEM3000_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileEM3000_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
+        ...
 class FileEM3000_mapped:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileEM3000_mapped_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileEM3000_mapped_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, FileEM3000_mapped_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, FileEM3000_mapped_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -102,6 +162,8 @@ class FileEM3000_mapped:
         Return object information as string
         """
     def channel_ids(self) -> list[str]:
+        ...
+    def get_cached_file_index(self) -> dict[str, FileEM3000_mapped_FileInfoData]:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -146,6 +208,64 @@ class FileEM3000_mapped:
         ...
     @property
     def ping_interface(self) -> filedatainterfaces.EM3000PingDataInterface_mapped:
+        ...
+class FileEM3000_mapped_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileEM3000_mapped_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileEM3000_mapped_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileEM3000_mapped_FileInfoData:
+        ...
+    def __eq__(self, other: FileEM3000_mapped_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileEM3000_mapped_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
         ...
 class t_EM3000ActiveSensor:
     """

@@ -8,21 +8,21 @@ from . import datagrams
 from . import filedatacontainers
 from . import filedatainterfaces
 from . import filetypes
-__all__ = ['FIL1', 'FileSimradRaw', 'FileSimradRaw_mapped', 'MRU0', 'NME0', 'RAW3', 'SimradDatagram_type_from_string', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_SimradDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
+__all__ = ['FIL1', 'FileSimradRaw', 'FileSimradRaw_FileInfoData', 'FileSimradRaw_mapped', 'FileSimradRaw_mapped_FileInfoData', 'MRU0', 'NME0', 'RAW3', 'SimradDatagram_type_from_string', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_SimradDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
 class FileSimradRaw:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileSimradRaw_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileSimradRaw_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, FileSimradRaw_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, FileSimradRaw_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -33,6 +33,8 @@ class FileSimradRaw:
         Return object information as string
         """
     def channel_ids(self) -> list[str]:
+        ...
+    def get_cached_file_index(self) -> dict[str, FileSimradRaw_FileInfoData]:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -78,20 +80,78 @@ class FileSimradRaw:
     @property
     def ping_interface(self) -> filedatainterfaces.SimradPingDataInterface:
         ...
+class FileSimradRaw_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileSimradRaw_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileSimradRaw_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileSimradRaw_FileInfoData:
+        ...
+    def __eq__(self, other: FileSimradRaw_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileSimradRaw_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
+        ...
 class FileSimradRaw_mapped:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileSimradRaw_mapped_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, FileSimradRaw_mapped_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, FileSimradRaw_mapped_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, FileSimradRaw_mapped_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -102,6 +162,8 @@ class FileSimradRaw_mapped:
         Return object information as string
         """
     def channel_ids(self) -> list[str]:
+        ...
+    def get_cached_file_index(self) -> dict[str, FileSimradRaw_mapped_FileInfoData]:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -146,6 +208,64 @@ class FileSimradRaw_mapped:
         ...
     @property
     def ping_interface(self) -> filedatainterfaces.SimradPingDataInterface_mapped:
+        ...
+class FileSimradRaw_mapped_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileSimradRaw_mapped_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileSimradRaw_mapped_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileSimradRaw_mapped_FileInfoData:
+        ...
+    def __eq__(self, other: FileSimradRaw_mapped_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileSimradRaw_mapped_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
         ...
 class t_SimradDatagramIdentifier:
     """
