@@ -8,7 +8,7 @@ import themachinethatgoesping.echosounders.em3000.datagrams
 import themachinethatgoesping.echosounders.filetemplates
 import themachinethatgoesping.echosounders.pingtools
 import typing
-__all__ = ['EM3000Ping', 'EM3000PingBottom', 'EM3000PingBottom_mapped', 'EM3000PingCommon', 'EM3000PingCommon_mapped', 'EM3000PingRawData', 'EM3000PingRawData_mapped', 'EM3000PingWatercolumn', 'EM3000PingWatercolumn_mapped', 'EM3000Ping_mapped']
+__all__ = ['EM3000Ping', 'EM3000PingBottom', 'EM3000PingBottom_mapped', 'EM3000PingCommon', 'EM3000PingCommon_mapped', 'EM3000PingRawData', 'EM3000PingRawData_mapped', 'EM3000PingWatercolumn', 'EM3000PingWatercolumn_mapped', 'EM3000Ping_mapped', 'FileInfoData_em3000_FileInfoData']
 class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM3000PingCommon):
     """
     """
@@ -303,3 +303,61 @@ class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping
         """
         return a copy using the c++ default copy constructor
         """
+class FileInfoData_em3000_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileInfoData_em3000_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileInfoData_em3000_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileInfoData_em3000_FileInfoData:
+        ...
+    def __eq__(self, other: FileInfoData_em3000_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileInfoData_em3000_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
+        ...

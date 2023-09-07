@@ -7,7 +7,65 @@ import themachinethatgoesping.echosounders.simrad.datagrams
 import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes
 import typing
-__all__ = ['SimradPing', 'SimradPingRawData', 'SimradPingRawData_mapped', 'SimradPing_mapped']
+__all__ = ['FileInfoData_simrad_FileInfoData', 'SimradPing', 'SimradPingRawData', 'SimradPingRawData_mapped', 'SimradPing_mapped']
+class FileInfoData_simrad_FileInfoData:
+    """
+    """
+    file_path: str
+    file_size: int
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileInfoData_simrad_FileInfoData:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileInfoData_simrad_FileInfoData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileInfoData_simrad_FileInfoData:
+        ...
+    def __eq__(self, other: FileInfoData_simrad_FileInfoData) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def __init__(self) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileInfoData_simrad_FileInfoData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def info_string(self, float_precision: int = ...) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = ...) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def datagram_infos(self) -> list[...]:
+        """
+        < all datagrams
+        """
+    @datagram_infos.setter
+    def datagram_infos(self, arg0: list[...]) -> None:
+        ...
 class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
     """
     """
