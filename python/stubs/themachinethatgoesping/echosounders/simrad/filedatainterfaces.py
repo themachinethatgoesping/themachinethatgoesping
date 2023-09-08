@@ -1121,19 +1121,23 @@ class SimradNavigationDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
     def channel_ids(self) -> list[str]:
+        ...
+    @typing.overload
+    def channel_ids(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> list[str]:
         ...
     def configuration_data_interface(self) -> SimradConfigurationDataInterface:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_geolocation(self, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+    def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         ...
-    def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
-    def get_sensor_data(self, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
+    def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -1184,8 +1188,6 @@ class SimradNavigationDataInterface:
     def set_max_gga_quality(self, max_gga_quality: int) -> None:
         ...
     def set_min_gga_quality(self, min_gga_quality: int) -> None:
-        ...
-    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
@@ -1396,19 +1398,23 @@ class SimradNavigationDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
     def channel_ids(self) -> list[str]:
+        ...
+    @typing.overload
+    def channel_ids(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> list[str]:
         ...
     def configuration_data_interface(self) -> SimradConfigurationDataInterface_mapped:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_geolocation(self, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+    def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         ...
-    def get_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
-    def get_sensor_data(self, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
+    def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -1459,8 +1465,6 @@ class SimradNavigationDataInterface_mapped:
     def set_max_gga_quality(self, max_gga_quality: int) -> None:
         ...
     def set_min_gga_quality(self, min_gga_quality: int) -> None:
-        ...
-    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
