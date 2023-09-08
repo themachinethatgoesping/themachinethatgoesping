@@ -44,7 +44,7 @@ class NavigationInterpolatorLatLon:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
         """
@@ -140,6 +140,10 @@ class NavigationInterpolatorLatLon:
             data structure that contains the sensor data interpolated for the
             given timestamp stamp
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -220,6 +224,10 @@ class NavigationInterpolatorLatLon:
         """
     def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -310,7 +318,7 @@ class NavigationInterpolatorLocal:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
         """
@@ -406,6 +414,10 @@ class NavigationInterpolatorLocal:
             data structure that contains the sensor data interpolated for the
             given timestamp stamp
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -486,6 +498,10 @@ class NavigationInterpolatorLocal:
         """
     def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -573,7 +589,7 @@ class SensorConfiguration:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, default_sensor_name: str = ...) -> None:
         """
@@ -784,6 +800,10 @@ class SensorConfiguration:
         Returns:
             waterline_offset
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -895,6 +915,10 @@ class SensorConfiguration:
         below the waterline
         
         Parameter ``waterline_offset``:
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

@@ -49,7 +49,7 @@ class AkimaInterpolator:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
         """
@@ -133,6 +133,10 @@ class AkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -176,6 +180,10 @@ class AkimaInterpolator:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -223,7 +231,7 @@ class LinearInterpolator:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
         """
@@ -307,6 +315,10 @@ class LinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -350,6 +362,10 @@ class LinearInterpolator:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -397,7 +413,7 @@ class NearestInterpolator:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
         """
@@ -481,6 +497,10 @@ class NearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -524,6 +544,10 @@ class NearestInterpolator:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -582,7 +606,7 @@ class SlerpInterpolator:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, X: list[float] = ..., Yaw: list[float] = ..., Pitch: list[float] = ..., Roll: list[float] = ..., input_in_degrees: bool = ..., extrapolation_mode: t_extr_mode = ...) -> None:
         """
@@ -728,6 +752,10 @@ class SlerpInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -830,6 +858,10 @@ class SlerpInterpolator:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

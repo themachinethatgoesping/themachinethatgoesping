@@ -29,7 +29,7 @@ class FIL1(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -67,6 +67,10 @@ class FIL1(SimradDatagram):
         """
         < Filter stage number
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -95,6 +99,10 @@ class FIL1(SimradDatagram):
         """
         < Filter stage number
         """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -121,7 +129,7 @@ class MRU0(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -155,6 +163,10 @@ class MRU0(SimradDatagram):
         """
         < Roll in degrees, positive port up
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -178,6 +190,10 @@ class MRU0(SimradDatagram):
     def set_roll(self, arg0: float) -> None:
         """
         < Roll in degrees, positive port up
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -203,7 +219,7 @@ class NME0(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -241,6 +257,10 @@ class NME0(SimradDatagram):
         ...
     def get_sentence_type(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -254,6 +274,10 @@ class NME0(SimradDatagram):
     def set_nmea_base(self, arg0: themachinethatgoesping.navigation.nmea_0183.NMEA_Base) -> None:
         """
         < Raw NMEA sentence
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -280,7 +304,7 @@ class RAW3(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -332,6 +356,10 @@ class RAW3(SimradDatagram):
         """
         < Spare 2
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -377,6 +405,10 @@ class RAW3(SimradDatagram):
         """
         < Spare 2
         """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -399,7 +431,7 @@ class SimradDatagram:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -444,6 +476,10 @@ class SimradDatagram:
         unix timestamp in seconds since epoch (1970-01-01). Data is converted
         to/from internal windows high/low timestamp representation.
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -472,6 +508,10 @@ class SimradDatagram:
         """
     def set_timestamp(self, arg0: float) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -494,7 +534,7 @@ class SimradUnknown(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -516,6 +556,10 @@ class SimradUnknown(SimradDatagram):
         """
         < raw content of the datagram as byte string;
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -527,6 +571,10 @@ class SimradUnknown(SimradDatagram):
     def set_raw_content(self, arg0: bytes) -> None:
         """
         < raw content of the datagram as byte string;
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -554,7 +602,7 @@ class TAG0(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -576,6 +624,10 @@ class TAG0(SimradDatagram):
         """
         < _text annotation string (e.g. interesting fish shoal in echogram)
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -587,6 +639,10 @@ class TAG0(SimradDatagram):
     def set_text(self, arg0: str) -> None:
         """
         < _text annotation string (e.g. interesting fish shoal in echogram)
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -614,7 +670,7 @@ class XML0(SimradDatagram):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -644,6 +700,10 @@ class XML0(SimradDatagram):
     @typing.overload
     def get_xml_datagram_type(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -658,6 +718,10 @@ class XML0(SimradDatagram):
         ...
     def set_xml_content(self, xml_content: str) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def test_xml(self) -> None:
         ...
     def to_binary(self, resize_buffer: bool = ...) -> bytes:

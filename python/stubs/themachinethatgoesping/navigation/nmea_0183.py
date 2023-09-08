@@ -22,7 +22,7 @@ class NMEA_Base:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -58,6 +58,10 @@ class NMEA_Base:
         ...
     def get_sentence_type(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -65,6 +69,10 @@ class NMEA_Base:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -88,7 +96,7 @@ class NMEA_GGA(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -136,6 +144,10 @@ class NMEA_GGA(NMEA_Base):
         ...
     def get_utc_time_string(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -143,6 +155,10 @@ class NMEA_GGA(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -166,7 +182,7 @@ class NMEA_GLL(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -204,6 +220,10 @@ class NMEA_GLL(NMEA_Base):
         ...
     def get_utc_time_string(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -211,6 +231,10 @@ class NMEA_GLL(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -234,7 +258,7 @@ class NMEA_GST(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -276,6 +300,10 @@ class NMEA_GST(NMEA_Base):
         ...
     def get_utc_time_string(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -283,6 +311,10 @@ class NMEA_GST(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -306,7 +338,7 @@ class NMEA_HDT(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -334,6 +366,10 @@ class NMEA_HDT(NMEA_Base):
         """
     def get_heading_degrees_true(self) -> float:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -341,6 +377,10 @@ class NMEA_HDT(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -365,7 +405,7 @@ class NMEA_RMC(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -411,6 +451,10 @@ class NMEA_RMC(NMEA_Base):
         ...
     def get_utc_time_string(self) -> str:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -418,6 +462,10 @@ class NMEA_RMC(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -459,7 +507,7 @@ class NMEA_Unknown(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -486,6 +534,10 @@ class NMEA_Unknown(NMEA_Base):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -493,6 +545,10 @@ class NMEA_Unknown(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -516,7 +572,7 @@ class NMEA_VHW(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -550,6 +606,10 @@ class NMEA_VHW(NMEA_Base):
         ...
     def get_vessel_heading_true(self) -> float:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -557,6 +617,10 @@ class NMEA_VHW(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -580,7 +644,7 @@ class NMEA_VLW(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -614,6 +678,10 @@ class NMEA_VLW(NMEA_Base):
         ...
     def get_trip_water_distance_nautical_miles(self) -> float:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -621,6 +689,10 @@ class NMEA_VLW(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -644,7 +716,7 @@ class NMEA_VTG(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -682,6 +754,10 @@ class NMEA_VTG(NMEA_Base):
         ...
     def get_speed_over_ground_knots(self) -> float:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -689,6 +765,10 @@ class NMEA_VTG(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -712,7 +792,7 @@ class NMEA_ZDA(NMEA_Base):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
         """
@@ -750,6 +830,10 @@ class NMEA_ZDA(NMEA_Base):
         ...
     def get_year(self) -> int:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -757,6 +841,10 @@ class NMEA_ZDA(NMEA_Base):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

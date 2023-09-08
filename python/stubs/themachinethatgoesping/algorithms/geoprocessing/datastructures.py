@@ -26,7 +26,7 @@ class BeamSampleParameters:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, number_of_beams: int) -> None:
@@ -68,6 +68,10 @@ class BeamSampleParameters:
         ...
     def get_sample_interval(self) -> numpy.ndarray[numpy.float32]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -86,6 +90,10 @@ class BeamSampleParameters:
         ...
     def set_sample_interval(self, sample_interval: numpy.ndarray[numpy.float32]) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -113,7 +121,7 @@ class RaytraceResult:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -151,6 +159,10 @@ class RaytraceResult:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -158,6 +170,10 @@ class RaytraceResult:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -216,7 +232,7 @@ class RaytraceResults_1(XYZ_1):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -263,6 +279,10 @@ class RaytraceResults_1(XYZ_1):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -270,6 +290,10 @@ class RaytraceResults_1(XYZ_1):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -304,7 +328,7 @@ class RaytraceResults_2(XYZ_2):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -351,6 +375,10 @@ class RaytraceResults_2(XYZ_2):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -358,6 +386,10 @@ class RaytraceResults_2(XYZ_2):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -392,7 +424,7 @@ class RaytraceResults_3(XYZ_3):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -439,6 +471,10 @@ class RaytraceResults_3(XYZ_3):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -446,6 +482,10 @@ class RaytraceResults_3(XYZ_3):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -479,7 +519,7 @@ class SampleDirectionsRange_1(SampleDirections_1):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -532,6 +572,10 @@ class SampleDirectionsRange_1(SampleDirections_1):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -539,6 +583,10 @@ class SampleDirectionsRange_1(SampleDirections_1):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -572,7 +620,7 @@ class SampleDirectionsRange_2(SampleDirections_2):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -625,6 +673,10 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -632,6 +684,10 @@ class SampleDirectionsRange_2(SampleDirections_2):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -665,7 +721,7 @@ class SampleDirectionsRange_3(SampleDirections_3):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -718,6 +774,10 @@ class SampleDirectionsRange_3(SampleDirections_3):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -725,6 +785,10 @@ class SampleDirectionsRange_3(SampleDirections_3):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -758,7 +822,7 @@ class SampleDirectionsTime_1(SampleDirections_1):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -811,6 +875,10 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -818,6 +886,10 @@ class SampleDirectionsTime_1(SampleDirections_1):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -851,7 +923,7 @@ class SampleDirectionsTime_2(SampleDirections_2):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -904,6 +976,10 @@ class SampleDirectionsTime_2(SampleDirections_2):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -911,6 +987,10 @@ class SampleDirectionsTime_2(SampleDirections_2):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -944,7 +1024,7 @@ class SampleDirectionsTime_3(SampleDirections_3):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -997,6 +1077,10 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1004,6 +1088,10 @@ class SampleDirectionsTime_3(SampleDirections_3):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1037,7 +1125,7 @@ class SampleDirections_1:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1082,6 +1170,10 @@ class SampleDirections_1:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1094,6 +1186,10 @@ class SampleDirections_1:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1134,7 +1230,7 @@ class SampleDirections_2:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1179,6 +1275,10 @@ class SampleDirections_2:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1191,6 +1291,10 @@ class SampleDirections_2:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1231,7 +1335,7 @@ class SampleDirections_3:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1276,6 +1380,10 @@ class SampleDirections_3:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1288,6 +1396,10 @@ class SampleDirections_3:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1329,7 +1441,7 @@ class SampleIndices:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1358,6 +1470,10 @@ class SampleIndices:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1365,6 +1481,10 @@ class SampleIndices:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1401,7 +1521,7 @@ class XYZ_1:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1451,6 +1571,10 @@ class XYZ_1:
         ...
     def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1463,6 +1587,10 @@ class XYZ_1:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1514,7 +1642,7 @@ class XYZ_2:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1564,6 +1692,10 @@ class XYZ_2:
         ...
     def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1576,6 +1708,10 @@ class XYZ_2:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1627,7 +1763,7 @@ class XYZ_3:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -1677,6 +1813,10 @@ class XYZ_3:
         ...
     def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1689,6 +1829,10 @@ class XYZ_3:
         ...
     def size(self) -> int:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray

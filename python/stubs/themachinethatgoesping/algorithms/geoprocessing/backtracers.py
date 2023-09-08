@@ -25,7 +25,7 @@ class BTConstantSVP(I_Backtracer):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
         """
@@ -51,6 +51,10 @@ class BTConstantSVP(I_Backtracer):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -58,6 +62,10 @@ class BTConstantSVP(I_Backtracer):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -81,7 +89,7 @@ class I_Backtracer:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float, backtracer_name: str) -> None:
         ...
@@ -165,6 +173,10 @@ class I_Backtracer:
         ...
     def get_sensor_y(self) -> float:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -175,6 +187,10 @@ class I_Backtracer:
         """
     def set_sensor_location(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray

@@ -23,7 +23,7 @@ class ChannelConfiguration:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -45,6 +45,10 @@ class ChannelConfiguration:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -52,6 +56,10 @@ class ChannelConfiguration:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -92,7 +100,7 @@ class XMLConfigurationActivePingMode:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -110,6 +118,10 @@ class XMLConfigurationActivePingMode:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -119,6 +131,10 @@ class XMLConfigurationActivePingMode:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -162,7 +178,7 @@ class XMLConfigurationTransceiverChannelTransducer:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -180,6 +196,10 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -189,6 +209,10 @@ class XMLConfigurationTransceiverChannelTransducer:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -222,7 +246,7 @@ class XML_Configuration:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -254,6 +278,10 @@ class XML_Configuration:
         ...
     def get_transceivers(self) -> dict[str, XML_Configuration_Transceiver]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -263,6 +291,10 @@ class XML_Configuration:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -300,7 +332,7 @@ class XML_Configuration_Sensor:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -326,6 +358,10 @@ class XML_Configuration_Sensor:
         Returns:
             navigation::datastructures::PositionalOffsets
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -335,6 +371,10 @@ class XML_Configuration_Sensor:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -364,7 +404,7 @@ class XML_Configuration_Sensor_Telegram:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -382,6 +422,10 @@ class XML_Configuration_Sensor_Telegram:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -391,6 +435,10 @@ class XML_Configuration_Sensor_Telegram:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -417,7 +465,7 @@ class XML_Configuration_Sensor_TelegramValue:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -435,6 +483,10 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -444,6 +496,10 @@ class XML_Configuration_Sensor_TelegramValue:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -481,7 +537,7 @@ class XML_Configuration_Transceiver:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -499,6 +555,10 @@ class XML_Configuration_Transceiver:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -508,6 +568,10 @@ class XML_Configuration_Transceiver:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -543,7 +607,7 @@ class XML_Configuration_Transceiver_Channel:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -561,6 +625,10 @@ class XML_Configuration_Transceiver_Channel:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -570,6 +638,10 @@ class XML_Configuration_Transceiver_Channel:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -602,7 +674,7 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -620,6 +692,10 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -629,6 +705,10 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -663,7 +743,7 @@ class XML_Configuration_Transducer:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -689,6 +769,10 @@ class XML_Configuration_Transducer:
         Returns:
             navigation::datastructures::PositionalOffsets
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -698,6 +782,10 @@ class XML_Configuration_Transducer:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -743,7 +831,7 @@ class XML_Environment:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -761,6 +849,10 @@ class XML_Environment:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -770,6 +862,10 @@ class XML_Environment:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -796,7 +892,7 @@ class XML_Environment_Transducer:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -814,6 +910,10 @@ class XML_Environment_Transducer:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -823,6 +923,10 @@ class XML_Environment_Transducer:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -846,7 +950,7 @@ class XML_InitialParameter:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -864,6 +968,10 @@ class XML_InitialParameter:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -873,6 +981,10 @@ class XML_InitialParameter:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -895,7 +1007,7 @@ class XML_Node:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -927,6 +1039,10 @@ class XML_Node:
         """
     def first_child(self, arg0: str) -> XML_Node:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -936,6 +1052,10 @@ class XML_Node:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -959,7 +1079,7 @@ class XML_Parameter:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -977,6 +1097,10 @@ class XML_Parameter:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -986,6 +1110,10 @@ class XML_Parameter:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1016,7 +1144,7 @@ class XML_Parameter_Channel:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -1034,6 +1162,10 @@ class XML_Parameter_Channel:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1045,7 +1177,9 @@ class XML_Parameter_Channel:
         Print object information
         """
     def slow_hash(self) -> int:
-        ...
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -1134,7 +1268,7 @@ class XML_PingSequence:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -1152,6 +1286,10 @@ class XML_PingSequence:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1161,6 +1299,10 @@ class XML_PingSequence:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1186,7 +1328,7 @@ class XML_PingSequence_Ping:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -1204,6 +1346,10 @@ class XML_PingSequence_Ping:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1213,6 +1359,10 @@ class XML_PingSequence_Ping:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1240,7 +1390,7 @@ class XML_Sensor:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -1258,6 +1408,10 @@ class XML_Sensor:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1267,6 +1421,10 @@ class XML_Sensor:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

@@ -25,7 +25,7 @@ class BeamSampleSelection(BeamSelection):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, sample_step_ensemble: int = ...) -> None:
@@ -136,6 +136,10 @@ class BeamSampleSelection(BeamSelection):
         Returns:
             uint16_t
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -150,6 +154,10 @@ class BeamSampleSelection(BeamSelection):
         ...
     def set_sample_step_ensemble(self, sample_step_ensemble: int) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -174,7 +182,7 @@ class BeamSelection:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self) -> None:
@@ -236,6 +244,10 @@ class BeamSelection:
         Returns:
             size_t
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -243,6 +255,10 @@ class BeamSelection:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -266,7 +282,7 @@ class PingSampleSelector:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -340,6 +356,10 @@ class PingSampleSelector:
         """
         < step size for sample numbers
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -360,6 +380,10 @@ class PingSampleSelector:
         ...
     def set_sample_step(self, sample_step: int) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -383,7 +407,7 @@ class ReadSampleRange:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, first_sample_to_read: int, number_of_samples_to_read: int, first_read_sample_offset: int, last_read_sample_offset: int) -> None:
         ...
@@ -414,6 +438,10 @@ class ReadSampleRange:
         ...
     def get_number_of_samples_to_read(self) -> int:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -421,6 +449,10 @@ class ReadSampleRange:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

@@ -531,7 +531,7 @@ class NetworkAttitudeVelocityDatagramAttitude:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -612,6 +612,10 @@ class NetworkAttitudeVelocityDatagramAttitude:
         Returns:
             _time * 0.001f (float)
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -647,6 +651,10 @@ class NetworkAttitudeVelocityDatagramAttitude:
     def set_time(self, arg0: int) -> None:
         """
         < in_milliseconds_since_record_start
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1088,7 +1096,7 @@ class WatercolumnDatagramBeam:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -1137,6 +1145,10 @@ class WatercolumnDatagramBeam:
         ...
     def get_transmit_sector_number(self) -> int:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1165,6 +1177,10 @@ class WatercolumnDatagramBeam:
         ...
     def set_transmit_sector_number(self, arg0: int) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray

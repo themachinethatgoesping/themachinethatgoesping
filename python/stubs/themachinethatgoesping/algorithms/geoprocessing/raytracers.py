@@ -25,7 +25,7 @@ class I_Raytracer:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_location: ..., raytracer_name: str) -> None:
         ...
@@ -47,6 +47,10 @@ class I_Raytracer:
         ...
     def get_sensor_orientation_quat_ypr(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
         ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -57,6 +61,10 @@ class I_Raytracer:
         """
     def set_sensor_location(self, sensor_location: ...) -> None:
         ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
         convert object to bytearray
@@ -249,7 +257,7 @@ class RTConstantSVP(I_Raytracer):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, sensor_location: ..., sound_velocity: float) -> None:
         """
@@ -274,6 +282,10 @@ class RTConstantSVP(I_Raytracer):
     def copy(self) -> RTConstantSVP:
         """
         return a copy using the c++ default copy constructor
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
         """
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -340,6 +352,10 @@ class RTConstantSVP(I_Raytracer):
         
         Returns:
             datastructures::RaytraceResults<1>
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

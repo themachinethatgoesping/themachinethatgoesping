@@ -323,7 +323,7 @@ class FileInfoData_em3000_FileInfoData:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self) -> None:
         ...
@@ -341,6 +341,10 @@ class FileInfoData_em3000_FileInfoData:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -348,6 +352,10 @@ class FileInfoData_em3000_FileInfoData:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

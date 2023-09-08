@@ -35,7 +35,7 @@ class GeoLocation:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, geolocation_latlon: ...) -> None:
@@ -83,6 +83,10 @@ class GeoLocation:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -90,6 +94,10 @@ class GeoLocation:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -158,7 +166,7 @@ class GeoLocationLatLon(GeoLocation):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, location: GeoLocation, latitude: float, longitude: float) -> None:
@@ -217,6 +225,10 @@ class GeoLocationLatLon(GeoLocation):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -224,6 +236,10 @@ class GeoLocationLatLon(GeoLocation):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -267,7 +283,7 @@ class GeoLocationLocal(GeoLocation):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, geolocationutm: ...) -> None:
@@ -324,6 +340,10 @@ class GeoLocationLocal(GeoLocation):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -331,6 +351,10 @@ class GeoLocationLocal(GeoLocation):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -374,7 +398,7 @@ class GeoLocationUTM(GeoLocationLocal):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None:
@@ -440,6 +464,10 @@ class GeoLocationUTM(GeoLocationLocal):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -447,6 +475,10 @@ class GeoLocationUTM(GeoLocationLocal):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -498,7 +530,7 @@ class PositionalOffsets:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, name: str = ..., x: float = ..., y: float = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
         """
@@ -539,6 +571,10 @@ class PositionalOffsets:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -546,6 +582,10 @@ class PositionalOffsets:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -638,7 +678,7 @@ class SensorData:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, arg0: ...) -> None:
@@ -689,6 +729,10 @@ class SensorData:
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -696,6 +740,10 @@ class SensorData:
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -773,7 +821,7 @@ class SensorDataLatLon(SensorData):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None:
@@ -835,6 +883,10 @@ class SensorDataLatLon(SensorData):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -842,6 +894,10 @@ class SensorDataLatLon(SensorData):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -878,7 +934,7 @@ class SensorDataLocal(SensorData):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, sensordatautm: ...) -> None:
@@ -939,6 +995,10 @@ class SensorDataLocal(SensorData):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -946,6 +1006,10 @@ class SensorDataLocal(SensorData):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
@@ -1024,7 +1088,7 @@ class SensorDataUTM(SensorDataLocal):
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     @typing.overload
     def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, utm_northern_hemisphere: bool) -> None:
@@ -1113,6 +1177,10 @@ class SensorDataUTM(SensorDataLocal):
         """
         return a copy using the c++ default copy constructor
         """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
     def info_string(self, float_precision: int = ...) -> str:
         """
         Return object information as string
@@ -1120,6 +1188,10 @@ class SensorDataUTM(SensorDataLocal):
     def print(self, float_precision: int = ...) -> None:
         """
         Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """

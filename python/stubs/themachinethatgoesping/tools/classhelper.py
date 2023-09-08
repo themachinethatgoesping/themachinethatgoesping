@@ -30,7 +30,7 @@ class ObjectPrinter:
         ...
     def __hash__(self) -> int:
         """
-        hash function implemented using slow_hash
+        hash function implemented using binary_hash
         """
     def __init__(self, name: str, float_precission: int) -> None:
         """
@@ -66,6 +66,10 @@ class ObjectPrinter:
         
         Returns:
             std::string
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
         """
     def info_string(self, float_precision: int = ...) -> str:
         """
@@ -214,6 +218,10 @@ class ObjectPrinter:
         Parameter ``pos``:
             position where the value is registers (if negative, the value is
             appended)
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = ...) -> bytes:
         """
