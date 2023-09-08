@@ -20,6 +20,9 @@ class EM3000AnnotationDataInterface:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -274,6 +277,9 @@ class EM3000AnnotationDataInterface_mapped:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -337,6 +343,9 @@ class EM3000AnnotationDataInterface_mapped:
 class EM3000ConfigurationDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -668,6 +677,9 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
 class EM3000ConfigurationDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -819,6 +831,9 @@ class EM3000DatagramInterface_mapped:
 class EM3000EnvironmentDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1064,6 +1079,9 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
 class EM3000EnvironmentDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1131,6 +1149,9 @@ class EM3000EnvironmentDataInterface_mapped:
 class EM3000NavigationDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1388,6 +1409,9 @@ class EM3000NavigationDataInterfacePerFile_mapped:
 class EM3000NavigationDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1475,6 +1499,9 @@ class EM3000OtherFileDataInterface:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1732,6 +1759,9 @@ class EM3000OtherFileDataInterface_mapped:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1795,6 +1825,9 @@ class EM3000OtherFileDataInterface_mapped:
 class EM3000PingDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2066,6 +2099,9 @@ class EM3000PingDataInterfacePerFile_mapped:
 class EM3000PingDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string

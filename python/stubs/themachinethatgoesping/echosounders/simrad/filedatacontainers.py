@@ -2,9 +2,11 @@
 Simrad EK60 and EK80 file data container classes
 """
 from __future__ import annotations
+import pybind11_stubgen.typing_ext
 import themachinethatgoesping.echosounders.simrad
 import themachinethatgoesping.echosounders.simrad.datagrams
 import themachinethatgoesping.echosounders.simrad.filetypes
+import themachinethatgoesping.navigation
 import themachinethatgoesping.tools.pyhelper
 import typing
 __all__ = ['SimradPingContainer', 'SimradPingContainer_mapped', 'SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_mapped', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_mapped', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_mapped', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_mapped', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_mapped', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_mapped', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_mapped', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_mapped', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_mapped', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_mapped', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_mapped']
@@ -49,6 +51,24 @@ class SimradPingContainer:
         """
         Return object information as string
         """
+    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[SimradPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer]:
+        ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer]:
         """
         Split the data if the time difference between two subsequent datagrams
@@ -127,6 +147,24 @@ class SimradPingContainer_mapped:
         """
         Return object information as string
         """
+    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[SimradPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer_mapped]:
+        ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer_mapped]:
         """
         Split the data if the time difference between two subsequent datagrams

@@ -20,6 +20,9 @@ class SimradAnnotationDataInterface:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -272,6 +275,9 @@ class SimradAnnotationDataInterface_mapped:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -335,6 +341,9 @@ class SimradAnnotationDataInterface_mapped:
 class SimradConfigurationDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -650,6 +659,9 @@ class SimradConfigurationDataInterfacePerFile_mapped:
 class SimradConfigurationDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -801,6 +813,9 @@ class SimradDatagramInterface_mapped:
 class SimradEnvironmentDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1046,6 +1061,9 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
 class SimradEnvironmentDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1113,6 +1131,9 @@ class SimradEnvironmentDataInterface_mapped:
 class SimradNavigationDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1390,6 +1411,9 @@ class SimradNavigationDataInterfacePerFile_mapped:
 class SimradNavigationDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1481,6 +1505,9 @@ class SimradOtherFileDataInterface:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1552,6 +1579,9 @@ class SimradOtherFileDataInterface_mapped:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1615,6 +1645,9 @@ class SimradOtherFileDataInterface_mapped:
 class SimradPingDataInterface:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1886,6 +1919,9 @@ class SimradPingDataInterfacePerFile_mapped:
 class SimradPingDataInterface_mapped:
     """
     """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string

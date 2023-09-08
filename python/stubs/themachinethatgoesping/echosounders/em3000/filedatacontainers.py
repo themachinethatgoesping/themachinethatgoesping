@@ -2,9 +2,11 @@
 EM3000 (kongsberg .all / .wcd) file data container classes
 """
 from __future__ import annotations
+import pybind11_stubgen.typing_ext
 import themachinethatgoesping.echosounders.em3000
 import themachinethatgoesping.echosounders.em3000.datagrams
 import themachinethatgoesping.echosounders.em3000.filetypes
+import themachinethatgoesping.navigation
 import themachinethatgoesping.tools.pyhelper
 import typing
 __all__ = ['EM3000DatagramContainer_AttitudeDatagram', 'EM3000DatagramContainer_AttitudeDatagram_mapped', 'EM3000DatagramContainer_ClockDatagram', 'EM3000DatagramContainer_ClockDatagram_mapped', 'EM3000DatagramContainer_DepthOrHeightDatagram', 'EM3000DatagramContainer_DepthOrHeightDatagram_mapped', 'EM3000DatagramContainer_ExtraDetections', 'EM3000DatagramContainer_ExtraDetections_mapped', 'EM3000DatagramContainer_ExtraParameters', 'EM3000DatagramContainer_ExtraParameters_mapped', 'EM3000DatagramContainer_Header', 'EM3000DatagramContainer_Header_mapped', 'EM3000DatagramContainer_HeadingDatagram', 'EM3000DatagramContainer_HeadingDatagram_mapped', 'EM3000DatagramContainer_InstallationParameters', 'EM3000DatagramContainer_InstallationParameters_mapped', 'EM3000DatagramContainer_NetworkAttitudeVelocityDatagram', 'EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped', 'EM3000DatagramContainer_PUIDOutput', 'EM3000DatagramContainer_PUIDOutput_mapped', 'EM3000DatagramContainer_PUStatusOutput', 'EM3000DatagramContainer_PUStatusOutput_mapped', 'EM3000DatagramContainer_PositionDatagram', 'EM3000DatagramContainer_PositionDatagram_mapped', 'EM3000DatagramContainer_QualityFactorDatagram', 'EM3000DatagramContainer_QualityFactorDatagram_mapped', 'EM3000DatagramContainer_RawRangeAndAngle', 'EM3000DatagramContainer_RawRangeAndAngle_mapped', 'EM3000DatagramContainer_RuntimeParameters', 'EM3000DatagramContainer_RuntimeParameters_mapped', 'EM3000DatagramContainer_SeabedImageData', 'EM3000DatagramContainer_SeabedImageData_mapped', 'EM3000DatagramContainer_SingleBeamEchoSounderDepth', 'EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped', 'EM3000DatagramContainer_SoundSpeedProfileDatagram', 'EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped', 'EM3000DatagramContainer_SurfaceSoundSpeedDatagram', 'EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped', 'EM3000DatagramContainer_Unknown', 'EM3000DatagramContainer_Unknown_mapped', 'EM3000DatagramContainer_Variant', 'EM3000DatagramContainer_Variant_SkippedData', 'EM3000DatagramContainer_Variant_SkippedData_mapped', 'EM3000DatagramContainer_Variant_mapped', 'EM3000DatagramContainer_WatercolumnDatagram', 'EM3000DatagramContainer_WatercolumnDatagram_SkippedData', 'EM3000DatagramContainer_WatercolumnDatagram_SkippedData_mapped', 'EM3000DatagramContainer_WatercolumnDatagram_mapped', 'EM3000DatagramContainer_XYZDatagram', 'EM3000DatagramContainer_XYZDatagram_mapped', 'EM3000PingContainer', 'EM3000PingContainer_mapped']
@@ -3249,6 +3251,24 @@ class EM3000PingContainer:
         """
         Return object information as string
         """
+    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[EM3000PingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, EM3000PingContainer]:
+        ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> list[EM3000PingContainer]:
         """
         Split the data if the time difference between two subsequent datagrams
@@ -3327,6 +3347,24 @@ class EM3000PingContainer_mapped:
         """
         Return object information as string
         """
+    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[EM3000PingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, EM3000PingContainer_mapped]:
+        ...
     def break_by_time_diff(self, max_time_diff_seconds: float) -> list[EM3000PingContainer_mapped]:
         """
         Split the data if the time difference between two subsequent datagrams
