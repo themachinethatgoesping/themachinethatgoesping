@@ -306,13 +306,13 @@ class ExtraDetectionsExtraDetections:
         """
         < re vertical °
         """
+    def get_beam_crosstrack_angle(self) -> float:
+        """
+        < deg. re array
+        """
     def get_beam_incidence_angle_adjustment(self) -> int:
         """
         < IBA in 0.1°
-        """
-    def get_beam_pointing_angle(self) -> float:
-        """
-        < deg. re array
         """
     def get_confidence_level(self) -> int:
         """
@@ -437,13 +437,13 @@ class ExtraDetectionsExtraDetections:
         """
         < re vertical °
         """
+    def set_beam_crosstrack_angle(self, arg0: float) -> None:
+        """
+        < deg. re array
+        """
     def set_beam_incidence_angle_adjustment(self, arg0: int) -> None:
         """
         < IBA in 0.1°
-        """
-    def set_beam_pointing_angle(self, arg0: float) -> None:
-        """
-        < deg. re array
         """
     def set_confidence_level(self, arg0: int) -> None:
         """
@@ -688,14 +688,14 @@ class RawRangeAndAngleBeam:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_beam_pointing_angle(self) -> int:
+    def get_beam_crosstrack_angle(self) -> int:
         ...
-    def get_beam_pointing_angle_in_degrees(self) -> float:
+    def get_beam_crosstrack_angle_in_degrees(self) -> float:
         """
-        Get the beam pointing angle in °
+        Get the beam crosstrack angle in °
         
         Returns:
-            _beam_pointing_angle * 0.01 (float)
+            _beam_crosstrack_angle * 0.01 (float)
         """
     def get_d_corr(self) -> int:
         ...
@@ -756,7 +756,7 @@ class RawRangeAndAngleBeam:
         """
         Print object information
         """
-    def set_beam_pointing_angle(self, arg0: int) -> None:
+    def set_beam_crosstrack_angle(self, arg0: int) -> None:
         ...
     def set_d_corr(self, arg0: int) -> None:
         ...
@@ -1114,20 +1114,20 @@ class WatercolumnDatagramBeam:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_beam_number(self) -> int:
-        """
-        < redundant info, max 255 even if more beams exist
-        """
-    def get_beam_pointing_angle(self) -> int:
+    def get_beam_crosstrack_angle(self) -> int:
         """
         < re vertical in 0.01 steps°
         """
-    def get_beam_pointing_angle_in_degrees(self) -> float:
+    def get_beam_crosstrack_angle_in_degrees(self) -> float:
         """
         get the tilt angle in °
         
         Returns:
-            _beam_pointing_angle * 0.1° (float)
+            _beam_crosstrack_angle * 0.1° (float)
+        """
+    def get_beam_number(self) -> int:
+        """
+        < redundant info, max 255 even if more beams exist
         """
     def get_detected_range_in_samples(self) -> int:
         ...
@@ -1159,13 +1159,13 @@ class WatercolumnDatagramBeam:
         """
     def samples(self) -> numpy.ndarray[numpy.int8]:
         ...
+    def set_beam_crosstrack_angle(self, arg0: int) -> None:
+        """
+        < re vertical in 0.01 steps°
+        """
     def set_beam_number(self, arg0: int) -> None:
         """
         < redundant info, max 255 even if more beams exist
-        """
-    def set_beam_pointing_angle(self, arg0: int) -> None:
-        """
-        < re vertical in 0.01 steps°
         """
     def set_detected_range_in_samples(self, arg0: int) -> None:
         ...

@@ -2659,15 +2659,15 @@ class RawRangeAndAngle(EM3000Datagram):
         return a copy using the c++ default copy constructor
         """
     @typing.overload
-    def get_beam_pointing_angles(self) -> ...:
+    def get_beam_crosstrack_angles(self) -> ...:
         """
-        Read the beam pointing angles from the RawRangeAndAngle structure
+        Read the beam crosstrack angles from the RawRangeAndAngle structure
         
         Returns:
             xt::xtensor<float, 1>
         """
     @typing.overload
-    def get_beam_pointing_angles(self, beam_numbers: list[int]) -> ...:
+    def get_beam_crosstrack_angles(self, beam_numbers: list[int]) -> ...:
         """
         Read the two way travel times for given beam_number vector from the
         RawRangeAndAngle structure Note: if a beam number is not found, the

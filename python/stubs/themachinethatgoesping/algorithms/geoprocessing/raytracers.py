@@ -158,18 +158,12 @@ class I_Raytracer:
             datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
+    def trace_points(self, sample_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsTime_1, mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
         """
         Trace the location of a set of points.
         
-        Parameter ``two_way_travel_time``:
-            Two way travel time in s
-        
-        Parameter ``alongtrack_angle``:
-            Along track angle of all beams in °
-        
-        Parameter ``crosstrack_angles``:
-            Across track angle in °
+        Parameter ``sampledirections``:
+            One dimensional sample directions array
         
         Parameter ``mp_cores``:
             Number of cores to use for parallelization
@@ -178,7 +172,7 @@ class I_Raytracer:
             datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
+    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
         """
         Trace the sample locations of a multiple beams in a swath. Note: a 2d
         Array for sample numbers is expected where the first dimension is the
@@ -207,7 +201,7 @@ class I_Raytracer:
             datastructures::RaytraceResults<2>
         """
     @typing.overload
-    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angle: float, crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
+    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
         """
         Trace the sample locations of a multiple beams in a swath. Note: The
         number of beams is controlled by the dimension of crosstrack_angles

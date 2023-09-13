@@ -93,17 +93,17 @@ class I_PingBottom(I_PingCommon):
         return a copy using the c++ default copy constructor
         """
     @typing.overload
-    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]:
+    def get_beam_crosstrack_angles(self) -> numpy.ndarray[numpy.float32]:
         """
-        Get the beam pointing angles for this ping in °
+        Get the beam crosstrack angles for this ping in °
         
         Returns:
             xt::xtensor<float, 1>
         """
     @typing.overload
-    def get_beam_pointing_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_beam_crosstrack_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
         """
-        Get the beam pointing angles for this ping in °
+        Get the beam crosstrack angles for this ping in °
         
         Returns:
             xt::xtensor<float, 1>
@@ -164,9 +164,9 @@ class I_PingBottom(I_PingCommon):
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
-    def has_beam_pointing_angles(self) -> bool:
+    def has_beam_crosstrack_angles(self) -> bool:
         """
-        Check this pings supports the extraction of beam_pointing_angles
+        Check this pings supports the extraction of beam_crosstrack_angles
         
         Returns:
             true
@@ -295,17 +295,33 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_beam_pointing_angles(self) -> numpy.ndarray[numpy.float32]:
+    def get_beam_alongtrack_angles(self) -> numpy.ndarray[numpy.float32]:
         """
-        Get the beam pointing angles for this ping in °
+        Get the beam alongtrack angles for this ping in °
         
         Returns:
             xt::xtensor<float, 1>
         """
     @typing.overload
-    def get_beam_pointing_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_beam_alongtrack_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
         """
-        Get the beam pointing angles for this ping in °
+        Get the beam alongtrack angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_beam_crosstrack_angles(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam crosstrack angles for this ping in °
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    @typing.overload
+    def get_beam_crosstrack_angles(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the beam crosstrack angles for this ping in °
         
         Returns:
             xt::xtensor<float, 1>
