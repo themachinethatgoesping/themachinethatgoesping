@@ -220,6 +220,19 @@ class RaytraceResults_1(XYZ_1):
     position (for coordinate 0) is known.
     """
     @staticmethod
+    def concat(arg0: list[RaytraceResults_1]) -> RaytraceResults_1:
+        """
+        Concatenate multiple RaytraceResults objects Note: the dimensionality
+        of the RaytraceResults objects will be lost (transformed
+        RaytraceResults XYZ<1>)
+        
+        Parameter ``vector``:
+            of RaytraceResults objects
+        
+        Returns:
+            RaytraceResults<1>
+        """
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RaytraceResults_1:
         """
         create T_CLASS object from bytearray
@@ -316,6 +329,19 @@ class RaytraceResults_2(XYZ_2):
     position (for coordinate 0) is known.
     """
     @staticmethod
+    def concat(arg0: list[RaytraceResults_2]) -> RaytraceResults_1:
+        """
+        Concatenate multiple RaytraceResults objects Note: the dimensionality
+        of the RaytraceResults objects will be lost (transformed
+        RaytraceResults XYZ<1>)
+        
+        Parameter ``vector``:
+            of RaytraceResults objects
+        
+        Returns:
+            RaytraceResults<1>
+        """
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RaytraceResults_2:
         """
         create T_CLASS object from bytearray
@@ -411,6 +437,19 @@ class RaytraceResults_3(XYZ_3):
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
+    @staticmethod
+    def concat(arg0: list[RaytraceResults_3]) -> RaytraceResults_1:
+        """
+        Concatenate multiple RaytraceResults objects Note: the dimensionality
+        of the RaytraceResults objects will be lost (transformed
+        RaytraceResults XYZ<1>)
+        
+        Parameter ``vector``:
+            of RaytraceResults objects
+        
+        Returns:
+            RaytraceResults<1>
+        """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RaytraceResults_3:
         """
@@ -1507,9 +1546,30 @@ class XYZ_1:
     (for coordinate 0) is known.
     """
     @staticmethod
+    def concat(arg0: list[XYZ_1]) -> XYZ_1:
+        """
+        Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
+        objects will be lost (transformed to XYZ<1>)
+        
+        Parameter ``vector``:
+            of XYZ objects
+        
+        Returns:
+            XYZ<1>
+        """
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XYZ_1:
         """
         create T_CLASS object from bytearray
+        """
+    @staticmethod
+    @typing.overload
+    def rotate(*args, **kwargs) -> None:
+        """
+        Rotate the XYZ object using a quaternion
+        
+        Parameter ``q``:
+            quaternion
         """
     def __copy__(self) -> XYZ_1:
         ...
@@ -1583,6 +1643,20 @@ class XYZ_1:
         """
         Print object information
         """
+    @typing.overload
+    def rotate(self, yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+        """
+        Rotate the XYZ object using yaw, pitch, roll in °
+        
+        Parameter ``yaw``:
+            in °
+        
+        Parameter ``pitch``:
+            in °
+        
+        Parameter ``roll``:
+            in °
+        """
     def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]:
         ...
     def size(self) -> int:
@@ -1595,6 +1669,8 @@ class XYZ_1:
         """
         convert object to bytearray
         """
+    def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
+        ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """
@@ -1628,9 +1704,30 @@ class XYZ_2:
     (for coordinate 0) is known.
     """
     @staticmethod
+    def concat(arg0: list[XYZ_2]) -> XYZ_1:
+        """
+        Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
+        objects will be lost (transformed to XYZ<1>)
+        
+        Parameter ``vector``:
+            of XYZ objects
+        
+        Returns:
+            XYZ<1>
+        """
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XYZ_2:
         """
         create T_CLASS object from bytearray
+        """
+    @staticmethod
+    @typing.overload
+    def rotate(*args, **kwargs) -> None:
+        """
+        Rotate the XYZ object using a quaternion
+        
+        Parameter ``q``:
+            quaternion
         """
     def __copy__(self) -> XYZ_2:
         ...
@@ -1704,6 +1801,20 @@ class XYZ_2:
         """
         Print object information
         """
+    @typing.overload
+    def rotate(self, yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+        """
+        Rotate the XYZ object using yaw, pitch, roll in °
+        
+        Parameter ``yaw``:
+            in °
+        
+        Parameter ``pitch``:
+            in °
+        
+        Parameter ``roll``:
+            in °
+        """
     def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
         ...
     def size(self) -> int:
@@ -1716,6 +1827,8 @@ class XYZ_2:
         """
         convert object to bytearray
         """
+    def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
+        ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """
@@ -1749,9 +1862,30 @@ class XYZ_3:
     (for coordinate 0) is known.
     """
     @staticmethod
+    def concat(arg0: list[XYZ_3]) -> XYZ_1:
+        """
+        Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
+        objects will be lost (transformed to XYZ<1>)
+        
+        Parameter ``vector``:
+            of XYZ objects
+        
+        Returns:
+            XYZ<1>
+        """
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XYZ_3:
         """
         create T_CLASS object from bytearray
+        """
+    @staticmethod
+    @typing.overload
+    def rotate(*args, **kwargs) -> None:
+        """
+        Rotate the XYZ object using a quaternion
+        
+        Parameter ``q``:
+            quaternion
         """
     def __copy__(self) -> XYZ_3:
         ...
@@ -1825,6 +1959,20 @@ class XYZ_3:
         """
         Print object information
         """
+    @typing.overload
+    def rotate(self, yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+        """
+        Rotate the XYZ object using yaw, pitch, roll in °
+        
+        Parameter ``yaw``:
+            in °
+        
+        Parameter ``pitch``:
+            in °
+        
+        Parameter ``roll``:
+            in °
+        """
     def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
         ...
     def size(self) -> int:
@@ -1837,6 +1985,8 @@ class XYZ_3:
         """
         convert object to bytearray
         """
+    def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
+        ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:
         """

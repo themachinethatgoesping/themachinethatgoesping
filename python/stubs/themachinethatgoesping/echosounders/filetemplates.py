@@ -351,6 +351,13 @@ class I_PingWatercolumn(I_PingCommon):
         """
     def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]:
         ...
+    def get_sample_interval(self) -> float:
+        """
+        Get the sample interval in seconds
+        
+        Returns:
+            float
+        """
     def has_amplitudes(self) -> bool:
         """
         Check this pings supports AMPLITUDES data
