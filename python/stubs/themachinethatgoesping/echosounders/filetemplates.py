@@ -35,6 +35,8 @@ class I_Ping(I_PingCommon):
         ...
     def get_file_path(self) -> str:
         ...
+    def get_file_ping_counter(self) -> int:
+        ...
     def get_geolocation(self, target_id: str = ...) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         """
         Get the geolocation of the transducer.
@@ -66,6 +68,8 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
+    def set_file_ping_counter(self, file_ping_counter: int) -> None:
+        ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensorDataLatLon) -> None:
@@ -249,7 +253,7 @@ class I_PingCommon:
         """
         Return object information as string
         """
-    def load(self) -> None:
+    def load(self, force: bool = ...) -> None:
         ...
     def loaded(self) -> bool:
         ...
@@ -365,7 +369,11 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             uint16_t
         """
+    @typing.overload
     def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]:
+        ...
+    @typing.overload
+    def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
         ...
     def get_sample_interval(self) -> float:
         """
