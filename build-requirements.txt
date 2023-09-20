@@ -1,0 +1,11 @@
+meson
+meson-python
+ninja
+pytest
+numpy
+numba
+pybind11-stubgen
+
+#not strictly build requirements
+matplotlib
+tqdm

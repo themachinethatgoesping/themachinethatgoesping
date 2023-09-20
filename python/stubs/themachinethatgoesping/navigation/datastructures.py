@@ -382,7 +382,7 @@ class GeoLocationUTM(GeoLocationLocal):
     sensor) unlike the default GeoLocation structure, this object stores
     utm coordinates
     """
-    utm_northern_hemisphere: bool
+    northern_hemisphere: bool
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> GeoLocationUTM:
         """
@@ -401,7 +401,7 @@ class GeoLocationUTM(GeoLocationLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None:
+    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         Construct an GeoLocationUTM object from an existing GeoLocationLocal
         object (using a known zone and hemisphere)
@@ -411,7 +411,7 @@ class GeoLocationUTM(GeoLocationLocal):
         
         UTM/UPS zone number
         
-        Parameter ``utm_northern_hemisphere``:
+        Parameter ``northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
@@ -422,7 +422,7 @@ class GeoLocationUTM(GeoLocationLocal):
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., utm_northern_hemisphere: bool = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., northern_hemisphere: bool = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
         """
         Construct a new GeoLocationUTM object
         
@@ -435,7 +435,7 @@ class GeoLocationUTM(GeoLocationLocal):
         Parameter ``utm_zone``:
             UTM/UPS zone number
         
-        Parameter ``utm_northern_hemisphere``:
+        Parameter ``northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
         
         Parameter ``z``:
@@ -1037,7 +1037,7 @@ class SensorDataUTM(SensorDataLocal):
     different sensors (e.g. GPS, IMU, etc.) Unlike SensorDataLatLon, this
     structure stores UTM coordinates.
     """
-    utm_northern_hemisphere: bool
+    northern_hemisphere: bool
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorDataUTM:
         """
@@ -1091,7 +1091,7 @@ class SensorDataUTM(SensorDataLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, utm_northern_hemisphere: bool) -> None:
+    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -1107,11 +1107,11 @@ class SensorDataUTM(SensorDataLocal):
         Parameter ``utm_zone``:
             UTM/UPS zone number
         
-        Parameter ``utm_northern_hemisphere``:
+        Parameter ``northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordata_local: SensorDataLocal, utm_zone: int, utm_northern_hemisphere: bool) -> None:
+    def __init__(self, sensordata_local: SensorDataLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         Construct an SensorDataUTM object from an existing SensorDataLocal
         object (using a known zone and hemisphere)
@@ -1121,7 +1121,7 @@ class SensorDataUTM(SensorDataLocal):
         
         UTM/UPS zone number
         
-        Parameter ``utm_northern_hemisphere``:
+        Parameter ``northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
@@ -1132,7 +1132,7 @@ class SensorDataUTM(SensorDataLocal):
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., utm_northern_hemisphere: bool = ..., depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., northern_hemisphere: bool = ..., depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
         """
         Construct a new SensorDataUTM object
         
@@ -1145,7 +1145,7 @@ class SensorDataUTM(SensorDataLocal):
         Parameter ``utm_zone``:
             UTM/UPS zone number
         
-        Parameter ``utm_northern_hemisphere``:
+        Parameter ``northern_hemisphere``:
             if true: northern hemisphere, else: southern hemisphere
         
         Parameter ``depth``:

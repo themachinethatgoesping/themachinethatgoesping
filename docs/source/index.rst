@@ -29,9 +29,9 @@ New to python
 Before you can use **ping**, you need to install python on your system and understand the basics of the language.
 If you are new to python, there are many good tutorials on the internet. We linked some in the :ref:`new_to_python` section.
 
-Once you understand how to install python and python packages on your system, and you are able to execute a hello world script e.g. in a jupyter notebook, you are ready to progress to the next section.
+Once you understand how to install python and python packages on your system, and you are able to execute a tutorial e.g. in a jupyter notebook, you are ready to progress to the next section.
 
-Experienced python user
+Python user
 -----------------------
 
 **Ping** is available on PyPi and can be installed with pip or pipenv:
@@ -67,7 +67,7 @@ Developer / contributor
 -----------------------
 
 If you want to contribute to **ping** you want to install it from source using `meson <https://mesonbuild.com/>`_ and `ninja <https://ninja-build.org/>`_ (instead of pip). 
-For details see :ref:`installation_developer`.
+For details see :ref:`installation_from_source`.
 You may also want to check out the :ref:`contribute` section.
 
 .. toctree::
@@ -77,10 +77,8 @@ You may also want to check out the :ref:`contribute` section.
 
    Where to start<self>
    first_steps/new_to_python
-   first_steps/installation_user
-   first_steps/hello_ping
+   first_steps/installation
    first_steps/run_tutorials
-   first_steps/installation_developer
    first_steps/contribute
 
 .. toctree::

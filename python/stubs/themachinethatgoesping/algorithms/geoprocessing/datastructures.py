@@ -1669,6 +1669,8 @@ class XYZ_1:
         """
         convert object to bytearray
         """
+    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+        ...
     def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
         ...
     @property
@@ -1827,6 +1829,8 @@ class XYZ_2:
         """
         convert object to bytearray
         """
+    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+        ...
     def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
         ...
     @property
@@ -1985,6 +1989,8 @@ class XYZ_3:
         """
         convert object to bytearray
         """
+    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+        ...
     def translate(self, x: float = ..., y: float = ..., z: float = ...) -> None:
         ...
     @property

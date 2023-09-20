@@ -34,7 +34,7 @@ Example usage
    # - northing:            5427746.00 [positive northwards, m]
    # - easting:             314082.70  [positive eastwards, m]
    # - utm_zone:                60         
-   # - utm_northern_hemisphere: false      
+   # - northern_hemisphere: false      
    # - depth:                   3.00       [positive downwards, m]
    # - heave:             -2.00      [positive upwards, m]
    # - heading:         45.00      [90 ° at east]
