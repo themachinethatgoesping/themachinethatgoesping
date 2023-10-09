@@ -9,7 +9,7 @@ class PyIndexerSlice:
     A structure to hold a slice
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PyIndexerSlice:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PyIndexerSlice:
         """
         create T_CLASS object from bytearray
         """
@@ -26,7 +26,7 @@ class PyIndexerSlice:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, start: int = ..., stop: int = ..., step: int = ...) -> None:
+    def __init__(self, start: int = 9223372036854775807, stop: int = 9223372036854775807, step: int = 1) -> None:
         ...
     @typing.overload
     def __init__(self, slice: typing.Any) -> None:
@@ -49,11 +49,11 @@ class PyIndexerSlice:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -61,7 +61,7 @@ class PyIndexerSlice:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

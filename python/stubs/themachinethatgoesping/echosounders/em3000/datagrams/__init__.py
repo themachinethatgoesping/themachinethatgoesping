@@ -17,7 +17,7 @@ class AttitudeDatagram(EM3000Datagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> AttitudeDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AttitudeDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -119,11 +119,11 @@ class AttitudeDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -151,7 +151,7 @@ class AttitudeDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -160,7 +160,7 @@ class ClockDatagram(EM3000Datagram):
     Clock datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ClockDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ClockDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -236,11 +236,11 @@ class ClockDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -274,7 +274,7 @@ class ClockDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -283,7 +283,7 @@ class DepthOrHeightDatagram(EM3000Datagram):
     Depth (pressure) or height datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> DepthOrHeightDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> DepthOrHeightDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -354,11 +354,11 @@ class DepthOrHeightDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -387,7 +387,7 @@ class DepthOrHeightDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -395,7 +395,7 @@ class EM3000Datagram:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> EM3000Datagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EM3000Datagram:
         """
         create T_CLASS object from bytearray
         """
@@ -440,7 +440,7 @@ class EM3000Datagram:
         """
         < year*1000 + month*100 + day(Example:Jun 27, 2020 = 20200627)
         """
-    def get_date_string(self, fractional_seconds_digits: int = ..., format: str = ...) -> str:
+    def get_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Get the time as string
         
@@ -471,11 +471,11 @@ class EM3000Datagram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -506,7 +506,7 @@ class EM3000Datagram:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -514,7 +514,7 @@ class EM3000Unknown(EM3000Datagram):
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> EM3000Unknown:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> EM3000Unknown:
         """
         create T_CLASS object from bytearray
         """
@@ -556,11 +556,11 @@ class EM3000Unknown(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -574,7 +574,7 @@ class EM3000Unknown(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -584,7 +584,7 @@ class ExtraDetections(EM3000Datagram):
     Processing Unit.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ExtraDetections:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraDetections:
         """
         create T_CLASS object from bytearray
         """
@@ -724,11 +724,11 @@ class ExtraDetections(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -824,7 +824,7 @@ class ExtraDetections(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -833,7 +833,7 @@ class ExtraParameters(EM3000Datagram):
     Clock datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ExtraParameters:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraParameters:
         """
         create T_CLASS object from bytearray
         """
@@ -887,11 +887,11 @@ class ExtraParameters(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -917,7 +917,7 @@ class ExtraParameters(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -985,7 +985,7 @@ class HeadingDatagram(EM3000Datagram):
     Heading datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> HeadingDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> HeadingDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -1059,11 +1059,11 @@ class HeadingDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1099,7 +1099,7 @@ class HeadingDatagram(EM3000Datagram):
         """
         < 2xN array of time in ms since record start and heading in 0.01°
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1120,7 +1120,7 @@ class InstallationParameters(EM3000Datagram):
     the addition of new fields at any place in the datagram.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> InstallationParameters:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> InstallationParameters:
         """
         create T_CLASS object from bytearray
         """
@@ -1275,7 +1275,7 @@ class InstallationParameters(EM3000Datagram):
         ...
     def get_secondary_system_serial_number(self) -> int:
         ...
-    def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = ..., has_ypr: bool = ...) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Internal function to get the sensor offsets from the installation
         parameters. Possible sensor prefixes are: - MS for attitude sensor 1 -
@@ -1304,7 +1304,7 @@ class InstallationParameters(EM3000Datagram):
         ...
     def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000SystemTransducerConfiguration:
         ...
-    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = ...) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the transducer offsets of transducer 0, 1, 2 or 3
         
@@ -1326,13 +1326,13 @@ class InstallationParameters(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def is_dual_rx(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1362,7 +1362,7 @@ class InstallationParameters(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1373,7 +1373,7 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
     all necessary information.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NetworkAttitudeVelocityDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -1500,11 +1500,11 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1536,7 +1536,7 @@ class NetworkAttitudeVelocityDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1548,7 +1548,7 @@ class PUIDOutput(EM3000Datagram):
     a potential screen update.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PUIDOutput:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUIDOutput:
         """
         create T_CLASS object from bytearray
         """
@@ -1767,11 +1767,11 @@ class PUIDOutput(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1815,7 +1815,7 @@ class PUIDOutput(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1827,7 +1827,7 @@ class PUStatusOutput(EM3000Datagram):
     a potential screen update.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PUStatusOutput:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUStatusOutput:
         """
         create T_CLASS object from bytearray
         """
@@ -2097,11 +2097,11 @@ class PUStatusOutput(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2259,7 +2259,7 @@ class PUStatusOutput(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -2268,7 +2268,7 @@ class PositionDatagram(EM3000Datagram):
     Depth (pressure) or height datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PositionDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -2419,11 +2419,11 @@ class PositionDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2477,7 +2477,7 @@ class PositionDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -2493,7 +2493,7 @@ class QualityFactorDatagram(EM3000Datagram):
     2040C, EM 3002 and ME70BO.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> QualityFactorDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> QualityFactorDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -2559,11 +2559,11 @@ class QualityFactorDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2613,7 +2613,7 @@ class QualityFactorDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -2624,7 +2624,7 @@ class RawRangeAndAngle(EM3000Datagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RawRangeAndAngle:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RawRangeAndAngle:
         """
         create T_CLASS object from bytearray
         """
@@ -2743,11 +2743,11 @@ class RawRangeAndAngle(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2789,7 +2789,7 @@ class RawRangeAndAngle(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -2800,7 +2800,7 @@ class RuntimeParameters(EM3000Datagram):
     Runtime parameters datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RuntimeParameters:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RuntimeParameters:
         """
         create T_CLASS object from bytearray
         """
@@ -2970,11 +2970,11 @@ class RuntimeParameters(EM3000Datagram):
         """
     def hash_content_only(self) -> int:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3072,7 +3072,7 @@ class RuntimeParameters(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3083,7 +3083,7 @@ class SeabedImageData(EM3000Datagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SeabedImageData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SeabedImageData:
         """
         create T_CLASS object from bytearray
         """
@@ -3195,11 +3195,11 @@ class SeabedImageData(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3257,7 +3257,7 @@ class SeabedImageData(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3266,7 +3266,7 @@ class SingleBeamEchoSounderDepth(EM3000Datagram):
     Single beam echo sounder depth datagram
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SingleBeamEchoSounderDepth:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SingleBeamEchoSounderDepth:
         """
         create T_CLASS object from bytearray
         """
@@ -3355,11 +3355,11 @@ class SingleBeamEchoSounderDepth(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3396,7 +3396,7 @@ class SingleBeamEchoSounderDepth(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3408,7 +3408,7 @@ class SoundSpeedProfileDatagram(EM3000Datagram):
     datagram.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SoundSpeedProfileDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SoundSpeedProfileDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -3520,11 +3520,11 @@ class SoundSpeedProfileDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3566,7 +3566,7 @@ class SoundSpeedProfileDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3575,7 +3575,7 @@ class SurfaceSoundSpeedDatagram(EM3000Datagram):
     Sound_speed datagrams
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SurfaceSoundSpeedDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SurfaceSoundSpeedDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -3646,11 +3646,11 @@ class SurfaceSoundSpeedDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3684,7 +3684,7 @@ class SurfaceSoundSpeedDatagram(EM3000Datagram):
         """
         < 2xN array of time in ms since record < start and sound_speed in dm/s
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3694,7 +3694,7 @@ class WatercolumnDatagram(EM3000Datagram):
     are roll stabilized.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> WatercolumnDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WatercolumnDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -3801,11 +3801,11 @@ class WatercolumnDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3859,7 +3859,7 @@ class WatercolumnDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -3872,7 +3872,7 @@ class XYZDatagram(EM3000Datagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XYZDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XYZDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -3994,11 +3994,11 @@ class XYZDatagram(EM3000Datagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -4054,7 +4054,7 @@ class XYZDatagram(EM3000Datagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

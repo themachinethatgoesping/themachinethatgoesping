@@ -15,7 +15,7 @@ class FIL1(SimradDatagram):
     coefficients used by the EK80 to filter the received signal.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FIL1:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FIL1:
         """
         create T_CLASS object from bytearray
         """
@@ -71,11 +71,11 @@ class FIL1(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -103,7 +103,7 @@ class FIL1(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -115,7 +115,7 @@ class MRU0(SimradDatagram):
     they are defined in the default coordinate system / value range.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> MRU0:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MRU0:
         """
         create T_CLASS object from bytearray
         """
@@ -167,11 +167,11 @@ class MRU0(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -195,7 +195,7 @@ class MRU0(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -205,7 +205,7 @@ class NME0(SimradDatagram):
     received by the EK60/EK80 transceiver.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NME0:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NME0:
         """
         create T_CLASS object from bytearray
         """
@@ -261,13 +261,13 @@ class NME0(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parse_fields(self) -> None:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -279,7 +279,7 @@ class NME0(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -290,7 +290,7 @@ class RAW3(SimradDatagram):
     field!
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RAW3:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RAW3:
         """
         create T_CLASS object from bytearray
         """
@@ -360,11 +360,11 @@ class RAW3(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -409,7 +409,7 @@ class RAW3(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -417,7 +417,7 @@ class SimradDatagram:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SimradDatagram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradDatagram:
         """
         create T_CLASS object from bytearray
         """
@@ -480,11 +480,11 @@ class SimradDatagram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -512,7 +512,7 @@ class SimradDatagram:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -520,7 +520,7 @@ class SimradUnknown(SimradDatagram):
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SimradUnknown:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradUnknown:
         """
         create T_CLASS object from bytearray
         """
@@ -560,11 +560,11 @@ class SimradUnknown(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -576,7 +576,7 @@ class SimradUnknown(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -588,7 +588,7 @@ class TAG0(SimradDatagram):
     they are defined in the default coordinate system / value range.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> TAG0:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> TAG0:
         """
         create T_CLASS object from bytearray
         """
@@ -628,11 +628,11 @@ class TAG0(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -644,7 +644,7 @@ class TAG0(SimradDatagram):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -656,7 +656,7 @@ class XML0(SimradDatagram):
     they are defined in the default coordinate system / value range.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML0:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML0:
         """
         create T_CLASS object from bytearray
         """
@@ -704,11 +704,11 @@ class XML0(SimradDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -724,7 +724,7 @@ class XML0(SimradDatagram):
         """
     def test_xml(self) -> None:
         ...
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

@@ -51,7 +51,7 @@ class SimradPingContainer:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[SimradPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
         """
         Split the data in containers that have all requested features and
         containers that miss any of them
@@ -94,13 +94,13 @@ class SimradPingContainer:
         ...
     def get_sorted_by_time(self) -> SimradPingContainer:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -147,7 +147,7 @@ class SimradPingContainer_mapped:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[SimradPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
         """
         Split the data in containers that have all requested features and
         containers that miss any of them
@@ -190,13 +190,13 @@ class SimradPingContainer_mapped:
         ...
     def get_sorted_by_time(self) -> SimradPingContainer_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -256,11 +256,11 @@ class SimradRawDatagramContainer_FIL1:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -320,11 +320,11 @@ class SimradRawDatagramContainer_FIL1_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -384,11 +384,11 @@ class SimradRawDatagramContainer_Header:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -448,11 +448,11 @@ class SimradRawDatagramContainer_Header_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -512,11 +512,11 @@ class SimradRawDatagramContainer_MRU0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -576,11 +576,11 @@ class SimradRawDatagramContainer_MRU0_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -640,11 +640,11 @@ class SimradRawDatagramContainer_NME0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -704,11 +704,11 @@ class SimradRawDatagramContainer_NME0_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -768,11 +768,11 @@ class SimradRawDatagramContainer_RAW3:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -832,11 +832,11 @@ class SimradRawDatagramContainer_RAW3_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -896,11 +896,11 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -960,11 +960,11 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1024,11 +1024,11 @@ class SimradRawDatagramContainer_TAG0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1088,11 +1088,11 @@ class SimradRawDatagramContainer_TAG0_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1152,11 +1152,11 @@ class SimradRawDatagramContainer_Unknown:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1216,11 +1216,11 @@ class SimradRawDatagramContainer_Unknown_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1280,11 +1280,11 @@ class SimradRawDatagramContainer_Variant:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1344,11 +1344,11 @@ class SimradRawDatagramContainer_Variant_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1408,11 +1408,11 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1472,11 +1472,11 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1536,11 +1536,11 @@ class SimradRawDatagramContainer_XML0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1600,11 +1600,11 @@ class SimradRawDatagramContainer_XML0_mapped:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

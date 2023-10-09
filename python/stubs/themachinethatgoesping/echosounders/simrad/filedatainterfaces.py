@@ -33,15 +33,15 @@ class SimradAnnotationDataInterface:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -75,7 +75,7 @@ class SimradAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -107,10 +107,10 @@ class SimradAnnotationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -154,11 +154,11 @@ class SimradAnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -170,7 +170,7 @@ class SimradAnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -198,10 +198,10 @@ class SimradAnnotationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -245,11 +245,11 @@ class SimradAnnotationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -261,7 +261,7 @@ class SimradAnnotationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -288,15 +288,15 @@ class SimradAnnotationDataInterface_mapped:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -330,7 +330,7 @@ class SimradAnnotationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -356,15 +356,15 @@ class SimradConfigurationDataInterface:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -398,7 +398,7 @@ class SimradConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -424,10 +424,10 @@ class SimradConfigurationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -507,11 +507,11 @@ class SimradConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -523,7 +523,7 @@ class SimradConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -549,10 +549,10 @@ class SimradConfigurationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -632,11 +632,11 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -648,7 +648,7 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -674,15 +674,15 @@ class SimradConfigurationDataInterface_mapped:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -716,7 +716,7 @@ class SimradConfigurationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -742,10 +742,10 @@ class SimradDatagramInterface:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -755,7 +755,7 @@ class SimradDatagramInterface:
         ...
     def get_timestamp_first(self) -> float:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -763,7 +763,7 @@ class SimradDatagramInterface:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -785,10 +785,10 @@ class SimradDatagramInterface_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -798,7 +798,7 @@ class SimradDatagramInterface_mapped:
         ...
     def get_timestamp_first(self) -> float:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -806,7 +806,7 @@ class SimradDatagramInterface_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -828,15 +828,15 @@ class SimradEnvironmentDataInterface:
         ...
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -872,7 +872,7 @@ class SimradEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -900,10 +900,10 @@ class SimradEnvironmentDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -947,11 +947,11 @@ class SimradEnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -965,7 +965,7 @@ class SimradEnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -989,10 +989,10 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1036,11 +1036,11 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1054,7 +1054,7 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1076,15 +1076,15 @@ class SimradEnvironmentDataInterface_mapped:
         ...
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1120,7 +1120,7 @@ class SimradEnvironmentDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1160,15 +1160,15 @@ class SimradNavigationDataInterface:
         ...
     def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1202,7 +1202,7 @@ class SimradNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1234,10 +1234,10 @@ class SimradNavigationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1285,11 +1285,11 @@ class SimradNavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1301,7 +1301,7 @@ class SimradNavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1331,10 +1331,10 @@ class SimradNavigationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1382,11 +1382,11 @@ class SimradNavigationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1398,7 +1398,7 @@ class SimradNavigationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1440,15 +1440,15 @@ class SimradNavigationDataInterface_mapped:
         ...
     def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1482,7 +1482,7 @@ class SimradNavigationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1518,15 +1518,15 @@ class SimradOtherFileDataInterface:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1560,7 +1560,7 @@ class SimradOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1592,15 +1592,15 @@ class SimradOtherFileDataInterface_mapped:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1634,7 +1634,7 @@ class SimradOtherFileDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1670,15 +1670,15 @@ class SimradPingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1714,7 +1714,7 @@ class SimradPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1744,10 +1744,10 @@ class SimradPingDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1795,11 +1795,11 @@ class SimradPingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1813,7 +1813,7 @@ class SimradPingDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1841,10 +1841,10 @@ class SimradPingDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1892,11 +1892,11 @@ class SimradPingDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1910,7 +1910,7 @@ class SimradPingDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1944,15 +1944,15 @@ class SimradPingDataInterface_mapped:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1988,7 +1988,7 @@ class SimradPingDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2022,10 +2022,10 @@ class init_c_simradotherfiledatainterfaceperfile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -2069,11 +2069,11 @@ class init_c_simradotherfiledatainterfaceperfile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -2085,7 +2085,7 @@ class init_c_simradotherfiledatainterfaceperfile:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2115,10 +2115,10 @@ class init_c_simradotherfiledatainterfaceperfile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -2162,11 +2162,11 @@ class init_c_simradotherfiledatainterfaceperfile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -2178,7 +2178,7 @@ class init_c_simradotherfiledatainterfaceperfile_mapped:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

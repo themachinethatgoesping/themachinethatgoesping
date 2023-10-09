@@ -37,7 +37,7 @@ class I_Ping(I_PingCommon):
         ...
     def get_file_ping_counter(self) -> int:
         ...
-    def get_geolocation(self, target_id: str = ...) -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+    def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         """
         Get the geolocation of the transducer.
         
@@ -56,11 +56,11 @@ class I_Ping(I_PingCommon):
         ...
     def has_watercolumn(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -217,7 +217,7 @@ class I_PingCommon:
         """
         return a copy using the c++ default copy constructor
         """
-    def feature_string(self, available: bool = ...) -> str:
+    def feature_string(self, available: bool = True) -> str:
         """
         Get a string of all registered features that are available or not
         available
@@ -249,15 +249,15 @@ class I_PingCommon:
         Returns:
             false
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def load(self, force: bool = ...) -> None:
+    def load(self, force: bool = False) -> None:
         ...
     def loaded(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

@@ -19,7 +19,7 @@ def modules():
     ...
 def version():
     ...
-__modules_installed__: list = [('tools', '0.20.0'), ('algorithms', '0.5.1'), ('navigation', '0.14.0'), ('echosounders', '0.27.5'), ('pingprocessing', '0.1.0'), ('gridding', '@PROJECT_VERSION@')]
+__modules_installed__: list = [('tools', '0.20.0'), ('algorithms', '0.5.2'), ('navigation', '0.14.0'), ('echosounders', '0.27.5'), ('pingprocessing', '0.1.0'), ('gridding', '@PROJECT_VERSION@')]
 __submodule: str = '../'
 __version__: str = '0.10.2'
 pydev_install_module_paths: list = ['/home/ssd/local/lib/python3.11/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping']

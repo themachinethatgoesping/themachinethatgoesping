@@ -1,7 +1,6 @@
 numba
+meson
 tqdm
 numpy
 pybind11-stubgen
 pytest
-#ipympl
-matplotlib

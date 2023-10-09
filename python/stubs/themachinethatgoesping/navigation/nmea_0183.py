@@ -8,7 +8,7 @@ class NMEA_Base:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_Base:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_Base:
         """
         create T_CLASS object from bytearray
         """
@@ -62,11 +62,11 @@ class NMEA_Base:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -74,7 +74,7 @@ class NMEA_Base:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -84,7 +84,7 @@ class NMEA_GGA(NMEA_Base):
     received from a global navigation satellite system (GNSS device).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_GGA:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GGA:
         """
         create T_CLASS object from bytearray
         """
@@ -98,7 +98,7 @@ class NMEA_GGA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea gga object from an existing NMEA_Base datagram
         
@@ -148,11 +148,11 @@ class NMEA_GGA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -160,7 +160,7 @@ class NMEA_GGA(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -170,7 +170,7 @@ class NMEA_GLL(NMEA_Base):
     received from a global navigation satellite system (GNSS device).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_GLL:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GLL:
         """
         create T_CLASS object from bytearray
         """
@@ -184,7 +184,7 @@ class NMEA_GLL(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea gll object from an existing NMEA_Base datagram
         
@@ -224,11 +224,11 @@ class NMEA_GLL(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -236,7 +236,7 @@ class NMEA_GLL(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -246,7 +246,7 @@ class NMEA_GST(NMEA_Base):
     received from a global navigation satellite system (GNSS device).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_GST:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GST:
         """
         create T_CLASS object from bytearray
         """
@@ -260,7 +260,7 @@ class NMEA_GST(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea GST object from an existing NMEA_Base datagram
         
@@ -304,11 +304,11 @@ class NMEA_GST(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -316,7 +316,7 @@ class NMEA_GST(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -326,7 +326,7 @@ class NMEA_HDT(NMEA_Base):
     received from a compass.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_HDT:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_HDT:
         """
         create T_CLASS object from bytearray
         """
@@ -340,7 +340,7 @@ class NMEA_HDT(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea hdt object from an existing NMEA_Base datagram
         
@@ -370,11 +370,11 @@ class NMEA_HDT(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -382,7 +382,7 @@ class NMEA_HDT(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -393,7 +393,7 @@ class NMEA_RMC(NMEA_Base):
     (GNSS device).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_RMC:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_RMC:
         """
         create T_CLASS object from bytearray
         """
@@ -407,7 +407,7 @@ class NMEA_RMC(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea rmc object from an existing NMEA_Base datagram
         
@@ -455,11 +455,11 @@ class NMEA_RMC(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -467,11 +467,11 @@ class NMEA_RMC(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
-    def to_date_string(self, format: str = ...) -> str:
+    def to_date_string(self, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Convert the datagram into a date time string Note: this function uses
         to_timestamp()
@@ -495,7 +495,7 @@ class NMEA_Unknown(NMEA_Base):
     Thie NMEA datagram was not yet implemented in themachinethatgoesping.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_Unknown:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_Unknown:
         """
         create T_CLASS object from bytearray
         """
@@ -509,7 +509,7 @@ class NMEA_Unknown(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea Unknown object from an existing NMEA_Base
         datagram
@@ -538,11 +538,11 @@ class NMEA_Unknown(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -550,7 +550,7 @@ class NMEA_Unknown(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -560,7 +560,7 @@ class NMEA_VHW(NMEA_Base):
     speed relative to the water.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_VHW:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VHW:
         """
         create T_CLASS object from bytearray
         """
@@ -574,7 +574,7 @@ class NMEA_VHW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea vhw object from an existing NMEA_Base datagram
         
@@ -610,11 +610,11 @@ class NMEA_VHW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -622,7 +622,7 @@ class NMEA_VHW(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -632,7 +632,7 @@ class NMEA_VLW(NMEA_Base):
     the vessel.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_VLW:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VLW:
         """
         create T_CLASS object from bytearray
         """
@@ -646,7 +646,7 @@ class NMEA_VLW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea vlw object from an existing NMEA_Base datagram
         
@@ -682,11 +682,11 @@ class NMEA_VLW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -694,7 +694,7 @@ class NMEA_VLW(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -704,7 +704,7 @@ class NMEA_VTG(NMEA_Base):
     ground.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_VTG:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VTG:
         """
         create T_CLASS object from bytearray
         """
@@ -718,7 +718,7 @@ class NMEA_VTG(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea vtg object from an existing NMEA_Base datagram
         
@@ -758,11 +758,11 @@ class NMEA_VTG(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -770,7 +770,7 @@ class NMEA_VTG(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -780,7 +780,7 @@ class NMEA_ZDA(NMEA_Base):
     get_month, get_year and local time zone offsets.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NMEA_ZDA:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_ZDA:
         """
         create T_CLASS object from bytearray
         """
@@ -794,7 +794,7 @@ class NMEA_ZDA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, nmea_base: NMEA_Base, check: bool = ...) -> None:
+    def __init__(self, nmea_base: NMEA_Base, check: bool = True) -> None:
         """
         Construct a new nmea zda object from an existing NMEA_Base datagram
         
@@ -834,11 +834,11 @@ class NMEA_ZDA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -846,11 +846,11 @@ class NMEA_ZDA(NMEA_Base):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
-    def to_date_string(self, format: str = ...) -> str:
+    def to_date_string(self, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Convert the datagram into a date time string Note: this function uses
         to_timestamp()

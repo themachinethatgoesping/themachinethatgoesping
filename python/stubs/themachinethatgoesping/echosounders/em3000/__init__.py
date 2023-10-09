@@ -13,13 +13,13 @@ class FileEM3000:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
@@ -36,12 +36,12 @@ class FileEM3000:
         ...
     def get_cached_file_index(self) -> dict[str, filetypes.FileInfoData_em3000_FileInfoData]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_interfaces(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
@@ -55,7 +55,7 @@ class FileEM3000:
     @typing.overload
     def pings(self, channel_ids: list[str]) -> filedatacontainers.EM3000PingContainer:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -84,13 +84,13 @@ class FileEM3000_mapped:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = ..., init: bool = ..., show_progress: bool = ...) -> None:
+    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
@@ -107,12 +107,12 @@ class FileEM3000_mapped:
         ...
     def get_cached_file_index(self) -> dict[str, filetypes.FileInfoData_em3000_FileInfoData]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_interfaces(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
@@ -126,7 +126,7 @@ class FileEM3000_mapped:
     @typing.overload
     def pings(self, channel_ids: list[str]) -> filedatacontainers.EM3000PingContainer_mapped:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

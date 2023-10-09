@@ -11,7 +11,7 @@ class GeoLocation:
     (z)
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> GeoLocation:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocation:
         """
         create T_CLASS object from bytearray
         """
@@ -53,7 +53,7 @@ class GeoLocation:
         Construct a new Position object
         """
     @typing.overload
-    def __init__(self, z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new GeoLocation object
         
@@ -87,11 +87,11 @@ class GeoLocation:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -99,7 +99,7 @@ class GeoLocation:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -142,7 +142,7 @@ class GeoLocationLatLon(GeoLocation):
     and longitude coordinates
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> GeoLocationLatLon:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationLatLon:
         """
         create T_CLASS object from bytearray
         """
@@ -189,7 +189,7 @@ class GeoLocationLatLon(GeoLocation):
         object (this allows for explicit conversion from GeoLocationUTM class)
         """
     @typing.overload
-    def __init__(self, latitude: float = ..., longitude: float = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new GeoLocationLatLon object
         
@@ -229,11 +229,11 @@ class GeoLocationLatLon(GeoLocation):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -241,7 +241,7 @@ class GeoLocationLatLon(GeoLocation):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -269,7 +269,7 @@ class GeoLocationLocal(GeoLocation):
     converted to UTM coordinates if the zone and hemisphere are known.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> GeoLocationLocal:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationLocal:
         """
         create T_CLASS object from bytearray
         """
@@ -304,7 +304,7 @@ class GeoLocationLocal(GeoLocation):
             in m, positive eastwards
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new GeoLocationLocal object
         
@@ -344,11 +344,11 @@ class GeoLocationLocal(GeoLocation):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -356,7 +356,7 @@ class GeoLocationLocal(GeoLocation):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -384,7 +384,7 @@ class GeoLocationUTM(GeoLocationLocal):
     """
     northern_hemisphere: bool
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> GeoLocationUTM:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationUTM:
         """
         create T_CLASS object from bytearray
         """
@@ -415,14 +415,14 @@ class GeoLocationUTM(GeoLocationLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = ...) -> None:
+    def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = -1) -> None:
         """
         Construct an GeoLocationUTM object from an existing GeoLocationLatLon
         object (this allows for explicit conversion from GeoLocationLatLon
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., northern_hemisphere: bool = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new GeoLocationUTM object
         
@@ -468,11 +468,11 @@ class GeoLocationUTM(GeoLocationLocal):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -480,7 +480,7 @@ class GeoLocationUTM(GeoLocationLocal):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -498,7 +498,7 @@ class PositionalOffsets:
     the vessel coordinate system
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PositionalOffsets:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionalOffsets:
         """
         create T_CLASS object from bytearray
         """
@@ -532,7 +532,7 @@ class PositionalOffsets:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, name: str = ..., x: float = ..., y: float = ..., z: float = ..., yaw: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, name: str = '', x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new PositionalOffsets object
         
@@ -575,11 +575,11 @@ class PositionalOffsets:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -587,7 +587,7 @@ class PositionalOffsets:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -654,7 +654,7 @@ class SensorData:
     this structure (only depth).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorData:
         """
         create T_CLASS object from bytearray
         """
@@ -696,7 +696,7 @@ class SensorData:
         Construct a new SensorData object
         """
     @typing.overload
-    def __init__(self, depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new SensorData object
         
@@ -733,11 +733,11 @@ class SensorData:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -745,7 +745,7 @@ class SensorData:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -797,7 +797,7 @@ class SensorDataLatLon(SensorData):
     latitude: float
     longitude: float
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorDataLatLon:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataLatLon:
         """
         create T_CLASS object from bytearray
         """
@@ -844,7 +844,7 @@ class SensorDataLatLon(SensorData):
         object (this allows for explicit conversion from SensorDataUTM class)
         """
     @typing.overload
-    def __init__(self, latitude: float = ..., longitude: float = ..., depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new SensorDataLatLon object
         
@@ -887,11 +887,11 @@ class SensorDataLatLon(SensorData):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -899,7 +899,7 @@ class SensorDataLatLon(SensorData):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -910,7 +910,7 @@ class SensorDataLocal(SensorData):
     structure stores coordinates without zone and hemisphere information.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorDataLocal:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataLocal:
         """
         create T_CLASS object from bytearray
         """
@@ -956,7 +956,7 @@ class SensorDataLocal(SensorData):
             in m, positive eastwards
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new SensorDataLocal object
         
@@ -999,11 +999,11 @@ class SensorDataLocal(SensorData):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1011,7 +1011,7 @@ class SensorDataLocal(SensorData):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1039,12 +1039,12 @@ class SensorDataUTM(SensorDataLocal):
     """
     northern_hemisphere: bool
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorDataUTM:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataUTM:
         """
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_sensordata(sensordatalatlon: SensorDataLatLon, setutm_zone: int = ...) -> SensorDataUTM:
+    def from_sensordata(sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> SensorDataUTM:
         """
         Construct convert a SensorDataLatLon Object to UTM
         
@@ -1125,14 +1125,14 @@ class SensorDataUTM(SensorDataLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorDataLatLon, setutm_zone: int = ...) -> None:
+    def __init__(self, sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> None:
         """
         Construct an SensorDataUTM object from an existing SensorDataLatLon
         object (this allows for explicit conversion from SensorDataLatLon
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = ..., easting: float = ..., utm_zone: int = ..., northern_hemisphere: bool = ..., depth: float = ..., heave: float = ..., heading: float = ..., pitch: float = ..., roll: float = ...) -> None:
+    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
         Construct a new SensorDataUTM object
         
@@ -1181,11 +1181,11 @@ class SensorDataUTM(SensorDataLocal):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1193,7 +1193,7 @@ class SensorDataUTM(SensorDataLocal):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

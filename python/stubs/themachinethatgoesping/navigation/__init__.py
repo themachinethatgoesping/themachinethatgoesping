@@ -15,7 +15,7 @@ class NavigationInterpolatorLatLon:
     specified in the sensor configuration class
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NavigationInterpolatorLatLon:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NavigationInterpolatorLatLon:
         """
         create T_CLASS object from bytearray
         """
@@ -144,7 +144,7 @@ class NavigationInterpolatorLatLon:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -155,7 +155,7 @@ class NavigationInterpolatorLatLon:
         
         Parameter ``other``:
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -228,7 +228,7 @@ class NavigationInterpolatorLatLon:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -289,7 +289,7 @@ class NavigationInterpolatorLocal:
     values using the offsets specified in the sensor configuration class
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NavigationInterpolatorLocal:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NavigationInterpolatorLocal:
         """
         create T_CLASS object from bytearray
         """
@@ -418,7 +418,7 @@ class NavigationInterpolatorLocal:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -429,7 +429,7 @@ class NavigationInterpolatorLocal:
         
         Parameter ``other``:
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -502,7 +502,7 @@ class NavigationInterpolatorLocal:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -564,7 +564,7 @@ class SensorConfiguration:
     geolocation and attitude of the specified targets
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SensorConfiguration:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorConfiguration:
         """
         create T_CLASS object from bytearray
         """
@@ -591,7 +591,7 @@ class SensorConfiguration:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, default_sensor_name: str = ...) -> None:
+    def __init__(self, default_sensor_name: str = 'zero-referenced') -> None:
         """
         Construct a new, empty Sensor Coordinate System object After
         construction: add sensor offsets and targets (offsets) Then compute
@@ -804,11 +804,11 @@ class SensorConfiguration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -920,7 +920,7 @@ class SensorConfiguration:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -936,6 +936,6 @@ class ostream_redirect:
         ...
     def __exit__(self, *args) -> None:
         ...
-    def __init__(self, stdout: bool = ..., stderr: bool = ...) -> None:
+    def __init__(self, stdout: bool = True, stderr: bool = True) -> None:
         ...
 __version__: str = '0.14.0'

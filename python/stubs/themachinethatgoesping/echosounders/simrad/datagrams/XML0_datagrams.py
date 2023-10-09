@@ -11,7 +11,7 @@ class ChannelConfiguration:
     XML base datagram
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ChannelConfiguration:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ChannelConfiguration:
         """
         create T_CLASS object from bytearray
         """
@@ -49,11 +49,11 @@ class ChannelConfiguration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -61,7 +61,7 @@ class ChannelConfiguration:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -88,7 +88,7 @@ class XMLConfigurationActivePingMode:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XMLConfigurationActivePingMode:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationActivePingMode:
         """
         create T_CLASS object from bytearray
         """
@@ -122,13 +122,13 @@ class XMLConfigurationActivePingMode:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -136,7 +136,7 @@ class XMLConfigurationActivePingMode:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -166,7 +166,7 @@ class XMLConfigurationTransceiverChannelTransducer:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XMLConfigurationTransceiverChannelTransducer:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationTransceiverChannelTransducer:
         """
         create T_CLASS object from bytearray
         """
@@ -200,13 +200,13 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -214,7 +214,7 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -234,7 +234,7 @@ class XML_Configuration:
     Transducers: list[XML_Configuration_Transducer]
     Version: str
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration:
         """
         create T_CLASS object from bytearray
         """
@@ -282,13 +282,13 @@ class XML_Configuration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -296,7 +296,7 @@ class XML_Configuration:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -320,7 +320,7 @@ class XML_Configuration_Sensor:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Sensor:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor:
         """
         create T_CLASS object from bytearray
         """
@@ -362,13 +362,13 @@ class XML_Configuration_Sensor:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -376,7 +376,7 @@ class XML_Configuration_Sensor:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -392,7 +392,7 @@ class XML_Configuration_Sensor_Telegram:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Sensor_Telegram:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_Telegram:
         """
         create T_CLASS object from bytearray
         """
@@ -426,13 +426,13 @@ class XML_Configuration_Sensor_Telegram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -440,7 +440,7 @@ class XML_Configuration_Sensor_Telegram:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -453,7 +453,7 @@ class XML_Configuration_Sensor_TelegramValue:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Sensor_TelegramValue:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_TelegramValue:
         """
         create T_CLASS object from bytearray
         """
@@ -487,13 +487,13 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -501,7 +501,7 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -525,7 +525,7 @@ class XML_Configuration_Transceiver:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Transceiver:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver:
         """
         create T_CLASS object from bytearray
         """
@@ -559,13 +559,13 @@ class XML_Configuration_Transceiver:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -573,7 +573,7 @@ class XML_Configuration_Transceiver:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -595,7 +595,7 @@ class XML_Configuration_Transceiver_Channel:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Transceiver_Channel:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel:
         """
         create T_CLASS object from bytearray
         """
@@ -629,13 +629,13 @@ class XML_Configuration_Transceiver_Channel:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -643,7 +643,7 @@ class XML_Configuration_Transceiver_Channel:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -662,7 +662,7 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Transceiver_Channel_FrequencyPar:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         create T_CLASS object from bytearray
         """
@@ -696,13 +696,13 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -710,7 +710,7 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -731,7 +731,7 @@ class XML_Configuration_Transducer:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Configuration_Transducer:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transducer:
         """
         create T_CLASS object from bytearray
         """
@@ -773,13 +773,13 @@ class XML_Configuration_Transducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -787,7 +787,7 @@ class XML_Configuration_Transducer:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -819,7 +819,7 @@ class XML_Environment:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Environment:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment:
         """
         create T_CLASS object from bytearray
         """
@@ -853,13 +853,13 @@ class XML_Environment:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -867,7 +867,7 @@ class XML_Environment:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -880,7 +880,7 @@ class XML_Environment_Transducer:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Environment_Transducer:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment_Transducer:
         """
         create T_CLASS object from bytearray
         """
@@ -914,13 +914,13 @@ class XML_Environment_Transducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -928,7 +928,7 @@ class XML_Environment_Transducer:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -938,7 +938,7 @@ class XML_InitialParameter:
     """
     Channels: list[XML_Parameter_Channel]
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_InitialParameter:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_InitialParameter:
         """
         create T_CLASS object from bytearray
         """
@@ -972,13 +972,13 @@ class XML_InitialParameter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -986,7 +986,7 @@ class XML_InitialParameter:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -995,7 +995,7 @@ class XML_Node:
     XML base datagram
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Node:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Node:
         """
         create T_CLASS object from bytearray
         """
@@ -1043,13 +1043,13 @@ class XML_Node:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def name(self) -> str:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1057,7 +1057,7 @@ class XML_Node:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1067,7 +1067,7 @@ class XML_Parameter:
     """
     Channels: list[XML_Parameter_Channel]
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Parameter:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter:
         """
         create T_CLASS object from bytearray
         """
@@ -1101,13 +1101,13 @@ class XML_Parameter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1115,7 +1115,7 @@ class XML_Parameter:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1132,7 +1132,7 @@ class XML_Parameter_Channel:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Parameter_Channel:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter_Channel:
         """
         create T_CLASS object from bytearray
         """
@@ -1166,13 +1166,13 @@ class XML_Parameter_Channel:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1180,7 +1180,7 @@ class XML_Parameter_Channel:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1256,7 +1256,7 @@ class XML_PingSequence:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_PingSequence:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence:
         """
         create T_CLASS object from bytearray
         """
@@ -1290,13 +1290,13 @@ class XML_PingSequence:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1304,7 +1304,7 @@ class XML_PingSequence:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1316,7 +1316,7 @@ class XML_PingSequence_Ping:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_PingSequence_Ping:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence_Ping:
         """
         create T_CLASS object from bytearray
         """
@@ -1350,13 +1350,13 @@ class XML_PingSequence_Ping:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1364,7 +1364,7 @@ class XML_PingSequence_Ping:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1378,7 +1378,7 @@ class XML_Sensor:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> XML_Sensor:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Sensor:
         """
         create T_CLASS object from bytearray
         """
@@ -1412,13 +1412,13 @@ class XML_Sensor:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1426,7 +1426,7 @@ class XML_Sensor:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

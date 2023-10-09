@@ -11,7 +11,7 @@ class BTConstantSVP(I_Backtracer):
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> BTConstantSVP:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BTConstantSVP:
         """
         create T_CLASS object from bytearray
         """
@@ -55,11 +55,11 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -67,7 +67,7 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -75,7 +75,7 @@ class I_Backtracer:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> I_Backtracer:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> I_Backtracer:
         """
         create T_CLASS object from bytearray
         """
@@ -103,7 +103,7 @@ class I_Backtracer:
         """
         Return object information as string
         """
-    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2:
+    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2:
         """
         Backtrace the location of an image specified by two coordinate vectors
         x is assumed to be 0
@@ -122,7 +122,7 @@ class I_Backtracer:
             (y_coordinates.size(), z_coordinates.size())
         """
     @typing.overload
-    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -142,7 +142,7 @@ class I_Backtracer:
             datastructures::SampleDirectionsRange
         """
     @typing.overload
-    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -177,11 +177,13 @@ class I_Backtracer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def lookup_indices(self, beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], beam_reference_max_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleIndices_2:
+        ...
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -191,7 +193,7 @@ class I_Backtracer:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

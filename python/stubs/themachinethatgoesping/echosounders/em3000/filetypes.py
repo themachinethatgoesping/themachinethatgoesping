@@ -108,10 +108,10 @@ class EM3000PingRawData:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -124,12 +124,12 @@ class EM3000PingRawData:
     def get_timestamp_first(self) -> float:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -138,16 +138,16 @@ class EM3000PingRawData:
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    def read_merged_watercolumndatagram(self, skip_data: bool = ...) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
     def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
@@ -208,10 +208,10 @@ class EM3000PingRawData_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -224,12 +224,12 @@ class EM3000PingRawData_mapped:
     def get_timestamp_first(self) -> float:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -238,16 +238,16 @@ class EM3000PingRawData_mapped:
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    def read_merged_watercolumndatagram(self, skip_data: bool = ...) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
     def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
@@ -309,7 +309,7 @@ class FileInfoData_em3000_FileInfoData:
     file_path: str
     file_size: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileInfoData_em3000_FileInfoData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileInfoData_em3000_FileInfoData:
         """
         create T_CLASS object from bytearray
         """
@@ -345,11 +345,11 @@ class FileInfoData_em3000_FileInfoData:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -357,7 +357,7 @@ class FileInfoData_em3000_FileInfoData:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

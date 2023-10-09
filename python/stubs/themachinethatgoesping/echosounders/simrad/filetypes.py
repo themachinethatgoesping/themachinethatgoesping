@@ -14,7 +14,7 @@ class FileInfoData_simrad_FileInfoData:
     file_path: str
     file_size: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> FileInfoData_simrad_FileInfoData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileInfoData_simrad_FileInfoData:
         """
         create T_CLASS object from bytearray
         """
@@ -50,11 +50,11 @@ class FileInfoData_simrad_FileInfoData:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -62,7 +62,7 @@ class FileInfoData_simrad_FileInfoData:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -114,7 +114,7 @@ class SimradPingRawData:
         ...
     def has_power(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -124,7 +124,7 @@ class SimradPingRawData:
     @typing.overload
     def load(self) -> None:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -161,7 +161,7 @@ class SimradPingRawData_mapped:
         ...
     def has_power(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -171,7 +171,7 @@ class SimradPingRawData_mapped:
     @typing.overload
     def load(self) -> None:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

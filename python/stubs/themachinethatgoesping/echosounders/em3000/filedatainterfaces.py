@@ -33,15 +33,15 @@ class EM3000AnnotationDataInterface:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -75,7 +75,7 @@ class EM3000AnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -108,10 +108,10 @@ class EM3000AnnotationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -155,11 +155,11 @@ class EM3000AnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -171,7 +171,7 @@ class EM3000AnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -200,10 +200,10 @@ class EM3000AnnotationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -247,11 +247,11 @@ class EM3000AnnotationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -263,7 +263,7 @@ class EM3000AnnotationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -290,15 +290,15 @@ class EM3000AnnotationDataInterface_mapped:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -332,7 +332,7 @@ class EM3000AnnotationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -358,15 +358,15 @@ class EM3000ConfigurationDataInterface:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -400,7 +400,7 @@ class EM3000ConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -426,10 +426,10 @@ class EM3000ConfigurationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -485,11 +485,11 @@ class EM3000ConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -501,7 +501,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -559,10 +559,10 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -618,11 +618,11 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -634,7 +634,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -692,15 +692,15 @@ class EM3000ConfigurationDataInterface_mapped:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -734,7 +734,7 @@ class EM3000ConfigurationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -760,10 +760,10 @@ class EM3000DatagramInterface:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -773,7 +773,7 @@ class EM3000DatagramInterface:
         ...
     def get_timestamp_first(self) -> float:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -781,7 +781,7 @@ class EM3000DatagramInterface:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -803,10 +803,10 @@ class EM3000DatagramInterface_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -816,7 +816,7 @@ class EM3000DatagramInterface_mapped:
         ...
     def get_timestamp_first(self) -> float:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
@@ -824,7 +824,7 @@ class EM3000DatagramInterface_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -846,15 +846,15 @@ class EM3000EnvironmentDataInterface:
         ...
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -890,7 +890,7 @@ class EM3000EnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -918,10 +918,10 @@ class EM3000EnvironmentDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -965,11 +965,11 @@ class EM3000EnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -983,7 +983,7 @@ class EM3000EnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1007,10 +1007,10 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1054,11 +1054,11 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1072,7 +1072,7 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1094,15 +1094,15 @@ class EM3000EnvironmentDataInterface_mapped:
         ...
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1138,7 +1138,7 @@ class EM3000EnvironmentDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1178,15 +1178,15 @@ class EM3000NavigationDataInterface:
         ...
     def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1220,7 +1220,7 @@ class EM3000NavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1248,10 +1248,10 @@ class EM3000NavigationDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1295,11 +1295,11 @@ class EM3000NavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1311,7 +1311,7 @@ class EM3000NavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1337,10 +1337,10 @@ class EM3000NavigationDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1384,11 +1384,11 @@ class EM3000NavigationDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1400,7 +1400,7 @@ class EM3000NavigationDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1438,15 +1438,15 @@ class EM3000NavigationDataInterface_mapped:
         ...
     def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1480,7 +1480,7 @@ class EM3000NavigationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1512,15 +1512,15 @@ class EM3000OtherFileDataInterface:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1554,7 +1554,7 @@ class EM3000OtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1588,10 +1588,10 @@ class EM3000OtherFileDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1635,11 +1635,11 @@ class EM3000OtherFileDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1651,7 +1651,7 @@ class EM3000OtherFileDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1681,10 +1681,10 @@ class EM3000OtherFileDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1728,11 +1728,11 @@ class EM3000OtherFileDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1744,7 +1744,7 @@ class EM3000OtherFileDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1772,15 +1772,15 @@ class EM3000OtherFileDataInterface_mapped:
         """
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1814,7 +1814,7 @@ class EM3000OtherFileDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1850,15 +1850,15 @@ class EM3000PingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1894,7 +1894,7 @@ class EM3000PingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1924,10 +1924,10 @@ class EM3000PingDataInterfacePerFile:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -1975,11 +1975,11 @@ class EM3000PingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1993,7 +1993,7 @@ class EM3000PingDataInterfacePerFile:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2021,10 +2021,10 @@ class EM3000PingDataInterfacePerFile_mapped:
     def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = ...) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
@@ -2072,11 +2072,11 @@ class EM3000PingDataInterfacePerFile_mapped:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def init_from_file(self, force: bool = ...) -> None:
+    def init_from_file(self, force: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -2090,7 +2090,7 @@ class EM3000PingDataInterfacePerFile_mapped:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2124,15 +2124,15 @@ class EM3000PingDataInterface_mapped:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, force: bool = ..., show_progress: bool = ...) -> None:
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = ...) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -2168,7 +2168,7 @@ class EM3000PingDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

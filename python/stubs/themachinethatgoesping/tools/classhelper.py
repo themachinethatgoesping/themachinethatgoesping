@@ -18,7 +18,7 @@ class ObjectPrinter:
     python functions
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ObjectPrinter:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ObjectPrinter:
         """
         create T_CLASS object from bytearray
         """
@@ -71,16 +71,16 @@ class ObjectPrinter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
     @typing.overload
-    def register_container(self, name: str, value: list[float], value_info: str = ..., pos: int = ...) -> None:
+    def register_container(self, name: str, value: list[float], value_info: str = '', pos: int = -1) -> None:
         """
         register a 1D container for printing
         
@@ -101,7 +101,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_container(self, name: str, value: list[int], value_info: str = ..., pos: int = ...) -> None:
+    def register_container(self, name: str, value: list[int], value_info: str = '', pos: int = -1) -> None:
         """
         register a 1D container for printing
         
@@ -122,7 +122,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_container(self, name: str, value: list[str], value_info: str = ..., pos: int = ...) -> None:
+    def register_container(self, name: str, value: list[str], value_info: str = '', pos: int = -1) -> None:
         """
         register a 1D container for printing
         
@@ -142,7 +142,7 @@ class ObjectPrinter:
             position where the value is registers (if negative, the value is
             appended)
         """
-    def register_section(self, name: str, underliner: str = ..., pos: int = ...) -> None:
+    def register_section(self, name: str, underliner: str = '-', pos: int = -1) -> None:
         """
         register a section break for printing
         
@@ -157,7 +157,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_value(self, name: str, value: float, value_info: str = ..., pos: int = ...) -> None:
+    def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -178,7 +178,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_value(self, name: str, value: int, value_info: str = ..., pos: int = ...) -> None:
+    def register_value(self, name: str, value: int, value_info: str = '', pos: int = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -199,7 +199,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_value(self, name: str, value: str, value_info: str = ..., pos: int = ...) -> None:
+    def register_value(self, name: str, value: str, value_info: str = '', pos: int = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -223,7 +223,7 @@ class ObjectPrinter:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

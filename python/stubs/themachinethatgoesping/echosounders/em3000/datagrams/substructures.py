@@ -90,11 +90,11 @@ class AttitudeDatagramAttitude:
         Returns:
             _time * 0.001f (float)
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -192,11 +192,11 @@ class ExtraDetectionsDetectionClasses:
         """
         < % of depth (1-300)
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -405,11 +405,11 @@ class ExtraDetectionsExtraDetections:
         """
         <
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -517,7 +517,7 @@ class NetworkAttitudeVelocityDatagramAttitude:
     depth and ray bending through the water column have been applied.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NetworkAttitudeVelocityDatagramAttitude:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagramAttitude:
         """
         create T_CLASS object from bytearray
         """
@@ -616,11 +616,11 @@ class NetworkAttitudeVelocityDatagramAttitude:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -656,7 +656,7 @@ class NetworkAttitudeVelocityDatagramAttitude:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -748,11 +748,11 @@ class RawRangeAndAngleBeam:
         """
         < in s
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -863,11 +863,11 @@ class RawRangeAndAngleTransmitSector:
         """
     def get_transmit_sector_number(self) -> int:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -967,11 +967,11 @@ class SampleAmplitudesStructure_int16_t:
         ...
     def get_start_index_per_beam(self) -> list[int]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1060,11 +1060,11 @@ class SeabedImageDataBeam:
         """
     def get_sorting_direction(self) -> int:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1082,7 +1082,7 @@ class WatercolumnDatagramBeam:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> WatercolumnDatagramBeam:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WatercolumnDatagramBeam:
         """
         create T_CLASS object from bytearray
         """
@@ -1149,11 +1149,11 @@ class WatercolumnDatagramBeam:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1181,7 +1181,7 @@ class WatercolumnDatagramBeam:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -1235,11 +1235,11 @@ class WatercolumnDatagramTransmitSector:
         """
     def get_transmit_sector_number(self) -> int:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1367,11 +1367,11 @@ class XYZDatagramBeam:
         """
     def get_reflectivity(self) -> int:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """

@@ -55,7 +55,7 @@ class t_latlon_format:
     def value(self) -> int:
         ...
 @typing.overload
-def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision: int = ...) -> str:
+def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -73,7 +73,7 @@ def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision
         converted latitude string
     """
 @typing.overload
-def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., precision: int = ...) -> list[str]:
+def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., precision: int = 6) -> list[str]:
     """
     convert a latitude value to a string
     
@@ -93,7 +93,7 @@ def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., pre
 def latlon_to_utm(latitude: list[float], longitude: list[float], setzone: int) -> tuple[list[float], list[float], int, bool]:
     ...
 @typing.overload
-def longitude_to_string(longitude: float, format: t_latlon_format = ..., precision: int = ...) -> str:
+def longitude_to_string(longitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -111,7 +111,7 @@ def longitude_to_string(longitude: float, format: t_latlon_format = ..., precisi
         converted latitude string
     """
 @typing.overload
-def longitude_to_string(longitude: list[float], format: t_latlon_format = ..., precision: int = ...) -> list[str]:
+def longitude_to_string(longitude: list[float], format: t_latlon_format = ..., precision: int = 6) -> list[str]:
     """
     convert a latitude value to a string
     

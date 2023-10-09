@@ -11,7 +11,7 @@ class I_Raytracer:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> I_Raytracer:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> I_Raytracer:
         """
         create T_CLASS object from bytearray
         """
@@ -51,11 +51,11 @@ class I_Raytracer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -65,7 +65,7 @@ class I_Raytracer:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -138,7 +138,7 @@ class I_Raytracer:
             datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
+    def trace_points(self, two_way_travel_times: numpy.ndarray[numpy.float32], alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
         """
         Trace the location of a set of points.
         
@@ -158,7 +158,7 @@ class I_Raytracer:
             datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_points(self, sample_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsTime_1, mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
+    def trace_points(self, sample_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsTime_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1:
         """
         Trace the location of a set of points.
         
@@ -172,7 +172,7 @@ class I_Raytracer:
             datastructures::RaytraceResult
         """
     @typing.overload
-    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
+    def trace_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, alongtrack_angle: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
         """
         Trace the sample locations of a multiple beams in a swath. Note: a 2d
         Array for sample numbers is expected where the first dimension is the
@@ -201,7 +201,7 @@ class I_Raytracer:
             datastructures::RaytraceResults<2>
         """
     @typing.overload
-    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
+    def trace_swath(self, first_sample_number: int, number_of_samples: int, sample_step: int, sampling_time: float, sampling_time_offset: float, alongtrack_angles: numpy.ndarray[numpy.float32], crosstrack_angles: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
         """
         Trace the sample locations of a multiple beams in a swath. Note: The
         number of beams is controlled by the dimension of crosstrack_angles
@@ -237,7 +237,7 @@ class RTConstantSVP(I_Raytracer):
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> RTConstantSVP:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RTConstantSVP:
         """
         create T_CLASS object from bytearray
         """
@@ -281,11 +281,11 @@ class RTConstantSVP(I_Raytracer):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -321,7 +321,7 @@ class RTConstantSVP(I_Raytracer):
         Returns:
             datastructures::RaytraceResults<1>
         """
-    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_targets: themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1, scale_times: numpy.ndarray[numpy.float32], mp_cores: int = ...) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
+    def scale_swath(self, sample_numbers: numpy.ndarray[numpy.uint32], sampling_time: float, sampling_time_offset: float, scale_targets: themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_1, scale_times: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.RaytraceResults_2:
         """
         Compute the sample locations of a swath by scaling between the
         transducer location and known target locations
@@ -351,7 +351,7 @@ class RTConstantSVP(I_Raytracer):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

@@ -35,11 +35,11 @@ class RAW3DataAngle(i_RAW3Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -81,13 +81,13 @@ class RAW3DataComplexFloat32(i_RAW3Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]:
         ...
-    def get_power(self, dB: bool = ...) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -127,13 +127,13 @@ class RAW3DataPower(i_RAW3Data):
         """
         return a copy using the c++ default copy constructor
         """
-    def get_power(self, dB: bool = ...) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -175,13 +175,13 @@ class RAW3DataPowerAndAngle(i_RAW3Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]:
         ...
-    def get_power(self, dB: bool = ...) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -228,11 +228,11 @@ class RAW3DataSkipped(i_RAW3Data):
         """
         return a copy using the c++ default copy constructor
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -248,7 +248,7 @@ class i_RAW3Data:
         ...
     def get_name(self) -> str:
         ...
-    def get_power(self, dB: bool = ...) -> ...:
+    def get_power(self, dB: bool = False) -> ...:
         ...
     def has_angle(self) -> bool:
         ...

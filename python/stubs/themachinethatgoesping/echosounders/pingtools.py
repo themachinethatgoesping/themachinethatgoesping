@@ -11,7 +11,7 @@ class BeamSampleSelection(BeamSelection):
     transducer
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> BeamSampleSelection:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSampleSelection:
         """
         create T_CLASS object from bytearray
         """
@@ -28,10 +28,10 @@ class BeamSampleSelection(BeamSelection):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sample_step_ensemble: int = ...) -> None:
+    def __init__(self, sample_step_ensemble: int = 1) -> None:
         ...
     @typing.overload
-    def __init__(self, first_sample_number_per_beam: list[int], last_sample_number_per_beam: list[int], sample_step_ensemble: int = ...) -> None:
+    def __init__(self, first_sample_number_per_beam: list[int], last_sample_number_per_beam: list[int], sample_step_ensemble: int = 1) -> None:
         """
         Construct a new Beam Sample Selection object
         
@@ -140,11 +140,11 @@ class BeamSampleSelection(BeamSelection):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -158,7 +158,7 @@ class BeamSampleSelection(BeamSelection):
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -168,7 +168,7 @@ class BeamSelection:
     transducer
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> BeamSelection:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSelection:
         """
         create T_CLASS object from bytearray
         """
@@ -248,11 +248,11 @@ class BeamSelection:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -260,7 +260,7 @@ class BeamSelection:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -268,7 +268,7 @@ class PingSampleSelector:
     """
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> PingSampleSelector:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PingSampleSelector:
         """
         create T_CLASS object from bytearray
         """
@@ -360,21 +360,21 @@ class PingSampleSelector:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    def select_beam_range_by_angles(self, min_beam_angle: float, max_beam_angle: float, beam_step: int | None = ...) -> None:
+    def select_beam_range_by_angles(self, min_beam_angle: float, max_beam_angle: float, beam_step: int | None = None) -> None:
         ...
-    def select_beam_range_by_numbers(self, min_beam_number: int, max_beam_number: int, beam_step: int | None = ...) -> None:
+    def select_beam_range_by_numbers(self, min_beam_number: int, max_beam_number: int, beam_step: int | None = None) -> None:
         ...
-    def select_sample_range_by_numbers(self, min_sample_number: int, max_sample_number: int, sample_step: int | None = ...) -> None:
+    def select_sample_range_by_numbers(self, min_sample_number: int, max_sample_number: int, sample_step: int | None = None) -> None:
         ...
-    def select_sample_range_by_ranges(self, min_sample_range: float, max_sample_range: float, sample_step: int | None = ...) -> None:
+    def select_sample_range_by_ranges(self, min_sample_range: float, max_sample_range: float, sample_step: int | None = None) -> None:
         ...
     def set_beam_step(self, beam_step: int) -> None:
         ...
@@ -384,7 +384,7 @@ class PingSampleSelector:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -393,7 +393,7 @@ class ReadSampleRange:
     A class to hold range of samples for a single beam
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> ReadSampleRange:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ReadSampleRange:
         """
         create T_CLASS object from bytearray
         """
@@ -442,11 +442,11 @@ class ReadSampleRange:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -454,7 +454,7 @@ class ReadSampleRange:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

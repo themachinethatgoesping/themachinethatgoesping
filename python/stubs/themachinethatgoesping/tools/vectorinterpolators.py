@@ -12,7 +12,7 @@ class AkimaInterpolator:
     interpolator if less than 4 values are stored.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> AkimaInterpolator:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AkimaInterpolator:
         """
         create T_CLASS object from bytearray
         """
@@ -51,7 +51,7 @@ class AkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -137,11 +137,11 @@ class AkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = ...) -> None:
+    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -158,7 +158,7 @@ class AkimaInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -185,7 +185,7 @@ class AkimaInterpolator:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -194,7 +194,7 @@ class LinearInterpolator:
     Find linear interpolated values within vector data
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> LinearInterpolator:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> LinearInterpolator:
         """
         create T_CLASS object from bytearray
         """
@@ -233,7 +233,7 @@ class LinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -319,11 +319,11 @@ class LinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = ...) -> None:
+    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -340,7 +340,7 @@ class LinearInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -367,7 +367,7 @@ class LinearInterpolator:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -376,7 +376,7 @@ class NearestInterpolator:
     Interpolator class to find nearest neighbors within vector data
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> NearestInterpolator:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolator:
         """
         create T_CLASS object from bytearray
         """
@@ -415,7 +415,7 @@ class NearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = ..., Y: list[float] = ..., extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -501,11 +501,11 @@ class NearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = ...) -> None:
+    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -522,7 +522,7 @@ class NearestInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -549,7 +549,7 @@ class NearestInterpolator:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
@@ -562,12 +562,12 @@ class SlerpInterpolator:
     function
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = ...) -> SlerpInterpolator:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolator:
         """
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = ...) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -581,7 +581,7 @@ class SlerpInterpolator:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float], output_in_degrees: bool = ...) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def __call__(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -608,7 +608,7 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = ..., Yaw: list[float] = ..., Pitch: list[float] = ..., Roll: list[float] = ..., input_in_degrees: bool = ..., extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: list[float] = [], Yaw: list[float] = [], Pitch: list[float] = [], Roll: list[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -647,7 +647,7 @@ class SlerpInterpolator:
         Return object information as string
         """
     @typing.overload
-    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = ...) -> None:
+    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -667,7 +667,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = ...) -> None:
+    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -689,7 +689,7 @@ class SlerpInterpolator:
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = ...) -> None:
+    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -712,7 +712,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = ...) -> None:
+    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -733,7 +733,7 @@ class SlerpInterpolator:
         Returns:
             std::vector<double>
         """
-    def get_data_YPR(self, output_in_degrees: bool = ...) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
         """
         return the internal yrp data vector
         
@@ -756,12 +756,12 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = ..., bool: bool = ...) -> None:
+    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -784,7 +784,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = ..., bool: bool = ...) -> None:
+    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -798,12 +798,12 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = ...) -> None:
+    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -827,7 +827,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = ...) -> None:
+    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -863,7 +863,7 @@ class SlerpInterpolator:
         """
         hash function implemented using slow_hash
         """
-    def to_binary(self, resize_buffer: bool = ...) -> bytes:
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """

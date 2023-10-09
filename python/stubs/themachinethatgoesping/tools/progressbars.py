@@ -29,7 +29,7 @@ class I_ProgressBar:
         """
         Construct a new i progressbar object
         """
-    def close(self, msg: str = ...) -> None:
+    def close(self, msg: str = 'done') -> None:
         """
         Finalize the progressbar
         
@@ -43,7 +43,7 @@ class I_ProgressBar:
         Returns:
             progress state
         """
-    def init(self, first: float, last: float, process_name: str = ...) -> None:
+    def init(self, first: float, last: float, process_name: str = 'process') -> None:
         """
         Initialize a new progressbar within the given range
         
@@ -78,7 +78,7 @@ class I_ProgressBar:
         Parameter ``new_progress``:
             New progress state (within the given first/last range)
         """
-    def tick(self, increment: float = ...) -> None:
+    def tick(self, increment: float = 1) -> None:
         """
         Increment the progress state by the given amount
         
@@ -106,7 +106,7 @@ class I_ProgressBarTimed(I_ProgressBar):
     """
     def __init__(self) -> None:
         ...
-    def callback_close(self, msg: str = ...) -> None:
+    def callback_close(self, msg: str = 'done') -> None:
         """
         Finalize the progressbar
         
@@ -120,7 +120,7 @@ class I_ProgressBarTimed(I_ProgressBar):
         Returns:
             progress state
         """
-    def callback_init(self, first: float, last: float, process_name: str = ...) -> None:
+    def callback_init(self, first: float, last: float, process_name: str = 'process') -> None:
         """
         Initialize a new progressbar within the given range
         
@@ -167,7 +167,7 @@ class I_ProgressBarTimed(I_ProgressBar):
         Parameter ``new_progress``:
             New progress state (within the given first/last range)
         """
-    def callback_tick(self, increment: float = ...) -> None:
+    def callback_tick(self, increment: float = 1) -> None:
         """
         Increment the progress state by the given amount This callback is
         guarded a timer (100ms).
@@ -213,5 +213,5 @@ class ProgressTqdm(I_ProgressBar):
         Parameter ``tqdm``:
             A python tqdm class object
         """
-def test_loop(ProgressBar: I_ProgressBar, loops: int = ..., sleep_us: int = ..., show_progress: bool = ...) -> float:
+def test_loop(ProgressBar: I_ProgressBar, loops: int = 1000, sleep_us: int = 10, show_progress: bool = True) -> float:
     ...

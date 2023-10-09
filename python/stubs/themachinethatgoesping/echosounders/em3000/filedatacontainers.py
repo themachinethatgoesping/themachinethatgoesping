@@ -64,11 +64,11 @@ class EM3000DatagramContainer_AttitudeDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_AttitudeDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -128,11 +128,11 @@ class EM3000DatagramContainer_AttitudeDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_AttitudeDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -192,11 +192,11 @@ class EM3000DatagramContainer_ClockDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ClockDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -256,11 +256,11 @@ class EM3000DatagramContainer_ClockDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ClockDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -320,11 +320,11 @@ class EM3000DatagramContainer_DepthOrHeightDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_DepthOrHeightDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -384,11 +384,11 @@ class EM3000DatagramContainer_DepthOrHeightDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_DepthOrHeightDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -448,11 +448,11 @@ class EM3000DatagramContainer_ExtraDetections:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ExtraDetections:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -512,11 +512,11 @@ class EM3000DatagramContainer_ExtraDetections_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ExtraDetections_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -576,11 +576,11 @@ class EM3000DatagramContainer_ExtraParameters:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ExtraParameters:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -640,11 +640,11 @@ class EM3000DatagramContainer_ExtraParameters_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_ExtraParameters_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -704,11 +704,11 @@ class EM3000DatagramContainer_Header:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Header:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -768,11 +768,11 @@ class EM3000DatagramContainer_Header_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Header_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -832,11 +832,11 @@ class EM3000DatagramContainer_HeadingDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_HeadingDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -896,11 +896,11 @@ class EM3000DatagramContainer_HeadingDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_HeadingDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -960,11 +960,11 @@ class EM3000DatagramContainer_InstallationParameters:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_InstallationParameters:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1024,11 +1024,11 @@ class EM3000DatagramContainer_InstallationParameters_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_InstallationParameters_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1088,11 +1088,11 @@ class EM3000DatagramContainer_NetworkAttitudeVelocityDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_NetworkAttitudeVelocityDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1152,11 +1152,11 @@ class EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1216,11 +1216,11 @@ class EM3000DatagramContainer_PUIDOutput:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PUIDOutput:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1280,11 +1280,11 @@ class EM3000DatagramContainer_PUIDOutput_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PUIDOutput_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1344,11 +1344,11 @@ class EM3000DatagramContainer_PUStatusOutput:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PUStatusOutput:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1408,11 +1408,11 @@ class EM3000DatagramContainer_PUStatusOutput_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PUStatusOutput_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1472,11 +1472,11 @@ class EM3000DatagramContainer_PositionDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PositionDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1536,11 +1536,11 @@ class EM3000DatagramContainer_PositionDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_PositionDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1600,11 +1600,11 @@ class EM3000DatagramContainer_QualityFactorDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_QualityFactorDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1664,11 +1664,11 @@ class EM3000DatagramContainer_QualityFactorDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_QualityFactorDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1728,11 +1728,11 @@ class EM3000DatagramContainer_RawRangeAndAngle:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_RawRangeAndAngle:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1792,11 +1792,11 @@ class EM3000DatagramContainer_RawRangeAndAngle_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_RawRangeAndAngle_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1856,11 +1856,11 @@ class EM3000DatagramContainer_RuntimeParameters:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_RuntimeParameters:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1920,11 +1920,11 @@ class EM3000DatagramContainer_RuntimeParameters_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_RuntimeParameters_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -1984,11 +1984,11 @@ class EM3000DatagramContainer_SeabedImageData:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SeabedImageData:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2048,11 +2048,11 @@ class EM3000DatagramContainer_SeabedImageData_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SeabedImageData_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2112,11 +2112,11 @@ class EM3000DatagramContainer_SingleBeamEchoSounderDepth:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SingleBeamEchoSounderDepth:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2176,11 +2176,11 @@ class EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SingleBeamEchoSounderDepth_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2240,11 +2240,11 @@ class EM3000DatagramContainer_SoundSpeedProfileDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SoundSpeedProfileDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2304,11 +2304,11 @@ class EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SoundSpeedProfileDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2368,11 +2368,11 @@ class EM3000DatagramContainer_SurfaceSoundSpeedDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SurfaceSoundSpeedDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2432,11 +2432,11 @@ class EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_SurfaceSoundSpeedDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2496,11 +2496,11 @@ class EM3000DatagramContainer_Unknown:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Unknown:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2560,11 +2560,11 @@ class EM3000DatagramContainer_Unknown_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Unknown_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2624,11 +2624,11 @@ class EM3000DatagramContainer_Variant:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Variant:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2688,11 +2688,11 @@ class EM3000DatagramContainer_Variant_SkippedData:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Variant_SkippedData:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2752,11 +2752,11 @@ class EM3000DatagramContainer_Variant_SkippedData_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Variant_SkippedData_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2816,11 +2816,11 @@ class EM3000DatagramContainer_Variant_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_Variant_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2880,11 +2880,11 @@ class EM3000DatagramContainer_WatercolumnDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_WatercolumnDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -2944,11 +2944,11 @@ class EM3000DatagramContainer_WatercolumnDatagram_SkippedData:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_WatercolumnDatagram_SkippedData:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3008,11 +3008,11 @@ class EM3000DatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3072,11 +3072,11 @@ class EM3000DatagramContainer_WatercolumnDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_WatercolumnDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3136,11 +3136,11 @@ class EM3000DatagramContainer_XYZDatagram:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_XYZDatagram:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3200,11 +3200,11 @@ class EM3000DatagramContainer_XYZDatagram_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000DatagramContainer_XYZDatagram_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3251,7 +3251,7 @@ class EM3000PingContainer:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[EM3000PingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[EM3000PingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
         """
         Split the data in containers that have all requested features and
         containers that miss any of them
@@ -3294,13 +3294,13 @@ class EM3000PingContainer:
         ...
     def get_sorted_by_time(self) -> EM3000PingContainer:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
@@ -3347,7 +3347,7 @@ class EM3000PingContainer_mapped:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = ..., or_features: list[str] = ...) -> typing.Annotated[list[EM3000PingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[EM3000PingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
         """
         Split the data in containers that have all requested features and
         containers that miss any of them
@@ -3390,13 +3390,13 @@ class EM3000PingContainer_mapped:
         ...
     def get_sorted_by_time(self) -> EM3000PingContainer_mapped:
         ...
-    def info_string(self, float_precision: int = ...) -> str:
+    def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = ...) -> None:
+    def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
