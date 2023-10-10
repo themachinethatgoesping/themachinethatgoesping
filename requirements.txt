@@ -4,3 +4,4 @@ tqdm
 numpy
 pybind11-stubgen
 pytest
+matplotlib
