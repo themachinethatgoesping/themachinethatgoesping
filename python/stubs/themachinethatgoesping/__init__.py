@@ -12,16 +12,17 @@ from . import echosounders
 from . import gridding
 from . import navigation
 from . import pingprocessing
+from . import pingprocessing_cppy
 from . import tools
 from . import tools_ext
-__all__ = ['algorithms', 'echosounders', 'gridding', 'modules', 'navigation', 'pingprocessing', 'pydev_install_module_paths', 'pydev_install_modules', 'pydev_install_src_path', 'tools', 'tools_ext', 'version']
+__all__ = ['algorithms', 'echosounders', 'gridding', 'modules', 'navigation', 'pingprocessing', 'pingprocessing_cppy', 'pydev_install_module_paths', 'pydev_install_modules', 'pydev_install_src_path', 'tools', 'tools_ext', 'version']
 def modules():
     ...
 def version():
     ...
-__modules_installed__: list = [('tools', '0.20.0'), ('algorithms', '0.5.2'), ('navigation', '0.14.0'), ('echosounders', '0.27.5'), ('pingprocessing', '0.1.0'), ('gridding', '@PROJECT_VERSION@')]
+__modules_installed__: list = [('tools', '0.20.0'), ('algorithms', '0.5.2'), ('navigation', '0.14.0'), ('echosounders', '0.27.6'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '@PROJECT_VERSION@')]
 __submodule: str = '../'
-__version__: str = '0.10.2'
-pydev_install_module_paths: list = ['/home/ssd/local/lib/python3.11/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping']
-pydev_install_modules: list = ['tools', 'navigation', 'gridding', '../']
+__version__: str = '0.10.3'
+pydev_install_module_paths: list = ['/home/ssd/local/lib/python3.11/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//pingprocessing/python/themachinethatgoesping']
+pydev_install_modules: list = ['tools', 'navigation', 'gridding', 'echosounders', 'pingprocessing', '../']
 pydev_install_src_path: str = '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/../'
