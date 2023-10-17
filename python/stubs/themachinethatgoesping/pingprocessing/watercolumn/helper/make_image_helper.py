@@ -3,8 +3,8 @@
 functions for making images from watercolumn data
 """
 from __future__ import annotations
-import numpy as np
 import numpy
+import numpy as np
 from themachinethatgoesping.algorithms import geoprocessing as gp
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 from themachinethatgoesping import echosounders as es
