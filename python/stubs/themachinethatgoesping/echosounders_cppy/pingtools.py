@@ -2,7 +2,7 @@
 Tools for working with ping objects.
 """
 from __future__ import annotations
-import themachinethatgoesping.echosounders.filetemplates
+import themachinethatgoesping.echosounders_cppy.filetemplates
 import typing
 __all__ = ['BeamSampleSelection', 'BeamSelection', 'PingSampleSelector', 'ReadSampleRange']
 class BeamSampleSelection(BeamSelection):
@@ -296,7 +296,7 @@ class PingSampleSelector:
         """
         Return object information as string
         """
-    def apply_selection(self, ping: themachinethatgoesping.echosounders.filetemplates.I_Ping) -> BeamSampleSelection:
+    def apply_selection(self, ping: themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping) -> BeamSampleSelection:
         ...
     def clear(self) -> None:
         ...

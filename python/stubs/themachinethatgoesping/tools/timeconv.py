@@ -1,58 +1,53 @@
 """
-Convenient functions for converting time strings.
+
+This module extends the tools.timeconv with some functions implemented in pure python
+
 """
 from __future__ import annotations
-__all__ = ['datestring_to_unixtime', 'unixtime_to_datestring', 'year_month_day_to_unixtime']
-def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
+from datetime import datetime
+from themachinethatgoesping.tools_cppy.timeconv import datestring_to_unixtime
+from themachinethatgoesping.tools_cppy.timeconv import unixtime_to_datestring
+from themachinethatgoesping.tools_cppy.timeconv import year_month_day_to_unixtime
+__all__ = ['datestring_to_datetime', 'datestring_to_unixtime', 'datetime', 'datetime_to_datestring', 'unixtime_to_datestring', 'year_month_day_to_unixtime']
+def datestring_to_datetime(datestring: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> datetime:
     """
-    Converting between date strings and unixtime stamps (ref 1970)
+    Converting date strings to python datetime objects
     
-    Parameter ``DateString:``:
-        DateString to be converted. Must fit format string.
+        Parameters
+        ----------
+        datestring : str
+            DateString to be converted. Must fit format string.
+        format : _type_, optional
+            %z__%d-%m-%Y__%H:%M:%S" see: https://m.cplusplus.com/reference/ctime/strftime/,
+            https://themachinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.html#format-string
+            by default '%z__%d-%m-%Y__%H:%M:%S'
     
-    Parameter ``format:``:
-        Format string to convert Date string. Default Format:
-        "%z__%d-%m-%Y__%H:%M:%S" see
-        https://m.cplusplus.com/reference/ctime/strftime/ * https://themac
-        hinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.h
-        tml#format-string
-    
-    Returns:
-        unixtime as double (seconds since 01.01.1970)
+        Returns
+        -------
+        datetime
+            python datetime object
+        
     """
-def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
+def datetime_to_datestring(dt: datetime, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
-    Converting between date strings and unixtime stamps (ref 1970)
+    Converting python datetime objects to datestrings
     
-    Parameter ``unixtime:``:
-        seconds since 01.01.1970 as double
+        Parameters
+        ----------
+        dt : datetime
+            datetime to be converted
+        fractionalSecondsDigits : int, optional
+            How many digits to use for the split seconds.
+            Minimum is 0 (second resolution)
+            Maximum is 6 (microsecond resolution), by default 0
+        format : _type_, optional
+            %z__%d-%m-%Y__%H:%M:%S" see: https://m.cplusplus.com/reference/ctime/strftime/,
+            https://themachinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.html#format-string
+            by default '%z__%d-%m-%Y__%H:%M:%S'
     
-    Parameter ``fractionalSecondsDigits:``:
-        How many digits to use for the split seconds. Minimum is 0 (second
-        resolution) Maximum is 6 (microsecond resolution)
-    
-    Parameter ``format:``:
-        Format string to convert Date string. Default Format:
-        "%z__%d-%m-%Y__%H:%M:%S" see:
-        https://m.cplusplus.com/reference/ctime/strftime/ * https://themac
-        hinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.h
-        tml#format-string
-    
-    Returns:
-        DateString that fits to the specified format
-    """
-def year_month_day_to_unixtime(year: int, month: int, day: int, micro_seconds: int = 0) -> float:
-    """
-    Convert a year, month and day to a unixtime stamp (ref 1970)
-    
-    Parameter ``year``:
-        $Parameter ``month``:
-    
-    Parameter ``day``:
-        $Parameter ``micro_seconds``:
-    
-    microseconds since midnight
-    
-    Returns:
-        double
+        Returns
+        -------
+        str
+            DateString that fits to the specified format
+        
     """

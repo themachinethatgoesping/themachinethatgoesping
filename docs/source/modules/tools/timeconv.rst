@@ -70,7 +70,7 @@ Functions (python extendet)
 .. code-block:: python
 
     # import this extended module
-    from themachinethatgoesping.tools_ext import timeconv
+    from themachinethatgoesping.tools import timeconv
 
-.. .. automodule:: themachinethatgoesping.tools_ext.timeconv_ext
+.. .. automodule:: themachinethatgoesping.tools.timeconv
 ..    :members:

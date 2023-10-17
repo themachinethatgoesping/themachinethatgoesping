@@ -2,10 +2,10 @@
 Simrad EK60 and EK80 file data types
 """
 from __future__ import annotations
-import themachinethatgoesping.echosounders.filetemplates
-import themachinethatgoesping.echosounders.simrad.datagrams
-import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
-import themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes
+import themachinethatgoesping.echosounders_cppy.filetemplates
+import themachinethatgoesping.echosounders_cppy.simrad.datagrams
+import themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams
+import themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes
 import typing
 __all__ = ['FileInfoData_simrad_FileInfoData', 'SimradPing', 'SimradPingRawData', 'SimradPingRawData_mapped', 'SimradPing_mapped']
 class FileInfoData_simrad_FileInfoData:
@@ -74,7 +74,7 @@ class FileInfoData_simrad_FileInfoData:
     @datagram_infos.setter
     def datagram_infos(self, arg0: list[...]) -> None:
         ...
-class SimradPing(themachinethatgoesping.echosounders.filetemplates.I_Ping):
+class SimradPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping):
     """
     """
     def __copy__(self) -> SimradPing:
@@ -106,9 +106,9 @@ class SimradPingRawData:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel:
+    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel:
         ...
-    def get_sample_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataAngle:
+    def get_sample_data(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataAngle:
         ...
     def has_angle(self) -> bool:
         ...
@@ -129,7 +129,7 @@ class SimradPingRawData:
         Print object information
         """
     @property
-    def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def ping_data(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         """
         < when implementing EK60, this must become a variant type (RAW3 or
         RAW0)
@@ -153,9 +153,9 @@ class SimradPingRawData_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_parameter(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel:
+    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel:
         ...
-    def get_sample_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders.simrad.datagrams.raw3datatypes.RAW3DataAngle:
+    def get_sample_data(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simrad.datagrams.raw3datatypes.RAW3DataAngle:
         ...
     def has_angle(self) -> bool:
         ...
@@ -176,12 +176,12 @@ class SimradPingRawData_mapped:
         Print object information
         """
     @property
-    def ping_data(self) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def ping_data(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         """
         < when implementing EK60, this must become a variant type (RAW3 or
         RAW0)
         """
-class SimradPing_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping):
+class SimradPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping):
     """
     """
     def __copy__(self) -> SimradPing_mapped:

@@ -2,7 +2,7 @@
 Classes related to Kongsberg EM3000 data files (old Kongsberg .all / .wcd format, used until SIS 4.0)
 """
 from __future__ import annotations
-import themachinethatgoesping.tools.progressbars
+import themachinethatgoesping.tools_cppy.progressbars
 import typing
 from . import datagrams
 from . import filedatacontainers
@@ -16,13 +16,13 @@ class FileEM3000:
     def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
     def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -44,7 +44,7 @@ class FileEM3000:
     def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
     def pings(self) -> filedatacontainers.EM3000PingContainer:
@@ -87,13 +87,13 @@ class FileEM3000_mapped:
     def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
     def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FileInfoData_em3000_FileInfoData], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -115,7 +115,7 @@ class FileEM3000_mapped:
     def init_interfaces(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar) -> None:
+    def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
     def pings(self) -> filedatacontainers.EM3000PingContainer_mapped:

@@ -2,7 +2,7 @@
 Python module to store, interpolate and transform navigation data
 """
 from __future__ import annotations
-import themachinethatgoesping.tools.vectorinterpolators
+import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
 from . import datastructures
 from . import navtools
@@ -46,7 +46,7 @@ class NavigationInterpolatorLatLon:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
         """
         Construct a new i navigationinterpolator interface
         
@@ -215,7 +215,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``longitude``:
             longitude in °
         """
-    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
         """
         Set the extrapolation mode for all interpolators
         
@@ -233,54 +233,54 @@ class NavigationInterpolatorLatLon:
         convert object to bytearray
         """
     @property
-    def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
         """
         < interpolator that stores attitude data (pitch and roll)
         """
     @interpolator_attitude.setter
-    def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
         ...
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator) -> None:
         ...
     @property
-    def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
         """
         < interpolator that stores compass data (yaw/heading) [°]
         """
     @interpolator_heading.setter
-    def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
         ...
     @property
-    def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_heave(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
         """
     @interpolator_heave.setter
-    def interpolator_heave(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_heave(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
     @property
-    def interpolator_latitude(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_latitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator for the latitude data
         """
     @interpolator_latitude.setter
-    def interpolator_latitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_latitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
     @property
-    def interpolator_longitude(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_longitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator for the longitude data
         """
     @interpolator_longitude.setter
-    def interpolator_longitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_longitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
 class NavigationInterpolatorLocal:
     """
@@ -320,7 +320,7 @@ class NavigationInterpolatorLocal:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
         """
         Construct a new i navigationinterpolator interface
         
@@ -489,7 +489,7 @@ class NavigationInterpolatorLocal:
         Parameter ``easting``:
             easting in meters
         """
-    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode = ...) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
         """
         Set the extrapolation mode for all interpolators
         
@@ -507,54 +507,54 @@ class NavigationInterpolatorLocal:
         convert object to bytearray
         """
     @property
-    def interpolator_attitude(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
         """
         < interpolator that stores attitude data (pitch and roll)
         """
     @interpolator_attitude.setter
-    def interpolator_attitude(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
         ...
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator) -> None:
         ...
     @property
-    def interpolator_easting(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_easting(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator for the easting data
         """
     @interpolator_easting.setter
-    def interpolator_easting(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_easting(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
     @property
-    def interpolator_heading(self) -> themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator:
+    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
         """
         < interpolator that stores compass data (yaw/heading) [°]
         """
     @interpolator_heading.setter
-    def interpolator_heading(self, arg1: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
         ...
     @property
-    def interpolator_heave(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_heave(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator that stores heave data (relative change in depth, <
         positive upwards) [m]
         """
     @interpolator_heave.setter
-    def interpolator_heave(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_heave(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
     @property
-    def interpolator_northing(self) -> themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator:
+    def interpolator_northing(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
         """
         < interpolator for the northing data
         """
     @interpolator_northing.setter
-    def interpolator_northing(self, arg1: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator) -> None:
+    def interpolator_northing(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
 class SensorConfiguration:
     """

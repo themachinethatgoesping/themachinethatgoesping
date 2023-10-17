@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
-import themachinethatgoesping.echosounders.em3000
+import themachinethatgoesping.echosounders_cppy.em3000
 import themachinethatgoesping.navigation.datastructures
 import typing
 from . import substructures
@@ -432,7 +432,7 @@ class EM3000Datagram:
         < number of bytes in the datagram (not including the _bytes field
         itself)
         """
-    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier:
+    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier:
         """
         < EM3000 datagram identifier
         """
@@ -484,7 +484,7 @@ class EM3000Datagram:
         < number of bytes in the datagram (not including the _bytes field
         itself)
         """
-    def set_datagram_identifier(self, arg0: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> None:
+    def set_datagram_identifier(self, arg0: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> None:
         """
         < EM3000 datagram identifier
         """
@@ -1177,21 +1177,21 @@ class InstallationParameters(EM3000Datagram):
         Returns:
             t_EM3000ActiveSensor
         """
-    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         """
         Get the active heading sensor (0-9) here returned as an enum
         
         Returns:
             t_EM3000ActiveSensor
         """
-    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         """
         Get the active heave sensor (2, 3, 8 or 9) here returned as an enum
         
         Returns:
             t_EM3000ActiveSensor
         """
-    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         """
         Get the active roll pitch sensor (2, 3, 8 or 9) here returned as an
         enum
@@ -1207,7 +1207,7 @@ class InstallationParameters(EM3000Datagram):
             uint8_t
         """
     @typing.overload
-    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the attitude sensor offsets of sensor 1 or 2
         
@@ -1302,7 +1302,7 @@ class InstallationParameters(EM3000Datagram):
         ...
     def get_system_serial_number(self) -> int:
         ...
-    def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000SystemTransducerConfiguration:
+    def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000SystemTransducerConfiguration:
         ...
     def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """

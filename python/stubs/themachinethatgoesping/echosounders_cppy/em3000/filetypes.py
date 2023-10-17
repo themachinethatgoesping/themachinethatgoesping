@@ -3,13 +3,13 @@ EM3000 EK60 and EK80 file data types
 """
 from __future__ import annotations
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
-import themachinethatgoesping.echosounders.em3000
-import themachinethatgoesping.echosounders.em3000.datagrams
-import themachinethatgoesping.echosounders.filetemplates
-import themachinethatgoesping.echosounders.pingtools
+import themachinethatgoesping.echosounders_cppy.em3000
+import themachinethatgoesping.echosounders_cppy.em3000.datagrams
+import themachinethatgoesping.echosounders_cppy.filetemplates
+import themachinethatgoesping.echosounders_cppy.pingtools
 import typing
 __all__ = ['EM3000Ping', 'EM3000PingBottom', 'EM3000PingBottom_mapped', 'EM3000PingCommon', 'EM3000PingCommon_mapped', 'EM3000PingRawData', 'EM3000PingRawData_mapped', 'EM3000PingWatercolumn', 'EM3000PingWatercolumn_mapped', 'EM3000Ping_mapped', 'FileInfoData_em3000_FileInfoData']
-class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM3000PingCommon):
+class EM3000Ping(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, EM3000PingCommon):
     """
     """
     def __copy__(self) -> EM3000Ping:
@@ -20,7 +20,7 @@ class EM3000Ping(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM300
         """
         return a copy using the c++ default copy constructor
         """
-class EM3000PingBottom(themachinethatgoesping.echosounders.filetemplates.I_PingBottom, EM3000PingCommon):
+class EM3000PingBottom(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, EM3000PingCommon):
     """
     """
     def __copy__(self) -> EM3000PingBottom:
@@ -31,7 +31,7 @@ class EM3000PingBottom(themachinethatgoesping.echosounders.filetemplates.I_PingB
         """
         return a copy using the c++ default copy constructor
         """
-class EM3000PingBottom_mapped(themachinethatgoesping.echosounders.filetemplates.I_PingBottom, EM3000PingCommon_mapped):
+class EM3000PingBottom_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, EM3000PingCommon_mapped):
     """
     """
     def __copy__(self) -> EM3000PingBottom_mapped:
@@ -42,7 +42,7 @@ class EM3000PingBottom_mapped(themachinethatgoesping.echosounders.filetemplates.
         """
         return a copy using the c++ default copy constructor
         """
-class EM3000PingCommon(themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
+class EM3000PingCommon(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
     """
     """
     def __copy__(self) -> EM3000PingCommon:
@@ -56,7 +56,7 @@ class EM3000PingCommon(themachinethatgoesping.echosounders.filetemplates.I_PingC
     @property
     def raw_data(self) -> EM3000PingRawData:
         ...
-class EM3000PingCommon_mapped(themachinethatgoesping.echosounders.filetemplates.I_PingCommon):
+class EM3000PingCommon_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
     """
     """
     def __copy__(self) -> EM3000PingCommon_mapped:
@@ -105,21 +105,21 @@ class EM3000PingRawData:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
-    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.RuntimeParameters:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -133,7 +133,7 @@ class EM3000PingRawData:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[..., ...]:
         ...
@@ -147,7 +147,7 @@ class EM3000PingRawData:
         """
         Print object information
         """
-    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
     def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
@@ -158,7 +158,7 @@ class EM3000PingRawData:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
     @typing.overload
-    def read_xyz(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
+    def read_xyz(self, selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
         """
         read XYZ for the specified beams from the bottom detection datagram
         Note: if the beam numbers from the beam selection exceed the number of
@@ -205,21 +205,21 @@ class EM3000PingRawData_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
-    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.RuntimeParameters:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -233,7 +233,7 @@ class EM3000PingRawData_mapped:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[...]:
         ...
@@ -247,7 +247,7 @@ class EM3000PingRawData_mapped:
         """
         Print object information
         """
-    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders.em3000.datagrams.WatercolumnDatagram:
+    def read_merged_watercolumndatagram(self, skip_data: bool = False) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
     def read_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
@@ -258,7 +258,7 @@ class EM3000PingRawData_mapped:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
     @typing.overload
-    def read_xyz(self, selection: themachinethatgoesping.echosounders.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
+    def read_xyz(self, selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
         """
         read XYZ for the specified beams from the bottom detection datagram
         Note: if the beam numbers from the beam selection exceed the number of
@@ -270,7 +270,7 @@ class EM3000PingRawData_mapped:
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
-class EM3000PingWatercolumn(themachinethatgoesping.echosounders.filetemplates.I_PingWatercolumn, EM3000PingCommon):
+class EM3000PingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, EM3000PingCommon):
     """
     """
     def __copy__(self) -> EM3000PingWatercolumn:
@@ -281,7 +281,7 @@ class EM3000PingWatercolumn(themachinethatgoesping.echosounders.filetemplates.I_
         """
         return a copy using the c++ default copy constructor
         """
-class EM3000PingWatercolumn_mapped(themachinethatgoesping.echosounders.filetemplates.I_PingWatercolumn, EM3000PingCommon_mapped):
+class EM3000PingWatercolumn_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, EM3000PingCommon_mapped):
     """
     """
     def __copy__(self) -> EM3000PingWatercolumn_mapped:
@@ -292,7 +292,7 @@ class EM3000PingWatercolumn_mapped(themachinethatgoesping.echosounders.filetempl
         """
         return a copy using the c++ default copy constructor
         """
-class EM3000Ping_mapped(themachinethatgoesping.echosounders.filetemplates.I_Ping, EM3000PingCommon_mapped):
+class EM3000Ping_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, EM3000PingCommon_mapped):
     """
     """
     def __copy__(self) -> EM3000Ping_mapped:

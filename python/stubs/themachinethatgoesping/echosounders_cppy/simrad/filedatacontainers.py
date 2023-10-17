@@ -3,11 +3,11 @@ Simrad EK60 and EK80 file data container classes
 """
 from __future__ import annotations
 import pybind11_stubgen.typing_ext
-import themachinethatgoesping.echosounders.simrad
-import themachinethatgoesping.echosounders.simrad.datagrams
-import themachinethatgoesping.echosounders.simrad.filetypes
+import themachinethatgoesping.echosounders_cppy.simrad
+import themachinethatgoesping.echosounders_cppy.simrad.datagrams
+import themachinethatgoesping.echosounders_cppy.simrad.filetypes
 import themachinethatgoesping.navigation
-import themachinethatgoesping.tools.pyhelper
+import themachinethatgoesping.tools_cppy.pyhelper
 import typing
 __all__ = ['SimradPingContainer', 'SimradPingContainer_mapped', 'SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_mapped', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_mapped', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_mapped', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_mapped', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_mapped', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_mapped', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_mapped', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_mapped', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_mapped', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_mapped', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_mapped']
 class SimradPingContainer:
@@ -24,10 +24,10 @@ class SimradPingContainer:
     def __deepcopy__(self, arg0: dict) -> SimradPingContainer:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.filetypes.SimradPing:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradPingContainer:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradPingContainer:
         ...
     @typing.overload
     def __init__(self) -> None:
@@ -35,7 +35,7 @@ class SimradPingContainer:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders.simrad.filetypes.SimradPing]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -90,7 +90,7 @@ class SimradPingContainer:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders.simrad.filetypes.SimradPing]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing]:
         ...
     def get_sorted_by_time(self) -> SimradPingContainer:
         ...
@@ -120,10 +120,10 @@ class SimradPingContainer_mapped:
     def __deepcopy__(self, arg0: dict) -> SimradPingContainer_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.filetypes.SimradPing_mapped:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing_mapped:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradPingContainer_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradPingContainer_mapped:
         ...
     @typing.overload
     def __init__(self) -> None:
@@ -131,7 +131,7 @@ class SimradPingContainer_mapped:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders.simrad.filetypes.SimradPing_mapped]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing_mapped]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -186,7 +186,7 @@ class SimradPingContainer_mapped:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders.simrad.filetypes.SimradPing_mapped]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.filetypes.SimradPing_mapped]:
         ...
     def get_sorted_by_time(self) -> SimradPingContainer_mapped:
         ...
@@ -206,20 +206,20 @@ class SimradRawDatagramContainer_FIL1:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_FIL1:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_FIL1:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_FIL1:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_FIL1:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.FIL1:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1:
         ...
     def __len__(self) -> int:
         ...
@@ -250,9 +250,9 @@ class SimradRawDatagramContainer_FIL1:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1:
         ...
@@ -270,20 +270,20 @@ class SimradRawDatagramContainer_FIL1_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.FIL1:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -314,9 +314,9 @@ class SimradRawDatagramContainer_FIL1_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1_mapped:
         ...
@@ -334,20 +334,20 @@ class SimradRawDatagramContainer_Header:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Header:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Header:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Header:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Header:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Header:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Header:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header:
         ...
     def __len__(self) -> int:
         ...
@@ -378,9 +378,9 @@ class SimradRawDatagramContainer_Header:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header:
         ...
@@ -398,20 +398,20 @@ class SimradRawDatagramContainer_Header_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Header_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Header_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Header_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Header_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -442,9 +442,9 @@ class SimradRawDatagramContainer_Header_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header_mapped:
         ...
@@ -462,20 +462,20 @@ class SimradRawDatagramContainer_MRU0:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_MRU0:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_MRU0:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_MRU0:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_MRU0:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.MRU0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0:
         ...
     def __len__(self) -> int:
         ...
@@ -506,9 +506,9 @@ class SimradRawDatagramContainer_MRU0:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0:
         ...
@@ -526,20 +526,20 @@ class SimradRawDatagramContainer_MRU0_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.MRU0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -570,9 +570,9 @@ class SimradRawDatagramContainer_MRU0_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0_mapped:
         ...
@@ -590,20 +590,20 @@ class SimradRawDatagramContainer_NME0:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_NME0:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_NME0:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_NME0:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_NME0:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_NME0:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_NME0:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.NME0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0:
         ...
     def __len__(self) -> int:
         ...
@@ -634,9 +634,9 @@ class SimradRawDatagramContainer_NME0:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0:
         ...
@@ -654,20 +654,20 @@ class SimradRawDatagramContainer_NME0_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_NME0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_NME0_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_NME0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_NME0_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_NME0_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_NME0_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.NME0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -698,9 +698,9 @@ class SimradRawDatagramContainer_NME0_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0_mapped:
         ...
@@ -718,20 +718,20 @@ class SimradRawDatagramContainer_RAW3:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_RAW3:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3:
         ...
     def __len__(self) -> int:
         ...
@@ -762,9 +762,9 @@ class SimradRawDatagramContainer_RAW3:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3:
         ...
@@ -782,20 +782,20 @@ class SimradRawDatagramContainer_RAW3_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -826,9 +826,9 @@ class SimradRawDatagramContainer_RAW3_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_mapped:
         ...
@@ -846,20 +846,20 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     def __len__(self) -> int:
         ...
@@ -890,9 +890,9 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
@@ -910,20 +910,20 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.RAW3:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -954,9 +954,9 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
@@ -974,20 +974,20 @@ class SimradRawDatagramContainer_TAG0:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_TAG0:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_TAG0:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_TAG0:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_TAG0:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.TAG0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0:
         ...
     def __len__(self) -> int:
         ...
@@ -1018,9 +1018,9 @@ class SimradRawDatagramContainer_TAG0:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0:
         ...
@@ -1038,20 +1038,20 @@ class SimradRawDatagramContainer_TAG0_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.TAG0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -1082,9 +1082,9 @@ class SimradRawDatagramContainer_TAG0_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0_mapped:
         ...
@@ -1102,20 +1102,20 @@ class SimradRawDatagramContainer_Unknown:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Unknown:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Unknown:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Unknown:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Unknown:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown:
         ...
     def __len__(self) -> int:
         ...
@@ -1146,9 +1146,9 @@ class SimradRawDatagramContainer_Unknown:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown:
         ...
@@ -1166,20 +1166,20 @@ class SimradRawDatagramContainer_Unknown_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -1210,9 +1210,9 @@ class SimradRawDatagramContainer_Unknown_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown_mapped:
         ...
@@ -1230,20 +1230,20 @@ class SimradRawDatagramContainer_Variant:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Variant:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders.simrad.datagrams.NME0 | themachinethatgoesping.echosounders.simrad.datagrams.XML0 | themachinethatgoesping.echosounders.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant:
         ...
     def __len__(self) -> int:
         ...
@@ -1274,9 +1274,9 @@ class SimradRawDatagramContainer_Variant:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant:
         ...
@@ -1294,20 +1294,20 @@ class SimradRawDatagramContainer_Variant_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Variant_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders.simrad.datagrams.NME0 | themachinethatgoesping.echosounders.simrad.datagrams.XML0 | themachinethatgoesping.echosounders.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -1338,9 +1338,9 @@ class SimradRawDatagramContainer_Variant_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_mapped:
         ...
@@ -1358,20 +1358,20 @@ class SimradRawDatagramContainer_Variant_skipped_data:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders.simrad.datagrams.NME0 | themachinethatgoesping.echosounders.simrad.datagrams.XML0 | themachinethatgoesping.echosounders.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
     def __len__(self) -> int:
         ...
@@ -1402,9 +1402,9 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
@@ -1422,20 +1422,20 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders.simrad.datagrams.NME0 | themachinethatgoesping.echosounders.simrad.datagrams.XML0 | themachinethatgoesping.echosounders.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders.simrad.datagrams.SimradUnknown:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradDatagram | themachinethatgoesping.echosounders_cppy.simrad.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simrad.datagrams.SimradUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -1466,9 +1466,9 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
@@ -1486,20 +1486,20 @@ class SimradRawDatagramContainer_XML0:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_XML0:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_XML0:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_XML0:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_XML0:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_XML0:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_XML0:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0:
         ...
     def __len__(self) -> int:
         ...
@@ -1530,9 +1530,9 @@ class SimradRawDatagramContainer_XML0:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0:
         ...
@@ -1550,20 +1550,20 @@ class SimradRawDatagramContainer_XML0_mapped:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_XML0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> SimradRawDatagramContainer_XML0_mapped:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_XML0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]) -> SimradRawDatagramContainer_XML0_mapped:
         ...
     def __copy__(self) -> SimradRawDatagramContainer_XML0_mapped:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_XML0_mapped:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0_mapped:
         ...
     def __len__(self) -> int:
         ...
@@ -1594,9 +1594,9 @@ class SimradRawDatagramContainer_XML0_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, int]:
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, int]:
         ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0_mapped:
         ...

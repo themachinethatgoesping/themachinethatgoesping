@@ -3,7 +3,7 @@ Simrad EK60 and EK80 datagram classes
 """
 from __future__ import annotations
 import numpy
-import themachinethatgoesping.echosounders.simrad
+import themachinethatgoesping.echosounders_cppy.simrad
 import themachinethatgoesping.navigation.nmea_0183
 import typing
 from . import XML0_datagrams
@@ -449,7 +449,7 @@ class SimradDatagram:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier:
+    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier:
         """
         Ek60 datagram type (XML0, FIL1, NME0, MRU0, RAW3, ...)
         """
@@ -488,7 +488,7 @@ class SimradDatagram:
         """
         Print object information
         """
-    def set_datagram_identifier(self, arg0: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> None:
+    def set_datagram_identifier(self, arg0: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> None:
         ...
     def set_datagram_type(self, arg0: int) -> None:
         """

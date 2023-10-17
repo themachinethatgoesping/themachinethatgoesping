@@ -2,12 +2,12 @@
 EM3000 (kongsberg .all/.wcd) file data interface classes
 """
 from __future__ import annotations
-import themachinethatgoesping.echosounders.em3000
-import themachinethatgoesping.echosounders.em3000.datagrams
-import themachinethatgoesping.echosounders.em3000.filedatacontainers
+import themachinethatgoesping.echosounders_cppy.em3000
+import themachinethatgoesping.echosounders_cppy.em3000.datagrams
+import themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
-import themachinethatgoesping.tools.progressbars
+import themachinethatgoesping.tools_cppy.progressbars
 import typing
 __all__ = ['EM3000AnnotationDataInterface', 'EM3000AnnotationDataInterfacePerFile', 'EM3000AnnotationDataInterfacePerFile_mapped', 'EM3000AnnotationDataInterface_mapped', 'EM3000ConfigurationDataInterface', 'EM3000ConfigurationDataInterfacePerFile', 'EM3000ConfigurationDataInterfacePerFile_mapped', 'EM3000ConfigurationDataInterface_mapped', 'EM3000DatagramInterface', 'EM3000DatagramInterface_mapped', 'EM3000EnvironmentDataInterface', 'EM3000EnvironmentDataInterfacePerFile', 'EM3000EnvironmentDataInterfacePerFile_mapped', 'EM3000EnvironmentDataInterface_mapped', 'EM3000NavigationDataInterface', 'EM3000NavigationDataInterfacePerFile', 'EM3000NavigationDataInterfacePerFile_mapped', 'EM3000NavigationDataInterface_mapped', 'EM3000OtherFileDataInterface', 'EM3000OtherFileDataInterfacePerFile', 'EM3000OtherFileDataInterfacePerFile_mapped', 'EM3000OtherFileDataInterface_mapped', 'EM3000PingDataInterface', 'EM3000PingDataInterfacePerFile', 'EM3000PingDataInterfacePerFile_mapped', 'EM3000PingDataInterface_mapped']
 class EM3000AnnotationDataInterface:
@@ -41,7 +41,7 @@ class EM3000AnnotationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -105,19 +105,19 @@ class EM3000AnnotationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -167,7 +167,7 @@ class EM3000AnnotationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
@@ -197,19 +197,19 @@ class EM3000AnnotationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -259,7 +259,7 @@ class EM3000AnnotationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
@@ -298,7 +298,7 @@ class EM3000AnnotationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -366,7 +366,7 @@ class EM3000ConfigurationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -423,27 +423,27 @@ class EM3000ConfigurationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
-    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
-    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
     def get_active_position_system_number(self) -> int:
         ...
@@ -463,7 +463,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
-    def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters:
+    def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.InstallationParameters:
         ...
     def get_linked_file_nr(self) -> int:
         """
@@ -497,7 +497,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
@@ -507,7 +507,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active heading sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -515,7 +515,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         
         Parameter ``sensor``:
         """
-    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active heave sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -523,7 +523,7 @@ class EM3000ConfigurationDataInterfacePerFile:
         
         Parameter ``sensor``:
         """
-    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active roll pitch sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -556,27 +556,27 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
-    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
-    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor:
+    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor:
         ...
     def get_active_position_system_number(self) -> int:
         ...
@@ -596,7 +596,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
-    def get_installation_parameters(self) -> themachinethatgoesping.echosounders.em3000.datagrams.InstallationParameters:
+    def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.em3000.datagrams.InstallationParameters:
         ...
     def get_linked_file_nr(self) -> int:
         """
@@ -630,7 +630,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
@@ -640,7 +640,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active heading sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -648,7 +648,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         
         Parameter ``sensor``:
         """
-    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active heave sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -656,7 +656,7 @@ class EM3000ConfigurationDataInterfacePerFile_mapped:
         
         Parameter ``sensor``:
         """
-    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders.em3000.t_EM3000ActiveSensor) -> None:
+    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000ActiveSensor) -> None:
         """
         Set the active roll pitch sensor "NotSet": this will be overwritten by
         "read_sensor_configuration" / "init_interface" All other values: see
@@ -700,7 +700,7 @@ class EM3000ConfigurationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -757,19 +757,19 @@ class EM3000DatagramInterface:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -777,7 +777,7 @@ class EM3000DatagramInterface:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
@@ -800,19 +800,19 @@ class EM3000DatagramInterface_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -820,7 +820,7 @@ class EM3000DatagramInterface_mapped:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
@@ -854,7 +854,7 @@ class EM3000EnvironmentDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -915,19 +915,19 @@ class EM3000EnvironmentDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -977,7 +977,7 @@ class EM3000EnvironmentDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface:
         ...
@@ -1004,19 +1004,19 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1066,7 +1066,7 @@ class EM3000EnvironmentDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped:
         ...
@@ -1102,7 +1102,7 @@ class EM3000EnvironmentDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1186,7 +1186,7 @@ class EM3000NavigationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1245,19 +1245,19 @@ class EM3000NavigationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1307,7 +1307,7 @@ class EM3000NavigationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
@@ -1334,19 +1334,19 @@ class EM3000NavigationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1396,7 +1396,7 @@ class EM3000NavigationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
@@ -1446,7 +1446,7 @@ class EM3000NavigationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1520,7 +1520,7 @@ class EM3000OtherFileDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1585,19 +1585,19 @@ class EM3000OtherFileDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1647,7 +1647,7 @@ class EM3000OtherFileDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface]:
         ...
@@ -1678,19 +1678,19 @@ class EM3000OtherFileDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1740,7 +1740,7 @@ class EM3000OtherFileDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def per_file(self) -> list[EM3000DatagramInterface_mapped]:
         ...
@@ -1780,7 +1780,7 @@ class EM3000OtherFileDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1845,10 +1845,10 @@ class EM3000PingDataInterface:
     def environment_data_interface(self) -> EM3000EnvironmentDataInterface:
         ...
     @typing.overload
-    def get_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer:
+    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer:
         ...
     @typing.overload
-    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer:
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1858,7 +1858,7 @@ class EM3000PingDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1921,25 +1921,25 @@ class EM3000PingDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> EM3000EnvironmentDataInterface:
         ...
-    def get_deduplicated_runtime_parameters(self) -> list[themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters]:
+    def get_deduplicated_runtime_parameters(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.datagrams.RuntimeParameters]:
         ...
     def get_file_nr(self) -> int:
         """
@@ -1987,7 +1987,7 @@ class EM3000PingDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface:
         ...
@@ -1997,7 +1997,7 @@ class EM3000PingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer:
+    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer:
         ...
 class EM3000PingDataInterfacePerFile_mapped:
     """
@@ -2018,25 +2018,25 @@ class EM3000PingDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> EM3000EnvironmentDataInterface_mapped:
         ...
-    def get_deduplicated_runtime_parameters(self) -> list[themachinethatgoesping.echosounders.em3000.datagrams.RuntimeParameters]:
+    def get_deduplicated_runtime_parameters(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.datagrams.RuntimeParameters]:
         ...
     def get_file_nr(self) -> int:
         """
@@ -2084,7 +2084,7 @@ class EM3000PingDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.em3000.t_EM3000DatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.em3000.t_EM3000DatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> EM3000NavigationDataInterface_mapped:
         ...
@@ -2094,7 +2094,7 @@ class EM3000PingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped:
+    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer_mapped:
         ...
 class EM3000PingDataInterface_mapped:
     """
@@ -2119,10 +2119,10 @@ class EM3000PingDataInterface_mapped:
     def environment_data_interface(self) -> EM3000EnvironmentDataInterface_mapped:
         ...
     @typing.overload
-    def get_pings(self) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped:
+    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer_mapped:
         ...
     @typing.overload
-    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.em3000.filedatacontainers.EM3000PingContainer_mapped:
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.em3000.filedatacontainers.EM3000PingContainer_mapped:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2132,7 +2132,7 @@ class EM3000PingDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...

@@ -2,12 +2,12 @@
 Simrad EK60 and EK80 file data interface classes
 """
 from __future__ import annotations
-import themachinethatgoesping.echosounders.simrad
-import themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams
-import themachinethatgoesping.echosounders.simrad.filedatacontainers
+import themachinethatgoesping.echosounders_cppy.simrad
+import themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams
+import themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
-import themachinethatgoesping.tools.progressbars
+import themachinethatgoesping.tools_cppy.progressbars
 import typing
 __all__ = ['SimradAnnotationDataInterface', 'SimradAnnotationDataInterfacePerFile', 'SimradAnnotationDataInterfacePerFile_mapped', 'SimradAnnotationDataInterface_mapped', 'SimradConfigurationDataInterface', 'SimradConfigurationDataInterfacePerFile', 'SimradConfigurationDataInterfacePerFile_mapped', 'SimradConfigurationDataInterface_mapped', 'SimradDatagramInterface', 'SimradDatagramInterface_mapped', 'SimradEnvironmentDataInterface', 'SimradEnvironmentDataInterfacePerFile', 'SimradEnvironmentDataInterfacePerFile_mapped', 'SimradEnvironmentDataInterface_mapped', 'SimradNavigationDataInterface', 'SimradNavigationDataInterfacePerFile', 'SimradNavigationDataInterfacePerFile_mapped', 'SimradNavigationDataInterface_mapped', 'SimradOtherFileDataInterface', 'SimradOtherFileDataInterface_mapped', 'SimradPingDataInterface', 'SimradPingDataInterfacePerFile', 'SimradPingDataInterfacePerFile_mapped', 'SimradPingDataInterface_mapped', 'init_c_simradotherfiledatainterfaceperfile', 'init_c_simradotherfiledatainterfaceperfile_mapped']
 class SimradAnnotationDataInterface:
@@ -41,7 +41,7 @@ class SimradAnnotationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -104,19 +104,19 @@ class SimradAnnotationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -166,7 +166,7 @@ class SimradAnnotationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
@@ -195,19 +195,19 @@ class SimradAnnotationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -257,7 +257,7 @@ class SimradAnnotationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
@@ -296,7 +296,7 @@ class SimradAnnotationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -364,7 +364,7 @@ class SimradConfigurationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -421,23 +421,23 @@ class SimradConfigurationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_attitude_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_attitude_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all attitude sources registered in the configuration datagram
         (sorted by priority)
@@ -445,9 +445,9 @@ class SimradConfigurationDataInterfacePerFile:
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
-    def get_configuration_datagram(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration:
+    def get_configuration_datagram(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration:
         ...
-    def get_depth_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_depth_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all depth sources registered in the configuration datagram
         (sorted by priority)
@@ -471,7 +471,7 @@ class SimradConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
-    def get_heading_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_heading_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all heading sources registered in the configuration datagram
         (sorted by priority)
@@ -493,7 +493,7 @@ class SimradConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
-    def get_position_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_position_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all position sources registered in the configuration datagram
         (sorted by priority)
@@ -519,7 +519,7 @@ class SimradConfigurationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
@@ -546,23 +546,23 @@ class SimradConfigurationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
-    def get_attitude_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_attitude_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all attitude sources registered in the configuration datagram
         (sorted by priority)
@@ -570,9 +570,9 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
-    def get_configuration_datagram(self) -> themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration:
+    def get_configuration_datagram(self) -> themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration:
         ...
-    def get_depth_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_depth_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all depth sources registered in the configuration datagram
         (sorted by priority)
@@ -596,7 +596,7 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
-    def get_heading_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_heading_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all heading sources registered in the configuration datagram
         (sorted by priority)
@@ -618,7 +618,7 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
-    def get_position_sources(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
+    def get_position_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all position sources registered in the configuration datagram
         (sorted by priority)
@@ -644,7 +644,7 @@ class SimradConfigurationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
@@ -682,7 +682,7 @@ class SimradConfigurationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -739,19 +739,19 @@ class SimradDatagramInterface:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -759,7 +759,7 @@ class SimradDatagramInterface:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
@@ -782,19 +782,19 @@ class SimradDatagramInterface_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -802,7 +802,7 @@ class SimradDatagramInterface_mapped:
         """
         Return object information as string
         """
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
@@ -836,7 +836,7 @@ class SimradEnvironmentDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -897,19 +897,19 @@ class SimradEnvironmentDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -959,7 +959,7 @@ class SimradEnvironmentDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface:
         ...
@@ -986,19 +986,19 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1048,7 +1048,7 @@ class SimradEnvironmentDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped:
         ...
@@ -1084,7 +1084,7 @@ class SimradEnvironmentDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1168,7 +1168,7 @@ class SimradNavigationDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1231,19 +1231,19 @@ class SimradNavigationDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1297,7 +1297,7 @@ class SimradNavigationDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
@@ -1328,19 +1328,19 @@ class SimradNavigationDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -1394,7 +1394,7 @@ class SimradNavigationDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
@@ -1448,7 +1448,7 @@ class SimradNavigationDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1526,7 +1526,7 @@ class SimradOtherFileDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1600,7 +1600,7 @@ class SimradOtherFileDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1665,10 +1665,10 @@ class SimradPingDataInterface:
     def environment_data_interface(self) -> SimradEnvironmentDataInterface:
         ...
     @typing.overload
-    def get_pings(self) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer:
+    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer:
         ...
     @typing.overload
-    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer:
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1678,7 +1678,7 @@ class SimradPingDataInterface:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -1741,25 +1741,25 @@ class SimradPingDataInterfacePerFile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> SimradEnvironmentDataInterface:
         ...
-    def get_deduplicated_parameters(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel]:
+    def get_deduplicated_parameters(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel]:
         ...
     def get_file_nr(self) -> int:
         """
@@ -1807,7 +1807,7 @@ class SimradPingDataInterfacePerFile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface:
         ...
@@ -1817,7 +1817,7 @@ class SimradPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer:
+    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer:
         ...
 class SimradPingDataInterfacePerFile_mapped:
     """
@@ -1838,25 +1838,25 @@ class SimradPingDataInterfacePerFile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> SimradEnvironmentDataInterface_mapped:
         ...
-    def get_deduplicated_parameters(self) -> list[themachinethatgoesping.echosounders.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel]:
+    def get_deduplicated_parameters(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.datagrams.XML0_datagrams.XML_Parameter_Channel]:
         ...
     def get_file_nr(self) -> int:
         """
@@ -1904,7 +1904,7 @@ class SimradPingDataInterfacePerFile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def navigation_data_interface(self) -> SimradNavigationDataInterface_mapped:
         ...
@@ -1914,7 +1914,7 @@ class SimradPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer_mapped:
+    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer_mapped:
         ...
 class SimradPingDataInterface_mapped:
     """
@@ -1939,10 +1939,10 @@ class SimradPingDataInterface_mapped:
     def environment_data_interface(self) -> SimradEnvironmentDataInterface_mapped:
         ...
     @typing.overload
-    def get_pings(self) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer_mapped:
+    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer_mapped:
         ...
     @typing.overload
-    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders.simrad.filedatacontainers.SimradPingContainer_mapped:
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simrad.filedatacontainers.SimradPingContainer_mapped:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1952,7 +1952,7 @@ class SimradPingDataInterface_mapped:
     def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     def initialized(self) -> bool:
         ...
@@ -2019,19 +2019,19 @@ class init_c_simradotherfiledatainterfaceperfile:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -2081,7 +2081,7 @@ class init_c_simradotherfiledatainterfaceperfile:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface]:
         ...
@@ -2112,19 +2112,19 @@ class init_c_simradotherfiledatainterfaceperfile_mapped:
     def datagram_headers(self) -> typing.Any:
         ...
     @typing.overload
-    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     @typing.overload
     def datagrams(self, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
-    def datagrams(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier, skip_data: bool = False) -> typing.Any:
         ...
     @typing.overload
     def datagrams_raw(self) -> typing.Any:
         ...
     @typing.overload
-    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier) -> typing.Any:
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier) -> typing.Any:
         ...
     def deinitialize(self) -> None:
         ...
@@ -2174,7 +2174,7 @@ class init_c_simradotherfiledatainterfaceperfile_mapped:
         ...
     def is_secondary_file(self) -> bool:
         ...
-    def keys(self) -> list[themachinethatgoesping.echosounders.simrad.t_SimradDatagramIdentifier]:
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simrad.t_SimradDatagramIdentifier]:
         ...
     def per_file(self) -> list[SimradDatagramInterface_mapped]:
         ...
