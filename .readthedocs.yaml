@@ -34,7 +34,6 @@ sphinx:
 # Optionally declare the Python requirements required to build your docs
 python:
    install:
-    - method: pip
-      extra_requirements:
-        - themachinethatgoesping
+   - method: pip
+     path: themachinethatgoesping
    - requirements: docs/requirements.txt
