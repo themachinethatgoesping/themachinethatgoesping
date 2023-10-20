@@ -51,37 +51,6 @@ class SimradPingContainer:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
-        """
-        Split the data in containers that have all requested features and
-        containers that miss any of them
-        
-        Parameter ``and_features:``:
-            ping will be sorted into first container if all features are
-            present
-        
-        Parameter ``or_features:``:
-            ping will be sorted into second container if any of the features
-            is
-        
-        Returns:
-            std::array<PingContainer<type_Ping>, 2>
-        """
-    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer]:
-        ...
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<PingContainer<type_Ping>>
-        """
     def copy(self) -> SimradPingContainer:
         """
         return a copy using the c++ default copy constructor
@@ -106,6 +75,37 @@ class SimradPingContainer:
         """
     def size(self) -> int:
         ...
+    def split_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer]:
+        ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<PingContainer<type_Ping>>
+        """
 class SimradPingContainer_mapped:
     """
     """
@@ -147,37 +147,6 @@ class SimradPingContainer_mapped:
         """
         Return object information as string
         """
-    def break_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
-        """
-        Split the data in containers that have all requested features and
-        containers that miss any of them
-        
-        Parameter ``and_features:``:
-            ping will be sorted into first container if all features are
-            present
-        
-        Parameter ``or_features:``:
-            ping will be sorted into second container if any of the features
-            is
-        
-        Returns:
-            std::array<PingContainer<type_Ping>, 2>
-        """
-    def break_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer_mapped]:
-        ...
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<PingContainer<type_Ping>>
-        """
     def copy(self) -> SimradPingContainer_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -202,6 +171,37 @@ class SimradPingContainer_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[SimradPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        """
+        Split the data in containers that have all requested features and
+        containers that miss any of them
+        
+        Parameter ``and_features:``:
+            ping will be sorted into first container if all features are
+            present
+        
+        Parameter ``or_features:``:
+            ping will be sorted into second container if any of the features
+            is
+        
+        Returns:
+            std::array<PingContainer<type_Ping>, 2>
+        """
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradPingContainer_mapped]:
+        ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradPingContainer_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<PingContainer<type_Ping>>
+        """
 class SimradRawDatagramContainer_FIL1:
     """
     """
@@ -233,19 +233,6 @@ class SimradRawDatagramContainer_FIL1:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_FIL1:
         """
         return a copy using the c++ default copy constructor
@@ -266,6 +253,19 @@ class SimradRawDatagramContainer_FIL1:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_FIL1_mapped:
     """
     """
@@ -297,19 +297,6 @@ class SimradRawDatagramContainer_FIL1_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_FIL1_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -330,6 +317,19 @@ class SimradRawDatagramContainer_FIL1_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Header:
     """
     """
@@ -361,19 +361,6 @@ class SimradRawDatagramContainer_Header:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Header:
         """
         return a copy using the c++ default copy constructor
@@ -394,6 +381,19 @@ class SimradRawDatagramContainer_Header:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Header_mapped:
     """
     """
@@ -425,19 +425,6 @@ class SimradRawDatagramContainer_Header_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Header_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -458,6 +445,19 @@ class SimradRawDatagramContainer_Header_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_MRU0:
     """
     """
@@ -489,19 +489,6 @@ class SimradRawDatagramContainer_MRU0:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_MRU0:
         """
         return a copy using the c++ default copy constructor
@@ -522,6 +509,19 @@ class SimradRawDatagramContainer_MRU0:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_MRU0_mapped:
     """
     """
@@ -553,19 +553,6 @@ class SimradRawDatagramContainer_MRU0_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_MRU0_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -586,6 +573,19 @@ class SimradRawDatagramContainer_MRU0_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_NME0:
     """
     """
@@ -617,19 +617,6 @@ class SimradRawDatagramContainer_NME0:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_NME0:
         """
         return a copy using the c++ default copy constructor
@@ -650,6 +637,19 @@ class SimradRawDatagramContainer_NME0:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_NME0_mapped:
     """
     """
@@ -681,19 +681,6 @@ class SimradRawDatagramContainer_NME0_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_NME0_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -714,6 +701,19 @@ class SimradRawDatagramContainer_NME0_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_RAW3:
     """
     """
@@ -745,19 +745,6 @@ class SimradRawDatagramContainer_RAW3:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_RAW3:
         """
         return a copy using the c++ default copy constructor
@@ -778,6 +765,19 @@ class SimradRawDatagramContainer_RAW3:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_RAW3_mapped:
     """
     """
@@ -809,19 +809,6 @@ class SimradRawDatagramContainer_RAW3_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_RAW3_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -842,6 +829,19 @@ class SimradRawDatagramContainer_RAW3_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_RAW3_skipped_data:
     """
     """
@@ -873,19 +873,6 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_RAW3_skipped_data:
         """
         return a copy using the c++ default copy constructor
@@ -906,6 +893,19 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
     """
     """
@@ -937,19 +937,6 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -970,6 +957,19 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_TAG0:
     """
     """
@@ -1001,19 +1001,6 @@ class SimradRawDatagramContainer_TAG0:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_TAG0:
         """
         return a copy using the c++ default copy constructor
@@ -1034,6 +1021,19 @@ class SimradRawDatagramContainer_TAG0:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_TAG0_mapped:
     """
     """
@@ -1065,19 +1065,6 @@ class SimradRawDatagramContainer_TAG0_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_TAG0_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -1098,6 +1085,19 @@ class SimradRawDatagramContainer_TAG0_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Unknown:
     """
     """
@@ -1129,19 +1129,6 @@ class SimradRawDatagramContainer_Unknown:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Unknown:
         """
         return a copy using the c++ default copy constructor
@@ -1162,6 +1149,19 @@ class SimradRawDatagramContainer_Unknown:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Unknown_mapped:
     """
     """
@@ -1193,19 +1193,6 @@ class SimradRawDatagramContainer_Unknown_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Unknown_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -1226,6 +1213,19 @@ class SimradRawDatagramContainer_Unknown_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Variant:
     """
     """
@@ -1257,19 +1257,6 @@ class SimradRawDatagramContainer_Variant:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Variant:
         """
         return a copy using the c++ default copy constructor
@@ -1290,6 +1277,19 @@ class SimradRawDatagramContainer_Variant:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Variant_mapped:
     """
     """
@@ -1321,19 +1321,6 @@ class SimradRawDatagramContainer_Variant_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Variant_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -1354,6 +1341,19 @@ class SimradRawDatagramContainer_Variant_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Variant_skipped_data:
     """
     """
@@ -1385,19 +1385,6 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Variant_skipped_data:
         """
         return a copy using the c++ default copy constructor
@@ -1418,6 +1405,19 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_Variant_skipped_data_mapped:
     """
     """
@@ -1449,19 +1449,6 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -1482,6 +1469,19 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_XML0:
     """
     """
@@ -1513,19 +1513,6 @@ class SimradRawDatagramContainer_XML0:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_XML0:
         """
         return a copy using the c++ default copy constructor
@@ -1546,6 +1533,19 @@ class SimradRawDatagramContainer_XML0:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
 class SimradRawDatagramContainer_XML0_mapped:
     """
     """
@@ -1577,19 +1577,6 @@ class SimradRawDatagramContainer_XML0_mapped:
         """
         Return object information as string
         """
-    def break_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
     def copy(self) -> SimradRawDatagramContainer_XML0_mapped:
         """
         return a copy using the c++ default copy constructor
@@ -1610,3 +1597,16 @@ class SimradRawDatagramContainer_XML0_mapped:
         """
     def size(self) -> int:
         ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0_mapped]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
