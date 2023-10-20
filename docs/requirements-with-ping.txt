@@ -1,0 +1,11 @@
+sphinx>=7.2.6
+readthedocs-sphinx-ext
+sphinx-autoapi
+sphinx-design
+nbsphinx
+furo
+sphinx-book-theme
+pydata_sphinx_theme
+sphinx-hoverxref
+themachinethatgoesping
+
