@@ -82,6 +82,13 @@ You may also want to check out the :ref:`contribute` section.
    first_steps/contribute
 
 .. toctree::
+   :caption: Demos
+   :maxdepth: 2
+   :hidden:
+
+   demos/01_open_and_get_overview.ipynb
+
+.. toctree::
    :caption: How to
    :maxdepth: 2
    :hidden:

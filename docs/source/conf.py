@@ -26,8 +26,15 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
     'autoapi.extension',
-    'sphinx_design'
+    'sphinx_design',
+    'nbsphinx',
+    'hoverxref'
 ]
+
+#nbsphinx
+
+#hoverxref
+hoverxref_auto_ref = True
 
 #autoapi
 autoapi_type = 'python'
