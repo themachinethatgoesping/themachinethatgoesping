@@ -1,4 +1,4 @@
-sphinx>=7.2.6
+sphinx == 6.2.1
 readthedocs-sphinx-ext
 sphinx-autoapi
 sphinx-design
@@ -8,4 +8,5 @@ sphinx-book-theme
 pydata_sphinx_theme
 sphinx-hoverxref
 themachinethatgoesping
+ipywidgets
 

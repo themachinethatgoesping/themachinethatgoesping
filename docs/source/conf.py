@@ -28,8 +28,11 @@ extensions = [
     'autoapi.extension',
     'sphinx_design',
     'nbsphinx',
-    'hoverxref'
+    'hoverxref',
+    'sphinx.ext.mathjax',
 ]
+
+exclude_patterns = ['_build', '**.ipynb_checkpoints']
 
 #nbsphinx
 
