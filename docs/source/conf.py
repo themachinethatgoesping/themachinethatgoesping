@@ -28,7 +28,7 @@ extensions = [
     'autoapi.extension',
     'sphinx_design',
     'nbsphinx',
-    'hoverxref',
+    'hoverxref.extension',
     'sphinx.ext.mathjax',
 ]
 
