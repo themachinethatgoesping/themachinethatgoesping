@@ -98,7 +98,7 @@ themachinethatgoesping
 
 | Super-project for themachinethatgoesping components (https://github.com/themachinethatgoesping)
 
-| Hi there 👋 **themachinethatgosping** (short: **ping**) aims at enabling advanced processing of multibeam and singlebeam echosounder data. Core components of this library are implemented in C++ (for performance) and are then exposed as high level python interfaces (for usability). On top of the core, many libraries, tools and applications will be implemented in Python directly, making use of the fast prototyping features of this language.
+| Hi there 👋 **themachinethatgosping** (short: **Ping**) aims at enabling advanced processing of multibeam and singlebeam echosounder data. Core components of this library are implemented in C++ (for performance) and are then exposed as high level python interfaces (for usability). On top of the core, many libraries, tools and applications will be implemented in Python directly, making use of the fast prototyping features of this language.
 |
 | This project is in early stage; at the moment it is just a powerfull raw data reader for Kongsberg .all/.wcd and Simard .raw data. However you can get glimples of what ping will be like and e.g. plot some simple echograms or extract the navigation data from the raw files (see tutorials repository)
 |
@@ -111,7 +111,7 @@ installation
 
 .. code-block:: python
 
-  pip install themachinethatgoes ping
+  pip install themachinethatgoesping
   
 Anaconda packages will follow.
 
