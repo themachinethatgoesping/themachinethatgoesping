@@ -4,8 +4,8 @@
 
 [build-system]
 requires = [
-    'meson-python >= 0.14.0',
-    'meson >= 1.2',
+    'meson-python >= 0.15.0',
+    'meson >= 1.2.3',
     'pyproject-metadata',
     'ninja',
     'oldest-supported-numpy'

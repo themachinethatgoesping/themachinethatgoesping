@@ -69,6 +69,9 @@ class FileEM3000:
     def datagram_interface(self) -> filedatainterfaces.EM3000DatagramInterface:
         ...
     @property
+    def datagramdata_interface(self) -> filedatainterfaces.EM3000DatagramDataInterface:
+        ...
+    @property
     def environment_interface(self) -> filedatainterfaces.EM3000EnvironmentDataInterface:
         ...
     @property
@@ -138,6 +141,9 @@ class FileEM3000_mapped:
         ...
     @property
     def datagram_interface(self) -> filedatainterfaces.EM3000DatagramInterface_mapped:
+        ...
+    @property
+    def datagramdata_interface(self) -> filedatainterfaces.EM3000DatagramDataInterface_mapped:
         ...
     @property
     def environment_interface(self) -> filedatainterfaces.EM3000EnvironmentDataInterface_mapped:
