@@ -2,11 +2,11 @@
 Python module to read, write and process single- and multibeam echosounder data formats
 """
 from __future__ import annotations
-from . import em3000
 from . import filetemplates
+from . import kongsbergall
 from . import pingtools
-from . import simrad
-__all__ = ['em3000', 'filetemplates', 'ostream_redirect', 'pingtools', 'simrad']
+from . import simradraw
+__all__ = ['filetemplates', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...
@@ -14,4 +14,4 @@ class ostream_redirect:
         ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None:
         ...
-__version__: str = '0.29.4'
+__version__: str = '0.30.0'

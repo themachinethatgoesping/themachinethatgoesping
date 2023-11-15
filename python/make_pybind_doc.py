@@ -22,6 +22,11 @@ if FORCE_RENEW: more_args.append("--renew")
 
 path_mkdoc = []
 for r,d,f in os.walk('../'):
+
+    # skip subprojects of subprojects
+    if r.count('subprojects') == 2:
+        continue
+    
     for file in f:
         if file == "mkdoc.py":
             path_mkdoc.append((os.path.abspath(r),file))
