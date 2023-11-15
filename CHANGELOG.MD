@@ -11,6 +11,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+## [0.13.0] - 2023-11-15
+
 ### Modules
 
 - echosounders -> 0.30.0
