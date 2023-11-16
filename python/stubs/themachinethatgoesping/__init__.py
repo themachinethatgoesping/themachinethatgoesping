@@ -6,6 +6,7 @@ Enable quantitative processing of multibeam and singlebeam echosounder systems
 """
 from __future__ import annotations
 from . import algorithms
+from . import echosounders
 from . import echosounders_cppy
 from . import gridding
 from . import navigation
@@ -19,6 +20,5 @@ def modules():
     ...
 def version():
     ...
-__modules_installed__: list = [('tools_cppy', '0.21.4'), ('tools', '@PROJECT_VERSION@'), ('scripts', '@PROJECT_VERSION@'), ('algorithms', '0.5.3'), ('navigation', '0.14.1'), ('echosounders_cppy', '0.31.0'), ('echosounders', '0.31.0'), ('pingprocessing_cppy', '0.3.3'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '0.1.7')]
-__version__: str = '0.14.0'
-echosounders = echosounders_cppy
+__modules_installed__: list = [('tools_cppy', '0.21.4'), ('tools', '@PROJECT_VERSION@'), ('scripts', '@PROJECT_VERSION@'), ('algorithms', '0.5.3'), ('navigation', '0.14.1'), ('echosounders_cppy', '0.31.0'), ('echosounders', '0.31.0'), ('pingprocessing_cppy', '0.3.4'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '0.1.7')]
+__version__: str = '0.14.1'

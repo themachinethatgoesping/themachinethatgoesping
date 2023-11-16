@@ -11,6 +11,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+## [0.14.1] - 2023-11-16
+
+- pingprocessing -> 0.3.4
+
+### Added
+
+- pingprocessing: filter.by_features() function
+- pingprocessing: split.by_channel_id() function
+
+### Fixed
+
+- added comments for pingprocessing functions
+
 ## [0.14.0] - 2023-11-16
 
 ### Modules
