@@ -11,6 +11,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+### Modules
+
+- tools -> 0.21.4
+
+### Update subproject wraps
+
+- tools:[magic_enum] -> 0.9.5
+
 ## [0.13.0] - 2023-11-15
 
 ### Modules
@@ -19,7 +27,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Breaking
 
-- Namespace and file renaming (echosounders)
+- echosounders: Namespace and file renaming
   - em3000 -> kongsbergall
   - simrad -> simradraw
   - InputFile -> InputFileHandler
