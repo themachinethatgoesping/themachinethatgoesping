@@ -11,9 +11,32 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+## [0.14.0] - 2023-11-16
+
 ### Modules
 
+- echosounders -> 0.31.0
+- pingsprocessing -> 0.3.3
 - tools -> 0.21.4
+- navigation -> 0.14.1
+
+### Breaking
+
+- echosounders: reworked pings() function
+  - pings() now returns pings sorted by time by default
+  - removed pings('channel_id') functions
+
+### Added
+
+- pingprocessing:
+  - functions to filter pings by time and region
+  - functions to calculate ping statistics
+  - functions to split pings by time or distance difference
+  - navigation plotting functions
+
+### Fixed
+
+- navigation: wrong argument name for initializing GeoLocationUTM
 
 ### Update subproject wraps
 

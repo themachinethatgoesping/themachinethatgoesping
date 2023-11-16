@@ -401,7 +401,7 @@ class GeoLocationUTM(GeoLocationLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, geolocationlocal: GeoLocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         Construct an GeoLocationUTM object from an existing GeoLocationLocal
         object (using a known zone and hemisphere)
