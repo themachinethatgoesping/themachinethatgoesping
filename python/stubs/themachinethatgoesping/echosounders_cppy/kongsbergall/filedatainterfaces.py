@@ -132,7 +132,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -228,7 +228,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -466,7 +466,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -603,7 +603,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -882,7 +882,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -979,7 +979,7 @@ class KongsbergAllDatagramDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1308,7 +1308,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1401,7 +1401,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1646,7 +1646,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1739,7 +1739,7 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1994,7 +1994,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -2091,7 +2091,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -2342,7 +2342,7 @@ class KongsbergAllPingDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -2443,7 +2443,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string

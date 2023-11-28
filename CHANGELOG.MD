@@ -11,6 +11,26 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+- pingprocessing -> 0.3.5
+- echosounders -> 0.31.1
+
+### Added
+
+- pingprocessing: group_pings.by_dual_head() function
+- pinggrocessing: split_pings.by_file_path function
+- echosounders: add index_functions.find_folders_with_files function
+
+### Changed
+
+- echosounders: index_functions.find_files
+  - Path folders can now be string, path or list of strings or paths
+  - File extensions can now be string or list of strings
+  - add followlinks argument to follow symbolic links
+
+### Fixed
+
+- echosounders: circular shared_ptr memory leak in KongsbergAllFileHandler
+
 ## [0.14.1] - 2023-11-16
 
 - pingprocessing -> 0.3.4

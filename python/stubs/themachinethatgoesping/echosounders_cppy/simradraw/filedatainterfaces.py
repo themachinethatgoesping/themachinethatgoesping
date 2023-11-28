@@ -132,7 +132,7 @@ class SimradRawAnnotationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -227,7 +227,7 @@ class SimradRawAnnotationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -476,7 +476,7 @@ class SimradRawConfigurationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -605,7 +605,7 @@ class SimradRawConfigurationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -950,7 +950,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1043,7 +1043,7 @@ class SimradRawEnvironmentDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1292,7 +1292,7 @@ class SimradRawNavigationDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1393,7 +1393,7 @@ class SimradRawNavigationDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1814,7 +1814,7 @@ class SimradRawPingDataInterfacePerFile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -1915,7 +1915,7 @@ class SimradRawPingDataInterfacePerFile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -2096,7 +2096,7 @@ class init_c_simradrawotherfiledatainterfaceperfile:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
@@ -2193,7 +2193,7 @@ class init_c_simradrawotherfiledatainterfaceperfile_mapped:
     def get_file_path(self) -> str:
         """
         Get the file name This function assumes that the file name is the same
-        for all datagrams in the file
+        for_linked_file all datagrams in the file
         
         Returns:
             std::string
