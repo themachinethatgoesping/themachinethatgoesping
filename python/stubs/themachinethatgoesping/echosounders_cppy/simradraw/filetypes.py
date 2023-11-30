@@ -7,7 +7,7 @@ import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes
 import typing
-__all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingRawData', 'SimradRawPingRawData_mapped', 'SimradRawPing_mapped']
+__all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
 class FileInfoData_simradraw_FileInfoData:
     """
     """
@@ -85,14 +85,14 @@ class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Pin
         """
         return a copy using the c++ default copy constructor
         """
-    def raw_data(self) -> SimradRawPingRawData:
+    def file_data(self) -> SimradRawPingFileData:
         ...
-class SimradRawPingRawData:
+class SimradRawPingFileData:
     """
     """
-    def __copy__(self) -> SimradRawPingRawData:
+    def __copy__(self) -> SimradRawPingFileData:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawPingRawData:
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData:
         ...
     def __repr__(self) -> str:
         """
@@ -102,7 +102,7 @@ class SimradRawPingRawData:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawPingRawData:
+    def copy(self) -> SimradRawPingFileData:
         """
         return a copy using the c++ default copy constructor
         """
@@ -134,12 +134,12 @@ class SimradRawPingRawData:
         < when implementing EK60, this must become a variant type (RAW3 or
         RAW0)
         """
-class SimradRawPingRawData_mapped:
+class SimradRawPingFileData_mapped:
     """
     """
-    def __copy__(self) -> SimradRawPingRawData_mapped:
+    def __copy__(self) -> SimradRawPingFileData_mapped:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawPingRawData_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData_mapped:
         ...
     def __repr__(self) -> str:
         """
@@ -149,7 +149,7 @@ class SimradRawPingRawData_mapped:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawPingRawData_mapped:
+    def copy(self) -> SimradRawPingFileData_mapped:
         """
         return a copy using the c++ default copy constructor
         """
@@ -192,5 +192,5 @@ class SimradRawPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplate
         """
         return a copy using the c++ default copy constructor
         """
-    def raw_data(self) -> SimradRawPingRawData_mapped:
+    def file_data(self) -> SimradRawPingFileData_mapped:
         ...

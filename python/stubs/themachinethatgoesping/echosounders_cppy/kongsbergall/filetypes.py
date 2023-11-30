@@ -8,7 +8,7 @@ import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.pingtools
 import typing
-__all__ = ['FileInfoData_kongsbergall_FileInfoData', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_mapped', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_mapped', 'KongsbergAllPingRawData', 'KongsbergAllPingRawData_mapped', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_mapped', 'KongsbergAllPing_mapped']
+__all__ = ['FileInfoData_kongsbergall_FileInfoData', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_mapped', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_mapped', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_mapped', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_mapped', 'KongsbergAllPing_mapped']
 class FileInfoData_kongsbergall_FileInfoData:
     """
     """
@@ -120,7 +120,7 @@ class KongsbergAllPingCommon(themachinethatgoesping.echosounders_cppy.filetempla
         return a copy using the c++ default copy constructor
         """
     @property
-    def raw_data(self) -> KongsbergAllPingRawData:
+    def file_data(self) -> KongsbergAllPingFileData:
         ...
 class KongsbergAllPingCommon_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
     """
@@ -134,14 +134,14 @@ class KongsbergAllPingCommon_mapped(themachinethatgoesping.echosounders_cppy.fil
         return a copy using the c++ default copy constructor
         """
     @property
-    def raw_data(self) -> KongsbergAllPingRawData_mapped:
+    def file_data(self) -> KongsbergAllPingFileData_mapped:
         ...
-class KongsbergAllPingRawData:
+class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
-    def __copy__(self) -> KongsbergAllPingRawData:
+    def __copy__(self) -> KongsbergAllPingFileData:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingRawData:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingFileData:
         ...
     @typing.overload
     def __repr__(self) -> str:
@@ -163,7 +163,7 @@ class KongsbergAllPingRawData:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllPingRawData:
+    def copy(self) -> KongsbergAllPingFileData:
         """
         return a copy using the c++ default copy constructor
         """
@@ -240,12 +240,12 @@ class KongsbergAllPingRawData:
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
-class KongsbergAllPingRawData_mapped:
+class KongsbergAllPingFileData_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
-    def __copy__(self) -> KongsbergAllPingRawData_mapped:
+    def __copy__(self) -> KongsbergAllPingFileData_mapped:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingRawData_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingFileData_mapped:
         ...
     @typing.overload
     def __repr__(self) -> str:
@@ -267,7 +267,7 @@ class KongsbergAllPingRawData_mapped:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllPingRawData_mapped:
+    def copy(self) -> KongsbergAllPingFileData_mapped:
         """
         return a copy using the c++ default copy constructor
         """

@@ -11,8 +11,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
-- pingprocessing -> 0.3.5
-- echosounders -> 0.31.1
+- pingprocessing -> 0.4.0
+- echosounders -> 0.32.0
+- tools -> 0.21.5
 
 ### Added
 
@@ -26,6 +27,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - Path folders can now be string, path or list of strings or paths
   - File extensions can now be string or list of strings
   - add followlinks argument to follow symbolic links
+- updated xsimd 0.11.2 -> 0.12.0
+  - This fixes a lot of compiler warnings for gcc 13.2
+
+### Breaking
+
+- echosounders
+  - breaking: removed get_file_path and get_file_number to ping raw_data
+  - added get_file_paths and get_file_numbers to ping raw_data
+  - added get_primary_file_path and get_primary_file_number to ping raw_data
+  - renamed RawData and raw_data to FileData and file_data
+- pingprocessing
+  - adapted to echosounders v.0.32 changes
 
 ### Fixed
 

@@ -7,7 +7,7 @@ import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingWatercolumn']
+__all__ = ['I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn']
 class I_Ping(I_PingCommon):
     """
     """
@@ -33,12 +33,6 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    def get_file_nr(self) -> int:
-        ...
-    def get_file_path(self) -> str:
-        ...
-    def get_file_ping_counter(self) -> int:
-        ...
     def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
         """
         Get the geolocation of the transducer.
@@ -70,8 +64,6 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    def set_file_ping_counter(self, file_ping_counter: int) -> None:
-        ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensorDataLatLon) -> None:
@@ -272,9 +264,113 @@ class I_PingCommon:
         """
     def release(self) -> None:
         ...
+class I_PingFileData:
+    """
+    @class I_PingFileData Interface for raw ping data.
+    
+    This class defines an interface for raw ping data. It provides methods
+    to access and manipulate the properties of the ping data, such as the
+    name, file ping counter, primary file number, file numbers, primary
+    file path, and file paths.
+    
+    The class also includes a nested exception class, `not_implemented`,
+    which is thrown when a method is not implemented.
+    
+    The class provides a `__printer__` function for object printing, which
+    can be used to print the properties of the ping data.
+    """
+    def __copy__(self) -> I_PingFileData:
+        ...
+    def __deepcopy__(self, arg0: dict) -> I_PingFileData:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> I_PingFileData:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_file_numbers(self) -> list[int]:
+        """
+        Get the file numbers of the contained datagrams.
+        
+        Returns:
+            std::vector<size_t> The file numbers.
+        
+        Throws:
+            not_implemented Exception if not implemented.
+        """
+    def get_file_paths(self) -> list[str]:
+        """
+        Get the file paths.
+        
+        Returns:
+            std::vector<std::string> The file paths associated with the
+            contained datagrams.
+        
+        Throws:
+            not_implemented Exception if not implemented.
+        """
+    def get_file_ping_counter(self) -> int:
+        """
+        Get the file ping counter.
+        
+        Returns:
+            size_t The file ping counter.
+        """
+    def get_primary_file_nr(self) -> int:
+        """
+        Get the primary file number of this ping.
+        
+        Returns:
+            size_t The primary file number.
+        """
+    def get_primary_file_path(self) -> str:
+        """
+        Get the primary file path of this ping.
+        
+        Returns:
+            std::string The primary file path of this ping.
+        
+        Throws:
+            not_implemented Exception if not implemented.
+        """
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def set_file_ping_counter(self, file_ping_counter: int) -> None:
+        """
+        Set the file ping counter.
+        
+        Parameter ``file_ping_counter``:
+            The file ping counter to set.
+        """
+    def set_primary_file_nr(self, file_nr: int) -> None:
+        """
+        Set the primary file number for this ping.
+        
+        Parameter ``primary_file_nr``:
+            The primary file number to set.
+        """
 class I_PingWatercolumn(I_PingCommon):
     """
     Interface for all ping watercolumn functions
+    
+    @class I_PingWatercolumn Interface for watercolumn ping data.
+    
+    This class represents an interface for accessing watercolumn ping
+    data. It inherits from the I_PingCommon class and provides additional
+    functions and variables specific to watercolumn pings.
     """
     def __copy__(self) -> I_PingWatercolumn:
         ...
