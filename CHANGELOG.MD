@@ -14,6 +14,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing -> 0.4.0
 - echosounders -> 0.32.0
 - tools -> 0.21.5
+- navigation -> 0.14.2
+- algorithms -> 0.5.4
 
 ### Added
 
@@ -40,9 +42,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing
   - adapted to echosounders v.0.32 changes
 
+### Performance
+
+- echosounders
+  - removed unnecessary strings from ping classes to reduce memory usage
+
 ### Fixed
 
 - echosounders: circular shared_ptr memory leak in KongsbergAllFileHandler
+
+### internal
+
+- renamed get_name() to class_name()
 
 ## [0.14.1] - 2023-11-16
 

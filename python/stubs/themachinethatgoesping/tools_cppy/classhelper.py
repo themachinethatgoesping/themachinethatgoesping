@@ -49,6 +49,13 @@ class ObjectPrinter:
         """
         Return object information as string
         """
+    def class_name(self) -> str:
+        """
+        Get the registered name of the object
+        
+        Returns:
+            std::string
+        """
     def copy(self) -> ObjectPrinter:
         """
         return a copy using the c++ default copy constructor
@@ -56,13 +63,6 @@ class ObjectPrinter:
     def create_str(self) -> str:
         """
         Create an info_string from the registered values/sections
-        
-        Returns:
-            std::string
-        """
-    def get_name(self) -> str:
-        """
-        Get the registered name of the object
         
         Returns:
             std::string
