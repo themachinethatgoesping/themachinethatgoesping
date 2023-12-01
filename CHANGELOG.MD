@@ -11,6 +11,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+-
+
+## [0.15.0] - 2023-12-01
+
 - pingprocessing -> 0.4.0
 - echosounders -> 0.32.0
 - tools -> 0.21.5
@@ -29,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - Path folders can now be string, path or list of strings or paths
   - File extensions can now be string or list of strings
   - add followlinks argument to follow symbolic links
+  - find_files: delay for progressbar is now 3 seconds
 - updated xsimd 0.11.2 -> 0.12.0
   - This fixes a lot of compiler warnings for gcc 13.2
 
