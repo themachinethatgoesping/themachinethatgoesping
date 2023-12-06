@@ -11,7 +11,28 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
--
+- algorithms -> 0.5.5
+- pingprocessing -> 0.4.1
+- echosounders -> 0.32.1
+
+### Added
+
+- algorithms:
+  - signalprocessing::datastructures::CWSignalParameters
+  - signalprocessing::datastructures::FMSignalParameters
+- echosounders:
+  - rawrangeandangletransmitsector: get_transmit_signal_type
+  - kongsbergall: add systeminformation structure
+
+### Fixed
+
+- pingprocessing: 
+  - nav_plot for >100.000 elements
+
+### Changed
+
+- echosounders
+  - rework watercolumninformation structure
 
 ## [0.15.0] - 2023-12-01
 

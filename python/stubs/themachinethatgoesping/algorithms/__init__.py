@@ -3,7 +3,8 @@ Python module process ping data, e.g. apply absorption, spreading loss, compute 
 """
 from __future__ import annotations
 from . import geoprocessing
-__all__ = ['geoprocessing', 'ostream_redirect']
+from . import signalprocessing
+__all__ = ['geoprocessing', 'ostream_redirect', 'signalprocessing']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...

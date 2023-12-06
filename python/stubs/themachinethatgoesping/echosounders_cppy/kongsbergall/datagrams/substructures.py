@@ -3,6 +3,7 @@ Kongsberg KongsbergAll datagram substructures. These are substuctures of existin
 """
 from __future__ import annotations
 import numpy
+import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import typing
 __all__ = ['AmplitudeDetect', 'AttitudeDatagramAttitude', 'Estimated', 'ExtraDetectionsDetectionClasses', 'ExtraDetectionsExtraDetections', 'Interpolated', 'Invalid', 'InvalidNormalDetection', 'NetworkAttitudeVelocityDatagramAttitude', 'NoDetection', 'PhaseDetect', 'RawRangeAndAngleBeam', 'RawRangeAndAngleTransmitSector', 'Rejected', 'SampleAmplitudesStructure_int16_t', 'SeabedImageDataBeam', 'WatercolumnDatagramBeam', 'WatercolumnDatagramTransmitSector', 'XYZDatagramBeam', 'XYZDatagramBeam_t_DetectionType']
 class AttitudeDatagramAttitude:
@@ -862,6 +863,8 @@ class RawRangeAndAngleTransmitSector:
             _tilt_angle * 0.01 (float)
         """
     def get_transmit_sector_number(self) -> int:
+        ...
+    def get_tx_signal_type(self) -> themachinethatgoesping.algorithms.signalprocessing.datastructures.t_TxSignalType:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
