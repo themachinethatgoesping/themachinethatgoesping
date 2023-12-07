@@ -3,7 +3,7 @@ Submodule that holds datastructures that hold the signal processing input/result
 """
 from __future__ import annotations
 import typing
-__all__ = ['CW', 'CWSignalParameters', 'FMSignalParameters', 'FM_DOWN_SWEEP', 'FM_UP_SWEEP', 't_TxSignalType']
+__all__ = ['CW', 'CWSignalParameters', 'FMSignalParameters', 'FM_DOWN_SWEEP', 'FM_UP_SWEEP', 'GenericSignalParameters', 'UNKNOWN', 't_TxSignalType']
 class CWSignalParameters:
     """
     @struct CWSignalParameters Struct representing information about a
@@ -107,7 +107,7 @@ class CWSignalParameters:
 class FMSignalParameters:
     """
     @struct FMSignalParameters Struct representing information about a
-    continuous wave signal.
+    frequency modulated wave signal (chirp).
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FMSignalParameters:
@@ -217,6 +217,114 @@ class FMSignalParameters:
     @up_sweep.setter
     def up_sweep(self, arg0: bool) -> None:
         ...
+class GenericSignalParameters:
+    """
+    @struct GenericSignalParameters Struct representing information about
+    a generic type.
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GenericSignalParameters:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> GenericSignalParameters:
+        ...
+    def __deepcopy__(self, arg0: dict) -> GenericSignalParameters:
+        ...
+    def __eq__(self, other: GenericSignalParameters) -> bool:
+        """
+        Equality operator.
+        
+        Parameter ``rhs``:
+            The right-hand side of the operator.
+        
+        Returns:
+            True if the objects are equal, false otherwise.
+        """
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __init__(self) -> None:
+        """
+        Default constructor.
+        """
+    @typing.overload
+    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: t_TxSignalType) -> None:
+        """
+        Default constructor.
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> GenericSignalParameters:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_tx_signal_type(self) -> t_TxSignalType:
+        ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def bandwidth(self) -> float:
+        """
+        < Bandwidth of the signal in Hz.
+        """
+    @bandwidth.setter
+    def bandwidth(self, arg0: float) -> None:
+        ...
+    @property
+    def center_frequency(self) -> float:
+        """
+        < Center frequency of the signal in Hz.
+        """
+    @center_frequency.setter
+    def center_frequency(self, arg0: float) -> None:
+        ...
+    @property
+    def effective_pulse_duration(self) -> float:
+        """
+        < Effective pulse duration of the signal in seconds.
+        """
+    @effective_pulse_duration.setter
+    def effective_pulse_duration(self, arg0: float) -> None:
+        ...
+    @property
+    def signal_type(self) -> t_TxSignalType:
+        """
+        < Signal type
+        """
+    @signal_type.setter
+    def signal_type(self, arg0: t_TxSignalType) -> None:
+        ...
 class t_TxSignalType:
     """
     
@@ -228,11 +336,14 @@ class t_TxSignalType:
       FM_UP_SWEEP
     
       FM_DOWN_SWEEP
+    
+      UNKNOWN
     """
     CW: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.CW: 0>
     FM_DOWN_SWEEP: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.FM_DOWN_SWEEP: 2>
     FM_UP_SWEEP: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.FM_UP_SWEEP: 1>
-    __members__: typing.ClassVar[dict[str, t_TxSignalType]]  # value = {'CW': <t_TxSignalType.CW: 0>, 'FM_UP_SWEEP': <t_TxSignalType.FM_UP_SWEEP: 1>, 'FM_DOWN_SWEEP': <t_TxSignalType.FM_DOWN_SWEEP: 2>}
+    UNKNOWN: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.UNKNOWN: 3>
+    __members__: typing.ClassVar[dict[str, t_TxSignalType]]  # value = {'CW': <t_TxSignalType.CW: 0>, 'FM_UP_SWEEP': <t_TxSignalType.FM_UP_SWEEP: 1>, 'FM_DOWN_SWEEP': <t_TxSignalType.FM_DOWN_SWEEP: 2>, 'UNKNOWN': <t_TxSignalType.UNKNOWN: 3>}
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:
@@ -270,3 +381,4 @@ class t_TxSignalType:
 CW: t_TxSignalType  # value = <t_TxSignalType.CW: 0>
 FM_DOWN_SWEEP: t_TxSignalType  # value = <t_TxSignalType.FM_DOWN_SWEEP: 2>
 FM_UP_SWEEP: t_TxSignalType  # value = <t_TxSignalType.FM_UP_SWEEP: 1>
+UNKNOWN: t_TxSignalType  # value = <t_TxSignalType.UNKNOWN: 3>

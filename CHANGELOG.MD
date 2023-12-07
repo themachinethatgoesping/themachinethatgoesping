@@ -14,6 +14,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms -> 0.5.5
 - pingprocessing -> 0.4.1
 - echosounders -> 0.32.1
+- tool -> 0.21.6
 
 ### Added
 
@@ -23,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - rawrangeandangletransmitsector: get_transmit_signal_type
   - kongsbergall: add systeminformation structure
+  - load_sys to file_data and to kongsbergallbottom
 
 ### Fixed
 
@@ -33,6 +35,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders
   - rework watercolumninformation structure
+  - consistently use center_frequency instead of centre_frequency
+- tools
+  - updated xsimd 0.12.0 -> 0.12.1
 
 ## [0.15.0] - 2023-12-01
 
@@ -186,3 +191,8 @@ We use the following tags based on [keepachangelog.com](https://keepachangelog.c
 
 ### Security
 - `Security` in case of vulnerabilities.
+
+Additionally, we use the following tags:
+
+### Breaking
+- `Breaking` for changes that will break existing functionality and thus require a major version change.

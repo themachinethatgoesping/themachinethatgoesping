@@ -811,7 +811,7 @@ class RawRangeAndAngleTransmitSector:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_centre_frequency(self) -> float:
+    def get_center_frequency(self) -> float:
         """
         < in Hz
         """
@@ -874,7 +874,7 @@ class RawRangeAndAngleTransmitSector:
         """
         Print object information
         """
-    def set_centre_frequency(self, arg0: float) -> None:
+    def set_center_frequency(self, arg0: float) -> None:
         """
         < in Hz
         """
