@@ -25,6 +25,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - rawrangeandangletransmitsector: get_transmit_signal_type
   - kongsbergall: add systeminformation structure
   - load_sys to file_data and to kongsbergallbottom
+  - add tx_signal_parameters accessor ti I_PingCommon
+  - add get transmit sector information to kongsbergallpings
 
 ### Fixed
 
@@ -36,6 +38,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders
   - rework watercolumninformation structure
   - consistently use center_frequency instead of centre_frequency
+  - reduce i_ping printing verbosity
 - tools
   - updated xsimd 0.12.0 -> 0.12.1
 
@@ -60,6 +63,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - File extensions can now be string or list of strings
   - add followlinks argument to follow symbolic links
   - find_files: delay for progressbar is now 3 seconds
+  - distinguish between main and normal features
 - updated xsimd 0.11.2 -> 0.12.0
   - This fixes a lot of compiler warnings for gcc 13.2
 

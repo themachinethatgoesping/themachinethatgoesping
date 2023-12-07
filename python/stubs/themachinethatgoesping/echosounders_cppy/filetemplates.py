@@ -4,6 +4,7 @@ Trampoline classes for abstract file template classes
 from __future__ import annotations
 import numpy
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
+import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
@@ -106,6 +107,8 @@ class I_PingBottom(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        ...
     def get_beam_selection_all(self) -> ...:
         """
         Get a beam selection object that selects all beams
@@ -136,6 +139,8 @@ class I_PingBottom(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
+    def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
+        ...
     @typing.overload
     def get_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
         """
@@ -223,6 +228,24 @@ class I_PingCommon:
         Returns:
             std::string
         """
+    def get_number_of_tx_sectors(self) -> int:
+        """
+        Get the number of transmission sectors.
+        
+        This function returns the number of transmission sectors for the
+        echosounder.
+        
+        Returns:
+            The number of transmission sectors.
+        """
+    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
+        """
+        Get the transmission signal parameters per sector.
+        
+        Returns:
+            const std::vector<algorithms::signalprocessing::datastructures::Tx
+            SignalParameters>&
+        """
     def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
@@ -243,6 +266,20 @@ class I_PingCommon:
         Returns:
             false
         """
+    def has_main_features(self) -> bool:
+        """
+        Check if any of the registered main features is available
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_tx_sector_information(self) -> bool:
+        ...
+    def has_tx_signal_parameters(self) -> bool:
+        ...
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
@@ -251,6 +288,13 @@ class I_PingCommon:
         ...
     def loaded(self) -> bool:
         ...
+    def main_features(self) -> str:
+        """
+        Get a string of all registered main features for this ping class
+        
+        Returns:
+            std::string
+        """
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
@@ -428,6 +472,8 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        ...
     def get_beam_sample_selection_all(self) -> ...:
         """
         Get beam sample selection that selects all beams and samples
@@ -480,6 +526,8 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             float
         """
+    def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
+        ...
     def has_amplitudes(self) -> bool:
         """
         Check this pings supports AMPLITUDES data
