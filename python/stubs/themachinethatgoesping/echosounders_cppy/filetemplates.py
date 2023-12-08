@@ -238,6 +238,13 @@ class I_PingCommon:
         Returns:
             The number of transmission sectors.
         """
+    def get_sample_interval(self) -> float:
+        """
+        Get the sample interval in seconds
+        
+        Returns:
+            float
+        """
     def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
         """
         Get the transmission signal parameters per sector.
@@ -245,6 +252,26 @@ class I_PingCommon:
         Returns:
             const std::vector<algorithms::signalprocessing::datastructures::Tx
             SignalParameters>&
+        """
+    def has_all_of_features(self, feature_names: list[str]) -> bool:
+        """
+        Check if all of the specified features are available
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_any_of_features(self, feature_names: list[str]) -> bool:
+        """
+        Check if any of the specified features is available
+        
+        Returns:
+            true
+        
+        Returns:
+            false
         """
     def has_feature(self, feature_name: str) -> bool:
         """
@@ -519,13 +546,6 @@ class I_PingWatercolumn(I_PingCommon):
     @typing.overload
     def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
         ...
-    def get_sample_interval(self) -> float:
-        """
-        Get the sample interval in seconds
-        
-        Returns:
-            float
-        """
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
         ...
     def has_amplitudes(self) -> bool:

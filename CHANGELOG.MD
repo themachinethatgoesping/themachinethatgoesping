@@ -21,12 +21,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms:
   - signalprocessing::datastructures::CWSignalParameters
   - signalprocessing::datastructures::FMSignalParameters
+  - add hash tests
 - echosounders:
   - rawrangeandangletransmitsector: get_transmit_signal_type
   - kongsbergall: add systeminformation structure
   - load_sys to file_data and to kongsbergallbottom
   - add tx_signal_parameters accessor ti I_PingCommon
   - add get transmit sector information to kongsbergallpings
+  - has_any_of and all_of_features to i_pingcommon
+- pingprocessing
+  - add split_ping by_function_return function
 
 ### Fixed
 
@@ -39,6 +43,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - rework watercolumninformation structure
   - consistently use center_frequency instead of centre_frequency
   - reduce i_ping printing verbosity
+  - specialized structure for interesting water column datagram information that can be deduplicated
 - tools
   - updated xsimd 0.12.0 -> 0.12.1
 
