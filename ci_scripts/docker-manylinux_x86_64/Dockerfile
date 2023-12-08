@@ -18,10 +18,12 @@ ARG BOOST_MODULES="--with-iostreams --with-filesystem"
 ARG CCACHE_VERSION="4.7.5"
 
 # install source build dependencies
+RUN yum update -y
 RUN yum install -y git git-lfs
 RUN yum install -y bzip2 curl zlib
 RUN yum install -y pkgconfig cmake
-RUN yum install -y proj
+#RUN yum install -y proj
+RUN yum install -y gcc-toolset-12
 
 # -- install package versions from source --
 # BOOST
