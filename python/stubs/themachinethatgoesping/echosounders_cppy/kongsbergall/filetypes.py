@@ -355,7 +355,7 @@ class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_cppy.filet
         """
         return a copy using the c++ default copy constructor
         """
-    def get_tvg_function_applied(self) -> int:
+    def get_tvg_factor_applied(self) -> int:
         ...
     def get_tvg_offset(self) -> int:
         ...
@@ -370,7 +370,7 @@ class KongsbergAllPingWatercolumn_mapped(themachinethatgoesping.echosounders_cpp
         """
         return a copy using the c++ default copy constructor
         """
-    def get_tvg_function_applied(self) -> int:
+    def get_tvg_factor_applied(self) -> int:
         ...
     def get_tvg_offset(self) -> int:
         ...

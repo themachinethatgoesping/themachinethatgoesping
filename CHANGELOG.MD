@@ -33,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - beamsampleselection::get_sample_numbers_as_vector and get_sample_numbers_ensemble
   - i_pingwatercolumn: get_soundspeed_at_transducer
   - kongsbergallpingwatercolumn: get_tvg_offset, get_tvg_factor
+  - get_av function for kongsbergallpingwatercolumn
 - pingprocessing
   - add split_ping by_function_return function
 
