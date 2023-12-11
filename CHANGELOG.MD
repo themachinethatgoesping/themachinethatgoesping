@@ -29,6 +29,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - add tx_signal_parameters accessor ti I_PingCommon
   - add get transmit sector information to kongsbergallpings
   - has_any_of and all_of_features to i_pingcommon
+  - kongsbergallampltiudeconverter class
+  - beamsampleselection::get_sample_numbers_as_vector and get_sample_numbers_ensemble
+  - i_pingwatercolumn: get_soundspeed_at_transducer
+  - kongsbergallpingwatercolumn: get_tvg_offset, get_tvg_factor
 - pingprocessing
   - add split_ping by_function_return function
 
@@ -46,6 +50,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - specialized structure for interesting water column datagram information that can be deduplicated
 - tools
   - updated xsimd 0.12.0 -> 0.12.1
+  - updated catch2 3.4.0 -> 3.5.0
 
 ## [0.15.0] - 2023-12-01
 

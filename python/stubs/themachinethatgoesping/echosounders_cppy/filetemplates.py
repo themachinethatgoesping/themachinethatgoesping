@@ -468,6 +468,24 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
+    def get_av(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get tha amplitude data converted to AV (uncalibrated volume
+        scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_av(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get tha amplitude data converted to AV (uncalibrated volume
+        scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
     def get_beam_alongtrack_angles(self) -> numpy.ndarray[numpy.float32]:
         """
         Get the beam alongtrack angles for this ping in °
@@ -546,11 +564,23 @@ class I_PingWatercolumn(I_PingCommon):
     @typing.overload
     def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
         ...
+    def get_sound_speed_at_transducer(self) -> float:
+        ...
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
         ...
     def has_amplitudes(self) -> bool:
         """
         Check this pings supports AMPLITUDES data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_av(self) -> bool:
+        """
+        Check this pings supports AV data
         
         Returns:
             true

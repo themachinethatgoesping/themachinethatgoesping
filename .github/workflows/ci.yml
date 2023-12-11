@@ -58,7 +58,7 @@ jobs:
         include:  
           - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
               ccache: 'true',
-              pip2: 'pip install -r requirements.txt'}
+              pip2: 'pip install -r requirements.txt --break-system-packages' }
           - { container: 'ubuntu:22.04', 
               ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 

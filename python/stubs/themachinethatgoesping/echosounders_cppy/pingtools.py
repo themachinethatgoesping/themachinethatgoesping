@@ -2,6 +2,7 @@
 Tools for working with ping objects.
 """
 from __future__ import annotations
+import numpy
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import typing
 __all__ = ['BeamSampleSelection', 'BeamSelection', 'PingSampleSelector', 'ReadSampleRange']
@@ -129,6 +130,10 @@ class BeamSampleSelection(BeamSelection):
         Returns:
             ReadSampleRange read sample range
         """
+    def get_sample_numbers_as_vector(self) -> list[int]:
+        ...
+    def get_sample_numbers_ensemble(self) -> numpy.ndarray[numpy.uint16]:
+        ...
     def get_sample_step_ensemble(self) -> int:
         """
         Return the sample step size
