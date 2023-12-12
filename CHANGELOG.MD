@@ -11,6 +11,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+## [0.15.1] - 2023-12-12
+
 - algorithms -> 0.5.5
 - pingprocessing -> 0.4.1
 - echosounders -> 0.32.1
