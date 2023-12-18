@@ -11,6 +11,33 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+- echosounders -> 0.32.2
+- pingprocessing -> 0.4.2
+- tool -> 0.21.7
+
+### Added
+
+- pingprocessing:
+  - split_pings.by_time_blocks function
+
+### Changed
+
+- echosounders:
+  safe sample_interval instead of sampling_frequency
+
+### Fixed
+
+- echosounders:
+  - Do not crash when trying to open empty file
+  - get_sample_interval only available for water column data (means something different for bottom data)
+
+### Updated
+
+- tools:
+  - xsimd 12.1.0 -> 12.1.1
+  - xtl 0.7.5 -> 0.7.6
+  - fast_float 5.3.0 -> 6.0.0
+
 ## [0.15.1] - 2023-12-12
 
 - algorithms -> 0.5.5

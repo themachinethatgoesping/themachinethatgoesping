@@ -238,13 +238,6 @@ class I_PingCommon:
         Returns:
             The number of transmission sectors.
         """
-    def get_sample_interval(self) -> float:
-        """
-        Get the sample interval in seconds
-        
-        Returns:
-            float
-        """
     def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
         """
         Get the transmission signal parameters per sector.
@@ -564,6 +557,13 @@ class I_PingWatercolumn(I_PingCommon):
     @typing.overload
     def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
         ...
+    def get_sample_interval(self) -> float:
+        """
+        Get the sample interval in seconds
+        
+        Returns:
+            float
+        """
     def get_sound_speed_at_transducer(self) -> float:
         ...
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
