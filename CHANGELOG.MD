@@ -14,22 +14,29 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.32.2
 - pingprocessing -> 0.4.2
 - tool -> 0.21.7
+- navigation -> 0.14.3
 
 ### Added
 
 - pingprocessing:
   - split_pings.by_time_blocks function
+- navigation:
+  - compute_distance between lat lon points function
+  - compute_distances between lat lon points (vectors)
+  - cumulative_distances of lat lon vectors
 
 ### Changed
 
 - echosounders:
   safe sample_interval instead of sampling_frequency
+  pingtools: allow explicit casting from beamsampleslection to beamselection
 
 ### Fixed
 
 - echosounders:
   - Do not crash when trying to open empty file
   - get_sample_interval only available for water column data (means something different for bottom data)
+  - kongsbergallping.bottom.get_xyz(selection) : incorrect memory access error
 
 ### Updated
 

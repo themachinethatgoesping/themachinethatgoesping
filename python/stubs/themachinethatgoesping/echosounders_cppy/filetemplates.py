@@ -164,6 +164,10 @@ class I_PingBottom(I_PingCommon):
         get_xyz_latlon() to get the bottom detection in Latitude/Longitude
         coordinates
         
+        Parameter ``selection``:
+            structure with selected transducer_ids/beams/samples considered
+            for this function
+        
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """

@@ -193,6 +193,9 @@ class BeamSelection:
     def __init__(self) -> None:
         ...
     @typing.overload
+    def __init__(self, beam_sample_selection: ...) -> None:
+        ...
+    @typing.overload
     def __init__(self, number_of_beams: int) -> None:
         """
         Initialize a beam sample selection from a whole swath
