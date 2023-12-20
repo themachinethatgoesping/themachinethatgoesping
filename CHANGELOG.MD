@@ -9,13 +9,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 
 
-## [Unreleased]
+## [0.16.0] - 2023-12-20
 
-- echosounders -> 0.32.2
-- pingprocessing -> 0.4.2
+- echosounders -> 0.33.0
+- pingprocessing -> 0.5.0
 - tool -> 0.21.7
 - navigation -> 0.15.0
-- algorithms -> 0.5.6
+- algorithms -> 0.6.0
 
 ### Added
 

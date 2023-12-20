@@ -59,182 +59,416 @@ class t_latlon_format:
 @typing.overload
 def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
-    Calculate the distance between two points on the Earth's surface using
-    geographiclib
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
     Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+        Floating-point type for latitude and longitude values.
     
     Parameter ``lat1``:
-        latitude of the first point
+        Latitude of the first coordinate.
     
     Parameter ``lon1``:
-        longitude of the first point
+        Longitude of the first coordinate.
     
     Parameter ``lat2``:
-        latitude of the second point
+        Latitude of the second coordinate.
     
     Parameter ``lon2``:
-        longitude of the second point
+        Longitude of the second coordinate.
     
     Returns:
-        distance between the two points in meters
+        Distance between the two coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_float``:
+        Floating-point type for latitude and longitude values.
+    
+    Parameter ``lat1``:
+        Latitude of the first coordinate.
+    
+    Parameter ``lon1``:
+        Longitude of the first coordinate.
+    
+    Parameter ``lat2``:
+        Latitude of the second coordinate.
+    
+    Parameter ``lon2``:
+        Longitude of the second coordinate.
+    
+    Returns:
+        Distance between the two coordinates in meters.
     """
 @typing.overload
 def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation.datastructures.GeolocationLatLon, geolocation_latlon_2: themachinethatgoesping.navigation.datastructures.GeolocationLatLon) -> float:
     """
-    Calculate the distance between two points on the Earth's surface using
-    geographiclib
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
     Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+        Floating-point type for latitude and longitude values.
     
     Parameter ``lat1``:
-        latitude of the first point
+        Latitude of the first coordinate.
     
     Parameter ``lon1``:
-        longitude of the first point
+        Longitude of the first coordinate.
     
     Parameter ``lat2``:
-        latitude of the second point
+        Latitude of the second coordinate.
     
     Parameter ``lon2``:
-        longitude of the second point
+        Longitude of the second coordinate.
     
     Returns:
-        distance between the two points in meters
+        Distance between the two coordinates in meters.
     """
 @typing.overload
 def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation.datastructures.SensordataLatLon, geolocation_latlon_2: themachinethatgoesping.navigation.datastructures.SensordataLatLon) -> float:
     """
-    Calculate the distance between two points on the Earth's surface using
-    geographiclib
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
     Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+        Floating-point type for latitude and longitude values.
     
     Parameter ``lat1``:
-        latitude of the first point
+        Latitude of the first coordinate.
     
     Parameter ``lon1``:
-        longitude of the first point
+        Longitude of the first coordinate.
     
     Parameter ``lat2``:
-        latitude of the second point
+        Latitude of the second coordinate.
     
     Parameter ``lon2``:
-        longitude of the second point
+        Longitude of the second coordinate.
     
     Returns:
-        distance between the two points in meters
+        Distance between the two coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float:
+    """
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_float``:
+        Floating-point type for latitude and longitude values.
+    
+    Parameter ``lat1``:
+        Latitude of the first coordinate.
+    
+    Parameter ``lon1``:
+        Longitude of the first coordinate.
+    
+    Parameter ``lat2``:
+        Latitude of the second coordinate.
+    
+    Parameter ``lon2``:
+        Longitude of the second coordinate.
+    
+    Returns:
+        Distance between the two coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float:
+    """
+    Compute the distance in meters between two latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_float``:
+        Floating-point type for latitude and longitude values.
+    
+    Parameter ``lat1``:
+        Latitude of the first coordinate.
+    
+    Parameter ``lon1``:
+        Longitude of the first coordinate.
+    
+    Parameter ``lat2``:
+        Latitude of the second coordinate.
+    
+    Parameter ``lon2``:
+        Longitude of the second coordinate.
+    
+    Returns:
+        Distance between the two coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distances_m(latitudes: numpy.ndarray[numpy.float32], longitudes: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
 def compute_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the distances between consecutive points in the given
-    latitude and longitude vectors in meters
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of distances between consecutive points
+        Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> list[float]:
+def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the distances between consecutive points in the given
-    latitude and longitude vectors in meters
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of distances between consecutive points
+        Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> list[float]:
+def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the distances between consecutive points in the given
-    latitude and longitude vectors in meters
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of distances between consecutive points
+        Vector of distances between consecutive coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of distances between consecutive coordinates in meters.
+    """
+@typing.overload
+def compute_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the distances in meters between consecutive latitude-longitude
+    coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of distances between consecutive coordinates in meters.
+    """
+@typing.overload
+def cumulative_latlon_distances_m(latitudes: numpy.ndarray[numpy.float32], longitudes: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
     """
 @typing.overload
 def cumulative_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the cumulative distances between consecutive points in the
-    given latitude and longitude vectors in meters
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of cumulative distances
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> list[float]:
+def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the cumulative distances between consecutive points in the
-    given latitude and longitude vectors in meters
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of cumulative distances
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> list[float]:
+def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
     """
-    Calculate the cumulative distances between consecutive points in the
-    given latitude and longitude vectors in meters
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
     
-    Template parameter ``T_float``:
-        floating-point type for latitude and longitude values
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
     
     Parameter ``latitudes``:
-        vector of latitudes
+        Vector of latitude values.
     
     Parameter ``longitudes``:
-        vector of longitudes
+        Vector of longitude values.
     
     Returns:
-        vector of cumulative distances
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
+    """
+@typing.overload
+def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
+    """
+@typing.overload
+def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+    """
+    Compute the cumulative distances in meters between consecutive
+    latitude-longitude coordinates using the WGS84 ellipsoid.
+    
+    Template parameter ``T_return_container``:
+        Type of container to store the distances.
+    
+    Template parameter ``T_float_container``:
+        Type of container that holds latitude and longitude values as
+        floats.
+    
+    Parameter ``latitudes``:
+        Vector of latitude values.
+    
+    Parameter ``longitudes``:
+        Vector of longitude values.
+    
+    Returns:
+        Vector of cumulative distances between consecutive coordinates in
+        meters.
     """
 @typing.overload
 def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
