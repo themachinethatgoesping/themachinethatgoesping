@@ -3,25 +3,25 @@ Submodule that contains datastructures that store navigation data or navigation 
 """
 from __future__ import annotations
 import typing
-__all__ = ['GeoLocation', 'GeoLocationLatLon', 'GeoLocationLocal', 'GeoLocationUTM', 'PositionalOffsets', 'SensorData', 'SensorDataLatLon', 'SensorDataLocal', 'SensorDataUTM']
-class GeoLocation:
+__all__ = ['Geolocation', 'GeolocationLatLon', 'GeolocationLocal', 'GeolocationUTM', 'PositionalOffsets', 'Sensordata', 'SensordataLatLon', 'SensordataLocal', 'SensordataUTM']
+class Geolocation:
     """
     A structure to store a georeferenced location and attitude (e.g. of a
     sensor) This structure does not store any coordinates except the depth
     (z)
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocation:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Geolocation:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> GeoLocation:
+    def __copy__(self) -> Geolocation:
         ...
-    def __deepcopy__(self, arg0: dict) -> GeoLocation:
+    def __deepcopy__(self, arg0: dict) -> Geolocation:
         ...
-    def __eq__(self, other: GeoLocation) -> bool:
+    def __eq__(self, other: Geolocation) -> bool:
         """
-        Check if two GeoLocation objects are equal
+        Check if two Geolocation objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -55,7 +55,7 @@ class GeoLocation:
     @typing.overload
     def __init__(self, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new GeoLocation object
+        Construct a new Geolocation object
         
         Parameter ``z``:
             in m, positive downwards
@@ -79,7 +79,7 @@ class GeoLocation:
         """
         Return object information as string
         """
-    def copy(self) -> GeoLocation:
+    def copy(self) -> Geolocation:
         """
         return a copy using the c++ default copy constructor
         """
@@ -135,24 +135,24 @@ class GeoLocation:
     @z.setter
     def z(self, arg0: float) -> None:
         ...
-class GeoLocationLatLon(GeoLocation):
+class GeolocationLatLon(Geolocation):
     """
     A structure to store a georeferenced location and attitude (e.g. of a
-    sensor) Unlike the base GeoLocation object, this also stores latitude
+    sensor) Unlike the base Geolocation object, this also stores latitude
     and longitude coordinates
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationLatLon:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationLatLon:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> GeoLocationLatLon:
+    def __copy__(self) -> GeolocationLatLon:
         ...
-    def __deepcopy__(self, arg0: dict) -> GeoLocationLatLon:
+    def __deepcopy__(self, arg0: dict) -> GeolocationLatLon:
         ...
-    def __eq__(self, other: GeoLocationLatLon) -> bool:
+    def __eq__(self, other: GeolocationLatLon) -> bool:
         """
-        Check if two GeoLocationLatLon objects are equal
+        Check if two GeolocationLatLon objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -169,7 +169,7 @@ class GeoLocationLatLon(GeoLocation):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, location: GeoLocation, latitude: float, longitude: float) -> None:
+    def __init__(self, location: Geolocation, latitude: float, longitude: float) -> None:
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -185,13 +185,13 @@ class GeoLocationLatLon(GeoLocation):
     @typing.overload
     def __init__(self, geolocationlatlon_utm: ...) -> None:
         """
-        Construct an GeoLocationLatLon object from an existing GeoLocationUTM
-        object (this allows for explicit conversion from GeoLocationUTM class)
+        Construct an GeolocationLatLon object from an existing GeolocationUTM
+        object (this allows for explicit conversion from GeolocationUTM class)
         """
     @typing.overload
     def __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new GeoLocationLatLon object
+        Construct a new GeolocationLatLon object
         
         Parameter ``latitude``:
             in °, positive northwards
@@ -221,7 +221,7 @@ class GeoLocationLatLon(GeoLocation):
         """
         Return object information as string
         """
-    def copy(self) -> GeoLocationLatLon:
+    def copy(self) -> GeolocationLatLon:
         """
         return a copy using the c++ default copy constructor
         """
@@ -261,23 +261,23 @@ class GeoLocationLatLon(GeoLocation):
     @longitude.setter
     def longitude(self, arg0: float) -> None:
         ...
-class GeoLocationLocal(GeoLocation):
+class GeolocationLocal(Geolocation):
     """
     A structure to store a georeferenced location and attitude (e.g. of a
-    sensor) unlike the default GeoLocation structure, this object stores
+    sensor) unlike the default Geolocation structure, this object stores
     local northing and easting coordinates. These coordinates can be
     converted to UTM coordinates if the zone and hemisphere are known.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationLocal:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationLocal:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> GeoLocationLocal:
+    def __copy__(self) -> GeolocationLocal:
         ...
-    def __deepcopy__(self, arg0: dict) -> GeoLocationLocal:
+    def __deepcopy__(self, arg0: dict) -> GeolocationLocal:
         ...
-    def __eq__(self, other: GeoLocationLocal) -> bool:
+    def __eq__(self, other: GeolocationLocal) -> bool:
         ...
     def __getstate__(self) -> bytes:
         ...
@@ -291,9 +291,9 @@ class GeoLocationLocal(GeoLocation):
         Construct a new Sensor Position object (all offsets set to 0)
         """
     @typing.overload
-    def __init__(self, geolocation: GeoLocation, northing: float, easting: float) -> None:
+    def __init__(self, geolocation: Geolocation, northing: float, easting: float) -> None:
         """
-        Construct a new GeoLocationLocal object
+        Construct a new GeolocationLocal object
         
         Parameter ``location``:
             $Parameter ``northing``:
@@ -306,7 +306,7 @@ class GeoLocationLocal(GeoLocation):
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new GeoLocationLocal object
+        Construct a new GeolocationLocal object
         
         Parameter ``northing``:
             in m, positive northwards
@@ -336,7 +336,7 @@ class GeoLocationLocal(GeoLocation):
         """
         Return object information as string
         """
-    def copy(self) -> GeoLocationLocal:
+    def copy(self) -> GeolocationLocal:
         """
         return a copy using the c++ default copy constructor
         """
@@ -376,23 +376,23 @@ class GeoLocationLocal(GeoLocation):
     @northing.setter
     def northing(self, arg0: float) -> None:
         ...
-class GeoLocationUTM(GeoLocationLocal):
+class GeolocationUTM(GeolocationLocal):
     """
     A structure to store a georeferenced location and attitude (e.g. of a
-    sensor) unlike the default GeoLocation structure, this object stores
+    sensor) unlike the default Geolocation structure, this object stores
     utm coordinates
     """
     northern_hemisphere: bool
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeoLocationUTM:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationUTM:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> GeoLocationUTM:
+    def __copy__(self) -> GeolocationUTM:
         ...
-    def __deepcopy__(self, arg0: dict) -> GeoLocationUTM:
+    def __deepcopy__(self, arg0: dict) -> GeolocationUTM:
         ...
-    def __eq__(self, other: GeoLocationUTM) -> bool:
+    def __eq__(self, other: GeolocationUTM) -> bool:
         ...
     def __getstate__(self) -> bytes:
         ...
@@ -401,9 +401,9 @@ class GeoLocationUTM(GeoLocationLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, geolocationlocal: GeoLocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, geolocationlocal: GeolocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
-        Construct an GeoLocationUTM object from an existing GeoLocationLocal
+        Construct an GeolocationUTM object from an existing GeolocationLocal
         object (using a known zone and hemisphere)
         
         Parameter ``location_local``:
@@ -415,16 +415,16 @@ class GeoLocationUTM(GeoLocationLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeoLocationLatLon, setzone: int = -1) -> None:
+    def __init__(self, geolocationlatlon: GeolocationLatLon, setzone: int = -1) -> None:
         """
-        Construct an GeoLocationUTM object from an existing GeoLocationLatLon
-        object (this allows for explicit conversion from GeoLocationLatLon
+        Construct an GeolocationUTM object from an existing GeolocationLatLon
+        object (this allows for explicit conversion from GeolocationLatLon
         class)
         """
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new GeoLocationUTM object
+        Construct a new GeolocationUTM object
         
         Parameter ``northing``:
             in m, positive northwards
@@ -460,7 +460,7 @@ class GeoLocationUTM(GeoLocationLocal):
         """
         Return object information as string
         """
-    def copy(self) -> GeoLocationUTM:
+    def copy(self) -> GeolocationUTM:
         """
         return a copy using the c++ default copy constructor
         """
@@ -647,24 +647,24 @@ class PositionalOffsets:
     @z.setter
     def z(self, arg0: float) -> None:
         ...
-class SensorData:
+class Sensordata:
     """
     A structure to store a georeferenced location and attitude data from
     different sensors (e.g. IMU, etc.) No gps coordinates are stored in
     this structure (only depth).
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Sensordata:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> SensorData:
+    def __copy__(self) -> Sensordata:
         ...
-    def __deepcopy__(self, arg0: dict) -> SensorData:
+    def __deepcopy__(self, arg0: dict) -> Sensordata:
         ...
-    def __eq__(self, other: SensorData) -> bool:
+    def __eq__(self, other: Sensordata) -> bool:
         """
-        Check if two SensorData objects are equal
+        Check if two Sensordata objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -683,22 +683,22 @@ class SensorData:
     @typing.overload
     def __init__(self, arg0: ...) -> None:
         """
-        Construct a new SensorData object
+        Construct a new Sensordata object
         """
     @typing.overload
     def __init__(self, arg0: ...) -> None:
         """
-        Construct a new SensorData object
+        Construct a new Sensordata object
         """
     @typing.overload
     def __init__(self, arg0: ...) -> None:
         """
-        Construct a new SensorData object
+        Construct a new Sensordata object
         """
     @typing.overload
     def __init__(self, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new SensorData object
+        Construct a new Sensordata object
         
         Parameter ``depth``:
             from depth source, in m, positive downwards
@@ -725,7 +725,7 @@ class SensorData:
         """
         Return object information as string
         """
-    def copy(self) -> SensorData:
+    def copy(self) -> Sensordata:
         """
         return a copy using the c++ default copy constructor
         """
@@ -789,7 +789,7 @@ class SensorData:
     @roll.setter
     def roll(self, arg0: float) -> None:
         ...
-class SensorDataLatLon(SensorData):
+class SensordataLatLon(Sensordata):
     """
     A structure to store a georeferenced location and attitude data from
     different sensors (e.g. GPS, IMU, etc.)
@@ -797,17 +797,17 @@ class SensorDataLatLon(SensorData):
     latitude: float
     longitude: float
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataLatLon:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataLatLon:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> SensorDataLatLon:
+    def __copy__(self) -> SensordataLatLon:
         ...
-    def __deepcopy__(self, arg0: dict) -> SensorDataLatLon:
+    def __deepcopy__(self, arg0: dict) -> SensordataLatLon:
         ...
-    def __eq__(self, other: SensorDataLatLon) -> bool:
+    def __eq__(self, other: SensordataLatLon) -> bool:
         """
-        Check if two SensorDataLatLon objects are equal
+        Check if two SensordataLatLon objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -824,7 +824,7 @@ class SensorDataLatLon(SensorData):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sensordata: SensorData, latitude: float, longitude: float) -> None:
+    def __init__(self, sensordata: Sensordata, latitude: float, longitude: float) -> None:
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -840,13 +840,13 @@ class SensorDataLatLon(SensorData):
     @typing.overload
     def __init__(self, sensordata_utm: ...) -> None:
         """
-        Construct an SensorDataLatLon object from an existing SensorDataUTM
-        object (this allows for explicit conversion from SensorDataUTM class)
+        Construct an SensordataLatLon object from an existing SensordataUTM
+        object (this allows for explicit conversion from SensordataUTM class)
         """
     @typing.overload
     def __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new SensorDataLatLon object
+        Construct a new SensordataLatLon object
         
         Parameter ``latitude``:
             in °, positive northwards
@@ -879,7 +879,7 @@ class SensorDataLatLon(SensorData):
         """
         Return object information as string
         """
-    def copy(self) -> SensorDataLatLon:
+    def copy(self) -> SensordataLatLon:
         """
         return a copy using the c++ default copy constructor
         """
@@ -903,24 +903,24 @@ class SensorDataLatLon(SensorData):
         """
         convert object to bytearray
         """
-class SensorDataLocal(SensorData):
+class SensordataLocal(Sensordata):
     """
     A structure to store a georeferenced data and attitude data from
-    different sensors (e.g. GPS, IMU, etc.) Unlike SensorDataUTM, this
+    different sensors (e.g. GPS, IMU, etc.) Unlike SensordataUTM, this
     structure stores coordinates without zone and hemisphere information.
     """
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataLocal:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataLocal:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> SensorDataLocal:
+    def __copy__(self) -> SensordataLocal:
         ...
-    def __deepcopy__(self, arg0: dict) -> SensorDataLocal:
+    def __deepcopy__(self, arg0: dict) -> SensordataLocal:
         ...
-    def __eq__(self, other: SensorDataLocal) -> bool:
+    def __eq__(self, other: SensordataLocal) -> bool:
         """
-        Check if two SensorDataLocal objects are equal
+        Check if two SensordataLocal objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -942,7 +942,7 @@ class SensorDataLocal(SensorData):
         Construct a new Sensor Position object (all offsets set to 0)
         """
     @typing.overload
-    def __init__(self, sensordata: SensorData, northing: float, easting: float) -> None:
+    def __init__(self, sensordata: Sensordata, northing: float, easting: float) -> None:
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -958,7 +958,7 @@ class SensorDataLocal(SensorData):
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new SensorDataLocal object
+        Construct a new SensordataLocal object
         
         Parameter ``northing``:
             in m, positive northwards
@@ -991,7 +991,7 @@ class SensorDataLocal(SensorData):
         """
         Return object information as string
         """
-    def copy(self) -> SensorDataLocal:
+    def copy(self) -> SensordataLocal:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1031,50 +1031,50 @@ class SensorDataLocal(SensorData):
     @northing.setter
     def northing(self, arg0: float) -> None:
         ...
-class SensorDataUTM(SensorDataLocal):
+class SensordataUTM(SensordataLocal):
     """
     A structure to store a georeferenced data and attitude data from
-    different sensors (e.g. GPS, IMU, etc.) Unlike SensorDataLatLon, this
+    different sensors (e.g. GPS, IMU, etc.) Unlike SensordataLatLon, this
     structure stores UTM coordinates.
     """
     northern_hemisphere: bool
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorDataUTM:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataUTM:
         """
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_sensordata(sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> SensorDataUTM:
+    def from_sensordata(sensordatalatlon: SensordataLatLon, setutm_zone: int = -1) -> SensordataUTM:
         """
-        Construct convert a SensorDataLatLon Object to UTM
+        Construct convert a SensordataLatLon Object to UTM
         
         Parameter ``data``:
-            valid SensorDataLatLon object
+            valid SensordataLatLon object
         
         Parameter ``setzone``:
             set a preferred UTM zone negative means automatic, zero means UPS,
             positive means a particular UTM zone
         
         Returns:
-            SensorDataUTM
+            SensordataUTM
         """
     @staticmethod
-    def to_sensordata(sensordata_utm: SensorDataUTM) -> SensorDataLatLon:
+    def to_sensordata(sensordata_utm: SensordataUTM) -> SensordataLatLon:
         """
         Convert a utm sensordatalatlon to an unprojected data
         
         Parameter ``data_utm``:
             $Returns:
         
-        SensorDataLatLon
+        SensordataLatLon
         """
-    def __copy__(self) -> SensorDataUTM:
+    def __copy__(self) -> SensordataUTM:
         ...
-    def __deepcopy__(self, arg0: dict) -> SensorDataUTM:
+    def __deepcopy__(self, arg0: dict) -> SensordataUTM:
         ...
-    def __eq__(self, other: SensorDataUTM) -> bool:
+    def __eq__(self, other: SensordataUTM) -> bool:
         """
-        Check if two SensorDataUTM objects are equal
+        Check if two SensordataUTM objects are equal
         
         Parameter ``rhs``:
             $Returns:
@@ -1091,7 +1091,7 @@ class SensorDataUTM(SensorDataLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorData, northing: float, easting: float, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, sensordatalatlon: Sensordata, northing: float, easting: float, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -1111,9 +1111,9 @@ class SensorDataUTM(SensorDataLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordata_local: SensorDataLocal, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, sensordata_local: SensordataLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
-        Construct an SensorDataUTM object from an existing SensorDataLocal
+        Construct an SensordataUTM object from an existing SensordataLocal
         object (using a known zone and hemisphere)
         
         Parameter ``data_local``:
@@ -1125,16 +1125,16 @@ class SensorDataUTM(SensorDataLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: SensorDataLatLon, setutm_zone: int = -1) -> None:
+    def __init__(self, sensordatalatlon: SensordataLatLon, setutm_zone: int = -1) -> None:
         """
-        Construct an SensorDataUTM object from an existing SensorDataLatLon
-        object (this allows for explicit conversion from SensorDataLatLon
+        Construct an SensordataUTM object from an existing SensordataLatLon
+        object (this allows for explicit conversion from SensordataLatLon
         class)
         """
     @typing.overload
     def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
         """
-        Construct a new SensorDataUTM object
+        Construct a new SensordataUTM object
         
         Parameter ``northing``:
             in m, positive northwards
@@ -1173,7 +1173,7 @@ class SensorDataUTM(SensorDataLocal):
         """
         Return object information as string
         """
-    def copy(self) -> SensorDataUTM:
+    def copy(self) -> SensordataUTM:
         """
         return a copy using the c++ default copy constructor
         """

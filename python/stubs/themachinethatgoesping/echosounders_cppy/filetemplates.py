@@ -34,16 +34,16 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeoLocationLatLon:
+    def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         """
         Get the geolocation of the transducer.
         
         Returns:
-            const navigation::datastructures::GeoLocationLatLon&
+            const navigation::datastructures::GeolocationLatLon&
         """
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensorDataLatLon:
+    def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
         ...
     def get_timestamp(self) -> float:
         """
@@ -67,7 +67,7 @@ class I_Ping(I_PingCommon):
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
-    def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensorDataLatLon) -> None:
+    def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensordataLatLon) -> None:
         ...
     def set_timestamp(self, timestamp: float) -> None:
         """

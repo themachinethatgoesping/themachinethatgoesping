@@ -90,9 +90,9 @@ Note: data that are not set are assumed to be 0.0 (e.g depth in the above exampl
 3) Get echo sounder position for random ping time points
 ========================================================
 
-The user can now retrieve the position and attitude of the registered target sensors (add_target) as GeoLocation object. 
+The user can now retrieve the position and attitude of the registered target sensors (add_target) as Geolocation object. 
 
-The returned type of GeoLocation (GeoLocationLocal or GeoLocationLatLon) is determined by the type of the navigation interpolator (NavigationInterpolatorLocal or NavigationInterpolatorLatLon)
+The returned type of Geolocation (GeolocationLocal or GeolocationLatLon) is determined by the type of the navigation interpolator (NavigationInterpolatorLocal or NavigationInterpolatorLatLon)
 
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fusage%2Fnavigation_data_processing.ipynb
@@ -107,7 +107,7 @@ The returned type of GeoLocation (GeoLocationLocal or GeoLocationLatLon) is dete
 .. code-block:: python
    
    # output:
-   # GeoLocationLatLon
+   # GeolocationLatLon
    # #################
    # - latitude:  54°9'0.0"N   [ddd°mm',ss.s''N/S]
    # - longitude: 10°8'60.0"E  [ddd°mm',ss.s''E/W]
@@ -127,10 +127,10 @@ This parameter can be:
 4) UTM/LatLon conversion
 ========================
 
-The NavigationInterpolatorLatLon object computes GeoLocationLatLon objects.
+The NavigationInterpolatorLatLon object computes GeolocationLatLon objects.
 This stores latitude and longitude values in °.
 
-The NavigationInterpolatorLocal object computes GeoLocationLocal objects.
+The NavigationInterpolatorLocal object computes GeolocationLocal objects.
 This stores northing and easting values in m (without zone or hemisphere information)
 
 .. image:: https://mybinder.org/badge_logo.svg
@@ -138,13 +138,13 @@ This stores northing and easting values in m (without zone or hemisphere informa
 
 .. code-block:: python
 
-   #location_mbes is a GeoLocationLatLon object
+   #location_mbes is a GeolocationLatLon object
    print(location_mbes)
 
 .. code-block:: python
 
    # output (location of mbes in Lat):
-   # GeoLocationLatLon
+   # GeolocationLatLon
    # #################
    # - latitude:  54°9'0.0"N   [ddd°mm',ss.s''N/S]
    # - longitude: 10°8'60.0"E  [ddd°mm',ss.s''E/W]
@@ -153,9 +153,9 @@ This stores northing and easting values in m (without zone or hemisphere informa
    # - pitch:     15.01        [° positive bow up]
    # - roll:      29.51        [° positive port up]
 
-The GeoLocation objects are part of the 'datastructures' name space and allow for implicit conversion.
+The Geolocation objects are part of the 'datastructures' name space and allow for implicit conversion.
 
-GeoLocationLatLon can be converted to GeoLocationUTM:
+GeolocationLatLon can be converted to GeolocationUTM:
 
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/themachinethatgoesping/tutorials/main?urlpath=lab%2Ftree%2Fusage%2Fnavigation_data_processing.ipynb
@@ -163,13 +163,13 @@ GeoLocationLatLon can be converted to GeoLocationUTM:
 .. code-block:: python
 
    # convert this object to UTM
-   location_mbes_utm = nav.datastructures.GeoLocationUTM(location_mbes)
+   location_mbes_utm = nav.datastructures.GeolocationUTM(location_mbes)
    print(location_mbes_utm)
 
 .. code-block:: python
 
    # output (location of mbes in UTM):
-   # GeoLocationUTM
+   # GeolocationUTM
    # ##############
    # - northing:            6000821.95 [positive northwards, m]
    # - easting:             575109.14  [positive eastwards, m]
@@ -180,4 +180,4 @@ GeoLocationLatLon can be converted to GeoLocationUTM:
    # - pitch:               15.01      [° positive bow up]
    # - roll:                29.51      [° positive port up]
 
-Other conversion e.g. to/from GeoLocationLocal are also possible. See the GeoLocation module Api for details
+Other conversion e.g. to/from GeolocationLocal are also possible. See the Geolocation module Api for details

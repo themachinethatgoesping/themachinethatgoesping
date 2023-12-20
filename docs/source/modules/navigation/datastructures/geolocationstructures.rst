@@ -1,8 +1,8 @@
-GeoLocation structures
+Geolocation structures
 ######################
 
 Simple structures to store georeferenced locations and attitudes. 
-GeoLocation which records lat/lon can be implicitly converted to and from GeoLocationUTM which stores utm coordinates.
+Geolocation which records lat/lon can be implicitly converted to and from GeolocationUTM which stores utm coordinates.
 
 Example usage
 =============
@@ -13,9 +13,9 @@ Example usage
 .. code-block:: python
 
     # import this module# import this module
-   from themachinethatgoesping.navigation.datastructures import GeoLocationLatLon, GeoLocationUTM
+   from themachinethatgoesping.navigation.datastructures import GeolocationLatLon, GeolocationUTM
     
-   location = GeoLocationUTM(
+   location = GeolocationUTM(
       5427745.995,  # northing
       314082.699, # easting
       60, #utm zone
@@ -27,7 +27,7 @@ Example usage
 
       print(location)
 
-      # GeoLocationUTM
+      # GeolocationUTM
       # **************
       # - northing:            5427746.00 [positive northwards, m]
       # - easting:             314082.70  [positive eastwards, m]
@@ -39,11 +39,11 @@ Example usage
       # - roll:                30.00      [° positive port up]
 
       # conversion to latlon location (works in both directions)
-      location_latlon = GeoLocation(location)
+      location_latlon = Geolocation(location)
 
       print(location_latlon)
 
-      # GeoLocation
+      # Geolocation
       # ***********
       #   latitude:  41°16'49.2"S  [ddd°mm',ss.s''N/S]
       # - longitude: 41°16'49.2"W  [ddd°mm',ss.s''E/W]
@@ -55,18 +55,18 @@ Example usage
 Data structures
 ===============
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.GeoLocationLatLon
+.. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationLatLon
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.GeoLocationUTM
+.. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationUTM
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.GeoLocationLocal
+.. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationLocal
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.GeoLocation
+.. autoclass:: themachinethatgoesping.navigation.datastructures.Geolocation
    :members:
    :special-members: __init__

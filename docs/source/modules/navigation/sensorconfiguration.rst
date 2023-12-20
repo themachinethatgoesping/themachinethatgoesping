@@ -5,18 +5,18 @@ A simple coordinate system that allows for storing sensor and target offsets.
 
 Supported sensors are: 
 
-* compass: Affects :any:`SensorData.heading<themachinethatgoesping.navigation.datastructures.SensorData>` with yaw offset
-* position system: Affects SensorData gps variables with x,y and z offset
-* depth sensor: Affects SensorData.depth variables with x,y and z offset
-* attitude system: Affects SensorData imu variables with yaw, pitch and roll offset
+* compass: Affects :any:`Sensordata.heading<themachinethatgoesping.navigation.datastructures.Sensordata>` with yaw offset
+* position system: Affects Sensordata gps variables with x,y and z offset
+* depth sensor: Affects Sensordata.depth variables with x,y and z offset
+* attitude system: Affects Sensordata imu variables with yaw, pitch and roll offset
 
 The class allows for registering multiple targets (e.g. "MBES" and "SBES") with respective PositionOffsets.
-Once targets are registered, the system can be used to compute the georeferenced of the targets using a SensorData object. (see usage below)
+Once targets are registered, the system can be used to compute the georeferenced of the targets using a Sensordata object. (see usage below)
 
-Note 1: The returned GeoLocation object type depends on the input SensorData object. 
+Note 1: The returned Geolocation object type depends on the input Sensordata object. 
 
-* A :any:`datastructures.SensorDataUTM<themachinethatgoesping.navigation.datastructures.SensorDataUTM>` object will cause compute_target_position to return :any:`datastructures.GeoLocationUTM<themachinethatgoesping.navigation.datastructures.GeoLocationUTM>`
-* A :any:`datastructures.SensorDataLatLon<themachinethatgoesping.navigation.datastructures.SensorDataLatLon>` will cause compute_target_position to return :any:`datastructures.GeoLocationLatLon<themachinethatgoesping.navigation.datastructures.GeoLocationLatLon>`
+* A :any:`datastructures.SensordataUTM<themachinethatgoesping.navigation.datastructures.SensordataUTM>` object will cause compute_target_position to return :any:`datastructures.GeolocationUTM<themachinethatgoesping.navigation.datastructures.GeolocationUTM>`
+* A :any:`datastructures.SensordataLatLon<themachinethatgoesping.navigation.datastructures.SensordataLatLon>` will cause compute_target_position to return :any:`datastructures.GeolocationLatLon<themachinethatgoesping.navigation.datastructures.GeolocationLatLon>`
 * ... and so on
 
 Example usage
@@ -50,7 +50,7 @@ Example usage
       roll = 0)
 
    # create a object that contains sensor data
-   sensor_data = nav.datastructures.SensorDataLatLon(
+   sensor_data = nav.datastructures.SensordataLatLon(
       latitude = 53, 
       longitude = 10, 
       depth = 3, 
@@ -65,7 +65,7 @@ Example usage
    #print georeferenced target position
    print(target_position)
 
-   # GeoLocationLatLon
+   # GeolocationLatLon
    # *****************
    # - latitude:  53°0'0.0"N  [ddd°mm',ss.s''N/S]
    # - longitude: 53°0'0.0"E  [ddd°mm',ss.s''E/W]

@@ -1,8 +1,8 @@
-SensorData structures
+Sensordata structures
 #####################
 
 Simple structures to store sensor data from IMU, compass, position system, depth sensor (e.g rtk signal) and heave sensor
-SensorDataLatLon which records lat/lon can be implicitly converted to and from SensorDataUTM which stores utm coordinates.
+SensordataLatLon which records lat/lon can be implicitly converted to and from SensordataUTM which stores utm coordinates.
 
 Example usage
 =============
@@ -13,9 +13,9 @@ Example usage
 .. code-block:: python
 
     # import this module# import this module
-   from themachinethatgoesping.navigation.datastructures import SensorDataLatLon, SensorDataUTM
+   from themachinethatgoesping.navigation.datastructures import SensordataLatLon, SensordataUTM
 
-   data_utm = SensorDataUTM(
+   data_utm = SensordataUTM(
       5427745.995,  # northing
       314082.699,   # easting
       60,    # utm zone
@@ -29,7 +29,7 @@ Example usage
 
    print(data_utm)
 
-   # SensorDataUTM
+   # SensordataUTM
    # *************
    # - northing:            5427746.00 [positive northwards, m]
    # - easting:             314082.70  [positive eastwards, m]
@@ -42,12 +42,12 @@ Example usage
    # - roll:                30.00      [° positive port up]
 
    # conversion to latlon data (works in both directions)
-   data_latlot = SensorDataLatLon(data_utm)
+   data_latlot = SensordataLatLon(data_utm)
 
    print()
    print(data_latlot)
 
-   # SensorDataLatLon
+   # SensordataLatLon
    # ****************
    # - latitude:    41°16'49.2"S  [ddd°mm',ss.s''N/S]
    # - longitude:   41°16'49.2"W  [ddd°mm',ss.s''E/W]
@@ -60,18 +60,18 @@ Example usage
 Data structures
 ===============
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.SensorDataLatLon
+.. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataLatLon
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.SensorDataUTM
+.. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataUTM
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.SensorDataLocal
+.. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataLocal
    :members:
    :special-members: __init__
 
-.. autoclass:: themachinethatgoesping.navigation.datastructures.SensorData
+.. autoclass:: themachinethatgoesping.navigation.datastructures.Sensordata
    :members:
    :special-members: __init__

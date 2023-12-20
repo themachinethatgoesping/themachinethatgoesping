@@ -3,8 +3,9 @@ Convenient functions for converting latlon and utm strings.
 """
 from __future__ import annotations
 import numpy
+import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['compute_distance', 'compute_distances', 'cumulative_distances', 'degrees', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'seconds', 't_latlon_format', 'utm_to_latlon']
+__all__ = ['compute_latlon_distance_m', 'compute_latlon_distances_m', 'cumulative_latlon_distances_m', 'degrees', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'seconds', 't_latlon_format', 'utm_to_latlon']
 class t_latlon_format:
     """
     lat/lon format specifications
@@ -55,10 +56,11 @@ class t_latlon_format:
     @property
     def value(self) -> int:
         ...
-def compute_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+@typing.overload
+def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
     Calculate the distance between two points on the Earth's surface using
-    the Haversine formula
+    geographiclib
     
     Template parameter ``T_float``:
         floating-point type for latitude and longitude values
@@ -78,10 +80,59 @@ def compute_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> floa
     Returns:
         distance between the two points in meters
     """
-def compute_distances(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+@typing.overload
+def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation.datastructures.GeolocationLatLon, geolocation_latlon_2: themachinethatgoesping.navigation.datastructures.GeolocationLatLon) -> float:
+    """
+    Calculate the distance between two points on the Earth's surface using
+    geographiclib
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``lat1``:
+        latitude of the first point
+    
+    Parameter ``lon1``:
+        longitude of the first point
+    
+    Parameter ``lat2``:
+        latitude of the second point
+    
+    Parameter ``lon2``:
+        longitude of the second point
+    
+    Returns:
+        distance between the two points in meters
+    """
+@typing.overload
+def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation.datastructures.SensordataLatLon, geolocation_latlon_2: themachinethatgoesping.navigation.datastructures.SensordataLatLon) -> float:
+    """
+    Calculate the distance between two points on the Earth's surface using
+    geographiclib
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``lat1``:
+        latitude of the first point
+    
+    Parameter ``lon1``:
+        longitude of the first point
+    
+    Parameter ``lat2``:
+        latitude of the second point
+    
+    Parameter ``lon2``:
+        longitude of the second point
+    
+    Returns:
+        distance between the two points in meters
+    """
+@typing.overload
+def compute_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
     """
     Calculate the distances between consecutive points in the given
-    latitude and longitude vectors
+    latitude and longitude vectors in meters
     
     Template parameter ``T_float``:
         floating-point type for latitude and longitude values
@@ -95,10 +146,83 @@ def compute_distances(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy
     Returns:
         vector of distances between consecutive points
     """
-def cumulative_distances(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+@typing.overload
+def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> list[float]:
+    """
+    Calculate the distances between consecutive points in the given
+    latitude and longitude vectors in meters
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``latitudes``:
+        vector of latitudes
+    
+    Parameter ``longitudes``:
+        vector of longitudes
+    
+    Returns:
+        vector of distances between consecutive points
+    """
+@typing.overload
+def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> list[float]:
+    """
+    Calculate the distances between consecutive points in the given
+    latitude and longitude vectors in meters
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``latitudes``:
+        vector of latitudes
+    
+    Parameter ``longitudes``:
+        vector of longitudes
+    
+    Returns:
+        vector of distances between consecutive points
+    """
+@typing.overload
+def cumulative_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
     """
     Calculate the cumulative distances between consecutive points in the
-    given latitude and longitude vectors
+    given latitude and longitude vectors in meters
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``latitudes``:
+        vector of latitudes
+    
+    Parameter ``longitudes``:
+        vector of longitudes
+    
+    Returns:
+        vector of cumulative distances
+    """
+@typing.overload
+def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> list[float]:
+    """
+    Calculate the cumulative distances between consecutive points in the
+    given latitude and longitude vectors in meters
+    
+    Template parameter ``T_float``:
+        floating-point type for latitude and longitude values
+    
+    Parameter ``latitudes``:
+        vector of latitudes
+    
+    Parameter ``longitudes``:
+        vector of longitudes
+    
+    Returns:
+        vector of cumulative distances
+    """
+@typing.overload
+def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> list[float]:
+    """
+    Calculate the cumulative distances between consecutive points in the
+    given latitude and longitude vectors in meters
     
     Template parameter ``T_float``:
         floating-point type for latitude and longitude values

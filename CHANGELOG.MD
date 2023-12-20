@@ -14,22 +14,27 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.32.2
 - pingprocessing -> 0.4.2
 - tool -> 0.21.7
-- navigation -> 0.14.3
+- navigation -> 0.15.0
+- algorithms -> 0.5.6
 
 ### Added
 
 - pingprocessing:
   - split_pings.by_time_blocks function
 - navigation:
-  - compute_distance between lat lon points function
-  - compute_distances between lat lon points (vectors)
-  - cumulative_distances of lat lon vectors
+  - compute_latlon_distance_m between lat lon points function
+  - compute_latlon_distances_m between lat lon points (vectors)
+  - cumulative_latlon_distances_m of lat lon vectors
+  - above functions for GeolocationLatLon and SensordataLatLon
 
 ### Changed
 
 - echosounders:
   safe sample_interval instead of sampling_frequency
   pingtools: allow explicit casting from beamsampleslection to beamselection
+- navigation:
+  Renamed GeoLocation -> Geolocation
+  Renamed Sensordata -> Sensordata
 
 ### Fixed
 
@@ -37,6 +42,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - Do not crash when trying to open empty file
   - get_sample_interval only available for water column data (means something different for bottom data)
   - kongsbergallping.bottom.get_xyz(selection) : incorrect memory access error
+- adapted to navigation 0.15.0
+  - algorithm
+  - echosounders
+  - pingprocessing
+  
 
 ### Updated
 
@@ -175,7 +185,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Fixed
 
-- navigation: wrong argument name for initializing GeoLocationUTM
+- navigation: wrong argument name for initializing GeolocationUTM
 
 ### Update subproject wraps
 

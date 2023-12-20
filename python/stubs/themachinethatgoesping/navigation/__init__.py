@@ -19,7 +19,7 @@ class NavigationInterpolatorLatLon:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLatLon:
+    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeolocationLatLon:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -103,7 +103,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``sensor_offsets``:
             structure that contains the sensor position
         """
-    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLatLon:
+    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeolocationLatLon:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -129,7 +129,7 @@ class NavigationInterpolatorLatLon:
         Returns:
             SensorConfiguration&
         """
-    def get_sensor_data(self, timestamp: float) -> datastructures.SensorDataLatLon:
+    def get_sensor_data(self, timestamp: float) -> datastructures.SensordataLatLon:
         """
         Interpolate the saved sensor data for a specified timestamp stamp
         
@@ -293,7 +293,7 @@ class NavigationInterpolatorLocal:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLocal:
+    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -377,7 +377,7 @@ class NavigationInterpolatorLocal:
         Parameter ``sensor_offsets``:
             structure that contains the sensor position
         """
-    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeoLocationLocal:
+    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -403,7 +403,7 @@ class NavigationInterpolatorLocal:
         Returns:
             SensorConfiguration&
         """
-    def get_sensor_data(self, timestamp: float) -> datastructures.SensorDataLocal:
+    def get_sensor_data(self, timestamp: float) -> datastructures.SensordataLocal:
         """
         Interpolate the saved sensor data for a specified timestamp stamp
         
@@ -665,7 +665,7 @@ class SensorConfiguration:
             true otherwise
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLatLon) -> datastructures.GeoLocationLatLon:
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensordataLatLon) -> datastructures.GeolocationLatLon:
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -674,15 +674,15 @@ class SensorConfiguration:
             name of the target (e.g. "MBES")
         
         Parameter ``sensor_data``:
-            SensorDataLatLon / this structure includes latitude and longitude
+            SensordataLatLon / this structure includes latitude and longitude
             information
         
         Returns:
-            datastructures::GeoLocationLatLon / this structure includes
+            datastructures::GeolocationLatLon / this structure includes
             latitude and longitude information
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataUTM) -> datastructures.GeoLocationUTM:
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensordataUTM) -> datastructures.GeolocationUTM:
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -691,15 +691,15 @@ class SensorConfiguration:
             name of the target (e.g. "MBES")
         
         Parameter ``sensor_data``:
-            SensorDataUTM / this structure includes northing/easting and utm
+            SensordataUTM / this structure includes northing/easting and utm
             zone or hemisphere information
         
         Returns:
-            datastructures::GeoLocationUTM / this structure includes
+            datastructures::GeolocationUTM / this structure includes
             northing/easting and utm zone or hemisphere information
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorDataLocal) -> datastructures.GeoLocationLocal:
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensordataLocal) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -708,15 +708,15 @@ class SensorConfiguration:
             name of the target (e.g. "MBES")
         
         Parameter ``sensor_data``:
-            SensorDataLocal / this structure includes northing/easting but no
+            SensordataLocal / this structure includes northing/easting but no
             zone or hemisphere information
         
         Returns:
-            datastructures::GeoLocationLocal / this structure includes
+            datastructures::GeolocationLocal / this structure includes
             northing/easting but no zone or hemisphere information
         """
     @typing.overload
-    def compute_target_position(self, target_id: str, sensor_data: datastructures.SensorData) -> datastructures.GeoLocationLocal:
+    def compute_target_position(self, target_id: str, sensor_data: datastructures.Sensordata) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data "sensor_data"
@@ -725,10 +725,10 @@ class SensorConfiguration:
             name of the target (e.g. "MBES")
         
         Parameter ``sensor_data``:
-            SensorData / this structure includes no coordinate information
+            Sensordata / this structure includes no coordinate information
         
         Returns:
-            datastructures::GeoLocationLocal / this structure includes
+            datastructures::GeolocationLocal / this structure includes
             northing and east, which are set relative to the sensor coordinate
             system center
         """
