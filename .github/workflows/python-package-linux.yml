@@ -50,13 +50,15 @@ jobs:
       matrix:
         include:
           - { python-version: '3.8', 
-              pip-path: '/opt/_internal/cpython-3.8.13/bin'}
+              pip-path: '/opt/python/cp38-cp38/bin'}
           - { python-version: '3.9', 
-              pip-path: '/opt/_internal/cpython-3.9.13/bin'}
+              pip-path: '/opt/python/cp39-cp39/bin'}
           - { python-version: '3.10', 
-              pip-path: '/opt/_internal/cpython-3.10.6/bin'}
+              pip-path: '/opt/python/cp310-cp310/bin'}
           - { python-version: '3.11', 
-              pip-path: '/opt/_internal/cpython-3.11.0rc1/bin'}
+              pip-path: '/opt/python/cp311-cp311/bin'}
+          - { python-version: '3.12', 
+              pip-path: '/opt/python/cp312-cp312/bin'}
   
     steps:
     - name: append github path
@@ -172,7 +174,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.8','3.9','3.10','3.11']
+        python-version: ['3.8','3.9','3.10','3.11','3.12']
 
     steps:
     - name: checkout main repository

@@ -19,6 +19,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Added
 
+- themachinethatgoesping:
+  - bindings for python 3.12
 - pingprocessing:
   - split_pings.by_time_blocks function
 - navigation:

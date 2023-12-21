@@ -11,10 +11,10 @@ dpkg-query -l | grep -q docker-buildx || (sudo apt-get update; sudo apt-get inst
 #Build image and push to registry
 echo $PAT | docker login ghcr.io --username themachinethatgoesping --password-stdin
 
-docker buildx build docker-ubuntu -t ghcr.io/themachinethatgoesping/ubuntu-dep --no-cache
+docker buildx build docker-ubuntu -t ghcr.io/themachinethatgoesping/ubuntu-dep --no-cache --pull
 docker push ghcr.io/themachinethatgoesping/ubuntu-dep
 
-docker buildx build docker-manylinux_x86_64 -t ghcr.io/themachinethatgoesping/manylinux_x86_64-dep --no-cache
+docker buildx build docker-manylinux_x86_64 -t ghcr.io/themachinethatgoesping/manylinux_x86_64-dep --no-cache --pull
 docker push ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
 
 

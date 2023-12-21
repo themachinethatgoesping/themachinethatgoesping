@@ -11,11 +11,11 @@ LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 RUN yum makecache --refresh
 
 # manual package versions
-ARG BOOST_VERSION="1.82.0"
-ARG BOOST_VERSION_="1_82_0"
+ARG BOOST_VERSION="1.84.0"
+ARG BOOST_VERSION_="1_84_0"
 ARG BOOST_MODULES="--with-iostreams --with-filesystem"
 
-ARG CCACHE_VERSION="4.7.5"
+ARG CCACHE_VERSION="4.8.3"
 
 # install source build dependencies
 RUN yum update -y

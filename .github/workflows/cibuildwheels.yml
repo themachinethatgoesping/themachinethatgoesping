@@ -9,26 +9,30 @@ name: cibuildwheels
 on:
   push:
     branches: [ main ]    
-    paths-ignore:
-      - '.github/workflows/ci.yml'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/python-package-mac*'
-      - '.github/workflows/conda*'
-      - '.github/workflows/test_*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-      - '.github/workflows/ci.yml'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/python-package-mac*'
-      - '.github/workflows/conda*'
-      - '.github/workflows/test_*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
+
+    paths:
+      - "**cibuildwheels.yml" #ignore for now (except if this file is change)
+
+  #   paths-ignore:
+  #     - '.github/workflows/ci.yml'
+  #     - '.github/workflows/python-package-windows*'
+  #     - '.github/workflows/python-package-mac*'
+  #     - '.github/workflows/conda*'
+  #     - '.github/workflows/test_*'
+  #     - 'conda.recipe/*'
+  #     - '*.md'
+  #     - 'doc/*'
+  # pull_request:
+  #   branches: [ main ]
+  #   paths-ignore:
+  #     - '.github/workflows/ci.yml'
+  #     - '.github/workflows/python-package-windows*'
+  #     - '.github/workflows/python-package-mac*'
+  #     - '.github/workflows/conda*'
+  #     - '.github/workflows/test_*'
+  #     - 'conda.recipe/*'
+  #     - '*.md'
+  #     - 'doc/*'
 
 
 # make sure that multiple jobs don't run for the same action (new commits cancel old jobs when they are still running)

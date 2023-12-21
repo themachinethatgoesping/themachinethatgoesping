@@ -130,8 +130,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        boost-version: [1.82.0]
-        boost-version_: [1_82_0]
+        boost-version: [1.84.0]
+        boost-version_: [1_84_0]
         boost-modules: [--with-iostreams]
         include:
           - toolset: vc143
@@ -156,7 +156,7 @@ jobs:
     - name: setup python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.11'
+        python-version: '3.12'
 
     - name: Set up Clang
       uses: egor-tensin/setup-clang@v1
@@ -257,7 +257,7 @@ jobs:
     
     - uses: actions/setup-python@v3
       with:
-        python-version: '3.11'
+        python-version: '3.12'
         
     - name: checkout main repository
       uses: actions/checkout@v3
