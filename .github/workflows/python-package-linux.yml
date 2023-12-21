@@ -115,8 +115,11 @@ jobs:
 
     strategy:
       matrix:
-        python-3-version: ['8','9','10']
+        python-3-version: ['8','9','10','11','12']
 
+        include:
+          - python-version: '3.12'
+            pip-pre: '--pre'
     steps:
 
     - uses: actions/setup-python@v3
@@ -142,7 +145,7 @@ jobs:
 
     - name: install wheels
       run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl)
+        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
 
     - name: test (pytest)
       run: pytest
@@ -177,6 +180,10 @@ jobs:
       matrix:
         python-version: ['3.8','3.9','3.10','3.11','3.12']
 
+        include:
+          - python-version: '3.12'
+            pip-pre: '--pre'
+
     steps:
     - name: checkout main repository
       uses: actions/checkout@v3
@@ -189,7 +196,7 @@ jobs:
         python-version: ${{matrix.python-version}}
 
     - name: install via pip
-      run: pip install themachinethatgoesping pytest
+      run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
 
     - name: pytest from git repo
       run: pytest -v
