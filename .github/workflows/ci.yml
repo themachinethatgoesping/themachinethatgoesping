@@ -156,7 +156,7 @@ jobs:
     - name: setup python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.12'
+        python-version: '3.11'
 
     - name: Set up Clang
       uses: egor-tensin/setup-clang@v1
@@ -257,7 +257,7 @@ jobs:
     
     - uses: actions/setup-python@v3
       with:
-        python-version: '3.12'
+        python-version: '3.11'
         
     - name: checkout main repository
       uses: actions/checkout@v3
