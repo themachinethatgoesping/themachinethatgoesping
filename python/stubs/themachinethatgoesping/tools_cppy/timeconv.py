@@ -2,7 +2,8 @@
 Convenient functions for converting time strings.
 """
 from __future__ import annotations
-__all__ = ['datestring_to_unixtime', 'unixtime_to_datestring', 'year_month_day_to_unixtime']
+import typing
+__all__ = ['datestring_to_unixtime', 'datetime_to_unixtime', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
 def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
     """
     Converting between date strings and unixtime stamps (ref 1970)
@@ -19,6 +20,16 @@ def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S'
     
     Returns:
         unixtime as double (seconds since 01.01.1970)
+    """
+def datetime_to_unixtime(datetime: typing.Any) -> float:
+    """
+    Converts a Python datetime object to a Unix timestamp.
+    
+    Parameter ``datetimeObject``:
+        The Python datetime object to convert.
+    
+    Returns:
+        The Unix timestamp representing the given datetime.
     """
 def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
@@ -40,6 +51,19 @@ def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, fo
     
     Returns:
         DateString that fits to the specified format
+    """
+def unixtime_to_datetime(unixtime: float, timezone_offset_hours: float = 0.0) -> typing.Any:
+    """
+    Converts a Unix timestamp to a Python datetime object.
+    
+    Parameter ``timestamp``:
+        The Unix timestamp to convert.
+    
+    Parameter ``timezone_offset_hours``:
+        The timezone offset in hours (default: 0).
+    
+    Returns:
+        The Python datetime object representing the given timestamp.
     """
 def year_month_day_to_unixtime(year: int, month: int, day: int, micro_seconds: int = 0) -> float:
     """

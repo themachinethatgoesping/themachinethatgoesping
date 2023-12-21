@@ -5,10 +5,13 @@ This module extends the tools.timeconv with some functions implemented in pure p
 """
 from __future__ import annotations
 from datetime import datetime
+from datetime import timezone
 from themachinethatgoesping.tools_cppy.timeconv import datestring_to_unixtime
+from themachinethatgoesping.tools_cppy.timeconv import datetime_to_unixtime
 from themachinethatgoesping.tools_cppy.timeconv import unixtime_to_datestring
+from themachinethatgoesping.tools_cppy.timeconv import unixtime_to_datetime
 from themachinethatgoesping.tools_cppy.timeconv import year_month_day_to_unixtime
-__all__ = ['datestring_to_datetime', 'datestring_to_unixtime', 'datetime', 'datetime_to_datestring', 'unixtime_to_datestring', 'year_month_day_to_unixtime']
+__all__ = ['datestring_to_datetime', 'datestring_to_unixtime', 'datetime', 'datetime_to_datestring', 'datetime_to_unixtime', 'timezone', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
 def datestring_to_datetime(datestring: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> datetime:
     """
     Converting date strings to python datetime objects

@@ -34,6 +34,10 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
+    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+        """
+        Return the timestamp as datetime object
+        """
     def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         """
         Get the geolocation of the transducer.
@@ -64,6 +68,10 @@ class I_Ping(I_PingCommon):
     def set_channel_id(self, channel_id: str) -> None:
         """
         < channel id of the transducer
+        """
+    def set_datetime(self, datetime: typing.Any) -> None:
+        """
+        Set the timestamp using a datetime object
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...

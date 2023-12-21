@@ -1238,6 +1238,10 @@ class KongsbergAllDatagram:
         Returns:
             std::string
         """
+    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+        """
+        Return the timestamp as datetime object
+        """
     def get_model_number(self) -> int:
         """
         < KongsbergAll model number (example: EM 3002 = 3002)

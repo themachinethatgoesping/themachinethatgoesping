@@ -459,6 +459,10 @@ class SimradRawDatagram:
         """
     def get_date_string(self, arg0: int, arg1: str) -> str:
         ...
+    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+        """
+        Return the timestamp as datetime object
+        """
     def get_high_date_time(self) -> int:
         """
         < Raw: High part of Windows NT FILETIME (100ns ticks since 1601-01-01)
@@ -493,6 +497,10 @@ class SimradRawDatagram:
     def set_datagram_type(self, arg0: int) -> None:
         """
         < Raw: Datagram type as
+        """
+    def set_datetime(self, datetime: typing.Any) -> None:
+        """
+        Set the timestamp using a datetime object
         """
     def set_high_date_time(self, arg0: int) -> None:
         """

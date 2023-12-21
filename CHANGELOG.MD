@@ -8,6 +8,26 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [0.16.1] - 2023-12-21
+
+- tools -> 0.21.8
+- echosounders -> 0.33.1
+
+### Added
+
+- themachinethatgoesping:
+  - bindings for python 3.12
+- tools:
+  - unixtime_to_datetime
+  - datetime_to_unixtime
+- echosounders:
+  - get_datetime and set_datetime for datagrams and pings
+
+### Fixed
+
+- tools:
+  - datestring_to_datetime: now explicitly utc
+  - datetime_to_datestring: now explicitly utc
 
 ## [0.16.0] - 2023-12-20
 
@@ -19,8 +39,6 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Added
 
-- themachinethatgoesping:
-  - bindings for python 3.12
 - pingprocessing:
   - split_pings.by_time_blocks function
 - navigation:
