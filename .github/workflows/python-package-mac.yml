@@ -49,6 +49,19 @@ jobs:
         python-version: ['3.8','3.9','3.10','3.11','3.12']
         cxx_compiler: ["$(brew --prefix llvm@16)/bin/clang++"] 
 
+        include:
+          - python-version: '3.8'
+            pip-pre: ''
+          - python-version: '3.9'
+            pip-pre: ''
+          - python-version: '3.10'
+            pip-pre: ''
+          - python-version: '3.11'
+            pip-pre: ''
+          - python-version: '3.12'
+            pip-pre: '--pre'
+        
+
     steps:
     - uses: actions/setup-python@v3
       with:
@@ -77,7 +90,7 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate pep517
-        pip install -r requirements.txt
+        pip install -r requirements.txt ${{ matrix.pip-pre }}
          
     - name: build and install wheel
       run: |

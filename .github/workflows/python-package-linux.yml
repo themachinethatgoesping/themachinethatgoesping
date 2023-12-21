@@ -58,7 +58,8 @@ jobs:
           - { python-version: '3.11', 
               pip-path: '/opt/python/cp311-cp311/bin'}
           - { python-version: '3.12', 
-              pip-path: '/opt/python/cp312-cp312/bin'}
+              pip-path: '/opt/python/cp312-cp312/bin',
+              pip-pre: '--pre'}
   
     steps:
     - name: append github path
@@ -79,7 +80,7 @@ jobs:
       run: |
         python${{ matrix.python-version }} -m pip install --upgrade pip
         python${{ matrix.python-version }} -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
-        pip install -r requirements.txt
+        pip install -r requirements.txt ${{ matrix.pip-pre }}
         
          
     - name: Build and install wheel
