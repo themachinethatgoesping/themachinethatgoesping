@@ -13,6 +13,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.21.9
 - pingprocessing -> 0.5.1
 
+### Added
+
+- pingprocessing:
+  - EchogramSection class
+
 ### Fixed
 
 - pingprocessing
@@ -22,7 +27,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools
   - Catch2 3.5.0 -> 3.5.1
-  - fmt 10.1.1 -> 10.2.0
+  - fmt 10.1.1 -> 10.2.1
   - xtl 0.7.6 -> 0.7.7
 
 ## [0.16.1] - 2023-12-21
