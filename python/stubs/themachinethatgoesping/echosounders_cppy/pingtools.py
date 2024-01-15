@@ -304,7 +304,11 @@ class PingSampleSelector:
         """
         Return object information as string
         """
-    def apply_selection(self, ping: themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping) -> BeamSampleSelection:
+    @typing.overload
+    def apply_selection(self, ping_watercolumn: themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn) -> BeamSampleSelection:
+        ...
+    @typing.overload
+    def apply_selection(self, ping_bottom: themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom) -> BeamSelection:
         ...
     def clear(self) -> None:
         ...
