@@ -18,23 +18,28 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders:
   - pingsampleselector: apply selection now explicitly needs IPingWatercolumn or I_PingBottom
+  - simradrawping: restructure to using pingcommon, pingbottom and pingwatercolumn substructures
 
 ### Added
 
 - pingprocessing:
   - EchogramSection class
+- echosounders:
+  - Added SimradRawDatagramDataInterface and SimradRawDatagramDatainterfacePerFile
 
 ### Fixed
 
 - pingprocessing
   - pass through mp_cores to backtrace image
 
-### Updated
+### Maintenance
 
 - tools
   - Catch2 3.5.0 -> 3.5.2
   - fmt 10.1.1 -> 10.2.1
   - xtl 0.7.6 -> 0.7.7
+  - xtensor 0.24.7 -> 0.25.0
+  - fast_float 6.0.0 -> 6.1.0
 
 ## [0.16.1] - 2023-12-21
 

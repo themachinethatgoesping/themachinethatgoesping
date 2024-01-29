@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
-__all__ = ['SimradRawAnnotationDataInterface', 'SimradRawAnnotationDataInterfacePerFile', 'SimradRawAnnotationDataInterfacePerFile_mapped', 'SimradRawAnnotationDataInterface_mapped', 'SimradRawConfigurationDataInterface', 'SimradRawConfigurationDataInterfacePerFile', 'SimradRawConfigurationDataInterfacePerFile_mapped', 'SimradRawConfigurationDataInterface_mapped', 'SimradRawDatagramInterface', 'SimradRawDatagramInterface_mapped', 'SimradRawEnvironmentDataInterface', 'SimradRawEnvironmentDataInterfacePerFile', 'SimradRawEnvironmentDataInterfacePerFile_mapped', 'SimradRawEnvironmentDataInterface_mapped', 'SimradRawNavigationDataInterface', 'SimradRawNavigationDataInterfacePerFile', 'SimradRawNavigationDataInterfacePerFile_mapped', 'SimradRawNavigationDataInterface_mapped', 'SimradRawOtherFileDataInterface', 'SimradRawOtherFileDataInterface_mapped', 'SimradRawPingDataInterface', 'SimradRawPingDataInterfacePerFile', 'SimradRawPingDataInterfacePerFile_mapped', 'SimradRawPingDataInterface_mapped', 'init_c_simradrawotherfiledatainterfaceperfile', 'init_c_simradrawotherfiledatainterfaceperfile_mapped']
+__all__ = ['SimradRawAnnotationDataInterface', 'SimradRawAnnotationDataInterfacePerFile', 'SimradRawAnnotationDataInterfacePerFile_mapped', 'SimradRawAnnotationDataInterface_mapped', 'SimradRawConfigurationDataInterface', 'SimradRawConfigurationDataInterfacePerFile', 'SimradRawConfigurationDataInterfacePerFile_mapped', 'SimradRawConfigurationDataInterface_mapped', 'SimradRawDatagramDataInterface', 'SimradRawDatagramDataInterfacePerFile', 'SimradRawDatagramDataInterfacePerFile_mapped', 'SimradRawDatagramDataInterface_mapped', 'SimradRawDatagramInterface', 'SimradRawDatagramInterface_mapped', 'SimradRawEnvironmentDataInterface', 'SimradRawEnvironmentDataInterfacePerFile', 'SimradRawEnvironmentDataInterfacePerFile_mapped', 'SimradRawEnvironmentDataInterface_mapped', 'SimradRawNavigationDataInterface', 'SimradRawNavigationDataInterfacePerFile', 'SimradRawNavigationDataInterfacePerFile_mapped', 'SimradRawNavigationDataInterface_mapped', 'SimradRawOtherFileDataInterface', 'SimradRawOtherFileDataInterface_mapped', 'SimradRawPingDataInterface', 'SimradRawPingDataInterfacePerFile', 'SimradRawPingDataInterfacePerFile_mapped', 'SimradRawPingDataInterface_mapped', 'init_c_simradrawotherfiledatainterfaceperfile', 'init_c_simradrawotherfiledatainterfaceperfile_mapped']
 class SimradRawAnnotationDataInterface:
     """
     Interface to read SimradRaw annotation data (TAG0) from a file
@@ -691,6 +691,348 @@ class SimradRawConfigurationDataInterface_mapped:
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    def initialized(self) -> bool:
+        ...
+    @typing.overload
+    def per_file(self) -> list[...]:
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @typing.overload
+    def per_file(self, file_nr: int) -> ...:
+        ...
+    def per_primary_file(self) -> list[...]:
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def per_secondary_file(self) -> list[...]:
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None:
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
+class SimradRawDatagramDataInterface:
+    """
+    FileDataInterface (for multiple files) for packages that fit neither
+    of the other FileDataInterfaces (Configuration, Navigation,
+    Annotation, Environment, Ping)
+    
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+    
+    Template parameter ``t_ifstream``:
+    """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def deinitialize(self) -> None:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    def initialized(self) -> bool:
+        ...
+    @typing.overload
+    def per_file(self) -> list[..., ...]:
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @typing.overload
+    def per_file(self, file_nr: int) -> ...:
+        ...
+    def per_primary_file(self) -> list[..., ...]:
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def per_secondary_file(self) -> list[..., ...]:
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None:
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
+class SimradRawDatagramDataInterfacePerFile:
+    """
+    FileDataInterface (for single files) for packages that fit neither of
+    the other FileDataInterfaces (Configuration, Navigation, Annotation,
+    Environment, Ping)
+    
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+    
+    Template parameter ``t_ifstream``:
+    """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    def deinitialize(self) -> None:
+        ...
+    def get_file_nr(self) -> int:
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+        
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str:
+        """
+        Get the file name This function assumes that the file name is the same
+        for_linked_file all datagrams in the file
+        
+        Returns:
+            std::string
+        """
+    def get_linked_file_nr(self) -> int:
+        """
+        Get the file nr of the linked file
+        
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str:
+        """
+        Get the file name of the linked file
+        
+        Returns:
+            std::string
+        """
+    def get_timestamp_first(self) -> float:
+        ...
+    def get_timestamp_last(self) -> float:
+        ...
+    def get_timestamp_range(self) -> tuple[float, float]:
+        ...
+    def has_linked_file(self) -> bool:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None:
+        ...
+    def initialized(self) -> bool:
+        ...
+    def is_primary_file(self) -> bool:
+        ...
+    def is_secondary_file(self) -> bool:
+        ...
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def per_file(self) -> list[SimradRawDatagramInterface]:
+        ...
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+class SimradRawDatagramDataInterfacePerFile_mapped:
+    """
+    FileDataInterface (for single files) for packages that fit neither of
+    the other FileDataInterfaces (Configuration, Navigation, Annotation,
+    Environment, Ping)
+    
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+    
+    Template parameter ``t_ifstream``:
+    """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def datagram_headers(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    def deinitialize(self) -> None:
+        ...
+    def get_file_nr(self) -> int:
+        """
+        Get the file nr This function assumes that the file nr is the same for
+        all datagrams in the file
+        
+        Returns:
+            size_t
+        """
+    def get_file_path(self) -> str:
+        """
+        Get the file name This function assumes that the file name is the same
+        for_linked_file all datagrams in the file
+        
+        Returns:
+            std::string
+        """
+    def get_linked_file_nr(self) -> int:
+        """
+        Get the file nr of the linked file
+        
+        Returns:
+            size_t
+        """
+    def get_linked_file_path(self) -> str:
+        """
+        Get the file name of the linked file
+        
+        Returns:
+            std::string
+        """
+    def get_timestamp_first(self) -> float:
+        ...
+    def get_timestamp_last(self) -> float:
+        ...
+    def get_timestamp_range(self) -> tuple[float, float]:
+        ...
+    def has_linked_file(self) -> bool:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def init_from_file(self, force: bool = False) -> None:
+        ...
+    def initialized(self) -> bool:
+        ...
+    def is_primary_file(self) -> bool:
+        ...
+    def is_secondary_file(self) -> bool:
+        ...
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def per_file(self) -> list[SimradRawDatagramInterface_mapped]:
+        ...
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+class SimradRawDatagramDataInterface_mapped:
+    """
+    FileDataInterface (for multiple files) for packages that fit neither
+    of the other FileDataInterfaces (Configuration, Navigation,
+    Annotation, Environment, Ping)
+    
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+    
+    Template parameter ``t_ifstream``:
+    """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """

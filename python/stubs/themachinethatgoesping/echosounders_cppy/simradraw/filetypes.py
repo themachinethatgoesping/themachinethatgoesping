@@ -3,11 +3,7 @@ SimradRaw EK60 and EK80 file data types
 """
 from __future__ import annotations
 import themachinethatgoesping.echosounders_cppy.filetemplates
-import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
-import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
-import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes
-import typing
-__all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
+__all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
 class FileInfoData_simradraw_FileInfoData:
     """
     """
@@ -74,7 +70,7 @@ class FileInfoData_simradraw_FileInfoData:
     @datagram_infos.setter
     def datagram_infos(self, arg0: list[...]) -> None:
         ...
-class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping):
+class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon):
     """
     """
     def __copy__(self) -> SimradRawPing:
@@ -85,9 +81,29 @@ class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Pin
         """
         return a copy using the c++ default copy constructor
         """
-    def file_data(self) -> SimradRawPingFileData:
+class SimradRawPingCommon(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+    """
+    """
+    def __copy__(self) -> SimradRawPingCommon:
         ...
-class SimradRawPingFileData:
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingCommon:
+        ...
+    def copy(self) -> SimradRawPingCommon:
+        """
+        return a copy using the c++ default copy constructor
+        """
+class SimradRawPingCommon_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+    """
+    """
+    def __copy__(self) -> SimradRawPingCommon_mapped:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingCommon_mapped:
+        ...
+    def copy(self) -> SimradRawPingCommon_mapped:
+        """
+        return a copy using the c++ default copy constructor
+        """
+class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
     def __copy__(self) -> SimradRawPingFileData:
@@ -106,35 +122,15 @@ class SimradRawPingFileData:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
-        ...
-    def get_sample_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataAngle:
-        ...
-    def has_angle(self) -> bool:
-        ...
-    def has_power(self) -> bool:
-        ...
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    @typing.overload
-    def load(self) -> None:
-        ...
-    @typing.overload
-    def load(self) -> None:
-        ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    @property
-    def ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
-        """
-        < when implementing EK60, this must become a variant type (RAW3 or
-        RAW0)
-        """
-class SimradRawPingFileData_mapped:
+class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
     def __copy__(self) -> SimradRawPingFileData_mapped:
@@ -153,35 +149,15 @@ class SimradRawPingFileData_mapped:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
-        ...
-    def get_sample_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataAngle:
-        ...
-    def has_angle(self) -> bool:
-        ...
-    def has_power(self) -> bool:
-        ...
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
-    @typing.overload
-    def load(self) -> None:
-        ...
-    @typing.overload
-    def load(self) -> None:
-        ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    @property
-    def ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
-        """
-        < when implementing EK60, this must become a variant type (RAW3 or
-        RAW0)
-        """
-class SimradRawPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping):
+class SimradRawPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon_mapped):
     """
     """
     def __copy__(self) -> SimradRawPing_mapped:
@@ -192,5 +168,3 @@ class SimradRawPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplate
         """
         return a copy using the c++ default copy constructor
         """
-    def file_data(self) -> SimradRawPingFileData_mapped:
-        ...
