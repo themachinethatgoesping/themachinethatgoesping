@@ -1637,7 +1637,7 @@ class KongsbergAllNavigationDataInterface:
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
-    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
@@ -1925,7 +1925,7 @@ class KongsbergAllNavigationDataInterface_mapped:
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
-    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
     def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
