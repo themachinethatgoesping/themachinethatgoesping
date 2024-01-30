@@ -5,20 +5,27 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-
 ---
+
 
 ## [Unreleased]
 
-- tools -> 0.21.9
+- tools -> 0.22.0
 - pingprocessing -> 0.5.1
 - echosounders -> 0.34
+- navigation -> 0.15.1
 
 ### Changed
 
 - echosounders:
   - pingsampleselector: apply selection now explicitly needs IPingWatercolumn or I_PingBottom
   - simradrawping: restructure to using pingcommon, pingbottom and pingwatercolumn substructures
+  - changed function names 'initialized' to 'is_initialized'
+  - automatic initialization of preceding interfaces to navigation and ping data interfaces
+- navigation:
+  - Internal change: class name is now a function and not a property anymore
+- tools:
+  - changed function names 'initialized' to 'is_initialized'
 
 ### Added
 
@@ -26,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - EchogramSection class
 - echosounders:
   - Added SimradRawDatagramDataInterface and SimradRawDatagramDatainterfacePerFile
+  - Caching for NavigationDataInterface
 
 ### Fixed
 
@@ -39,6 +47,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - fmt 10.1.1 -> 10.2.1
   - xtl 0.7.6 -> 0.7.7
   - xtensor 0.24.7 -> 0.25.0
+  - xtensor-python 0.26.1 -> 0.27.0
   - fast_float 6.0.0 -> 6.1.0
 
 ## [0.16.1] - 2023-12-21

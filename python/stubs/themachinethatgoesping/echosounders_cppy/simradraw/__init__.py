@@ -62,6 +62,9 @@ class SimradRawFileHandler:
     def datagram_interface(self) -> filedatainterfaces.SimradRawDatagramInterface:
         ...
     @property
+    def datagramdata_interface(self) -> filedatainterfaces.SimradRawDatagramDataInterface:
+        ...
+    @property
     def environment_interface(self) -> filedatainterfaces.SimradRawEnvironmentDataInterface:
         ...
     @property
@@ -124,6 +127,9 @@ class SimradRawFileHandler_mapped:
         ...
     @property
     def datagram_interface(self) -> filedatainterfaces.SimradRawDatagramInterface_mapped:
+        ...
+    @property
+    def datagramdata_interface(self) -> filedatainterfaces.SimradRawDatagramDataInterface_mapped:
         ...
     @property
     def environment_interface(self) -> filedatainterfaces.SimradRawEnvironmentDataInterface_mapped:

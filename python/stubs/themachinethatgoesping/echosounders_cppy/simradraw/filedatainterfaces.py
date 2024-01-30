@@ -32,6 +32,10 @@ class SimradRawAnnotationDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -44,7 +48,11 @@ class SimradRawAnnotationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -165,7 +173,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -260,7 +268,7 @@ class SimradRawAnnotationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -296,6 +304,10 @@ class SimradRawAnnotationDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -308,7 +320,11 @@ class SimradRawAnnotationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -362,6 +378,10 @@ class SimradRawConfigurationDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
@@ -376,7 +396,11 @@ class SimradRawConfigurationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -527,7 +551,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -656,7 +680,7 @@ class SimradRawConfigurationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -688,6 +712,10 @@ class SimradRawConfigurationDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
@@ -702,7 +730,11 @@ class SimradRawConfigurationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -764,6 +796,10 @@ class SimradRawDatagramDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -776,7 +812,11 @@ class SimradRawDatagramDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -899,7 +939,7 @@ class SimradRawDatagramDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -996,7 +1036,7 @@ class SimradRawDatagramDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1032,6 +1072,10 @@ class SimradRawDatagramDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1044,7 +1088,11 @@ class SimradRawDatagramDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -1194,6 +1242,10 @@ class SimradRawEnvironmentDataInterface:
         """
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1206,7 +1258,11 @@ class SimradRawEnvironmentDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> SimradRawNavigationDataInterface:
         ...
@@ -1325,7 +1381,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1418,7 +1474,7 @@ class SimradRawEnvironmentDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1450,6 +1506,10 @@ class SimradRawEnvironmentDataInterface_mapped:
         """
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1462,7 +1522,11 @@ class SimradRawEnvironmentDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> SimradRawNavigationDataInterface_mapped:
         ...
@@ -1526,9 +1590,19 @@ class SimradRawNavigationDataInterface:
         ...
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
@@ -1546,7 +1620,17 @@ class SimradRawNavigationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -1671,7 +1755,7 @@ class SimradRawNavigationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1772,7 +1856,7 @@ class SimradRawNavigationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1814,9 +1898,19 @@ class SimradRawNavigationDataInterface_mapped:
         ...
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
@@ -1834,7 +1928,17 @@ class SimradRawNavigationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -1900,6 +2004,10 @@ class SimradRawOtherFileDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1912,7 +2020,11 @@ class SimradRawOtherFileDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -1974,6 +2086,10 @@ class SimradRawOtherFileDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1986,7 +2102,11 @@ class SimradRawOtherFileDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -2044,6 +2164,10 @@ class SimradRawPingDataInterface:
         ...
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> SimradRawEnvironmentDataInterface:
@@ -2064,7 +2188,11 @@ class SimradRawPingDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> SimradRawNavigationDataInterface:
         ...
@@ -2189,7 +2317,7 @@ class SimradRawPingDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2290,7 +2418,7 @@ class SimradRawPingDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2326,6 +2454,10 @@ class SimradRawPingDataInterface_mapped:
         ...
     def configuration_data_interface(self) -> SimradRawConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> SimradRawEnvironmentDataInterface_mapped:
@@ -2346,7 +2478,11 @@ class SimradRawPingDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> SimradRawNavigationDataInterface_mapped:
         ...
@@ -2471,7 +2607,7 @@ class init_c_simradrawotherfiledatainterfaceperfile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2568,7 +2704,7 @@ class init_c_simradrawotherfiledatainterfaceperfile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...

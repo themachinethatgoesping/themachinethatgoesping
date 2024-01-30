@@ -31,6 +31,10 @@ class KongsbergAllAnnotationDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -43,7 +47,11 @@ class KongsbergAllAnnotationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -165,7 +173,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -261,7 +269,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -296,6 +304,10 @@ class KongsbergAllAnnotationDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -308,7 +320,11 @@ class KongsbergAllAnnotationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -362,6 +378,10 @@ class KongsbergAllConfigurationDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
@@ -376,7 +396,11 @@ class KongsbergAllConfigurationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -503,7 +527,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -640,7 +664,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -704,6 +728,10 @@ class KongsbergAllConfigurationDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
@@ -718,7 +746,11 @@ class KongsbergAllConfigurationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -780,6 +812,10 @@ class KongsbergAllDatagramDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -792,7 +828,11 @@ class KongsbergAllDatagramDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -915,7 +955,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1012,7 +1052,7 @@ class KongsbergAllDatagramDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1048,6 +1088,10 @@ class KongsbergAllDatagramDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1060,7 +1104,11 @@ class KongsbergAllDatagramDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -1210,6 +1258,10 @@ class KongsbergAllEnvironmentDataInterface:
         """
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1222,7 +1274,11 @@ class KongsbergAllEnvironmentDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface:
         ...
@@ -1341,7 +1397,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1434,7 +1490,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1466,6 +1522,10 @@ class KongsbergAllEnvironmentDataInterface_mapped:
         """
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1478,7 +1538,11 @@ class KongsbergAllEnvironmentDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
         ...
@@ -1542,9 +1606,19 @@ class KongsbergAllNavigationDataInterface:
         ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
@@ -1562,7 +1636,17 @@ class KongsbergAllNavigationDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -1679,7 +1763,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1772,7 +1856,7 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -1810,9 +1894,19 @@ class KongsbergAllNavigationDataInterface_mapped:
         ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+        ...
+    @typing.overload
+    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
@@ -1830,7 +1924,17 @@ class KongsbergAllNavigationDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def init_from_file_or_cache(self, arg0: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file_or_cache(self, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -1892,6 +1996,10 @@ class KongsbergAllOtherFileDataInterface:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -1904,7 +2012,11 @@ class KongsbergAllOtherFileDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[..., ...]:
@@ -2027,7 +2139,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2124,7 +2236,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2160,6 +2272,10 @@ class KongsbergAllOtherFileDataInterface_mapped:
         """
         Return object information as string
         """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
@@ -2172,7 +2288,11 @@ class KongsbergAllOtherFileDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     @typing.overload
     def per_file(self) -> list[...]:
@@ -2230,6 +2350,10 @@ class KongsbergAllPingDataInterface:
         ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface:
@@ -2250,7 +2374,11 @@ class KongsbergAllPingDataInterface:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface:
         ...
@@ -2375,7 +2503,7 @@ class KongsbergAllPingDataInterfacePerFile:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2476,7 +2604,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         """
     def init_from_file(self, force: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
         ...
@@ -2512,6 +2640,10 @@ class KongsbergAllPingDataInterface_mapped:
         ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
         ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_mapped:
@@ -2532,7 +2664,11 @@ class KongsbergAllPingDataInterface_mapped:
     @typing.overload
     def init_from_file(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
-    def initialized(self) -> bool:
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
         ...
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
         ...
