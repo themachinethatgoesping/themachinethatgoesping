@@ -3,6 +3,9 @@ SimradRaw EK60 and EK80 file data types
 """
 from __future__ import annotations
 import themachinethatgoesping.echosounders_cppy.filetemplates
+import themachinethatgoesping.echosounders_cppy.simradraw
+import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
+import typing
 __all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
 class FileInfoData_simradraw_FileInfoData:
     """
@@ -92,6 +95,9 @@ class SimradRawPingCommon(themachinethatgoesping.echosounders_cppy.filetemplates
         """
         return a copy using the c++ default copy constructor
         """
+    @property
+    def file_data(self) -> SimradRawPingFileData:
+        ...
 class SimradRawPingCommon_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
     """
     """
@@ -103,6 +109,9 @@ class SimradRawPingCommon_mapped(themachinethatgoesping.echosounders_cppy.filete
         """
         return a copy using the c++ default copy constructor
         """
+    @property
+    def file_data(self) -> SimradRawPingFileData_mapped:
+        ...
 class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
@@ -110,10 +119,22 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData:
         ...
+    @typing.overload
     def __repr__(self) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
     def __str__(self) -> str:
         """
         Return object information as string
@@ -122,10 +143,52 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def datagram_headers(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
+        ...
+    def get_timestamp_first(self) -> float:
+        ...
+    def get_timestamp_last(self) -> float:
+        ...
+    def get_timestamp_range(self) -> tuple[float, float]:
+        ...
+    @typing.overload
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def per_file(self) -> list[..., ...]:
+        ...
+    @typing.overload
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    @typing.overload
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
@@ -137,10 +200,22 @@ class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.file
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData_mapped:
         ...
+    @typing.overload
     def __repr__(self) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
     def __str__(self) -> str:
         """
         Return object information as string
@@ -149,10 +224,52 @@ class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.file
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def datagram_headers(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagram_headers(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, skip_data: bool = False) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self) -> typing.Any:
+        ...
+    @typing.overload
+    def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
+        ...
+    def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
+        ...
+    def get_timestamp_first(self) -> float:
+        ...
+    def get_timestamp_last(self) -> float:
+        ...
+    def get_timestamp_range(self) -> tuple[float, float]:
+        ...
+    @typing.overload
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def per_file(self) -> list[...]:
+        ...
+    @typing.overload
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    @typing.overload
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information

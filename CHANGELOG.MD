@@ -8,7 +8,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 
 
-## [Unreleased]
+## [0.17.0] - 2024-02-01
 
 - tools -> 0.22.0
 - pingprocessing -> 0.5.1
@@ -22,6 +22,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - simradrawping: restructure to using pingcommon, pingbottom and pingwatercolumn substructures
   - changed function names 'initialized' to 'is_initialized'
   - automatic initialization of preceding interfaces to navigation and ping data interfaces
+  - simrad XML_ParameterChannel and KongsbergAll RuntimeParameters now supports boost hash (and thus the flyweight pattern)
+  - replaced deduplicate buffer by flyweights
 - navigation:
   - Internal change: class name is now a function and not a property anymore
 - tools:
@@ -34,6 +36,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - Added SimradRawDatagramDataInterface and SimradRawDatagramDatainterfacePerFile
   - Caching for NavigationDataInterface
+  - towards package caching for pingdata
 
 ### Fixed
 
