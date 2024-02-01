@@ -148,7 +148,6 @@ status
 
 | |badge-ci|
 | |badge-docs|
-| |badge-ci-buildwheel|
 | |badge-ci-python-linux|
 | |badge-ci-python-windows|
 | |badge-ci-python-mac|
