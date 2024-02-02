@@ -7,6 +7,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [Unreleased]
+
+- pingprocessing -> 0.5.2
+- echosounders -> 0.34.1
+
+### Added
+
+- pingprocessing:
+  - tests for importing EchogramSection
+- echosounders:
+  - more import tests
 
 ## [0.17.0] - 2024-02-01
 
