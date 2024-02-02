@@ -62,9 +62,9 @@
    :target: https://github.com/themachinethatgoesping/gridding/
    :alt: gridding
    
-.. |info-python| image:: https://img.shields.io/badge/python-3.8 | 3.9 | 3.10 | 3.11 | 3.12-informational
+.. |info-python| image:: https://img.shields.io/badge/python-3.10 | 3.11 | 3.12-informational
    :target: https://pypi.org/project/themachinethatgoesping/
-   :alt: Python versions 3.8 | 3.9 | 3.10 | 3.11 | 3.12
+   :alt: Python versions 3.10 | 3.11 | 3.12
    
 .. |info-docs| image:: https://img.shields.io/badge/Documentation-readthedocs-informational
    :target: https://themachinethatgoesping.readthedocs.io
