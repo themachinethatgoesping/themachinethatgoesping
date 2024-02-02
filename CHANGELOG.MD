@@ -19,6 +19,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - more import tests
 
+### Maintenance
+
+- Removed python 3.8 and 3.9 support and builds from CI
+
 ## [0.17.0] - 2024-02-01
 
 - tools -> 0.22.0
