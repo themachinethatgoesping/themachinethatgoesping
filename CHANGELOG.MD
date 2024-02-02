@@ -18,6 +18,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - tests for importing EchogramSection
 - echosounders:
   - more import tests
+  - PackageCacheBuffer with python bindings for the required datagrams
 
 ### Maintenance
 
