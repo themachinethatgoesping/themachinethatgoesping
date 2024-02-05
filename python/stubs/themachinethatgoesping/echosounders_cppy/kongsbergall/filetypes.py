@@ -8,22 +8,22 @@ import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.pingtools
 import typing
-__all__ = ['FileInfoData_kongsbergall_FileInfoData', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_mapped', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_mapped', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_mapped', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_mapped', 'KongsbergAllPing_mapped']
-class FileInfoData_kongsbergall_FileInfoData:
+__all__ = ['FilePackageIndex_kongsbergall_FilePackageIndex', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_mapped', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_mapped', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_mapped', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_mapped', 'KongsbergAllPing_mapped']
+class FilePackageIndex_kongsbergall_FilePackageIndex:
     """
     """
     file_path: str
     file_size: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileInfoData_kongsbergall_FileInfoData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> FileInfoData_kongsbergall_FileInfoData:
+    def __copy__(self) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         ...
-    def __deepcopy__(self, arg0: dict) -> FileInfoData_kongsbergall_FileInfoData:
+    def __deepcopy__(self, arg0: dict) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         ...
-    def __eq__(self, other: FileInfoData_kongsbergall_FileInfoData) -> bool:
+    def __eq__(self, other: FilePackageIndex_kongsbergall_FilePackageIndex) -> bool:
         ...
     def __getstate__(self) -> bytes:
         ...
@@ -43,7 +43,7 @@ class FileInfoData_kongsbergall_FileInfoData:
         """
         Return object information as string
         """
-    def copy(self) -> FileInfoData_kongsbergall_FileInfoData:
+    def copy(self) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         return a copy using the c++ default copy constructor
         """
@@ -68,12 +68,12 @@ class FileInfoData_kongsbergall_FileInfoData:
         convert object to bytearray
         """
     @property
-    def datagram_infos(self) -> list[...]:
+    def datagram_info_data(self) -> list[...]:
         """
         < all datagrams
         """
-    @datagram_infos.setter
-    def datagram_infos(self, arg0: list[...]) -> None:
+    @datagram_info_data.setter
+    def datagram_info_data(self, arg0: list[...]) -> None:
         ...
 class KongsbergAllPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, KongsbergAllPingCommon):
     """

@@ -6,22 +6,22 @@ import themachinethatgoesping.echosounders_cppy.filetemplates
 import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import typing
-__all__ = ['FileInfoData_simradraw_FileInfoData', 'SimradRawPing', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
-class FileInfoData_simradraw_FileInfoData:
+__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
+class FilePackageIndex_simradraw_FilePackageIndex:
     """
     """
     file_path: str
     file_size: int
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileInfoData_simradraw_FileInfoData:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_simradraw_FilePackageIndex:
         """
         create T_CLASS object from bytearray
         """
-    def __copy__(self) -> FileInfoData_simradraw_FileInfoData:
+    def __copy__(self) -> FilePackageIndex_simradraw_FilePackageIndex:
         ...
-    def __deepcopy__(self, arg0: dict) -> FileInfoData_simradraw_FileInfoData:
+    def __deepcopy__(self, arg0: dict) -> FilePackageIndex_simradraw_FilePackageIndex:
         ...
-    def __eq__(self, other: FileInfoData_simradraw_FileInfoData) -> bool:
+    def __eq__(self, other: FilePackageIndex_simradraw_FilePackageIndex) -> bool:
         ...
     def __getstate__(self) -> bytes:
         ...
@@ -41,7 +41,7 @@ class FileInfoData_simradraw_FileInfoData:
         """
         Return object information as string
         """
-    def copy(self) -> FileInfoData_simradraw_FileInfoData:
+    def copy(self) -> FilePackageIndex_simradraw_FilePackageIndex:
         """
         return a copy using the c++ default copy constructor
         """
@@ -66,12 +66,12 @@ class FileInfoData_simradraw_FileInfoData:
         convert object to bytearray
         """
     @property
-    def datagram_infos(self) -> list[...]:
+    def datagram_info_data(self) -> list[...]:
         """
         < all datagrams
         """
-    @datagram_infos.setter
-    def datagram_infos(self, arg0: list[...]) -> None:
+    @datagram_info_data.setter
+    def datagram_info_data(self, arg0: list[...]) -> None:
         ...
 class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon):
     """

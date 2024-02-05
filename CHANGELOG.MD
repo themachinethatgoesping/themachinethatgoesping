@@ -10,7 +10,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - pingprocessing -> 0.5.2
-- echosounders -> 0.34.1
+- echosounders -> 0.35.0
+- tools -> 0.22.1
+
+### Changed
+
+- echosounders
+ - reworked caching for package index, navigation and ping data
 
 ### Added
 
@@ -18,7 +24,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - tests for importing EchogramSection
 - echosounders:
   - more import tests
-  - PackageCacheBuffer with python bindings for the required datagrams
+  - FilePackageCache with python bindings for the required datagrams
+- tools:
+  - register_value_bytes function for object printer (converts bytes to KB,MB or GB)
 
 ### Maintenance
 

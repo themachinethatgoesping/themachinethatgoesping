@@ -219,6 +219,22 @@ class ObjectPrinter:
             position where the value is registers (if negative, the value is
             appended)
         """
+    def register_value_bytes(self, name: str, value: int, pos: int = -1) -> None:
+        """
+        register a single integer of floating point value for printing The
+        value is assumed to be in bytes. It will be converted to bytes, KB,
+        MB, GB
+        
+        Parameter ``name``:
+            name of the variable
+        
+        Parameter ``value``:
+            value of the variable in bytes
+        
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
+        """
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
