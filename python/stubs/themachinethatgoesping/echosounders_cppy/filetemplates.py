@@ -8,7 +8,85 @@ import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn']
+__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn']
+class FileCache:
+    """
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileCache:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> FileCache:
+        ...
+    def __deepcopy__(self, arg0: dict) -> FileCache:
+        ...
+    def __eq__(self, other: FileCache) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __init__(self, file_name: str, file_size: int) -> None:
+        ...
+    @typing.overload
+    def __init__(self, cache_path: str, file_name: str, file_size: int, cache_keys: list[str] = []) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> FileCache:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_cache_buffer(self) -> dict[str, str]:
+        ...
+    def get_cache_buffer_header(self) -> list[tuple[str, int, int]]:
+        ...
+    def get_cache_names(self) -> list[str]:
+        ...
+    def get_file_name(self) -> str:
+        ...
+    def get_file_size(self) -> int:
+        ...
+    def get_loaded_cache_names(self) -> list[str]:
+        ...
+    def get_not_loaded_cache_names(self) -> list[str]:
+        ...
+    def has_cache(self, cache_name: str) -> bool:
+        ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+    def update_file(self, cache_path: str, emulate_only: bool = False) -> None:
+        ...
 class I_Ping(I_PingCommon):
     """
     """

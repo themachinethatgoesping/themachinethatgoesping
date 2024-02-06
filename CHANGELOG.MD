@@ -25,8 +25,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - more import tests
   - FilePackageCache with python bindings for the required datagrams
+  - FileCache that supports caching of index, navigation and ping data and partial cache reading
 - tools:
   - register_value_bytes function for object printer (converts bytes to KB,MB or GB)
+
+### Internal
+
+- tools:
+ - add get_with_default function to tools::helper
 
 ### Maintenance
 

@@ -194,16 +194,16 @@ class KongsbergAllFileHandler:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: list[str], file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -215,7 +215,7 @@ class KongsbergAllFileHandler:
         """
     def channel_ids(self) -> list[str]:
         ...
-    def get_cached_file_index(self) -> dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex]:
+    def get_cached_paths_per_file_path(self) -> dict[str, str]:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -261,16 +261,16 @@ class KongsbergAllFileHandler_mapped:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: list[str], file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], cached_index: dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -282,7 +282,7 @@ class KongsbergAllFileHandler_mapped:
         """
     def channel_ids(self) -> list[str]:
         ...
-    def get_cached_file_index(self) -> dict[str, filetypes.FilePackageIndex_kongsbergall_FilePackageIndex]:
+    def get_cached_paths_per_file_path(self) -> dict[str, str]:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
