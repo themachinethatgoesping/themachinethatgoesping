@@ -2547,7 +2547,7 @@ class KongsbergAllPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
+    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
 class KongsbergAllPingDataInterfacePerFile_mapped:
     """
@@ -2652,7 +2652,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
         ...
 class KongsbergAllPingDataInterface_mapped:
     """

@@ -28,6 +28,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - FileCache that supports caching of index, navigation and ping data and partial cache reading
   - get_file_name and get_file_size for FileDataInterfacesPerFile
   - filepackagecache: get_subpackage_count, get_packages and has_package functions
+  - complete cachinf for SimradRaw
+  - simpel TuplePackage class for FilePackageCache
 - tools:
   - register_value_bytes function for object printer (converts bytes to KB,MB or GB)
 

@@ -2353,7 +2353,7 @@ class SimradRawPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
+    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
 class SimradRawPingDataInterfacePerFile_mapped:
     """
@@ -2458,7 +2458,7 @@ class SimradRawPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_mapped:
+    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_mapped:
         ...
 class SimradRawPingDataInterface_mapped:
     """
