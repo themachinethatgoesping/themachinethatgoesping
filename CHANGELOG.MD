@@ -26,13 +26,15 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - more import tests
   - FilePackageCache with python bindings for the required datagrams
   - FileCache that supports caching of index, navigation and ping data and partial cache reading
+  - get_file_name and get_file_size for FileDataInterfacesPerFile
+  - filepackagecache: get_subpackage_count, get_packages and has_package functions
 - tools:
   - register_value_bytes function for object printer (converts bytes to KB,MB or GB)
 
 ### Internal
 
 - tools:
- - add get_with_default function to tools::helper
+ - add get_from_map_with_default function to tools::helper
 
 ### Maintenance
 

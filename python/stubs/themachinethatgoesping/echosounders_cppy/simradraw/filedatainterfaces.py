@@ -129,6 +129,8 @@ class SimradRawAnnotationDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -145,6 +147,8 @@ class SimradRawAnnotationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -224,6 +228,8 @@ class SimradRawAnnotationDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -240,6 +246,8 @@ class SimradRawAnnotationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -489,6 +497,8 @@ class SimradRawConfigurationDataInterfacePerFile:
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -505,6 +515,8 @@ class SimradRawConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_heading_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all heading sources registered in the configuration datagram
@@ -618,6 +630,8 @@ class SimradRawConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::vector<XML_Configuration_Sensor>
         """
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -634,6 +648,8 @@ class SimradRawConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_heading_sources(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Sensor]:
         """
         Return all heading sources registered in the configuration datagram
@@ -895,6 +911,8 @@ class SimradRawDatagramDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -911,6 +929,8 @@ class SimradRawDatagramDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -992,6 +1012,8 @@ class SimradRawDatagramDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1008,6 +1030,8 @@ class SimradRawDatagramDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1337,6 +1361,8 @@ class SimradRawEnvironmentDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1353,6 +1379,8 @@ class SimradRawEnvironmentDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1430,6 +1458,8 @@ class SimradRawEnvironmentDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1446,6 +1476,8 @@ class SimradRawEnvironmentDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1598,12 +1630,6 @@ class SimradRawNavigationDataInterface:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    @typing.overload
-    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
-    @typing.overload
-    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
@@ -1619,12 +1645,6 @@ class SimradRawNavigationDataInterface:
         ...
     @typing.overload
     def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str] = {}, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str], cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1707,6 +1727,8 @@ class SimradRawNavigationDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1723,6 +1745,8 @@ class SimradRawNavigationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1808,6 +1832,8 @@ class SimradRawNavigationDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1824,6 +1850,8 @@ class SimradRawNavigationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1906,12 +1934,6 @@ class SimradRawNavigationDataInterface_mapped:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    @typing.overload
-    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
-    @typing.overload
-    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
@@ -1927,12 +1949,6 @@ class SimradRawNavigationDataInterface_mapped:
         ...
     @typing.overload
     def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str] = {}, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str], cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2273,6 +2289,8 @@ class SimradRawPingDataInterfacePerFile:
         ...
     def get_deduplicated_parameters(self) -> dict[str, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel]:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2289,6 +2307,8 @@ class SimradRawPingDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2333,7 +2353,7 @@ class SimradRawPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
+    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
 class SimradRawPingDataInterfacePerFile_mapped:
     """
@@ -2374,6 +2394,8 @@ class SimradRawPingDataInterfacePerFile_mapped:
         ...
     def get_deduplicated_parameters(self) -> dict[str, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel]:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2390,6 +2412,8 @@ class SimradRawPingDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2434,7 +2458,7 @@ class SimradRawPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_mapped:
+    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_mapped:
         ...
 class SimradRawPingDataInterface_mapped:
     """
@@ -2563,6 +2587,8 @@ class init_c_simradrawotherfiledatainterfaceperfile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2579,6 +2605,8 @@ class init_c_simradrawotherfiledatainterfaceperfile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2660,6 +2688,8 @@ class init_c_simradrawotherfiledatainterfaceperfile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2676,6 +2706,8 @@ class init_c_simradrawotherfiledatainterfaceperfile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file

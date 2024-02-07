@@ -129,6 +129,8 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -145,6 +147,8 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -225,6 +229,8 @@ class KongsbergAllAnnotationDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -241,6 +247,8 @@ class KongsbergAllAnnotationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -479,6 +487,8 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         ...
     def get_active_position_system_number(self) -> int:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -495,6 +505,8 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
         ...
     def get_linked_file_nr(self) -> int:
@@ -616,6 +628,8 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
         ...
     def get_active_position_system_number(self) -> int:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -632,6 +646,8 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
         ...
     def get_linked_file_nr(self) -> int:
@@ -911,6 +927,8 @@ class KongsbergAllDatagramDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -927,6 +945,8 @@ class KongsbergAllDatagramDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1008,6 +1028,8 @@ class KongsbergAllDatagramDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1024,6 +1046,8 @@ class KongsbergAllDatagramDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1353,6 +1377,8 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1369,6 +1395,8 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1446,6 +1474,8 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1462,6 +1492,8 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1614,12 +1646,6 @@ class KongsbergAllNavigationDataInterface:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    @typing.overload
-    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
-    @typing.overload
-    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
@@ -1635,12 +1661,6 @@ class KongsbergAllNavigationDataInterface:
         ...
     @typing.overload
     def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str] = {}, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str], cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1719,6 +1739,8 @@ class KongsbergAllNavigationDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1735,6 +1757,8 @@ class KongsbergAllNavigationDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1812,6 +1836,8 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -1828,6 +1854,8 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -1902,12 +1930,6 @@ class KongsbergAllNavigationDataInterface_mapped:
         ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    @typing.overload
-    def get_navigation_cache(self, show_progress: bool = True) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
-    @typing.overload
-    def get_navigation_cache(self, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
-        ...
     def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
@@ -1923,12 +1945,6 @@ class KongsbergAllNavigationDataInterface_mapped:
         ...
     @typing.overload
     def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str] = {}, cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file_or_cache(self, cached_paths_per_file_path: dict[str, str], cache: dict[str, themachinethatgoesping.navigation.NavigationInterpolatorLatLon], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2095,6 +2111,8 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2111,6 +2129,8 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2192,6 +2212,8 @@ class KongsbergAllOtherFileDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2208,6 +2230,8 @@ class KongsbergAllOtherFileDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2459,6 +2483,8 @@ class KongsbergAllPingDataInterfacePerFile:
         ...
     def get_deduplicated_runtime_parameters(self) -> dict[str, themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters]:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2475,6 +2501,8 @@ class KongsbergAllPingDataInterfacePerFile:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2519,7 +2547,7 @@ class KongsbergAllPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
+    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
 class KongsbergAllPingDataInterfacePerFile_mapped:
     """
@@ -2560,6 +2588,8 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         ...
     def get_deduplicated_runtime_parameters(self) -> dict[str, themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters]:
         ...
+    def get_file_name(self) -> str:
+        ...
     def get_file_nr(self) -> int:
         """
         Get the file nr This function assumes that the file nr is the same for
@@ -2576,6 +2606,8 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         Returns:
             std::string
         """
+    def get_file_size(self) -> int:
+        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -2620,7 +2652,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def read_pings(self, cache_file_path: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
         ...
 class KongsbergAllPingDataInterface_mapped:
     """
