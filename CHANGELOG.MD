@@ -7,7 +7,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
-## [Unreleased]
+## [0.18.0] - 2024-02-08
 
 - pingprocessing -> 0.5.2
 - echosounders -> 0.35.0
@@ -32,6 +32,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - simpel TuplePackage class for FilePackageCache
 - tools:
   - register_value_bytes function for object printer (converts bytes to KB,MB or GB)
+  - exceptions for version missmatch during reading and writing of binary files
 
 ### Internal
 
