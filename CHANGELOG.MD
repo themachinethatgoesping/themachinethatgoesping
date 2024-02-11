@@ -7,6 +7,15 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [Unreleased]
+
+- echosounders -> 0.35.1
+
+### Internal
+
+- echosounders:
+  - many shared pointers are now weak pointers, this means that resources will be unavailable if the file is closed
+
 ## [0.18.0] - 2024-02-08
 
 - pingprocessing -> 0.5.2
