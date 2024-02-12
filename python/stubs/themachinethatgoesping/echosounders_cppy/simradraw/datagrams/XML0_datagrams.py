@@ -2,6 +2,7 @@
 SimradRaw EK80 XML datagram classes (subtypes of XML0)
 """
 from __future__ import annotations
+import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
@@ -1162,6 +1163,8 @@ class XML_Parameter_Channel:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_tx_signal_parameters(self) -> themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1219,23 +1222,23 @@ class XML_Parameter_Channel:
     @property
     def PulseDuration(self) -> float:
         """
-        < used used for chirp pulse (PulseForm > 0)
+        < used for cv ( PulseForm == 0)
         """
     @PulseDuration.setter
     def PulseDuration(self, arg0: float) -> None:
         ...
     @property
-    def PulseForm(self) -> float:
+    def PulseForm(self) -> int:
         """
         < 0 means cw, ?1 means chirp?
         """
     @PulseForm.setter
-    def PulseForm(self, arg0: float) -> None:
+    def PulseForm(self, arg0: int) -> None:
         ...
     @property
     def PulseLength(self) -> float:
         """
-        < used for cv ( PulseForm == 0)
+        < used for chirp pulse (PulseForm > 0)
         """
     @PulseLength.setter
     def PulseLength(self, arg0: float) -> None:

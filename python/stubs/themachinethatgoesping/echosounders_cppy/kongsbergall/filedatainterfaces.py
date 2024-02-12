@@ -42,10 +42,10 @@ class KongsbergAllAnnotationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -323,10 +323,10 @@ class KongsbergAllAnnotationDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -399,10 +399,10 @@ class KongsbergAllConfigurationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -757,10 +757,10 @@ class KongsbergAllConfigurationDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -839,10 +839,10 @@ class KongsbergAllDatagramDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1123,10 +1123,10 @@ class KongsbergAllDatagramDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1293,10 +1293,10 @@ class KongsbergAllEnvironmentDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1565,10 +1565,10 @@ class KongsbergAllEnvironmentDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1657,10 +1657,10 @@ class KongsbergAllNavigationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1941,10 +1941,10 @@ class KongsbergAllNavigationDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2023,10 +2023,10 @@ class KongsbergAllOtherFileDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2307,10 +2307,10 @@ class KongsbergAllOtherFileDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2393,10 +2393,10 @@ class KongsbergAllPingDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2545,7 +2545,7 @@ class KongsbergAllPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
+    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
 class KongsbergAllPingDataInterfacePerFile_mapped:
     """
@@ -2648,7 +2648,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         """
         Print object information
         """
-    def read_pings(self, cached_paths_per_file_path: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
         ...
 class KongsbergAllPingDataInterface_mapped:
     """
@@ -2687,10 +2687,10 @@ class KongsbergAllPingDataInterface_mapped:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, cached_paths_per_file_path: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:

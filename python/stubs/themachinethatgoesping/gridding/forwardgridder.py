@@ -3,8 +3,8 @@
 Simple gridder class that can create quantitative 3D images from x,z,y,val from some custom data.
 """
 from __future__ import annotations
-import numpy
 import numpy as np
+import numpy
 from themachinethatgoesping.gridding.functions import gridfunctions as grdf
 import typing
 __all__ = ['ArrayLike', 'ForwardGridder', 'grdf', 'np']

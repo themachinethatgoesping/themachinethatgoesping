@@ -215,7 +215,7 @@ class KongsbergAllFileHandler:
         """
     def channel_ids(self) -> list[str]:
         ...
-    def get_cached_paths_per_file_path(self) -> dict[str, str]:
+    def get_file_cache_paths(self) -> dict[str, str]:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -282,7 +282,7 @@ class KongsbergAllFileHandler_mapped:
         """
     def channel_ids(self) -> list[str]:
         ...
-    def get_cached_paths_per_file_path(self) -> dict[str, str]:
+    def get_file_cache_paths(self) -> dict[str, str]:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """

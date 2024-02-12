@@ -2,11 +2,13 @@
 SimradRaw EK60 and EK80 file data types
 """
 from __future__ import annotations
+import numpy
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import themachinethatgoesping.echosounders_cppy.simradraw
+import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import typing
-__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPing_mapped']
+__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingBottom', 'SimradRawPingBottom_mapped', 'SimradRawPingCommon', 'SimradRawPingCommon_mapped', 'SimradRawPingFileData', 'SimradRawPingFileData_mapped', 'SimradRawPingWatercolumn', 'SimradRawPingWatercolumn_mapped', 'SimradRawPing_mapped']
 class FilePackageIndex_simradraw_FilePackageIndex:
     """
     """
@@ -81,6 +83,28 @@ class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Pin
     def __deepcopy__(self, arg0: dict) -> SimradRawPing:
         ...
     def copy(self) -> SimradRawPing:
+        """
+        return a copy using the c++ default copy constructor
+        """
+class SimradRawPingBottom(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, SimradRawPingCommon):
+    """
+    """
+    def __copy__(self) -> SimradRawPingBottom:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingBottom:
+        ...
+    def copy(self) -> SimradRawPingBottom:
+        """
+        return a copy using the c++ default copy constructor
+        """
+class SimradRawPingBottom_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, SimradRawPingCommon_mapped):
+    """
+    """
+    def __copy__(self) -> SimradRawPingBottom_mapped:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingBottom_mapped:
+        ...
+    def copy(self) -> SimradRawPingBottom_mapped:
         """
         return a copy using the c++ default copy constructor
         """
@@ -161,7 +185,11 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
         ...
+    def get_environmnet(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment:
+        ...
     def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
+        ...
+    def get_ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -193,6 +221,8 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         """
         Print object information
         """
+    def read_sample_data(self, dB: bool = True) -> numpy.ndarray[numpy.float32]:
+        ...
 class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
@@ -242,7 +272,11 @@ class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.file
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> typing.Any:
         ...
+    def get_environmnet(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment:
+        ...
     def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
+        ...
+    def get_ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
         ...
     def get_timestamp_first(self) -> float:
         ...
@@ -273,6 +307,30 @@ class SimradRawPingFileData_mapped(themachinethatgoesping.echosounders_cppy.file
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
+        """
+    def read_sample_data(self, dB: bool = True) -> numpy.ndarray[numpy.float32]:
+        ...
+class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon):
+    """
+    """
+    def __copy__(self) -> SimradRawPingWatercolumn:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingWatercolumn:
+        ...
+    def copy(self) -> SimradRawPingWatercolumn:
+        """
+        return a copy using the c++ default copy constructor
+        """
+class SimradRawPingWatercolumn_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon_mapped):
+    """
+    """
+    def __copy__(self) -> SimradRawPingWatercolumn_mapped:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingWatercolumn_mapped:
+        ...
+    def copy(self) -> SimradRawPingWatercolumn_mapped:
+        """
+        return a copy using the c++ default copy constructor
         """
 class SimradRawPing_mapped(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon_mapped):
     """

@@ -11,6 +11,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.35.1
 
+### Added
+
+- echosounders:
+  - pingbottom and pingwatercolumn structures for simradraw ping
+  - XML_Environment to pingdatainterface and ping
+  - basic support fro retreiving echograms from simradraw
+
+### Changed
+
+- echosounders:
+  - I_Ping: make channel_id flyweight and remove geolocation to reduce ping memory consumption
+  - renamed variable: replaced cached_paths_per_file_path with file_cache_paths
+
 ### Internal
 
 - echosounders:
