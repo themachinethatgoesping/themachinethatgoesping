@@ -17,6 +17,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - pingbottom and pingwatercolumn structures for simradraw ping
   - XML_Environment to pingdatainterface and ping
   - basic support fro retreiving echograms from simradraw
+  - index_functions: print_cache_files_statistics function
+  - FileCache: function to remove variable from cache
+  - FileCache: function to load from file directly
 
 ### Changed
 
@@ -24,10 +27,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - I_Ping: make channel_id flyweight and remove geolocation to reduce ping memory consumption
   - renamed variable: replaced cached_paths_per_file_path with file_cache_paths
 
+### Fixed
+- echosoudners:
+  - FileCache: did not remove lower priority caches when adding a new cache
+  - I_Ping: did not copy sensor configuration when copying ping
+
 ### Internal
 
 - echosounders:
   - many shared pointers are now weak pointers, this means that resources will be unavailable if the file is closed
+  - fixed common test error with extra detections datagram
 
 ## [0.18.0] - 2024-02-08
 

@@ -17,6 +17,9 @@ class FileCache:
         """
         create T_CLASS object from bytearray
         """
+    @staticmethod
+    def from_file(cache_path: str) -> FileCache:
+        ...
     def __copy__(self) -> FileCache:
         ...
     def __deepcopy__(self, arg0: dict) -> FileCache:
@@ -77,6 +80,8 @@ class FileCache:
         """
         Print object information
         """
+    def remove_from_cache(self, name: str) -> None:
+        ...
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
