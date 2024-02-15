@@ -34,6 +34,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosoudners:
   - FileCache: did not remove lower priority caches when adding a new cache
   - I_Ping: did not copy sensor configuration when copying ping
+- require meson >= 1.3.2 for clang-cl openmp support
 
 ### Internal
 
