@@ -26,6 +26,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - I_Ping: make channel_id flyweight and remove geolocation to reduce ping memory consumption
   - renamed variable: replaced cached_paths_per_file_path with file_cache_paths
+  - full ping caching for KongsbergAll
+  - PackageCache now stores the package as unique pointer to allow caching packages without default constructor
+  - removed TuplePackage in favor of StructPackge
 
 ### Fixed
 - echosoudners:
