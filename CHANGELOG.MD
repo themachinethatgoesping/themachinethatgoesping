@@ -7,6 +7,41 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [Unreleased]
+
+- echosounders -> 0.35.2
+- tools -> 0.22.2
+- algorithms -> 0.5.8
+
+### Added
+
+- algorithms:
+  - signalprocessing::datastructures::TxSignalParameters: add comparison operator that accounts for nan
+
+### Performance
+
+- speed up to/from binary functions using isviewstream (istringstream that adapts a string_view)
+
+### Maintainance
+
+- tools:
+  - deactive openmp for windows clang-cl for now
+
+### Fixed
+
+- echosounders:
+  - KongsbergAllPingWatercolumn: report correctly if av feature is available
+  - I_Ping::print, explicitly print if features belong to bottom or watercolumn
+
+### Internal
+
+- echosounders
+  - extra files for _wciinfos and _sysinfos
+  - _sysinfos substructure is not used at the moment
+- tools
+  - add visit_variant_no_return visitor function
+  - from_binary replaced const std::string& with std::string_view
+
 ## [0.18.1] - 2024-02-15
 
 - echosounders -> 0.35.1
