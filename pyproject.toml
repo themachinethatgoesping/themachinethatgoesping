@@ -37,7 +37,8 @@ dependencies = [
   #'ipympl',
   'matplotlib',
   'numpy >=1.22',
-  'tqdm'
+  'tqdm',
+  'rasterio'
 ]
 
 

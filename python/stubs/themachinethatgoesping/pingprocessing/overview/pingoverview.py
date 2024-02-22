@@ -2,7 +2,8 @@ from __future__ import annotations
 from collections import defaultdict
 import numpy as np
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-__all__ = ['PingOverview', 'defaultdict', 'get_ping_overview', 'get_progress_iterator', 'np']
+from themachinethatgoesping.pingprocessing.overview import nav_plot
+__all__ = ['PingOverview', 'defaultdict', 'get_ping_overview', 'get_progress_iterator', 'nav_plot', 'np']
 class PingOverview:
     """
     
@@ -163,6 +164,22 @@ class PingOverview:
                 -------
                 List
                     The keys of the statistics dictionary.
+                
+        """
+    def plot_navigation(self, ax, label = 'survey', annotate = True, max_points = 100000, **kwargs):
+        """
+        
+                Plot latitude and longitude coordinates on a given axis.
+        
+                Parameters:
+                    ax (matplotlib.axes.Axes): The axis on which to plot the coordinates.
+                    label (str, optional): Name of the survey. Defaults to 'survey'.
+                    annotate (bool, optional): Whether to annotate the plot with the survey name. Defaults to True.
+                    max_points (int, optional): Maximum number of points to plot. Defaults to 100000.
+                    **kwargs: Additional keyword arguments to be passed to the plot function.
+        
+                Returns:
+                    None
                 
         """
 def get_ping_overview(ping_list: typing.Union[typing.Dict[str, typing.List[float]], typing.List[float]], progress: bool = False) -> typing.Union[typing.Dict[str, typing.Dict[str, typing.Union[float, int]]], ForwardRef('PingOverview')]:

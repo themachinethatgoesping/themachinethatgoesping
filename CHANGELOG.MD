@@ -7,16 +7,29 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
-## [Unreleased]
+## [0.18.2] - 2024-02-22
 
 - echosounders -> 0.35.2
 - tools -> 0.22.2
 - algorithms -> 0.5.8
+- pingprocessing -> 0.5.3
+
+### Changed
+
+- pingprocessing:
+  - plot_navigation: argument survey_name -> label
+  - nav_plot: create_figure add capability to plot background image
+- echosounders:
+  - KongsbergAllPingWatercolumn: get_av do not correct for pulse length if transmit Pulse is Generic or FM
+    - Note: Generic happens if RawRangeAndAngle datagram is not available
 
 ### Added
 
 - algorithms:
   - signalprocessing::datastructures::TxSignalParameters: add comparison operator that accounts for nan
+- pingprocessing:
+  - filter_pings.by_files, by_folders
+  - plot_navigation for pingoverview
 
 ### Performance
 

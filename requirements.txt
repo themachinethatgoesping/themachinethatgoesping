@@ -5,3 +5,4 @@ numpy >= 1.22
 pybind11-stubgen
 pytest
 matplotlib
+rasterio

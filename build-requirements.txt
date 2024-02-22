@@ -7,5 +7,6 @@ numba
 pybind11-stubgen
 
 #not strictly build requirements
+rasterio
 matplotlib
 tqdm
