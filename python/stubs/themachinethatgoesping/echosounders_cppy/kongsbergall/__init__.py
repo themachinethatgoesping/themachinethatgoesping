@@ -213,9 +213,11 @@ class KongsbergAllFileHandler:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
+    def get_channel_ids(self) -> list[str]:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
+        ...
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -226,8 +228,6 @@ class KongsbergAllFileHandler:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
-        ...
-    def pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
@@ -280,9 +280,11 @@ class KongsbergAllFileHandler_mapped:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
+    def get_channel_ids(self) -> list[str]:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
+        ...
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_mapped:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -293,8 +295,6 @@ class KongsbergAllFileHandler_mapped:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
-        ...
-    def pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_mapped:
         ...
     def print(self, float_precision: int = 2) -> None:
         """

@@ -122,12 +122,7 @@ class I_Ping(I_PingCommon):
         Return the timestamp as datetime object
         """
     def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
-        """
-        Get the geolocation of the transducer.
-        
-        Returns:
-            const navigation::datastructures::GeolocationLatLon&
-        """
+        ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
@@ -137,6 +132,16 @@ class I_Ping(I_PingCommon):
         < Unix timestamp in seconds (saved in UTC0)
         """
     def has_bottom(self) -> bool:
+        ...
+    def has_channel_id(self) -> bool:
+        ...
+    def has_geolocation(self) -> bool:
+        ...
+    def has_sensor_configuration(self) -> bool:
+        ...
+    def has_sensor_data_latlon(self) -> bool:
+        ...
+    def has_timestamp(self) -> bool:
         ...
     def has_watercolumn(self) -> bool:
         ...
@@ -156,6 +161,8 @@ class I_Ping(I_PingCommon):
         """
         Set the timestamp using a datetime object
         """
+    def set_geolocation(self, geolocation: themachinethatgoesping.navigation.datastructures.GeolocationLatLon) -> None:
+        ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensordataLatLon) -> None:
@@ -214,6 +221,16 @@ class I_PingBottom(I_PingCommon):
         Returns:
             uint16_t
         """
+    def get_number_of_tx_sectors(self) -> int:
+        """
+        Get the number of transmission sectors.
+        
+        This function returns the number of transmission sectors for the
+        echosounder.
+        
+        Returns:
+            The number of transmission sectors.
+        """
     @typing.overload
     def get_two_way_travel_times(self) -> numpy.ndarray[numpy.float32]:
         """
@@ -232,6 +249,14 @@ class I_PingBottom(I_PingCommon):
         """
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
         ...
+    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
+        """
+        Get the transmission signal parameters per sector.
+        
+        Returns:
+            const std::vector<algorithms::signalprocessing::datastructures::Tx
+            SignalParameters>&
+        """
     @typing.overload
     def get_xyz(self) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
         """
@@ -282,6 +307,10 @@ class I_PingBottom(I_PingCommon):
         Returns:
             false
         """
+    def has_tx_sector_information(self) -> bool:
+        ...
+    def has_tx_signal_parameters(self) -> bool:
+        ...
     def has_xyz(self) -> bool:
         """
         Check this pings supports XYZ data
@@ -322,24 +351,6 @@ class I_PingCommon:
         
         Returns:
             std::string
-        """
-    def get_number_of_tx_sectors(self) -> int:
-        """
-        Get the number of transmission sectors.
-        
-        This function returns the number of transmission sectors for the
-        echosounder.
-        
-        Returns:
-            The number of transmission sectors.
-        """
-    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
-        """
-        Get the transmission signal parameters per sector.
-        
-        Returns:
-            const std::vector<algorithms::signalprocessing::datastructures::Tx
-            SignalParameters>&
         """
     def has_all_of_features(self, feature_names: list[str]) -> bool:
         """
@@ -391,10 +402,6 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_tx_sector_information(self) -> bool:
-        ...
-    def has_tx_signal_parameters(self) -> bool:
-        ...
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
@@ -652,6 +659,16 @@ class I_PingWatercolumn(I_PingCommon):
     @typing.overload
     def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
         ...
+    def get_number_of_tx_sectors(self) -> int:
+        """
+        Get the number of transmission sectors.
+        
+        This function returns the number of transmission sectors for the
+        echosounder.
+        
+        Returns:
+            The number of transmission sectors.
+        """
     def get_sample_interval(self) -> float:
         """
         Get the sample interval in seconds
@@ -663,6 +680,14 @@ class I_PingWatercolumn(I_PingCommon):
         ...
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
         ...
+    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
+        """
+        Get the transmission signal parameters per sector.
+        
+        Returns:
+            const std::vector<algorithms::signalprocessing::datastructures::Tx
+            SignalParameters>&
+        """
     def has_amplitudes(self) -> bool:
         """
         Check this pings supports AMPLITUDES data
@@ -693,3 +718,7 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
+    def has_tx_sector_information(self) -> bool:
+        ...
+    def has_tx_signal_parameters(self) -> bool:
+        ...

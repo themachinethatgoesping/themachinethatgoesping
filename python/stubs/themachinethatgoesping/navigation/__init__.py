@@ -800,6 +800,16 @@ class SensorConfiguration:
         Returns:
             waterline_offset
         """
+    def has_target(self, target_id: str) -> bool:
+        """
+        Checks if the sensor configuration has a target with the specified ID.
+        
+        Parameter ``target_id``:
+            The ID of the target to check for.
+        
+        Returns:
+            True if the sensor configuration has the target, false otherwise.
+        """
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -938,4 +948,4 @@ class ostream_redirect:
         ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None:
         ...
-__version__: str = '0.15.0'
+__version__: str = '0.15.1'

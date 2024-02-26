@@ -394,6 +394,8 @@ class KongsbergAllConfigurationDataInterface:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
+    def get_trx_sensor_configuration_per_channel_id(self, index: int, target_prefix: str = 'TRX') -> ...:
+        ...
     def info_string(self, float_precision: int = 2) -> str:
         """
         Return object information as string
@@ -751,6 +753,8 @@ class KongsbergAllConfigurationDataInterface_mapped:
     def deinitialize(self) -> None:
         ...
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+        ...
+    def get_trx_sensor_configuration_per_channel_id(self, index: int, target_prefix: str = 'TRX') -> ...:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1630,12 +1634,6 @@ class KongsbergAllNavigationDataInterface:
         """
         Return object information as string
         """
-    @typing.overload
-    def channel_ids(self) -> list[str]:
-        ...
-    @typing.overload
-    def channel_ids(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> list[str]:
-        ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface:
         ...
     @typing.overload
@@ -1644,13 +1642,23 @@ class KongsbergAllNavigationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
+    @typing.overload
+    def get_channel_ids(self) -> list[str]:
+        ...
+    @typing.overload
+    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+        ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+    def get_navigation_interpolators(self) -> dict[int, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
-    def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
+    def get_sensor_data(self, sensor_configuration_hash: int, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
+        ...
+    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+        ...
+    def has_sensor_data(self, sensor_configuration_hash: int) -> bool:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1914,12 +1922,6 @@ class KongsbergAllNavigationDataInterface_mapped:
         """
         Return object information as string
         """
-    @typing.overload
-    def channel_ids(self) -> list[str]:
-        ...
-    @typing.overload
-    def channel_ids(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> list[str]:
-        ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
         ...
     @typing.overload
@@ -1928,13 +1930,23 @@ class KongsbergAllNavigationDataInterface_mapped:
     @typing.overload
     def deinitialize(self) -> None:
         ...
+    @typing.overload
+    def get_channel_ids(self) -> list[str]:
+        ...
+    @typing.overload
+    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+        ...
     def get_geolocation(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, channel_id: str, timestamp: float) -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_navigation_interpolators(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
+    def get_navigation_interpolators(self) -> dict[int, themachinethatgoesping.navigation.NavigationInterpolatorLatLon]:
         ...
-    def get_sensor_data(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
+    def get_sensor_data(self, sensor_configuration_hash: int, timestamp: float) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
+        ...
+    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+        ...
+    def has_sensor_data(self, sensor_configuration_hash: int) -> bool:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2370,8 +2382,6 @@ class KongsbergAllPingDataInterface:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
-        ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface:
         ...
     @typing.overload
@@ -2381,6 +2391,8 @@ class KongsbergAllPingDataInterface:
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface:
+        ...
+    def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
     def get_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
@@ -2664,8 +2676,6 @@ class KongsbergAllPingDataInterface_mapped:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
-        ...
     def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
         ...
     @typing.overload
@@ -2675,6 +2685,8 @@ class KongsbergAllPingDataInterface_mapped:
     def deinitialize(self) -> None:
         ...
     def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_mapped:
+        ...
+    def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
     def get_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:

@@ -32,9 +32,11 @@ class SimradRawFileHandler:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
+    def get_channel_ids(self) -> list[str]:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
+        ...
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -45,8 +47,6 @@ class SimradRawFileHandler:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
-        ...
-    def pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
@@ -99,9 +99,11 @@ class SimradRawFileHandler_mapped:
         """
         Return object information as string
         """
-    def channel_ids(self) -> list[str]:
+    def get_channel_ids(self) -> list[str]:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
+        ...
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_mapped:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -112,8 +114,6 @@ class SimradRawFileHandler_mapped:
         ...
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
-        ...
-    def pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_mapped:
         ...
     def print(self, float_precision: int = 2) -> None:
         """

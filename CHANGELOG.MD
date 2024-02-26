@@ -7,6 +7,41 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [Unreleased]
+
+- echosounders -> 0.36.0
+- navigation -> 0.15.1
+- algorithms -> 0.5.9
+
+### Changed
+
+- echosounders:
+  - Throw error when trying to initialize handler with empty list of files
+  - tx_signal_parameters and number_of_tx_sectors features are now exclusively features of ping.bottom and ping.watercolumn
+  - FileHandler.pings() method is renamed to FileHandler.get_pings()
+  - FileHandler.channel_ids() method is renamed to FileHandler.get_channel_ids()
+  - Ping: timestamp, channel_id, geolocation, sensor_data, datetime and sensor configuration are now features
+  - NavigationDataInterface: has_sensor_data function (to check if sensor data is available for a specific SensorConfiguration)
+
+### Added
+- echosounders:
+  - Ping: set_geolocation function (not sure if this method will remain like this)
+- navigation:
+  - SensorConfiguration has_target function to check if a target_id has been added
+  - valid() function for navigationinterpolators (latlon and local)
+
+### Fixed
+- navigation:
+  SensorConfiguration hash changed when writing/reading to binary because the order of the targets is not guaranteed
+- echosounders:
+  - avoid duplicate sensor configuration hashing in ping initialization
+  - avoid duplicate sensor configuration hashing in navigation interpolation
+  - check navigation validity before trying to access it
+  - reading error for sensorconfiguration cache
+- algorithms:
+  - reading error for sensorconfiguration cache
+
+
 ## [0.18.2] - 2024-02-22
 
 - echosounders -> 0.35.2
