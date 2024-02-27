@@ -8,7 +8,7 @@ import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn']
+__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_sample', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
 class FileCache:
     """
     """
@@ -352,7 +352,7 @@ class I_PingCommon:
         Returns:
             std::string
         """
-    def has_all_of_features(self, feature_names: list[str]) -> bool:
+    def has_all_of_features(self, feature_names: list[t_pingfeature]) -> bool:
         """
         Check if all of the specified features are available
         
@@ -362,7 +362,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_any_of_features(self, feature_names: list[str]) -> bool:
+    def has_any_of_features(self, feature_names: list[t_pingfeature]) -> bool:
         """
         Check if any of the specified features is available
         
@@ -372,7 +372,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_feature(self, feature_name: str) -> bool:
+    def has_feature(self, feature_name: t_pingfeature) -> bool:
         """
         Check if any of the registered features is available
         
@@ -392,7 +392,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_main_features(self) -> bool:
+    def has_primary_features(self) -> bool:
         """
         Check if any of the registered main features is available
         
@@ -410,13 +410,8 @@ class I_PingCommon:
         ...
     def loaded(self) -> bool:
         ...
-    def main_features(self) -> str:
-        """
-        Get a string of all registered main features for this ping class
-        
-        Returns:
-            std::string
-        """
+    def primary_features(self) -> str:
+        ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
@@ -722,3 +717,108 @@ class I_PingWatercolumn(I_PingCommon):
         ...
     def has_tx_signal_parameters(self) -> bool:
         ...
+class t_pingfeature:
+    """
+    
+    
+    Members:
+    
+      timestamp
+    
+      datetime
+    
+      channel_id
+    
+      sensor_configuration
+    
+      sensor_data_latlon
+    
+      geolocation
+    
+      bottom
+    
+      watercolumn
+    
+      tx_signal_parameters
+    
+      number_of_tx_sectors
+    
+      beam_crosstrack_angles
+    
+      two_way_travel_times
+    
+      xyz
+    
+      amplitudes
+    
+      av
+    
+      bottom_range_sample
+    """
+    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 6>, 'watercolumn': <t_pingfeature.watercolumn: 7>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 8>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 9>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 10>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 11>, 'xyz': <t_pingfeature.xyz: 12>, 'amplitudes': <t_pingfeature.amplitudes: 13>, 'av': <t_pingfeature.av: 14>, 'bottom_range_sample': <t_pingfeature.bottom_range_sample: 15>}
+    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 13>
+    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 14>
+    beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 10>
+    bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 6>
+    bottom_range_sample: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_sample: 15>
+    channel_id: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.channel_id: 2>
+    datetime: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.datetime: 1>
+    geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 5>
+    number_of_tx_sectors: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_tx_sectors: 9>
+    sensor_configuration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_configuration: 3>
+    sensor_data_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_data_latlon: 4>
+    timestamp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.timestamp: 0>
+    two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 11>
+    tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 8>
+    watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 7>
+    xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 12>
+    def __eq__(self, other: typing.Any) -> bool:
+        ...
+    def __getstate__(self) -> int:
+        ...
+    def __hash__(self) -> int:
+        ...
+    def __index__(self) -> int:
+        ...
+    @typing.overload
+    def __init__(self, value: int) -> None:
+        ...
+    @typing.overload
+    def __init__(self, str: str) -> None:
+        """
+        Construct this enum type from string
+        """
+    def __int__(self) -> int:
+        ...
+    def __ne__(self, other: typing.Any) -> bool:
+        ...
+    def __repr__(self) -> str:
+        ...
+    def __setstate__(self, state: int) -> None:
+        ...
+    def __str__(self) -> str:
+        ...
+    def str(self) -> str:
+        ...
+    @property
+    def name(self) -> str:
+        ...
+    @property
+    def value(self) -> int:
+        ...
+amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 13>
+av: t_pingfeature  # value = <t_pingfeature.av: 14>
+beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 10>
+bottom: t_pingfeature  # value = <t_pingfeature.bottom: 6>
+bottom_range_sample: t_pingfeature  # value = <t_pingfeature.bottom_range_sample: 15>
+channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
+datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
+geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 5>
+number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 9>
+sensor_configuration: t_pingfeature  # value = <t_pingfeature.sensor_configuration: 3>
+sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 4>
+timestamp: t_pingfeature  # value = <t_pingfeature.timestamp: 0>
+two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 11>
+tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 8>
+watercolumn: t_pingfeature  # value = <t_pingfeature.watercolumn: 7>
+xyz: t_pingfeature  # value = <t_pingfeature.xyz: 12>

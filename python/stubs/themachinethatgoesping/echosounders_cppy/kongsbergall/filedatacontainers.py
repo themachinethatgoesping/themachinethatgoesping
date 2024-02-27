@@ -2,7 +2,6 @@
 KongsbergAll (kongsberg .all / .wcd) file data container classes
 """
 from __future__ import annotations
-import pybind11_stubgen.typing_ext
 import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes
@@ -3275,22 +3274,6 @@ class KongsbergAllPingContainer:
         """
     def size(self) -> int:
         ...
-    def split_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[KongsbergAllPingContainer], pybind11_stubgen.typing_ext.FixedSize(2)]:
-        """
-        Split the data in containers that have all requested features and
-        containers that miss any of them
-        
-        Parameter ``and_features:``:
-            ping will be sorted into first container if all features are
-            present
-        
-        Parameter ``or_features:``:
-            ping will be sorted into second container if any of the features
-            is
-        
-        Returns:
-            std::array<PingContainer<type_Ping>, 2>
-        """
     def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, KongsbergAllPingContainer]:
         ...
     def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllPingContainer]:
@@ -3371,22 +3354,6 @@ class KongsbergAllPingContainer_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_features(self, and_features: list[str] = [], or_features: list[str] = []) -> typing.Annotated[list[KongsbergAllPingContainer_mapped], pybind11_stubgen.typing_ext.FixedSize(2)]:
-        """
-        Split the data in containers that have all requested features and
-        containers that miss any of them
-        
-        Parameter ``and_features:``:
-            ping will be sorted into first container if all features are
-            present
-        
-        Parameter ``or_features:``:
-            ping will be sorted into second container if any of the features
-            is
-        
-        Returns:
-            std::array<PingContainer<type_Ping>, 2>
-        """
     def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, KongsbergAllPingContainer_mapped]:
         ...
     def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllPingContainer_mapped]:

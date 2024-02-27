@@ -7,6 +7,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
+## [Unreleased]
+
+- echosounders -> 0.36.1
+
+### Internal
+
+- echosounders
+  - Reworked pingfeatures: use enum instead of std::string
+  - Reworked pingfeatures: do not safe features twice
+  - Reworked pingfeatures: replace unordered_map with flat_map to safe memory
+
 ## [0.19.0] - 2024-02-22
 
 - echosounders -> 0.36.0
