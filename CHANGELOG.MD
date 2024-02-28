@@ -12,6 +12,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.37.0
 - algorithms -> 0.6.0
 - tools -> 0.22.3
+- pingprocessing -> 0.5.4
+
+### Added
+
+- pingprocessing
+  - create echogram groups functions
 
 ### Changed
 
