@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
-__all__ = ['KongsbergAllAnnotationDataInterface', 'KongsbergAllAnnotationDataInterfacePerFile', 'KongsbergAllAnnotationDataInterfacePerFile_mapped', 'KongsbergAllAnnotationDataInterface_mapped', 'KongsbergAllConfigurationDataInterface', 'KongsbergAllConfigurationDataInterfacePerFile', 'KongsbergAllConfigurationDataInterfacePerFile_mapped', 'KongsbergAllConfigurationDataInterface_mapped', 'KongsbergAllDatagramDataInterface', 'KongsbergAllDatagramDataInterfacePerFile', 'KongsbergAllDatagramDataInterfacePerFile_mapped', 'KongsbergAllDatagramDataInterface_mapped', 'KongsbergAllDatagramInterface', 'KongsbergAllDatagramInterface_mapped', 'KongsbergAllEnvironmentDataInterface', 'KongsbergAllEnvironmentDataInterfacePerFile', 'KongsbergAllEnvironmentDataInterfacePerFile_mapped', 'KongsbergAllEnvironmentDataInterface_mapped', 'KongsbergAllNavigationDataInterface', 'KongsbergAllNavigationDataInterfacePerFile', 'KongsbergAllNavigationDataInterfacePerFile_mapped', 'KongsbergAllNavigationDataInterface_mapped', 'KongsbergAllOtherFileDataInterface', 'KongsbergAllOtherFileDataInterfacePerFile', 'KongsbergAllOtherFileDataInterfacePerFile_mapped', 'KongsbergAllOtherFileDataInterface_mapped', 'KongsbergAllPingDataInterface', 'KongsbergAllPingDataInterfacePerFile', 'KongsbergAllPingDataInterfacePerFile_mapped', 'KongsbergAllPingDataInterface_mapped']
+__all__ = ['KongsbergAllAnnotationDataInterface', 'KongsbergAllAnnotationDataInterfacePerFile', 'KongsbergAllAnnotationDataInterfacePerFile_stream', 'KongsbergAllAnnotationDataInterface_stream', 'KongsbergAllConfigurationDataInterface', 'KongsbergAllConfigurationDataInterfacePerFile', 'KongsbergAllConfigurationDataInterfacePerFile_stream', 'KongsbergAllConfigurationDataInterface_stream', 'KongsbergAllDatagramDataInterface', 'KongsbergAllDatagramDataInterfacePerFile', 'KongsbergAllDatagramDataInterfacePerFile_stream', 'KongsbergAllDatagramDataInterface_stream', 'KongsbergAllDatagramInterface', 'KongsbergAllDatagramInterface_stream', 'KongsbergAllEnvironmentDataInterface', 'KongsbergAllEnvironmentDataInterfacePerFile', 'KongsbergAllEnvironmentDataInterfacePerFile_stream', 'KongsbergAllEnvironmentDataInterface_stream', 'KongsbergAllNavigationDataInterface', 'KongsbergAllNavigationDataInterfacePerFile', 'KongsbergAllNavigationDataInterfacePerFile_stream', 'KongsbergAllNavigationDataInterface_stream', 'KongsbergAllOtherFileDataInterface', 'KongsbergAllOtherFileDataInterfacePerFile', 'KongsbergAllOtherFileDataInterfacePerFile_stream', 'KongsbergAllOtherFileDataInterface_stream', 'KongsbergAllPingDataInterface', 'KongsbergAllPingDataInterfacePerFile', 'KongsbergAllPingDataInterfacePerFile_stream', 'KongsbergAllPingDataInterface_stream']
 class KongsbergAllAnnotationDataInterface:
     """
     Interface to read annotation data (no kongsberg datagram is currently
@@ -21,7 +21,7 @@ class KongsbergAllAnnotationDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -54,7 +54,7 @@ class KongsbergAllAnnotationDataInterface:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[..., ...]:
+    def per_file(self) -> list[...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -65,7 +65,7 @@ class KongsbergAllAnnotationDataInterface:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[..., ...]:
+    def per_primary_file(self) -> list[...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -74,7 +74,7 @@ class KongsbergAllAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[..., ...]:
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -191,7 +191,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         """
         Print object information
         """
-class KongsbergAllAnnotationDataInterfacePerFile_mapped:
+class KongsbergAllAnnotationDataInterfacePerFile_stream:
     """
     Interface to read annotation data (no kongsberg datagram is currently
     supported) from a file (per file)
@@ -285,13 +285,13 @@ class KongsbergAllAnnotationDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-class KongsbergAllAnnotationDataInterface_mapped:
+class KongsbergAllAnnotationDataInterface_stream:
     """
     Interface to read annotation data (no kongsberg datagram is currently
     supported) from a file (multiple files)
@@ -300,80 +300,6 @@ class KongsbergAllAnnotationDataInterface_mapped:
     to AnnotationDataInterfacePerFile using the per_file function.
     
     Template parameter ``t_ifstream``:
-    """
-    @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
-        ...
-    def __repr__(self) -> str:
-        """
-        Return object information as string
-        """
-    def __str__(self) -> str:
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def deinitialize(self) -> None:
-        ...
-    @typing.overload
-    def deinitialize(self) -> None:
-        ...
-    def info_string(self, float_precision: int = 2) -> str:
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def is_initialized(self) -> bool:
-        ...
-    @typing.overload
-    def is_initialized(self) -> bool:
-        ...
-    @typing.overload
-    def per_file(self) -> list[...]:
-        """
-        get a vector with references to the per file interfaces This is useful
-        for iterating over all files
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    @typing.overload
-    def per_file(self, file_nr: int) -> ...:
-        ...
-    def per_primary_file(self) -> list[...]:
-        """
-        get a vector with references to the primary per file interfaces This
-        is useful for iterating over all primary files Secondary files will be
-        ignored (e.g. .wcd for Kongsberg data if .all is present)
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    def per_secondary_file(self) -> list[...]:
-        """
-        get a vector with references to the secondary per file interfaces This
-        is useful for iterating over all secondary files Primary files will be
-        ignored (e.g. .all for Kongsberg data if .wcd is present)
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    def print(self, float_precision: int = 2) -> None:
-        """
-        Print object information
-        """
-    def verify_linked_file_interfaces_are_consistent(self) -> None:
-        """
-        This functions throws if linked file interfaces are not consistent
-        """
-class KongsbergAllConfigurationDataInterface:
-    """
     """
     @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
@@ -391,10 +317,6 @@ class KongsbergAllConfigurationDataInterface:
         ...
     @typing.overload
     def deinitialize(self) -> None:
-        ...
-    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
-        ...
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -434,6 +356,84 @@ class KongsbergAllConfigurationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     def per_secondary_file(self) -> list[..., ...]:
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None:
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
+class KongsbergAllConfigurationDataInterface:
+    """
+    """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+        ...
+    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def per_file(self) -> list[...]:
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @typing.overload
+    def per_file(self, file_nr: int) -> ...:
+        ...
+    def per_primary_file(self) -> list[...]:
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -591,7 +591,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
-class KongsbergAllConfigurationDataInterfacePerFile_mapped:
+class KongsbergAllConfigurationDataInterfacePerFile_stream:
     """
     """
     def __repr__(self) -> str:
@@ -690,7 +690,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
@@ -732,11 +732,11 @@ class KongsbergAllConfigurationDataInterfacePerFile_mapped:
         """
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
-class KongsbergAllConfigurationDataInterface_mapped:
+class KongsbergAllConfigurationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -755,88 +755,6 @@ class KongsbergAllConfigurationDataInterface_mapped:
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
-        ...
-    def info_string(self, float_precision: int = 2) -> str:
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
-        ...
-    @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
-        ...
-    @typing.overload
-    def is_initialized(self) -> bool:
-        ...
-    @typing.overload
-    def is_initialized(self) -> bool:
-        ...
-    @typing.overload
-    def per_file(self) -> list[...]:
-        """
-        get a vector with references to the per file interfaces This is useful
-        for iterating over all files
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    @typing.overload
-    def per_file(self, file_nr: int) -> ...:
-        ...
-    def per_primary_file(self) -> list[...]:
-        """
-        get a vector with references to the primary per file interfaces This
-        is useful for iterating over all primary files Secondary files will be
-        ignored (e.g. .wcd for Kongsberg data if .all is present)
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    def per_secondary_file(self) -> list[...]:
-        """
-        get a vector with references to the secondary per file interfaces This
-        is useful for iterating over all secondary files Primary files will be
-        ignored (e.g. .all for Kongsberg data if .wcd is present)
-        
-        Returns:
-            std::vector<t_filedatainterface_perfile&>
-        """
-    def print(self, float_precision: int = 2) -> None:
-        """
-        Print object information
-        """
-    def verify_linked_file_interfaces_are_consistent(self) -> None:
-        """
-        This functions throws if linked file interfaces are not consistent
-        """
-class KongsbergAllDatagramDataInterface:
-    """
-    FileDataInterface (for multiple files) for packages that fit neither
-    of the other FileDataInterfaces (Configuration, Navigation,
-    Annotation, Environment, Ping)
-    
-    No datagram caching is implemented for this interface. Accessed
-    packages are always read from file
-    
-    Template parameter ``t_ifstream``:
-    """
-    @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
-        ...
-    def __repr__(self) -> str:
-        """
-        Return object information as string
-        """
-    def __str__(self) -> str:
-        """
-        Return object information as string
-        """
-    @typing.overload
-    def deinitialize(self) -> None:
-        ...
-    @typing.overload
-    def deinitialize(self) -> None:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -876,6 +794,88 @@ class KongsbergAllDatagramDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     def per_secondary_file(self) -> list[..., ...]:
+        """
+        get a vector with references to the secondary per file interfaces This
+        is useful for iterating over all secondary files Primary files will be
+        ignored (e.g. .all for Kongsberg data if .wcd is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def verify_linked_file_interfaces_are_consistent(self) -> None:
+        """
+        This functions throws if linked file interfaces are not consistent
+        """
+class KongsbergAllDatagramDataInterface:
+    """
+    FileDataInterface (for multiple files) for packages that fit neither
+    of the other FileDataInterfaces (Configuration, Navigation,
+    Annotation, Environment, Ping)
+    
+    No datagram caching is implemented for this interface. Accessed
+    packages are always read from file
+    
+    Template parameter ``t_ifstream``:
+    """
+    @staticmethod
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    @typing.overload
+    def deinitialize(self) -> None:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+        ...
+    @typing.overload
+    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def is_initialized(self) -> bool:
+        ...
+    @typing.overload
+    def per_file(self) -> list[...]:
+        """
+        get a vector with references to the per file interfaces This is useful
+        for iterating over all files
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    @typing.overload
+    def per_file(self, file_nr: int) -> ...:
+        ...
+    def per_primary_file(self) -> list[...]:
+        """
+        get a vector with references to the primary per file interfaces This
+        is useful for iterating over all primary files Secondary files will be
+        ignored (e.g. .wcd for Kongsberg data if .all is present)
+        
+        Returns:
+            std::vector<t_filedatainterface_perfile&>
+        """
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -993,7 +993,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         """
         Print object information
         """
-class KongsbergAllDatagramDataInterfacePerFile_mapped:
+class KongsbergAllDatagramDataInterfacePerFile_stream:
     """
     FileDataInterface (for single files) for packages that fit neither of
     the other FileDataInterfaces (Configuration, Navigation, Annotation,
@@ -1088,13 +1088,13 @@ class KongsbergAllDatagramDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-class KongsbergAllDatagramDataInterface_mapped:
+class KongsbergAllDatagramDataInterface_stream:
     """
     FileDataInterface (for multiple files) for packages that fit neither
     of the other FileDataInterfaces (Configuration, Navigation,
@@ -1106,7 +1106,7 @@ class KongsbergAllDatagramDataInterface_mapped:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1139,7 +1139,7 @@ class KongsbergAllDatagramDataInterface_mapped:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[...]:
+    def per_file(self) -> list[..., ...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -1150,7 +1150,7 @@ class KongsbergAllDatagramDataInterface_mapped:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[...]:
+    def per_primary_file(self) -> list[..., ...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -1159,7 +1159,7 @@ class KongsbergAllDatagramDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[...]:
+    def per_secondary_file(self) -> list[..., ...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -1223,7 +1223,7 @@ class KongsbergAllDatagramInterface:
         """
         Print object information
         """
-class KongsbergAllDatagramInterface_mapped:
+class KongsbergAllDatagramInterface_stream:
     """
     """
     def __repr__(self) -> str:
@@ -1264,7 +1264,7 @@ class KongsbergAllDatagramInterface_mapped:
         """
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
@@ -1274,7 +1274,7 @@ class KongsbergAllEnvironmentDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1311,7 +1311,7 @@ class KongsbergAllEnvironmentDataInterface:
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface:
         ...
     @typing.overload
-    def per_file(self) -> list[..., ...]:
+    def per_file(self) -> list[...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -1322,7 +1322,7 @@ class KongsbergAllEnvironmentDataInterface:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[..., ...]:
+    def per_primary_file(self) -> list[...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -1331,7 +1331,7 @@ class KongsbergAllEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[..., ...]:
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -1445,7 +1445,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         """
         Print object information
         """
-class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
+class KongsbergAllEnvironmentDataInterfacePerFile_stream:
     """
     """
     def __repr__(self) -> str:
@@ -1456,7 +1456,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
     @typing.overload
     def datagram_headers(self) -> typing.Any:
@@ -1534,19 +1534,19 @@ class KongsbergAllEnvironmentDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
+    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_stream:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-class KongsbergAllEnvironmentDataInterface_mapped:
+class KongsbergAllEnvironmentDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1556,7 +1556,7 @@ class KongsbergAllEnvironmentDataInterface_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
     @typing.overload
     def deinitialize(self) -> None:
@@ -1580,10 +1580,10 @@ class KongsbergAllEnvironmentDataInterface_mapped:
     @typing.overload
     def is_initialized(self) -> bool:
         ...
-    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
+    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_stream:
         ...
     @typing.overload
-    def per_file(self) -> list[...]:
+    def per_file(self) -> list[..., ...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -1594,7 +1594,7 @@ class KongsbergAllEnvironmentDataInterface_mapped:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[...]:
+    def per_primary_file(self) -> list[..., ...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -1603,7 +1603,7 @@ class KongsbergAllEnvironmentDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[...]:
+    def per_secondary_file(self) -> list[..., ...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -1624,7 +1624,7 @@ class KongsbergAllNavigationDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1677,7 +1677,7 @@ class KongsbergAllNavigationDataInterface:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[..., ...]:
+    def per_file(self) -> list[...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -1688,7 +1688,7 @@ class KongsbergAllNavigationDataInterface:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[..., ...]:
+    def per_primary_file(self) -> list[...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -1697,7 +1697,7 @@ class KongsbergAllNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[..., ...]:
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -1811,7 +1811,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-class KongsbergAllNavigationDataInterfacePerFile_mapped:
+class KongsbergAllNavigationDataInterfacePerFile_stream:
     """
     """
     def __repr__(self) -> str:
@@ -1822,7 +1822,7 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
     @typing.overload
     def datagram_headers(self) -> typing.Any:
@@ -1900,7 +1900,7 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
@@ -1908,11 +1908,11 @@ class KongsbergAllNavigationDataInterfacePerFile_mapped:
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-class KongsbergAllNavigationDataInterface_mapped:
+class KongsbergAllNavigationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1922,7 +1922,7 @@ class KongsbergAllNavigationDataInterface_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
     @typing.overload
     def deinitialize(self) -> None:
@@ -1965,7 +1965,7 @@ class KongsbergAllNavigationDataInterface_mapped:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[...]:
+    def per_file(self) -> list[..., ...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -1976,7 +1976,7 @@ class KongsbergAllNavigationDataInterface_mapped:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[...]:
+    def per_primary_file(self) -> list[..., ...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -1985,7 +1985,7 @@ class KongsbergAllNavigationDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[...]:
+    def per_secondary_file(self) -> list[..., ...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -2014,7 +2014,7 @@ class KongsbergAllOtherFileDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2047,7 +2047,7 @@ class KongsbergAllOtherFileDataInterface:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[..., ...]:
+    def per_file(self) -> list[...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -2058,7 +2058,7 @@ class KongsbergAllOtherFileDataInterface:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[..., ...]:
+    def per_primary_file(self) -> list[...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -2067,7 +2067,7 @@ class KongsbergAllOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[..., ...]:
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -2185,7 +2185,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         """
         Print object information
         """
-class KongsbergAllOtherFileDataInterfacePerFile_mapped:
+class KongsbergAllOtherFileDataInterfacePerFile_stream:
     """
     FileDataInterface (for single files) for packages that fit neither of
     the other FileDataInterfaces (Configuration, Navigation, Annotation,
@@ -2280,13 +2280,13 @@ class KongsbergAllOtherFileDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-class KongsbergAllOtherFileDataInterface_mapped:
+class KongsbergAllOtherFileDataInterface_stream:
     """
     FileDataInterface (for multiple files) for packages that fit neither
     of the other FileDataInterfaces (Configuration, Navigation,
@@ -2298,7 +2298,7 @@ class KongsbergAllOtherFileDataInterface_mapped:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2331,7 +2331,7 @@ class KongsbergAllOtherFileDataInterface_mapped:
     def is_initialized(self) -> bool:
         ...
     @typing.overload
-    def per_file(self) -> list[...]:
+    def per_file(self) -> list[..., ...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -2342,7 +2342,7 @@ class KongsbergAllOtherFileDataInterface_mapped:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[...]:
+    def per_primary_file(self) -> list[..., ...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -2351,7 +2351,7 @@ class KongsbergAllOtherFileDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[...]:
+    def per_secondary_file(self) -> list[..., ...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -2372,7 +2372,7 @@ class KongsbergAllPingDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2419,7 +2419,7 @@ class KongsbergAllPingDataInterface:
     def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface:
         ...
     @typing.overload
-    def per_file(self) -> list[..., ...]:
+    def per_file(self) -> list[...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -2430,7 +2430,7 @@ class KongsbergAllPingDataInterface:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[..., ...]:
+    def per_primary_file(self) -> list[...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -2439,7 +2439,7 @@ class KongsbergAllPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[..., ...]:
+    def per_secondary_file(self) -> list[...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be
@@ -2559,7 +2559,7 @@ class KongsbergAllPingDataInterfacePerFile:
         """
     def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
-class KongsbergAllPingDataInterfacePerFile_mapped:
+class KongsbergAllPingDataInterfacePerFile_stream:
     """
     """
     def __repr__(self) -> str:
@@ -2570,9 +2570,9 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
-    def configuration_data_interface_for_file(self) -> KongsbergAllConfigurationDataInterfacePerFile_mapped:
+    def configuration_data_interface_for_file(self) -> KongsbergAllConfigurationDataInterfacePerFile_stream:
         ...
     @typing.overload
     def datagram_headers(self) -> typing.Any:
@@ -2594,7 +2594,7 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         ...
     def deinitialize(self) -> None:
         ...
-    def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_mapped:
+    def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_stream:
         ...
     def get_file_name(self) -> str:
         ...
@@ -2652,21 +2652,21 @@ class KongsbergAllPingDataInterfacePerFile_mapped:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
+    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_stream:
         ...
-    def per_file(self) -> list[KongsbergAllDatagramInterface_mapped]:
+    def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
         """
-    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
-class KongsbergAllPingDataInterface_mapped:
+class KongsbergAllPingDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2676,7 +2676,7 @@ class KongsbergAllPingDataInterface_mapped:
         """
         Return object information as string
         """
-    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_data_interface(self) -> KongsbergAllConfigurationDataInterface_stream:
         ...
     @typing.overload
     def deinitialize(self) -> None:
@@ -2684,15 +2684,15 @@ class KongsbergAllPingDataInterface_mapped:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_mapped:
+    def environment_data_interface(self) -> KongsbergAllEnvironmentDataInterface_stream:
         ...
     def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
-    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def get_pings(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
     @typing.overload
-    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_mapped:
+    def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2710,10 +2710,10 @@ class KongsbergAllPingDataInterface_mapped:
     @typing.overload
     def is_initialized(self) -> bool:
         ...
-    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_mapped:
+    def navigation_data_interface(self) -> KongsbergAllNavigationDataInterface_stream:
         ...
     @typing.overload
-    def per_file(self) -> list[...]:
+    def per_file(self) -> list[..., ...]:
         """
         get a vector with references to the per file interfaces This is useful
         for iterating over all files
@@ -2724,7 +2724,7 @@ class KongsbergAllPingDataInterface_mapped:
     @typing.overload
     def per_file(self, file_nr: int) -> ...:
         ...
-    def per_primary_file(self) -> list[...]:
+    def per_primary_file(self) -> list[..., ...]:
         """
         get a vector with references to the primary per file interfaces This
         is useful for iterating over all primary files Secondary files will be
@@ -2733,7 +2733,7 @@ class KongsbergAllPingDataInterface_mapped:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def per_secondary_file(self) -> list[...]:
+    def per_secondary_file(self) -> list[..., ...]:
         """
         get a vector with references to the secondary per file interfaces This
         is useful for iterating over all secondary files Primary files will be

@@ -8,7 +8,7 @@ from . import datagrams
 from . import filedatacontainers
 from . import filedatainterfaces
 from . import filetypes
-__all__ = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram_type_from_string', 'SimradRawFileHandler', 'SimradRawFileHandler_mapped', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_SimradRawDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
+__all__ = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram_type_from_string', 'SimradRawFileHandler', 'SimradRawFileHandler_stream', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_SimradRawDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
 class SimradRawFileHandler:
     """
     """
@@ -76,7 +76,7 @@ class SimradRawFileHandler:
     @property
     def ping_interface(self) -> filedatainterfaces.SimradRawPingDataInterface:
         ...
-class SimradRawFileHandler_mapped:
+class SimradRawFileHandler_stream:
     """
     """
     @typing.overload
@@ -103,7 +103,7 @@ class SimradRawFileHandler_mapped:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
         ...
-    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_mapped:
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -120,28 +120,28 @@ class SimradRawFileHandler_mapped:
         Print object information
         """
     @property
-    def annotation_interface(self) -> filedatainterfaces.SimradRawAnnotationDataInterface_mapped:
+    def annotation_interface(self) -> filedatainterfaces.SimradRawAnnotationDataInterface_stream:
         ...
     @property
-    def configuration_interface(self) -> filedatainterfaces.SimradRawConfigurationDataInterface_mapped:
+    def configuration_interface(self) -> filedatainterfaces.SimradRawConfigurationDataInterface_stream:
         ...
     @property
-    def datagram_interface(self) -> filedatainterfaces.SimradRawDatagramInterface_mapped:
+    def datagram_interface(self) -> filedatainterfaces.SimradRawDatagramInterface_stream:
         ...
     @property
-    def datagramdata_interface(self) -> filedatainterfaces.SimradRawDatagramDataInterface_mapped:
+    def datagramdata_interface(self) -> filedatainterfaces.SimradRawDatagramDataInterface_stream:
         ...
     @property
-    def environment_interface(self) -> filedatainterfaces.SimradRawEnvironmentDataInterface_mapped:
+    def environment_interface(self) -> filedatainterfaces.SimradRawEnvironmentDataInterface_stream:
         ...
     @property
-    def navigation_interface(self) -> filedatainterfaces.SimradRawNavigationDataInterface_mapped:
+    def navigation_interface(self) -> filedatainterfaces.SimradRawNavigationDataInterface_stream:
         ...
     @property
-    def otherfiledata_interface(self) -> filedatainterfaces.SimradRawOtherFileDataInterface_mapped:
+    def otherfiledata_interface(self) -> filedatainterfaces.SimradRawOtherFileDataInterface_stream:
         ...
     @property
-    def ping_interface(self) -> filedatainterfaces.SimradRawPingDataInterface_mapped:
+    def ping_interface(self) -> filedatainterfaces.SimradRawPingDataInterface_stream:
         ...
 class t_SimradRawDatagramIdentifier:
     """
@@ -208,17 +208,17 @@ def datagram_type_to_string(datagram_type: int) -> str:
 @typing.overload
 def datagram_type_to_string(datagram_type: t_SimradRawDatagramIdentifier) -> str:
     ...
-def test_speed_decode_nmea(arg0: SimradRawFileHandler_mapped) -> None:
+def test_speed_decode_nmea(arg0: SimradRawFileHandler) -> None:
     ...
-def test_speed_decode_xml(mapped_file_stream: SimradRawFileHandler_mapped, level: int = 10) -> None:
+def test_speed_decode_xml(mapped_file_stream: SimradRawFileHandler, level: int = 10) -> None:
     ...
-def test_speed_header(arg0: SimradRawFileHandler_mapped, arg1: t_SimradRawDatagramIdentifier) -> None:
+def test_speed_header(arg0: SimradRawFileHandler, arg1: t_SimradRawDatagramIdentifier) -> None:
     ...
-def test_speed_raw(arg0: SimradRawFileHandler_mapped, arg1: t_SimradRawDatagramIdentifier) -> None:
+def test_speed_raw(arg0: SimradRawFileHandler, arg1: t_SimradRawDatagramIdentifier) -> None:
     ...
-def test_speed_raw_all(arg0: SimradRawFileHandler_mapped) -> None:
+def test_speed_raw_all(arg0: SimradRawFileHandler) -> None:
     ...
-def test_speed_type(arg0: SimradRawFileHandler_mapped, arg1: t_SimradRawDatagramIdentifier) -> None:
+def test_speed_type(arg0: SimradRawFileHandler, arg1: t_SimradRawDatagramIdentifier) -> None:
     ...
 FIL1: t_SimradRawDatagramIdentifier  # value = <t_SimradRawDatagramIdentifier.FIL1: 827083078>
 MRU0: t_SimradRawDatagramIdentifier  # value = <t_SimradRawDatagramIdentifier.MRU0: 810897997>

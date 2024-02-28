@@ -9,7 +9,7 @@ from . import datagrams
 from . import filedatacontainers
 from . import filedatainterfaces
 from . import filetypes
-__all__ = ['AttitudeDatagram', 'AttitudeVelocitySensor1', 'AttitudeVelocitySensor2', 'ClockDatagram', 'DepthOrHeightDatagram', 'DualHead', 'DualTXDualRX', 'ExtraDetections', 'ExtraParameters', 'HeadingDatagram', 'InstallationParametersStart', 'InstallationParametersStop', 'KongsbergAllAmpltitudeConverter_1d_d', 'KongsbergAllAmpltitudeConverter_1d_f', 'KongsbergAllAmpltitudeConverter_2d_d', 'KongsbergAllAmpltitudeConverter_2d_f', 'KongsbergAllDatagram_type_from_string', 'KongsbergAllFileHandler', 'KongsbergAllFileHandler_mapped', 'Modular', 'MotionSensor1', 'MotionSensor2', 'MultiCast1', 'MultiCast2', 'MultiCast3', 'NetworkAttitudeVelocityDatagram', 'NotSet', 'PUIDOutput', 'PUStatusOutput', 'PortableSingleHead', 'PositionDatagram', 'PositionSystem1', 'PositionSystem2', 'PositionSystem3', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SingleHead', 'SingleTXDualRX', 'SingleTXSingleRX', 'SoundSpeedProfileDatagram', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_KongsbergAllActiveSensor', 't_KongsbergAllDatagramIdentifier', 't_KongsbergAllSystemTransducerConfiguration', 'unspecified']
+__all__ = ['AttitudeDatagram', 'AttitudeVelocitySensor1', 'AttitudeVelocitySensor2', 'ClockDatagram', 'DepthOrHeightDatagram', 'DualHead', 'DualTXDualRX', 'ExtraDetections', 'ExtraParameters', 'HeadingDatagram', 'InstallationParametersStart', 'InstallationParametersStop', 'KongsbergAllAmpltitudeConverter_1d_d', 'KongsbergAllAmpltitudeConverter_1d_f', 'KongsbergAllAmpltitudeConverter_2d_d', 'KongsbergAllAmpltitudeConverter_2d_f', 'KongsbergAllDatagram_type_from_string', 'KongsbergAllFileHandler', 'KongsbergAllFileHandler_stream', 'Modular', 'MotionSensor1', 'MotionSensor2', 'MultiCast1', 'MultiCast2', 'MultiCast3', 'NetworkAttitudeVelocityDatagram', 'NotSet', 'PUIDOutput', 'PUStatusOutput', 'PortableSingleHead', 'PositionDatagram', 'PositionSystem1', 'PositionSystem2', 'PositionSystem3', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SingleHead', 'SingleTXDualRX', 'SingleTXSingleRX', 'SoundSpeedProfileDatagram', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_KongsbergAllActiveSensor', 't_KongsbergAllDatagramIdentifier', 't_KongsbergAllSystemTransducerConfiguration', 'unspecified']
 class KongsbergAllAmpltitudeConverter_1d_d:
     """
     """
@@ -257,7 +257,7 @@ class KongsbergAllFileHandler:
     @property
     def ping_interface(self) -> filedatainterfaces.KongsbergAllPingDataInterface:
         ...
-class KongsbergAllFileHandler_mapped:
+class KongsbergAllFileHandler_stream:
     """
     """
     @typing.overload
@@ -284,7 +284,7 @@ class KongsbergAllFileHandler_mapped:
         ...
     def get_file_cache_paths(self) -> dict[str, str]:
         ...
-    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_mapped:
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -301,28 +301,28 @@ class KongsbergAllFileHandler_mapped:
         Print object information
         """
     @property
-    def annotation_interface(self) -> filedatainterfaces.KongsbergAllAnnotationDataInterface_mapped:
+    def annotation_interface(self) -> filedatainterfaces.KongsbergAllAnnotationDataInterface_stream:
         ...
     @property
-    def configuration_interface(self) -> filedatainterfaces.KongsbergAllConfigurationDataInterface_mapped:
+    def configuration_interface(self) -> filedatainterfaces.KongsbergAllConfigurationDataInterface_stream:
         ...
     @property
-    def datagram_interface(self) -> filedatainterfaces.KongsbergAllDatagramInterface_mapped:
+    def datagram_interface(self) -> filedatainterfaces.KongsbergAllDatagramInterface_stream:
         ...
     @property
-    def datagramdata_interface(self) -> filedatainterfaces.KongsbergAllDatagramDataInterface_mapped:
+    def datagramdata_interface(self) -> filedatainterfaces.KongsbergAllDatagramDataInterface_stream:
         ...
     @property
-    def environment_interface(self) -> filedatainterfaces.KongsbergAllEnvironmentDataInterface_mapped:
+    def environment_interface(self) -> filedatainterfaces.KongsbergAllEnvironmentDataInterface_stream:
         ...
     @property
-    def navigation_interface(self) -> filedatainterfaces.KongsbergAllNavigationDataInterface_mapped:
+    def navigation_interface(self) -> filedatainterfaces.KongsbergAllNavigationDataInterface_stream:
         ...
     @property
-    def otherfiledata_interface(self) -> filedatainterfaces.KongsbergAllOtherFileDataInterface_mapped:
+    def otherfiledata_interface(self) -> filedatainterfaces.KongsbergAllOtherFileDataInterface_stream:
         ...
     @property
-    def ping_interface(self) -> filedatainterfaces.KongsbergAllPingDataInterface_mapped:
+    def ping_interface(self) -> filedatainterfaces.KongsbergAllPingDataInterface_stream:
         ...
 class t_KongsbergAllActiveSensor:
     """

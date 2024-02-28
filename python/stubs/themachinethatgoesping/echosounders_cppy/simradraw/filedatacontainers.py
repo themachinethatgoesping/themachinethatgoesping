@@ -8,7 +8,7 @@ import themachinethatgoesping.echosounders_cppy.simradraw.filetypes
 import themachinethatgoesping.navigation
 import themachinethatgoesping.tools_cppy.pyhelper
 import typing
-__all__ = ['SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_mapped', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_mapped', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_mapped', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_mapped', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_mapped', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_mapped', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_mapped', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_mapped', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_mapped', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_mapped', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_mapped', 'SimradRawPingContainer', 'SimradRawPingContainer_mapped']
+__all__ = ['SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_stream', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_stream', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_stream', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_stream', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_stream', 'SimradRawDatagramContainer_RAW3_stream', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_stream', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_stream', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_stream', 'SimradRawDatagramContainer_Variant_stream', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_stream', 'SimradRawPingContainer', 'SimradRawPingContainer_stream']
 class SimradRawDatagramContainer_FIL1:
     """
     """
@@ -73,24 +73,24 @@ class SimradRawDatagramContainer_FIL1:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_FIL1_mapped:
+class SimradRawDatagramContainer_FIL1_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_FIL1_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_FIL1_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_FIL1_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_FIL1_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_FIL1_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -98,13 +98,13 @@ class SimradRawDatagramContainer_FIL1_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_FIL1_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_FIL1_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_FIL1_mapped:
+    def copy(self) -> SimradRawDatagramContainer_FIL1_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -112,7 +112,7 @@ class SimradRawDatagramContainer_FIL1_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -124,7 +124,7 @@ class SimradRawDatagramContainer_FIL1_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_FIL1_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -201,24 +201,24 @@ class SimradRawDatagramContainer_Header:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_Header_mapped:
+class SimradRawDatagramContainer_Header_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Header_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Header_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_Header_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_Header_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Header_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Header_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Header_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -226,13 +226,13 @@ class SimradRawDatagramContainer_Header_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_Header_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_Header_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_Header_mapped:
+    def copy(self) -> SimradRawDatagramContainer_Header_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -240,7 +240,7 @@ class SimradRawDatagramContainer_Header_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -252,7 +252,7 @@ class SimradRawDatagramContainer_Header_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Header_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -329,24 +329,24 @@ class SimradRawDatagramContainer_MRU0:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_MRU0_mapped:
+class SimradRawDatagramContainer_MRU0_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_MRU0_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_MRU0_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_MRU0_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_MRU0_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.MRU0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_MRU0_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -354,13 +354,13 @@ class SimradRawDatagramContainer_MRU0_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_MRU0_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_MRU0_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_MRU0_mapped:
+    def copy(self) -> SimradRawDatagramContainer_MRU0_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -368,7 +368,7 @@ class SimradRawDatagramContainer_MRU0_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -380,7 +380,7 @@ class SimradRawDatagramContainer_MRU0_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_MRU0_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -457,24 +457,24 @@ class SimradRawDatagramContainer_NME0:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_NME0_mapped:
+class SimradRawDatagramContainer_NME0_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_NME0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_NME0_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_NME0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_NME0_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_NME0_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_NME0_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_NME0_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_NME0_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.NME0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_NME0_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -482,13 +482,13 @@ class SimradRawDatagramContainer_NME0_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_NME0_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_NME0_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_NME0_mapped:
+    def copy(self) -> SimradRawDatagramContainer_NME0_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -496,7 +496,7 @@ class SimradRawDatagramContainer_NME0_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -508,7 +508,7 @@ class SimradRawDatagramContainer_NME0_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_NME0_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -585,70 +585,6 @@ class SimradRawDatagramContainer_RAW3:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_RAW3_mapped:
-    """
-    """
-    @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    def __copy__(self) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
-        ...
-    @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    def __len__(self) -> int:
-        ...
-    def __repr__(self) -> str:
-        """
-        Return object information as string
-        """
-    def __reversed__(self) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    def __str__(self) -> str:
-        """
-        Return object information as string
-        """
-    def copy(self) -> SimradRawDatagramContainer_RAW3_mapped:
-        """
-        return a copy using the c++ default copy constructor
-        """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, int]:
-        ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
-        ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_mapped:
-        ...
-    def info_string(self, float_precision: int = 2) -> str:
-        """
-        Return object information as string
-        """
-    def print(self, float_precision: int = 2) -> None:
-        """
-        Print object information
-        """
-    def size(self) -> int:
-        ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
 class SimradRawDatagramContainer_RAW3_skipped_data:
     """
     """
@@ -713,24 +649,24 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+class SimradRawDatagramContainer_RAW3_skipped_data_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -738,13 +674,13 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def copy(self) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -752,7 +688,7 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -764,7 +700,71 @@ class SimradRawDatagramContainer_RAW3_skipped_data_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_skipped_data_stream]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
+class SimradRawDatagramContainer_RAW3_stream:
+    """
+    """
+    @typing.overload
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    @typing.overload
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    def __copy__(self) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    @typing.overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
+        ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    def __len__(self) -> int:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __reversed__(self) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradRawDatagramContainer_RAW3_stream:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, int]:
+        ...
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_stream:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def size(self) -> int:
+        ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_RAW3_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -841,24 +841,24 @@ class SimradRawDatagramContainer_TAG0:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_TAG0_mapped:
+class SimradRawDatagramContainer_TAG0_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_TAG0_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_TAG0_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_TAG0_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_TAG0_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.TAG0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_TAG0_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -866,13 +866,13 @@ class SimradRawDatagramContainer_TAG0_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_TAG0_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_TAG0_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_TAG0_mapped:
+    def copy(self) -> SimradRawDatagramContainer_TAG0_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -880,7 +880,7 @@ class SimradRawDatagramContainer_TAG0_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -892,7 +892,7 @@ class SimradRawDatagramContainer_TAG0_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_TAG0_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -969,24 +969,24 @@ class SimradRawDatagramContainer_Unknown:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_Unknown_mapped:
+class SimradRawDatagramContainer_Unknown_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Unknown_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Unknown_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_Unknown_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Unknown_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Unknown_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -994,13 +994,13 @@ class SimradRawDatagramContainer_Unknown_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_Unknown_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_Unknown_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_Unknown_mapped:
+    def copy(self) -> SimradRawDatagramContainer_Unknown_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1008,7 +1008,7 @@ class SimradRawDatagramContainer_Unknown_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1020,7 +1020,7 @@ class SimradRawDatagramContainer_Unknown_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Unknown_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1097,70 +1097,6 @@ class SimradRawDatagramContainer_Variant:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_Variant_mapped:
-    """
-    """
-    @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    def __copy__(self) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawDatagram | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawUnknown:
-        ...
-    @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    def __len__(self) -> int:
-        ...
-    def __repr__(self) -> str:
-        """
-        Return object information as string
-        """
-    def __reversed__(self) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    def __str__(self) -> str:
-        """
-        Return object information as string
-        """
-    def copy(self) -> SimradRawDatagramContainer_Variant_mapped:
-        """
-        return a copy using the c++ default copy constructor
-        """
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, int]:
-        ...
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
-        ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_mapped:
-        ...
-    def info_string(self, float_precision: int = 2) -> str:
-        """
-        Return object information as string
-        """
-    def print(self, float_precision: int = 2) -> None:
-        """
-        Print object information
-        """
-    def size(self) -> int:
-        ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_mapped]:
-        """
-        Split the data if the time difference between two subsequent datagrams
-        is larger than arg Note: for this function to make sense the data
-        should be sorted_in_time
-        
-        Parameter ``max_time_diff_seconds:``:
-            maximum time difference between two subsequent datagrams in
-            seconds
-        
-        Returns:
-            std::vector<DatagramContainer>
-        """
 class SimradRawDatagramContainer_Variant_skipped_data:
     """
     """
@@ -1225,24 +1161,24 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_Variant_skipped_data_mapped:
+class SimradRawDatagramContainer_Variant_skipped_data_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawDatagram | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1250,13 +1186,13 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def copy(self) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1264,7 +1200,7 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1276,7 +1212,71 @@ class SimradRawDatagramContainer_Variant_skipped_data_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_skipped_data_stream]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+        
+        Parameter ``max_time_diff_seconds:``:
+            maximum time difference between two subsequent datagrams in
+            seconds
+        
+        Returns:
+            std::vector<DatagramContainer>
+        """
+class SimradRawDatagramContainer_Variant_stream:
+    """
+    """
+    @typing.overload
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    @typing.overload
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    def __copy__(self) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    @typing.overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawDatagram | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.NME0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.MRU0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.TAG0 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.SimradRawUnknown:
+        ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    def __len__(self) -> int:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __reversed__(self) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> SimradRawDatagramContainer_Variant_stream:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier, int]:
+        ...
+    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
+        ...
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_stream:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def size(self) -> int:
+        ...
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_Variant_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1353,24 +1353,24 @@ class SimradRawDatagramContainer_XML0:
         Returns:
             std::vector<DatagramContainer>
         """
-class SimradRawDatagramContainer_XML0_mapped:
+class SimradRawDatagramContainer_XML0_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_XML0_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_XML0_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_XML0_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]) -> SimradRawDatagramContainer_XML0_stream:
         ...
-    def __copy__(self) -> SimradRawDatagramContainer_XML0_mapped:
+    def __copy__(self) -> SimradRawDatagramContainer_XML0_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_XML0_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawDatagramContainer_XML0_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawDatagramContainer_XML0_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1378,13 +1378,13 @@ class SimradRawDatagramContainer_XML0_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawDatagramContainer_XML0_mapped:
+    def __reversed__(self) -> SimradRawDatagramContainer_XML0_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawDatagramContainer_XML0_mapped:
+    def copy(self) -> SimradRawDatagramContainer_XML0_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1392,7 +1392,7 @@ class SimradRawDatagramContainer_XML0_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0_mapped:
+    def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1404,7 +1404,7 @@ class SimradRawDatagramContainer_XML0_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawDatagramContainer_XML0_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1497,24 +1497,24 @@ class SimradRawPingContainer:
         Returns:
             std::vector<PingContainer<type_Ping>>
         """
-class SimradRawPingContainer_mapped:
+class SimradRawPingContainer_stream:
     """
     """
     @typing.overload
-    def __call__(self, channel_id: str) -> SimradRawPingContainer_mapped:
+    def __call__(self, channel_id: str) -> SimradRawPingContainer_stream:
         ...
     @typing.overload
-    def __call__(self, channel_ids: list[str]) -> SimradRawPingContainer_mapped:
+    def __call__(self, channel_ids: list[str]) -> SimradRawPingContainer_stream:
         ...
-    def __copy__(self) -> SimradRawPingContainer_mapped:
+    def __copy__(self) -> SimradRawPingContainer_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawPingContainer_mapped:
-        ...
-    @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_mapped:
+    def __deepcopy__(self, arg0: dict) -> SimradRawPingContainer_stream:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawPingContainer_mapped:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream:
+        ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawPingContainer_stream:
         ...
     @typing.overload
     def __init__(self) -> None:
@@ -1522,7 +1522,7 @@ class SimradRawPingContainer_mapped:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_mapped]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -1532,13 +1532,13 @@ class SimradRawPingContainer_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> SimradRawPingContainer_mapped:
+    def __reversed__(self) -> SimradRawPingContainer_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> SimradRawPingContainer_mapped:
+    def copy(self) -> SimradRawPingContainer_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1546,9 +1546,9 @@ class SimradRawPingContainer_mapped:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_mapped]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream]:
         ...
-    def get_sorted_by_time(self) -> SimradRawPingContainer_mapped:
+    def get_sorted_by_time(self) -> SimradRawPingContainer_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1562,9 +1562,9 @@ class SimradRawPingContainer_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradRawPingContainer_mapped]:
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, SimradRawPingContainer_stream]:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawPingContainer_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[SimradRawPingContainer_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data

@@ -8,7 +8,7 @@ import themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes
 import themachinethatgoesping.navigation
 import themachinethatgoesping.tools_cppy.pyhelper
 import typing
-__all__ = ['KongsbergAllDatagramContainer_AttitudeDatagram', 'KongsbergAllDatagramContainer_AttitudeDatagram_mapped', 'KongsbergAllDatagramContainer_ClockDatagram', 'KongsbergAllDatagramContainer_ClockDatagram_mapped', 'KongsbergAllDatagramContainer_DepthOrHeightDatagram', 'KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped', 'KongsbergAllDatagramContainer_ExtraDetections', 'KongsbergAllDatagramContainer_ExtraDetections_mapped', 'KongsbergAllDatagramContainer_ExtraParameters', 'KongsbergAllDatagramContainer_ExtraParameters_mapped', 'KongsbergAllDatagramContainer_Header', 'KongsbergAllDatagramContainer_Header_mapped', 'KongsbergAllDatagramContainer_HeadingDatagram', 'KongsbergAllDatagramContainer_HeadingDatagram_mapped', 'KongsbergAllDatagramContainer_InstallationParameters', 'KongsbergAllDatagramContainer_InstallationParameters_mapped', 'KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram', 'KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped', 'KongsbergAllDatagramContainer_PUIDOutput', 'KongsbergAllDatagramContainer_PUIDOutput_mapped', 'KongsbergAllDatagramContainer_PUStatusOutput', 'KongsbergAllDatagramContainer_PUStatusOutput_mapped', 'KongsbergAllDatagramContainer_PositionDatagram', 'KongsbergAllDatagramContainer_PositionDatagram_mapped', 'KongsbergAllDatagramContainer_QualityFactorDatagram', 'KongsbergAllDatagramContainer_QualityFactorDatagram_mapped', 'KongsbergAllDatagramContainer_RawRangeAndAngle', 'KongsbergAllDatagramContainer_RawRangeAndAngle_mapped', 'KongsbergAllDatagramContainer_RuntimeParameters', 'KongsbergAllDatagramContainer_RuntimeParameters_mapped', 'KongsbergAllDatagramContainer_SeabedImageData', 'KongsbergAllDatagramContainer_SeabedImageData_mapped', 'KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth', 'KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped', 'KongsbergAllDatagramContainer_SoundSpeedProfileDatagram', 'KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped', 'KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram', 'KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped', 'KongsbergAllDatagramContainer_Unknown', 'KongsbergAllDatagramContainer_Unknown_mapped', 'KongsbergAllDatagramContainer_Variant', 'KongsbergAllDatagramContainer_Variant_SkippedData', 'KongsbergAllDatagramContainer_Variant_SkippedData_mapped', 'KongsbergAllDatagramContainer_Variant_mapped', 'KongsbergAllDatagramContainer_WatercolumnDatagram', 'KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData', 'KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped', 'KongsbergAllDatagramContainer_WatercolumnDatagram_mapped', 'KongsbergAllDatagramContainer_XYZDatagram', 'KongsbergAllDatagramContainer_XYZDatagram_mapped', 'KongsbergAllPingContainer', 'KongsbergAllPingContainer_mapped']
+__all__ = ['KongsbergAllDatagramContainer_AttitudeDatagram', 'KongsbergAllDatagramContainer_AttitudeDatagram_stream', 'KongsbergAllDatagramContainer_ClockDatagram', 'KongsbergAllDatagramContainer_ClockDatagram_stream', 'KongsbergAllDatagramContainer_DepthOrHeightDatagram', 'KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream', 'KongsbergAllDatagramContainer_ExtraDetections', 'KongsbergAllDatagramContainer_ExtraDetections_stream', 'KongsbergAllDatagramContainer_ExtraParameters', 'KongsbergAllDatagramContainer_ExtraParameters_stream', 'KongsbergAllDatagramContainer_Header', 'KongsbergAllDatagramContainer_Header_stream', 'KongsbergAllDatagramContainer_HeadingDatagram', 'KongsbergAllDatagramContainer_HeadingDatagram_stream', 'KongsbergAllDatagramContainer_InstallationParameters', 'KongsbergAllDatagramContainer_InstallationParameters_stream', 'KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram', 'KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream', 'KongsbergAllDatagramContainer_PUIDOutput', 'KongsbergAllDatagramContainer_PUIDOutput_stream', 'KongsbergAllDatagramContainer_PUStatusOutput', 'KongsbergAllDatagramContainer_PUStatusOutput_stream', 'KongsbergAllDatagramContainer_PositionDatagram', 'KongsbergAllDatagramContainer_PositionDatagram_stream', 'KongsbergAllDatagramContainer_QualityFactorDatagram', 'KongsbergAllDatagramContainer_QualityFactorDatagram_stream', 'KongsbergAllDatagramContainer_RawRangeAndAngle', 'KongsbergAllDatagramContainer_RawRangeAndAngle_stream', 'KongsbergAllDatagramContainer_RuntimeParameters', 'KongsbergAllDatagramContainer_RuntimeParameters_stream', 'KongsbergAllDatagramContainer_SeabedImageData', 'KongsbergAllDatagramContainer_SeabedImageData_stream', 'KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth', 'KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream', 'KongsbergAllDatagramContainer_SoundSpeedProfileDatagram', 'KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream', 'KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram', 'KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream', 'KongsbergAllDatagramContainer_Unknown', 'KongsbergAllDatagramContainer_Unknown_stream', 'KongsbergAllDatagramContainer_Variant', 'KongsbergAllDatagramContainer_Variant_SkippedData', 'KongsbergAllDatagramContainer_Variant_SkippedData_stream', 'KongsbergAllDatagramContainer_Variant_stream', 'KongsbergAllDatagramContainer_WatercolumnDatagram', 'KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData', 'KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream', 'KongsbergAllDatagramContainer_WatercolumnDatagram_stream', 'KongsbergAllDatagramContainer_XYZDatagram', 'KongsbergAllDatagramContainer_XYZDatagram_stream', 'KongsbergAllPingContainer', 'KongsbergAllPingContainer_stream']
 class KongsbergAllDatagramContainer_AttitudeDatagram:
     """
     """
@@ -73,24 +73,24 @@ class KongsbergAllDatagramContainer_AttitudeDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+class KongsbergAllDatagramContainer_AttitudeDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.AttitudeDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -98,13 +98,13 @@ class KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -112,7 +112,7 @@ class KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -124,7 +124,7 @@ class KongsbergAllDatagramContainer_AttitudeDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_AttitudeDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_AttitudeDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -201,24 +201,24 @@ class KongsbergAllDatagramContainer_ClockDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_ClockDatagram_mapped:
+class KongsbergAllDatagramContainer_ClockDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ClockDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -226,13 +226,13 @@ class KongsbergAllDatagramContainer_ClockDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -240,7 +240,7 @@ class KongsbergAllDatagramContainer_ClockDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ClockDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -252,7 +252,7 @@ class KongsbergAllDatagramContainer_ClockDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ClockDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ClockDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -329,24 +329,24 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+class KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.DepthOrHeightDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -354,13 +354,13 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -368,7 +368,7 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -380,7 +380,7 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_DepthOrHeightDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -457,24 +457,24 @@ class KongsbergAllDatagramContainer_ExtraDetections:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_ExtraDetections_mapped:
+class KongsbergAllDatagramContainer_ExtraDetections_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraDetections:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -482,13 +482,13 @@ class KongsbergAllDatagramContainer_ExtraDetections_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -496,7 +496,7 @@ class KongsbergAllDatagramContainer_ExtraDetections_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraDetections_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -508,7 +508,7 @@ class KongsbergAllDatagramContainer_ExtraDetections_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ExtraDetections_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ExtraDetections_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -585,24 +585,24 @@ class KongsbergAllDatagramContainer_ExtraParameters:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_ExtraParameters_mapped:
+class KongsbergAllDatagramContainer_ExtraParameters_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraParameters:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -610,13 +610,13 @@ class KongsbergAllDatagramContainer_ExtraParameters_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -624,7 +624,7 @@ class KongsbergAllDatagramContainer_ExtraParameters_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraParameters_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -636,7 +636,7 @@ class KongsbergAllDatagramContainer_ExtraParameters_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ExtraParameters_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_ExtraParameters_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -713,24 +713,24 @@ class KongsbergAllDatagramContainer_Header:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_Header_mapped:
+class KongsbergAllDatagramContainer_Header_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Header_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Header_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_Header_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Header_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Header_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -738,13 +738,13 @@ class KongsbergAllDatagramContainer_Header_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_Header_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_Header_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_Header_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_Header_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -752,7 +752,7 @@ class KongsbergAllDatagramContainer_Header_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Header_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Header_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -764,7 +764,7 @@ class KongsbergAllDatagramContainer_Header_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Header_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Header_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -841,24 +841,24 @@ class KongsbergAllDatagramContainer_HeadingDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+class KongsbergAllDatagramContainer_HeadingDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.HeadingDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -866,13 +866,13 @@ class KongsbergAllDatagramContainer_HeadingDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -880,7 +880,7 @@ class KongsbergAllDatagramContainer_HeadingDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_HeadingDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -892,7 +892,7 @@ class KongsbergAllDatagramContainer_HeadingDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_HeadingDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_HeadingDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -969,24 +969,24 @@ class KongsbergAllDatagramContainer_InstallationParameters:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_InstallationParameters_mapped:
+class KongsbergAllDatagramContainer_InstallationParameters_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -994,13 +994,13 @@ class KongsbergAllDatagramContainer_InstallationParameters_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1008,7 +1008,7 @@ class KongsbergAllDatagramContainer_InstallationParameters_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_InstallationParameters_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1020,7 +1020,7 @@ class KongsbergAllDatagramContainer_InstallationParameters_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_InstallationParameters_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_InstallationParameters_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1097,24 +1097,24 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.NetworkAttitudeVelocityDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1122,13 +1122,13 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1136,7 +1136,7 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1148,7 +1148,7 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1225,24 +1225,24 @@ class KongsbergAllDatagramContainer_PUIDOutput:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_PUIDOutput_mapped:
+class KongsbergAllDatagramContainer_PUIDOutput_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUIDOutput:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1250,13 +1250,13 @@ class KongsbergAllDatagramContainer_PUIDOutput_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1264,7 +1264,7 @@ class KongsbergAllDatagramContainer_PUIDOutput_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUIDOutput_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1276,7 +1276,7 @@ class KongsbergAllDatagramContainer_PUIDOutput_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PUIDOutput_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PUIDOutput_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1353,24 +1353,24 @@ class KongsbergAllDatagramContainer_PUStatusOutput:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+class KongsbergAllDatagramContainer_PUStatusOutput_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUStatusOutput:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1378,13 +1378,13 @@ class KongsbergAllDatagramContainer_PUStatusOutput_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1392,7 +1392,7 @@ class KongsbergAllDatagramContainer_PUStatusOutput_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUStatusOutput_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1404,7 +1404,7 @@ class KongsbergAllDatagramContainer_PUStatusOutput_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PUStatusOutput_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PUStatusOutput_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1481,24 +1481,24 @@ class KongsbergAllDatagramContainer_PositionDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_PositionDatagram_mapped:
+class KongsbergAllDatagramContainer_PositionDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PositionDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1506,13 +1506,13 @@ class KongsbergAllDatagramContainer_PositionDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1520,7 +1520,7 @@ class KongsbergAllDatagramContainer_PositionDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PositionDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1532,7 +1532,7 @@ class KongsbergAllDatagramContainer_PositionDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PositionDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_PositionDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1609,24 +1609,24 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+class KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.QualityFactorDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1634,13 +1634,13 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1648,7 +1648,7 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1660,7 +1660,7 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_QualityFactorDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_QualityFactorDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1737,24 +1737,24 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+class KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RawRangeAndAngle:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1762,13 +1762,13 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1776,7 +1776,7 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1788,7 +1788,7 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_RawRangeAndAngle_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_RawRangeAndAngle_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1865,24 +1865,24 @@ class KongsbergAllDatagramContainer_RuntimeParameters:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+class KongsbergAllDatagramContainer_RuntimeParameters_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -1890,13 +1890,13 @@ class KongsbergAllDatagramContainer_RuntimeParameters_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -1904,7 +1904,7 @@ class KongsbergAllDatagramContainer_RuntimeParameters_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RuntimeParameters_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -1916,7 +1916,7 @@ class KongsbergAllDatagramContainer_RuntimeParameters_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_RuntimeParameters_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_RuntimeParameters_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -1993,24 +1993,24 @@ class KongsbergAllDatagramContainer_SeabedImageData:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_SeabedImageData_mapped:
+class KongsbergAllDatagramContainer_SeabedImageData_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SeabedImageData:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2018,13 +2018,13 @@ class KongsbergAllDatagramContainer_SeabedImageData_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2032,7 +2032,7 @@ class KongsbergAllDatagramContainer_SeabedImageData_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SeabedImageData_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2044,7 +2044,7 @@ class KongsbergAllDatagramContainer_SeabedImageData_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SeabedImageData_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SeabedImageData_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2121,24 +2121,24 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SingleBeamEchoSounderDepth:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2146,13 +2146,13 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2160,7 +2160,7 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2172,7 +2172,7 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2249,24 +2249,24 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SoundSpeedProfileDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2274,13 +2274,13 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2288,7 +2288,7 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2300,7 +2300,7 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2377,24 +2377,24 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SurfaceSoundSpeedDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2402,13 +2402,13 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2416,7 +2416,7 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2428,7 +2428,7 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2505,24 +2505,24 @@ class KongsbergAllDatagramContainer_Unknown:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_Unknown_mapped:
+class KongsbergAllDatagramContainer_Unknown_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2530,13 +2530,13 @@ class KongsbergAllDatagramContainer_Unknown_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_Unknown_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2544,7 +2544,7 @@ class KongsbergAllDatagramContainer_Unknown_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Unknown_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2556,7 +2556,7 @@ class KongsbergAllDatagramContainer_Unknown_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Unknown_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Unknown_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2697,24 +2697,24 @@ class KongsbergAllDatagramContainer_Variant_SkippedData:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+class KongsbergAllDatagramContainer_Variant_SkippedData_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.XYZDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraDetections | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RawRangeAndAngle | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SeabedImageData | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.WatercolumnDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.QualityFactorDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.AttitudeDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.NetworkAttitudeVelocityDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ClockDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.DepthOrHeightDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.HeadingDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PositionDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SingleBeamEchoSounderDepth | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SurfaceSoundSpeedDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SoundSpeedProfileDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUIDOutput | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUStatusOutput | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2722,13 +2722,13 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2736,7 +2736,7 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2748,7 +2748,7 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Variant_SkippedData_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Variant_SkippedData_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2761,24 +2761,24 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_mapped:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_Variant_mapped:
+class KongsbergAllDatagramContainer_Variant_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.XYZDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraDetections | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RawRangeAndAngle | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SeabedImageData | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.WatercolumnDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.QualityFactorDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.AttitudeDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.NetworkAttitudeVelocityDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ClockDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.DepthOrHeightDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.HeadingDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PositionDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SingleBeamEchoSounderDepth | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SurfaceSoundSpeedDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.SoundSpeedProfileDatagram | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.ExtraParameters | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUIDOutput | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.PUStatusOutput | themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.KongsbergAllUnknown:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2786,13 +2786,13 @@ class KongsbergAllDatagramContainer_Variant_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_Variant_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2800,7 +2800,7 @@ class KongsbergAllDatagramContainer_Variant_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -2812,7 +2812,7 @@ class KongsbergAllDatagramContainer_Variant_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Variant_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_Variant_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -2953,24 +2953,24 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -2978,13 +2978,13 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -2992,7 +2992,7 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -3004,7 +3004,7 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -3017,24 +3017,24 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_mapped:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+class KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.WatercolumnDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -3042,13 +3042,13 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -3056,7 +3056,7 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -3068,7 +3068,7 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_WatercolumnDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_WatercolumnDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -3145,24 +3145,24 @@ class KongsbergAllDatagramContainer_XYZDatagram:
         Returns:
             std::vector<DatagramContainer>
         """
-class KongsbergAllDatagramContainer_XYZDatagram_mapped:
+class KongsbergAllDatagramContainer_XYZDatagram_stream:
     """
     """
     @typing.overload
-    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     @typing.overload
-    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __call__(self, datagram_identifiers: list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
-    def __copy__(self) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __copy__(self) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     @typing.overload
     def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.XYZDatagram:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     def __len__(self) -> int:
         ...
@@ -3170,13 +3170,13 @@ class KongsbergAllDatagramContainer_XYZDatagram_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def __reversed__(self) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def copy(self) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -3184,7 +3184,7 @@ class KongsbergAllDatagramContainer_XYZDatagram_mapped:
         ...
     def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_XYZDatagram_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -3196,7 +3196,7 @@ class KongsbergAllDatagramContainer_XYZDatagram_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_XYZDatagram_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllDatagramContainer_XYZDatagram_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data
@@ -3289,24 +3289,24 @@ class KongsbergAllPingContainer:
         Returns:
             std::vector<PingContainer<type_Ping>>
         """
-class KongsbergAllPingContainer_mapped:
+class KongsbergAllPingContainer_stream:
     """
     """
     @typing.overload
-    def __call__(self, channel_id: str) -> KongsbergAllPingContainer_mapped:
+    def __call__(self, channel_id: str) -> KongsbergAllPingContainer_stream:
         ...
     @typing.overload
-    def __call__(self, channel_ids: list[str]) -> KongsbergAllPingContainer_mapped:
+    def __call__(self, channel_ids: list[str]) -> KongsbergAllPingContainer_stream:
         ...
-    def __copy__(self) -> KongsbergAllPingContainer_mapped:
+    def __copy__(self) -> KongsbergAllPingContainer_stream:
         ...
-    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingContainer_mapped:
-        ...
-    @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_mapped:
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllPingContainer_stream:
         ...
     @typing.overload
-    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllPingContainer_mapped:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_stream:
+        ...
+    @typing.overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> KongsbergAllPingContainer_stream:
         ...
     @typing.overload
     def __init__(self) -> None:
@@ -3314,7 +3314,7 @@ class KongsbergAllPingContainer_mapped:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_mapped]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_stream]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -3324,13 +3324,13 @@ class KongsbergAllPingContainer_mapped:
         """
         Return object information as string
         """
-    def __reversed__(self) -> KongsbergAllPingContainer_mapped:
+    def __reversed__(self) -> KongsbergAllPingContainer_stream:
         ...
     def __str__(self) -> str:
         """
         Return object information as string
         """
-    def copy(self) -> KongsbergAllPingContainer_mapped:
+    def copy(self) -> KongsbergAllPingContainer_stream:
         """
         return a copy using the c++ default copy constructor
         """
@@ -3338,9 +3338,9 @@ class KongsbergAllPingContainer_mapped:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_mapped]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.filetypes.KongsbergAllPing_stream]:
         ...
-    def get_sorted_by_time(self) -> KongsbergAllPingContainer_mapped:
+    def get_sorted_by_time(self) -> KongsbergAllPingContainer_stream:
         ...
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -3354,9 +3354,9 @@ class KongsbergAllPingContainer_mapped:
         """
     def size(self) -> int:
         ...
-    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, KongsbergAllPingContainer_mapped]:
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation.SensorConfiguration, KongsbergAllPingContainer_stream]:
         ...
-    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllPingContainer_mapped]:
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[KongsbergAllPingContainer_stream]:
         """
         Split the data if the time difference between two subsequent datagrams
         is larger than arg Note: for this function to make sense the data

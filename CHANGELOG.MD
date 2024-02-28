@@ -9,7 +9,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
-- echosounders -> 0.36.1
+- echosounders -> 0.37.0
+
+### Changed
+
+- echosounders
+  - MemoryMapped IO is now the default, iostream is available via FileHandler_stream
 
 ### Internal
 
