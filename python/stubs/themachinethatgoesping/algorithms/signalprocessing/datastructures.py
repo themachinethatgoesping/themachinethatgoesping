@@ -6,7 +6,7 @@ import typing
 __all__ = ['CW', 'CWSignalParameters', 'FMSignalParameters', 'FM_DOWN_SWEEP', 'FM_UP_SWEEP', 'GenericSignalParameters', 'UNKNOWN', 't_TxSignalType']
 class CWSignalParameters:
     """
-    @struct CWSignalParameters Struct representing information about a
+    @class CWSignalParameters Class representing information about a
     continuous wave signal.
     """
     @staticmethod
@@ -34,12 +34,6 @@ class CWSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def __init__(self) -> None:
-        """
-        Default constructor.
-        """
-    @typing.overload
     def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float) -> None:
         """
         Default constructor.
@@ -58,6 +52,18 @@ class CWSignalParameters:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_bandwidth(self) -> float:
+        """
+        < Bandwidth of the signal in Hz.
+        """
+    def get_center_frequency(self) -> float:
+        """
+        < Center frequency of the signal in Hz.
+        """
+    def get_effective_pulse_duration(self) -> float:
+        """
+        < Effective pulse duration of the signal in seconds.
+        """
     def get_tx_signal_type(self) -> t_TxSignalType:
         ...
     def hash(self) -> int:
@@ -72,6 +78,12 @@ class CWSignalParameters:
         """
         Print object information
         """
+    def set_bandwidth(self, bandwidth: float) -> None:
+        ...
+    def set_center_frequency(self, center_frequency: float) -> None:
+        ...
+    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+        ...
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
@@ -80,33 +92,9 @@ class CWSignalParameters:
         """
         convert object to bytearray
         """
-    @property
-    def bandwidth(self) -> float:
-        """
-        < Bandwidth of the signal in Hz.
-        """
-    @bandwidth.setter
-    def bandwidth(self, arg0: float) -> None:
-        ...
-    @property
-    def center_frequency(self) -> float:
-        """
-        < Center frequency of the signal in Hz.
-        """
-    @center_frequency.setter
-    def center_frequency(self, arg0: float) -> None:
-        ...
-    @property
-    def effective_pulse_duration(self) -> float:
-        """
-        < Effective pulse duration of the signal in seconds.
-        """
-    @effective_pulse_duration.setter
-    def effective_pulse_duration(self, arg0: float) -> None:
-        ...
 class FMSignalParameters:
     """
-    @struct FMSignalParameters Struct representing information about a
+    @class FMSignalParameters Class representing information about a
     frequency modulated wave signal (chirp).
     """
     @staticmethod
@@ -135,11 +123,6 @@ class FMSignalParameters:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self) -> None:
-        """
-        Default constructor.
-        """
-    @typing.overload
     def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, up_sweep: bool) -> None:
         """
         Default constructor.
@@ -163,8 +146,24 @@ class FMSignalParameters:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_bandwidth(self) -> float:
+        """
+        < Bandwidth of the signal in Hz.
+        """
+    def get_center_frequency(self) -> float:
+        """
+        < Center frequency of the signal in Hz.
+        """
+    def get_effective_pulse_duration(self) -> float:
+        """
+        < Effective pulse duration of the signal in seconds.
+        """
     def get_tx_signal_type(self) -> t_TxSignalType:
         ...
+    def get_up_sweep(self) -> bool:
+        """
+        < True if the signal is an up sweep, false otherwise.
+        """
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -177,6 +176,14 @@ class FMSignalParameters:
         """
         Print object information
         """
+    def set_bandwidth(self, bandwidth: float) -> None:
+        ...
+    def set_center_frequency(self, center_frequency: float) -> None:
+        ...
+    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+        ...
+    def set_up_sweep(self, up_sweep: bool) -> None:
+        ...
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
@@ -185,42 +192,10 @@ class FMSignalParameters:
         """
         convert object to bytearray
         """
-    @property
-    def bandwidth(self) -> float:
-        """
-        < Bandwidth of the signal in Hz.
-        """
-    @bandwidth.setter
-    def bandwidth(self, arg0: float) -> None:
-        ...
-    @property
-    def center_frequency(self) -> float:
-        """
-        < Center frequency of the signal in Hz.
-        """
-    @center_frequency.setter
-    def center_frequency(self, arg0: float) -> None:
-        ...
-    @property
-    def effective_pulse_duration(self) -> float:
-        """
-        < Effective pulse duration of the signal in seconds.
-        """
-    @effective_pulse_duration.setter
-    def effective_pulse_duration(self, arg0: float) -> None:
-        ...
-    @property
-    def up_sweep(self) -> bool:
-        """
-        < True if the signal is an up sweep, false otherwise.
-        """
-    @up_sweep.setter
-    def up_sweep(self, arg0: bool) -> None:
-        ...
 class GenericSignalParameters:
     """
-    @struct GenericSignalParameters Struct representing information about
-    a generic type.
+    @class GenericSignalParameters Class representing information about a
+    generic type.
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GenericSignalParameters:
@@ -247,12 +222,6 @@ class GenericSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def __init__(self) -> None:
-        """
-        Default constructor.
-        """
-    @typing.overload
     def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: t_TxSignalType) -> None:
         """
         Default constructor.
@@ -271,6 +240,18 @@ class GenericSignalParameters:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_bandwidth(self) -> float:
+        """
+        < Bandwidth of the signal in Hz.
+        """
+    def get_center_frequency(self) -> float:
+        """
+        < Center frequency of the signal in Hz.
+        """
+    def get_effective_pulse_duration(self) -> float:
+        """
+        < Effective pulse duration of the signal in seconds.
+        """
     def get_tx_signal_type(self) -> t_TxSignalType:
         ...
     def hash(self) -> int:
@@ -285,6 +266,20 @@ class GenericSignalParameters:
         """
         Print object information
         """
+    def set_bandwidth(self, bandwidth: float) -> None:
+        """
+        < Bandwidth of the signal in Hz.
+        """
+    def set_center_frequency(self, center_frequency: float) -> None:
+        """
+        < Center frequency of the signal in Hz.
+        """
+    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+        """
+        < Effective pulse duration of the signal in seconds.
+        """
+    def set_tx_signal_type(self, tx_signal_type: t_TxSignalType) -> None:
+        ...
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
@@ -293,38 +288,6 @@ class GenericSignalParameters:
         """
         convert object to bytearray
         """
-    @property
-    def bandwidth(self) -> float:
-        """
-        < Bandwidth of the signal in Hz.
-        """
-    @bandwidth.setter
-    def bandwidth(self, arg0: float) -> None:
-        ...
-    @property
-    def center_frequency(self) -> float:
-        """
-        < Center frequency of the signal in Hz.
-        """
-    @center_frequency.setter
-    def center_frequency(self, arg0: float) -> None:
-        ...
-    @property
-    def effective_pulse_duration(self) -> float:
-        """
-        < Effective pulse duration of the signal in seconds.
-        """
-    @effective_pulse_duration.setter
-    def effective_pulse_duration(self, arg0: float) -> None:
-        ...
-    @property
-    def signal_type(self) -> t_TxSignalType:
-        """
-        < Signal type
-        """
-    @signal_type.setter
-    def signal_type(self, arg0: t_TxSignalType) -> None:
-        ...
 class t_TxSignalType:
     """
     

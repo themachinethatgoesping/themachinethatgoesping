@@ -10,11 +10,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - echosounders -> 0.37.0
+- algorithms -> 0.6.0
+- tools -> 0.22.3
 
 ### Changed
 
 - echosounders
   - MemoryMapped IO is now the default, iostream is available via FileHandler_stream
+  - Restructure PingFeatures into features and feature groups
+  - Improve printing for PingFeatures
+- algorithms
+  - TXSignalParameters are now classes with getters and setters instead of structures
+- tools
+  - ObjectPrinter: put value info in the next line if line with value info is > 150 characters
 
 ### Internal
 
