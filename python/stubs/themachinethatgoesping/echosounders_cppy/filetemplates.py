@@ -8,7 +8,7 @@ import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_sample', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
+__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
 class FileCache:
     """
     """
@@ -753,14 +753,14 @@ class t_pingfeature:
     
       av
     
-      bottom_range_sample
+      bottom_range_samples
     """
-    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 11>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 12>, 'xyz': <t_pingfeature.xyz: 13>, 'amplitudes': <t_pingfeature.amplitudes: 14>, 'av': <t_pingfeature.av: 15>, 'bottom_range_sample': <t_pingfeature.bottom_range_sample: 16>}
+    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 11>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 12>, 'xyz': <t_pingfeature.xyz: 13>, 'amplitudes': <t_pingfeature.amplitudes: 14>, 'av': <t_pingfeature.av: 15>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 16>}
     amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 14>
     av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 15>
     beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 11>
     bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 7>
-    bottom_range_sample: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_sample: 16>
+    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 16>
     channel_id: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.channel_id: 2>
     datetime: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.datetime: 1>
     geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 5>
@@ -810,7 +810,7 @@ amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 14>
 av: t_pingfeature  # value = <t_pingfeature.av: 15>
 beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 11>
 bottom: t_pingfeature  # value = <t_pingfeature.bottom: 7>
-bottom_range_sample: t_pingfeature  # value = <t_pingfeature.bottom_range_sample: 16>
+bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 16>
 channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
 datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
 geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 5>

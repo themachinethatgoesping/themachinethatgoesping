@@ -6,6 +6,22 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- tools -> 0.22.4
+- echosounders -> 0.37.1
+- navigation -> 0.15.2
+
+### Fixed
+
+- tools
+  - ObjectPrinter: Do not print empty line if no value_infos are to be printed
+- echosounders
+  - renamed bottomrange sample to bottomrange samples
+  - throw warning instead of error if sensor configuration could not be read from file
+  - printing ping in case geolocation is not available
+- navigation
+  - indicate that Geolocation, Positional offsets and SensorLocation are structs when printing
 
 ## [0.20.0] - 2024-02-29
 
