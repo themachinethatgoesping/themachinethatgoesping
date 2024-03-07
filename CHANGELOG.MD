@@ -6,11 +6,17 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.20.1] - 2024-03-07
 
 - tools -> 0.22.4
 - echosounders -> 0.37.1
 - navigation -> 0.15.2
+- pingprocessing -> 0.5.5
+
+### Added
+
+- pingprocessing
+  - echogramsection: get_downsampled function to reduce number of samples per beam (for plotting)
 
 ### Fixed
 
@@ -20,8 +26,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - renamed bottomrange sample to bottomrange samples
   - throw warning instead of error if sensor configuration could not be read from file
   - printing ping in case geolocation is not available
+  - update sensor configuration after reading navigation interpolator from file to avoid configuration missmatch after caching
 - navigation
   - indicate that Geolocation, Positional offsets and SensorLocation are structs when printing
+- pingprocessing
+  - fixed get_ping_times_datetimes function in echogram section
+
+### Maintenance
+
+- tools
+  - updated Catch2 -> 3.5.2 -> 3.5.3
 
 ## [0.20.0] - 2024-02-29
 
