@@ -6,6 +6,15 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+### [Unreleased]
+
+- tools -> 0.22.5
+
+## Maintenance
+
+- tools:
+  - update fast_float: 6.1.0 -> 6.1.1
+
 ## [0.20.1] - 2024-03-07
 
 - tools -> 0.22.4
