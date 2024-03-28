@@ -14,6 +14,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools:
   - update fast_float: 6.1.0 -> 6.1.1
+  - pybind11 2.11.1 -> 2.12.0
 
 ## [0.20.1] - 2024-03-07
 
