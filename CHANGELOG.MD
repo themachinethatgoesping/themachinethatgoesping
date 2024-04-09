@@ -8,7 +8,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ### [Unreleased]
 
-- tools -> 0.22.5
+- tools -> 0.23.0
+
+## Changed
+
+- tools:
+  - vectorinterpolators now support float and double
+
+## Added
+
+- tools:
+  - py_NearestInterpolator: also support int py object
 
 ## Maintenance
 
