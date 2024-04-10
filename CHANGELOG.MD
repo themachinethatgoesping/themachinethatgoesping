@@ -9,6 +9,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### [Unreleased]
 
 - tools -> 0.23.0
+- echosounders -> 0.38.0
+- navigation -> 0.15.3
+- pingprocessing -> 0.6.0
 
 ## Changed
 
@@ -19,12 +22,25 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools:
   - py_NearestInterpolator: also support int py object
+- echosounders:
+  - WaterColumnCalibration structure
+  - conversion to sv (kongsberg all)
+- pingprocessing:
+  - make_wci: support av,sv and amp
+
+## Fixed
+
+- navigation
+  - memory error when accessing empty mode for gll,rmc and vtg datagrams
+- tools
+  - vectorinterpolators::extent function did not check for nan/inf errors
 
 ## Maintenance
 
 - tools:
   - update fast_float: 6.1.0 -> 6.1.1
   - pybind11 2.11.1 -> 2.12.0
+  - Catch2 3.5.3 -> 3.5.4
 
 ## [0.20.1] - 2024-03-07
 
