@@ -41,6 +41,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - update fast_float: 6.1.0 -> 6.1.1
   - pybind11 2.11.1 -> 2.12.0
   - Catch2 3.5.3 -> 3.5.4
+  - xxhash_cpp -> git/master branch hopefully fixes arm/neon builds (e.g. macos)
 
 ## [0.20.1] - 2024-03-07
 

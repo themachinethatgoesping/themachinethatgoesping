@@ -17,6 +17,7 @@ xtl*
 fast_float*
 xxhash_cpp**
 date**
+sse2neon**
 
 #inherited wrap files
 catch2.wrap
