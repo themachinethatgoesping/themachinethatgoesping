@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2023 Peter Urban, Ghent University
+.. SPDX-FileCopyrightText: 2024 Peter Urban, Ghent University
 ..
 .. SPDX-License-Identifier: MPL-2.0
 
@@ -26,46 +26,50 @@
    :target: https://github.com/themachinethatgoesping/themachinethatgoesping/actions/workflows/python-package-mac.yml
    :alt: ci-python-mac
    
-.. |badge-license| image:: https://img.shields.io/badge/license:-MPL--2.0-green
+.. |badge-license| image:: https://img.shields.io/badge/license:-MPL--2%2E0-green
    :target: https://opensource.org/license/mpl-2-0/
    :alt: license: MPL-2.0
    
 .. |badge-themachinethatgoesping| image:: https://github.com/themachinethatgoesping/themachinethatgoesping/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/themachinethatgoesping/
+   :target: https://github.com/themachinethatgoesping/themachinethatgoesping/actions/workflows/ci.yml
    :alt: themachinethatgoesping
    
 .. |badge-tutorials| image:: https://github.com/themachinethatgoesping/tutorials/actions/workflows/mybinder.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/tutorials/
+   :target: https://github.com/themachinethatgoesping/tutorials/actions/workflows/ci.yml
    :alt: tutorials
    
 .. |badge-tools| image:: https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/tools/
+   :target: https://github.com/themachinethatgoesping/tools/actions/workflows/ci.yml
    :alt: tools
-   
-.. |badge-algorithms| image:: https://github.com/themachinethatgoesping/algorithms/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/algorithms/
-   :alt: algorithms
 
+.. |badge-algorithms| image:: https://github.com/themachinethatgoesping/algorithms/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/themachinethatgoesping/algorithms/actions/workflows/ci.yml
+   :alt: algorithms
+   
 .. |badge-navigation| image:: https://github.com/themachinethatgoesping/navigation/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/navgiation/
+   :target: https://github.com/themachinethatgoesping/navigation/actions/workflows/ci.yml
    :alt: navigation
    
 .. |badge-echosounders| image:: https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/echosounders/
-   :alt: echosounders
-
+   :target: https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml
+   :alt: echosoudners
+   
 .. |badge-pingprocessing| image:: https://github.com/themachinethatgoesping/pingprocessing/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/pingprocessing/
+   :target: https://github.com/themachinethatgoesping/pingprocessing/actions/workflows/ci.yml
    :alt: pingprocessing
    
 .. |badge-gridding| image:: https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/themachinethatgoesping/gridding/
+   :target: https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml
    :alt: gridding
    
-.. |info-python| image:: https://img.shields.io/badge/python-3.10 | 3.11 | 3.12-informational
+.. |info-python| image:: https://img.shields.io/badge/python-3%2E10 | 3%2E11 | 3%2E12 |-informational
    :target: https://pypi.org/project/themachinethatgoesping/
    :alt: Python versions 3.10 | 3.11 | 3.12
-   
+
+.. |info-pypi| image:: https://img.shields.io/pypi/v/themachinethatgoesping
+   :target: https://pypi.org/project/themachinethatgoesping/
+   :alt: PyPI - Version
+
 .. |info-docs| image:: https://img.shields.io/badge/Documentation-readthedocs-informational
    :target: https://themachinethatgoesping.readthedocs.io
    :alt: readthedocs
@@ -90,8 +94,10 @@
    :alt: belspo
    :height: 30
    
-   
-| |badge-license| |info-python| |info-docs|
+
+| |info-python| |info-pypi|
+
+| |badge-license| |info-docs|
 
 themachinethatgoesping
 ======================
