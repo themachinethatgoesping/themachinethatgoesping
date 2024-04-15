@@ -49,9 +49,9 @@ jobs:
         python-version: ['3.10','3.11','3.12']
         cxx_compiler: ["$(brew --prefix llvm@16)/bin/clang++"] 
 
-        include:
-          - python-version: '3.12'
-            pip-pre: '--pre'
+        # include:
+        #   - python-version: '3.12'
+        #     pip-pre: '--pre'
         
 
     steps:

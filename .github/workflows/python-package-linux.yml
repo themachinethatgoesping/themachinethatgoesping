@@ -54,8 +54,8 @@ jobs:
           - { python-version: '3.11', 
               pip-path: '/opt/python/cp311-cp311/bin'}
           - { python-version: '3.12', 
-              pip-path: '/opt/python/cp312-cp312/bin',
-              pip-pre: '--pre'}
+              pip-path: '/opt/python/cp312-cp312/bin'}
+              #pip-pre: '--pre'}
   
     steps:
     - name: append github path
