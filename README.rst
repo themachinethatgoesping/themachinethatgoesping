@@ -62,7 +62,7 @@
    :target: https://github.com/themachinethatgoesping/gridding/actions/workflows/ci.yml
    :alt: gridding
    
-.. |info-python| image:: https://img.shields.io/badge/python-3%2E10 | 3%2E11 | 3%2E12 |-informational
+.. |info-python| image:: https://img.shields.io/badge/python-3%2E10 | 3%2E11 | 3%2E12 -informational
    :target: https://pypi.org/project/themachinethatgoesping/
    :alt: Python versions 3.10 | 3.11 | 3.12
 
