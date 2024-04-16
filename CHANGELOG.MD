@@ -28,6 +28,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing:
   - make_wci: support av,sv and amp
   - make_wci_dual_head: now takes ping groups
+  - make_wci: c++ version
 
 ## Fixed
 

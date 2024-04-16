@@ -1,8 +1,9 @@
 """
-Python module process ping data, e.g. apply absorption, spreading loss, compute range/depth, raytrace ...
+Python module process pings from echosounders.
 """
 from __future__ import annotations
-__all__ = ['ostream_redirect']
+from . import watercolumn
+__all__ = ['ostream_redirect', 'watercolumn']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...
