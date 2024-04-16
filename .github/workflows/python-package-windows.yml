@@ -44,6 +44,7 @@ jobs:
 
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ['3.10','3.11','3.12']
         boost-version: [1.84.0]
@@ -160,12 +161,13 @@ jobs:
     runs-on: windows-latest
 
     strategy:
+      fail-fast: false
       matrix:
         python-3-version: ['10','11','12']
 
-        include:
-          - python-version: '3.12'
-            pip-pre: '--pre'
+        # include:
+        #   - python-version: '3.12'
+        #     pip-pre: '--pre'
     steps:
 
     - uses: actions/setup-python@v3
@@ -243,9 +245,9 @@ jobs:
       matrix:
         python-version: ['3.10','3.11','3.12']
 
-        include:
-          - python-version: '3.12'
-            pip-pre: '--pre'
+        # include:
+        #   - python-version: '3.12'
+        #     pip-pre: '--pre'
 
     steps:
     - name: checkout main repository
