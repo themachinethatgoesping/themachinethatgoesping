@@ -8,7 +8,8 @@ requires = [
     'meson >= 1.2.3',
     'pyproject-metadata',
     'ninja',
-    'oldest-supported-numpy'
+    'numpy >=1.22',
+    #'oldest-supported-numpy'
 ]
 build-backend = 'mesonpy'
 #backend-path = ['./subprojects/meson-python']
