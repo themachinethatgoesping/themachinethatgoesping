@@ -5,8 +5,9 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
+import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['BTConstantSVP', 'I_Backtracer']
+__all__ = ['BTConstantSVP', 'BacktracedWCI', 'I_Backtracer']
 class BTConstantSVP(I_Backtracer):
     """
     """
@@ -63,6 +64,88 @@ class BTConstantSVP(I_Backtracer):
         """
         Print object information
         """
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+class BacktracedWCI:
+    """
+    A structure to store a watercolumn image together with the necessary
+    informations for raytracing.
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BacktracedWCI:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> BacktracedWCI:
+        ...
+    def __deepcopy__(self, arg0: dict) -> BacktracedWCI:
+        ...
+    def __eq__(self, other: BacktracedWCI) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def __init__(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int]) -> None:
+        """
+        Construct a new sample location object (initialize all tensors using
+        the specified shape (empty))
+        
+        Parameter ``shape``:
+            shape of the internal tensors
+        """
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> BacktracedWCI:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_angle_beamnumber_interpolator(self) -> ...:
+        ...
+    def get_max_angle(self) -> float:
+        ...
+    def get_min_angle(self) -> float:
+        ...
+    def get_range_samplenumber_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorF]:
+        ...
+    def get_wci(self) -> numpy.ndarray[numpy.float32]:
+        ...
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def lookup(self, beam_angle: float, range: float) -> float:
+        ...
+    def lookup_const(self, beam_angle: float, range: float) -> float:
+        ...
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+        ...
+    def size(self) -> int:
+        ...
     def slow_hash(self) -> int:
         """
         hash function implemented using slow_hash
@@ -181,6 +264,8 @@ class I_Backtracer:
         """
         Return object information as string
         """
+    def lookup(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
     def lookup_indices(self, beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], beam_reference_max_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleIndices_2:
         ...
     def print(self, float_precision: int = 2) -> None:

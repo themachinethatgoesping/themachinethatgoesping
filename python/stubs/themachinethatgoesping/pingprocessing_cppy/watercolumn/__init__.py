@@ -2,5 +2,5 @@
 Functions for processing watercolumn data.
 """
 from __future__ import annotations
-from . import wci
-__all__ = ['wci']
+from . import image
+__all__ = ['image']

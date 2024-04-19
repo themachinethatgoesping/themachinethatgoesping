@@ -136,6 +136,8 @@ class AkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -323,6 +325,8 @@ class AkimaInterpolatorFF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -511,6 +515,8 @@ class LinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -699,6 +705,8 @@ class LinearInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -887,6 +895,8 @@ class LinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1075,6 +1085,8 @@ class LinearInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1263,6 +1275,8 @@ class NearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1451,6 +1465,8 @@ class NearestInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1639,6 +1655,8 @@ class NearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> int:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1827,6 +1845,8 @@ class NearestInterpolatorDO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> typing.Any:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -2015,6 +2035,8 @@ class NearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -2203,6 +2225,8 @@ class NearestInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -2391,6 +2415,8 @@ class NearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> int:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -2579,6 +2605,8 @@ class NearestInterpolatorFO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_y_const(self, target_x: float) -> typing.Any:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash

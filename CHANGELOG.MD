@@ -12,23 +12,27 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.38.0
 - navigation -> 0.15.3
 - pingprocessing -> 0.6.0
+- algorithms -> 0.7.0
 
 ## Changed
 
 - tools:
   - vectorinterpolators now support float and double
+- algorithms:
+  - changed backtracer interface to support multithreading and simpler initialization
 
 ## Added
 
 - tools:
   - py_NearestInterpolator: also support int py object
+  - get_y_const: interpolation function to allow usage of interpolators in multithreaded environments
 - echosounders:
   - WaterColumnCalibration structure
   - conversion to sv (kongsberg all)
 - pingprocessing:
   - make_wci: support av,sv and amp
   - make_wci_dual_head: now takes ping groups
-  - make_wci: c++ version
+  - make_wci: faster version (currently make_wci2)
 
 ## Fixed
 
