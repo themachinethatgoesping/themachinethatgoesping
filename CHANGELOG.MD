@@ -6,7 +6,7 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-### [Unreleased]
+### [0.21.0] - 23-04-2024
 
 - tools -> 0.23.0
 - echosounders -> 0.38.0
@@ -29,6 +29,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - WaterColumnCalibration structure
   - conversion to sv (kongsberg all)
+  - available_features() and available_feature_groups() function for i_pingcommon
 - pingprocessing:
   - make_wci: support av,sv and amp
   - make_wci_dual_head: now takes ping groups
