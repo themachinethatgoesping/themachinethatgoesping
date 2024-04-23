@@ -40,6 +40,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - memory error when accessing empty mode for gll,rmc and vtg datagrams
 - tools
   - vectorinterpolators::extent function did not check for nan/inf errors
+  - binary/hashing stability for vectorinterpolators
 
 ## Maintenance
 
