@@ -6,6 +6,17 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+### [Unreleased]
+
+- pingprocessing -> 0.6.1
+
+### Added
+
+- pingprocessing:
+  - echogrambuilderclass
+  - echogramsection: added plotting function
+  - echogramdata class that can convert pings to images
+
 ### [0.21.0] - 23-04-2024
 
 - tools -> 0.23.0

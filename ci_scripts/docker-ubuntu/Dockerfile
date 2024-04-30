@@ -5,7 +5,7 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-FROM ubuntu:mantic
+FROM ubuntu:noble
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
 # install perquisites

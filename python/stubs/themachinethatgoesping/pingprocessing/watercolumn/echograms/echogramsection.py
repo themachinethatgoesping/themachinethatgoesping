@@ -3,9 +3,11 @@ from collections import defaultdict
 import datetime as dt
 import matplotlib as mpl
 from matplotlib import dates as mdates
+from matplotlib import pyplot as plt
 import numpy as np
+from themachinethatgoesping.pingprocessing import core as pcore
 from themachinethatgoesping import tools as ptools
-__all__ = ['EchogramSection', 'defaultdict', 'dt', 'mdates', 'mpl', 'np', 'ptools']
+__all__ = ['EchogramSection', 'defaultdict', 'dt', 'mdates', 'mpl', 'np', 'pcore', 'plt', 'ptools']
 class EchogramSection:
     def __init__(self, data):
         ...
@@ -78,6 +80,8 @@ class EchogramSection:
     def ping_time_to_ping_index(self, ping_time):
         ...
     def ping_time_to_ping_number(self, ping_time):
+        ...
+    def plot(self, ping_axis = 'time', sample_axis = 'depth', ax = None, fig_size = (15, 4), name = 'Echogram', colorbar = True, plot_bottom = True, **kwargs):
         ...
     def sample_depth_to_sample_index(self, sample_depth):
         ...
