@@ -1,0 +1,6 @@
+from __future__ import annotations
+__all__ = ['assert_length', 'assert_valid_argument']
+def assert_length(function_name, base_vector, compare_vectors):
+    ...
+def assert_valid_argument(function_name, arg, valid_args):
+    ...

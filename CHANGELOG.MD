@@ -9,6 +9,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### [Unreleased]
 
 - pingprocessing -> 0.6.1
+- echosounders -> 0.38.1
 
 ### Added
 
@@ -16,6 +17,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - echogrambuilderclass
   - echogramsection: added plotting function
   - echogramdata class that can convert pings to images
+
+### Changed
+
+- echosounders:
+  - do not use lat/lon as depth sensor offsets anymore
 
 ### [0.21.0] - 23-04-2024
 
