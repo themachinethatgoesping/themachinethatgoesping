@@ -10,6 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - pingprocessing -> 0.6.1
 - echosounders -> 0.38.1
+- tools -> 0.23.1
 
 ### Added
 
@@ -22,6 +23,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders:
   - do not use lat/lon as depth sensor offsets anymore
+
+### Maintenance
+
+- tools:
+  - update xsimd: 12.1.1 -> 13.0.0
+  - update catch2: 3.5.4 -> 3.6.0
 
 ### [0.21.0] - 23-04-2024
 
