@@ -22,11 +22,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - make_wci_stack: support different progressbars using make_iterator function
   - add wciviewer widget
   - add sv/av plotting option
+- tools:
+  - float_equal comparison function that allows for a relative tolerance and nan/inf handling
 
 ### Changed
 
 - echosounders:
   - do not use lat/lon as depth sensor offsets anymore
+
+### Fixed
+
+- echosounders:
+  - extradetections datagram: operater== handle nan/inf values
 
 ### Maintenance
 
