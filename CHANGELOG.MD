@@ -18,6 +18,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - echogrambuilderclass
   - echogramsection: added plotting function
   - echogramdata class that can convert pings to images
+  - Added ImageBuilder class to conviniently handle different cases for plotting watercolumn images
+  - make_wci_stack: support different progressbars using make_iterator function
 
 ### Changed
 

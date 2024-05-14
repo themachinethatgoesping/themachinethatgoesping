@@ -1,0 +1,28 @@
+from __future__ import annotations
+from collections import OrderedDict
+import ipywidgets.widgets.widget_int
+from ipywidgets.widgets.widget_int import IntProgress
+import traitlets.traitlets
+import typing
+__all__ = ['IntProgress', 'OrderedDict', 'TqdmWidget']
+class TqdmWidget(ipywidgets.widgets.widget_int.IntProgress):
+    _all_trait_default_generators: typing.ClassVar[dict]  # value = {'_dom_classes': traitlets.traitlets.TraitType.default, '_model_module': traitlets.traitlets.TraitType.default, '_model_module_version': traitlets.traitlets.TraitType.default, '_model_name': traitlets.traitlets.TraitType.default, '_msg_callbacks': traitlets.traitlets.TraitType.default, '_property_lock': traitlets.traitlets.TraitType.default, '_states_to_send': traitlets.traitlets.TraitType.default, '_view_count': traitlets.traitlets.TraitType.default, '_view_module': traitlets.traitlets.TraitType.default, '_view_module_version': traitlets.traitlets.TraitType.default, '_view_name': traitlets.traitlets.TraitType.default, 'bar_style': traitlets.traitlets.TraitType.default, 'comm': traitlets.traitlets.TraitType.default, 'description': traitlets.traitlets.TraitType.default, 'description_allow_html': traitlets.traitlets.TraitType.default, 'keys': <traitlets.traitlets.DefaultHandler object>, 'layout': traitlets.traitlets.TraitType.default, 'log': <traitlets.traitlets.DefaultHandler object>, 'max': traitlets.traitlets.TraitType.default, 'min': traitlets.traitlets.TraitType.default, 'orientation': traitlets.traitlets.TraitType.default, 'style': traitlets.traitlets.TraitType.default, 'tabbable': traitlets.traitlets.TraitType.default, 'tooltip': traitlets.traitlets.TraitType.default, 'value': traitlets.traitlets.TraitType.default}
+    _descriptors: typing.ClassVar[list]  # value = [<traitlets.traitlets.ObserveHandler object>, <traitlets.traitlets.DefaultHandler object>, <ipywidgets.widgets.trait_types.TypedTuple object>, <traitlets.traitlets.DefaultHandler object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Instance object>, <traitlets.traitlets.Dict object>, <traitlets.traitlets.Set object>, <traitlets.traitlets.ValidateHandler object>, <traitlets.traitlets.ValidateHandler object>, <traitlets.traitlets.ValidateHandler object>, <traitlets.traitlets.Int object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.CaselessStrEnum object>, <traitlets.traitlets.Any object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.Bool object>, <traitlets.traitlets.List object>, <ipywidgets.widgets.trait_types.InstanceDict object>, <traitlets.traitlets.Instance object>, <traitlets.traitlets.CInt object>, <traitlets.traitlets.CInt object>, <traitlets.traitlets.CaselessStrEnum object>, <ipywidgets.widgets.trait_types.InstanceDict object>, <traitlets.traitlets.Bool object>, <traitlets.traitlets.Unicode object>, <traitlets.traitlets.CInt object>]
+    _instance_inits: typing.ClassVar[list] = [traitlets.traitlets.ObserveHandler.instance_init, traitlets.traitlets.BaseDescriptor.instance_init, traitlets.traitlets.BaseDescriptor.instance_init, traitlets.traitlets.Instance.instance_init, traitlets.traitlets.ValidateHandler.instance_init, traitlets.traitlets.ValidateHandler.instance_init, traitlets.traitlets.ValidateHandler.instance_init, traitlets.traitlets.Instance.instance_init, traitlets.traitlets.Instance.instance_init, traitlets.traitlets.Instance.instance_init]
+    _static_immutable_initial_values: typing.ClassVar[dict] = {'_model_module': '@jupyter-widgets/controls', '_model_module_version': '2.0.0', '_model_name': 'IntProgressModel', '_view_count': None, '_view_module': '@jupyter-widgets/controls', '_view_module_version': '2.0.0', '_view_name': 'ProgressView', 'comm': None, 'description': '', 'description_allow_html': False, 'max': 100, 'min': 0, 'tabbable': None, 'tooltip': None, 'value': 0}
+    _trait_default_generators: typing.ClassVar[dict] = {}
+    _traits: typing.ClassVar[dict]  # value = {'_dom_classes': <ipywidgets.widgets.trait_types.TypedTuple object>, '_model_module': <traitlets.traitlets.Unicode object>, '_model_module_version': <traitlets.traitlets.Unicode object>, '_model_name': <traitlets.traitlets.Unicode object>, '_msg_callbacks': <traitlets.traitlets.Instance object>, '_property_lock': <traitlets.traitlets.Dict object>, '_states_to_send': <traitlets.traitlets.Set object>, '_view_count': <traitlets.traitlets.Int object>, '_view_module': <traitlets.traitlets.Unicode object>, '_view_module_version': <traitlets.traitlets.Unicode object>, '_view_name': <traitlets.traitlets.Unicode object>, 'bar_style': <traitlets.traitlets.CaselessStrEnum object>, 'comm': <traitlets.traitlets.Any object>, 'description': <traitlets.traitlets.Unicode object>, 'description_allow_html': <traitlets.traitlets.Bool object>, 'keys': <traitlets.traitlets.List object>, 'layout': <ipywidgets.widgets.trait_types.InstanceDict object>, 'log': <traitlets.traitlets.Instance object>, 'max': <traitlets.traitlets.CInt object>, 'min': <traitlets.traitlets.CInt object>, 'orientation': <traitlets.traitlets.CaselessStrEnum object>, 'style': <ipywidgets.widgets.trait_types.InstanceDict object>, 'tabbable': <traitlets.traitlets.Bool object>, 'tooltip': <traitlets.traitlets.Unicode object>, 'value': <traitlets.traitlets.CInt object>}
+    def __call__(self, list_like, **kwargs):
+        ...
+    def __init__(self, **kwargs):
+        ...
+    def __iter__(self):
+        ...
+    def __len__(self):
+        ...
+    def __next__(self):
+        ...
+    def close(self):
+        ...
+    def update(self):
+        ...
