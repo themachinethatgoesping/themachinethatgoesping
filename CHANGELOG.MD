@@ -8,7 +8,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ### [Unreleased]
 
-- pingprocessing -> 0.6.1
+- pingprocessing -> 0.7.0
 - echosounders -> 0.38.1
 - tools -> 0.23.1
 
@@ -20,6 +20,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - echogramdata class that can convert pings to images
   - Added ImageBuilder class to conviniently handle different cases for plotting watercolumn images
   - make_wci_stack: support different progressbars using make_iterator function
+  - add wciviewer widget
+  - add sv/av plotting option
 
 ### Changed
 

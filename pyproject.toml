@@ -39,7 +39,8 @@ dependencies = [
   'matplotlib',
   'numpy >=1.22',
   'tqdm',
-  'rasterio'
+  'rasterio',
+  'ipywidgets'
 ]
 
 

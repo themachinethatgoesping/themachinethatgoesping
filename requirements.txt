@@ -6,3 +6,4 @@ pybind11-stubgen
 pytest
 matplotlib
 rasterio
+ipywidgets
