@@ -34,6 +34,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders:
   - extradetections datagram: operater== handle nan/inf values
+  - xyzdatagram: operater== handle nan/inf values
 
 ### Maintenance
 
