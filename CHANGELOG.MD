@@ -32,9 +32,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Fixed
 
-- echosounders:
+- echosounders (flickery tests):
   - extradetections datagram: operater== handle nan/inf values
   - xyzdatagram: operater== handle nan/inf values
+  - RAW3 flickery test: init float array to avoid nan/inf value comparison
 
 ### Maintenance
 
