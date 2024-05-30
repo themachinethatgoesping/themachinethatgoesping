@@ -80,7 +80,7 @@ jobs:
       run: ${{matrix.pre-dep}}
 
     - name: checkout main repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false

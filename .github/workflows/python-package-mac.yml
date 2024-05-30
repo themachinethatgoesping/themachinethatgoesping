@@ -61,7 +61,7 @@ jobs:
         python-version: ${{matrix.python-version}}
 
     - name: checkout main repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false
@@ -130,7 +130,7 @@ jobs:
 
     #necessary only for pytest
     - name: checkout main repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false
@@ -208,7 +208,7 @@ jobs:
 
     steps:
     - name: checkout main repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false
