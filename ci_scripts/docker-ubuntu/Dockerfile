@@ -35,7 +35,7 @@ RUN apt install -y catch2 libeigen3-dev pybind11-dev
 
 # install dependencies (meson & python)
 #RUN apt-get install -y meson ninja-build python3-pytest
-RUN pip install meson meson-python ninja pytest numpy --break-system-packages
+RUN pip install meson meson-python ninja pytest numpy>=2.0 --break-system-packages
 
 # update and upgrade
 RUN apt update; apt upgrade -y
