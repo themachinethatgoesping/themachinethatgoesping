@@ -121,7 +121,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
-        pip install meson meson-python pytest twine wheel pyproject-metadata oldest-supported-numpy
+        pip install meson meson-python pytest twine wheel pyproject-metadata
         pip install -r requirements.txt ${{ matrix.pip-pre }}
         
     - name: download ninja long path

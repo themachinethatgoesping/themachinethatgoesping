@@ -1,7 +1,7 @@
 numba
 meson
 tqdm
-numpy >= 1.22
+numpy >= 2.0
 pybind11-stubgen
 pytest
 matplotlib

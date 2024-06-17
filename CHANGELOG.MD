@@ -6,6 +6,25 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [0.23.0] - 17-06-2024
+
+- tools -> 0.24.0
+- navigation -> 0.16.0
+- algorithms -> 0.8.0
+- echosounders -> 0.39.0
+- pingprocessing -> 0.8.0
+- gridding -> 0.2.0
+
+### Maintenance (breaking)
+
+- minimum numpy version is now 2.0
+
+### Fixed
+
+- echosounders:
+  - SeabedImageData: comparison operator did not handle nan/inf values
+
+
 ## [0.22.2] - 17-06-2024
 
 - minor updates and fixes to tests

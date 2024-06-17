@@ -28,7 +28,7 @@ requirements:
     - python
     - tomli
     - pyproject-metadata
-    - numpy
+    - numpy>=2.0
   host:
     - meson>=1.1
     - ninja
@@ -41,7 +41,7 @@ requirements:
     - python
     - tomli
     - pyproject-metadata
-    - numpy
+    - numpy>=2.0
   run:
     - python
     - numba

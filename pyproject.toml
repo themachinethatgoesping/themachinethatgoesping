@@ -8,7 +8,7 @@ requires = [
     'meson >= 1.2.3',
     'pyproject-metadata',
     'ninja',
-    'numpy >=1.22',
+    'numpy >= 2.0',
     #'oldest-supported-numpy'
 ]
 build-backend = 'mesonpy'
@@ -37,7 +37,7 @@ dependencies = [
   'numba',
   #'ipympl',
   'matplotlib',
-  'numpy >=1.22',
+  'numpy >= 2.0',
   'tqdm',
   'rasterio',
   'ipywidgets'
