@@ -13,6 +13,8 @@ on:
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-mac*'
       - 'conda.recipe/*'
       - '*.md'
       - 'doc/*'
@@ -29,6 +31,8 @@ on:
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-mac*'
       - 'conda.recipe/*'
       - '*.md'
       - 'doc/*'
@@ -165,7 +169,6 @@ jobs:
       uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: Meson_testlog
+        name: windows_Meson_testlog
         path: builddir/meson-logs/meson-log.txt
         retention-days: 5
-  

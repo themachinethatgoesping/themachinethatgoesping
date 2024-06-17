@@ -13,6 +13,8 @@ on:
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-win*'
       - 'conda.recipe/*'
       - '*.md'
       - 'doc/*'
@@ -29,6 +31,8 @@ on:
       - '.github/workflows/cibuildwheels*'
       - '.github/workflows/conda*'
       - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-win*'
       - 'conda.recipe/*'
       - '*.md'
       - 'doc/*'
@@ -51,13 +55,14 @@ concurrency:
   
 jobs:
   macos:
-    name: ci on macOS
-    runs-on: macos-12
+    name: CI ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        cxx_compiler: ["$(brew --prefix llvm@17)/bin/clang++"]            
-    
+        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"]  
+        os: ["macos-14"] 
+                
     # env does not work here because is resolved as string and not command 
     # env:
     #   CXX: ${{ matrix.cxx_compiler }}
@@ -80,7 +85,7 @@ jobs:
         key: super-ci-mac  # name for the cache
         
     # install clang 15
-    - run: brew install coreutils llvm@17
+    - run: brew install coreutils llvm@18
         
     - run: brew install libomp boost
     
@@ -88,7 +93,7 @@ jobs:
     
     # LDFLAGS="-L/opt/homebrew/opt/libomp/lib" CPPFLAGS="-I/opt/homebrew/opt/libomp/include" 
     - name: configure meson
-      run: CXX=${{ matrix.cxx_compiler }} meson setup builddir/; meson configure builddir -Dpython.install_env=auto
+      run: BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0 CXX=${{ matrix.cxx_compiler }} meson setup builddir/; meson configure builddir -Dpython.install_env=auto
 
     - name: compile project
       run: meson compile -C builddir/
@@ -97,7 +102,7 @@ jobs:
       run: meson test -C builddir/ --print-errorlogs
 
     - name: install project
-      run: meson install -C builddir/
+      run: sudo meson install -C builddir/
 
     - name: install pip requirements
       run: pip install -r requirements.txt
