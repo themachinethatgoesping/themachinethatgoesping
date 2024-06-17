@@ -43,12 +43,12 @@ jobs:
   build_wheel:
     name: Build macOS wheel for python${{ matrix.python-version }}
 
-    runs-on: macos-latest
+    runs-on: macos-14
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.10','3.11','3.12']
-        cxx_compiler: ["$(brew --prefix llvm@16)/bin/clang++"] 
+        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
 
         # include:
         #   - python-version: '3.12'
@@ -76,7 +76,7 @@ jobs:
           brew install boost libomp
 
     # install clang 16
-    - run: brew install llvm@16
+    - run: brew install llvm@18
 
     #same as on linux
     - name: Install dependencies (pip)
@@ -88,7 +88,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        CXX=${{ matrix.cxx_compiler }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+        BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0 CXX=${{ matrix.cxx_compiler }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
         delocate-wheel -w wheelhouse dist/* -v
         # install wheel
