@@ -161,8 +161,11 @@ jobs:
     - name: test (pytest)
       run: pytest -v
     
-    - uses: actions/upload-artifact@v1
+    - name: 'Upload error log'
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: Windows_Meson_testlog
-        path: builddir/meson-logs/testlog.txt
+        name: Meson_testlog
+        path: builddir/meson-logs/meson-log.txt
+        retention-days: 5
+  

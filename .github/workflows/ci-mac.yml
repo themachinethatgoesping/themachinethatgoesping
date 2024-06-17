@@ -105,8 +105,10 @@ jobs:
     - name: test (pytest)
       run: pytest -v
       
-    - uses: actions/upload-artifact@v1
+    - name: 'Upload error log'
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: ${{matrix.container}}_testlog
-        path: builddir/meson-logs/testlog.txt
+        path: builddir/meson-logs/meson-log.txt
+        retention-days: 5
