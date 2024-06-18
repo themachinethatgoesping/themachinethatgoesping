@@ -6,6 +6,15 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [0.23.1] - 18-06-2024
+
+- tools -> 0.24.1
+- echosounders -> 0.39.1
+
+### Maintenance (breaking)
+
+- adapted flat_map library because there seems to be a flat_map bug in boost 1.83
+
 ## [0.23.0] - 17-06-2024
 
 - tools -> 0.24.0
@@ -281,7 +290,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - removed TuplePackage in favor of StructPackge
 
 ### Fixed
-- echosoudners:
+- echosounders:
   - FileCache: did not remove lower priority caches when adding a new cache
   - I_Ping: did not copy sensor configuration when copying ping
 - require meson >= 1.3.2 for clang-cl openmp support

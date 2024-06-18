@@ -52,7 +52,7 @@
    
 .. |badge-echosounders| image:: https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/themachinethatgoesping/echosounders/actions/workflows/ci.yml
-   :alt: echosoudners
+   :alt: echosounders
    
 .. |badge-pingprocessing| image:: https://github.com/themachinethatgoesping/pingprocessing/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/themachinethatgoesping/pingprocessing/actions/workflows/ci.yml
