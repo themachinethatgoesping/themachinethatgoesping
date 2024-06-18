@@ -54,8 +54,8 @@ jobs:
           - arch: 'arm64'
             cxx_compiler: "$(brew --prefix llvm@18)/bin/clang++"
             boost_root: "BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0"
-          - arch: 'x86_64'
-            cxx_compiler: "/usr/local/opt/llvm/bin/clang++"
+          #- arch: 'x86_64'
+          #  cxx_compiler: "/usr/local/opt/llvm/bin/clang++"
         
 
     steps:
