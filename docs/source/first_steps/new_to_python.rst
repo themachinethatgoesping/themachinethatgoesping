@@ -22,6 +22,8 @@ These tutorials will help you learn the fundamentals of Python and get you start
    :class: admonition-note
    Please note that we do not take any responsibility for the content in external links. Use them at your own discretion.
 
+.. _setting_up_python:
+
 ********************************************
 Setting up a Python environment (Mambaforge)
 ********************************************
@@ -47,7 +49,9 @@ use the Mambaforge installer that fits your system. E.g.
 - Mambaforge-<latest version number>-Linux-x86_64.sh for Linux.
 - Mambaforge-<latest version number>-MacOSX-arm64.sh for macos (m-chips).
 
-Run the installer and follow the instructions. On linux/mac open a terminal and make sure that the mamba executable is in your path.
+Run the installer and follow the instructions. 
+
+On linux/mac open a terminal and make sure that the mamba executable is in your path.
 On windows you can use the miniforge prompt to open a terminal with run mamba.
 
 Best practice when dealing with mamba/conda environments is to keep the base environment clean and create new environments for each project.
@@ -60,6 +64,7 @@ To create a new environment with the name 'ping' with mamba that uses python 3.1
 once the environment is created you can activate it with the following command:
 
 .. code-block:: console
+
    $ mamba activate ping
 
 Once activated all packages that you install with mamba (or pip) will be installed only in the 'ping' environment without affecting other environments.
@@ -67,6 +72,7 @@ Once activated all packages that you install with mamba (or pip) will be install
 To update packages with mamba use the following command:
 
 .. code-block:: console
+
    $ mamba upgrade --all
 
 Remember that the upgrade command will update all packages in the current environment. 

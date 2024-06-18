@@ -6,7 +6,7 @@
 themachinethatgoesping
 **********************
 
-**themachinethatgoesping** (short: **ping**) aims at enabling advanced processing of multibeam and singlebeam echosounder data. 
+**themachinethatgoesping** (short: **Ping**) aims at enabling advanced processing of multibeam and singlebeam echosounder data. 
 Core components of this library are implemented in C++ (for performance) and are then exposed as high level python interfaces (for usability). 
 On top of the core, many libraries, tools and applications will be implemented in Python directly, making use of the fast prototyping features of this language.
 
@@ -26,7 +26,7 @@ Where to start?
 New to python
 -------------
 
-Before you can use **ping**, you need to install python on your system and understand the basics of the language.
+Before you can use **Ping**, you need to install python on your system and understand the basics of the language.
 If you are new to python, there are many good tutorials on the internet. We linked some in the :ref:`new_to_python` section.
 
 Once you understand how to install python and python packages on your system, and you are able to execute a tutorial e.g. in a jupyter notebook, you are ready to progress to the next section.
@@ -59,14 +59,15 @@ Python user
    However, you can install ping with pip in a conda environment. 
    Conda forge packages will follow in the future.
 
-For more installation options (e.g. from source) see :ref:`installation_user`. 
-To get started with **ping** check out the :ref:`run_tutorials` section. 
+If you need help setting up a python environment, see the :ref:`new_to_python` section.
+For more details on the installation see :ref:`installation_user`. To install from source see :ref:`installation_from_source`.
+To get started with **Ping** check out the :ref:`tutorials` section. 
 Even if you consider yourself a user, rather than a developer, please check out the :ref:`contribute` section, as it contains some useful information on how to report bugs and request features.
 
 Developer / contributor
 -----------------------
 
-If you want to contribute to **ping** you want to install it from source using `meson <https://mesonbuild.com/>`_ and `ninja <https://ninja-build.org/>`_ (instead of pip). 
+If you want to contribute to **Ping** you want to install it from source using `meson <https://mesonbuild.com/>`_ and `ninja <https://ninja-build.org/>`_ (instead of pip). 
 For details see :ref:`installation_from_source`.
 You may also want to check out the :ref:`contribute` section.
 
