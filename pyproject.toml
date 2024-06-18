@@ -74,7 +74,7 @@ test-command  = 'cd {project} && pytest'
 manylinux-x86_64-image = 'ghcr.io/themachinethatgoesping/manylinux_x86_64-dep'
 
 [tool.cibuildwheel.macos]
-before-all = 'brew install boost libomp'
+before-all = 'brew install boost libomp llvm@18'
 
 #FUTURE: add windows build here as well
 

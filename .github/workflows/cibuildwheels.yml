@@ -52,15 +52,16 @@ jobs:
         include:
           - { os: ubuntu-latest, arch: auto64 }
           #these run very slow at the moment maybe activate for releases
-          #- { os: ubuntu-latest, arch: x86_64 }
-          #- { os: ubuntu-latest, arch: aarch64 }
-          #- { os: ubuntu-latest, arch: ppc64le }
-          #- { os: ubuntu-latest, arch: s390x }
+          - { os: ubuntu-latest, arch: x86_64 }
+          - { os: ubuntu-latest, arch: aarch64 }
+          - { os: ubuntu-latest, arch: ppc64le }
+          - { os: ubuntu-latest, arch: s390x }
 
           #- { os: macos-latest,  arch: auto64 }
-          - { os: macos-latest,  arch: universal2 }
-          - { os: macos-latest,  arch: x86_64}
-          - { os: macos-latest,  arch: arm64}
+          #- { os: macos-latest,  arch: universal2, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"]  }
+          - { os: macos-latest,  arch: x86_64, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] }
+          - { os: macos-latest,  arch: arm64, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] }
+          
 
     steps:
 
