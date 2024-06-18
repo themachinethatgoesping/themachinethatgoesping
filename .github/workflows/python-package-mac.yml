@@ -41,19 +41,21 @@ concurrency:
 
 jobs:
   build_wheel:
-    name: Build macOS wheel for python${{ matrix.python-version }}
+    name: arch ${{ matrix.arch }} python${{ matrix.python-version }}
 
     runs-on: macos-14
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.10','3.11','3.12']
-        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
-        #arch: ['x86_64', 'arm64']
+        arch: ['x86_64', 'arm64']
 
-        # include:
-        #   - python-version: '3.12'
-        #     pip-pre: '--pre'
+        include:
+          - arch: 'arm64'
+            cxx_compiler: "$(brew --prefix llvm@18)/bin/clang++"
+            boost_root: "BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0"
+          - arch: 'x86_64'
+            cxx_compiler: "/usr/local/opt/llvm/bin/clang++"
         
 
     steps:
@@ -72,29 +74,37 @@ jobs:
       with:
         key: tmtgp-pypi-mac-${{ matrix.python-version }}  # name for the cache        
 
-    - name: Install dependencies (homebrew)
-      run: |
-          brew install boost libomp
 
-    # install clang 16
-    - run: brew install llvm@18
+    - name: homebrew macos - x86_64
+      if: matrix.arch == 'x86_64'
+      run: |
+          /usr/sbin/softwareupdate --install-rosetta --agree-to-license;
+          arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
+          (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/runner/.bash_profile;
+          eval "$(/usr/local/bin/brew shellenv)"; 
+          arch -x86_64 brew install boost libomp llvm@18 python@${{ matrix.python-version }} 2>/dev/null; 
+          arch -x86_64 brew link --overwrite python@${{ matrix.python-version }};
+
+    - name: homebrew macos - arm64
+      if: matrix.arch == 'arm64'
+      run: |
+          brew install boost libomp llvm@18
 
     #same as on linux
     - name: Install dependencies (pip)
       run: |
-        pip install --upgrade pip
-        pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate pep517
-        pip install -r requirements.txt ${{ matrix.pip-pre }}
+        arch -${{ matrix.arch }} pip install --upgrade pip
+        arch -${{ matrix.arch }} pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate pep517
+        arch -${{ matrix.arch }} pip install -r requirements.txt ${{ matrix.pip-pre }}
          
     - name: build and install wheel
       run: |
         # build wheel
-        BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0 CXX=${{ matrix.cxx_compiler }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+        ${{ matrix.boost_root }} CXX=${{ matrix.cxx_compiler }} arch -${{ matrix.arch }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
-        delocate-wheel -w wheelhouse dist/* -v
+        arch -${{ matrix.arch }} delocate-wheel -w wheelhouse dist/* -v
         # install wheel
-        pip install wheelhouse/*
-        #pip install . --config-settings="builddir=pybuild" --no-build-isolation
+        arch -${{ matrix.arch }} pip install wheelhouse/*
         
     - name: Store the binary wheel
       uses: actions/upload-artifact@v3
@@ -104,21 +114,22 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        meson test -C pybuild --print-errorlogs
+        arch -${{ matrix.arch }} meson test -C pybuild --print-errorlogs
         
     - name: Test with pytest
       run: |
-        pytest -v
+        arch -${{ matrix.arch }} pytest -v
         
   install_and_test:
     name: Install and test macOS wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
       matrix:
         python-3-version: ['10','11','12']
+        os: ['macos-12','macos-13','macos-14']
 
         # include:
         #   - python-version: '3.12'
@@ -144,14 +155,14 @@ jobs:
 
     - name: install pip dependencies
       # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install pytest typing_extensions 
+      run: arch -${{ matrix.arch }} pip install pytest typing_extensions 
 
     - name: install wheels
       run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+        arch -${{ matrix.arch }} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
         
     - name: test (pytest)
-      run: pytest
+      run: arch -${{ matrix.arch }} pytest
     
   publish_wheels:
     needs: install_and_test
@@ -196,12 +207,13 @@ jobs:
 
   test_pypi:
     needs: delay_after_publish
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.10','3.11','3.12']
+        os: ['macos-12','macos-13','macos-14']
 
         # include:
         #   - python-version: '3.12'
