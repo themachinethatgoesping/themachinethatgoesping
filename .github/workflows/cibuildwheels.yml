@@ -14,9 +14,12 @@ on:
       - "**cibuildwheels.yml" #ignore for now (except if this file is change)
 
   #   paths-ignore:
-  #     - '.github/workflows/ci.yml'
+  #     - '.github/workflows/ci-linux.yml'
+  #     - '.github/workflows/ci-mac.yml'
+  #     - '.github/workflows/ci-windows.yml'
   #     - '.github/workflows/python-package-windows*'
   #     - '.github/workflows/python-package-mac*'
+  #     - '.github/workflows/python-package-linux*'
   #     - '.github/workflows/conda*'
   #     - '.github/workflows/test_*'
   #     - 'conda.recipe/*'
@@ -25,9 +28,12 @@ on:
   # pull_request:
   #   branches: [ main ]
   #   paths-ignore:
-  #     - '.github/workflows/ci.yml'
+  #     - '.github/workflows/ci-linux.yml'
+  #     - '.github/workflows/ci-mac.yml'
+  #     - '.github/workflows/ci-windows.yml'
   #     - '.github/workflows/python-package-windows*'
   #     - '.github/workflows/python-package-mac*'
+  #     - '.github/workflows/python-package-linux*'
   #     - '.github/workflows/conda*'
   #     - '.github/workflows/test_*'
   #     - 'conda.recipe/*'
@@ -43,7 +49,7 @@ concurrency:
 
 jobs:
   cibuildwheel:
-    name: Build wheels on ${{ matrix.os }} - ${{ matrix.arch }}
+    name: ${{ matrix.os }} - ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -52,15 +58,23 @@ jobs:
         include:
           - { os: ubuntu-latest, arch: auto64 }
           #these run very slow at the moment maybe activate for releases
-          - { os: ubuntu-latest, arch: x86_64 }
-          - { os: ubuntu-latest, arch: aarch64 }
-          - { os: ubuntu-latest, arch: ppc64le }
-          - { os: ubuntu-latest, arch: s390x }
+          #- { os: ubuntu-latest, arch: x86_64 }
+          #- { os: ubuntu-latest, arch: aarch64 }
+          #- { os: ubuntu-latest, arch: ppc64le }
+          #- { os: ubuntu-latest, arch: s390x }
 
           #- { os: macos-latest,  arch: auto64 }
           #- { os: macos-latest,  arch: universal2, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"]  }
-          - { os: macos-latest,  arch: x86_64, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] }
-          - { os: macos-latest,  arch: arm64, cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] }
+          - { os: macos-latest,  
+              arch: x86_64, 
+              cxx_compiler: "arch -x86_64 /usr/local/opt/llvm/bin/clang++",
+              before_all: eval "$(/usr/local/bin/brew shellenv)"; arch -x86_64 brew install boost libomp llvm@18 python@3.10 python@3.11 python@3.12; arch -x86_64 brew link --overwrite python@3.10 python@3.11 python@3.12
+              }
+          - { os: macos-latest,  
+              arch: arm64, 
+              cxx_compiler: "$(brew --prefix llvm@18)/bin/clang++" , 
+              boost_root: "BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0",
+              before_all: brew install boost libomp llvm@18}
           
 
     steps:
@@ -83,9 +97,19 @@ jobs:
           #python-version: '3.11'
 
       # if runner.os 
-      - name: Set llvm vers
-        if: matrix.os == 'macos-latest'
-        run: brew install llvm@18
+      # - name: print llvm path
+      #   if: matrix.os == 'macos-latest'
+      #   run: |
+      #       brew install llvm@18
+      #       echo "$(brew --prefix llvm@18)/bin/clang++"
+
+      - name: install macos - x86_64
+        if: matrix.os == 'macos-latest' && matrix.arch == 'x86_64'
+        run: |
+            /usr/sbin/softwareupdate --install-rosetta --agree-to-license;
+            arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
+            (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/runner/.bash_profile
+            
 
       - name: Set up QEMU
         if: runner.os == 'Linux'
@@ -100,6 +124,8 @@ jobs:
           MACOSX_DEPLOYMENT_TARGET: "14"
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
           CIBW_ARCHS_MACOS: ${{ matrix.arch }}
+          CIBW_ENVIRONMENT_MACOS: CXX=${{ matrix.cxx_compiler }} ${{ matrix.boost_root}}
+          CIBW_BEFORE_ALL_MACOS: ${{ matrix.before_all}}
 
       - uses: actions/upload-artifact@v2
         with:
