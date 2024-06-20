@@ -2,7 +2,7 @@ meson
 meson-python
 ninja
 pytest
-numpy >= 2.0
+numpy >= 2.0.0
 numba
 pybind11-stubgen
 

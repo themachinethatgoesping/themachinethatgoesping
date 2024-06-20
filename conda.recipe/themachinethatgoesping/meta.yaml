@@ -1,5 +1,5 @@
 {% set name = "themachinethatgoesping" %}
-{% set version = "0.6.12" %}
+{% set version = "0.23.1" %}
 
 package:
   name: {{ name|lower }}
@@ -9,44 +9,43 @@ source:
   path: ../../
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
+  #noarch: python-m 
+  script: pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   script_env:
     - BOOST_ROOT={{ PREFIX }}/
 
 requirements:
   build:
-    - meson>=1.1
+    - meson>=1.4
+    - meson-python
     - ninja
+    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
     - pkgconfig
-    - boost-cpp
-    - boost
     - pip
+    - boost
     - python
-    - tomli
-    - pyproject-metadata
-    - numpy>=2.0
+    - numpy<2.0
+    - pkg-config
+    - cmake
+    - curl
   host:
-    - meson>=1.1
-    - ninja
-    - {{ compiler('cxx') }}
-    - cmake
-    - pkgconfig
     - boost-cpp
-    - boost
-    - pip
     - python
-    - tomli
-    - pyproject-metadata
-    - numpy>=2.0
+    - numpy<2.0
+# "build" packages picked up binutis 2.39 for gcc, but the "host" package picked up binutils 2.40 for python.
+#   Force host to use same binutils as build by including them in here.
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
   run:
     - python
     - numba
     - {{ pin_compatible('numpy') }}
     - tqdm
+    - rasterio
+    - matplotlib
 
 test:
   imports:
@@ -54,8 +53,10 @@ test:
 
   source_files:
     - subprojects/tools/python/tests
-    - subprojects/echosounders/python/tests
     - subprojects/navigation/python/tests
+    - subprojects/algorithms/python/tests
+    - subprojects/echosounders/python/tests
+    - subprojects/pingprocessing/python/tests
     - subprojects/gridding/python/tests
   commands:
     - pip check

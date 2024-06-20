@@ -3,19 +3,24 @@
 # SPDX-License-Identifier: CC0-1.0
 
 python:
-#  - 3.10
-#  - 3.11
-#  - 3.12
-  - 3.10
+  - 3.11
 
 numpy:
-  - 2.0
+  - 1.26
 
 cxx_compiler_version:
-  - 12 # [linux]
+  - 13 # [linux]
 
-#cxx_compiler:
-  #- gxx
+#c_compiler_version:
+#  - 13 # [linux]
 
-#target_platform:
-#  - linux-64
+cxx_compiler:
+  - clangxx # [linux]
+  - clangxx # [osx]
+  - clangxx # [win]
+
+host_platform:
+ - linux-64
+
+target_platform:
+ - linux-64

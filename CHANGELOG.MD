@@ -6,6 +6,12 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [0.23.2] - 20-06-2024
+
+### Maintenance
+
+- Do not require numpy >= 1.26.0 anymore (1.26 is enough)
+
 ## [0.23.1] - 18-06-2024
 
 - tools -> 0.24.1
