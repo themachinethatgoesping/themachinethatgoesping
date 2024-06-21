@@ -56,10 +56,12 @@ concurrency:
 jobs:
   
   build-on-windows:
-    name: ci on windows
+    name: ${{matrix.os}}
+    runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
       matrix:
+        os: [windows-2019]
         boost-version: [1.84.0]
         boost-version_: [1_84_0]
         boost-modules: [--with-iostreams]
@@ -79,7 +81,6 @@ jobs:
       #this is where we will download ninja later
       NINJA: d:/ninja.exe
 
-    runs-on: windows-latest
     #container: python:latest #pull directly from dockerhub   
     steps:
 
@@ -87,11 +88,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.12'
-
-    - name: Set up Clang
-      uses: egor-tensin/setup-clang@v1
-      with:
-        version: latest
     
     # make sure meson can find msvc
     - uses: TheMrMilchmann/setup-msvc-dev@v2

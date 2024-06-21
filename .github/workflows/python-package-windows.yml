@@ -40,12 +40,13 @@ concurrency:
   
 jobs:
   build_wheel:
-    name: Build windows wheel for python${{ matrix.python-version }}
+    name: ${{matrix.os}}
+    runs-on: ${{matrix.os}}
 
-    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
+        os: [windows-2019]
         python-version: ['3.10','3.11','3.12']
         boost-version: [1.84.0]
         boost-version_: [1_84_0]
@@ -80,12 +81,7 @@ jobs:
       uses: hendrikmuhs/ccache-action@v1.2
       with:
         key: tmtgp-pypi-windows-${{ matrix.python-version }}  # name for the cache
-        
-    - name: Set up Clang
-      uses: egor-tensin/setup-clang@v1
-      with:
-        version: latest
-    
+            
     # make sure meson can find msvc
     - name: Prepare MSVC
       uses: bus1/cabuild/action/msdevshell@v1
