@@ -6,6 +6,17 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- tools -> 0.24.2
+
+### Maintanance
+
+- tools
+  - updated pybind11 -> 2.13.1
+  - only require numpy >= 1.26.0 for tests and installing
+  - working towards clang-cl openmp support
+
 ## [0.23.2] - 20-06-2024
 
 ### Maintenance
