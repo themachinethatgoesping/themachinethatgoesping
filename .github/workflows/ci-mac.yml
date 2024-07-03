@@ -60,8 +60,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"]  
-        os: ["macos-14"] 
+        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
+        llvm: ["$(brew --prefix llvm@18)"]
+        boost: ["$(brew --prefix boost)"]
+        libomp: ["$(brew --prefix libomp)"]
+        os: ["macos-12"] 
                 
     # env does not work here because is resolved as string and not command 
     # env:
@@ -82,9 +85,11 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: super-ci-mac  # name for the cache
+        key: super-ci-mac-2  # name for the cache
         
-    # install clang 15
+    # uninstall clang 15
+    - run: brew uninstall llvm@15
+
     - run: brew install coreutils llvm@18
         
     - run: brew install libomp boost
@@ -93,7 +98,8 @@ jobs:
     
     # LDFLAGS="-L/opt/homebrew/opt/libomp/lib" CPPFLAGS="-I/opt/homebrew/opt/libomp/include" 
     - name: configure meson
-      run: BOOST_ROOT=/opt/homebrew/Cellar/boost/1.85.0 CXX=${{ matrix.cxx_compiler }} meson setup builddir/; meson configure builddir -Dpython.install_env=auto
+      run: |
+        BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" meson setup builddir/; meson configure builddir -Dpython.install_env=auto
 
     - name: compile project
       run: meson compile -C builddir/

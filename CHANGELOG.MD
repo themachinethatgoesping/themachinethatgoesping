@@ -13,7 +13,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Maintanance
 
 - tools
-  - updated pybind11 -> 2.13.1
+  - hold back pybind11 2.13.1 because there seems to be a problem with gcc 14.1 (keep 2.12.0)
+  - update magic_enum -> 0.9.6
   - only require numpy >= 1.26.0 for tests and installing
   - working towards clang-cl openmp support
 
