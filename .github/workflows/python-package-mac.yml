@@ -78,7 +78,7 @@ jobs:
         
     - run: brew install libomp boost
     
-    - run: pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate pep517s
+    - run: pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate
          
     - name: build and install wheel
       run: |
