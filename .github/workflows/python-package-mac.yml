@@ -41,7 +41,7 @@ concurrency:
 
 jobs:
   build_wheel:
-    name: ${{ matrix.os }} python${{ matrix.python-version }}
+    name: ${{ matrix.os }} ${{ matrix.arch }} python${{ matrix.python-version }}
 
     runs-on: ${{ matrix.os }}
     strategy:
