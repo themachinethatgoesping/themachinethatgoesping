@@ -70,7 +70,7 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-pypi-mac-${{ matrix.python-version }}  # name for the cache        
+        key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }}  # name for the cache        
 
 
     - run: ${{matrix.arch}} brew uninstall llvm@15
