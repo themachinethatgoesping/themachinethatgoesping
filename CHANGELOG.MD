@@ -6,6 +6,12 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## Unreleased
+
+### Maintanance
+  - echosounders:
+    - add tests that actually load data and loop through datagrams and pings
+
 ## [0.23.3] - 05-06-2024
 
 - tools -> 0.24.2

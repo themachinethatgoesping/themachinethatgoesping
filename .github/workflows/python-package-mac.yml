@@ -84,7 +84,7 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        ${{matrix.arch}} BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+        BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
         ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
         # install wheel
