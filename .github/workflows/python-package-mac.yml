@@ -43,7 +43,7 @@ jobs:
   build_wheel:
     name: ${{ matrix.os }} python${{ matrix.python-version }}
 
-    runs-on: macos-12
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -53,7 +53,7 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-12"] 
+        os: ["macos-11", "macos-12", "macos-13"] 
         
 
     steps:
@@ -78,9 +78,19 @@ jobs:
     - run: ${{matrix.arch}} brew install coreutils llvm@18
         
     - run: ${{matrix.arch}} brew install libomp boost
-    
-    - run: ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate
+
+    - name: Install dependencies (pip)
+      run: |
+        ${{matrix.arch}} pip install --upgrade pip
+        ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel delocate
+        ${{matrix.arch}} pip install -r requirements.txt
          
+    - name: debug pip
+      run: |
+        ${{matrix.arch}} pip --version
+        ${{matrix.arch}} pip debug -v
+
+
     - name: build and install wheel
       run: |
         # build wheel
