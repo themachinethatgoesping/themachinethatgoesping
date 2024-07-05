@@ -54,19 +54,19 @@ jobs:
         libomp: ["$(brew --prefix libomp)"]
         os: ["macos-11", "macos-12", "macos-13"]
 
-        # include:
-        #   - os: "macos-11"
-        #     arch: "arch -x86_64"
-        #     deployment_target: "11.0"
-        #   - os: "macos-12"
-        #     arch: "arch -x86_64"
-        #     deployment_target: "12.0"
-        #   - os: "macos-13"
-        #     arch: "arch -x86_64"
-        #     deployment_target: "13.0"
-        #   # - os: "macos-14"
-        #   #   arch: "arch -arm64"
-        #   #   deployment_target: "14.0"
+        include:
+          - os: "macos-11"
+            arch: "arch -x86_64"
+            deployment_target: "11.0"
+          - os: "macos-12"
+            arch: "arch -x86_64"
+            deployment_target: "12.0"
+          - os: "macos-13"
+            arch: "arch -x86_64"
+            deployment_target: "13.0"
+          # - os: "macos-14"
+          #   arch: "arch -arm64"
+          #   deployment_target: "14.0"
 
     env:
       DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
