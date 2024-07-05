@@ -8,30 +8,29 @@ name: Build Python Package macOS
 
 on:
   push:
-    branches: [ main ]    
+    branches: [main]
     paths-ignore:
-      - '.github/workflows/ci*'
-      - '.github/workflows/python-package-linux*'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/conda*'
-      - '.github/workflows/test_*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
+      - ".github/workflows/ci*"
+      - ".github/workflows/python-package-linux*"
+      - ".github/workflows/python-package-windows*"
+      - ".github/workflows/cibuildwheels*"
+      - ".github/workflows/conda*"
+      - ".github/workflows/test_*"
+      - "conda.recipe/*"
+      - "*.md"
+      - "doc/*"
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths-ignore:
-      - '.github/workflows/ci*'
-      - '.github/workflows/python-package-linux*'
-      - '.github/workflows/python-package-windows*'
-      - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/conda*'
-      - '.github/workflows/test_*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
-
+      - ".github/workflows/ci*"
+      - ".github/workflows/python-package-linux*"
+      - ".github/workflows/python-package-windows*"
+      - ".github/workflows/cibuildwheels*"
+      - ".github/workflows/conda*"
+      - ".github/workflows/test_*"
+      - "conda.recipe/*"
+      - "*.md"
+      - "doc/*"
 
 # make sure that multiple jobs don't run for the same action (new commits cancel old jobs when they are still running)
 # Souce Ralf Gommers (commit to meson-python)
@@ -47,8 +46,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.10','3.11','3.12']
-        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
+        python-version: ["3.10", "3.11", "3.12"]
+        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"]
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
@@ -69,67 +68,72 @@ jobs:
           #   deployment_target: "14.0"
 
     env:
-      DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
-        
+      MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
+
     steps:
+      - name: Echo MACOSX_DEPLOYMENT_TARGET
+        run: |
+          echo "MACOSX_DEPLOYMENT_TARGET: $MACOSX_DEPLOYMENT_TARGET"
 
-    - uses: actions/setup-python@v3
-      with:
-        python-version: ${{matrix.python-version}}
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{matrix.python-version}}
 
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
-    
-    - name: ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }}  # name for the cache        
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
 
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }} # name for the cache
 
-    - run: ${{matrix.arch}} brew uninstall llvm@15
+      - name: Uninstall llvm@15
+        run: ${{matrix.arch}} brew uninstall llvm@15
 
-    - run: ${{matrix.arch}} brew install coreutils llvm@18
-        
-    - run: ${{matrix.arch}} brew install libomp boost
+      - name: Install coreutils and llvm@18
+        run: ${{matrix.arch}} brew install coreutils llvm@18
 
-    - name: Install dependencies (pip)
-      run: |
-        ${{matrix.arch}} pip install --upgrade pip
-        ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel delocate
-        ${{matrix.arch}} pip install -r requirements.txt
-         
-    - name: debug pip
-      run: |
-        ${{matrix.arch}} pip --version
-        ${{matrix.arch}} pip debug -v
+      - name: Install libomp and boost
+        run: ${{matrix.arch}} brew install libomp boost
 
+      - name: Install dependencies (pip)
+        run: |
+          ${{matrix.arch}} pip install --upgrade pip
+          ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel delocate
+          ${{matrix.arch}} pip install -r requirements.txt
 
-    - name: build and install wheel
-      run: |
-        # build wheel
-        BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
-        # delocate wheel
-        ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
-        # install wheel
-        ${{matrix.arch}} pip install wheelhouse/*
-        
-    - name: Store the binary wheel
-      uses: actions/upload-artifact@v3
-      with:
-        name: python-package-macos
-        path: wheelhouse
-         
-    - name: Test with meson (c++)
-      run: |
-        ${{matrix.arch}} meson test -C pybuild --print-errorlogs
-        
-    - name: Test with pytest
-      run: |
-        ${{matrix.arch}} pytest -v
-        
+      - name: Debug pip
+        run: |
+          ${{matrix.arch}} pip --version
+          ${{matrix.arch}} pip debug -v
+
+      - name: Build and install wheel
+        run: |
+          # build wheel
+          BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+          # delocate wheel
+          ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
+          # install wheel
+          ${{matrix.arch}} pip install wheelhouse/*
+
+      - name: Store the binary wheel
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package-macos
+          path: wheelhouse
+
+      - name: Test with meson (c++)
+        run: |
+          ${{matrix.arch}} meson test -C pybuild --print-errorlogs
+
+      - name: Test with pytest
+        run: |
+          ${{matrix.arch}} pytest -v
+
   install_and_test:
     name: Install and test macOS wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
@@ -139,39 +143,38 @@ jobs:
       fail-fast: false
       matrix:
         arch: [arch -x86_64]
-        python-3-version: ['10','11','12']
-        os: ['macos-12']
+        python-3-version: ["10", "11", "12"]
+        os: ["macos-12"]
 
     steps:
+      - uses: actions/setup-python@v3
+        with:
+          python-version: 3.${{matrix.python-3-version}}
 
-    - uses: actions/setup-python@v3
-      with:
-        python-version: 3.${{matrix.python-3-version}}
+      #necessary only for pytest
+      - name: checkout main repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
 
-    #necessary only for pytest
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
+      - name: Download all the dists
+        uses: actions/download-artifact@v2
+        with:
+          name: python-package-macos
+          path: dist/
 
-    - name: Download all the dists
-      uses: actions/download-artifact@v2
-      with:
-        name: python-package-macos
-        path: dist/
+      - name: install pip dependencies
+        # missing typing_extensions caused an error with pypi-publish ...
+        run: ${{matrix.arch}} pip install pytest typing_extensions
 
-    - name: install pip dependencies
-      # missing typing_extensions caused an error with pypi-publish ...
-      run: ${{matrix.arch}} pip install pytest typing_extensions 
+      - name: install wheels
+        run: |
+          ${{matrix.arch}} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
 
-    - name: install wheels
-      run: |
-        ${{matrix.arch}} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
-        
-    - name: test (pytest)
-      run: ${{matrix.arch}} pytest -v
-    
+      - name: test (pytest)
+        run: ${{matrix.arch}} pytest -v
+
   publish_wheels:
     needs: install_and_test
     runs-on: ubuntu-latest
@@ -180,38 +183,38 @@ jobs:
       fail-fast: false
 
     steps:
-    - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v3
 
-    - name: install pip dependencies
-      # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install typing_extensions 
-    
-    - name: Download all the dists
-      uses: actions/download-artifact@v2
-      with:
-        name: python-package-macos
-        path: dist/
-        
-    - name: Publish package
-      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
-      # Note 3: In the future this should better build against test.pypi repository!
-      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        skip_existing: true
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: ./dist/
+      - name: install pip dependencies
+        # missing typing_extensions caused an error with pypi-publish ...
+        run: pip install typing_extensions
+
+      - name: Download all the dists
+        uses: actions/download-artifact@v2
+        with:
+          name: python-package-macos
+          path: dist/
+
+      - name: Publish package
+        # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
+        # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
+        # Note 3: In the future this should better build against test.pypi repository!
+        #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip_existing: true
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: ./dist/
 
   # delay for one minute before attempting to download the packages from pypi
   delay_after_publish:
     needs: publish_wheels
     runs-on: ubuntu-latest
     steps:
-    - name: Sleep for 10s
-      run: sleep 10s
-      shell: bash
+      - name: Sleep for 10s
+        run: sleep 10s
+        shell: bash
 
   test_pypi:
     needs: delay_after_publish
@@ -220,8 +223,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.10','3.11','3.12']
-        os: ['macos-12']
+        python-version: ["3.10", "3.11", "3.12"]
+        os: ["macos-12"]
         arch: [arch -x86_64]
 
         # include:
@@ -229,19 +232,18 @@ jobs:
         #     pip-pre: '--pre'
 
     steps:
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
+      - name: checkout main repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
 
-    - uses: actions/setup-python@v3
-      with:
-        python-version: ${{matrix.python-version}}
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{matrix.python-version}}
 
-    - name: install via pip
-      run: ${{matrix.arch}} pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+      - name: install via pip
+        run: ${{matrix.arch}} pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
 
-    - name: pytest from git repo
-      run: ${{matrix.arch}} pytest -v
-      
+      - name: pytest from git repo
+        run: ${{matrix.arch}} pytest -v
