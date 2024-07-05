@@ -47,7 +47,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [arch -x86_64]
+        arch: ["arch -x86_64"]
         python-version: ['3.10','3.11','3.12']
         cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
         llvm: ["$(brew --prefix llvm@18)"]
