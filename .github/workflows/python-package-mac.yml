@@ -47,6 +47,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        arch: [arch -x86_64]
         python-version: ['3.10','3.11','3.12']
         cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
         llvm: ["$(brew --prefix llvm@18)"]
@@ -72,22 +73,22 @@ jobs:
         key: tmtgp-pypi-mac-${{ matrix.python-version }}  # name for the cache        
 
 
-    - run: brew uninstall llvm@15
+    - run: ${{matrix.arch}} brew uninstall llvm@15
 
-    - run: brew install coreutils llvm@18
+    - run: ${{matrix.arch}} brew install coreutils llvm@18
         
-    - run: brew install libomp boost
+    - run: ${{matrix.arch}} brew install libomp boost
     
-    - run: pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate
+    - run: ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel pyproject-metadata delocate
          
     - name: build and install wheel
       run: |
         # build wheel
-        BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+        ${{matrix.arch}} BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, ${{ matrix.llvm }}/lib/c++" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
         # delocate wheel
-        delocate-wheel -w wheelhouse dist/* -v
+        ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
         # install wheel
-        pip install wheelhouse/*
+        ${{matrix.arch}} pip install wheelhouse/*
         
     - name: Store the binary wheel
       uses: actions/upload-artifact@v3
@@ -97,11 +98,11 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        meson test -C pybuild --print-errorlogs
+        ${{matrix.arch}} meson test -C pybuild --print-errorlogs
         
     - name: Test with pytest
       run: |
-        pytest -v
+        ${{matrix.arch}} pytest -v
         
   install_and_test:
     name: Install and test macOS wheel for python 3.${{ matrix.python-3-version }}
@@ -111,6 +112,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        arch: [arch -x86_64]
         python-3-version: ['10','11','12']
         os: ['macos-12']
 
@@ -135,14 +137,14 @@ jobs:
 
     - name: install pip dependencies
       # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install pytest typing_extensions 
+      run: ${{matrix.arch}} pip install pytest typing_extensions 
 
     - name: install wheels
       run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+        ${{matrix.arch}} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
         
     - name: test (pytest)
-      run: pytest
+      run: ${{matrix.arch}} pytest -v
     
   publish_wheels:
     needs: install_and_test
@@ -194,6 +196,7 @@ jobs:
       matrix:
         python-version: ['3.10','3.11','3.12']
         os: ['macos-12']
+        arch: [arch -x86_64]
 
         # include:
         #   - python-version: '3.12'
@@ -211,8 +214,8 @@ jobs:
         python-version: ${{matrix.python-version}}
 
     - name: install via pip
-      run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+      run: ${{matrix.arch}} pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
 
     - name: pytest from git repo
-      run: pytest -v
+      run: ${{matrix.arch}} pytest -v
       
