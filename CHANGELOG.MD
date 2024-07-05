@@ -6,7 +6,7 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.23.3] - 05-06-2024
 
 - tools -> 0.24.2
 
@@ -16,7 +16,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - hold back pybind11 2.13.1 because there seems to be a problem with gcc 14.1 (keep 2.12.0)
   - update magic_enum -> 0.9.6
   - only require numpy >= 1.26.0 for tests and installing
-  - working towards clang-cl openmp support
+  - working towards clang-cl openmp support (still not working)
+- numerous small fixes while working on mac-os
 
 ## [0.23.2] - 20-06-2024
 
