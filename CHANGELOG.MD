@@ -8,9 +8,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## Unreleased
 
+- tools -> 0.24.3
+
 ### Maintanance
+
+  - tools:
+    start generalizing functions to use an XContainer concept input rather than an xtensor
   - echosounders:
     - add tests that actually load data and loop through datagrams and pings
+  - set warning_level=2 to silence external warnings
+  - fix missing override warning
+  - cleaned numerous unused xtensor headers
 
 ## [0.23.3] - 05-06-2024
 
