@@ -56,19 +56,19 @@ jobs:
         include:
           - os: "macos-11"
             arch: "arch -x86_64"
-            deployment_target: "11.0"
+            deployment_target: "12.0"
           - os: "macos-12"
             arch: "arch -x86_64"
-            deployment_target: "12.0"
+            deployment_target: "13.0"
           - os: "macos-13"
             arch: "arch -x86_64"
-            deployment_target: "13.0"
+            deployment_target: "14.0"
           # - os: "macos-14"
           #   arch: "arch -arm64"
           #   deployment_target: "14.0"
 
-    env:
-      MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
+    #env:
+    #  MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
 
     steps:
       - name: Echo MACOSX_DEPLOYMENT_TARGET
@@ -81,7 +81,7 @@ jobs:
           python-version: ${{matrix.python-version}}
 
       - name: Checkout main repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
         with:
           submodules: recursive
           lfs: false
@@ -103,7 +103,7 @@ jobs:
       - name: Install dependencies (pip)
         run: |
           ${{matrix.arch}} pip install --upgrade pip
-          ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel delocate
+          ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel delocate==0.10
           ${{matrix.arch}} pip install -r requirements.txt
 
       - name: Debug pip
