@@ -108,7 +108,7 @@ class SimradRawPingBottom_stream(themachinethatgoesping.echosounders_cppy.filete
         """
         return a copy using the c++ default copy constructor
         """
-class SimradRawPingCommon(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+class SimradRawPingCommon:
     """
     """
     def __copy__(self) -> SimradRawPingCommon:
@@ -122,7 +122,7 @@ class SimradRawPingCommon(themachinethatgoesping.echosounders_cppy.filetemplates
     @property
     def file_data(self) -> SimradRawPingFileData:
         ...
-class SimradRawPingCommon_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+class SimradRawPingCommon_stream:
     """
     """
     def __copy__(self) -> SimradRawPingCommon_stream:

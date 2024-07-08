@@ -6,9 +6,15 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## Unreleased
+## [0.23.4] - 08-07-2024
 
 - tools -> 0.24.3
+- echosounders -> 0.39.3
+
+### Performance
+
+- echosoudners
+  - reviewed feature functions and significantly improved memory usage per ping
 
 ### Maintanance
 
@@ -16,11 +22,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
     start generalizing functions to use an XContainer concept input rather than an xtensor
   - echosounders:
     - add tests that actually load data and loop through datagrams and pings
+    - solved diamond inheritance mess
+    - removed deprecated functions
   - set warning_level=2 to silence external warnings
   - fix missing override warning
   - cleaned numerous unused xtensor headers
+  - finally fixed building for mac (intel only)
 
-## [0.23.3] - 05-06-2024
+## [0.23.3] - 05-07-2024
 
 - tools -> 0.24.2
 

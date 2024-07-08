@@ -420,7 +420,12 @@ class I_PingCommon:
     def possible_features(self) -> list[t_pingfeature]:
         ...
     def primary_features(self) -> str:
-        ...
+        """
+        Get a string of all registered primary features for this ping class
+        
+        Returns:
+            std::string
+        """
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information

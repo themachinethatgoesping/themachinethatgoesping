@@ -108,7 +108,7 @@ class KongsbergAllPingBottom_stream(themachinethatgoesping.echosounders_cppy.fil
         """
         return a copy using the c++ default copy constructor
         """
-class KongsbergAllPingCommon(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+class KongsbergAllPingCommon:
     """
     """
     def __copy__(self) -> KongsbergAllPingCommon:
@@ -122,7 +122,7 @@ class KongsbergAllPingCommon(themachinethatgoesping.echosounders_cppy.filetempla
     @property
     def file_data(self) -> KongsbergAllPingFileData:
         ...
-class KongsbergAllPingCommon_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingCommon):
+class KongsbergAllPingCommon_stream:
     """
     """
     def __copy__(self) -> KongsbergAllPingCommon_stream:
