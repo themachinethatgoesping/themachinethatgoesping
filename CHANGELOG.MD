@@ -11,6 +11,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools -> 0.24.4
 - pingprocessing -> 0.8.1
+- navigation -> 0.17.0
+
+### Changed
+
+- navigation:
+  - use more float in navigation interpolator (memory usage)
 
 ### Added
 
@@ -21,6 +27,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools
   - update fast_float: 6.1.1 -> 6.1.3
+
+### Internal
+- tools
+  - added classversion.hpp helper
 
 ## [0.23.4] - 08-07-2024
 

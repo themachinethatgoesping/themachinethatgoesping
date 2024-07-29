@@ -233,29 +233,29 @@ class NavigationInterpolatorLatLon:
         convert object to bytearray
         """
     @property
-    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
+    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF:
         """
         < interpolator that stores attitude data (pitch and roll)
         """
     @interpolator_attitude.setter
-    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF) -> None:
         ...
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorDF:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorDF) -> None:
         ...
     @property
-    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
+    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF:
         """
         < interpolator that stores compass data (yaw/heading) [°]
         """
     @interpolator_heading.setter
-    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF) -> None:
         ...
     @property
     def interpolator_heave(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
@@ -507,21 +507,21 @@ class NavigationInterpolatorLocal:
         convert object to bytearray
         """
     @property
-    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
+    def interpolator_attitude(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF:
         """
         < interpolator that stores attitude data (pitch and roll)
         """
     @interpolator_attitude.setter
-    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_attitude(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF) -> None:
         ...
     @property
-    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator:
+    def interpolator_depth(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorDF:
         """
         < interpolator that stores depth data (depth, positive downwards) <
         [m]
         """
     @interpolator_depth.setter
-    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator) -> None:
+    def interpolator_depth(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorDF) -> None:
         ...
     @property
     def interpolator_easting(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
@@ -532,12 +532,12 @@ class NavigationInterpolatorLocal:
     def interpolator_easting(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator) -> None:
         ...
     @property
-    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator:
+    def interpolator_heading(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF:
         """
         < interpolator that stores compass data (yaw/heading) [°]
         """
     @interpolator_heading.setter
-    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolator) -> None:
+    def interpolator_heading(self, arg1: themachinethatgoesping.tools_cppy.vectorinterpolators.SlerpInterpolatorDF) -> None:
         ...
     @property
     def interpolator_heave(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator:
@@ -948,4 +948,4 @@ class ostream_redirect:
         ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None:
         ...
-__version__: str = '0.16.0'
+__version__: str = '0.17.0'
