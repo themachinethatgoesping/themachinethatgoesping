@@ -1,12 +1,15 @@
 from __future__ import annotations
 from collections import defaultdict
+from contextlib import contextmanager
 from matplotlib import pyplot as plt
 import numpy as np
 import rasterio as rio
+from rasterio.io import MemoryFile
 from rasterio import plot as rioplt
+from rasterio import warp as riowarp
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-__all__ = ['create_figure', 'defaultdict', 'get_progress_iterator', 'np', 'plot_latlon', 'plt', 'rio', 'rioplt']
-def create_figure(name: str, aspect: str = 'equal', close_plots: bool = True, background_image_path: str = None, **kwargs) -> typing.Tuple[matplotlib.figure.Figure, matplotlib.axes._axes.Axes]:
+__all__ = ['MemoryFile', 'contextmanager', 'create_figure', 'defaultdict', 'get_progress_iterator', 'np', 'plot_latlon', 'plt', 'reproject_raster', 'rio', 'rioplt', 'riowarp']
+def create_figure(name: str, aspect: str = 'equal', close_plots: bool = True, background_image_path: str = None, dst_crs = 'EPSG:4326', return_crs = False, **kwargs) -> typing.Tuple[matplotlib.figure.Figure, matplotlib.axes._axes.Axes]:
     """
     
         Create a figure with a given name and aspect ratio.
@@ -42,3 +45,5 @@ def plot_latlon(lat, lon, ax, label = 'survey', annotate = True, max_points = 10
             None
         
     """
+def reproject_raster(*args, **kwds):
+    ...

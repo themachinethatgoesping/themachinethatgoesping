@@ -6,6 +6,22 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+
+## [Unreleased]
+
+- tools -> 0.24.4
+- pingprocessing -> 0.8.1
+
+### Added
+
+- pingprocessing:
+  - overview.nav_plot.create_figure function: reproject background image to latlon by default
+
+### Maintenance
+
+- tools
+  - update fast_float: 6.1.1 -> 6.1.3
+
 ## [0.23.4] - 08-07-2024
 
 - tools -> 0.24.3
