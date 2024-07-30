@@ -556,6 +556,8 @@ class XML_Configuration_Transceiver:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_transceiver_channel(self, channel_id: str) -> XML_Configuration_Transceiver_Channel:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash

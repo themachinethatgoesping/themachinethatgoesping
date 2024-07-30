@@ -12,16 +12,22 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.24.4
 - pingprocessing -> 0.8.1
 - navigation -> 0.17.0
+- echosounders -> 0.39.4
 
 ### Changed
 
 - navigation:
   - use more float in navigation interpolator (memory usage)
+- echosounders:
+  - fixed typo in function name (get_environmnet)
 
 ### Added
 
 - pingprocessing:
   - overview.nav_plot.create_figure function: reproject background image to latlon by default
+- echosounders:
+  - EK80:
+    - add get_channel(channel_id) function to transceiver_channel
 
 ### Maintenance
 
