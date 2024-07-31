@@ -29,6 +29,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - EK80:
     - add get_channel(channel_id) function to transceiver_channel
 
+### Performance
+
+- echosounders:
+  - improved speed of get amplitude / get_sv / get_av functions by using eigen
+
 ### Maintenance
 
 - tools
