@@ -84,35 +84,35 @@ class BeamSampleSelection(BeamSelection):
         Return the first sample number of the ensemble
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def get_first_sample_number_per_beam(self) -> list[int]:
         """
         Return the first sample number per beam
         
         Returns:
-            std::vector<uint16_t>
+            std::vector<uint32_t>
         """
     def get_last_sample_number_ensemble(self) -> int:
         """
         Return the last sample number of the ensemble
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def get_last_sample_number_per_beam(self) -> list[int]:
         """
         Return the max number of samples per beam
         
         Returns:
-            std::vector<uint16_t>
+            std::vector<uint32_t>
         """
     def get_number_of_samples_ensemble(self) -> int:
         """
         return the number of samples within the ensemble
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def get_read_sample_range(self, beam_index: int, first_sample_offset_in_beam: int, number_of_samples_in_beam: int) -> ReadSampleRange:
         """
@@ -130,16 +130,16 @@ class BeamSampleSelection(BeamSelection):
         Returns:
             ReadSampleRange read sample range
         """
-    def get_sample_numbers_ensemble_1d(self) -> numpy.ndarray[numpy.uint16]:
+    def get_sample_numbers_ensemble_1d(self) -> numpy.ndarray[numpy.uint32]:
         ...
-    def get_sample_numbers_ensemble_2d(self) -> numpy.ndarray[numpy.uint16]:
+    def get_sample_numbers_ensemble_2d(self) -> numpy.ndarray[numpy.uint32]:
         ...
     def get_sample_step_ensemble(self) -> int:
         """
         Return the sample step size
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def hash(self) -> int:
         """
@@ -243,7 +243,7 @@ class BeamSelection:
         Return the beam numbers
         
         Returns:
-            std::vector<uint16_t>
+            std::vector<uint32_t>
         """
     def get_number_of_beams(self) -> int:
         """
@@ -444,7 +444,7 @@ class ReadSampleRange:
         Return the first sample number to read (local to beam sample offset)
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def get_last_read_sample_offset(self) -> int:
         ...

@@ -12,22 +12,33 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.24.4
 - pingprocessing -> 0.8.1
 - navigation -> 0.17.0
-- echosounders -> 0.39.4
+- echosounders -> 0.40.0
 
 ### Changed
 
 - navigation:
   - use more float in navigation interpolator (memory usage)
 - echosounders:
-  - fixed typo in function name (get_environmnet)
+  - changed sample nr and beam nr to uint32_t
 
 ### Added
 
-- pingprocessing:
-  - overview.nav_plot.create_figure function: reproject background image to latlon by default
 - echosounders:
   - EK80:
     - add get_channel(channel_id) function to transceiver_channel
+
+### Fixed
+
+- pingprocessing:
+  - overview.nav_plot.create_figure function: reproject background image to latlon by default (support for utm tiffs)
+  - clear_memory function crashes on windows and macos
+  - more specific error message for missing
+- echosounders:
+  - fixed typo in function name (get_environmnet)
+  - fix filecache name mismatch for non-canonical paths
+  - I_PingWaterColumn:
+    - number of samples per beam uint16_t -> uint32_t
+    - sample offset uint16_t -> int32_t
 
 ### Performance
 
@@ -38,10 +49,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools
   - update fast_float: 6.1.1 -> 6.1.3
+- echosounders
+  - add test file that spawns get_amplitude error for EK80 data
 
 ### Internal
 - tools
   - added classversion.hpp helper
+- echosounders
+  - add function to evaluate if all ping features that are specified as available can be called without causing an exception
+  - evaluate unitest pings by calling all available features
+
 
 ## [0.23.4] - 08-07-2024
 

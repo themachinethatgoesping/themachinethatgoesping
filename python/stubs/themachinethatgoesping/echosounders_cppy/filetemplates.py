@@ -220,7 +220,7 @@ class I_PingBottom(I_PingCommon):
         Get the number of beams for this ping
         
         Returns:
-            uint16_t
+            uint32_t
         """
     def get_number_of_tx_sectors(self) -> int:
         """
@@ -638,37 +638,37 @@ class I_PingWatercolumn(I_PingCommon):
             pingtools::BeamSelection
         """
     @typing.overload
-    def get_bottom_range_samples(self) -> numpy.ndarray[numpy.uint16]:
+    def get_bottom_range_samples(self) -> numpy.ndarray[numpy.uint32]:
         """
         Get the sample number of the bottom detection for each beam
         
         Returns:
-            xt::xtensor<uint16_t, 1>
+            xt::xtensor<uint32_t, 1>
         """
     @typing.overload
-    def get_bottom_range_samples(self, beam_selection: ...) -> numpy.ndarray[numpy.uint16]:
+    def get_bottom_range_samples(self, beam_selection: ...) -> numpy.ndarray[numpy.uint32]:
         """
         Get the sample number of the bottom detection for each beam
         
         Returns:
-            xt::xtensor<uint16_t, 1>
+            xt::xtensor<uint32_t, 1>
         """
     def get_calibration(self) -> WaterColumnCalibration:
         ...
-    def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint16]:
+    def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint32]:
         ...
     def get_number_of_beams(self) -> int:
         """
         Get the number of beams for this ping
         
         Returns:
-            uint16_t
+            uint32_t
         """
     @typing.overload
-    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint16]:
+    def get_number_of_samples_per_beam(self) -> numpy.ndarray[numpy.uint32]:
         ...
     @typing.overload
-    def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint16]:
+    def get_number_of_samples_per_beam(self, arg0: ...) -> numpy.ndarray[numpy.uint32]:
         ...
     def get_number_of_tx_sectors(self) -> int:
         """
