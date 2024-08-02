@@ -7,7 +7,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 
-## [Unreleased]
+## [0.24.0] - 02-08-2024
 
 - tools -> 0.24.4
 - pingprocessing -> 0.8.1
