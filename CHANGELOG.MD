@@ -6,6 +6,14 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [0.24.0] - 02-08-2024
+
+- pingprocessing -> 0.8.2
+
+### Fixed
+
+- pingprocessing:
+  - echodata.from_pings: fixed crash for pings with same timestamp
 
 ## [0.24.0] - 02-08-2024
 
