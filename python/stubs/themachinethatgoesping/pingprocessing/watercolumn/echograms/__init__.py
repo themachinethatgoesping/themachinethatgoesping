@@ -4,9 +4,11 @@ from themachinethatgoesping.pingprocessing.watercolumn.echograms.echogrambuilder
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.echogramgroup import EchogramGroup
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.echogramgroup import create_echogram_groups
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.echogramsection import EchogramSection
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.echoproxy import EchoProxy
 from . import echodata
 from . import echogrambuilder
 from . import echogramgroup
 from . import echogramsection
 from . import echoimagebuilders
-__all__ = ['EchoData', 'EchogramBuilder', 'EchogramGroup', 'EchogramSection', 'create_echogram_groups', 'echodata', 'echogrambuilder', 'echogramgroup', 'echogramsection', 'echoimagebuilders']
+from . import echoproxy
+__all__ = ['EchoData', 'EchoProxy', 'EchogramBuilder', 'EchogramGroup', 'EchogramSection', 'create_echogram_groups', 'echodata', 'echogrambuilder', 'echogramgroup', 'echogramsection', 'echoimagebuilders', 'echoproxy']

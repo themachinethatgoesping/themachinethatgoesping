@@ -6,7 +6,19 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [0.24.0] - 02-08-2024
+## [Unreleased]
+
+- pingprocessing -> 0.8.3
+
+### Added
+
+- EchoProxy class to pingprocessing
+
+### Fixed
+
+- replaced str.split('/') with os.path.split() for cross-platform compatibility
+
+## [0.24.1] - 02-08-2024
 
 - pingprocessing -> 0.8.2
 
