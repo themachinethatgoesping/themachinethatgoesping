@@ -9,6 +9,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - pingprocessing -> 0.8.3
+- tools -> 0.25.1
 
 ### Added
 
@@ -17,6 +18,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Fixed
 
 - replaced str.split('/') with os.path.split() for cross-platform compatibility
+
+### Maintenance
+
+- update pybind11 2.12.0 -> 2.13.3
 
 ## [0.24.1] - 02-08-2024
 
