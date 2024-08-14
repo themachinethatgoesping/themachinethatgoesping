@@ -22,6 +22,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Maintenance
 
 - update pybind11 2.12.0 -> 2.13.3
+- update Catch2 3.6.0 -> 3.7.0
 
 ## [0.24.1] - 02-08-2024
 
