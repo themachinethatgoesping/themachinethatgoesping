@@ -21,7 +21,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Maintenance
 
-- update pybind11 2.12.0 -> 2.13.4
+- update pybind11 2.12.0 -> 2.13.5
 - update Catch2 3.6.0 -> 3.7.0
 - update fast_float 6.1.3 -> 6.1.4
 
