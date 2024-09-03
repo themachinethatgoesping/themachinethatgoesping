@@ -8,6 +8,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [Unreleased]
 
+- echosounders -> 0.40.1
 - pingprocessing -> 0.8.3
 - tools -> 0.25.1
 
@@ -18,12 +19,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Fixed
 
 - replaced str.split('/') with os.path.split() for cross-platform compatibility
+- SimradRaw.watercolumn get_sound_speed_at_transducer now uses environment sound speed if parameter soundvelocity is not available
 
 ### Maintenance
 
 - update pybind11 2.12.0 -> 2.13.5
 - update Catch2 3.6.0 -> 3.7.0
-- update fast_float 6.1.3 -> 6.1.4
+- update fast_float 6.1.3 -> 6.1.5
 
 ## [0.24.1] - 02-08-2024
 
