@@ -20,6 +20,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - replaced str.split('/') with os.path.split() for cross-platform compatibility
 - SimradRaw.watercolumn get_sound_speed_at_transducer now uses environment sound speed if parameter soundvelocity is not available
+- echosounders:
+  - SimradRaw: fixed wrong skip value for reading skipped sample data
 
 ### Maintenance
 
