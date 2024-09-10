@@ -628,6 +628,8 @@ class XML_Configuration_Transceiver_Channel:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_pulse_durations(self, fm: bool) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash

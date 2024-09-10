@@ -9,7 +9,7 @@ import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import typing
-__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingBottom', 'SimradRawPingBottom_stream', 'SimradRawPingCommon', 'SimradRawPingCommon_stream', 'SimradRawPingFileData', 'SimradRawPingFileData_stream', 'SimradRawPingWatercolumn', 'SimradRawPingWatercolumn_stream', 'SimradRawPing_stream']
+__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingBottom', 'SimradRawPingBottom_stream', 'SimradRawPingCommon', 'SimradRawPingCommon_stream', 'SimradRawPingFileData', 'SimradRawPingFileData_stream', 'SimradRawPingWatercolumn', 'SimradRawPingWatercolumn_stream', 'SimradRawPing_stream', 'TransceiverInformation']
 class FilePackageIndex_simradraw_FilePackageIndex:
     """
     """
@@ -198,24 +198,6 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def get_transceiver(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver:
-        ...
-    def get_transceiver_channel(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver_Channel:
-        ...
-    def get_transceiver_impedance_factor(self) -> float:
-        """
-        Get the transceiver impedance factor used for computing power from
-        complex 32 bit samples see ek80 interface specification v23.06 p214
-        impedance factor is ((ztransceiver + ztransducer) / ztransceiver)² *
-        1/ tdi * 1/(2*sqrt(2))² Note: 1. Transceive impedance can be found in
-        the transceiver configuration in the configuration datagram 2.
-        Transducer impedance is always 75 ohm. TODO: is this always 75 ohm?
-        
-        Returns:
-            float
-        """
-    def get_transducer(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer:
-        ...
     @typing.overload
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -242,7 +224,8 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         """
     def read_sample_data(self, dB: bool = True) -> numpy.ndarray[numpy.float32]:
         ...
-    def transceiver_information_initialized(self) -> bool:
+    @property
+    def transceiver_information(self) -> TransceiverInformation:
         ...
 class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
@@ -305,24 +288,6 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def get_transceiver(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver:
-        ...
-    def get_transceiver_channel(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver_Channel:
-        ...
-    def get_transceiver_impedance_factor(self) -> float:
-        """
-        Get the transceiver impedance factor used for computing power from
-        complex 32 bit samples see ek80 interface specification v23.06 p214
-        impedance factor is ((ztransceiver + ztransducer) / ztransceiver)² *
-        1/ tdi * 1/(2*sqrt(2))² Note: 1. Transceive impedance can be found in
-        the transceiver configuration in the configuration datagram 2.
-        Transducer impedance is always 75 ohm. TODO: is this always 75 ohm?
-        
-        Returns:
-            float
-        """
-    def get_transducer(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer:
-        ...
     @typing.overload
     def info_string(self, float_precision: int = 2) -> str:
         """
@@ -349,7 +314,8 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
         """
     def read_sample_data(self, dB: bool = True) -> numpy.ndarray[numpy.float32]:
         ...
-    def transceiver_information_initialized(self) -> bool:
+    @property
+    def transceiver_information(self) -> TransceiverInformation:
         ...
 class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon):
     """
@@ -396,3 +362,24 @@ class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplate
         """
         return a copy using the c++ default copy constructor
         """
+class TransceiverInformation:
+    """
+    This is a substructure of the simradrawPingWaterColumn class. It is
+    used to store information necessary to efficiently read water column
+    data from the file. It does not hold the actual water column samples
+    
+    Note this is a private substructure and is thus not part of the public
+    API or pybind11 interface.
+    """
+    def get_impedance_factor(self) -> float:
+        ...
+    def get_pulse_duration_index(self, pulse_duration: float, fm: bool) -> int:
+        ...
+    def get_transceiver(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver:
+        ...
+    def get_transceiver_channel(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver_Channel:
+        ...
+    def get_transducer(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer:
+        ...
+    def is_initialized(self) -> bool:
+        ...
