@@ -15,6 +15,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Added
 
 - EchoProxy class to pingprocessing
+- echosounders: simradraw ek80 corrected power computation from complex32 floats
 
 ### Fixed
 
