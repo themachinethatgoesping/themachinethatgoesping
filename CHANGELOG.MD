@@ -8,16 +8,24 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [Unreleased]
 
-- echosounders -> 0.40.1
+- echosounders -> 0.41.0
 - pingprocessing -> 0.8.3
 - tools -> 0.25.1
+
+### Changed
+
+- echosounders:
+  - reworked calibration classes
 
 ### Added
 
 - EchoProxy class to pingprocessing
+- tools:
+  - substract_set_zero_if_negative helper function
 - echosounders: 
   - simradraw ek80 corrected power computation from complex32 floats
   - create extra transceiverinformation namespace for simradraw ek80 filedata
+  - simradraw ek80 xml_parameter_channel: get_pulse_duration and get_pulse_form_is_cw
 
 ### Fixed
 
@@ -25,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - SimradRaw.watercolumn get_sound_speed_at_transducer now uses environment sound speed if parameter soundvelocity is not available
 - echosounders:
   - SimradRaw: fixed wrong skip value for reading skipped sample data
+  - unsigned int warning
 
 ### Maintenance
 
@@ -226,7 +235,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - py_NearestInterpolator: also support int py object
   - get_y_const: interpolation function to allow usage of interpolators in multithreaded environments
 - echosounders:
-  - WaterColumnCalibration structure
+  - AmplitudeCalibration structure
   - conversion to sv (kongsberg all)
   - available_features() and available_feature_groups() function for i_pingcommon
 - pingprocessing:

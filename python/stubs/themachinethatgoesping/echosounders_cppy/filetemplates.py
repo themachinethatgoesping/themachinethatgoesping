@@ -9,7 +9,112 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'WaterColumnCalibration', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'calibration', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
+__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'WaterColumnCalibration', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'calibration', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
+class AmplitudeCalibration:
+    """
+    """
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AmplitudeCalibration:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> AmplitudeCalibration:
+        ...
+    def __deepcopy__(self, arg0: dict) -> AmplitudeCalibration:
+        ...
+    def __eq__(self, other: AmplitudeCalibration) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    @typing.overload
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __hash__(self) -> int:
+        ...
+    @typing.overload
+    def __init__(self) -> None:
+        ...
+    @typing.overload
+    def __init__(self, system_offset: float) -> None:
+        ...
+    @typing.overload
+    def __init__(self, arg0: AmplitudeCalibration) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def cached_hash(self) -> int:
+        ...
+    def copy(self) -> AmplitudeCalibration:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+        ...
+    def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+        ...
+    @typing.overload
+    def get_offset_per_beamangle(self, beamangle: list[float]) -> list[float]:
+        ...
+    @typing.overload
+    def get_offset_per_beamangle(self, beamangle: float) -> float:
+        ...
+    @typing.overload
+    def get_offset_per_range(self, range: list[float]) -> list[float]:
+        ...
+    @typing.overload
+    def get_offset_per_range(self, range: float) -> float:
+        ...
+    def get_system_offset(self) -> float:
+        ...
+    def has_offset_per_beamangle(self) -> bool:
+        ...
+    def has_offset_per_range(self) -> bool:
+        ...
+    def has_system_offset(self) -> bool:
+        ...
+    @typing.overload
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def hash(self) -> int:
+        ...
+    def info_string(self, float_precision: int = 2) -> str:
+        """
+        Return object information as string
+        """
+    def initialized(self) -> bool:
+        ...
+    def print(self, float_precision: int = 2) -> None:
+        """
+        Print object information
+        """
+    def set_offset_per_beamangle(self, beamangle: list[float], offset: list[float]) -> None:
+        ...
+    def set_offset_per_range(self, range: list[float], offset: list[float]) -> None:
+        ...
+    def set_system_offset(self, value: float) -> None:
+        ...
+    def slow_hash(self) -> int:
+        """
+        hash function implemented using slow_hash
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
 class FileCache:
     """
     """
@@ -653,7 +758,7 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<uint32_t, 1>
         """
-    def get_calibration(self) -> WaterColumnCalibration:
+    def get_calibration(self) -> AmplitudeCalibration:
         ...
     def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint32]:
         ...
@@ -769,7 +874,7 @@ class I_PingWatercolumn(I_PingCommon):
         ...
     def has_tx_signal_parameters(self) -> bool:
         ...
-    def set_calibration(self, calibration: WaterColumnCalibration) -> None:
+    def set_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
 class WaterColumnCalibration:
     """
@@ -799,7 +904,7 @@ class WaterColumnCalibration:
     def __init__(self) -> None:
         ...
     @typing.overload
-    def __init__(self, system_offset: float) -> None:
+    def __init__(self, power_calibration: AmplitudeCalibration = ..., sp_calibration: AmplitudeCalibration = ..., sv_calibration: AmplitudeCalibration = ...) -> None:
         ...
     @typing.overload
     def __init__(self, arg0: WaterColumnCalibration) -> None:
@@ -820,29 +925,13 @@ class WaterColumnCalibration:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+    def get_power_calibration(self) -> AmplitudeCalibration:
         ...
-    def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+    def has_power_calibration(self) -> bool:
         ...
-    @typing.overload
-    def get_offset_per_beamangle(self, beamangle: list[float]) -> list[float]:
+    def has_sp_calibration(self) -> bool:
         ...
-    @typing.overload
-    def get_offset_per_beamangle(self, beamangle: float) -> float:
-        ...
-    @typing.overload
-    def get_offset_per_range(self, range: list[float]) -> list[float]:
-        ...
-    @typing.overload
-    def get_offset_per_range(self, range: float) -> float:
-        ...
-    def get_system_offset(self) -> float:
-        ...
-    def has_offset_per_beamangle(self) -> bool:
-        ...
-    def has_offset_per_range(self) -> bool:
-        ...
-    def has_system_offset(self) -> bool:
+    def has_sv_calibration(self) -> bool:
         ...
     @typing.overload
     def hash(self) -> int:
@@ -862,11 +951,11 @@ class WaterColumnCalibration:
         """
         Print object information
         """
-    def set_offset_per_beamangle(self, beamangle: list[float], offset: list[float]) -> None:
+    def set_power_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
-    def set_offset_per_range(self, range: list[float], offset: list[float]) -> None:
+    def set_sp_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
-    def set_system_offset(self, value: float) -> None:
+    def set_sv_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
     def slow_hash(self) -> int:
         """
