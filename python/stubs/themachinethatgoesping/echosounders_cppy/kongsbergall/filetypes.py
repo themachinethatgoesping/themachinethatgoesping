@@ -59,10 +59,6 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

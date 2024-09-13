@@ -653,10 +653,6 @@ class NetworkAttitudeVelocityDatagramAttitude:
         """
         < in_milliseconds_since_record_start
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1180,10 +1176,6 @@ class WatercolumnDatagramBeam:
         ...
     def set_transmit_sector_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

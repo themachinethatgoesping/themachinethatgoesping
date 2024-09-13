@@ -84,10 +84,6 @@ class CWSignalParameters:
         ...
     def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -184,10 +180,6 @@ class FMSignalParameters:
         ...
     def set_up_sweep(self, up_sweep: bool) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -280,10 +272,6 @@ class GenericSignalParameters:
         """
     def set_tx_signal_type(self, tx_signal_type: t_TxSignalType) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

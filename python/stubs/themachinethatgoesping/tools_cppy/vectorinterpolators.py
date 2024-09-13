@@ -186,10 +186,6 @@ class AkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -374,10 +370,6 @@ class AkimaInterpolatorFF:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -565,10 +557,6 @@ class LinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -754,10 +742,6 @@ class LinearInterpolatorDF:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -945,10 +929,6 @@ class LinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1134,10 +1114,6 @@ class LinearInterpolatorFD:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1325,10 +1301,6 @@ class NearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1514,10 +1486,6 @@ class NearestInterpolatorDF:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1705,10 +1673,6 @@ class NearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1894,10 +1858,6 @@ class NearestInterpolatorDO:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2085,10 +2045,6 @@ class NearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2274,10 +2230,6 @@ class NearestInterpolatorFD:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2465,10 +2417,6 @@ class NearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2654,10 +2602,6 @@ class NearestInterpolatorFO:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2976,10 +2920,6 @@ class SlerpInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3296,10 +3236,6 @@ class SlerpInterpolatorDF:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -3618,10 +3554,6 @@ class SlerpInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3938,10 +3870,6 @@ class SlerpInterpolatorFD:
             :py:class:`t_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

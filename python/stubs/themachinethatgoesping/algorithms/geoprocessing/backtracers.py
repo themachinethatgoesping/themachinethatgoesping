@@ -64,10 +64,6 @@ class BTConstantSVP(I_Backtracer):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -146,10 +142,6 @@ class BacktracedWCI:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -274,10 +266,6 @@ class I_Backtracer:
         """
     def set_sensor_location(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

@@ -159,10 +159,6 @@ class BeamSampleSelection(BeamSelection):
         ...
     def set_sample_step_ensemble(self, sample_step_ensemble: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -263,10 +259,6 @@ class BeamSelection:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -392,10 +384,6 @@ class PingSampleSelector:
         ...
     def set_sample_step(self, sample_step: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -461,10 +449,6 @@ class ReadSampleRange:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

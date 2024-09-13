@@ -61,10 +61,6 @@ class I_Raytracer:
         """
     def set_sensor_location(self, sensor_location: ...) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -346,10 +342,6 @@ class RTConstantSVP(I_Raytracer):
         
         Returns:
             datastructures::RaytraceResults<1>
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

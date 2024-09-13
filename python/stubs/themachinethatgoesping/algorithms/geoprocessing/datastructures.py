@@ -90,10 +90,6 @@ class BeamSampleParameters:
         ...
     def set_sample_interval(self, sample_interval: numpy.ndarray[numpy.float32]) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -170,10 +166,6 @@ class RaytraceResult:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -304,10 +296,6 @@ class RaytraceResults_1(XYZ_1):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -412,10 +400,6 @@ class RaytraceResults_2(XYZ_2):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -522,10 +506,6 @@ class RaytraceResults_3(XYZ_3):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -622,10 +602,6 @@ class SampleDirectionsRange_1(SampleDirections_1):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -724,10 +700,6 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -824,10 +796,6 @@ class SampleDirectionsRange_3(SampleDirections_3):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -926,10 +894,6 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1026,10 +990,6 @@ class SampleDirectionsTime_2(SampleDirections_2):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1128,10 +1088,6 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1225,10 +1181,6 @@ class SampleDirections_1:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1330,10 +1282,6 @@ class SampleDirections_2:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1435,10 +1383,6 @@ class SampleDirections_3:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1540,10 +1484,6 @@ class SampleIndices_1:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1645,10 +1585,6 @@ class SampleIndices_2:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1750,10 +1686,6 @@ class SampleIndices_3:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1898,10 +1830,6 @@ class XYZ_1:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2058,10 +1986,6 @@ class XYZ_2:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2218,10 +2142,6 @@ class XYZ_3:
         ...
     def size(self) -> int:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

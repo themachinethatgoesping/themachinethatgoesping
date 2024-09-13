@@ -95,10 +95,6 @@ class Geolocation:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -237,10 +233,6 @@ class GeolocationLatLon(Geolocation):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -351,10 +343,6 @@ class GeolocationLocal(Geolocation):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -476,10 +464,6 @@ class GeolocationUTM(GeolocationLocal):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -582,10 +566,6 @@ class PositionalOffsets:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -741,10 +721,6 @@ class Sensordata:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -895,10 +871,6 @@ class SensordataLatLon(Sensordata):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1006,10 +978,6 @@ class SensordataLocal(Sensordata):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1188,10 +1156,6 @@ class SensordataUTM(SensordataLocal):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

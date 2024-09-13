@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'WaterColumnCalibration', 'amplitudes', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'calibration', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'sensor_configuration', 'sensor_data_latlon', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
+__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'power', 'power_calibration', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sp_calibration', 'sv', 'sv_calibration', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
 class AmplitudeCalibration:
     """
     """
@@ -107,10 +107,6 @@ class AmplitudeCalibration:
         ...
     def set_system_offset(self, value: float) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -188,10 +184,6 @@ class FileCache:
         """
     def remove_from_cache(self, name: str) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -677,9 +669,25 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
+    def get_ap(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to AP (uncalibrated point scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_ap(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to AP (uncalibrated point scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
     def get_av(self) -> numpy.ndarray[numpy.float32]:
         """
-        Get tha amplitude data converted to AV (uncalibrated volume
+        Get the amplitude data converted to AV (uncalibrated volume
         scattering)
         
         Returns:
@@ -688,7 +696,7 @@ class I_PingWatercolumn(I_PingCommon):
     @typing.overload
     def get_av(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
         """
-        Get tha amplitude data converted to AV (uncalibrated volume
+        Get the amplitude data converted to AV (uncalibrated volume
         scattering)
         
         Returns:
@@ -758,8 +766,6 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<uint32_t, 1>
         """
-    def get_calibration(self) -> AmplitudeCalibration:
-        ...
     def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint32]:
         ...
     def get_number_of_beams(self) -> int:
@@ -785,6 +791,24 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             The number of transmission sectors.
         """
+    @typing.overload
+    def get_power(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to power
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_power(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to power
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    def get_power_calibration(self) -> AmplitudeCalibration:
+        ...
     def get_sample_interval(self) -> float:
         """
         Get the sample interval in seconds
@@ -793,6 +817,24 @@ class I_PingWatercolumn(I_PingCommon):
             float
         """
     def get_sound_speed_at_transducer(self) -> float:
+        ...
+    @typing.overload
+    def get_sp(self) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to SP (calibrated point scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_sp(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the amplitude data converted to SP (calibrated point scattering)
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    def get_sp_calibration(self) -> AmplitudeCalibration:
         ...
     @typing.overload
     def get_sv(self) -> numpy.ndarray[numpy.float32]:
@@ -810,6 +852,8 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<float,2>
         """
+    def get_sv_calibration(self) -> AmplitudeCalibration:
+        ...
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
         ...
     def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
@@ -830,9 +874,19 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
+    def has_ap(self) -> bool:
+        """
+        Check this pings supports AP data (uncalibrated point scattering)
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
     def has_av(self) -> bool:
         """
-        Check this pings supports AV data
+        Check this pings supports AV data (uncalibrated volume scattering)
         
         Returns:
             true
@@ -850,9 +904,39 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
-    def has_calibration(self) -> bool:
+    def has_power(self) -> bool:
         """
-        Check this pings has valid calibration data
+        Check this pings supports calibrated power data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_power_calibration(self) -> bool:
+        """
+        Check this pings has valid power calibration data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_sp(self) -> bool:
+        """
+        Check this pings supports calibrated SV data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_sp_calibration(self) -> bool:
+        """
+        Check this pings has valid sv calibration data
         
         Returns:
             true
@@ -870,11 +954,25 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
+    def has_sv_calibration(self) -> bool:
+        """
+        Check this pings has valid sv calibration data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
     def has_tx_sector_information(self) -> bool:
         ...
     def has_tx_signal_parameters(self) -> bool:
         ...
-    def set_calibration(self, calibration: AmplitudeCalibration) -> None:
+    def set_power_calibration(self, calibration: AmplitudeCalibration) -> None:
+        ...
+    def set_sp_calibration(self, calibration: AmplitudeCalibration) -> None:
+        ...
+    def set_sv_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
 class WaterColumnCalibration:
     """
@@ -957,10 +1055,6 @@ class WaterColumnCalibration:
         ...
     def set_sv_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -997,30 +1091,45 @@ class t_pingfeature:
     
       xyz
     
+      bottom_range_samples
+    
       amplitudes
+    
+      ap
     
       av
     
-      bottom_range_samples
+      power
+    
+      sp
     
       sv
     
-      calibration
+      power_calibration
+    
+      sp_calibration
+    
+      sv_calibration
     """
-    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 11>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 12>, 'xyz': <t_pingfeature.xyz: 13>, 'amplitudes': <t_pingfeature.amplitudes: 14>, 'av': <t_pingfeature.av: 15>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 16>, 'sv': <t_pingfeature.sv: 17>, 'calibration': <t_pingfeature.calibration: 18>}
-    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 14>
-    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 15>
+    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 11>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 12>, 'xyz': <t_pingfeature.xyz: 13>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 14>, 'amplitudes': <t_pingfeature.amplitudes: 15>, 'ap': <t_pingfeature.ap: 16>, 'av': <t_pingfeature.av: 17>, 'power': <t_pingfeature.power: 18>, 'sp': <t_pingfeature.sp: 19>, 'sv': <t_pingfeature.sv: 20>, 'power_calibration': <t_pingfeature.power_calibration: 21>, 'sp_calibration': <t_pingfeature.sp_calibration: 22>, 'sv_calibration': <t_pingfeature.sv_calibration: 23>}
+    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 15>
+    ap: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.ap: 16>
+    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 17>
     beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 11>
     bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 7>
-    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 16>
-    calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.calibration: 18>
+    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 14>
     channel_id: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.channel_id: 2>
     datetime: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.datetime: 1>
     geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 5>
     number_of_tx_sectors: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_tx_sectors: 10>
+    power: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power: 18>
+    power_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power_calibration: 21>
     sensor_configuration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_configuration: 3>
     sensor_data_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_data_latlon: 4>
-    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 17>
+    sp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp: 19>
+    sp_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp_calibration: 22>
+    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 20>
+    sv_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv_calibration: 23>
     timestamp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.timestamp: 0>
     two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 12>
     tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 9>
@@ -1060,19 +1169,24 @@ class t_pingfeature:
     @property
     def value(self) -> int:
         ...
-amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 14>
-av: t_pingfeature  # value = <t_pingfeature.av: 15>
+amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 15>
+ap: t_pingfeature  # value = <t_pingfeature.ap: 16>
+av: t_pingfeature  # value = <t_pingfeature.av: 17>
 beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 11>
 bottom: t_pingfeature  # value = <t_pingfeature.bottom: 7>
-bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 16>
-calibration: t_pingfeature  # value = <t_pingfeature.calibration: 18>
+bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 14>
 channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
 datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
 geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 5>
 number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 10>
+power: t_pingfeature  # value = <t_pingfeature.power: 18>
+power_calibration: t_pingfeature  # value = <t_pingfeature.power_calibration: 21>
 sensor_configuration: t_pingfeature  # value = <t_pingfeature.sensor_configuration: 3>
 sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 4>
-sv: t_pingfeature  # value = <t_pingfeature.sv: 17>
+sp: t_pingfeature  # value = <t_pingfeature.sp: 19>
+sp_calibration: t_pingfeature  # value = <t_pingfeature.sp_calibration: 22>
+sv: t_pingfeature  # value = <t_pingfeature.sv: 20>
+sv_calibration: t_pingfeature  # value = <t_pingfeature.sv_calibration: 23>
 timestamp: t_pingfeature  # value = <t_pingfeature.timestamp: 0>
 two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 12>
 tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 9>

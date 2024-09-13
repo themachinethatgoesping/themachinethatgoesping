@@ -147,10 +147,6 @@ class AttitudeDatagram(KongsbergAllDatagram):
         ...
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -270,10 +266,6 @@ class ClockDatagram(KongsbergAllDatagram):
         """
         < in ms from external clock datagram
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -383,10 +375,6 @@ class DepthOrHeightDatagram(KongsbergAllDatagram):
         """
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -633,10 +621,6 @@ class ExtraDetections(KongsbergAllDatagram):
         """
         < (WCsr)
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -726,10 +710,6 @@ class ExtraParameters(KongsbergAllDatagram):
         ...
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -903,10 +883,6 @@ class HeadingDatagram(KongsbergAllDatagram):
     def set_times_and_headings(self, arg0: numpy.ndarray[numpy.uint16]) -> None:
         """
         < 2xN array of time in ms since record start and heading in 0.01°
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def times_and_headings(self) -> numpy.ndarray[numpy.uint16]:
         """
@@ -1171,10 +1147,6 @@ class InstallationParameters(KongsbergAllDatagram):
         ...
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1294,10 +1266,6 @@ class KongsbergAllDatagram:
         """
     def set_time_since_midnight(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1362,10 +1330,6 @@ class KongsbergAllUnknown(KongsbergAllDatagram):
         ...
     def set_raw_content(self, arg0: str) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1536,10 +1500,6 @@ class NetworkAttitudeVelocityDatagram(KongsbergAllDatagram):
         ...
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1815,10 +1775,6 @@ class PUIDOutput(KongsbergAllDatagram):
         ...
     def set_udp_port_no_4(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2259,10 +2215,6 @@ class PUStatusOutput(KongsbergAllDatagram):
         """
         < in 0.01 degree, or tilt used at 3D scanning
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2477,10 +2429,6 @@ class PositionDatagram(KongsbergAllDatagram):
         """
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -2612,10 +2560,6 @@ class QualityFactorDatagram(KongsbergAllDatagram):
     def set_system_serial_number(self, arg0: int) -> None:
         """
         < 100 -
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2789,10 +2733,6 @@ class RawRangeAndAngle(KongsbergAllDatagram):
         ...
     def set_transmit_sectors(self, arg0: list[substructures.RawRangeAndAngleTransmitSector]) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3072,10 +3012,6 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def set_yaw_and_pitch_stabilization_mode(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3257,10 +3193,6 @@ class SeabedImageData(KongsbergAllDatagram):
         """
         < in 0.1 degree
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3396,10 +3328,6 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
         """
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3566,10 +3494,6 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
         ...
     def set_system_serial_number(self, arg0: int) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -3679,10 +3603,6 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
     def set_times_and_sound_speeds(self, arg0: numpy.ndarray[numpy.uint16]) -> None:
         """
         < 2xN array of time in ms since record < start and sound_speed in dm/s
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def times_and_sound_speeds(self) -> numpy.ndarray[numpy.uint16]:
         """
@@ -3858,10 +3778,6 @@ class WatercolumnDatagram(KongsbergAllDatagram):
     def set_tx_time_heave(self, arg0: int) -> None:
         """
         < in cm
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -4053,10 +3969,6 @@ class XYZDatagram(KongsbergAllDatagram):
     def set_transmit_transducer_depth(self, arg0: float) -> None:
         """
         < in meter relative water level at time of ping
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

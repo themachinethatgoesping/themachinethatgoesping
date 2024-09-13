@@ -99,10 +99,6 @@ class FIL1(SimradRawDatagram):
         """
         < Filter stage number
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -191,10 +187,6 @@ class MRU0(SimradRawDatagram):
         """
         < Roll in degrees, positive port up
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -274,10 +266,6 @@ class NME0(SimradRawDatagram):
     def set_nmea_base(self, arg0: themachinethatgoesping.navigation.nmea_0183.NMEA_Base) -> None:
         """
         < Raw NMEA sentence
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -405,10 +393,6 @@ class RAW3(SimradRawDatagram):
         """
         < Spare 2
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -516,10 +500,6 @@ class SimradRawDatagram:
         """
     def set_timestamp(self, arg0: float) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -579,10 +559,6 @@ class SimradRawUnknown(SimradRawDatagram):
     def set_raw_content(self, arg0: bytes) -> None:
         """
         < raw content of the datagram as byte string;
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -647,10 +623,6 @@ class TAG0(SimradRawDatagram):
     def set_text(self, arg0: str) -> None:
         """
         < _text annotation string (e.g. interesting fish shoal in echogram)
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -726,10 +698,6 @@ class XML0(SimradRawDatagram):
         ...
     def set_xml_content(self, xml_content: str) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def test_xml(self) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:

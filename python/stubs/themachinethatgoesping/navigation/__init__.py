@@ -224,10 +224,6 @@ class NavigationInterpolatorLatLon:
         """
     def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -498,10 +494,6 @@ class NavigationInterpolatorLocal:
         """
     def set_sensor_configuration(self, sensor_configuration: SensorConfiguration) -> None:
         ...
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -925,10 +917,6 @@ class SensorConfiguration:
         below the waterline
         
         Parameter ``waterline_offset``:
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

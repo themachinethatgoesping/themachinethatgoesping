@@ -10,12 +10,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.41.0
 - pingprocessing -> 0.8.3
-- tools -> 0.25.1
+- tools -> 0.26.0
+- algorithms -> 0.8.1
 
 ### Changed
 
 - echosounders:
   - reworked calibration classes
+- tools:
+  - removed slow_hash function
+- pingprocessing:
+  - adapt echosoudners 0.41.0
 
 ### Added
 
@@ -26,6 +31,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - simradraw ek80 corrected power computation from complex32 floats
   - create extra transceiverinformation namespace for simradraw ek80 filedata
   - simradraw ek80 xml_parameter_channel: get_pulse_duration and get_pulse_form_is_cw
+- algorithms:
+  - gswteos-10 dependency for sound speed and absorption calculation
 
 ### Fixed
 

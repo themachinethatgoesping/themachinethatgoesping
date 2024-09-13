@@ -70,10 +70,6 @@ class NMEA_Base:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -156,10 +152,6 @@ class NMEA_GGA(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -231,10 +223,6 @@ class NMEA_GLL(NMEA_Base):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -312,10 +300,6 @@ class NMEA_GST(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -377,10 +361,6 @@ class NMEA_HDT(NMEA_Base):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -463,10 +443,6 @@ class NMEA_RMC(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -546,10 +522,6 @@ class NMEA_Unknown(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -618,10 +590,6 @@ class NMEA_VHW(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -689,10 +657,6 @@ class NMEA_VLW(NMEA_Base):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -766,10 +730,6 @@ class NMEA_VTG(NMEA_Base):
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -841,10 +801,6 @@ class NMEA_ZDA(NMEA_Base):
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """

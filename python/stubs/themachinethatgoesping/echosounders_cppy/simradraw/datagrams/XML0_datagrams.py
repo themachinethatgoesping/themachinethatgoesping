@@ -58,10 +58,6 @@ class ChannelConfiguration:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -132,10 +128,6 @@ class XMLConfigurationActivePingMode:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -210,10 +202,6 @@ class XMLConfigurationTransceiverChannelTransducer:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -293,10 +281,6 @@ class XML_Configuration:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -373,10 +357,6 @@ class XML_Configuration_Sensor:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -437,10 +417,6 @@ class XML_Configuration_Sensor_Telegram:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -497,10 +473,6 @@ class XML_Configuration_Sensor_TelegramValue:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -572,10 +544,6 @@ class XML_Configuration_Transceiver:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -644,10 +612,6 @@ class XML_Configuration_Transceiver_Channel:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -710,10 +674,6 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -787,10 +747,6 @@ class XML_Configuration_Transducer:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -868,10 +824,6 @@ class XML_Environment:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -929,10 +881,6 @@ class XML_Environment_Transducer:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -986,10 +934,6 @@ class XML_InitialParameter:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1058,10 +1002,6 @@ class XML_Node:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1115,10 +1055,6 @@ class XML_Parameter:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1188,10 +1124,6 @@ class XML_Parameter_Channel:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1313,10 +1245,6 @@ class XML_PingSequence:
         """
         Print object information
         """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
-        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1372,10 +1300,6 @@ class XML_PingSequence_Ping:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1434,10 +1358,6 @@ class XML_Sensor:
     def print(self, float_precision: int = 2) -> None:
         """
         Print object information
-        """
-    def slow_hash(self) -> int:
-        """
-        hash function implemented using slow_hash
         """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
