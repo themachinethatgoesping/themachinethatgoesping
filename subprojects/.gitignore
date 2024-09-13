@@ -19,6 +19,7 @@ xxhash_cpp**
 date**
 sse2neon**
 flat_map**
+gswteos-10**
 
 #inherited wrap files
 catch2.wrap
