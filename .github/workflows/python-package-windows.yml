@@ -137,7 +137,7 @@ jobs:
         pip install . --config-settings="builddir=pybuild" --no-build-isolation
         
     - name: Store the binary wheel
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: python-package-distributions
         path: dist    

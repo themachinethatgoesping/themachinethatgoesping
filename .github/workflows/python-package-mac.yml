@@ -120,7 +120,7 @@ jobs:
           ${{matrix.arch}} pip install wheelhouse/*
 
       - name: Store the binary wheel
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-package-macos
           path: wheelhouse

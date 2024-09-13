@@ -127,7 +127,7 @@ jobs:
           CIBW_ENVIRONMENT_MACOS: CXX=${{ matrix.cxx_compiler }} ${{ matrix.boost_root}}
           CIBW_BEFORE_ALL_MACOS: ${{ matrix.before_all}}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: python-package-cibuildwheel
           path: ./wheelhouse/*.whl
