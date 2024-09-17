@@ -44,9 +44,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Maintenance
 
-- update pybind11 2.12.0 -> 2.13.5
-- update Catch2 3.6.0 -> 3.7.0
+- update pybind11 2.12.0 -> 2.13.6
+- update Catch2 3.6.0 -> 3.7.1
 - update fast_float 6.1.3 -> 6.1.6
+- update fmt 10 -> 11
+- geographiclib 2.3 -> 2.4
+- removed unused flat_map dependency
 
 ## [0.24.1] - 02-08-2024
 
