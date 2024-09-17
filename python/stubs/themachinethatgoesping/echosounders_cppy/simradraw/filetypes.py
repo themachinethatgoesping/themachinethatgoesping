@@ -16,6 +16,9 @@ class FilePackageIndex_simradraw_FilePackageIndex:
     file_path: str
     file_size: int
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_simradraw_FilePackageIndex:
         """
         create T_CLASS object from bytearray
@@ -75,6 +78,9 @@ class FilePackageIndex_simradraw_FilePackageIndex:
 class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPing:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPing:
@@ -86,6 +92,9 @@ class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Pin
 class SimradRawPingBottom(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, SimradRawPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingBottom:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingBottom:
@@ -97,6 +106,9 @@ class SimradRawPingBottom(themachinethatgoesping.echosounders_cppy.filetemplates
 class SimradRawPingBottom_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, SimradRawPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingBottom_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingBottom_stream:
@@ -108,6 +120,9 @@ class SimradRawPingBottom_stream(themachinethatgoesping.echosounders_cppy.filete
 class SimradRawPingCommon:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingCommon:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingCommon:
@@ -122,6 +137,9 @@ class SimradRawPingCommon:
 class SimradRawPingCommon_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingCommon_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingCommon_stream:
@@ -136,6 +154,9 @@ class SimradRawPingCommon_stream:
 class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingFileData:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData:
@@ -226,6 +247,9 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
 class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingFileData_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingFileData_stream:
@@ -316,6 +340,9 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
 class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingWatercolumn:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingWatercolumn:
@@ -333,6 +360,9 @@ class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemp
 class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPingWatercolumn_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPingWatercolumn_stream:
@@ -350,6 +380,9 @@ class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.f
 class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SimradRawPing_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> SimradRawPing_stream:
@@ -367,6 +400,9 @@ class TransceiverInformation:
     Note this is a private substructure and is thus not part of the public
     API or pybind11 interface.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def get_impedance_factor(self) -> float:
         ...
     def get_pulse_duration_index(self, pulse_duration: float, fm: bool) -> int:

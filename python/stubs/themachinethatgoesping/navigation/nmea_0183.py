@@ -8,6 +8,9 @@ class NMEA_Base:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_Base:
         """
         create T_CLASS object from bytearray
@@ -79,6 +82,9 @@ class NMEA_GGA(NMEA_Base):
     The NMEA GGA datagram contains time, position, and fix. Typically
     received from a global navigation satellite system (GNSS device).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GGA:
         """
@@ -162,6 +168,9 @@ class NMEA_GLL(NMEA_Base):
     received from a global navigation satellite system (GNSS device).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GLL:
         """
         create T_CLASS object from bytearray
@@ -233,6 +242,9 @@ class NMEA_GST(NMEA_Base):
     The NMEA GST datagram contains Position error statistics. Typically
     received from a global navigation satellite system (GNSS device).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_GST:
         """
@@ -310,6 +322,9 @@ class NMEA_HDT(NMEA_Base):
     received from a compass.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_HDT:
         """
         create T_CLASS object from bytearray
@@ -372,6 +387,9 @@ class NMEA_RMC(NMEA_Base):
     data. Typically received from a global navigation satellite system
     (GNSS device).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_RMC:
         """
@@ -471,6 +489,9 @@ class NMEA_Unknown(NMEA_Base):
     Thie NMEA datagram was not yet implemented in themachinethatgoesping.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_Unknown:
         """
         create T_CLASS object from bytearray
@@ -531,6 +552,9 @@ class NMEA_VHW(NMEA_Base):
     The NMEA VHW datagram contains the vessel's compass heading and the
     speed relative to the water.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VHW:
         """
@@ -600,6 +624,9 @@ class NMEA_VLW(NMEA_Base):
     the vessel.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VLW:
         """
         create T_CLASS object from bytearray
@@ -667,6 +694,9 @@ class NMEA_VTG(NMEA_Base):
     The NMEA VBW datagram contains the vessels course and speed over
     ground.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_VTG:
         """
@@ -739,6 +769,9 @@ class NMEA_ZDA(NMEA_Base):
     The NMEA ZDA datagram contains the universal time code (UTC), get_day,
     get_month, get_year and local time zone offsets.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NMEA_ZDA:
         """

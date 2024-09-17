@@ -40,7 +40,7 @@ concurrency:
   
 jobs:
   build_wheel:
-    name: ${{matrix.os}}
+    name: ${{matrix.os}} python ${{ matrix.python-version }}
     runs-on: ${{matrix.os}}
 
     strategy:
@@ -139,7 +139,7 @@ jobs:
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
       with:
-        name: python-package-distributions
+        name: python-${{ matrix.python-version }}-package-windows
         path: dist    
          
     - name: Test with meson (c++)
@@ -178,9 +178,9 @@ jobs:
         lfs: false
 
     - name: Download all the dists
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
-        name: python-package-distributions
+        name: python-3.${{ matrix.python-3-version }}-package-windows
         path: dist/
 
     - name: install pip dependencies
@@ -198,6 +198,12 @@ jobs:
   publish_wheel:
     needs: install_and_test
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10','3.11','3.12']
+        
     steps:
     - uses: actions/setup-python@v3
 
@@ -206,9 +212,9 @@ jobs:
       run: pip install typing_extensions 
     
     - name: Download all the dists
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
-        name: python-package-distributions
+        name: python-${{ matrix.python-version }}-package-windows
         path: dist/
         
     - name: Publish package

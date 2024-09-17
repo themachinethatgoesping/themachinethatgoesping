@@ -14,6 +14,9 @@ class KongsbergAllAmpltitudeConverter_1d_d:
     """
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __call__(self, amplitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
@@ -59,6 +62,9 @@ class KongsbergAllAmpltitudeConverter_1d_f:
     """
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __call__(self, amplitudes: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
@@ -104,6 +110,9 @@ class KongsbergAllAmpltitudeConverter_2d_d:
     """
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __call__(self, amplitudes: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
@@ -149,6 +158,9 @@ class KongsbergAllAmpltitudeConverter_2d_f:
     """
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __call__(self, amplitudes: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
@@ -193,6 +205,9 @@ class KongsbergAllAmpltitudeConverter_2d_f:
 class KongsbergAllFileHandler:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
@@ -260,6 +275,9 @@ class KongsbergAllFileHandler:
 class KongsbergAllFileHandler_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
@@ -365,6 +383,9 @@ class t_KongsbergAllActiveSensor:
     PositionSystem2: typing.ClassVar[t_KongsbergAllActiveSensor]  # value = <t_KongsbergAllActiveSensor.PositionSystem2: 32>
     PositionSystem3: typing.ClassVar[t_KongsbergAllActiveSensor]  # value = <t_KongsbergAllActiveSensor.PositionSystem3: 0>
     __members__: typing.ClassVar[dict[str, t_KongsbergAllActiveSensor]]  # value = {'PositionSystem3': <t_KongsbergAllActiveSensor.PositionSystem3: 0>, 'PositionSystem1': <t_KongsbergAllActiveSensor.PositionSystem1: 1>, 'PositionSystem2': <t_KongsbergAllActiveSensor.PositionSystem2: 32>, 'MotionSensor1': <t_KongsbergAllActiveSensor.MotionSensor1: 2>, 'MotionSensor2': <t_KongsbergAllActiveSensor.MotionSensor2: 3>, 'MultiCast1': <t_KongsbergAllActiveSensor.MultiCast1: 5>, 'MultiCast2': <t_KongsbergAllActiveSensor.MultiCast2: 6>, 'MultiCast3': <t_KongsbergAllActiveSensor.MultiCast3: 7>, 'AttitudeVelocitySensor1': <t_KongsbergAllActiveSensor.AttitudeVelocitySensor1: 8>, 'AttitudeVelocitySensor2': <t_KongsbergAllActiveSensor.AttitudeVelocitySensor2: 9>, 'NotSet': <t_KongsbergAllActiveSensor.NotSet: -1>}
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:
@@ -472,6 +493,9 @@ class t_KongsbergAllDatagramIdentifier:
     XYZDatagram: typing.ClassVar[t_KongsbergAllDatagramIdentifier]  # value = <t_KongsbergAllDatagramIdentifier.XYZDatagram: 88>
     __members__: typing.ClassVar[dict[str, t_KongsbergAllDatagramIdentifier]]  # value = {'XYZDatagram': <t_KongsbergAllDatagramIdentifier.XYZDatagram: 88>, 'ExtraDetections': <t_KongsbergAllDatagramIdentifier.ExtraDetections: 108>, 'RawRangeAndAngle': <t_KongsbergAllDatagramIdentifier.RawRangeAndAngle: 78>, 'SeabedImageData': <t_KongsbergAllDatagramIdentifier.SeabedImageData: 89>, 'WatercolumnDatagram': <t_KongsbergAllDatagramIdentifier.WatercolumnDatagram: 107>, 'QualityFactorDatagram': <t_KongsbergAllDatagramIdentifier.QualityFactorDatagram: 79>, 'AttitudeDatagram': <t_KongsbergAllDatagramIdentifier.AttitudeDatagram: 65>, 'NetworkAttitudeVelocityDatagram': <t_KongsbergAllDatagramIdentifier.NetworkAttitudeVelocityDatagram: 110>, 'ClockDatagram': <t_KongsbergAllDatagramIdentifier.ClockDatagram: 67>, 'DepthOrHeightDatagram': <t_KongsbergAllDatagramIdentifier.DepthOrHeightDatagram: 104>, 'HeadingDatagram': <t_KongsbergAllDatagramIdentifier.HeadingDatagram: 72>, 'PositionDatagram': <t_KongsbergAllDatagramIdentifier.PositionDatagram: 80>, 'SingleBeamEchoSounderDepth': <t_KongsbergAllDatagramIdentifier.SingleBeamEchoSounderDepth: 69>, 'SurfaceSoundSpeedDatagram': <t_KongsbergAllDatagramIdentifier.SurfaceSoundSpeedDatagram: 71>, 'SoundSpeedProfileDatagram': <t_KongsbergAllDatagramIdentifier.SoundSpeedProfileDatagram: 85>, 'InstallationParametersStart': <t_KongsbergAllDatagramIdentifier.InstallationParametersStart: 73>, 'InstallationParametersStop': <t_KongsbergAllDatagramIdentifier.InstallationParametersStop: 105>, 'RuntimeParameters': <t_KongsbergAllDatagramIdentifier.RuntimeParameters: 82>, 'ExtraParameters': <t_KongsbergAllDatagramIdentifier.ExtraParameters: 51>, 'PUStatusOutput': <t_KongsbergAllDatagramIdentifier.PUStatusOutput: 49>, 'PUIDOutput': <t_KongsbergAllDatagramIdentifier.PUIDOutput: 48>, 'unspecified': <t_KongsbergAllDatagramIdentifier.unspecified: 0>}
     unspecified: typing.ClassVar[t_KongsbergAllDatagramIdentifier]  # value = <t_KongsbergAllDatagramIdentifier.unspecified: 0>
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:
@@ -535,6 +559,9 @@ class t_KongsbergAllSystemTransducerConfiguration:
     SingleTXDualRX: typing.ClassVar[t_KongsbergAllSystemTransducerConfiguration]  # value = <t_KongsbergAllSystemTransducerConfiguration.SingleTXDualRX: 3>
     SingleTXSingleRX: typing.ClassVar[t_KongsbergAllSystemTransducerConfiguration]  # value = <t_KongsbergAllSystemTransducerConfiguration.SingleTXSingleRX: 0>
     __members__: typing.ClassVar[dict[str, t_KongsbergAllSystemTransducerConfiguration]]  # value = {'SingleTXSingleRX': <t_KongsbergAllSystemTransducerConfiguration.SingleTXSingleRX: 0>, 'SingleHead': <t_KongsbergAllSystemTransducerConfiguration.SingleHead: 1>, 'DualHead': <t_KongsbergAllSystemTransducerConfiguration.DualHead: 2>, 'SingleTXDualRX': <t_KongsbergAllSystemTransducerConfiguration.SingleTXDualRX: 3>, 'DualTXDualRX': <t_KongsbergAllSystemTransducerConfiguration.DualTXDualRX: 4>, 'PortableSingleHead': <t_KongsbergAllSystemTransducerConfiguration.PortableSingleHead: 5>, 'Modular': <t_KongsbergAllSystemTransducerConfiguration.Modular: 6>}
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

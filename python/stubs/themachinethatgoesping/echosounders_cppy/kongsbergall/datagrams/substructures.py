@@ -14,6 +14,9 @@ class AttitudeDatagramAttitude:
     depth and ray bending through the water column have been applied.
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> AttitudeDatagramAttitude:
         ...
     def __deepcopy__(self, arg0: dict) -> AttitudeDatagramAttitude:
@@ -126,6 +129,9 @@ class ExtraDetectionsDetectionClasses:
     Extra Detections Detection Classes
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> ExtraDetectionsDetectionClasses:
         ...
     def __deepcopy__(self, arg0: dict) -> ExtraDetectionsDetectionClasses:
@@ -243,6 +249,9 @@ class ExtraDetectionsExtraDetections:
     Extra Detections in the extra detections datagram
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> ExtraDetectionsExtraDetections:
         ...
     def __deepcopy__(self, arg0: dict) -> ExtraDetectionsExtraDetections:
@@ -518,6 +527,9 @@ class NetworkAttitudeVelocityDatagramAttitude:
     depth and ray bending through the water column have been applied.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagramAttitude:
         """
         create T_CLASS object from bytearray
@@ -665,6 +677,9 @@ class RawRangeAndAngleBeam:
     depth and ray bending through the water column have been applied.
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> RawRangeAndAngleBeam:
         ...
     def __deepcopy__(self, arg0: dict) -> RawRangeAndAngleBeam:
@@ -787,6 +802,9 @@ class RawRangeAndAngleTransmitSector:
     depth and ray bending through the water column have been applied.
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> RawRangeAndAngleTransmitSector:
         ...
     def __deepcopy__(self, arg0: dict) -> RawRangeAndAngleTransmitSector:
@@ -912,6 +930,9 @@ class SampleAmplitudesStructure_int16_t:
     Template parameter ``t_sample``:
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SampleAmplitudesStructure_int16_t:
         ...
     def __deepcopy__(self, arg0: dict) -> SampleAmplitudesStructure_int16_t:
@@ -996,6 +1017,9 @@ class SeabedImageDataBeam:
     depth and ray bending through the water column have been applied.
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> SeabedImageDataBeam:
         ...
     def __deepcopy__(self, arg0: dict) -> SeabedImageDataBeam:
@@ -1080,6 +1104,9 @@ class SeabedImageDataBeam:
 class WatercolumnDatagramBeam:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WatercolumnDatagramBeam:
         """
@@ -1184,6 +1211,9 @@ class WatercolumnDatagramTransmitSector:
     """
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> WatercolumnDatagramTransmitSector:
         ...
     def __deepcopy__(self, arg0: dict) -> WatercolumnDatagramTransmitSector:
@@ -1258,6 +1288,9 @@ class XYZDatagramBeam:
     depth and ray bending through the water column have been applied.
     """
     __hash__: typing.ClassVar[None] = None
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> XYZDatagramBeam:
         ...
     def __deepcopy__(self, arg0: dict) -> XYZDatagramBeam:
@@ -1438,6 +1471,9 @@ class XYZDatagramBeam_t_DetectionType:
     PhaseDetect: typing.ClassVar[XYZDatagramBeam_t_DetectionType]  # value = <XYZDatagramBeam_t_DetectionType.PhaseDetect: 1>
     Rejected: typing.ClassVar[XYZDatagramBeam_t_DetectionType]  # value = <XYZDatagramBeam_t_DetectionType.Rejected: 131>
     __members__: typing.ClassVar[dict[str, XYZDatagramBeam_t_DetectionType]]  # value = {'AmplitudeDetect': <XYZDatagramBeam_t_DetectionType.AmplitudeDetect: 0>, 'PhaseDetect': <XYZDatagramBeam_t_DetectionType.PhaseDetect: 1>, 'InvalidNormalDetection': <XYZDatagramBeam_t_DetectionType.InvalidNormalDetection: 128>, 'Interpolated': <XYZDatagramBeam_t_DetectionType.Interpolated: 129>, 'Estimated': <XYZDatagramBeam_t_DetectionType.Estimated: 130>, 'Rejected': <XYZDatagramBeam_t_DetectionType.Rejected: 131>, 'NoDetection': <XYZDatagramBeam_t_DetectionType.NoDetection: 132>, 'Invalid': <XYZDatagramBeam_t_DetectionType.Invalid: 133>}
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

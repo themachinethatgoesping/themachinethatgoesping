@@ -12,6 +12,9 @@ class ConsoleProgressBar(I_ProgressBar):
     This class is based in I_ProgressBarTimed such that the callbacks are
     guarded by a timer.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self) -> None:
         ...
 class I_ProgressBar:
@@ -25,6 +28,9 @@ class I_ProgressBar:
     slow down processes that use the progressbar. Consider using the
     ProgressBarTimed interface instead.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self) -> None:
         """
         Construct a new i progressbar object
@@ -104,6 +110,9 @@ class I_ProgressBarTimed(I_ProgressBar):
     To implement this interface the abstract callback_ functions must be
     implemented.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self) -> None:
         ...
     def callback_close(self, msg: str = 'done') -> None:
@@ -183,6 +192,9 @@ class NoIndicator(I_ProgressBar):
     A progress bar that does not show any progress and has nearly no
     overhead.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self) -> None:
         ...
 class ProgressIndicator(I_ProgressBar):
@@ -193,6 +205,9 @@ class ProgressIndicator(I_ProgressBar):
     This class is based in I_ProgressBarTimed such that the callbacks are
     guarded by a timer.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self) -> None:
         ...
 class ProgressTqdm(I_ProgressBar):
@@ -205,6 +220,9 @@ class ProgressTqdm(I_ProgressBar):
     This class is based in I_ProgressBarTimed such that the callbacks are
     guarded by a timer.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __init__(self, tqdm: typing.Any) -> None:
         """
         Construct a new Progress Tqdm object To initialize a tqdm object call:

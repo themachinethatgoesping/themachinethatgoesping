@@ -17,6 +17,9 @@ class AttitudeDatagram(KongsbergAllDatagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AttitudeDatagram:
         """
         create T_CLASS object from bytearray
@@ -156,6 +159,9 @@ class ClockDatagram(KongsbergAllDatagram):
     Clock datagrams
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ClockDatagram:
         """
         create T_CLASS object from bytearray
@@ -275,6 +281,9 @@ class DepthOrHeightDatagram(KongsbergAllDatagram):
     Depth (pressure) or height datagrams
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> DepthOrHeightDatagram:
         """
         create T_CLASS object from bytearray
@@ -384,6 +393,9 @@ class ExtraDetections(KongsbergAllDatagram):
     This datagram is used for the models EM 2040 and EM 2040C with Slim
     Processing Unit.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraDetections:
         """
@@ -630,6 +642,9 @@ class ExtraParameters(KongsbergAllDatagram):
     Clock datagrams
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraParameters:
         """
         create T_CLASS object from bytearray
@@ -739,6 +754,9 @@ class ExtraParameters_t_ContentIdentifier:
     SoundVelocityAtTransducer: typing.ClassVar[ExtraParameters_t_ContentIdentifier]  # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>
     SoundVelocityProfile: typing.ClassVar[ExtraParameters_t_ContentIdentifier]  # value = <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>
     __members__: typing.ClassVar[dict[str, ExtraParameters_t_ContentIdentifier]]  # value = {'CalibTxt': <ExtraParameters_t_ContentIdentifier.CalibTxt: 1>, 'LogAllHeights': <ExtraParameters_t_ContentIdentifier.LogAllHeights: 2>, 'SoundVelocityAtTransducer': <ExtraParameters_t_ContentIdentifier.SoundVelocityAtTransducer: 3>, 'SoundVelocityProfile': <ExtraParameters_t_ContentIdentifier.SoundVelocityProfile: 4>, 'MultiCastInputStatus': <ExtraParameters_t_ContentIdentifier.MultiCastInputStatus: 5>, 'Bscorr': <ExtraParameters_t_ContentIdentifier.Bscorr: 6>}
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:
@@ -777,6 +795,9 @@ class HeadingDatagram(KongsbergAllDatagram):
     """
     Heading datagrams
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> HeadingDatagram:
         """
@@ -908,6 +929,9 @@ class InstallationParameters(KongsbergAllDatagram):
     the field delimiter. The format may at any time later be expanded with
     the addition of new fields at any place in the datagram.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> InstallationParameters:
         """
@@ -1155,6 +1179,9 @@ class KongsbergAllDatagram:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> KongsbergAllDatagram:
         """
         create T_CLASS object from bytearray
@@ -1274,6 +1301,9 @@ class KongsbergAllUnknown(KongsbergAllDatagram):
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> KongsbergAllUnknown:
         """
         create T_CLASS object from bytearray
@@ -1340,6 +1370,9 @@ class NetworkAttitudeVelocityDatagram(KongsbergAllDatagram):
     used in the processing because the Attitude datagram already contains
     all necessary information.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NetworkAttitudeVelocityDatagram:
         """
@@ -1511,6 +1544,9 @@ class PUIDOutput(KongsbergAllDatagram):
     alive and receiving sensor data, and to give sensor data regularly for
     a potential screen update.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUIDOutput:
         """
@@ -1786,6 +1822,9 @@ class PUStatusOutput(KongsbergAllDatagram):
     alive and receiving sensor data, and to give sensor data regularly for
     a potential screen update.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PUStatusOutput:
         """
@@ -2224,6 +2263,9 @@ class PositionDatagram(KongsbergAllDatagram):
     Depth (pressure) or height datagrams
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionDatagram:
         """
         create T_CLASS object from bytearray
@@ -2445,6 +2487,9 @@ class QualityFactorDatagram(KongsbergAllDatagram):
     2040C, EM 3002 and ME70BO.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> QualityFactorDatagram:
         """
         create T_CLASS object from bytearray
@@ -2571,6 +2616,9 @@ class RawRangeAndAngle(KongsbergAllDatagram):
     122, EM 302 and ME70BO. All receiver beams are included, check
     detection info and real time cleaning for beam status (note 4 and 5).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RawRangeAndAngle:
         """
@@ -2743,6 +2791,9 @@ class RuntimeParameters(KongsbergAllDatagram):
     """
     Runtime parameters datagrams
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RuntimeParameters:
         """
@@ -3023,6 +3074,9 @@ class SeabedImageData(KongsbergAllDatagram):
     detection info and real time cleaning for beam status (note 4 and 5).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SeabedImageData:
         """
         create T_CLASS object from bytearray
@@ -3202,6 +3256,9 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
     Single beam echo sounder depth datagram
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SingleBeamEchoSounderDepth:
         """
         create T_CLASS object from bytearray
@@ -3339,6 +3396,9 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
     will usually be issued together with the installation parameter
     datagram.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SoundSpeedProfileDatagram:
         """
@@ -3503,6 +3563,9 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
     Sound_speed datagrams
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SurfaceSoundSpeedDatagram:
         """
         create T_CLASS object from bytearray
@@ -3617,6 +3680,9 @@ class WatercolumnDatagram(KongsbergAllDatagram):
     Used for EM 122, EM 302, EM 710, EM 2040, EM 3002. The receiver beams
     are roll stabilized.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WatercolumnDatagram:
         """
@@ -3791,6 +3857,9 @@ class XYZDatagram(KongsbergAllDatagram):
     122, EM 302 and ME70BO. All receiver beams are included, check
     detection info and real time cleaning for beam status (note 4 and 5).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XYZDatagram:
         """

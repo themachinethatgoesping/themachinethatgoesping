@@ -14,6 +14,9 @@ class AmplitudeCalibration:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AmplitudeCalibration:
         """
         create T_CLASS object from bytearray
@@ -115,6 +118,9 @@ class FileCache:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileCache:
         """
         create T_CLASS object from bytearray
@@ -193,6 +199,9 @@ class FileCache:
 class I_Ping(I_PingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> I_Ping:
         ...
     def __deepcopy__(self, arg0: dict) -> I_Ping:
@@ -279,6 +288,9 @@ class I_PingBottom(I_PingCommon):
     """
     Interface for all ping bottom detection functions
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> I_PingBottom:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingBottom:
@@ -422,6 +434,9 @@ class I_PingBottom(I_PingCommon):
 class I_PingCommon:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> I_PingCommon:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingCommon:
@@ -551,6 +566,9 @@ class I_PingFileData:
     The class provides a `__printer__` function for object printing, which
     can be used to print the properties of the ping data.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> I_PingFileData:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingFileData:
@@ -644,6 +662,9 @@ class I_PingWatercolumn(I_PingCommon):
     data. It inherits from the I_PingCommon class and provides additional
     functions and variables specific to watercolumn pings.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> I_PingWatercolumn:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingWatercolumn:
@@ -978,6 +999,9 @@ class WaterColumnCalibration:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WaterColumnCalibration:
         """
         create T_CLASS object from bytearray
@@ -1135,6 +1159,9 @@ class t_pingfeature:
     tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 9>
     watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 8>
     xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 13>
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

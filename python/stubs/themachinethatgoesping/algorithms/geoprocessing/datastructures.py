@@ -12,6 +12,9 @@ class BeamSampleParameters:
     Usefull as input for raytracing water column images.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSampleParameters:
         """
         create T_CLASS object from bytearray
@@ -102,6 +105,9 @@ class RaytraceResult:
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RaytraceResult:
         """
@@ -212,6 +218,9 @@ class RaytraceResults_1(XYZ_1):
     position (for coordinate 0) is known.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def concat(arg0: list[RaytraceResults_1]) -> RaytraceResults_1:
         """
         Concatenate multiple RaytraceResults objects Note: the dimensionality
@@ -316,6 +325,9 @@ class RaytraceResults_2(XYZ_2):
     These coordinates can be converted to UTM or Lat/Lon if a reference
     position (for coordinate 0) is known.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def concat(arg0: list[RaytraceResults_2]) -> RaytraceResults_1:
         """
@@ -422,6 +434,9 @@ class RaytraceResults_3(XYZ_3):
     position (for coordinate 0) is known.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def concat(arg0: list[RaytraceResults_3]) -> RaytraceResults_1:
         """
         Concatenate multiple RaytraceResults objects Note: the dimensionality
@@ -524,6 +539,9 @@ class SampleDirectionsRange_1(SampleDirections_1):
     and range).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsRange_1:
         """
         create T_CLASS object from bytearray
@@ -620,6 +638,9 @@ class SampleDirectionsRange_2(SampleDirections_2):
     A structure to store beamsample directions (along angle, across angle
     and range).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsRange_2:
         """
@@ -718,6 +739,9 @@ class SampleDirectionsRange_3(SampleDirections_3):
     and range).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsRange_3:
         """
         create T_CLASS object from bytearray
@@ -814,6 +838,9 @@ class SampleDirectionsTime_1(SampleDirections_1):
     A structure to store beamsample directions (along angle, across angle
     and range).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsTime_1:
         """
@@ -912,6 +939,9 @@ class SampleDirectionsTime_2(SampleDirections_2):
     and range).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsTime_2:
         """
         create T_CLASS object from bytearray
@@ -1009,6 +1039,9 @@ class SampleDirectionsTime_3(SampleDirections_3):
     and range).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirectionsTime_3:
         """
         create T_CLASS object from bytearray
@@ -1105,6 +1138,9 @@ class SampleDirections_1:
     A structure to store beamsample directions (along angle, across
     angle).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_1:
         """
@@ -1207,6 +1243,9 @@ class SampleDirections_2:
     angle).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_2:
         """
         create T_CLASS object from bytearray
@@ -1307,6 +1346,9 @@ class SampleDirections_3:
     A structure to store beamsample directions (along angle, across
     angle).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleDirections_3:
         """
@@ -1409,6 +1451,9 @@ class SampleIndices_1:
     angle).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleIndices_1:
         """
         create T_CLASS object from bytearray
@@ -1510,6 +1555,9 @@ class SampleIndices_2:
     angle).
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleIndices_2:
         """
         create T_CLASS object from bytearray
@@ -1610,6 +1658,9 @@ class SampleIndices_3:
     A structure to store beamsample directions (along angle, across
     angle).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SampleIndices_3:
         """
@@ -1714,6 +1765,9 @@ class XYZ_1:
     coordinates can be converted to UTM or Lat/Lon if a reference position
     (for coordinate 0) is known.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def concat(arg0: list[XYZ_1]) -> XYZ_1:
         """
@@ -1871,6 +1925,9 @@ class XYZ_2:
     (for coordinate 0) is known.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def concat(arg0: list[XYZ_2]) -> XYZ_1:
         """
         Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
@@ -2026,6 +2083,9 @@ class XYZ_3:
     coordinates can be converted to UTM or Lat/Lon if a reference position
     (for coordinate 0) is known.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def concat(arg0: list[XYZ_3]) -> XYZ_1:
         """

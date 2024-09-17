@@ -10,6 +10,9 @@ class CWSignalParameters:
     continuous wave signal.
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> CWSignalParameters:
         """
         create T_CLASS object from bytearray
@@ -93,6 +96,9 @@ class FMSignalParameters:
     @class FMSignalParameters Class representing information about a
     frequency modulated wave signal (chirp).
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FMSignalParameters:
         """
@@ -189,6 +195,9 @@ class GenericSignalParameters:
     @class GenericSignalParameters Class representing information about a
     generic type.
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GenericSignalParameters:
         """
@@ -295,6 +304,9 @@ class t_TxSignalType:
     FM_UP_SWEEP: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.FM_UP_SWEEP: 1>
     UNKNOWN: typing.ClassVar[t_TxSignalType]  # value = <t_TxSignalType.UNKNOWN: 3>
     __members__: typing.ClassVar[dict[str, t_TxSignalType]]  # value = {'CW': <t_TxSignalType.CW: 0>, 'FM_UP_SWEEP': <t_TxSignalType.FM_UP_SWEEP: 1>, 'FM_DOWN_SWEEP': <t_TxSignalType.FM_DOWN_SWEEP: 2>, 'UNKNOWN': <t_TxSignalType.UNKNOWN: 3>}
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

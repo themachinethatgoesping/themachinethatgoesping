@@ -9,6 +9,9 @@ class PyIndexerSlice:
     A structure to hold a slice
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PyIndexerSlice:
         """
         create T_CLASS object from bytearray

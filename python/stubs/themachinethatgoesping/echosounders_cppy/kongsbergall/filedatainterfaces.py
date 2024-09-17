@@ -20,6 +20,9 @@ class KongsbergAllAnnotationDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -100,6 +103,9 @@ class KongsbergAllAnnotationDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -200,6 +206,9 @@ class KongsbergAllAnnotationDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -301,6 +310,9 @@ class KongsbergAllAnnotationDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -374,6 +386,9 @@ class KongsbergAllAnnotationDataInterface_stream:
 class KongsbergAllConfigurationDataInterface:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -452,6 +467,9 @@ class KongsbergAllConfigurationDataInterface:
 class KongsbergAllConfigurationDataInterfacePerFile:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -593,6 +611,9 @@ class KongsbergAllConfigurationDataInterfacePerFile:
 class KongsbergAllConfigurationDataInterfacePerFile_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -735,6 +756,9 @@ class KongsbergAllConfigurationDataInterface_stream:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -821,6 +845,9 @@ class KongsbergAllDatagramDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -902,6 +929,9 @@ class KongsbergAllDatagramDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1003,6 +1033,9 @@ class KongsbergAllDatagramDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1105,6 +1138,9 @@ class KongsbergAllDatagramDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -1178,6 +1214,9 @@ class KongsbergAllDatagramDataInterface_stream:
 class KongsbergAllDatagramInterface:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1225,6 +1264,9 @@ class KongsbergAllDatagramInterface:
 class KongsbergAllDatagramInterface_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1272,6 +1314,9 @@ class KongsbergAllDatagramInterface_stream:
 class KongsbergAllEnvironmentDataInterface:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -1350,6 +1395,9 @@ class KongsbergAllEnvironmentDataInterface:
 class KongsbergAllEnvironmentDataInterfacePerFile:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1447,6 +1495,9 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
 class KongsbergAllEnvironmentDataInterfacePerFile_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1545,6 +1596,9 @@ class KongsbergAllEnvironmentDataInterface_stream:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -1622,6 +1676,9 @@ class KongsbergAllEnvironmentDataInterface_stream:
 class KongsbergAllNavigationDataInterface:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -1710,6 +1767,9 @@ class KongsbergAllNavigationDataInterface:
 class KongsbergAllNavigationDataInterfacePerFile:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1807,6 +1867,9 @@ class KongsbergAllNavigationDataInterfacePerFile:
 class KongsbergAllNavigationDataInterfacePerFile_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1905,6 +1968,9 @@ class KongsbergAllNavigationDataInterface_stream:
     """
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -2001,6 +2067,9 @@ class KongsbergAllOtherFileDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -2082,6 +2151,9 @@ class KongsbergAllOtherFileDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2183,6 +2255,9 @@ class KongsbergAllOtherFileDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2285,6 +2360,9 @@ class KongsbergAllOtherFileDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -2358,6 +2436,9 @@ class KongsbergAllOtherFileDataInterface_stream:
 class KongsbergAllPingDataInterface:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -2446,6 +2527,9 @@ class KongsbergAllPingDataInterface:
 class KongsbergAllPingDataInterfacePerFile:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2549,6 +2633,9 @@ class KongsbergAllPingDataInterfacePerFile:
 class KongsbergAllPingDataInterfacePerFile_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2652,6 +2739,9 @@ class KongsbergAllPingDataInterfacePerFile_stream:
 class KongsbergAllPingDataInterface_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...

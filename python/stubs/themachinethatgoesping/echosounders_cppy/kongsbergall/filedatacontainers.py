@@ -12,6 +12,9 @@ __all__ = ['KongsbergAllDatagramContainer_AttitudeDatagram', 'KongsbergAllDatagr
 class KongsbergAllDatagramContainer_AttitudeDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_AttitudeDatagram:
         ...
@@ -76,6 +79,9 @@ class KongsbergAllDatagramContainer_AttitudeDatagram:
 class KongsbergAllDatagramContainer_AttitudeDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
@@ -140,6 +146,9 @@ class KongsbergAllDatagramContainer_AttitudeDatagram_stream:
 class KongsbergAllDatagramContainer_ClockDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ClockDatagram:
         ...
@@ -204,6 +213,9 @@ class KongsbergAllDatagramContainer_ClockDatagram:
 class KongsbergAllDatagramContainer_ClockDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
@@ -268,6 +280,9 @@ class KongsbergAllDatagramContainer_ClockDatagram_stream:
 class KongsbergAllDatagramContainer_DepthOrHeightDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram:
         ...
@@ -332,6 +347,9 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram:
 class KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
@@ -396,6 +414,9 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
 class KongsbergAllDatagramContainer_ExtraDetections:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraDetections:
         ...
@@ -460,6 +481,9 @@ class KongsbergAllDatagramContainer_ExtraDetections:
 class KongsbergAllDatagramContainer_ExtraDetections_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
@@ -524,6 +548,9 @@ class KongsbergAllDatagramContainer_ExtraDetections_stream:
 class KongsbergAllDatagramContainer_ExtraParameters:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraParameters:
         ...
@@ -588,6 +615,9 @@ class KongsbergAllDatagramContainer_ExtraParameters:
 class KongsbergAllDatagramContainer_ExtraParameters_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
@@ -652,6 +682,9 @@ class KongsbergAllDatagramContainer_ExtraParameters_stream:
 class KongsbergAllDatagramContainer_Header:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Header:
         ...
@@ -716,6 +749,9 @@ class KongsbergAllDatagramContainer_Header:
 class KongsbergAllDatagramContainer_Header_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Header_stream:
         ...
@@ -780,6 +816,9 @@ class KongsbergAllDatagramContainer_Header_stream:
 class KongsbergAllDatagramContainer_HeadingDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_HeadingDatagram:
         ...
@@ -844,6 +883,9 @@ class KongsbergAllDatagramContainer_HeadingDatagram:
 class KongsbergAllDatagramContainer_HeadingDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
@@ -908,6 +950,9 @@ class KongsbergAllDatagramContainer_HeadingDatagram_stream:
 class KongsbergAllDatagramContainer_InstallationParameters:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_InstallationParameters:
         ...
@@ -972,6 +1017,9 @@ class KongsbergAllDatagramContainer_InstallationParameters:
 class KongsbergAllDatagramContainer_InstallationParameters_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
@@ -1036,6 +1084,9 @@ class KongsbergAllDatagramContainer_InstallationParameters_stream:
 class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
         ...
@@ -1100,6 +1151,9 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
 class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
@@ -1164,6 +1218,9 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
 class KongsbergAllDatagramContainer_PUIDOutput:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUIDOutput:
         ...
@@ -1228,6 +1285,9 @@ class KongsbergAllDatagramContainer_PUIDOutput:
 class KongsbergAllDatagramContainer_PUIDOutput_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
@@ -1292,6 +1352,9 @@ class KongsbergAllDatagramContainer_PUIDOutput_stream:
 class KongsbergAllDatagramContainer_PUStatusOutput:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUStatusOutput:
         ...
@@ -1356,6 +1419,9 @@ class KongsbergAllDatagramContainer_PUStatusOutput:
 class KongsbergAllDatagramContainer_PUStatusOutput_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
@@ -1420,6 +1486,9 @@ class KongsbergAllDatagramContainer_PUStatusOutput_stream:
 class KongsbergAllDatagramContainer_PositionDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PositionDatagram:
         ...
@@ -1484,6 +1553,9 @@ class KongsbergAllDatagramContainer_PositionDatagram:
 class KongsbergAllDatagramContainer_PositionDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
@@ -1548,6 +1620,9 @@ class KongsbergAllDatagramContainer_PositionDatagram_stream:
 class KongsbergAllDatagramContainer_QualityFactorDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_QualityFactorDatagram:
         ...
@@ -1612,6 +1687,9 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram:
 class KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
@@ -1676,6 +1754,9 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
 class KongsbergAllDatagramContainer_RawRangeAndAngle:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RawRangeAndAngle:
         ...
@@ -1740,6 +1821,9 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle:
 class KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
@@ -1804,6 +1888,9 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
 class KongsbergAllDatagramContainer_RuntimeParameters:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RuntimeParameters:
         ...
@@ -1868,6 +1955,9 @@ class KongsbergAllDatagramContainer_RuntimeParameters:
 class KongsbergAllDatagramContainer_RuntimeParameters_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
@@ -1932,6 +2022,9 @@ class KongsbergAllDatagramContainer_RuntimeParameters_stream:
 class KongsbergAllDatagramContainer_SeabedImageData:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SeabedImageData:
         ...
@@ -1996,6 +2089,9 @@ class KongsbergAllDatagramContainer_SeabedImageData:
 class KongsbergAllDatagramContainer_SeabedImageData_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
@@ -2060,6 +2156,9 @@ class KongsbergAllDatagramContainer_SeabedImageData_stream:
 class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
         ...
@@ -2124,6 +2223,9 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
 class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
@@ -2188,6 +2290,9 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
 class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
         ...
@@ -2252,6 +2357,9 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
 class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
@@ -2316,6 +2424,9 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
 class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
         ...
@@ -2380,6 +2491,9 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
 class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
@@ -2444,6 +2558,9 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
 class KongsbergAllDatagramContainer_Unknown:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Unknown:
         ...
@@ -2508,6 +2625,9 @@ class KongsbergAllDatagramContainer_Unknown:
 class KongsbergAllDatagramContainer_Unknown_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
@@ -2572,6 +2692,9 @@ class KongsbergAllDatagramContainer_Unknown_stream:
 class KongsbergAllDatagramContainer_Variant:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant:
         ...
@@ -2636,6 +2759,9 @@ class KongsbergAllDatagramContainer_Variant:
 class KongsbergAllDatagramContainer_Variant_SkippedData:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_SkippedData:
         ...
@@ -2700,6 +2826,9 @@ class KongsbergAllDatagramContainer_Variant_SkippedData:
 class KongsbergAllDatagramContainer_Variant_SkippedData_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
@@ -2764,6 +2893,9 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_stream:
 class KongsbergAllDatagramContainer_Variant_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
@@ -2828,6 +2960,9 @@ class KongsbergAllDatagramContainer_Variant_stream:
 class KongsbergAllDatagramContainer_WatercolumnDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram:
         ...
@@ -2892,6 +3027,9 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram:
 class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
         ...
@@ -2956,6 +3094,9 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
 class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
@@ -3020,6 +3161,9 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
 class KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
@@ -3084,6 +3228,9 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
 class KongsbergAllDatagramContainer_XYZDatagram:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_XYZDatagram:
         ...
@@ -3148,6 +3295,9 @@ class KongsbergAllDatagramContainer_XYZDatagram:
 class KongsbergAllDatagramContainer_XYZDatagram_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
@@ -3212,6 +3362,9 @@ class KongsbergAllDatagramContainer_XYZDatagram_stream:
 class KongsbergAllPingContainer:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, channel_id: str) -> KongsbergAllPingContainer:
         ...
@@ -3292,6 +3445,9 @@ class KongsbergAllPingContainer:
 class KongsbergAllPingContainer_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, channel_id: str) -> KongsbergAllPingContainer_stream:
         ...

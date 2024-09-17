@@ -12,6 +12,9 @@ __all__ = ['SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_s
 class SimradRawDatagramContainer_FIL1:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_FIL1:
         ...
@@ -76,6 +79,9 @@ class SimradRawDatagramContainer_FIL1:
 class SimradRawDatagramContainer_FIL1_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_FIL1_stream:
         ...
@@ -140,6 +146,9 @@ class SimradRawDatagramContainer_FIL1_stream:
 class SimradRawDatagramContainer_Header:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Header:
         ...
@@ -204,6 +213,9 @@ class SimradRawDatagramContainer_Header:
 class SimradRawDatagramContainer_Header_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Header_stream:
         ...
@@ -268,6 +280,9 @@ class SimradRawDatagramContainer_Header_stream:
 class SimradRawDatagramContainer_MRU0:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_MRU0:
         ...
@@ -332,6 +347,9 @@ class SimradRawDatagramContainer_MRU0:
 class SimradRawDatagramContainer_MRU0_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_MRU0_stream:
         ...
@@ -396,6 +414,9 @@ class SimradRawDatagramContainer_MRU0_stream:
 class SimradRawDatagramContainer_NME0:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_NME0:
         ...
@@ -460,6 +481,9 @@ class SimradRawDatagramContainer_NME0:
 class SimradRawDatagramContainer_NME0_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_NME0_stream:
         ...
@@ -524,6 +548,9 @@ class SimradRawDatagramContainer_NME0_stream:
 class SimradRawDatagramContainer_RAW3:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3:
         ...
@@ -588,6 +615,9 @@ class SimradRawDatagramContainer_RAW3:
 class SimradRawDatagramContainer_RAW3_skipped_data:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
@@ -652,6 +682,9 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
 class SimradRawDatagramContainer_RAW3_skipped_data_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
@@ -716,6 +749,9 @@ class SimradRawDatagramContainer_RAW3_skipped_data_stream:
 class SimradRawDatagramContainer_RAW3_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_RAW3_stream:
         ...
@@ -780,6 +816,9 @@ class SimradRawDatagramContainer_RAW3_stream:
 class SimradRawDatagramContainer_TAG0:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_TAG0:
         ...
@@ -844,6 +883,9 @@ class SimradRawDatagramContainer_TAG0:
 class SimradRawDatagramContainer_TAG0_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_TAG0_stream:
         ...
@@ -908,6 +950,9 @@ class SimradRawDatagramContainer_TAG0_stream:
 class SimradRawDatagramContainer_Unknown:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Unknown:
         ...
@@ -972,6 +1017,9 @@ class SimradRawDatagramContainer_Unknown:
 class SimradRawDatagramContainer_Unknown_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Unknown_stream:
         ...
@@ -1036,6 +1084,9 @@ class SimradRawDatagramContainer_Unknown_stream:
 class SimradRawDatagramContainer_Variant:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant:
         ...
@@ -1100,6 +1151,9 @@ class SimradRawDatagramContainer_Variant:
 class SimradRawDatagramContainer_Variant_skipped_data:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
@@ -1164,6 +1218,9 @@ class SimradRawDatagramContainer_Variant_skipped_data:
 class SimradRawDatagramContainer_Variant_skipped_data_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
@@ -1228,6 +1285,9 @@ class SimradRawDatagramContainer_Variant_skipped_data_stream:
 class SimradRawDatagramContainer_Variant_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_Variant_stream:
         ...
@@ -1292,6 +1352,9 @@ class SimradRawDatagramContainer_Variant_stream:
 class SimradRawDatagramContainer_XML0:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_XML0:
         ...
@@ -1356,6 +1419,9 @@ class SimradRawDatagramContainer_XML0:
 class SimradRawDatagramContainer_XML0_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> SimradRawDatagramContainer_XML0_stream:
         ...
@@ -1420,6 +1486,9 @@ class SimradRawDatagramContainer_XML0_stream:
 class SimradRawPingContainer:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, channel_id: str) -> SimradRawPingContainer:
         ...
@@ -1500,6 +1569,9 @@ class SimradRawPingContainer:
 class SimradRawPingContainer_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     @typing.overload
     def __call__(self, channel_id: str) -> SimradRawPingContainer_stream:
         ...

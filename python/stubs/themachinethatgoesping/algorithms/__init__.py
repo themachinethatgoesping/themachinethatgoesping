@@ -6,6 +6,9 @@ from . import geoprocessing
 from . import signalprocessing
 __all__ = ['geoprocessing', 'ostream_redirect', 'signalprocessing']
 class ostream_redirect:
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __enter__(self) -> None:
         ...
     def __exit__(self, *args) -> None:

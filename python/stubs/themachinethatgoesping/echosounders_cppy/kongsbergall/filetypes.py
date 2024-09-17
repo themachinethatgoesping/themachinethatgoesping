@@ -15,6 +15,9 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
     file_path: str
     file_size: int
     @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         create T_CLASS object from bytearray
@@ -74,6 +77,9 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
 class KongsbergAllPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, KongsbergAllPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPing:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPing:
@@ -85,6 +91,9 @@ class KongsbergAllPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_
 class KongsbergAllPingBottom(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, KongsbergAllPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingBottom:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingBottom:
@@ -96,6 +105,9 @@ class KongsbergAllPingBottom(themachinethatgoesping.echosounders_cppy.filetempla
 class KongsbergAllPingBottom_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingBottom, KongsbergAllPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingBottom_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingBottom_stream:
@@ -107,6 +119,9 @@ class KongsbergAllPingBottom_stream(themachinethatgoesping.echosounders_cppy.fil
 class KongsbergAllPingCommon:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingCommon:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingCommon:
@@ -121,6 +136,9 @@ class KongsbergAllPingCommon:
 class KongsbergAllPingCommon_stream:
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingCommon_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingCommon_stream:
@@ -135,6 +153,9 @@ class KongsbergAllPingCommon_stream:
 class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingFileData:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingFileData:
@@ -239,6 +260,9 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
 class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingFileData_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingFileData_stream:
@@ -343,6 +367,9 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
 class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, KongsbergAllPingCommon):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingWatercolumn:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingWatercolumn:
@@ -358,6 +385,9 @@ class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_cppy.filet
 class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, KongsbergAllPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPingWatercolumn_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPingWatercolumn_stream:
@@ -373,6 +403,9 @@ class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_cpp
 class KongsbergAllPing_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, KongsbergAllPingCommon_stream):
     """
     """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __copy__(self) -> KongsbergAllPing_stream:
         ...
     def __deepcopy__(self, arg0: dict) -> KongsbergAllPing_stream:

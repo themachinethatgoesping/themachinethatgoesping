@@ -10,6 +10,9 @@ from . import timeconv
 from . import vectorinterpolators
 __all__ = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'timeconv', 'vectorinterpolators']
 class ostream_redirect:
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
     def __enter__(self) -> None:
         ...
     def __exit__(self, *args) -> None:
