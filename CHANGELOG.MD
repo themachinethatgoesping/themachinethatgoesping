@@ -6,7 +6,7 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.24.2] - 23-09-2024
 
 - echosounders -> 0.41.0
 - pingprocessing -> 0.8.3
@@ -31,6 +31,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - simradraw ek80 corrected power computation from complex32 floats
   - create extra transceiverinformation namespace for simradraw ek80 filedata
   - simradraw ek80 xml_parameter_channel: get_pulse_duration and get_pulse_form_is_cw
+  - kongsbergall: support PortableSingleHead configuration
 - algorithms:
   - gswteos-10 dependency for sound speed and absorption calculation
 
@@ -41,6 +42,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - SimradRaw: fixed wrong skip value for reading skipped sample data
   - unsigned int warning
+- pingprocessing: wci_viewer
 
 ### Maintenance
 
