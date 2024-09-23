@@ -194,7 +194,7 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{ matrix.python-3-version }}-macos
+          name: python-3.${{matrix.python-3-version}}-package-macos
           path: dist/
 
       - name: Publish package
