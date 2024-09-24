@@ -9,10 +9,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - echosounders -> 0.42.0
+- algorithms -> 0.8.2
 
 ### Changed
 - echosounders:
   - rewamping calibration/tvg correction
+
+### Added
+- algorithms
+  - absorption calculation
+  - sound velocity calculation using gswteos-10
+  - amplitude range correction functions
+  - apply correction functions for wci
 
 ## [0.24.2] - 23-09-2024
 
