@@ -10,6 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.42.0
 - algorithms -> 0.8.2
+- tools -> 0.26.1
 
 ### Changed
 - echosounders:
@@ -21,6 +22,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - sound velocity calculation using gswteos-10
   - amplitude range correction functions
   - apply correction functions for wci
+- tools:
+  - xtensor concepts that work for xtensor and pytensor
 
 ## [0.24.2] - 23-09-2024
 
