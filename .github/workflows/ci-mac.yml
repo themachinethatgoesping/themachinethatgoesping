@@ -60,11 +60,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
-        llvm: ["$(brew --prefix llvm@18)"]
+        cxx_compiler: ["$(brew --prefix llvm@19)/bin/clang++"] 
+        llvm: ["$(brew --prefix llvm@19)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-12","macos-14"] 
+        os: ["macos-12","macos-14", "macos-15"] 
                 
     # env does not work here because is resolved as string and not command 
     # env:
@@ -89,8 +89,9 @@ jobs:
         
     # uninstall clang 15
     - run: brew uninstall llvm@15
+    - run: brew uninstall llvm@18
 
-    - run: brew install coreutils llvm@18
+    - run: brew install coreutils llvm@19
         
     - run: brew install libomp boost
     
