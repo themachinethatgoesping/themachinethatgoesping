@@ -64,7 +64,7 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-12"] 
+        os: ["macos-12","macos-14"] 
                 
     # env does not work here because is resolved as string and not command 
     # env:
