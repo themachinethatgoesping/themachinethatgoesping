@@ -95,16 +95,19 @@ jobs:
           ${{matrix.arch}} pip --version
           ${{matrix.arch}} pip debug -v
 
-      - name: Build and install wheel
+      - name: Build wheel
         run: |
           # build wheel
           BOOST_ROOT=${{ matrix.boost }} ${{ matrix.FLAGS}} ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+
+      - name: install wheel
+        run: |
           # delocate wheel
           # ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
           # repairwheel
           ${{matrix.arch}} repairwheel -o wheelhouse dist/*
-          # install wheel
           ${{matrix.arch}} pip install wheelhouse/*
+
 
       - name: Store the binary wheel
         uses: actions/upload-artifact@v4
@@ -128,13 +131,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [arch -x86_64]
+        arch: ["arch -arm64"]
         python-3-version: ["10", "11", "12"]
-        os: ["macos-12", "macos-13", "macos-15"]
-
-        include:
-          - os: "macos-15"
-            arch: "arch -arm64"
+        os: ["macos-15"]
 
     steps:
       - uses: actions/setup-python@v3
@@ -156,7 +155,14 @@ jobs:
 
       - name: install pip dependencies
         # missing typing_extensions caused an error with pypi-publish ...
-        run: ${{matrix.arch}} pip install pytest typing_extensions
+        run: |
+          ${{matrix.arch}} pip install --upgrade pip          
+          ${{matrix.arch}} pip install pytest typing_extensions
+
+      - name: Debug pip
+        run: |
+          ${{matrix.arch}} pip --version
+          ${{matrix.arch}} pip debug -v
 
       - name: install wheels
         run: |
@@ -173,7 +179,7 @@ jobs:
       fail-fast: false
       matrix:
         python-3-version: ["10", "11", "12"]
-        os: ["macos-12", "macos-13", "macos-14", "macos-15"]
+        os: ["macos-15"]
 
 
     steps:
@@ -188,6 +194,15 @@ jobs:
         with:
           name: python-3.${{matrix.python-3-version}}-package-macos
           path: dist/
+
+      - name: install pip
+        run: |
+          ${{matrix.arch}} pip install --upgrade pip          
+
+      - name: Debug pip
+        run: |
+          ${{matrix.arch}} pip --version
+          ${{matrix.arch}} pip debug -v
 
       - name: Publish package
         # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
@@ -218,14 +233,8 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
-        os: ["macos-12", "macos-13"]
-        arch: [arch -x86_64]
-
-        include:
-          - os: "macos-14"
-            arch: "arch -arm64"
-          - os: "macos-15"
-            arch: "arch -arm64"
+        os: ["macos-15"]
+        arch: ["arch -arm64"]
 
     steps:
       - name: checkout main repository
@@ -237,6 +246,15 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: ${{matrix.python-version}}
+
+      - name: install pip
+        run: |
+          ${{matrix.arch}} pip install --upgrade pip          
+
+      - name: Debug pip
+        run: |
+          ${{matrix.arch}} pip --version
+          ${{matrix.arch}} pip debug -v
 
       - name: install via pip
         run: ${{matrix.arch}} pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
