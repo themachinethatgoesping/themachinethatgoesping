@@ -50,13 +50,9 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-12", "macos-15"]
+        os: ["macos-15"]
 
         include:
-          - os: "macos-12"
-            arch: "arch -x86_64"
-            deployment_target: "12.0"
-            FLAGS: 'CXX=$(brew --prefix llvm@18)/bin/clang++  LDFLAGS="-L$(brew --prefix llvm@18)/lib/c++ -L$(brew --prefix llvm@18)/lib -undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip -Wl,-rpath, $(brew --prefix llvm@18)/lib/c++" CPPFLAGS="-I$(brew --prefix llvm@18)/include"'
           - os: "macos-15"
             arch: "arch -arm64"
             deployment_target: "15.0"
@@ -85,9 +81,6 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2
         with:
           key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }} # name for the cache
-
-      - name: Install coreutils and llvm@18
-        run: ${{matrix.arch}} brew install coreutils llvm@18
 
       - name: Install libomp and boost
         run: ${{matrix.arch}} brew install libomp boost
