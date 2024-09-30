@@ -50,6 +50,7 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
+        os: ["macos-12", "macos-15"]
 
         include:
           - os: "macos-12"
@@ -136,11 +137,9 @@ jobs:
       matrix:
         arch: [arch -x86_64]
         python-3-version: ["10", "11", "12"]
-        os: ["macos-12", "macos-13"]
+        os: ["macos-12", "macos-13", "macos-15"]
 
         include:
-          - os: "macos-14"
-            arch: "arch -arm64"
           - os: "macos-15"
             arch: "arch -arm64"
 
