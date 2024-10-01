@@ -50,21 +50,29 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-15"]
+        os: ["macos-14"]
 
         include:
-          - os: "macos-15"
+          # - os: "macos-15"
+          #   arch: "arch -arm64"
+          #   deployment_target: "14.0"
+          #   FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
+          - os: "macos-14"
             arch: "arch -arm64"
-            deployment_target: "15.0"
+            deployment_target: "14.0"
             FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
 
-    #env:
-    #  MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
+    env:
+      MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
 
     steps:
       - name: Echo MACOSX_DEPLOYMENT_TARGET
         run: |
           echo "MACOSX_DEPLOYMENT_TARGET: $MACOSX_DEPLOYMENT_TARGET"
+          
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
       - name: Setup Python
         uses: actions/setup-python@v3
@@ -133,7 +141,7 @@ jobs:
       matrix:
         arch: ["arch -arm64"]
         python-3-version: ["10", "11", "12"]
-        os: ["macos-15"]
+        os: ["macos-14","macos-15"]
 
     steps:
       - uses: actions/setup-python@v3
@@ -179,7 +187,7 @@ jobs:
       fail-fast: false
       matrix:
         python-3-version: ["10", "11", "12"]
-        os: ["macos-15"]
+        os: ["macos-14"]
 
 
     steps:
@@ -233,7 +241,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
-        os: ["macos-15"]
+        os: ["macos-14", "macos-15"]
         arch: ["arch -arm64"]
 
     steps:
