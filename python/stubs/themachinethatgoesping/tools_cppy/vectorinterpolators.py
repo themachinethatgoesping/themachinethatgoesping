@@ -145,7 +145,7 @@ class AkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -166,7 +166,7 @@ class AkimaInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -333,7 +333,7 @@ class AkimaInterpolatorFF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -354,7 +354,7 @@ class AkimaInterpolatorFF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -522,7 +522,7 @@ class LinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -543,7 +543,7 @@ class LinearInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -711,7 +711,7 @@ class LinearInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -732,7 +732,7 @@ class LinearInterpolatorDF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -900,7 +900,7 @@ class LinearInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -921,7 +921,7 @@ class LinearInterpolatorF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1089,7 +1089,7 @@ class LinearInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1110,7 +1110,7 @@ class LinearInterpolatorFD:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1278,7 +1278,7 @@ class NearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1299,7 +1299,7 @@ class NearestInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1467,7 +1467,7 @@ class NearestInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1488,7 +1488,7 @@ class NearestInterpolatorDF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1656,7 +1656,7 @@ class NearestInterpolatorDI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1677,7 +1677,7 @@ class NearestInterpolatorDI:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1845,7 +1845,7 @@ class NearestInterpolatorDO:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1866,7 +1866,7 @@ class NearestInterpolatorDO:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2034,7 +2034,7 @@ class NearestInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2055,7 +2055,7 @@ class NearestInterpolatorF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2223,7 +2223,7 @@ class NearestInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2244,7 +2244,7 @@ class NearestInterpolatorFD:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2412,7 +2412,7 @@ class NearestInterpolatorFI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2433,7 +2433,7 @@ class NearestInterpolatorFI:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2601,7 +2601,7 @@ class NearestInterpolatorFO:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2622,7 +2622,7 @@ class NearestInterpolatorFO:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2862,7 +2862,7 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2904,7 +2904,7 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3182,7 +3182,7 @@ class SlerpInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -3224,7 +3224,7 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3502,7 +3502,7 @@ class SlerpInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -3544,7 +3544,7 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3822,7 +3822,7 @@ class SlerpInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -3864,7 +3864,7 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

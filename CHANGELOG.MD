@@ -10,11 +10,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.42.0
 - algorithms -> 0.8.2
-- tools -> 0.26.1
+- tools -> 0.27.0
 
 ### Changed
 - echosounders:
   - rewamping calibration/tvg correction
+- tools:
+  - option to add or not add superscript to exponents when printing
 
 ### Added
 - algorithms
@@ -24,6 +26,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - apply correction functions for wci
 - tools:
   - xtensor concepts that work for xtensor and pytensor
+  - improved printing of small floats
+  - superscript helper function
 
 ## [0.24.2] - 23-09-2024
 

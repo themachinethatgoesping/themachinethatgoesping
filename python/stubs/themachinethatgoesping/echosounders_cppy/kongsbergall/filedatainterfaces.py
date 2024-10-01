@@ -39,7 +39,7 @@ class KongsbergAllAnnotationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -85,7 +85,7 @@ class KongsbergAllAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -176,7 +176,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -192,7 +192,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -279,7 +279,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -295,7 +295,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -329,7 +329,7 @@ class KongsbergAllAnnotationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -375,7 +375,7 @@ class KongsbergAllAnnotationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -410,7 +410,7 @@ class KongsbergAllConfigurationDataInterface:
         ...
     def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -456,7 +456,7 @@ class KongsbergAllConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -552,7 +552,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -568,7 +568,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -696,7 +696,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -712,7 +712,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -779,7 +779,7 @@ class KongsbergAllConfigurationDataInterface_stream:
         ...
     def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -825,7 +825,7 @@ class KongsbergAllConfigurationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -864,7 +864,7 @@ class KongsbergAllDatagramDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -910,7 +910,7 @@ class KongsbergAllDatagramDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1002,7 +1002,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1018,7 +1018,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1106,7 +1106,7 @@ class KongsbergAllDatagramDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1122,7 +1122,7 @@ class KongsbergAllDatagramDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1157,7 +1157,7 @@ class KongsbergAllDatagramDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1203,7 +1203,7 @@ class KongsbergAllDatagramDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1249,7 +1249,7 @@ class KongsbergAllDatagramInterface:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1257,7 +1257,7 @@ class KongsbergAllDatagramInterface:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1299,7 +1299,7 @@ class KongsbergAllDatagramInterface_stream:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1307,7 +1307,7 @@ class KongsbergAllDatagramInterface_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1336,7 +1336,7 @@ class KongsbergAllEnvironmentDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1384,7 +1384,7 @@ class KongsbergAllEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1470,7 +1470,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1488,7 +1488,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1570,7 +1570,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1588,7 +1588,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1617,7 +1617,7 @@ class KongsbergAllEnvironmentDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1665,7 +1665,7 @@ class KongsbergAllEnvironmentDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1710,7 +1710,7 @@ class KongsbergAllNavigationDataInterface:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1756,7 +1756,7 @@ class KongsbergAllNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1842,7 +1842,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1858,7 +1858,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1942,7 +1942,7 @@ class KongsbergAllNavigationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1958,7 +1958,7 @@ class KongsbergAllNavigationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2001,7 +2001,7 @@ class KongsbergAllNavigationDataInterface_stream:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2047,7 +2047,7 @@ class KongsbergAllNavigationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2086,7 +2086,7 @@ class KongsbergAllOtherFileDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2132,7 +2132,7 @@ class KongsbergAllOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2224,7 +2224,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2240,7 +2240,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2328,7 +2328,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2344,7 +2344,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2379,7 +2379,7 @@ class KongsbergAllOtherFileDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2425,7 +2425,7 @@ class KongsbergAllOtherFileDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2468,7 +2468,7 @@ class KongsbergAllPingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2516,7 +2516,7 @@ class KongsbergAllPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2606,7 +2606,7 @@ class KongsbergAllPingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2624,7 +2624,7 @@ class KongsbergAllPingDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2712,7 +2712,7 @@ class KongsbergAllPingDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2730,7 +2730,7 @@ class KongsbergAllPingDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2771,7 +2771,7 @@ class KongsbergAllPingDataInterface_stream:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2819,7 +2819,7 @@ class KongsbergAllPingDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

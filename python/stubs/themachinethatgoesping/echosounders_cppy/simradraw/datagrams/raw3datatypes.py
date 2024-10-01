@@ -38,11 +38,11 @@ class RAW3DataAngle(i_RAW3Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -93,11 +93,11 @@ class RAW3DataComplexFloat32(i_RAW3Data):
         ...
     def get_power_xtensor(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -142,11 +142,11 @@ class RAW3DataPower(i_RAW3Data):
         """
     def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -193,11 +193,11 @@ class RAW3DataPowerAndAngle(i_RAW3Data):
         ...
     def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -247,11 +247,11 @@ class RAW3DataSkipped(i_RAW3Data):
         """
         return a copy using the c++ default copy constructor
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

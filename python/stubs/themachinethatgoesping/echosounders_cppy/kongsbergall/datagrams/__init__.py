@@ -122,11 +122,11 @@ class AttitudeDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -238,11 +238,11 @@ class ClockDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -355,11 +355,11 @@ class DepthOrHeightDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -537,11 +537,11 @@ class ExtraDetections(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -699,11 +699,11 @@ class ExtraParameters(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -873,11 +873,11 @@ class HeadingDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1139,13 +1139,13 @@ class InstallationParameters(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def is_dual_rx(self) -> bool:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1262,11 +1262,11 @@ class KongsbergAllDatagram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1346,11 +1346,11 @@ class KongsbergAllUnknown(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1501,11 +1501,11 @@ class NetworkAttitudeVelocityDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1767,11 +1767,11 @@ class PUIDOutput(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2096,11 +2096,11 @@ class PUStatusOutput(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2417,11 +2417,11 @@ class PositionDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2556,11 +2556,11 @@ class QualityFactorDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2739,11 +2739,11 @@ class RawRangeAndAngle(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2965,11 +2965,11 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def hash_content_only(self) -> int:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3189,11 +3189,11 @@ class SeabedImageData(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3348,11 +3348,11 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3512,11 +3512,11 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3637,11 +3637,11 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3791,11 +3791,11 @@ class WatercolumnDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3983,11 +3983,11 @@ class XYZDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

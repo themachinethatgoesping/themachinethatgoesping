@@ -2,13 +2,14 @@
 KongsbergAll EK60 and EK80 file data types
 """
 from __future__ import annotations
+import numpy
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.pingtools
 import typing
-__all__ = ['FilePackageIndex_kongsbergall_FilePackageIndex', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_stream', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_stream', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_stream', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_stream', 'KongsbergAllPing_stream']
+__all__ = ['FilePackageIndex_kongsbergall_FilePackageIndex', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_stream', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_stream', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_stream', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_stream', 'KongsbergAllPing_stream', 'KongsbergAllWaterColumnCalibration']
 class FilePackageIndex_kongsbergall_FilePackageIndex:
     """
     """
@@ -54,11 +55,11 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -211,12 +212,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -225,12 +226,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -318,12 +319,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -332,12 +333,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -378,9 +379,23 @@ class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_cppy.filet
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def get_raw_amplitudes(self) -> numpy.ndarray[numpy.int8]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.int8]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes_float(self) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]:
+        ...
     def get_tvg_factor_applied(self) -> int:
         ...
     def get_tvg_offset(self) -> int:
+        ...
+    def has_amplitudes(self) -> bool:
         ...
 class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, KongsbergAllPingCommon_stream):
     """
@@ -396,9 +411,23 @@ class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_cpp
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def get_raw_amplitudes(self) -> numpy.ndarray[numpy.int8]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.int8]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes_float(self) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]:
+        ...
     def get_tvg_factor_applied(self) -> int:
         ...
     def get_tvg_offset(self) -> int:
+        ...
+    def has_amplitudes(self) -> bool:
         ...
 class KongsbergAllPing_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, KongsbergAllPingCommon_stream):
     """
@@ -413,4 +442,59 @@ class KongsbergAllPing_stream(themachinethatgoesping.echosounders_cppy.filetempl
     def copy(self) -> KongsbergAllPing_stream:
         """
         return a copy using the c++ default copy constructor
+        """
+class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.filetemplates.WaterColumnCalibration):
+    """
+    """
+    @staticmethod
+    def _pybind11_conduit_v1_(*args, **kwargs):
+        ...
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> KongsbergAllWaterColumnCalibration:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> KongsbergAllWaterColumnCalibration:
+        ...
+    def __deepcopy__(self, arg0: dict) -> KongsbergAllWaterColumnCalibration:
+        ...
+    def __eq__(self, other: KongsbergAllWaterColumnCalibration) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def __init__(self, sound_velocity: float, effective_pulse_duration: float, beam_width_transmit: float, beam_width_receive: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None:
+        ...
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> KongsbergAllWaterColumnCalibration:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
         """

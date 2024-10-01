@@ -53,11 +53,11 @@ class KongsbergAllDatagramContainer_AttitudeDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_AttitudeDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -120,11 +120,11 @@ class KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_AttitudeDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -187,11 +187,11 @@ class KongsbergAllDatagramContainer_ClockDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ClockDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -254,11 +254,11 @@ class KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ClockDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -321,11 +321,11 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -388,11 +388,11 @@ class KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_DepthOrHeightDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -455,11 +455,11 @@ class KongsbergAllDatagramContainer_ExtraDetections:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraDetections:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -522,11 +522,11 @@ class KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraDetections_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -589,11 +589,11 @@ class KongsbergAllDatagramContainer_ExtraParameters:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraParameters:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -656,11 +656,11 @@ class KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_ExtraParameters_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -723,11 +723,11 @@ class KongsbergAllDatagramContainer_Header:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Header:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -790,11 +790,11 @@ class KongsbergAllDatagramContainer_Header_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Header_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -857,11 +857,11 @@ class KongsbergAllDatagramContainer_HeadingDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_HeadingDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -924,11 +924,11 @@ class KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_HeadingDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -991,11 +991,11 @@ class KongsbergAllDatagramContainer_InstallationParameters:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_InstallationParameters:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1058,11 +1058,11 @@ class KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_InstallationParameters_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1125,11 +1125,11 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1192,11 +1192,11 @@ class KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_NetworkAttitudeVelocityDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1259,11 +1259,11 @@ class KongsbergAllDatagramContainer_PUIDOutput:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUIDOutput:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1326,11 +1326,11 @@ class KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUIDOutput_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1393,11 +1393,11 @@ class KongsbergAllDatagramContainer_PUStatusOutput:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUStatusOutput:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1460,11 +1460,11 @@ class KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PUStatusOutput_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1527,11 +1527,11 @@ class KongsbergAllDatagramContainer_PositionDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PositionDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1594,11 +1594,11 @@ class KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_PositionDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1661,11 +1661,11 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1728,11 +1728,11 @@ class KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_QualityFactorDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1795,11 +1795,11 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1862,11 +1862,11 @@ class KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RawRangeAndAngle_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1929,11 +1929,11 @@ class KongsbergAllDatagramContainer_RuntimeParameters:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RuntimeParameters:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1996,11 +1996,11 @@ class KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_RuntimeParameters_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2063,11 +2063,11 @@ class KongsbergAllDatagramContainer_SeabedImageData:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SeabedImageData:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2130,11 +2130,11 @@ class KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SeabedImageData_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2197,11 +2197,11 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2264,11 +2264,11 @@ class KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SingleBeamEchoSounderDepth_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2331,11 +2331,11 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2398,11 +2398,11 @@ class KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SoundSpeedProfileDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2465,11 +2465,11 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2532,11 +2532,11 @@ class KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_SurfaceSoundSpeedDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2599,11 +2599,11 @@ class KongsbergAllDatagramContainer_Unknown:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Unknown:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2666,11 +2666,11 @@ class KongsbergAllDatagramContainer_Unknown_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Unknown_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2733,11 +2733,11 @@ class KongsbergAllDatagramContainer_Variant:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2800,11 +2800,11 @@ class KongsbergAllDatagramContainer_Variant_SkippedData:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_SkippedData:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2867,11 +2867,11 @@ class KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_SkippedData_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2934,11 +2934,11 @@ class KongsbergAllDatagramContainer_Variant_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_Variant_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3001,11 +3001,11 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3068,11 +3068,11 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3135,11 +3135,11 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_SkippedData_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3202,11 +3202,11 @@ class KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_WatercolumnDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3269,11 +3269,11 @@ class KongsbergAllDatagramContainer_XYZDatagram:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_XYZDatagram:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3336,11 +3336,11 @@ class KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllDatagramContainer_XYZDatagram_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3415,13 +3415,13 @@ class KongsbergAllPingContainer:
         ...
     def get_sorted_by_time(self) -> KongsbergAllPingContainer:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3498,13 +3498,13 @@ class KongsbergAllPingContainer_stream:
         ...
     def get_sorted_by_time(self) -> KongsbergAllPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

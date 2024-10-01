@@ -234,7 +234,7 @@ class KongsbergAllFileHandler:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -244,7 +244,7 @@ class KongsbergAllFileHandler:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -304,7 +304,7 @@ class KongsbergAllFileHandler_stream:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2) -> str:
+    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -314,7 +314,7 @@ class KongsbergAllFileHandler_stream:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 2) -> None:
+    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
