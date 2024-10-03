@@ -53,11 +53,11 @@ class SimradRawDatagramContainer_FIL1:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -120,11 +120,11 @@ class SimradRawDatagramContainer_FIL1_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_FIL1_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -187,11 +187,11 @@ class SimradRawDatagramContainer_Header:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -254,11 +254,11 @@ class SimradRawDatagramContainer_Header_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Header_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -321,11 +321,11 @@ class SimradRawDatagramContainer_MRU0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -388,11 +388,11 @@ class SimradRawDatagramContainer_MRU0_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_MRU0_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -455,11 +455,11 @@ class SimradRawDatagramContainer_NME0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -522,11 +522,11 @@ class SimradRawDatagramContainer_NME0_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_NME0_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -589,11 +589,11 @@ class SimradRawDatagramContainer_RAW3:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -656,11 +656,11 @@ class SimradRawDatagramContainer_RAW3_skipped_data:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -723,11 +723,11 @@ class SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_skipped_data_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -790,11 +790,11 @@ class SimradRawDatagramContainer_RAW3_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_RAW3_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -857,11 +857,11 @@ class SimradRawDatagramContainer_TAG0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -924,11 +924,11 @@ class SimradRawDatagramContainer_TAG0_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_TAG0_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -991,11 +991,11 @@ class SimradRawDatagramContainer_Unknown:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1058,11 +1058,11 @@ class SimradRawDatagramContainer_Unknown_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Unknown_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1125,11 +1125,11 @@ class SimradRawDatagramContainer_Variant:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1192,11 +1192,11 @@ class SimradRawDatagramContainer_Variant_skipped_data:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1259,11 +1259,11 @@ class SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_skipped_data_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1326,11 +1326,11 @@ class SimradRawDatagramContainer_Variant_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_Variant_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1393,11 +1393,11 @@ class SimradRawDatagramContainer_XML0:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1460,11 +1460,11 @@ class SimradRawDatagramContainer_XML0_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawDatagramContainer_XML0_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1539,13 +1539,13 @@ class SimradRawPingContainer:
         ...
     def get_sorted_by_time(self) -> SimradRawPingContainer:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1622,13 +1622,13 @@ class SimradRawPingContainer_stream:
         ...
     def get_sorted_by_time(self) -> SimradRawPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def max_number_of_samples(self) -> int:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

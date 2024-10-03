@@ -41,7 +41,7 @@ class SimradRawFileHandler:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -51,7 +51,7 @@ class SimradRawFileHandler:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -111,7 +111,7 @@ class SimradRawFileHandler_stream:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -121,7 +121,7 @@ class SimradRawFileHandler_stream:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

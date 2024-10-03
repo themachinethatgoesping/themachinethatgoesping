@@ -15,6 +15,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Changed
 - echosounders:
   - rewamping calibration/tvg correction
+  - do not cache runtime parameters for kongsbergall
 - tools:
   - option to add or not add superscript to exponents when printing
 
@@ -26,8 +27,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - apply correction functions for wci
 - tools:
   - xtensor concepts that work for xtensor and pytensor
-  - improved printing of small floats
+  - improved printing of small and large floats
   - superscript helper function
+
+### Fixed
+- echosounders::kongsbergall:
+  - wrong runtime parameters for kongsbergall pings
 
 ## [0.24.2] - 23-09-2024
 

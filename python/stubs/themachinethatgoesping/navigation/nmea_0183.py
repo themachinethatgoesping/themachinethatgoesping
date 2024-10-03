@@ -65,11 +65,11 @@ class NMEA_Base:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -150,11 +150,11 @@ class NMEA_GGA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -225,11 +225,11 @@ class NMEA_GLL(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -304,11 +304,11 @@ class NMEA_GST(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -369,11 +369,11 @@ class NMEA_HDT(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -453,11 +453,11 @@ class NMEA_RMC(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -535,11 +535,11 @@ class NMEA_Unknown(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -606,11 +606,11 @@ class NMEA_VHW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -677,11 +677,11 @@ class NMEA_VLW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -752,11 +752,11 @@ class NMEA_VTG(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -827,11 +827,11 @@ class NMEA_ZDA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

@@ -75,11 +75,11 @@ class BeamSampleParameters:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -165,11 +165,11 @@ class RaytraceResult:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -297,11 +297,11 @@ class RaytraceResults_1(XYZ_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -405,11 +405,11 @@ class RaytraceResults_2(XYZ_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -513,11 +513,11 @@ class RaytraceResults_3(XYZ_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -613,11 +613,11 @@ class SampleDirectionsRange_1(SampleDirections_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -713,11 +713,11 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -813,11 +813,11 @@ class SampleDirectionsRange_3(SampleDirections_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -913,11 +913,11 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1013,11 +1013,11 @@ class SampleDirectionsTime_2(SampleDirections_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1113,11 +1113,11 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1205,11 +1205,11 @@ class SampleDirections_1:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1309,11 +1309,11 @@ class SampleDirections_2:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1413,11 +1413,11 @@ class SampleDirections_3:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1517,11 +1517,11 @@ class SampleIndices_1:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1621,11 +1621,11 @@ class SampleIndices_2:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1725,11 +1725,11 @@ class SampleIndices_3:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1858,11 +1858,11 @@ class XYZ_1:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2017,11 +2017,11 @@ class XYZ_2:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2176,11 +2176,11 @@ class XYZ_3:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

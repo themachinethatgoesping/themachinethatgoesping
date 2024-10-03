@@ -55,11 +55,11 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -212,12 +212,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -226,12 +226,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -258,6 +258,8 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
+    def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
+        ...
 class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingFileData):
     """
     """
@@ -319,12 +321,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -333,12 +335,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -365,6 +367,8 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
         Returns:
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
+    def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
+        ...
 class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, KongsbergAllPingCommon):
     """
     """
@@ -466,7 +470,7 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sound_velocity: float, effective_pulse_duration: float, beam_width_transmit: float, beam_width_receive: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None:
+    def __init__(self, sound_velocity: float, effective_pulse_duration: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -486,11 +490,11 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

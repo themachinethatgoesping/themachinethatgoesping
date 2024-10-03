@@ -55,11 +55,11 @@ class FilePackageIndex_simradraw_FilePackageIndex:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -216,12 +216,12 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -230,12 +230,12 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -309,12 +309,12 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -323,12 +323,12 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

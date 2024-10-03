@@ -40,7 +40,7 @@ class SimradRawAnnotationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -86,7 +86,7 @@ class SimradRawAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -176,7 +176,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -192,7 +192,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -278,7 +278,7 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -294,7 +294,7 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -329,7 +329,7 @@ class SimradRawAnnotationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -375,7 +375,7 @@ class SimradRawAnnotationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -410,7 +410,7 @@ class SimradRawConfigurationDataInterface:
         ...
     def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -456,7 +456,7 @@ class SimradRawConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -576,7 +576,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -592,7 +592,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -712,7 +712,7 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -728,7 +728,7 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -763,7 +763,7 @@ class SimradRawConfigurationDataInterface_stream:
         ...
     def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -809,7 +809,7 @@ class SimradRawConfigurationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -848,7 +848,7 @@ class SimradRawDatagramDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -894,7 +894,7 @@ class SimradRawDatagramDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -986,7 +986,7 @@ class SimradRawDatagramDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1002,7 +1002,7 @@ class SimradRawDatagramDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1090,7 +1090,7 @@ class SimradRawDatagramDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1106,7 +1106,7 @@ class SimradRawDatagramDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1141,7 +1141,7 @@ class SimradRawDatagramDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1187,7 +1187,7 @@ class SimradRawDatagramDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1233,7 +1233,7 @@ class SimradRawDatagramInterface:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1241,7 +1241,7 @@ class SimradRawDatagramInterface:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1283,7 +1283,7 @@ class SimradRawDatagramInterface_stream:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1291,7 +1291,7 @@ class SimradRawDatagramInterface_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1320,7 +1320,7 @@ class SimradRawEnvironmentDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1368,7 +1368,7 @@ class SimradRawEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1454,7 +1454,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1472,7 +1472,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1554,7 +1554,7 @@ class SimradRawEnvironmentDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1572,7 +1572,7 @@ class SimradRawEnvironmentDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1601,7 +1601,7 @@ class SimradRawEnvironmentDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1649,7 +1649,7 @@ class SimradRawEnvironmentDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1694,7 +1694,7 @@ class SimradRawNavigationDataInterface:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1740,7 +1740,7 @@ class SimradRawNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1834,7 +1834,7 @@ class SimradRawNavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1850,7 +1850,7 @@ class SimradRawNavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1942,7 +1942,7 @@ class SimradRawNavigationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1958,7 +1958,7 @@ class SimradRawNavigationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2005,7 +2005,7 @@ class SimradRawNavigationDataInterface_stream:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2051,7 +2051,7 @@ class SimradRawNavigationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2094,7 +2094,7 @@ class SimradRawOtherFileDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2140,7 +2140,7 @@ class SimradRawOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2232,7 +2232,7 @@ class SimradRawOtherFileDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2248,7 +2248,7 @@ class SimradRawOtherFileDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2336,7 +2336,7 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2352,7 +2352,7 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2387,7 +2387,7 @@ class SimradRawOtherFileDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2433,7 +2433,7 @@ class SimradRawOtherFileDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2476,7 +2476,7 @@ class SimradRawPingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2524,7 +2524,7 @@ class SimradRawPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2614,7 +2614,7 @@ class SimradRawPingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2632,7 +2632,7 @@ class SimradRawPingDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2720,7 +2720,7 @@ class SimradRawPingDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2738,7 +2738,7 @@ class SimradRawPingDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2779,7 +2779,7 @@ class SimradRawPingDataInterface_stream:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2827,7 +2827,7 @@ class SimradRawPingDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

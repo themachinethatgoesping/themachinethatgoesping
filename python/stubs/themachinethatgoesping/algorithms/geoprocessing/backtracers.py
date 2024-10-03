@@ -59,11 +59,11 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -132,7 +132,7 @@ class BacktracedWCI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -140,7 +140,7 @@ class BacktracedWCI:
         ...
     def lookup_const(self, beam_angle: float, range: float) -> float:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -261,7 +261,7 @@ class I_Backtracer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 2, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -269,7 +269,7 @@ class I_Backtracer:
         ...
     def lookup_indices(self, beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], beam_reference_max_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleIndices_2:
         ...
-    def print(self, float_precision: int = 2, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
