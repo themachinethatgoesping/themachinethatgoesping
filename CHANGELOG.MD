@@ -16,6 +16,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - rewamping calibration/tvg correction
   - do not cache runtime parameters for kongsbergall
+  - renamed get_installation_parameters to read_installation_parameters to be more concise
 - tools:
   - option to add or not add superscript to exponents when printing
 
@@ -29,6 +30,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - xtensor concepts that work for xtensor and pytensor
   - improved printing of small and large floats
   - superscript helper function
+- echosounders:
+  - tx_sector functions now take beam_selection as arguments
 
 ### Fixed
 - echosounders::kongsbergall:

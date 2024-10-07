@@ -765,7 +765,11 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
+    @typing.overload
     def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        ...
+    @typing.overload
+    def get_beam_numbers_per_tx_sector(self, beam_selection: ...) -> list[list[int]]:
         ...
     def get_beam_sample_selection_all(self) -> ...:
         """
@@ -879,7 +883,11 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             xt::xtensor<float,2>
         """
+    @typing.overload
     def get_tx_sector_per_beam(self) -> numpy.ndarray[numpy.uint64]:
+        ...
+    @typing.overload
+    def get_tx_sector_per_beam(self, beam_selection: ...) -> numpy.ndarray[numpy.uint64]:
         ...
     def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms.signalprocessing.datastructures.GenericSignalParameters]:
         """

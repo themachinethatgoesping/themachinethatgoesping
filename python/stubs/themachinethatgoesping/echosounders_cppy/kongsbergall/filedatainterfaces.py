@@ -526,8 +526,6 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
     def get_file_size(self) -> int:
         ...
-    def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
-        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -542,7 +540,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
-    def get_runtime_parameter(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
@@ -560,6 +558,12 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
     def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
         ...
+    def init_runtime_parameters(self) -> None:
+        """
+        read the runtime parameters from the file and save them in the
+        internal map This function is automatically called by
+        get_runtime_parameters
+        """
     def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
@@ -574,8 +578,14 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
         Print object information
         """
-    def read_runtime_parameters(self) -> None:
-        ...
+    def read_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
+        """
+        Read the installation parameters from the file, this function also
+        checks if the start and end parameters are the same
+        
+        Returns:
+            datagrams::InstallationParameters
+        """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
@@ -674,8 +684,6 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         """
     def get_file_size(self) -> int:
         ...
-    def get_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
-        ...
     def get_linked_file_nr(self) -> int:
         """
         Get the file nr of the linked file
@@ -690,7 +698,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         Returns:
             std::string
         """
-    def get_runtime_parameter(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
@@ -708,6 +716,12 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         """
     def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
         ...
+    def init_runtime_parameters(self) -> None:
+        """
+        read the runtime parameters from the file and save them in the
+        internal map This function is automatically called by
+        get_runtime_parameters
+        """
     def is_initialized(self) -> bool:
         ...
     def is_primary_file(self) -> bool:
@@ -722,8 +736,14 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         """
         Print object information
         """
-    def read_runtime_parameters(self) -> None:
-        ...
+    def read_installation_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.InstallationParameters:
+        """
+        Read the installation parameters from the file, this function also
+        checks if the start and end parameters are the same
+        
+        Returns:
+            datagrams::InstallationParameters
+        """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:

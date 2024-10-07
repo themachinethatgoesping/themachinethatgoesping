@@ -1062,14 +1062,6 @@ class InstallationParameters(KongsbergAllDatagram):
         """
         < end identifier (always 0x03)
         """
-    def get_installation_parameters(self) -> str:
-        ...
-    def get_installation_parameters_counter(self) -> int:
-        """
-        < Sequential Number
-        """
-    def get_installation_parameters_parsed(self) -> dict[str, str]:
-        ...
     def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the position system offsets of system 1, 2 or 3
@@ -1149,6 +1141,14 @@ class InstallationParameters(KongsbergAllDatagram):
         """
         Print object information
         """
+    def read_installation_parameters(self) -> str:
+        ...
+    def read_installation_parameters_counter(self) -> int:
+        """
+        < Sequential Number
+        """
+    def read_installation_parameters_parsed(self) -> dict[str, str]:
+        ...
     def reparse_installation_parameters(self) -> None:
         """
         parse the installation parameters string into a map This happens when
