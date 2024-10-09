@@ -203,6 +203,8 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> typing.Any:
         ...
+    def get_multisector_calibration(self) -> themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration:
+        ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     def get_timestamp_first(self) -> float:
@@ -278,6 +280,17 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
         ...
     def release_wci(self) -> None:
         ...
+    def set_multisector_calibration(self, calibration: themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration) -> None:
+        """
+        Set the watercolumn calibration. This must be a list of length equal
+        to the number of transmit sectors.
+        
+        Template parameter ``t_calibration``:
+            can be either KongsbergAllWaterColumnCalibration or
+            BoostFlyweight<
+        
+        Parameter ``calibration``:
+        """
     def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
         ...
     @typing.overload
@@ -341,6 +354,8 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
         ...
     @typing.overload
     def datagrams_raw(self, datagram_type: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier) -> typing.Any:
+        ...
+    def get_multisector_calibration(self) -> themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration:
         ...
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
@@ -417,6 +432,17 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
         ...
     def release_wci(self) -> None:
         ...
+    def set_multisector_calibration(self, calibration: themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration) -> None:
+        """
+        Set the watercolumn calibration. This must be a list of length equal
+        to the number of transmit sectors.
+        
+        Template parameter ``t_calibration``:
+            can be either KongsbergAllWaterColumnCalibration or
+            BoostFlyweight<
+        
+        Parameter ``calibration``:
+        """
     def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
         ...
     @typing.overload
