@@ -11,6 +11,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.42.0
 - algorithms -> 0.8.2
 - tools -> 0.27.0
+- pingprocessing -> 0.8.4
 
 ### Changed
 - echosounders:
@@ -30,12 +31,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - xtensor concepts that work for xtensor and pytensor
   - improved printing of small and large floats
   - superscript helper function
+  - minor updates and bugfixes
 - echosounders:
   - tx_sector functions now take beam_selection as arguments
+  - WatercolumnCalibration, MultisectorWatercolumnCalibration
+  - KongsbergallWatercolumnCalibration, KongsbergallMultisectorWatercolumnCalibration
+  - SimradRawWatercolumnCalibration
 
 ### Fixed
 - echosounders::kongsbergall:
   - wrong runtime parameters for kongsbergall pings
+- pingprocessing
+  - fixed distortion for wci_viewer at short ranges (do not set x offset for backtracer)
 
 ## [0.24.2] - 23-09-2024
 

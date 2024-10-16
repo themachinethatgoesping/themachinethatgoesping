@@ -145,6 +145,87 @@ class ObjectPrinter:
             position where the value is registers (if negative, the value is
             appended)
         """
+    @typing.overload
+    def register_optional_value(self, name: str, value: float | None, value_info: str = '', pos: int = -1) -> None:
+        """
+        Registers an optional value with the given name and additional
+        information.
+        
+        This function checks if the optional value has a value. If it does, it
+        registers the value using the provided name, value information, and
+        position. If the optional value does not have a value, it registers
+        the string "Not set" instead.
+        
+        Template parameter ``t_value``:
+            The type of the optional value.
+        
+        Parameter ``name``:
+            The name to register the value under.
+        
+        Parameter ``value``:
+            The optional value to register.
+        
+        Parameter ``value_info``:
+            Additional information about the value (default is an empty
+            string).
+        
+        Parameter ``pos``:
+            The position to register the value at (default is -1).
+        """
+    @typing.overload
+    def register_optional_value(self, name: str, value: int | None, value_info: str = '', pos: int = -1) -> None:
+        """
+        Registers an optional value with the given name and additional
+        information.
+        
+        This function checks if the optional value has a value. If it does, it
+        registers the value using the provided name, value information, and
+        position. If the optional value does not have a value, it registers
+        the string "Not set" instead.
+        
+        Template parameter ``t_value``:
+            The type of the optional value.
+        
+        Parameter ``name``:
+            The name to register the value under.
+        
+        Parameter ``value``:
+            The optional value to register.
+        
+        Parameter ``value_info``:
+            Additional information about the value (default is an empty
+            string).
+        
+        Parameter ``pos``:
+            The position to register the value at (default is -1).
+        """
+    @typing.overload
+    def register_optional_value(self, name: str, value: str | None, value_info: str = '', pos: int = -1) -> None:
+        """
+        Registers an optional value with the given name and additional
+        information.
+        
+        This function checks if the optional value has a value. If it does, it
+        registers the value using the provided name, value information, and
+        position. If the optional value does not have a value, it registers
+        the string "Not set" instead.
+        
+        Template parameter ``t_value``:
+            The type of the optional value.
+        
+        Parameter ``name``:
+            The name to register the value under.
+        
+        Parameter ``value``:
+            The optional value to register.
+        
+        Parameter ``value_info``:
+            Additional information about the value (default is an empty
+            string).
+        
+        Parameter ``pos``:
+            The position to register the value at (default is -1).
+        """
     def register_section(self, name: str, underliner: str = '-', pos: int = -1) -> None:
         """
         register a section break for printing

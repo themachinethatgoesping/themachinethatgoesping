@@ -219,8 +219,6 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     @typing.overload
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration:
         ...
-    def get_watercolumn_calibrations(self) -> list[KongsbergAllWaterColumnCalibration]:
-        ...
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
@@ -233,7 +231,7 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
         """
         Return object information as string
         """
-    def init_watercolumn_calibration(self) -> None:
+    def init_watercolumn_calibration(self, arg0: bool) -> None:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
@@ -281,16 +279,7 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def release_wci(self) -> None:
         ...
     def set_multisector_calibration(self, calibration: themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration) -> None:
-        """
-        Set the watercolumn calibration. This must be a list of length equal
-        to the number of transmit sectors.
-        
-        Template parameter ``t_calibration``:
-            can be either KongsbergAllWaterColumnCalibration or
-            BoostFlyweight<
-        
-        Parameter ``calibration``:
-        """
+        ...
     def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
         ...
     @typing.overload
@@ -371,8 +360,6 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     @typing.overload
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration:
         ...
-    def get_watercolumn_calibrations(self) -> list[KongsbergAllWaterColumnCalibration]:
-        ...
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
@@ -385,7 +372,7 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
         """
         Return object information as string
         """
-    def init_watercolumn_calibration(self) -> None:
+    def init_watercolumn_calibration(self, arg0: bool) -> None:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllDatagramIdentifier]:
         ...
@@ -433,16 +420,7 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def release_wci(self) -> None:
         ...
     def set_multisector_calibration(self, calibration: themachinethatgoesping.echosounders_cppy.filetemplates.KongsbergAllMultiSectorWaterColumnCalibration) -> None:
-        """
-        Set the watercolumn calibration. This must be a list of length equal
-        to the number of transmit sectors.
-        
-        Template parameter ``t_calibration``:
-            can be either KongsbergAllWaterColumnCalibration or
-            BoostFlyweight<
-        
-        Parameter ``calibration``:
-        """
+        ...
     def set_runtime_parameters(self, runtime_parameters: ..., boost: ..., boost: ..., boost: ..., boost: ..., boost: ...) -> None:
         ...
     @typing.overload
@@ -568,10 +546,20 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         Return object information as string
         """
+    def check_initialization(self) -> None:
+        ...
+    def check_initialized(self) -> None:
+        ...
     def copy(self) -> KongsbergAllWaterColumnCalibration:
         """
         return a copy using the c++ default copy constructor
         """
+    def get_effective_pulse_duration(self) -> float:
+        ...
+    def get_sound_velocity(self) -> float:
+        ...
+    def get_system_gain_offset(self) -> float:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -580,6 +568,8 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         Return object information as string
         """
+    def initialized(self) -> bool:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information

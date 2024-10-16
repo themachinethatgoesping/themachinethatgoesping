@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'number_of_tx_sectors', 'power', 'power_calibration', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sp_calibration', 'sv', 'sv_calibration', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_signal_parameters', 'watercolumn', 'xyz']
+__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'beam_numbers_per_tx_sector', 'beam_selection_all', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'multisectorwatercolumn_calibration', 'number_of_beams', 'number_of_tx_sectors', 'power', 'pp', 'pv', 'rp', 'rv', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_sector_per_beam', 'tx_signal_parameters', 'watercolumn', 'watercolumn_calibration', 'xyz']
 class AmplitudeCalibration:
     """
     """
@@ -29,14 +29,10 @@ class AmplitudeCalibration:
         ...
     def __getstate__(self) -> bytes:
         ...
-    @typing.overload
     def __hash__(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def __hash__(self) -> int:
-        ...
     @typing.overload
     def __init__(self) -> None:
         ...
@@ -56,13 +52,7 @@ class AmplitudeCalibration:
         """
         Return object information as string
         """
-    @typing.overload
-    def apply_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
-        ...
-    @typing.overload
-    def apply_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: float, tvg_factor: float, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
-        ...
-    def cached_hash(self) -> int:
+    def apply_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: float | None, tvg_factor: float | None, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     def copy(self) -> AmplitudeCalibration:
         """
@@ -96,27 +86,23 @@ class AmplitudeCalibration:
         ...
     def has_system_offset(self) -> bool:
         ...
-    @typing.overload
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def hash(self) -> int:
-        ...
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def initialized(self) -> bool:
+    def inplace_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: float | None, tvg_factor: float | None, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
         ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_offset_per_beamangle(self, beamangle: list[float], offset: list[float]) -> None:
+    def set_offset_per_beamangle(self, beamangle: numpy.ndarray[numpy.float32], offset: numpy.ndarray[numpy.float32]) -> None:
         ...
-    def set_offset_per_range(self, range: list[float], offset: list[float]) -> None:
+    def set_offset_per_range(self, range: numpy.ndarray[numpy.float32], offset: numpy.ndarray[numpy.float32]) -> None:
         ...
     def set_system_offset(self, value: float) -> None:
         ...
@@ -252,6 +238,10 @@ class I_Ping(I_PingCommon):
         ...
     def has_channel_id(self) -> bool:
         ...
+    def has_datetime(self) -> bool:
+        """
+        Return true if the timestamp is available that can be converted to a datetime
+        """
     def has_geolocation(self) -> bool:
         ...
     def has_sensor_configuration(self) -> bool:
@@ -467,6 +457,18 @@ class I_PingCommon:
         """
         return a copy using the c++ default copy constructor
         """
+    def feature_groups_string(self, available: bool = True, prefix: str = '') -> str:
+        """
+        Get a string of all registered feature groups that are available or
+        not available
+        
+        Parameter ``available``:
+            if True (default) return available features, else return not
+            available features
+        
+        Returns:
+            std::string
+        """
     def feature_string(self, available: bool = True, prefix: str = '') -> str:
         """
         Get a string of all registered features that are available or not
@@ -672,6 +674,7 @@ class I_PingWatercolumn(I_PingCommon):
     data. It inherits from the I_PingCommon class and provides additional
     functions and variables specific to watercolumn pings.
     """
+    _test_mode: int
     @staticmethod
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
@@ -684,7 +687,7 @@ class I_PingWatercolumn(I_PingCommon):
         return a copy using the c++ default copy constructor
         """
     @typing.overload
-    def get_amplitudes(self) -> numpy.ndarray[numpy.float32]:
+    def get_amplitudes(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get tha raw water amplitude data converted to float(32bit)
         
@@ -692,7 +695,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_amplitudes(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_amplitudes(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get tha raw water amplitude data converted to float(32bit)
         
@@ -700,7 +703,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_ap(self) -> numpy.ndarray[numpy.float32]:
+    def get_ap(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AP (uncalibrated point scattering)
         
@@ -708,7 +711,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_ap(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_ap(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AP (uncalibrated point scattering)
         
@@ -722,7 +725,7 @@ class I_PingWatercolumn(I_PingCommon):
     def get_approximate_ranges(self, beam_sample_selection: ...) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def get_av(self) -> numpy.ndarray[numpy.float32]:
+    def get_av(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AV (uncalibrated volume
         scattering)
@@ -731,7 +734,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_av(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_av(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AV (uncalibrated volume
         scattering)
@@ -809,6 +812,8 @@ class I_PingWatercolumn(I_PingCommon):
         """
     def get_first_sample_offset_per_beam(self) -> numpy.ndarray[numpy.uint32]:
         ...
+    def get_multisectorwatercolumn_calibration(self) -> ...:
+        ...
     def get_number_of_beams(self) -> int:
         """
         Get the number of beams for this ping
@@ -833,7 +838,7 @@ class I_PingWatercolumn(I_PingCommon):
             The number of transmission sectors.
         """
     @typing.overload
-    def get_power(self) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to power
         
@@ -841,9 +846,73 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_power(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to power
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_pp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to PP (power +2 alpha R + 40log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_pp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to PP (power +2 alpha R + 40log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_pv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to PV (power +2 alpha R + 20log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_pv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to PV (power +2 alpha R + 20log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_rp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to RP (power 40log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_rp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to RP (power 40log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_rv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to RV (power 20log(R))
+        
+        Returns:
+            xt::xtensor<float,2>
+        """
+    @typing.overload
+    def get_rv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        Get the power data converted to RV (power 20log(R))
         
         Returns:
             xt::xtensor<float,2>
@@ -858,7 +927,7 @@ class I_PingWatercolumn(I_PingCommon):
     def get_sound_speed_at_transducer(self) -> float:
         ...
     @typing.overload
-    def get_sp(self) -> numpy.ndarray[numpy.float32]:
+    def get_sp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SP (calibrated point scattering)
         
@@ -866,7 +935,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sp(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_sp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SP (calibrated point scattering)
         
@@ -874,7 +943,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sv(self) -> numpy.ndarray[numpy.float32]:
+    def get_sv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SV (calibrated volume scattering)
         
@@ -882,7 +951,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sv(self, beam_selection: ...) -> numpy.ndarray[numpy.float32]:
+    def get_sv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SV (calibrated volume scattering)
         
@@ -903,7 +972,11 @@ class I_PingWatercolumn(I_PingCommon):
             const std::vector<algorithms::signalprocessing::datastructures::Tx
             SignalParameters>&
         """
+    @typing.overload
     def get_watercolumn_calibration(self) -> WaterColumnCalibration:
+        ...
+    @typing.overload
+    def get_watercolumn_calibration(self, sector_nr: int) -> WaterColumnCalibration:
         ...
     def has_amplitudes(self) -> bool:
         """
@@ -935,6 +1008,10 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
+    def has_beam_numbers_per_tx_sector(self) -> bool:
+        ...
+    def has_beam_selection_all(self) -> bool:
+        ...
     def has_bottom_range_samples(self) -> bool:
         """
         Check this pings supports bottom range samples
@@ -945,9 +1022,63 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
+    def has_multisectorwatercolumn_calibration(self) -> bool:
+        """
+        Check this pings has valid power calibration data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_number_of_beams(self) -> bool:
+        ...
+    def has_number_of_tx_sectors(self) -> bool:
+        ...
     def has_power(self) -> bool:
         """
         Check this pings supports calibrated power data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_pp(self) -> bool:
+        """
+        Check this pings supports PP data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_pv(self) -> bool:
+        """
+        Check this pings supports PV data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_rp(self) -> bool:
+        """
+        Check this pings supports RP data
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
+    def has_rv(self) -> bool:
+        """
+        Check this pings supports RV data
         
         Returns:
             true
@@ -975,7 +1106,7 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
-    def has_tx_sector_information(self) -> bool:
+    def has_tx_sector_per_beam(self) -> bool:
         ...
     def has_tx_signal_parameters(self) -> bool:
         ...
@@ -989,8 +1120,6 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             false
         """
-    def set_watercolumn_calibration(self, calibration: WaterColumnCalibration) -> None:
-        ...
 class KongsbergAllMultiSectorWaterColumnCalibration:
     """
     """
@@ -1010,19 +1139,18 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
         ...
     def __getstate__(self) -> bytes:
         ...
-    @typing.overload
     def __hash__(self) -> int:
         """
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __hash__(self) -> int:
-        ...
-    @typing.overload
     def __init__(self) -> None:
         ...
     @typing.overload
     def __init__(self, calibration_per_sector: list[...]) -> None:
+        ...
+    @typing.overload
+    def __init__(self, other: KongsbergAllMultiSectorWaterColumnCalibration) -> None:
         ...
     def __len__(self) -> int:
         ...
@@ -1037,53 +1165,85 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av2(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> None:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av2(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> None:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av3(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av3(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
-    def cached_hash(self) -> int:
+    @typing.overload
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     def copy(self) -> KongsbergAllMultiSectorWaterColumnCalibration:
         """
         return a copy using the c++ default copy constructor
         """
-    def empty(self) -> bool:
-        ...
     def get_calibrations(self) -> list[...]:
         ...
     def get_number_of_sectors(self) -> int:
         ...
-    @typing.overload
+    def has_ap_calibration(self) -> bool:
+        ...
+    def has_av_calibration(self) -> bool:
+        ...
+    def has_power_calibration(self) -> bool:
+        ...
+    def has_sp_calibration(self) -> bool:
+        ...
+    def has_sv_calibration(self) -> bool:
+        ...
+    def has_valid_absorption_db_m(self) -> bool:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def hash(self) -> int:
-        ...
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+        ...
+    @typing.overload
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def size(self) -> int:
-        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1107,19 +1267,18 @@ class MultiSectorWaterColumnCalibration:
         ...
     def __getstate__(self) -> bytes:
         ...
-    @typing.overload
     def __hash__(self) -> int:
         """
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __hash__(self) -> int:
-        ...
-    @typing.overload
     def __init__(self) -> None:
         ...
     @typing.overload
     def __init__(self, calibration_per_sector: list[WaterColumnCalibration]) -> None:
+        ...
+    @typing.overload
+    def __init__(self, other: MultiSectorWaterColumnCalibration) -> None:
         ...
     def __len__(self) -> int:
         ...
@@ -1134,53 +1293,85 @@ class MultiSectorWaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av2(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> None:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av2(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> None:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av3(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av3(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
-    def cached_hash(self) -> int:
+    @typing.overload
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     def copy(self) -> MultiSectorWaterColumnCalibration:
         """
         return a copy using the c++ default copy constructor
         """
-    def empty(self) -> bool:
-        ...
     def get_calibrations(self) -> list[WaterColumnCalibration]:
         ...
     def get_number_of_sectors(self) -> int:
         ...
-    @typing.overload
+    def has_ap_calibration(self) -> bool:
+        ...
+    def has_av_calibration(self) -> bool:
+        ...
+    def has_power_calibration(self) -> bool:
+        ...
+    def has_sp_calibration(self) -> bool:
+        ...
+    def has_sv_calibration(self) -> bool:
+        ...
+    def has_valid_absorption_db_m(self) -> bool:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def hash(self) -> int:
-        ...
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
+    @typing.overload
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+        ...
+    @typing.overload
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def size(self) -> int:
-        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1204,22 +1395,15 @@ class WaterColumnCalibration:
         ...
     def __getstate__(self) -> bytes:
         ...
-    @typing.overload
     def __hash__(self) -> int:
         """
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __hash__(self) -> int:
+    def __init__(self, tvg_absorption_db_m: float = 0.0, tvg_factor: float = 0.0) -> None:
         ...
     @typing.overload
-    def __init__(self) -> None:
-        ...
-    @typing.overload
-    def __init__(self, power_calibration: AmplitudeCalibration = ..., ap_calibration: AmplitudeCalibration = ..., av_calibration: AmplitudeCalibration = ...) -> None:
-        ...
-    @typing.overload
-    def __init__(self, arg0: WaterColumnCalibration) -> None:
+    def __init__(self, power_calibration: AmplitudeCalibration = ..., ap_calibration: AmplitudeCalibration = ..., av_calibration: AmplitudeCalibration = ..., tvg_absorption_db_m: float = 0.0, tvg_factor: float = 0.0) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -1232,42 +1416,70 @@ class WaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
         ...
-    def cached_hash(self) -> int:
+    @typing.overload
+    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    def check_initialized(self) -> None:
+        ...
+    def check_modifying_base_calibration_allowed(self) -> None:
         ...
     def copy(self) -> WaterColumnCalibration:
         """
         return a copy using the c++ default copy constructor
         """
     def get_absorption_db_m(self) -> float:
+        ...
+    def get_absorption_to_apply(self, arg0: float | None) -> float | None:
         ...
     def get_ap_calibration(self) -> AmplitudeCalibration:
         ...
@@ -1283,6 +1495,8 @@ class WaterColumnCalibration:
         ...
     def get_tvg_factor(self) -> float:
         ...
+    def get_tvg_factor_to_apply(self, tvg_factor: float) -> float | None:
+        ...
     def has_ap_calibration(self) -> bool:
         ...
     def has_av_calibration(self) -> bool:
@@ -1293,24 +1507,22 @@ class WaterColumnCalibration:
         ...
     def has_sv_calibration(self) -> bool:
         ...
-    @typing.overload
+    def has_valid_absorption_db_m(self) -> bool:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    @typing.overload
-    def hash(self) -> int:
-        ...
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def initialized(self) -> bool:
-        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
+    def set_absorption_db_m(self, absorption_db_m: float | None) -> None:
+        ...
     def set_ap_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
     def set_av_calibration(self, calibration: AmplitudeCalibration) -> None:
@@ -1349,6 +1561,14 @@ class t_pingfeature:
     
       tx_signal_parameters
     
+      beam_numbers_per_tx_sector
+    
+      beam_selection_all
+    
+      number_of_beams
+    
+      tx_sector_per_beam
+    
       number_of_tx_sectors
     
       beam_crosstrack_angles
@@ -1367,40 +1587,53 @@ class t_pingfeature:
     
       power
     
+      rp
+    
+      rv
+    
+      pp
+    
+      pv
+    
       sp
     
       sv
     
-      power_calibration
+      watercolumn_calibration
     
-      sp_calibration
-    
-      sv_calibration
+      multisectorwatercolumn_calibration
     """
-    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 11>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 12>, 'xyz': <t_pingfeature.xyz: 13>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 15>, 'amplitudes': <t_pingfeature.amplitudes: 16>, 'ap': <t_pingfeature.ap: 17>, 'av': <t_pingfeature.av: 18>, 'power': <t_pingfeature.power: 19>, 'sp': <t_pingfeature.sp: 20>, 'sv': <t_pingfeature.sv: 21>, 'power_calibration': <t_pingfeature.power_calibration: 22>, 'sp_calibration': <t_pingfeature.sp_calibration: 23>, 'sv_calibration': <t_pingfeature.sv_calibration: 24>}
-    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 16>
-    ap: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.ap: 17>
-    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 18>
-    beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 11>
+    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'beam_numbers_per_tx_sector': <t_pingfeature.beam_numbers_per_tx_sector: 11>, 'beam_selection_all': <t_pingfeature.beam_selection_all: 12>, 'number_of_beams': <t_pingfeature.number_of_beams: 13>, 'tx_sector_per_beam': <t_pingfeature.tx_sector_per_beam: 14>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 15>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 16>, 'xyz': <t_pingfeature.xyz: 17>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 18>, 'amplitudes': <t_pingfeature.amplitudes: 19>, 'ap': <t_pingfeature.ap: 24>, 'av': <t_pingfeature.av: 25>, 'power': <t_pingfeature.power: 26>, 'rp': <t_pingfeature.rp: 20>, 'rv': <t_pingfeature.rv: 21>, 'pp': <t_pingfeature.pp: 22>, 'pv': <t_pingfeature.pv: 23>, 'sp': <t_pingfeature.sp: 27>, 'sv': <t_pingfeature.sv: 28>, 'watercolumn_calibration': <t_pingfeature.watercolumn_calibration: 29>, 'multisectorwatercolumn_calibration': <t_pingfeature.multisectorwatercolumn_calibration: 30>}
+    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 19>
+    ap: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.ap: 24>
+    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 25>
+    beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 15>
+    beam_numbers_per_tx_sector: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_numbers_per_tx_sector: 11>
+    beam_selection_all: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_selection_all: 12>
     bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 7>
-    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 15>
+    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 18>
     channel_id: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.channel_id: 2>
     datetime: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.datetime: 1>
     geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 5>
+    multisectorwatercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.multisectorwatercolumn_calibration: 30>
+    number_of_beams: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_beams: 13>
     number_of_tx_sectors: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_tx_sectors: 10>
-    power: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power: 19>
-    power_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power_calibration: 22>
+    power: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power: 26>
+    pp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pp: 22>
+    pv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pv: 23>
+    rp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rp: 20>
+    rv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rv: 21>
     sensor_configuration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_configuration: 3>
     sensor_data_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_data_latlon: 4>
-    sp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp: 20>
-    sp_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp_calibration: 23>
-    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 21>
-    sv_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv_calibration: 24>
+    sp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp: 27>
+    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 28>
     timestamp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.timestamp: 0>
-    two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 12>
+    two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 16>
+    tx_sector_per_beam: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_sector_per_beam: 14>
     tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 9>
     watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 8>
-    xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 13>
+    watercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn_calibration: 29>
+    xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 17>
     @staticmethod
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
@@ -1438,26 +1671,33 @@ class t_pingfeature:
     @property
     def value(self) -> int:
         ...
-amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 16>
-ap: t_pingfeature  # value = <t_pingfeature.ap: 17>
-av: t_pingfeature  # value = <t_pingfeature.av: 18>
-beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 11>
+amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 19>
+ap: t_pingfeature  # value = <t_pingfeature.ap: 24>
+av: t_pingfeature  # value = <t_pingfeature.av: 25>
+beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 15>
+beam_numbers_per_tx_sector: t_pingfeature  # value = <t_pingfeature.beam_numbers_per_tx_sector: 11>
+beam_selection_all: t_pingfeature  # value = <t_pingfeature.beam_selection_all: 12>
 bottom: t_pingfeature  # value = <t_pingfeature.bottom: 7>
-bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 15>
+bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 18>
 channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
 datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
 geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 5>
+multisectorwatercolumn_calibration: t_pingfeature  # value = <t_pingfeature.multisectorwatercolumn_calibration: 30>
+number_of_beams: t_pingfeature  # value = <t_pingfeature.number_of_beams: 13>
 number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 10>
-power: t_pingfeature  # value = <t_pingfeature.power: 19>
-power_calibration: t_pingfeature  # value = <t_pingfeature.power_calibration: 22>
+power: t_pingfeature  # value = <t_pingfeature.power: 26>
+pp: t_pingfeature  # value = <t_pingfeature.pp: 22>
+pv: t_pingfeature  # value = <t_pingfeature.pv: 23>
+rp: t_pingfeature  # value = <t_pingfeature.rp: 20>
+rv: t_pingfeature  # value = <t_pingfeature.rv: 21>
 sensor_configuration: t_pingfeature  # value = <t_pingfeature.sensor_configuration: 3>
 sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 4>
-sp: t_pingfeature  # value = <t_pingfeature.sp: 20>
-sp_calibration: t_pingfeature  # value = <t_pingfeature.sp_calibration: 23>
-sv: t_pingfeature  # value = <t_pingfeature.sv: 21>
-sv_calibration: t_pingfeature  # value = <t_pingfeature.sv_calibration: 24>
+sp: t_pingfeature  # value = <t_pingfeature.sp: 27>
+sv: t_pingfeature  # value = <t_pingfeature.sv: 28>
 timestamp: t_pingfeature  # value = <t_pingfeature.timestamp: 0>
-two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 12>
+two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 16>
+tx_sector_per_beam: t_pingfeature  # value = <t_pingfeature.tx_sector_per_beam: 14>
 tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 9>
 watercolumn: t_pingfeature  # value = <t_pingfeature.watercolumn: 8>
-xyz: t_pingfeature  # value = <t_pingfeature.xyz: 13>
+watercolumn_calibration: t_pingfeature  # value = <t_pingfeature.watercolumn_calibration: 29>
+xyz: t_pingfeature  # value = <t_pingfeature.xyz: 17>
