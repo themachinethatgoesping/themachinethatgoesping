@@ -2,9 +2,7 @@
 SimradRaw EK60 and EK80 file data types
 """
 from __future__ import annotations
-import numpy
 import themachinethatgoesping.echosounders_cppy.filetemplates
-import themachinethatgoesping.echosounders_cppy.pingtools
 import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
@@ -242,7 +240,7 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         """
         Return object information as string
         """
-    def init_watercolumn_calibration(self, arg0: bool) -> None:
+    def init_watercolumn_calibration(self, force: bool = False) -> None:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
@@ -358,7 +356,7 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
         """
         Return object information as string
         """
-    def init_watercolumn_calibration(self, arg0: bool) -> None:
+    def init_watercolumn_calibration(self, force: bool = False) -> None:
         ...
     def keys(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier]:
         ...
@@ -397,11 +395,7 @@ class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemp
         """
         return a copy using the c++ default copy constructor
         """
-    @typing.overload
-    def get_av_eigen(self) -> numpy.ndarray[numpy.float32]:
-        ...
-    @typing.overload
-    def get_av_eigen(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]:
+    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
         ...
 class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon_stream):
     """
@@ -417,11 +411,7 @@ class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.f
         """
         return a copy using the c++ default copy constructor
         """
-    @typing.overload
-    def get_av_eigen(self) -> numpy.ndarray[numpy.float32]:
-        ...
-    @typing.overload
-    def get_av_eigen(self, beam_selection: themachinethatgoesping.echosounders_cppy.pingtools.BeamSampleSelection) -> numpy.ndarray[numpy.float32]:
+    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
         ...
 class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon_stream):
     """
@@ -617,6 +607,8 @@ class TransceiverInformation:
         """
         hash function implemented using binary_hash
         """
+    def __init__(self, ping_transceiver: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver, ping_transceiver_channel: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver_Channel) -> None:
+        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -638,6 +630,12 @@ class TransceiverInformation:
         ...
     @typing.overload
     def get_pulse_duration_index(self, pulse_duration: float, fm: bool) -> int:
+        ...
+    @typing.overload
+    def get_pulse_duration_index_optional(self, xml_parameter_datagram: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel) -> int:
+        ...
+    @typing.overload
+    def get_pulse_duration_index_optional(self, pulse_duration: float, fm: bool) -> int:
         ...
     def get_transceiver(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver:
         ...
