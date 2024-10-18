@@ -6,7 +6,7 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.25.0] - 18-10-2024
 
 - echosounders -> 0.42.0
 - algorithms -> 0.8.2
