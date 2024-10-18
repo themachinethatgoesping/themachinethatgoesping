@@ -54,76 +54,6 @@ concurrency:
   #BUILD_TYPE: Release
   
 jobs:
-  macos:
-    name: CI ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        cxx_compiler: ["$(brew --prefix llvm@18)/bin/clang++"] 
-        llvm: ["$(brew --prefix llvm@18)"]
-        boost: ["$(brew --prefix boost)"]
-        libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-12"] 
-                
-    # env does not work here because is resolved as string and not command 
-    # env:
-    #   CXX: ${{ matrix.cxx_compiler }}
-      
-    steps:
-    
-    - uses: actions/setup-python@v3
-      with:
-        python-version: '3.12'
-        
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
-
-    - name: ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: super-ci-mac-2  # name for the cache
-        
-    # uninstall clang 15
-    - run: brew uninstall llvm@15
-
-    - run: brew install coreutils llvm@18
-        
-    - run: brew install libomp boost
-    
-    - run: pip install meson meson-python ninja pytest numpy
-    
-    # LDFLAGS="-L/opt/homebrew/opt/libomp/lib" CPPFLAGS="-I/opt/homebrew/opt/libomp/include" 
-    - name: configure meson
-      run: |
-        BOOST_ROOT=${{ matrix.boost }} CXX=${{ matrix.llvm }}/bin/clang++  LDFLAGS="-L${{ matrix.llvm }}/lib/c++ -L${{ matrix.llvm }}/lib -L${{ matrix.boost }}/lib" CPPFLAGS="-I${{ matrix.llvm }}/include -I${{ matrix.boost }}/include" meson setup builddir/; meson configure builddir -Dpython.install_env=auto
-
-    - name: compile project
-      run: meson compile -C builddir/
-
-    - name: test (cpp)
-      run: meson test -C builddir/ --print-errorlogs
-
-    - name: install project
-      run: sudo meson install -C builddir/
-
-    - name: install pip requirements
-      run: pip install -r requirements.txt
-
-    - name: test (pytest)
-      run: pytest -v
-      
-    - name: 'Upload error log'
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: ${{matrix.container}}_testlog
-        path: builddir/meson-logs/meson-log.txt
-        retention-days: 5
-
   macos_arm:
     name: CI ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -162,7 +92,6 @@ jobs:
     
     - run: pip install meson meson-python ninja pytest numpy
     
-    # LDFLAGS="-L/opt/homebrew/opt/libomp/lib" CPPFLAGS="-I/opt/homebrew/opt/libomp/include" 
     - name: configure meson
       run: |
         meson setup builddir -Dpython.install_env=auto
