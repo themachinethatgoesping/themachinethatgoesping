@@ -8,6 +8,15 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [0.25.0] - 18-10-2024
 
+- pingprocessing -> 0.8.5
+
+### Fixed
+- pingprocessing:
+  - echograms: fixed wrong range for get_filtered_by_y_extent
+  - echograms: fixed crash if >75% of t data us iut of range
+
+## [0.25.0] - 18-10-2024
+
 - echosounders -> 0.42.0
 - algorithms -> 0.8.2
 - tools -> 0.27.0
