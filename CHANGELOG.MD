@@ -9,11 +9,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [0.25.0] - 18-10-2024
 
 - pingprocessing -> 0.8.5
+- echosounders -> 0.42.512
+
+### Added
+- pingprocessing:
+  - correctly process variations of sv/av/rv/... in echograms and make_image
 
 ### Fixed
 - pingprocessing:
   - echograms: fixed wrong range for get_filtered_by_y_extent
   - echograms: fixed crash if >75% of t data us iut of range
+- echosounders"
+  - AmplitudeCalibration: default extrapolation mode is now nearest instead of linear
 
 ## [0.25.0] - 18-10-2024
 
