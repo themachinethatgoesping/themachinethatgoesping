@@ -9,16 +9,20 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [0.25.0] - 18-10-2024
 
 - pingprocessing -> 0.8.5
-- echosounders -> 0.42.512
+- echosounders -> 0.42.1
 
 ### Added
 - pingprocessing:
   - correctly process variations of sv/av/rv/... in echograms and make_image
+- echosounders:
+  - PingSampleSelection:
+    - select transmit_sectors by beam_angle or by number
 
 ### Fixed
 - pingprocessing:
   - echograms: fixed wrong range for get_filtered_by_y_extent
   - echograms: fixed crash if >75% of t data us iut of range
+  - make_wci: include transducer position when determining hmin and hmax of the image
 - echosounders"
   - AmplitudeCalibration: default extrapolation mode is now nearest instead of linear
 

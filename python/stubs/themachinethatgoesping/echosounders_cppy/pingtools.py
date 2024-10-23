@@ -325,6 +325,10 @@ class PingSampleSelector:
         ...
     def clear_sample_step(self) -> None:
         ...
+    def clear_transmit_sector_beam_angle_range(self) -> None:
+        ...
+    def clear_transmit_sectors(self) -> None:
+        ...
     def copy(self) -> PingSampleSelector:
         """
         return a copy using the c++ default copy constructor
@@ -369,6 +373,20 @@ class PingSampleSelector:
         """
         < step size for sample numbers
         """
+    def get_transmit_sector_max_beam_angle(self) -> float | None:
+        """
+        < select transmit sectors with angles < <=
+        _transmit_sector_max_beam_angle
+        """
+    def get_transmit_sector_min_beam_angle(self) -> float | None:
+        """
+        < select transmit sectors with angles < >=
+        _transmit_sector_min_beam_angle
+        """
+    def get_transmit_sectors(self) -> list[int] | None:
+        """
+        < transmit_sectors to select
+        """
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -388,6 +406,10 @@ class PingSampleSelector:
     def select_sample_range_by_numbers(self, min_sample_number: int, max_sample_number: int, sample_step: int | None = None) -> None:
         ...
     def select_sample_range_by_ranges(self, min_sample_range: float, max_sample_range: float, sample_step: int | None = None) -> None:
+        ...
+    def select_transmit_sectors(self, transmit_sectors: list[int]) -> None:
+        ...
+    def select_transmit_sectors_by_beam_angles(self, transmit_sector_min_beam_angle: float | None = None, transmit_sector_max_beam_angle: float | None = None) -> None:
         ...
     def set_beam_step(self, beam_step: int) -> None:
         ...
