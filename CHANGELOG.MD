@@ -17,6 +17,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders:
   - PingSampleSelection:
     - select transmit_sectors by beam_angle or by number
+  - KongsbergAllPingBottom:
+    - implemented get_tx_sector_per_beam and get_beam_numbers_per_tx_sector
 
 ### Fixed
 - pingprocessing:
@@ -25,6 +27,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - make_wci: include transducer position when determining hmin and hmax of the image
 - echosounders"
   - AmplitudeCalibration: default extrapolation mode is now nearest instead of linear
+  - RawRangeAndAngle: fixed wrong beam number sorting for get_beam_cross_track_angles
 
 ## [0.25.0] - 18-10-2024
 

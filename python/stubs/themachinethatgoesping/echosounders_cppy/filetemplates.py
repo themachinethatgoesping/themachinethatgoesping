@@ -228,6 +228,8 @@ class I_Ping(I_PingCommon):
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
+    def get_sensor_configuration_base_hash(self) -> int:
+        ...
     def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
         ...
     def get_timestamp(self) -> float:
@@ -315,7 +317,14 @@ class I_PingBottom(I_PingCommon):
         Returns:
             xt::xtensor<float, 1>
         """
+    @typing.overload
     def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        ...
+    @typing.overload
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        ...
+    @typing.overload
+    def get_beam_numbers_per_tx_sector(self, beam_selection: ...) -> list[list[int]]:
         ...
     def get_beam_selection_all(self) -> ...:
         """
@@ -398,39 +407,23 @@ class I_PingBottom(I_PingCommon):
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
     def has_beam_crosstrack_angles(self) -> bool:
-        """
-        Check this pings supports the extraction of beam_crosstrack_angles
-        
-        Returns:
-            true
-        
-        Returns:
-            false
-        """
+        ...
+    def has_beam_numbers_per_tx_sector(self) -> bool:
+        ...
+    def has_beam_selection_all(self) -> bool:
+        ...
+    def has_number_of_beams(self) -> bool:
+        ...
+    def has_number_of_tx_sectors(self) -> bool:
+        ...
     def has_two_way_travel_times(self) -> bool:
-        """
-        Check this pings supports the extraction of two_way_travel_times
-        
-        Returns:
-            true
-        
-        Returns:
-            false
-        """
-    def has_tx_sector_information(self) -> bool:
+        ...
+    def has_tx_sector_per_beam(self) -> bool:
         ...
     def has_tx_signal_parameters(self) -> bool:
         ...
     def has_xyz(self) -> bool:
-        """
-        Check this pings supports XYZ data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
-        """
+        ...
 class I_PingCommon:
     """
     """
@@ -979,34 +972,14 @@ class I_PingWatercolumn(I_PingCommon):
     def get_watercolumn_calibration(self, sector_nr: int) -> WaterColumnCalibration:
         ...
     def has_amplitudes(self) -> bool:
-        """
-        Check this pings supports AMPLITUDES data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
-        """
+        ...
     def has_ap(self) -> bool:
         """
         Check this pings supports AP data (uncalibrated point scattering)
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_av(self) -> bool:
         """
         Check this pings supports AV data (uncalibrated volume scattering)
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_beam_numbers_per_tx_sector(self) -> bool:
         ...
@@ -1015,22 +988,10 @@ class I_PingWatercolumn(I_PingCommon):
     def has_bottom_range_samples(self) -> bool:
         """
         Check this pings supports bottom range samples
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_multisectorwatercolumn_calibration(self) -> bool:
         """
         Check this pings has valid power calibration data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_number_of_beams(self) -> bool:
         ...
@@ -1039,72 +1000,30 @@ class I_PingWatercolumn(I_PingCommon):
     def has_power(self) -> bool:
         """
         Check this pings supports calibrated power data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_pp(self) -> bool:
         """
         Check this pings supports PP data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_pv(self) -> bool:
         """
         Check this pings supports PV data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_rp(self) -> bool:
         """
         Check this pings supports RP data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_rv(self) -> bool:
         """
         Check this pings supports RV data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_sp(self) -> bool:
         """
         Check this pings supports calibrated SV data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_sv(self) -> bool:
         """
         Check this pings supports calibrated SV data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
     def has_tx_sector_per_beam(self) -> bool:
         ...
@@ -1113,12 +1032,6 @@ class I_PingWatercolumn(I_PingCommon):
     def has_watercolumn_calibration(self) -> bool:
         """
         Check this pings has valid power calibration data
-        
-        Returns:
-            true
-        
-        Returns:
-            false
         """
 class KongsbergAllMultiSectorWaterColumnCalibration:
     """
