@@ -4,11 +4,12 @@ Small python tool functions for themachinethatgoesping
 from __future__ import annotations
 from . import classhelper
 from . import helper
+from . import init_m_rotationfunctions
 from . import progressbars
 from . import pyhelper
 from . import timeconv
 from . import vectorinterpolators
-__all__ = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'timeconv', 'vectorinterpolators']
+__all__ = ['classhelper', 'helper', 'init_m_rotationfunctions', 'ostream_redirect', 'progressbars', 'pyhelper', 'timeconv', 'vectorinterpolators']
 class ostream_redirect:
     @staticmethod
     def _pybind11_conduit_v1_(*args, **kwargs):

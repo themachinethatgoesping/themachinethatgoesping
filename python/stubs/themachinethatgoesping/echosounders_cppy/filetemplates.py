@@ -229,7 +229,16 @@ class I_Ping(I_PingCommon):
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def get_sensor_configuration_base_hash(self) -> int:
-        ...
+        """
+        Returns the hash of the base sensor configuraiton. This is the sensor
+        configuration with the "Transducer" target removed. This hash can be
+        used to get the correct navigation interpolator from the
+        navigation_data_interface Note: This function is for testing and
+        finding errors. It is rather slow.
+        
+        Returns:
+            uint64_t
+        """
     def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation.datastructures.SensordataLatLon:
         ...
     def get_timestamp(self) -> float:
