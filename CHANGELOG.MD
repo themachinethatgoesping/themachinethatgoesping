@@ -9,10 +9,25 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 - echosounders -> 0.42.1
 - tools ->
+- navigation -> 0.17.1
+- algorithms -> 0.8.2
+- pingprocessing -> 0.8.6
 
 ### Added
 - tools:
   - add python interface for roation functions (eigen/quaternions)
+- echosounders:
+  - fallback to use navigation of inactive sensors if active sensor is not available
+
+### Maintanance
+-tools:
+  - update hinnant-date git/master -> 3.0.2
+- navigation:
+  - fixed building problems
+- algorithms:
+  - fixed building problems
+- pingprocessing:
+  - fixed building problems
 
 ## [0.25.0] - 18-10-2024
 
