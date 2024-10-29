@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['quaternion_from_rpy', 'quaternion_from_ypr', 'rotateXYZ', 'rpy_from_quaternion', 'ypr_from_quaternion']
+__all__ = ['quaternion_from_rpy', 'quaternion_from_ypr', 'rotateXYZ', 'rotateYPR', 'rpy_from_quaternion', 'ypr_from_quaternion']
 @typing.overload
 def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
     """
@@ -361,6 +361,26 @@ def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float64[3, 1]]:
     
     Returns:
         returns vector with rotated xyz
+    """
+@typing.overload
+def rotateYPR(yaw1: float, pitch1: float, roll1: float, yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    """
+    Rotate yaw pitch roll angles by other yaw pitch and roll angles
+    """
+@typing.overload
+def rotateYPR(yaw1: list[float], pitch1: list[float], roll1: list[float], yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    """
+    Rotate yaw pitch roll angles by other yaw pitch and roll angles
+    """
+@typing.overload
+def rotateYPR(yaw1: float, pitch1: float, roll1: float, yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    """
+    Rotate yaw pitch roll angles by other yaw pitch and roll angles
+    """
+@typing.overload
+def rotateYPR(yaw1: list[float], pitch1: list[float], roll1: list[float], yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    """
+    Rotate yaw pitch roll angles by other yaw pitch and roll angles
     """
 @typing.overload
 def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:

@@ -26,6 +26,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - fixed building problems
 - algorithms:
   - fixed building problems
+  - change GSW-C wrap to original repo (meson.build is now available)
 - pingprocessing:
   - fixed building problems
 
