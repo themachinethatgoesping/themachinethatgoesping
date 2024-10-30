@@ -7,15 +7,23 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ---
 ## [Unreleased]
-- echosounders -> 0.42.1
-- tools ->
+- echosounders -> 0.43.0
+- tools -> 0.28.0
 - navigation -> 0.17.1
 - algorithms -> 0.8.2
 - pingprocessing -> 0.8.6
+- navigation -> 0.17.2
+
+### Changed
+- echosounders:
+  - reworked navigation handling for pings
+- tools
+  - removed non const functions from vector interpolators
 
 ### Added
 - tools:
   - add python interface for roation functions (eigen/quaternions)
+  - ypr_const functions for slerp_interpolator
 - echosounders:
   - fallback to use navigation of inactive sensors if active sensor is not available
 
@@ -27,6 +35,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms:
   - fixed building problems
   - change GSW-C wrap to original repo (meson.build is now available)
+  - adapted to tools 0.28.0
+- navigation:
+  - adapted to tools 0.28.0
 - pingprocessing:
   - fixed building problems
 

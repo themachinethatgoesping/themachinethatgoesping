@@ -139,7 +139,7 @@ class AkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -327,7 +327,7 @@ class AkimaInterpolatorFF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -516,7 +516,7 @@ class LinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -705,7 +705,7 @@ class LinearInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -894,7 +894,7 @@ class LinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -1083,7 +1083,7 @@ class LinearInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -1272,7 +1272,7 @@ class NearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -1461,7 +1461,7 @@ class NearestInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -1650,7 +1650,7 @@ class NearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> int:
+    def get_y(self, target_x: float) -> int:
         ...
     def hash(self) -> int:
         """
@@ -1839,7 +1839,7 @@ class NearestInterpolatorDO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> typing.Any:
+    def get_y(self, target_x: float) -> typing.Any:
         ...
     def hash(self) -> int:
         """
@@ -2028,7 +2028,7 @@ class NearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -2217,7 +2217,7 @@ class NearestInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> float:
+    def get_y(self, target_x: float) -> float:
         ...
     def hash(self) -> int:
         """
@@ -2406,7 +2406,7 @@ class NearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> int:
+    def get_y(self, target_x: float) -> int:
         ...
     def hash(self) -> int:
         """
@@ -2595,7 +2595,7 @@ class NearestInterpolatorFO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y_const(self, target_x: float) -> typing.Any:
+    def get_y(self, target_x: float) -> typing.Any:
         ...
     def hash(self) -> int:
         """
@@ -2969,6 +2969,36 @@ class SlerpInterpolator:
         """
         convert object to bytearray
         """
+    @typing.overload
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        
+        Parameter ``target_x``:
+            find the corresponding y value for this x value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
+    @typing.overload
+    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        (vectorized call)
+        
+        Parameter ``targets_x``:
+            vector of x values. For each of these values find the corrsponding
+            yaw, pitch and roll value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
 class SlerpInterpolatorDF:
     """
     Class that implements a slerp interpolation for vectors. Data is
@@ -3288,6 +3318,36 @@ class SlerpInterpolatorDF:
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
+        """
+    @typing.overload
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        
+        Parameter ``target_x``:
+            find the corresponding y value for this x value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
+    @typing.overload
+    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        (vectorized call)
+        
+        Parameter ``targets_x``:
+            vector of x values. For each of these values find the corrsponding
+            yaw, pitch and roll value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
         """
 class SlerpInterpolatorF:
     """
@@ -3609,6 +3669,36 @@ class SlerpInterpolatorF:
         """
         convert object to bytearray
         """
+    @typing.overload
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        
+        Parameter ``target_x``:
+            find the corresponding y value for this x value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
+    @typing.overload
+    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        (vectorized call)
+        
+        Parameter ``targets_x``:
+            vector of x values. For each of these values find the corrsponding
+            yaw, pitch and roll value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
 class SlerpInterpolatorFD:
     """
     Class that implements a slerp interpolation for vectors. Data is
@@ -3928,6 +4018,36 @@ class SlerpInterpolatorFD:
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
+        """
+    @typing.overload
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        
+        Parameter ``target_x``:
+            find the corresponding y value for this x value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
+        """
+    @typing.overload
+    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+        """
+        get the interpolated yaw, pitch and roll values for given x target
+        (vectorized call)
+        
+        Parameter ``targets_x``:
+            vector of x values. For each of these values find the corrsponding
+            yaw, pitch and roll value
+        
+        Parameter ``output_in_degrees``:
+            if true, yaw pitch and roll input values are in ° otherwise rad
+        
+        Returns:
+            corresponding y value
         """
 class t_extr_mode:
     """

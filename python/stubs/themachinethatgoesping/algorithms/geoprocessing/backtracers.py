@@ -138,8 +138,6 @@ class BacktracedWCI:
         """
     def lookup(self, beam_angle: float, range: float) -> float:
         ...
-    def lookup_const(self, beam_angle: float, range: float) -> float:
-        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
