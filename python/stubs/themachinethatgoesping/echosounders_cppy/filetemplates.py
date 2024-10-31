@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'beam_numbers_per_tx_sector', 'beam_selection_all', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'multisectorwatercolumn_calibration', 'number_of_beams', 'number_of_tx_sectors', 'power', 'pp', 'pv', 'rp', 'rv', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_sector_per_beam', 'tx_signal_parameters', 'watercolumn', 'watercolumn_calibration', 'xyz']
+__all__ = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'beam_numbers_per_tx_sector', 'beam_selection_all', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'multisectorwatercolumn_calibration', 'navigation_interpolator_latlon', 'number_of_beams', 'number_of_tx_sectors', 'power', 'pp', 'pv', 'rp', 'rv', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_sector_per_beam', 'tx_signal_parameters', 'watercolumn', 'watercolumn_calibration', 'xyz']
 class AmplitudeCalibration:
     """
     """
@@ -226,6 +226,8 @@ class I_Ping(I_PingCommon):
         """
     def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation.datastructures.GeolocationLatLon:
         ...
+    def get_navigation_interpolator_latlon(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+        ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def get_sensor_configuration_base_hash(self) -> int:
@@ -255,6 +257,12 @@ class I_Ping(I_PingCommon):
         """
     def has_geolocation(self) -> bool:
         ...
+    @typing.overload
+    def has_navigation_interpolator_latlon(self) -> bool:
+        ...
+    @typing.overload
+    def has_navigation_interpolator_latlon(self) -> bool:
+        ...
     def has_sensor_configuration(self) -> bool:
         ...
     def has_sensor_data_latlon(self) -> bool:
@@ -279,11 +287,7 @@ class I_Ping(I_PingCommon):
         """
         Set the timestamp using a datetime object
         """
-    def set_geolocation(self, geolocation: themachinethatgoesping.navigation.datastructures.GeolocationLatLon) -> None:
-        ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
-        ...
-    def set_sensor_data_latlon(self, sensor_data_latlon: themachinethatgoesping.navigation.datastructures.SensordataLatLon) -> None:
         ...
     def set_timestamp(self, timestamp: float) -> None:
         """
@@ -1473,6 +1477,8 @@ class t_pingfeature:
     
       sensor_configuration
     
+      navigation_interpolator_latlon
+    
       sensor_data_latlon
     
       geolocation
@@ -1525,37 +1531,38 @@ class t_pingfeature:
     
       multisectorwatercolumn_calibration
     """
-    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 4>, 'geolocation': <t_pingfeature.geolocation: 5>, 'bottom': <t_pingfeature.bottom: 7>, 'watercolumn': <t_pingfeature.watercolumn: 8>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 9>, 'beam_numbers_per_tx_sector': <t_pingfeature.beam_numbers_per_tx_sector: 11>, 'beam_selection_all': <t_pingfeature.beam_selection_all: 12>, 'number_of_beams': <t_pingfeature.number_of_beams: 13>, 'tx_sector_per_beam': <t_pingfeature.tx_sector_per_beam: 14>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 10>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 15>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 16>, 'xyz': <t_pingfeature.xyz: 17>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 18>, 'amplitudes': <t_pingfeature.amplitudes: 19>, 'ap': <t_pingfeature.ap: 24>, 'av': <t_pingfeature.av: 25>, 'power': <t_pingfeature.power: 26>, 'rp': <t_pingfeature.rp: 20>, 'rv': <t_pingfeature.rv: 21>, 'pp': <t_pingfeature.pp: 22>, 'pv': <t_pingfeature.pv: 23>, 'sp': <t_pingfeature.sp: 27>, 'sv': <t_pingfeature.sv: 28>, 'watercolumn_calibration': <t_pingfeature.watercolumn_calibration: 29>, 'multisectorwatercolumn_calibration': <t_pingfeature.multisectorwatercolumn_calibration: 30>}
-    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 19>
-    ap: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.ap: 24>
-    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 25>
-    beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 15>
-    beam_numbers_per_tx_sector: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_numbers_per_tx_sector: 11>
-    beam_selection_all: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_selection_all: 12>
-    bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 7>
-    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 18>
+    __members__: typing.ClassVar[dict[str, t_pingfeature]]  # value = {'timestamp': <t_pingfeature.timestamp: 0>, 'datetime': <t_pingfeature.datetime: 1>, 'channel_id': <t_pingfeature.channel_id: 2>, 'sensor_configuration': <t_pingfeature.sensor_configuration: 3>, 'navigation_interpolator_latlon': <t_pingfeature.navigation_interpolator_latlon: 4>, 'sensor_data_latlon': <t_pingfeature.sensor_data_latlon: 5>, 'geolocation': <t_pingfeature.geolocation: 6>, 'bottom': <t_pingfeature.bottom: 8>, 'watercolumn': <t_pingfeature.watercolumn: 9>, 'tx_signal_parameters': <t_pingfeature.tx_signal_parameters: 10>, 'beam_numbers_per_tx_sector': <t_pingfeature.beam_numbers_per_tx_sector: 12>, 'beam_selection_all': <t_pingfeature.beam_selection_all: 13>, 'number_of_beams': <t_pingfeature.number_of_beams: 14>, 'tx_sector_per_beam': <t_pingfeature.tx_sector_per_beam: 15>, 'number_of_tx_sectors': <t_pingfeature.number_of_tx_sectors: 11>, 'beam_crosstrack_angles': <t_pingfeature.beam_crosstrack_angles: 16>, 'two_way_travel_times': <t_pingfeature.two_way_travel_times: 17>, 'xyz': <t_pingfeature.xyz: 18>, 'bottom_range_samples': <t_pingfeature.bottom_range_samples: 19>, 'amplitudes': <t_pingfeature.amplitudes: 20>, 'ap': <t_pingfeature.ap: 25>, 'av': <t_pingfeature.av: 26>, 'power': <t_pingfeature.power: 27>, 'rp': <t_pingfeature.rp: 21>, 'rv': <t_pingfeature.rv: 22>, 'pp': <t_pingfeature.pp: 23>, 'pv': <t_pingfeature.pv: 24>, 'sp': <t_pingfeature.sp: 28>, 'sv': <t_pingfeature.sv: 29>, 'watercolumn_calibration': <t_pingfeature.watercolumn_calibration: 30>, 'multisectorwatercolumn_calibration': <t_pingfeature.multisectorwatercolumn_calibration: 31>}
+    amplitudes: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.amplitudes: 20>
+    ap: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.ap: 25>
+    av: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.av: 26>
+    beam_crosstrack_angles: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_crosstrack_angles: 16>
+    beam_numbers_per_tx_sector: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_numbers_per_tx_sector: 12>
+    beam_selection_all: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.beam_selection_all: 13>
+    bottom: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom: 8>
+    bottom_range_samples: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.bottom_range_samples: 19>
     channel_id: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.channel_id: 2>
     datetime: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.datetime: 1>
-    geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 5>
-    multisectorwatercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.multisectorwatercolumn_calibration: 30>
-    number_of_beams: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_beams: 13>
-    number_of_tx_sectors: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_tx_sectors: 10>
-    power: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power: 26>
-    pp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pp: 22>
-    pv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pv: 23>
-    rp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rp: 20>
-    rv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rv: 21>
+    geolocation: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.geolocation: 6>
+    multisectorwatercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.multisectorwatercolumn_calibration: 31>
+    navigation_interpolator_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.navigation_interpolator_latlon: 4>
+    number_of_beams: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_beams: 14>
+    number_of_tx_sectors: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.number_of_tx_sectors: 11>
+    power: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.power: 27>
+    pp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pp: 23>
+    pv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.pv: 24>
+    rp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rp: 21>
+    rv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.rv: 22>
     sensor_configuration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_configuration: 3>
-    sensor_data_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_data_latlon: 4>
-    sp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp: 27>
-    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 28>
+    sensor_data_latlon: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sensor_data_latlon: 5>
+    sp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sp: 28>
+    sv: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.sv: 29>
     timestamp: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.timestamp: 0>
-    two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 16>
-    tx_sector_per_beam: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_sector_per_beam: 14>
-    tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 9>
-    watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 8>
-    watercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn_calibration: 29>
-    xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 17>
+    two_way_travel_times: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.two_way_travel_times: 17>
+    tx_sector_per_beam: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_sector_per_beam: 15>
+    tx_signal_parameters: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.tx_signal_parameters: 10>
+    watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 9>
+    watercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn_calibration: 30>
+    xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 18>
     @staticmethod
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
@@ -1593,33 +1600,34 @@ class t_pingfeature:
     @property
     def value(self) -> int:
         ...
-amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 19>
-ap: t_pingfeature  # value = <t_pingfeature.ap: 24>
-av: t_pingfeature  # value = <t_pingfeature.av: 25>
-beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 15>
-beam_numbers_per_tx_sector: t_pingfeature  # value = <t_pingfeature.beam_numbers_per_tx_sector: 11>
-beam_selection_all: t_pingfeature  # value = <t_pingfeature.beam_selection_all: 12>
-bottom: t_pingfeature  # value = <t_pingfeature.bottom: 7>
-bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 18>
+amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 20>
+ap: t_pingfeature  # value = <t_pingfeature.ap: 25>
+av: t_pingfeature  # value = <t_pingfeature.av: 26>
+beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 16>
+beam_numbers_per_tx_sector: t_pingfeature  # value = <t_pingfeature.beam_numbers_per_tx_sector: 12>
+beam_selection_all: t_pingfeature  # value = <t_pingfeature.beam_selection_all: 13>
+bottom: t_pingfeature  # value = <t_pingfeature.bottom: 8>
+bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 19>
 channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
 datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
-geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 5>
-multisectorwatercolumn_calibration: t_pingfeature  # value = <t_pingfeature.multisectorwatercolumn_calibration: 30>
-number_of_beams: t_pingfeature  # value = <t_pingfeature.number_of_beams: 13>
-number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 10>
-power: t_pingfeature  # value = <t_pingfeature.power: 26>
-pp: t_pingfeature  # value = <t_pingfeature.pp: 22>
-pv: t_pingfeature  # value = <t_pingfeature.pv: 23>
-rp: t_pingfeature  # value = <t_pingfeature.rp: 20>
-rv: t_pingfeature  # value = <t_pingfeature.rv: 21>
+geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 6>
+multisectorwatercolumn_calibration: t_pingfeature  # value = <t_pingfeature.multisectorwatercolumn_calibration: 31>
+navigation_interpolator_latlon: t_pingfeature  # value = <t_pingfeature.navigation_interpolator_latlon: 4>
+number_of_beams: t_pingfeature  # value = <t_pingfeature.number_of_beams: 14>
+number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 11>
+power: t_pingfeature  # value = <t_pingfeature.power: 27>
+pp: t_pingfeature  # value = <t_pingfeature.pp: 23>
+pv: t_pingfeature  # value = <t_pingfeature.pv: 24>
+rp: t_pingfeature  # value = <t_pingfeature.rp: 21>
+rv: t_pingfeature  # value = <t_pingfeature.rv: 22>
 sensor_configuration: t_pingfeature  # value = <t_pingfeature.sensor_configuration: 3>
-sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 4>
-sp: t_pingfeature  # value = <t_pingfeature.sp: 27>
-sv: t_pingfeature  # value = <t_pingfeature.sv: 28>
+sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 5>
+sp: t_pingfeature  # value = <t_pingfeature.sp: 28>
+sv: t_pingfeature  # value = <t_pingfeature.sv: 29>
 timestamp: t_pingfeature  # value = <t_pingfeature.timestamp: 0>
-two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 16>
-tx_sector_per_beam: t_pingfeature  # value = <t_pingfeature.tx_sector_per_beam: 14>
-tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 9>
-watercolumn: t_pingfeature  # value = <t_pingfeature.watercolumn: 8>
-watercolumn_calibration: t_pingfeature  # value = <t_pingfeature.watercolumn_calibration: 29>
-xyz: t_pingfeature  # value = <t_pingfeature.xyz: 17>
+two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 17>
+tx_sector_per_beam: t_pingfeature  # value = <t_pingfeature.tx_sector_per_beam: 15>
+tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 10>
+watercolumn: t_pingfeature  # value = <t_pingfeature.watercolumn: 9>
+watercolumn_calibration: t_pingfeature  # value = <t_pingfeature.watercolumn_calibration: 30>
+xyz: t_pingfeature  # value = <t_pingfeature.xyz: 18>
