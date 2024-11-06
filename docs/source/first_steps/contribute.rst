@@ -38,7 +38,7 @@ First install the build requirements:
         .. code-block:: console
 
            $ sudo apt update
-           $ sudo apt install git git-lfs build-essential ccache pkg-config cmake libboost-all-dev libcurl4-openssl-dev'
+           $ sudo apt install git git-lfs build-essential ccache pkg-config cmake libboost-all-dev libcurl4-openssl-dev
 
     .. tab-item:: Arch linux
         :sync: key_pipenv

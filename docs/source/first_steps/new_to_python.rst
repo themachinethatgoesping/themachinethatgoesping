@@ -20,6 +20,7 @@ These tutorials will help you learn the fundamentals of Python and get you start
 
 .. admonition:: Note
    :class: admonition-note
+   
    Please note that we do not take any responsibility for the content in external links. Use them at your own discretion.
 
 .. _setting_up_python:

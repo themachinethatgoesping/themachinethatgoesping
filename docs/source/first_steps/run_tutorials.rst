@@ -2,7 +2,7 @@
 ..
 .. SPDX-License-Identifier: MPL-2.0
 
-.. _tutorials:
+.. _tutorials_section:
 
 Tutorials
 #########
@@ -23,11 +23,29 @@ First clone the `tutorials repository <https://github.com/themachinethatgoesping
 
    $ git clone https://github.com/themachinethatgoesping/tutorials.git
 
-A requirements file is provided in the repository. You can install the tutorial requirements using the following command:
+A requirements file is provided in the repository. However, we recommend installing the requirements using poetry to ensure all packages are on a version that was tested.
+You can install the tutorial requirements using the following command:
 
 .. tab-set::
 
-    .. tab-item:: conda/mamba
+    .. tab-item:: miniforge / poetry
+        :sync: key_mamba
+
+        .. code-block:: console
+
+            # first enter the tutorials directory
+            $ cd tutorials
+
+            # Here we assume that you are using miniforge / mamba and created and environment called "ping"
+            $ mamba activate -n ping
+
+            # install poetry
+            $ pip install poetry
+
+            # install the requirements fixed in the pyproject.toml and the poetry.lock file
+            $ poetry install
+            
+    .. tab-item:: minforge / mamba
         :sync: key_mamba
 
         .. code-block:: console
@@ -40,6 +58,20 @@ A requirements file is provided in the repository. You can install the tutorial 
 
             # if you want to update the package use
             $ mamba install --file requirements.txt
+
+    .. tab-item:: anaconda / conda
+        :sync: key_conda
+
+        .. code-block:: console
+
+            # first enter the tutorials directory
+            $ cd tutorials
+
+            # Here we assume that the name of the environment is "ping"
+            $ conda activate -n ping
+
+            # if you want to update the package use
+            $ conda install --file requirements.txt
 
     .. tab-item:: pip
         :sync: key_pip

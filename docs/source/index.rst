@@ -61,7 +61,7 @@ Python user
 
 If you need help setting up a python environment, see the :ref:`new_to_python` section.
 For more details on the installation see :ref:`installation_user`. To install from source see :ref:`installation_from_source`.
-To get started with **Ping** check out the :ref:`tutorials` section. 
+To get started with **Ping** check out the :ref:`tutorials_section` section. 
 Even if you consider yourself a user, rather than a developer, please check out the :ref:`contribute` section, as it contains some useful information on how to report bugs and request features.
 
 Developer / contributor
@@ -87,7 +87,12 @@ You may also want to check out the :ref:`contribute` section.
    :maxdepth: 2
    :hidden:
 
-   demos/01_open_and_get_overview.ipynb
+   demos/tutorial_01_data_access_basic.ipynb
+   demos/tutorial_02_data_access_advanced.ipynb
+   demos/tutorial_03_WCI_viewer.ipynb
+   demos/tutorial_04_extract_wcd.ipynb
+   demos/tutorial_05_wedge_view_WCI.ipynb
+   demos/tutorial_06_echograms.ipynb
 
 .. toctree::
    :caption: How to
