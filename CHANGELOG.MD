@@ -6,6 +6,15 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- echosounders -> 0.43.1
+
+### Added
+- echosounders:
+  - missing set_navigation_interpolator_latlon function for i_ping
+  - set_navigation_interpolator_latlon function for navigation interpolator
+
 ## [0.25.1] - 06-11-2024
 
 - echosounders -> 0.43.0

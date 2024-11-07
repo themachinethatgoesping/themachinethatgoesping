@@ -287,6 +287,8 @@ class I_Ping(I_PingCommon):
         """
         Set the timestamp using a datetime object
         """
+    def set_navigation_interpolator_latlon(self, nav_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+        ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
     def set_timestamp(self, timestamp: float) -> None:

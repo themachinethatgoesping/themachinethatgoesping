@@ -1734,7 +1734,7 @@ class KongsbergAllNavigationDataInterface:
         ...
     def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_navigation_interpolators(self) -> dict[int, ..., ..., ..., ..., ..., ...]:
+    def get_navigation_interpolator_keys(self) -> list[int]:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
@@ -1788,6 +1788,10 @@ class KongsbergAllNavigationDataInterface:
         """
         Print object information
         """
+    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+        ...
+    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+        ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
         This functions throws if linked file interfaces are not consistent
@@ -2025,7 +2029,7 @@ class KongsbergAllNavigationDataInterface_stream:
         ...
     def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def get_navigation_interpolators(self) -> dict[int, ..., ..., ..., ..., ..., ...]:
+    def get_navigation_interpolator_keys(self) -> list[int]:
         ...
     def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
         ...
@@ -2079,6 +2083,10 @@ class KongsbergAllNavigationDataInterface_stream:
         """
         Print object information
         """
+    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+        ...
+    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+        ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
         This functions throws if linked file interfaces are not consistent
