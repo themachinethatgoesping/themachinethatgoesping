@@ -9,11 +9,26 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - echosounders -> 0.43.1
+- tools -> 0.28.1
+- algorithms -> 0.8.4
+- pingprocessing -> 0.8.7
 
 ### Added
 - echosounders:
   - missing set_navigation_interpolator_latlon function for i_ping
   - set_navigation_interpolator_latlon function for navigation interpolator
+  - Function to get incoherent sum from EK80 complex data
+- pingprocessing:
+  - allow passing custom get_data function to make-wci and build echogram classes
+
+### Maintanance
+-tools:
+  - update magic_enum -> 0.9.7
+- echosounders:
+  - adapted to tools 0.28.1
+- algorithms:
+  - adapted to tools 0.28.1
+  - ignore pugixml warnings
 
 ## [0.25.1] - 06-11-2024
 
