@@ -1,11 +1,11 @@
 from __future__ import annotations
-import themachinethatgoesping as Ping
+import themachinethatgoesping as theping
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_beam_sample_image
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci_dual_head
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci_stack
-__all__ = ['ImageBuilder', 'Ping', 'get_progress_iterator', 'make_beam_sample_image', 'make_wci', 'make_wci_dual_head', 'make_wci_stack']
+__all__ = ['ImageBuilder', 'get_progress_iterator', 'make_beam_sample_image', 'make_wci', 'make_wci_dual_head', 'make_wci_stack', 'theping']
 class ImageBuilder:
     def __init__(self, pings, horizontal_pixels, wci_render = 'linear', progress = False, **kwargs):
         ...

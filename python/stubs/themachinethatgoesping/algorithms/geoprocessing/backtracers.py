@@ -96,13 +96,18 @@ class BacktracedWCI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int]) -> None:
+    def __init__(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], wci_first_sample_number: int, wci_sample_number_step: int = 1) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
         
-        Parameter ``shape``:
-            shape of the internal tensors
+        Parameter ``wci``:
+            Water column image, shape: len(beam_reference_directions) x does
+            not matter
+        
+        Parameter ``beam_reference_directions``:
+            beam reference directions: reference points that describe beam
+            angle and reference range for each beam
         """
     def __repr__(self) -> str:
         """
@@ -127,6 +132,18 @@ class BacktracedWCI:
     def get_range_samplenumber_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorF]:
         ...
     def get_wci(self) -> numpy.ndarray[numpy.float32]:
+        ...
+    def get_wci_first_sample_number(self) -> int:
+        ...
+    def get_wci_first_sample_number_internal(self) -> int:
+        """
+        Get the internally saved wci first sample number. Internally: the
+        first_sample_number of the image is divided by sample_number_step
+        
+        Returns:
+            uint16_t
+        """
+    def get_wci_sample_number_step(self) -> int:
         ...
     def hash(self) -> int:
         """
@@ -263,9 +280,7 @@ class I_Backtracer:
         """
         Return object information as string
         """
-    def lookup(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
-        ...
-    def lookup_indices(self, beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], beam_reference_max_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleIndices_2:
+    def lookup(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, wci_first_sample_number: int, wci_sample_number_step: int = 1, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
         ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """

@@ -4,11 +4,12 @@ import datetime as dt
 import matplotlib as mpl
 from matplotlib import dates as mdates
 import numpy as np
-import themachinethatgoesping as Ping
+import themachinethatgoesping as theping
 from themachinethatgoesping import echosounders
 from themachinethatgoesping import pingprocessing
+from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from tqdm.asyncio import tqdm_asyncio as tqdm
-__all__ = ['EchoProxy', 'Ping', 'defaultdict', 'dt', 'echosounders', 'mdates', 'mpl', 'np', 'pingprocessing', 'tqdm']
+__all__ = ['EchoProxy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'pingprocessing', 'theping', 'tqdm']
 class EchoProxy:
     @staticmethod
     def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_samples = 2048):
@@ -20,7 +21,7 @@ class EchoProxy:
         ...
     def add_ping_param(self, name, x_reference, y_reference, vec_x_val, vec_y_val):
         ...
-    def build_image(self):
+    def build_image(self, progress = None):
         ...
     def get_ping_param(self, name, use_x_coordinates = False):
         ...

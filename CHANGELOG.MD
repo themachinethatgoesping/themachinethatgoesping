@@ -10,16 +10,28 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.43.1
 - tools -> 0.28.1
-- algorithms -> 0.8.4
-- pingprocessing -> 0.8.7
+- algorithms -> 0.9.0
+- pingprocessing -> 0.9.0
+
+### Changed
+- algorithms:
+  - reworked backtracer to support downsampled wcis
+  - removed legacy lookup_indices function
+- pingprocessing:
+  - removed legacy files (echogram builders)
 
 ### Added
 - echosounders:
   - missing set_navigation_interpolator_latlon function for i_ping
   - set_navigation_interpolator_latlon function for navigation interpolator
   - Function to get incoherent sum from EK80 complex data
+  - I_PingWaterColumn: get_minslant_sample_nr function
 - pingprocessing:
   - allow passing custom get_data function to make-wci and build echogram classes
+  - wciviewer now supports minslant filtering (algorithm 0.9.0)
+  - improved tqdmwidget progressbar for make-wci
+  - added EchogramViewer widget
+  - various improvements to echogram classes
 
 ### Maintanance
 -tools:
@@ -29,6 +41,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms:
   - adapted to tools 0.28.1
   - ignore pugixml warnings
+- pingprocessing and tutorials
+  - standard name for importing ping is now 'theping' (instead of 'Ping')
 
 ## [0.25.1] - 06-11-2024
 
