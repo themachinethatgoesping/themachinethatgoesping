@@ -82,6 +82,16 @@ class BeamSampleSelection(BeamSelection):
         """
         return a copy using the c++ default copy constructor
         """
+    def empty(self) -> bool:
+        """
+        return if the selection contains beams and samples
+        
+        Returns:
+            true
+        
+        Returns:
+            false
+        """
     def get_first_sample_number_ensemble(self) -> int:
         """
         Return the first sample number of the ensemble
@@ -239,6 +249,16 @@ class BeamSelection:
     def copy(self) -> BeamSelection:
         """
         return a copy using the c++ default copy constructor
+        """
+    def empty(self) -> bool:
+        """
+        return if the selection contains beams
+        
+        Returns:
+            true
+        
+        Returns:
+            false
         """
     def get_beam_numbers(self) -> list[int]:
         """

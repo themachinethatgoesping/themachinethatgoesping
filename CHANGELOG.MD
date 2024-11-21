@@ -26,12 +26,20 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - set_navigation_interpolator_latlon function for navigation interpolator
   - Function to get incoherent sum from EK80 complex data
   - I_PingWaterColumn: get_minslant_sample_nr function
+  - empty() function for beam- and beamsample-selection
+  - allow for modifying KongsbergAllWaterColumnCalibration
 - pingprocessing:
   - allow passing custom get_data function to make-wci and build echogram classes
   - wciviewer now supports minslant filtering (algorithm 0.9.0)
   - improved tqdmwidget progressbar for make-wci
   - added EchogramViewer widget
   - various improvements to echogram classes
+
+### Fixed
+- echosounders:
+  - selection reports wron number of ensemple samples for empty selection
+- pingprocessing:
+  - make_image and echogram deal better with empty pings
 
 ### Maintanance
 -tools:

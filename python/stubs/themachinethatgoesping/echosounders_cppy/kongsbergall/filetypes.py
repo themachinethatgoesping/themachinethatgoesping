@@ -578,6 +578,8 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
     def initialized(self) -> bool:
         ...
+    def modify_kongsberg_em_calibrations(self, sound_velocity: float | None = None, effective_pulse_duration: float | None = None, system_gain_offset: float | None = None, tvg_absorption_db_m: float | None = None, tvg_factor: float | None = None) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
