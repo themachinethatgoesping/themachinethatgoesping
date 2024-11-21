@@ -44,6 +44,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Maintanance
 -tools:
   - update magic_enum -> 0.9.7
+  - update fast_float -> 7.0.0
 - echosounders:
   - adapted to tools 0.28.1
 - algorithms:
