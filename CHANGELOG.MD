@@ -6,9 +6,13 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unrelease]
+## [Unreleased]
 
+- echosounders -> 0.44.0
 - pingprocessing -> 0.9.1
+
+### Changed
+- echosounders -> renamed minslant_distance and bottom_distance to minslant_range and bottom_range
 
 ### Fixed
 - colorbarwarning for empty pings in wciviewer

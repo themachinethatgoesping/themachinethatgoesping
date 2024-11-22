@@ -339,9 +339,9 @@ class PingSampleSelector:
         ...
     def clear_beam_step(self) -> None:
         ...
-    def clear_bottom_distance(self) -> None:
+    def clear_bottom_range(self) -> None:
         ...
-    def clear_minslant_distance(self) -> None:
+    def clear_minslant_range(self) -> None:
         ...
     def clear_sample_number_range(self) -> None:
         ...
@@ -369,9 +369,9 @@ class PingSampleSelector:
         """
         < max beam number to select
         """
-    def get_max_bottom_distance_percent(self) -> float | None:
+    def get_max_bottom_range_percent(self) -> float | None:
         ...
-    def get_max_minslant_distance_percent(self) -> float | None:
+    def get_max_minslant_range_percent(self) -> float | None:
         ...
     def get_max_sample_number(self) -> int | None:
         """
@@ -389,9 +389,9 @@ class PingSampleSelector:
         """
         < min beam number to select
         """
-    def get_min_bottom_distance_percent(self) -> float | None:
+    def get_min_bottom_range_percent(self) -> float | None:
         ...
-    def get_min_minslant_distance_percent(self) -> float | None:
+    def get_min_minslant_range_percent(self) -> float | None:
         ...
     def get_min_sample_number(self) -> int | None:
         """
@@ -435,17 +435,17 @@ class PingSampleSelector:
         ...
     def select_beam_range_by_numbers(self, min_beam_number: int, max_beam_number: int, beam_step: int | None = None) -> None:
         ...
-    def select_bottom_distance_percent(self, min_bottom_distance_percent: float | None = None, max_bottom_distance_percent: float | None = None) -> None:
+    def select_bottom_range_percent(self, min_bottom_range_percent: float | None = None, max_bottom_range_percent: float | None = None) -> None:
         ...
-    def select_max_bottom_distance_percent(self, max_bottom_distance_percent: float) -> None:
+    def select_max_bottom_range_percent(self, max_bottom_range_percent: float) -> None:
         ...
-    def select_max_minslant_distance_percent(self, max_minslant_distance_percent: float) -> None:
+    def select_max_minslant_range_percent(self, max_minslant_range_percent: float) -> None:
         ...
-    def select_min_bottom_distance_percent(self, min_bottom_distance_percent: float) -> None:
+    def select_min_bottom_range_percent(self, min_bottom_range_percent: float) -> None:
         ...
-    def select_min_minslant_distance_percent(self, min_minslant_distance_percent: float) -> None:
+    def select_min_minslant_range_percent(self, min_minslant_range_percent: float) -> None:
         ...
-    def select_minslant_distance_percent(self, min_minslant_distance_percent: float | None = None, max_minslant_distance_percent: float | None = None) -> None:
+    def select_minslant_range_percent(self, min_minslant_range_percent: float | None = None, max_minslant_range_percent: float | None = None) -> None:
         ...
     def select_sample_range_by_numbers(self, min_sample_number: int, max_sample_number: int, sample_step: int | None = None) -> None:
         ...
