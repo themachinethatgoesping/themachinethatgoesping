@@ -41,7 +41,8 @@ dependencies = [
   'tqdm',
   'rasterio >= 1.3.10',
   'ipywidgets',
-  'gsw' # Gibbs seawater package
+  'gsw', # Gibbs seawater package
+  'pytimeparse2 >= 1.7.1'
 ]
 
 

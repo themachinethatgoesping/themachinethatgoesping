@@ -11,6 +11,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.44.0
 - pingprocessing -> 0.9.1
 
+### Added
+- pingprocessing:
+  - new split_pings.into block functions
+  - time parsing ability for time difference variables
+  - new filter_pings.by time_lists function
+
 ### Changed
 - echosounders -> renamed minslant_distance and bottom_distance to minslant_range and bottom_range
 
