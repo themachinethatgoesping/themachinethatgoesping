@@ -14,13 +14,23 @@ If you did not yet install python, please refer to the section :ref:`New to pyth
 
 .. tab-set::
 
-    .. tab-item:: conda/mamba
+    .. tab-item:: mamba
         :sync: key_mamba
 
         .. code-block:: console
 
            # Here we assume that the name of the environment is "ping"
            $ mamba activate -n ping
+
+           $ pip install themachinethatgoesping
+
+    .. tab-item:: conda
+        :sync: key_conda
+
+        .. code-block:: console
+
+           # Here we assume that the name of the environment is "ping"
+           $ conda activate -n ping
 
            $ pip install themachinethatgoesping
 
@@ -41,7 +51,7 @@ If you want to update the package use
    :class: note
 
    While we are building pypi packages for Windows and Mac, support and performance is not guaranteed.
-   On windows and MacOS we currently do not support openMP and therefore no multithreading is avaliable.
+   On windows and MacOS we currently do not support openMP and therefore no multithreading is available.
    Furthermore we currently only create builds for MacOS with the new m-chips.
    If you are experienced with building python packages on windows and mac, please contact us to help us improve the situation.
 

@@ -44,23 +44,26 @@ You can install the tutorial requirements using the following command:
 
             # install the requirements fixed in the pyproject.toml and the poetry.lock file
             $ poetry install
-            
-    .. tab-item:: minforge / mamba
-        :sync: key_mamba
+
+    .. tab-item:: anaconda / poetry
+        :sync: key_conda
 
         .. code-block:: console
 
             # first enter the tutorials directory
             $ cd tutorials
 
-            # Here we assume that the name of the environment is "ping"
-            $ mamba activate -n ping
+            # Here we assume that you are using conda and created and environment called "ping"
+            $ conda activate -n ping
 
-            # if you want to update the package use
-            $ mamba install --file requirements.txt
+            # install poetry
+            $ pip install poetry
 
+            # install the requirements fixed in the pyproject.toml and the poetry.lock file
+            $ poetry install
+            
     .. tab-item:: anaconda / conda
-        :sync: key_conda
+        :sync: key_conda_pip
 
         .. code-block:: console
 
@@ -73,6 +76,21 @@ You can install the tutorial requirements using the following command:
             # if you want to update the package use
             $ conda install --file requirements.txt
 
+            
+    .. tab-item:: minforge / mamba
+        :sync: key_mamba_pip
+
+        .. code-block:: console
+
+            # first enter the tutorials directory
+            $ cd tutorials
+
+            # Here we assume that the name of the environment is "ping"
+            $ mamba activate -n ping
+
+            # if you want to update the package use
+            $ mamba install --file requirements.txt
+            
     .. tab-item:: pip
         :sync: key_pip
 

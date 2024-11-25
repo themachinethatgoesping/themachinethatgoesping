@@ -21,7 +21,7 @@ These tutorials will help you learn the fundamentals of Python and get you start
 .. admonition:: Note
    :class: admonition-note
    
-   Please note that we do not take any responsibility for the content in external links. Use them at your own discretion.
+   We do not take any responsibility for the content in external links. Use them at your own discretion.
 
 .. _setting_up_python:
 
@@ -29,10 +29,13 @@ These tutorials will help you learn the fundamentals of Python and get you start
 Setting up a Python environment (Mambaforge)
 ********************************************
 
-There is different ways to setting up a python environment, here we will use mambaforge. 
-Other possibilities would be to use Anaconda, Miniconda, poetry or the python package manager pip or pipenv.
-Mamba is a reimplementation of the conda package manager in C++ and is designed to be compatible with conda.
-We use mamba instead of conda because it is faster and more reliable when dealing with packages from conda-forge.
+There are different ways to setting up a python environment, here we will use mambaforge. 
+
+.. admonition:: Mamba
+   :class: note
+
+   Mamba is a reimplementation of the conda package manager in C++ and is designed to be compatible with conda.
+   We use mamba instead of conda because it is faster and more reliable when dealing with packages from conda-forge.
 
 .. admonition:: Windows / Mac
    :class: note
@@ -42,13 +45,30 @@ We use mamba instead of conda because it is faster and more reliable when dealin
    Furthermore we currently only create builds for MacOS with the new m-chips.
    If you are experienced with building python packages on windows and mac, please contact us to help us improve the situation.
 
-
 First download the mambaforge installer from the following link: https://conda-forge.org/miniforge/
-use the Mambaforge installer that fits your system. E.g. 
+use the Mambaforge installer that fits your system:
 
-- Mambaforge-<latest version number>-Windows-x86_64.exe for Windows.
-- Mambaforge-<latest version number>-Linux-x86_64.sh for Linux.
-- Mambaforge-<latest version number>-MacOSX-arm64.sh for macos (m-chips).
+.. tab-set::
+
+    .. tab-item:: linux
+        :sync: key_linux
+        
+        Chose file: **Mambaforge-<latest version number>-Linux-x86_64.sh**
+
+    .. tab-item:: windows
+        :sync: key_windows
+        
+        Chose file: **Mambaforge-<latest version number>-Windows-x86_64.exe**
+
+    .. tab-item:: macos
+        :sync: key_macos
+        
+        Chose file: **Mambaforge-<latest version number>-MacOSX-arm64.sh**
+
+        .. admonition:: Mac installation
+           :class: note
+
+            If installation fails on your mac, navigate to https://github.com/conda-forge/miniforge/releases/ and try the 'Mambaforge-Darwin-arm64.sh' installer.
 
 Run the installer and follow the instructions. 
 
@@ -62,7 +82,7 @@ To create a new environment with the name 'ping' with mamba that uses python 3.1
 
    $ mamba create -n ping python==3.12
 
-once the environment is created you can activate it with the following command:
+Once the environment is created you can activate it with the following command:
 
 .. code-block:: console
 

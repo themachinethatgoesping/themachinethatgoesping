@@ -6,17 +6,16 @@
 themachinethatgoesping
 **********************
 
-**themachinethatgoesping** (short: **Ping**) aims at enabling advanced processing of multibeam and singlebeam echosounder data. 
-Core components of this library are implemented in C++ (for performance) and are then exposed as high level python interfaces (for usability). 
-On top of the core, many libraries, tools and applications will be implemented in Python directly, making use of the fast prototyping features of this language.
+**themachinethatgoesping** (short: **Ping**) is created to enable advanced processing of multibeam and singlebeam echosounder data. 
+Core components of this library are implemented in C++ (for performance) and then exposed as high level python interfaces (for usability). 
+On top of the core, many libraries, tools and applications are implemented in Python directly, making use of the fast prototyping features of this language.
 
-More will follow soon. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
+Ping is still in early stage. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
 
 .. admonition:: Note
    :class: important
-
-   This project is in early stage; at the moment it is just a powerful raw data reader for Kongsberg .all/.wcd and Simard .raw data. 
-   However you can already get a glimpse of what ping will be like and e.g. plot some simple echograms or extract the navigation data from the raw files (see tutorials repository)
+   
+   Ping is still in early stage. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
 
 .. _where_to_start:
 
@@ -34,7 +33,7 @@ Once you understand how to install python and python packages on your system, an
 Python user
 -----------------------
 
-**Ping** is available on PyPi and can be installed with pip or pipenv:
+**Ping** is available on PyPi and can be installed with pip:
 
 .. tab-set::
 
@@ -44,20 +43,12 @@ Python user
         .. code-block:: console
 
            $ pip install themachinethatgoesping
-
-    .. tab-item:: pipenv
-        :sync: key_pipenv
-
-        .. code-block:: console
-
-           $ pipenv install themachinethatgoesping
            
 .. admonition:: Conda / mamba
    :class: important
 
    Currently there are no conda packages available. 
    However, you can install ping with pip in a conda environment. 
-   Conda forge packages will follow in the future.
 
 If you need help setting up a python environment, see the :ref:`new_to_python` section.
 For more details on the installation see :ref:`installation_user`. To install from source see :ref:`installation_from_source`.

@@ -10,7 +10,7 @@ Contribute
 .. admonition:: ToDo
    :class: admonition-todo
 
-   This page still has to be written.
+   This page still has to be written. .. Just contact me if you want to contribute: peter.urban@ugent.be :-)
 
 .. _installation_from_source:
 
