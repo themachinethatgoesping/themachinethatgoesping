@@ -22,6 +22,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Fixed
 - colorbarwarning for empty pings in wciviewer
+- pingprocessing
+  - fix clear_output not working for echogramviewer
+- echosounders:
+  - some printing style changes for runtime parameters
 
 ## [0.26.0] - 22-11-2024
 
