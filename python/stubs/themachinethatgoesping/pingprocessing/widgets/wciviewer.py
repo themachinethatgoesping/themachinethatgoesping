@@ -8,8 +8,11 @@ from themachinethatgoesping.pingprocessing.watercolumn.helper import make_image_
 from themachinethatgoesping.pingprocessing.watercolumn import image as mi
 from time import time
 import types as types
+import typing
 __all__ = ['WCIViewer', 'display', 'ipywidgets', 'mi', 'mi_hlp', 'np', 'plt', 'theping', 'time', 'types']
 class WCIViewer:
+    __firstlineno__: typing.ClassVar[int] = 14
+    __static_attributes__: typing.ClassVar[tuple] = ('args_imagebuilder', 'args_plot', 'ax', 'background', 'cmap', 'colorbar', 'display_progress', 'extent', 'fig', 'first_blit', 'imagebuilder', 'layout', 'mapable', 'output', 'progress', 'w_aspect', 'w_date', 'w_fix_xy', 'w_horizontal_pixels', 'w_index', 'w_interpolation', 'w_mp_cores', 'w_procrate', 'w_proctime', 'w_stack', 'w_stack_linear', 'w_stack_step', 'w_time', 'w_unfix_xy', 'w_vmax', 'w_vmin', 'w_wci_render', 'w_wci_value', 'wci', 'wci_value', 'xmax', 'xmin', 'ymax', 'ymin')
     def __init__(self, pings, horizontal_pixels = 1024, name = 'WCI', figure = None, progress = None, show = True, cmap = 'YlGnBu_r', **kwargs):
         ...
     def callback_data(self):

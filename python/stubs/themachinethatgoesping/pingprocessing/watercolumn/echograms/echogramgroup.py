@@ -6,8 +6,11 @@ from matplotlib import dates as mdates
 import numpy as np
 from themachinethatgoesping import tools as ptools
 from tqdm.asyncio import tqdm_asyncio as tqdm
+import typing
 __all__ = ['EchogramGroup', 'create_echogram_groups', 'defaultdict', 'dt', 'get_time_error', 'mdates', 'mpl', 'np', 'ptools', 'tqdm']
 class EchogramGroup:
+    __firstlineno__: typing.ClassVar[int] = 63
+    __static_attributes__: typing.ClassVar[tuple] = ('pings', 'pnr', 'resolution')
     def __init__(self):
         ...
     def __len__(self):

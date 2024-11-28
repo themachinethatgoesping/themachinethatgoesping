@@ -9,6 +9,8 @@ import typing
 import warnings as warnings
 __all__ = ['EchoGrid', 'EchoGridDict', 'ForwardGridder', 'MutableMapping', 'gf', 'njit', 'np', 'static_get_target_pos', 'warnings']
 class EchoGrid:
+    __firstlineno__: typing.ClassVar[int] = 47
+    __static_attributes__: typing.ClassVar[tuple] = ('ExtentX', 'ExtentY', 'ExtentZ', 'ImageAvg', 'ImageNums', 'ImageSums', 'MaxX', 'MaxY', 'MaxZ', 'MinX', 'MinY', 'MinZ', 'ResX', 'ResY', 'ResZ', 'TotalValue', 'TotalValueLayer', 'ZDiff')
     def __init__(self, imagesums, imagenums, gridder):
         ...
     def cutDepthLayer(self, layer_z, layer_size):
@@ -35,6 +37,8 @@ class EchoGrid:
         ...
 class EchoGridDict(collections.abc.MutableMapping):
     __abstractmethods__: typing.ClassVar[frozenset]  # value = frozenset()
+    __firstlineno__: typing.ClassVar[int] = 419
+    __static_attributes__: typing.ClassVar[tuple] = ('store')
     _abc_impl: typing.ClassVar[_abc._abc_data]  # value = <_abc._abc_data object>
     def __delitem__(self, key):
         ...

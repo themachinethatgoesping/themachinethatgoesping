@@ -8,6 +8,8 @@ from themachinethatgoesping.scripts.plot_tools import prepare_plt
 import typing
 __all__ = ['SBES', 'deepcopy', 'knots_to_ms', 'plt', 'prepare_plt', 'radians', 'tan']
 class SBES:
+    __firstlineno__: typing.ClassVar[int] = 18
+    __static_attributes__: typing.ClassVar[tuple] = ('beamopening_angle', 'x', 'z')
     plt_aspect: typing.ClassVar[bool] = False
     plt_grid: typing.ClassVar[bool] = True
     plt_title: typing.ClassVar[str] = 'SBES overlap'
@@ -25,8 +27,7 @@ class SBES:
         """
         
         
-                :rtype: float
-                
+        :rtype: float
         """
     def calc_overlap_depth(self, delta_x):
         ...

@@ -10,26 +10,24 @@ __all__ = ['I_Ping', 'by_file_nr', 'by_file_path', 'defaultdict', 'filetemplates
 def by_file_nr(pings: typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping], progress: bool = True) -> typing.Dict[int, typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping]]:
     """
     
-        Splits a list of pings by the associated file number.
+    Splits a list of pings by the associated file number.
     
-        Args:
-            pings (List[I_Ping]): A list of pings to be split.
-            progress (bool, optional): Whether to show a progress bar. Defaults to False.
+    Args:
+        pings (List[I_Ping]): A list of pings to be split.
+        progress (bool, optional): Whether to show a progress bar. Defaults to False.
     
-        Returns:
-            Dict[int, List[I_Ping]]: A dictionary where the keys are channel ids and the values are lists of pings.
-        
+    Returns:
+        Dict[int, List[I_Ping]]: A dictionary where the keys are channel ids and the values are lists of pings.
     """
 def by_file_path(pings: typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping], progress: bool = True) -> typing.Dict[str, typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping]]:
     """
     
-        Splits a list of pings by the associated file path.
+    Splits a list of pings by the associated file path.
     
-        Args:
-            pings (List[I_Ping]): A list of pings to be split.
-            progress (bool, optional): Whether to show a progress bar. Defaults to False.
+    Args:
+        pings (List[I_Ping]): A list of pings to be split.
+        progress (bool, optional): Whether to show a progress bar. Defaults to False.
     
-        Returns:
-            Dict[str, List[I_Ping]]: A dictionary where the keys are channel ids and the values are lists of pings.
-        
+    Returns:
+        Dict[str, List[I_Ping]]: A dictionary where the keys are channel ids and the values are lists of pings.
     """

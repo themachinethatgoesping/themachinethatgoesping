@@ -7,26 +7,25 @@ __all__ = ['I_Ping', 'by_latlon', 'filetemplates', 'get_progress_iterator', 'np'
 def by_latlon(pings: list[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping], min_lat: float = ..., max_lat: float = ..., min_lon: float = ..., max_lon: float = ..., progress: bool = False) -> list[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping]:
     """
     
-        Filter pings by latitude and longitude region.
+    Filter pings by latitude and longitude region.
     
-        Parameters
-        ----------
-        pings : list
-            List of pings to filter.
-        min_lat : float, optional
-            Minimum latitude value, by default np.nan.
-        max_lat : float, optional
-            Maximum latitude value, by default np.nan.
-        min_lon : float, optional
-            Minimum longitude value, by default np.nan.
-        max_lon : float, optional
-            Maximum longitude value, by default np.nan.
-        progress : bool, optional
-            Whether to show progress bar, by default False.
+    Parameters
+    ----------
+    pings : list
+        List of pings to filter.
+    min_lat : float, optional
+        Minimum latitude value, by default np.nan.
+    max_lat : float, optional
+        Maximum latitude value, by default np.nan.
+    min_lon : float, optional
+        Minimum longitude value, by default np.nan.
+    max_lon : float, optional
+        Maximum longitude value, by default np.nan.
+    progress : bool, optional
+        Whether to show progress bar, by default False.
     
-        Returns
-        -------
-        list
-            List of filtered pings.
-        
+    Returns
+    -------
+    list
+        List of filtered pings.
     """

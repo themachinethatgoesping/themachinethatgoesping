@@ -9,8 +9,11 @@ from themachinethatgoesping import echosounders
 from themachinethatgoesping import pingprocessing
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from tqdm.asyncio import tqdm_asyncio as tqdm
+import typing
 __all__ = ['EchoData', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'pingprocessing', 'theping', 'tqdm']
 class EchoData:
+    __firstlineno__: typing.ClassVar[int] = 16
+    __static_attributes__: typing.ClassVar[tuple] = ('depth_to_y_coordinate_interpolator', 'has_depths', 'has_ranges', 'indice_to_x_coordinate_interpolator', 'initialized', 'max_depths', 'max_ranges', 'max_sample_numbers', 'min_depths', 'min_ranges', 'param', 'ping_numbers', 'ping_times', 'range_to_y_coordinate_interpolator', 'res_depths', 'res_ranges', 'sample_nr_to_depth_interpolator', 'sample_nr_to_range_interpolator', 'sample_nr_to_y_coordinate_interpolator', 'time_zone', 'vec_max_y', 'vec_min_y', 'vec_x_val', 'wc_data', 'x_axis_function', 'x_axis_name', 'x_coordinate_indice_interpolator', 'x_coordinates', 'x_extent', 'x_interpolation_limit', 'x_kwargs', 'x_resolution', 'y_axis_function', 'y_axis_name', 'y_coordinate_indice_interpolator', 'y_coordinates', 'y_extent', 'y_kwargs', 'y_resolution')
     @staticmethod
     def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_samples = 2048):
         ...

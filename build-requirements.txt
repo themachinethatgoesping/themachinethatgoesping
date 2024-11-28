@@ -6,8 +6,9 @@ numpy >= 2.0.0
 numba
 pybind11-stubgen
 
-#not strictly build requirements
+#not strictly build requirements, but needet to run the package and tests
 rasterio >= 1.3.10 #numpy 2.0 compatability
 matplotlib
+ipympl
 tqdm
 pytimeparse2 >= 1.7.1

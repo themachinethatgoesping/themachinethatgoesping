@@ -1245,6 +1245,14 @@ class KongsbergAllDatagram:
         """
         < KongsbergAll model number (example: EM 3002 = 3002)
         """
+    def get_model_number_as_string(self) -> str:
+        """
+        Get the model number as string EM+model_number, except 2045 which is
+        EM2040C
+        
+        Returns:
+            std::string
+        """
     def get_stx(self) -> int:
         """
         < (start identifier)
@@ -2882,6 +2890,8 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
         < in dB
         """
+    def get_mode_as_ping_mode(self) -> str:
+        ...
     def get_operator_station_status(self) -> int:
         ...
     def get_ping_counter(self) -> int:

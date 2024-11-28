@@ -3,7 +3,7 @@ from collections import defaultdict
 import hashlib as hashlib
 import numpy as np
 import os as os
-from pathlib import Path
+from pathlib._local import Path
 import pickle as pickle
 from themachinethatgoesping.echosounders.index_functions.filecache_functions import print_cache_file_statistics
 from themachinethatgoesping.echosounders.index_functions.filecache_functions import remove_name_from_cache
