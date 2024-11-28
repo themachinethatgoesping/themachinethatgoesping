@@ -2835,6 +2835,14 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
         return a copy using the c++ default copy constructor
         """
+    def get_3d_scanning_enabled(self) -> bool:
+        """
+        Retrieves the 3D scanning option (On/Off) encoded in the 'source of
+        sound speed at transducer' variable
+        
+        Returns:
+            True if the 3D scanning option is enabled, false otherwise
+        """
     def get_absorption_coefficient(self) -> int:
         """
         < in 0.01 dB/km
@@ -2848,6 +2856,22 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def get_beam_spacing(self) -> int:
         ...
+    def get_beam_spacing_as_string(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves beamspacing mode encoded in the beamspacing variable
+        
+        The decoding is EM model specific. Currently only outputs sensefull
+        values for EM2040 and EM2040C. See datagram format specification for
+        details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: 'None' is
+            returned
+        
+        Returns:
+            A string representing beamspacing as encoded by 'beamspacing'
+        """
     def get_bsp_status(self) -> int:
         ...
     def get_checksum(self) -> int:
@@ -2860,6 +2884,102 @@ class RuntimeParameters(KongsbergAllDatagram):
         ...
     def get_filter_identifier2(self) -> int:
         ...
+    def get_filter_identifier2_as_detect_mode(self) -> str:
+        """
+        Retrieves detect mode encoded in the filter_identifier2 variable
+        
+        Returns:
+            A string representing the detect mode as encoded by
+            'filter_identifier2'
+        """
+    def get_filter_identifier2_as_penetration_filter(self) -> str:
+        """
+        Retrieves penetration filter setup encoded in the filter_identifier2
+        variable
+        
+        Returns:
+            A string representing the penetration filter setup as encoded by
+            'filter_identifier2'
+        """
+    def get_filter_identifier2_as_phase_ramp(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves phase ramp encoded in the filter_identifier2 variable
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the value
+            is not handled by the function. Otherwise: 'None' is returned
+        
+        Returns:
+            A string representing the phase ramp encoded by
+            'filter_identifier2'
+        """
+    def get_filter_identifier2_as_special_amp_detect(self) -> str:
+        """
+        Retrieves the Special amp detect mode encoded in the
+        filter_identifier2 variable
+        
+        EM3002 soft sediment detection = special amp detect
+        
+        Returns:
+            A string representing the Special amp detect mode (Normal/Special)
+            as encoded by 'filter_identifier2'
+        """
+    def get_filter_identifier2_as_special_tvg(self) -> str:
+        """
+        Retrieves the Special TVG mode encoded in the filter_identifier2
+        variable
+        
+        Returns:
+            A string representing the Special TVG mode (Normal/Special) as
+            encoded by 'filter_identifier2'
+        """
+    def get_filter_identifier_as_aeration_filter(self) -> str:
+        """
+        Retrieves the Aearation filter status encoded in the filter_identifier
+        variable
+        
+        Returns:
+            A string representing the Aeration filter status (On or Off) as
+            encoded by 'filter_identifier'
+        """
+    def get_filter_identifier_as_interference_filter(self) -> str:
+        """
+        Retrieves the Interference filter status encoded in the
+        filter_identifier variable
+        
+        Returns:
+            A string representing the Interference filter status (On or Off)
+            as encoded by 'filter_identifier'
+        """
+    def get_filter_identifier_as_range_gates_size(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Range gates size encoded in the mode variable
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the range
+            gates size is not handled by the function. Otherwise: 'None' is
+            returned
+        
+        Returns:
+            A string representing Range gates size as encoded by 'mode'
+        """
+    def get_filter_identifier_as_slope_filter(self) -> str:
+        """
+        Retrieves slope filter status encoded in the filter_identifier
+        variable
+        
+        Returns:
+            A string representing the slope filter status (On or Off) as
+            encoded by 'filter_identifier'
+        """
+    def get_filter_identifier_as_spike_filter(self) -> str:
+        """
+        Retrieves spike filter setup encoded in the filter_identifier variable
+        
+        Returns:
+            A string representing the spike filter setup as encoded by
+            'filter_identifier'
+        """
     def get_maximum_depth(self) -> int:
         """
         < in meter
@@ -2886,14 +3006,114 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def get_mode(self) -> int:
         ...
+    def get_mode2_as_pulselength(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Pulselength encoded in the mode2 variable
+        
+        The decoding is EM model specific. Currently only outputs sensefull
+        values for EM2040 and EM2040C. See datagram format specification for
+        details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: 'Sonar head use
+            unhandled' is returned
+        
+        Returns:
+            A string representing Pulselength as encoded by 'mode2'
+        """
+    def get_mode2_as_receive_fixed_gain_setting_dB(self, unhandled_value: int | None = None) -> int | None:
+        """
+        Retrieves receiver fixed gain setting encoded in the mode2 variable
+        
+        The decoding is EM model specific. This only outputs sensefull values
+        for EM2000, EM1002, EM3000, EM3002, EM300, EM120. See datagram format
+        specification for details.
+        
+        Parameter ``unhandled_value``:
+            If provided, this value is used as the return value if the mode is
+            not handled for the specific system. Otherwise: 'None' is returned
+        
+        Returns:
+            A uint8_t representing receiver fixed gain setting use as encoded
+            by 'mode2'
+        """
+    def get_mode2_as_rx_or_sonar_head_use(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Rx array/ sonar head encoded in the mode2 variable
+        
+        The decoding is EM model specific. Currently only outputs sensefull
+        values for EM2040 and EM2040C. See datagram format specification for
+        details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: 'None' is
+            returned
+        
+        Returns:
+            A string representing Rx array / Sonar head use as encoded by
+            'mode2'
+        """
     def get_mode2_or_receiver_fixed_gain_setting(self) -> int:
         """
         < in dB
         """
-    def get_mode_as_ping_mode(self) -> str:
-        ...
+    def get_mode_as_dual_swath_mode(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Dual swath mode encoded in the mode variable
+        
+        The decoding is EM model specific. See datagram format specification
+        for details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: None is
+            returned
+        
+        Returns:
+            A string representing Tx pulse form as encoded by 'mode'
+        """
+    def get_mode_as_ping_mode(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Ping mode decoded in the 'mode' variable.
+        
+        The decoding is EM model specific. See datagram format specification
+        for details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: None is
+            returned
+        
+        Returns:
+            A string representing Ping mode as encoded by 'mode'
+        """
+    def get_mode_as_tx_pulse_form(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves Tx pulse form encoded in the mode variable
+        
+        The decoding is EM model specific. See datagram format specification
+        for details.
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled for the specific system. Otherwise: None is
+            returned.
+        
+        Returns:
+            A string representing Tx pulse form as encoded by 'mode'
+        """
     def get_operator_station_status(self) -> int:
         ...
+    def get_passive_mode_enabled(self) -> bool:
+        """
+        Retrieves the Passive mode option (On/Off) encoded in the 'source of
+        sound speed at transducer' variable
+        
+        Returns:
+            True if the Passive mode option is enabled, false otherwise
+        """
     def get_ping_counter(self) -> int:
         ...
     def get_processing_unit_status(self) -> int:
@@ -2922,8 +3142,39 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def get_sonar_head_or_transceiver_status(self) -> int:
         ...
+    @typing.overload
+    def get_sonar_mode_enabled(self) -> bool:
+        """
+        Retrieves the Sonar mode option (On/Off) encoded in the 'source of
+        sound speed at transducer' variable
+        
+        Returns:
+            True if the Sonar mode option is enabled, false otherwise
+        """
+    @typing.overload
+    def get_sonar_mode_enabled(self) -> bool:
+        """
+        Retrieves the Sonar mode option (On/Off) encoded in the 'source of
+        sound speed at transducer' variable
+        
+        Returns:
+            True if the Sonar mode option is enabled, false otherwise
+        """
     def get_source_of_sound_speed_at_transducer(self) -> int:
         ...
+    def get_source_of_sound_speed_at_transducer_as_string(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves the source of sound speed at transducer encoded in the
+        'source of sound speed at transducer' variable
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the
+            source of sound speed at transducer mode specified is not handled.
+        
+        Returns:
+            A string representing the source of sound speed at transducer as
+            encoded by the 'source of sound speed at transducer' variable
+        """
     def get_system_serial_number(self) -> int:
         ...
     def get_transmit_along_tilt(self) -> int:
@@ -2969,6 +3220,37 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def get_yaw_and_pitch_stabilization_mode(self) -> int:
         ...
+    def get_yaw_and_pitch_stabilization_mode_as_heading_filter(self, unhandled_message: str | None = None) -> str | None:
+        """
+        Retrieves heading filter mode encoded in the
+        yaw_and_pitch_stabilization_mode variable
+        
+        Parameter ``unhandled_message``:
+            If provided, this message is used as the return value if the mode
+            is not handled by the function. Otherwise: 'None' is returned
+        
+        Returns:
+            A string representing heading filter mode as encoded by
+            'yaw_and_pitch_stabilization_mode'
+        """
+    def get_yaw_and_pitch_stabilization_mode_as_pitch_stibilization(self) -> str:
+        """
+        Retrieves pitch stabilization mode (on/off) encoded in the
+        yaw_and_pitch_stabilization_mode variable
+        
+        Returns:
+            A string representing pitch stabilization mode as encoded by
+            'yaw_and_pitch_stabilization_mode'
+        """
+    def get_yaw_and_pitch_stabilization_mode_as_yaw_stabilization(self) -> str:
+        """
+        Retrieves yaw and pitch stabilization mode encoded in the
+        yaw_and_pitch_stabilization_mode variable
+        
+        Returns:
+            A string representing yaw_and_pitch_stabilization_mode as encoded
+            by 'yaw_and_pitch_stabilization_mode'
+        """
     def hash(self) -> int:
         """
         hash function implemented using binary_hash

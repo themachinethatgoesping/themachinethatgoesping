@@ -6,14 +6,23 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.26.3] - 28-11-2024
 
 - echosounders -> 0.44.2
+- tools -> 0.28.2
 
 ### Added
 - echosounders
-  - decoding KongsbergAllRuntimeParameters: mode / pingmode
+  - decoding KongsbergAllRuntimeParameters: mode
+  - decoding KongsbergAllRuntimeParameters: mode2
+  - decoding KongsbergAllRuntimeParameters: filter_identifier
+  - decoding KongsbergAllRuntimeParameters: filter_identifier2
+  - decoding KongsbergAllRuntimeParameters: yaw_and_pitch_stabilization
+  - decoding KongsbergAllRuntimeParameters: beam_spacing
+  - decoding KongsbergAllRuntimeParameters: source_of_sound_speed_at_transducer_as_string
   - decode model number as string for all datagrams
+- tools
+  - objectprinter: register_string_with_delimiter function
 
 ## [0.26.2] - 26-11-2024
 

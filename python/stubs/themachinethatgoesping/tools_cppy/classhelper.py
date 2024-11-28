@@ -146,7 +146,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: float | None, value_info: str = '', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: float | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -173,7 +173,7 @@ class ObjectPrinter:
             The position to register the value at (default is -1).
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: int | None, value_info: str = '', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: int | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -200,7 +200,7 @@ class ObjectPrinter:
             The position to register the value at (default is -1).
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: str | None, value_info: str = '', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -239,6 +239,52 @@ class ObjectPrinter:
         Parameter ``pos``:
             position where the value is registers (if negative, the value is
             appended)
+        """
+    def register_string(self, name: str, value: str, value_info: str = '', pos: int = -1, max_visible_elements: int = 0) -> None:
+        """
+        register a formatted string field for printing
+        
+        Parameter ``name``:
+            name of the variable
+        
+        Parameter ``value``:
+            value of the variable
+        
+        Parameter ``value_info``:
+            additional info (is printed in [] behind the variable)
+        
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
+        
+        Parameter ``max_visible_elements``:
+            maximum of chars that are printed (if 0, all elements are printed)
+        """
+    def register_string_with_delimiters(self, name: str, value: str, value_info: str = '', delimiter_left: str = '"', delimiter_right: str = '"', pos: int = -1, max_visible_elements: int = 0) -> None:
+        """
+        register a formatted string field for printing, with delimiters
+        
+        Parameter ``name``:
+            name of the variable
+        
+        Parameter ``value``:
+            value of the variable
+        
+        Parameter ``delimiter_left``:
+            left delimiter
+        
+        Parameter ``delimiter_right``:
+            right delimiter
+        
+        Parameter ``value_info``:
+            additional info (is printed in [] behind the variable)
+        
+        Parameter ``pos``:
+            position where the value is registers (if negative, the value is
+            appended)
+        
+        Parameter ``max_visible_elements``:
+            maximum of chars that are printed (if 0, all elements are printed)
         """
     @typing.overload
     def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None:
