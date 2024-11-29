@@ -14,6 +14,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - pingprocessing:
   - EchoProxy: basic selecting layer support
+  - EchogramViewer: callback_view function
 
 ### Fixed
 
