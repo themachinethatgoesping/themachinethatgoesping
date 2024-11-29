@@ -6,6 +6,20 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- pingprocessing -> 0.9.3
+
+### Added
+
+- pingprocessing:
+  - EchoProxy: basic selecting layer support
+
+### Fixed
+
+- pingprocessing:
+- incorrect ping reduction for filter_pings.by_ping_times
+
 ## [0.26.3] - 28-11-2024
 
 - echosounders -> 0.44.2
