@@ -8,13 +8,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [Unreleased]
 
-- pingprocessing -> 0.9.3
+- pingprocessing -> 0.10.0
 
 ### Added
 
 - pingprocessing:
-  - EchoProxy: basic selecting layer support
+  - EchogramBuilder: basic selecting layer support
+  - EchogramBuilder: add and create layers
   - EchogramViewer: callback_view function
+  - EchogramViewer: show layers if they are available
+  - renamed EchoProxy -> EchogramBuilder
 
 ### Fixed
 
@@ -48,7 +51,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders
   - decode mode and mode2 for KongsbergAllRuntimeParameters
 - pingprocessing -> 0.9.2
-  - no_navigation mode for echodata and echoproxy from_pings functions
+  - no_navigation mode for echodata and echogrambuilder from_pings functions
   - invert_y_axis for echogramviewer
 
 ## [0.26.1] - 25-11-2024
@@ -234,7 +237,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Added
 
-- EchoProxy class to pingprocessing
+- EchogramBuilder class to pingprocessing
 - tools:
   - substract_set_zero_if_negative helper function
 - echosounders: 
