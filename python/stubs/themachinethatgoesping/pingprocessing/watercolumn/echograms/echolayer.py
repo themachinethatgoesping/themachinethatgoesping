@@ -4,7 +4,7 @@ import numpy as np
 import themachinethatgoesping as theping
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 import typing
-__all__ = ['EchoLayer', 'GeneratorPingData', 'PingData', 'dt', 'get_progress_iterator', 'np', 'theping']
+__all__ = ['EchoLayer', 'PingData', 'dt', 'get_progress_iterator', 'np', 'theping']
 class EchoLayer:
     __firstlineno__: typing.ClassVar[int] = 8
     __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'i0', 'i1')
@@ -22,15 +22,6 @@ class EchoLayer:
     def combine(self, other):
         ...
     def get_y_indices(self, wci_nr):
-        ...
-class GeneratorPingData:
-    __firstlineno__: typing.ClassVar[int] = 117
-    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'nrs')
-    def __getitem__(self, nr):
-        ...
-    def __init__(self, echodata, keep_to_xlimits = True):
-        ...
-    def __len__(self):
         ...
 class PingData:
     __firstlineno__: typing.ClassVar[int] = 94
