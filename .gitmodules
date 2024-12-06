@@ -4,12 +4,6 @@
 	branch = main
 	update = rebase
 
-[submodule "subprojects/meson-python"]
-	path = subprojects/meson-python
-	url = ../meson-python.git
-	branch = main
-	update = rebase
-
 [submodule "subprojects/pybind11_mkdoc"]
 	path = subprojects/pybind11_mkdoc
 	url = https://github.com/pybind/pybind11_mkdoc.git
