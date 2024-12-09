@@ -99,3 +99,27 @@ testpaths = [
 setup = ["--default-library=static", "-Doptimization=3"]
 compile = []
 install = ['--tags=runtime,python-runtime'] 
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10, <4"
+matplotlib = "3.9.3"
+jupyterlab = "4.2.6"
+ipympl = "^0.9.4"
+nbmake = "^1.5.4"
+ipyleaflet = "^0.19.2"
+numba = "^0.60" #setting this here makes sure that e.g. numpy version is set compatible by poetry
+numpy = "^2"
+pytimeparse2 = "^1.7.1"
+gsw = "^3.6.19"
+ipywidgets = "^8.1.5"
+tqdm = "^4.67.1"
+ninja = "^1.11.1.2"
+meson = "^1.2.3"
+meson-python = "^0.17.1"
+pytest = "^8.3.4"
+pybind11-stubgen = "^2.5.1"
+clang = "^17.0.6"
+rasterio = "^1.3"

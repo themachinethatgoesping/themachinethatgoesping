@@ -1,7 +1,7 @@
 from __future__ import annotations
 from collections import defaultdict
 import os as os
-from pathlib._local import Path
+from pathlib import Path
 import pickle as pickle
 from themachinethatgoesping.echosounders_cppy import filetemplates
 from tqdm.asyncio import tqdm_asyncio as tqdm
