@@ -9,7 +9,7 @@ from rasterio import plot as rioplt
 from rasterio import warp as riowarp
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 __all__ = ['MemoryFile', 'contextmanager', 'create_figure', 'defaultdict', 'get_progress_iterator', 'np', 'plot_latlon', 'plt', 'reproject_raster', 'rio', 'rioplt', 'riowarp']
-def create_figure(name: str, aspect: str = 'equal', close_plots: bool = True, background_image_path: str = None, dst_crs = 'EPSG:4326', return_crs = False, **kwargs) -> typing.Tuple[matplotlib.figure.Figure, matplotlib.axes._axes.Axes]:
+def create_figure(name: str, aspect: str = 'equal', close_plots: bool = True, background_image_path: str = None, background_colorbar_label = None, colorbar_orientation = 'vertical', add_grid = True, dst_crs = 'EPSG:4326', return_crs = False, **kwargs) -> typing.Tuple[matplotlib.figure.Figure, matplotlib.axes._axes.Axes]:
     """
     
     Create a figure with a given name and aspect ratio.

@@ -1,6 +1,6 @@
 from __future__ import annotations
-import numpy
 import numpy as np
+import numpy
 import themachinethatgoesping as theping
 from themachinethatgoesping.algorithms import geoprocessing as gp
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
