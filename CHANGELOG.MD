@@ -8,9 +8,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [Unreleased]
 
+- pingprocessing -> 0.10.2
+
+### Added
+
+- pingprocessing:
+  - EchogramViewer: voffsets option to set value offsets for layer colorbars
+  - EchogramBuilder: seperate clear_main_layer function
+
 ### Maintenance
 
 - support for installing build-requirements using poetry
+- pingprocessing: removed deprecated EchogramGroup class
 
 ## [0.27.1] - 09-12-2024
 
