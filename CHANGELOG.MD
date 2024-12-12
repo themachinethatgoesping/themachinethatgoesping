@@ -9,12 +9,20 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - pingprocessing -> 0.10.2
+- echosounders -> 0.44.3
 
 ### Added
 
 - pingprocessing:
   - EchogramViewer: voffsets option to set value offsets for layer colorbars
   - EchogramBuilder: seperate clear_main_layer function
+  - EchogramBuilder and ImageBuilder: use same apply_pss_to_bottom function
+
+### Fixed
+
+- echosounders:
+  - PingSampleSelector: accept optional/None arguments for all select functions
+  - WCIViewer: added missing with self.output tags
 
 ### Maintenance
 
