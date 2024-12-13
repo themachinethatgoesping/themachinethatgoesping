@@ -2378,6 +2378,23 @@ files = [
 tests = ["pytest"]
 
 [[package]]
+name = "pybind11-mkdoc"
+version = "2.6.2"
+description = "This is a package for building pybind11 docstrings from C++ header comments."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "pybind11_mkdoc-2.6.2-py3-none-any.whl", hash = "sha256:449f42adcb3b7c048c2d89f1f38dce1b425ada856f1c7e9868d57553ce1e89fa"},
+    {file = "pybind11_mkdoc-2.6.2.tar.gz", hash = "sha256:a47570699058c8c6bdb3bf16420cf0ebd7fb11058ee812d765b365a8ed9aaae8"},
+]
+
+[package.dependencies]
+clang = "*"
+
+[package.extras]
+test = ["pybind11", "pytest", "pytest-xdist"]
+
+[[package]]
 name = "pybind11-stubgen"
 version = "2.5.1"
 description = "PEP 561 type stubs generator for pybind11 modules"
@@ -3356,4 +3373,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <4"
-content-hash = "0706bf540550b3eb54e386c82ca146b466e07206051bd7670b3c8b0ace7db235"
+content-hash = "803d581e7b4fcc5cd27ecf0d04dd0c1955d7be6c30bb94e0df4b7fed85cdc693"

@@ -193,16 +193,16 @@ class KongsbergAllFileHandler:
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
     @typing.overload
-    def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -214,7 +214,7 @@ class KongsbergAllFileHandler:
         """
     def get_channel_ids(self) -> list[str]:
         ...
-    def get_file_cache_paths(self) -> dict[str, str]:
+    def get_index_paths(self) -> dict[str, str]:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer:
         ...
@@ -263,16 +263,16 @@ class KongsbergAllFileHandler_stream:
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
     @typing.overload
-    def __init__(self, file_path: str, file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], file_cache_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], file_cache_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -284,7 +284,7 @@ class KongsbergAllFileHandler_stream:
         """
     def get_channel_ids(self) -> list[str]:
         ...
-    def get_file_cache_paths(self) -> dict[str, str]:
+    def get_index_paths(self) -> dict[str, str]:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_stream:
         ...

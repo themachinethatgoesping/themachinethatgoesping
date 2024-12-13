@@ -45,10 +45,10 @@ class SimradRawAnnotationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -180,7 +180,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -282,7 +282,7 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -334,10 +334,10 @@ class SimradRawAnnotationDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -415,10 +415,10 @@ class SimradRawConfigurationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -580,7 +580,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -716,7 +716,7 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -768,10 +768,10 @@ class SimradRawConfigurationDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -853,10 +853,10 @@ class SimradRawDatagramDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -990,7 +990,7 @@ class SimradRawDatagramDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -1094,7 +1094,7 @@ class SimradRawDatagramDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -1146,10 +1146,10 @@ class SimradRawDatagramDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1325,10 +1325,10 @@ class SimradRawEnvironmentDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1458,7 +1458,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -1558,7 +1558,7 @@ class SimradRawEnvironmentDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -1606,10 +1606,10 @@ class SimradRawEnvironmentDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1699,10 +1699,10 @@ class SimradRawNavigationDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1842,7 +1842,7 @@ class SimradRawNavigationDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -1950,7 +1950,7 @@ class SimradRawNavigationDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -2014,10 +2014,10 @@ class SimradRawNavigationDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2107,10 +2107,10 @@ class SimradRawOtherFileDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2244,7 +2244,7 @@ class SimradRawOtherFileDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -2348,7 +2348,7 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -2400,10 +2400,10 @@ class SimradRawOtherFileDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2489,10 +2489,10 @@ class SimradRawPingDataInterface:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2626,7 +2626,7 @@ class SimradRawPingDataInterfacePerFile:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -2644,7 +2644,7 @@ class SimradRawPingDataInterfacePerFile:
         """
         Print object information
         """
-    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
+    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
 class SimradRawPingDataInterfacePerFile_stream:
     """
@@ -2732,7 +2732,7 @@ class SimradRawPingDataInterfacePerFile_stream:
         """
         Return object information as string
         """
-    def init_from_file(self, cache_file_path: str = '', force: bool = False) -> None:
+    def init_from_file(self, index_path: str = '', force: bool = False) -> None:
         ...
     def is_initialized(self) -> bool:
         ...
@@ -2750,7 +2750,7 @@ class SimradRawPingDataInterfacePerFile_stream:
         """
         Print object information
         """
-    def read_pings(self, file_cache_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
+    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
         ...
 class SimradRawPingDataInterface_stream:
     """
@@ -2792,10 +2792,10 @@ class SimradRawPingDataInterface_stream:
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, file_cache_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:

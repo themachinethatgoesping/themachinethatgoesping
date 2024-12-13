@@ -122,7 +122,7 @@ class FileCache:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_file(cache_path: str) -> FileCache:
+    def from_file(index_path: str) -> FileCache:
         ...
     def __copy__(self) -> FileCache:
         ...
@@ -140,7 +140,7 @@ class FileCache:
     def __init__(self, file_name: str, file_size: int) -> None:
         ...
     @typing.overload
-    def __init__(self, cache_path: str, file_name: str, file_size: int, cache_keys: list[str] = []) -> None:
+    def __init__(self, index_path: str, file_name: str, file_size: int, cache_keys: list[str] = []) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -190,7 +190,7 @@ class FileCache:
         """
         convert object to bytearray
         """
-    def update_file(self, cache_path: str, emulate_only: bool = False) -> None:
+    def update_file(self, index_path: str, emulate_only: bool = False) -> None:
         ...
 class I_Ping(I_PingCommon):
     """
@@ -347,6 +347,42 @@ class I_PingBottom(I_PingCommon):
         
         Returns:
             pingtools::BeamSelection
+        """
+    @typing.overload
+    def get_bottom_z(self) -> float:
+        """
+        Computes closest bottom z value from all beams.
+        
+        This function retrieves the z-coordinates of the selected beams and
+        performs outlier filtering to determine a valid bottom z value. If no
+        valid bottom z value is found, an exception is thrown.
+        
+        Parameter ``selection``:
+            The selection of beams from which to compute the bottom z value.
+        
+        Returns:
+            The computed bottom z value.
+        
+        Throws:
+            std::runtime_error If no valid bottom z value is found.
+        """
+    @typing.overload
+    def get_bottom_z(self, beam_selection: ...) -> float:
+        """
+        Computes the closest z value from a given selection of beams.
+        
+        This function retrieves the z-coordinates of the selected beams and
+        performs outlier filtering to determine a valid bottom z value. If no
+        valid bottom z value is found, an exception is thrown.
+        
+        Parameter ``selection``:
+            The selection of beams from which to compute the bottom z value.
+        
+        Returns:
+            The computed bottom z value.
+        
+        Throws:
+            std::runtime_error If no valid bottom z value is found.
         """
     def get_number_of_beams(self) -> int:
         """
@@ -822,10 +858,36 @@ class I_PingWatercolumn(I_PingCommon):
         ...
     @typing.overload
     def get_minslant_sample_nr(self) -> int:
-        ...
+        """
+        Computes the minimum slant sample number from all beams.
+        
+        This function calculates the minimum slant sample number by first
+        obtaining the bottom range samples from the provided beam selection.
+        It then filters out outliers using the Interquartile Range (IQR)
+        method and returns the smallest valid sample number.
+        
+        Returns:
+            The minimum slant sample number.
+        
+        Throws:
+            std::runtime_error If no valid bottom range sample is found.
+        """
     @typing.overload
     def get_minslant_sample_nr(self, beam_selection: ...) -> int:
-        ...
+        """
+        Computes the minimum slant sample number from all beams.
+        
+        This function calculates the minimum slant sample number by first
+        obtaining the bottom range samples from the provided beam selection.
+        It then filters out outliers using the Interquartile Range (IQR)
+        method and returns the smallest valid sample number.
+        
+        Returns:
+            The minimum slant sample number.
+        
+        Throws:
+            std::runtime_error If no valid bottom range sample is found.
+        """
     def get_multisectorwatercolumn_calibration(self) -> ...:
         ...
     def get_number_of_beams(self) -> int:

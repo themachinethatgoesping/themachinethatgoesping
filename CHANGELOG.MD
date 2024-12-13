@@ -8,26 +8,59 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ---
 ## [Unreleased]
 
-- pingprocessing -> 0.10.2
-- echosounders -> 0.44.3
+- pingprocessing -> 0.11.0
+- echosounders -> 0.45.0
+
+### Changed
+
+- pingprocessing:
+  - EchogramBuilder: renamed max_samples parameter -> max_steps to be more uniform with x_axis functions
+- echosounders
+  - Renamed:
+    - file_cache_paths -> index_paths
+    - cache_path -> index_path
+    - cache_file_path -> index_path
+    - cache_root -> index_root
+    - cache_file -> index_file
+    - update_cache -> update_index
+    - .cache -> .index
+    - clean_cache -> clean_index
+    - remove_name_from_cache -> remove_name_from_index
+    - filecache_functions -> index_file_functions
 
 ### Added
 
 - pingprocessing:
   - EchogramViewer: voffsets option to set value offsets for layer colorbars
-  - EchogramBuilder: seperate clear_main_layer function
+  - EchogramBuilder: separate clear_main_layer function
   - EchogramBuilder and ImageBuilder: use same apply_pss_to_bottom function
+  - EchogramBuilder: do not rebuild axis if called with same parameters
+  - EchogramBuilder: ignore additional kwargs in set_x and set_y axis functions
+- echosounders:
+  - I_PingBottom: get_bottom_z function that returns the smallest (filtered) bottom z from a given selection
+
+### Performance
+
+- pingprocessing:
+  - EchogramBuilder: do not rebuild axis if called with same parameters
+  - EchogramBuilder: speed up echogram from_pings by using internal get_minslant_sample_nr function
+  - EchogramBuilder: speed up echogram from_pings by using internal get_bottom_z function
 
 ### Fixed
 
 - echosounders:
   - PingSampleSelector: accept optional/None arguments for all select functions
   - WCIViewer: added missing with self.output tags
+  - do not expose get_index_path function (only used internally by get_index_paths)
+- pingprocessing:
+  - fixed ineffective assert
+  - fixed invalid (negative) indices in echolayers
 
 ### Maintenance
 
 - support for installing build-requirements using poetry
 - pingprocessing: removed deprecated EchogramGroup class
+- delete unused pybind11 doc files
 
 ## [0.27.1] - 09-12-2024
 

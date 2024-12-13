@@ -210,3 +210,4 @@ cython_debug/
 
 /win.ini
 *.tmtgp.cache
+*.tmtgp.index
