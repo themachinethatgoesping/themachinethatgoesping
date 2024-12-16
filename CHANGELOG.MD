@@ -36,6 +36,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - EchogramBuilder and ImageBuilder: use same apply_pss_to_bottom function
   - EchogramBuilder: do not rebuild axis if called with same parameters
   - EchogramBuilder: ignore additional kwargs in set_x and set_y axis functions
+  - preview functions for echograms: LayerGenerator, LayerProcessor
 - echosounders:
   - I_PingBottom: get_bottom_z function that returns the smallest (filtered) bottom z from a given selection
 
@@ -55,6 +56,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing:
   - fixed ineffective assert
   - fixed invalid (negative) indices in echolayers
+  - ignore errors when trying to find bottom layer in echogrambuilder
 
 ### Maintenance
 

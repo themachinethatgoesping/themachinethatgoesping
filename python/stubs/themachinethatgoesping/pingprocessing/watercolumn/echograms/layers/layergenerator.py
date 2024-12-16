@@ -1,0 +1,13 @@
+from __future__ import annotations
+from copy import copy
+import themachinethatgoesping as theping
+__all__ = ['LayerGenerator', 'copy', 'theping']
+class LayerGenerator:
+    def __copy_layer__(self, echogram2, layer_name):
+        ...
+    def __init__(self, echogram_base, echogram_second, cut_in_range = True):
+        ...
+    def __make_layer__(self, layer_range, layer_size = 1):
+        ...
+    def add_layer(self, layer_range, layer_size = 1):
+        ...

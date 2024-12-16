@@ -9,8 +9,8 @@ import themachinethatgoesping as theping
 from themachinethatgoesping import echosounders
 from themachinethatgoesping import pingprocessing
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-from themachinethatgoesping.pingprocessing.watercolumn.echograms.echolayer import EchoLayer
-from themachinethatgoesping.pingprocessing.watercolumn.echograms.echolayer import PingData
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import EchoLayer
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import PingData
 from tqdm.asyncio import tqdm_asyncio as tqdm
 __all__ = ['EchoLayer', 'EchogramBuilder', 'PingData', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'pingprocessing', 'theping', 'tqdm']
 class EchogramBuilder:
