@@ -73,7 +73,7 @@ jobs:
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
               dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
               pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
-              pip2: 'pip install -r requirements.txt --break-system-packages' }
+              pip2: 'pip install -r requirements.txt --break-system-packages --pre' }
     
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
