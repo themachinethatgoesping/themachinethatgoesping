@@ -3,13 +3,15 @@
 Ping is still in the bootstrapping phase, thus changes will be frequent and not always documented. 
 Once the project is more stable, this changelog will be updated more frequently.
 
-Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
+Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be conPsidered a release.
 
 ---
 ## [Unreleased]
 
 - pingprocessing -> 0.11.0
 - echosounders -> 0.45.0
+- navigation -> 0.17.3
+- tools -> 0.28.3
 
 ### Changed
 
@@ -57,12 +59,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - fixed ineffective assert
   - fixed invalid (negative) indices in echolayers
   - ignore errors when trying to find bottom layer in echogrambuilder
+  - replace akkimainterpolator with linearinterpolator to avoid unexpected interpolation behavior
+  - fix wrong has_rangess variable name
 
 ### Maintenance
 
 - support for installing build-requirements using poetry
 - pingprocessing: removed deprecated EchogramGroup class
 - delete unused pybind11 doc files
+- navigation:
+  - updated geographiclib 2.4 -> 2.5
+- tools:
+  - updated fmt 11.0.2 -> 11.1.1
 
 ## [0.27.1] - 09-12-2024
 
