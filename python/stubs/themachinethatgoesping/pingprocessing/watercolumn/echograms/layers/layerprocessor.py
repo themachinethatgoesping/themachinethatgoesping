@@ -8,9 +8,10 @@ import pandas as pd
 import pytimeparse2 as pytimeparse2
 from scipy import stats
 import themachinethatgoesping as theping
+from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import warnings as warnings
-__all__ = ['LayerProcessor', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'np', 'pd', 'pytimeparse2', 'stats', 'theping', 'tqdm', 'warnings']
+__all__ = ['LayerProcessor', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'get_progress_iterator', 'np', 'pd', 'pytimeparse2', 'stats', 'theping', 'tqdm', 'warnings']
 class LayerProcessor:
     @staticmethod
     def __filter_by_layer_size__(data, layers, names = ['mbes', 'sbes']):
@@ -26,7 +27,7 @@ class LayerProcessor:
         ...
     def __add_layer_vals__(self, name, echogram, step = 1, progress = None):
         ...
-    def __init__(self, echograms, names, base_name = None, layers = None, deltaT = '1min', step = 1, min_val_qmin = 0.02, min_val_dmin = 3, only_process_visible = False):
+    def __init__(self, echograms, names, base_name = None, layers = None, deltaT = '1min', step = 1, min_val_qmin = 0.02, min_val_dmin = 3, only_process_visible = False, show_progress = True):
         ...
     def __mark_outliers__(self):
         ...
