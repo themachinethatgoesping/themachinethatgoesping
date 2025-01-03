@@ -967,6 +967,9 @@ class SampleAmplitudesStructure_int16_t:
         return a xtensor of the sample amplitudes of a single beam converted
         to db
         
+        Parameter ``mp_cores``:
+            number of cores to use for parallelization (default 1)
+        
         Parameter ``beam_index``:
             $Returns:
         
@@ -979,6 +982,24 @@ class SampleAmplitudesStructure_int16_t:
     def get_sample_amplitudes_in_db(self) -> numpy.ndarray[numpy.float32]:
         """
         Convert the sample amplitudes to db using _db_step_size.
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    def get_sample_amplitudes_per_beam(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        get all sample amplitude values of all beams in a single xtensor
+        
+        Returns:
+            xt::xtensor<float, 1>
+        """
+    def get_sample_amplitudes_per_beam_in_db(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        """
+        get all sample amplitude valuesof all beams in a single xtensor in db
+        Convert the sample amplitudes to db using _db_step_size.
+        
+        Parameter ``mp_cores``:
+            number of cores to use for parallelization (default 1)
         
         Returns:
             xt::xtensor<float, 1>

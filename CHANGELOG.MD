@@ -12,6 +12,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.45.0
 - navigation -> 0.17.3
 - tools -> 0.28.3
+- gridding -> 0.2.1
 
 ### Changed
 
@@ -41,6 +42,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - preview functions for echograms: LayerGenerator, LayerProcessor
 - echosounders:
   - I_PingBottom: get_bottom_z function that returns the smallest (filtered) bottom z from a given selection
+  - KongsbergAll sampleampltudestructure: get_sample_amplitudes_per_beam function to return 2d array of amplitudes
+  - improved get sample_amplitudes function from sampleampltiudes structure (kongsberg)
+- gridding:
+  - removed limitation that value must be > 0
 
 ### Performance
 
