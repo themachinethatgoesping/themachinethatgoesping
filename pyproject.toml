@@ -44,6 +44,7 @@ dependencies = [
   'gsw', # Gibbs seawater package
   'pytimeparse2 >= 1.7.1',
   'pandas',
+  'scipy',
 ]
 
 
