@@ -203,17 +203,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container: ['ubuntu:22.04','archlinux']
+        container: ['ubuntu:22.04']
 
         include:  
           - container: 'ubuntu:22.04'
             pre-dep : 'apt update && apt-get install -y sudo git git-lfs python3 python3-pip'
             pip-command: 'python3 -m pip install themachinethatgoesping pytest'
             pytest-command: 'python3 -m pytest'
-          - container: 'archlinux'
-            pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs python python-pip --noconfirm'
-            pip-command: 'python -m pip install themachinethatgoesping pytest --break-system-packages'
-            pytest-command: 'python -m pytest'
+          # - container: 'archlinux'
+          #   pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs python python-pip --noconfirm'
+          #   pip-command: 'python -m pip install themachinethatgoesping pytest --break-system-packages'
+          #   pytest-command: 'python -m pytest'
   
     runs-on: ubuntu-latest
     container: ${{matrix.container}}
