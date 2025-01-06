@@ -30,3 +30,5 @@ fmt.wrap
 magic_enum.wrap
 indicators*
 frozen*
+nanobind**
+robin-map**

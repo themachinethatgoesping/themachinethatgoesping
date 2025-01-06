@@ -3,10 +3,10 @@
 Ping is still in the bootstrapping phase, thus changes will be frequent and not always documented. 
 Once the project is more stable, this changelog will be updated more frequently.
 
-Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be conPsidered a release.
+Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.28.0] - 06-02-2024
 
 - pingprocessing -> 0.11.0
 - echosounders -> 0.45.0
@@ -72,10 +72,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - support for installing build-requirements using poetry
 - pingprocessing: removed deprecated EchogramGroup class
 - delete unused pybind11 doc files
+- build with LinkTimeOptimization (LTO) for faster builds
 - navigation:
   - updated geographiclib 2.4 -> 2.5
 - tools:
   - updated fmt 11.0.2 -> 11.1.1
+  - update Catch2 3.7.1 -> 3.8.0
 
 ## [0.27.1] - 09-12-2024
 
