@@ -6,6 +6,14 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- tools -> 0.28.4
+
+### Maintanance
+
+- updated sse2neon 1.7.0 -> 1.8.0
+
 ## [0.28.1] - 06-02-2024
 
 - pingprocessing -> 0.11.1
