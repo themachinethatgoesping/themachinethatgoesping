@@ -5,4 +5,4 @@ from . import echogrid
 from . import forwardgridder
 from . import functions
 __all__ = ['EchoGrid', 'ForwardGridder', 'echogrid', 'forwardgridder', 'functions']
-__version__: str = '0.2.1'
+__version__: str = '@PROJECT_VERSION@'

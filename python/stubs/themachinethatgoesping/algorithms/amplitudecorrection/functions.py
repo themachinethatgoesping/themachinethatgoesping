@@ -378,9 +378,9 @@ def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float32], absorpti
     ranges, absorption coefficient, and time-varying gain (TVG) factor.
     The range correction is computed using the formula:
     
-    \\f[ \\text{range correction} = 2 \\cdot \\text{absorption\\_db\\_m} \\cdot
-    \\text{ranges\\_m} + \\text{tvg\\_factor} \\cdot
-    \\log_{10}(\\text{ranges\\_m}) \\f]
+    \f[ \text{range correction} = 2 \cdot \text{absorption\_db\_m} \cdot
+    \text{ranges\_m} + \text{tvg\_factor} \cdot
+    \log_{10}(\text{ranges\_m}) \f]
     
     If the absorption coefficient is finite and non-zero, it is used in
     the calculation. If the TVG factor is finite and non-zero, it is also
@@ -413,9 +413,9 @@ def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float64], absorpti
     ranges, absorption coefficient, and time-varying gain (TVG) factor.
     The range correction is computed using the formula:
     
-    \\f[ \\text{range correction} = 2 \\cdot \\text{absorption\\_db\\_m} \\cdot
-    \\text{ranges\\_m} + \\text{tvg\\_factor} \\cdot
-    \\log_{10}(\\text{ranges\\_m}) \\f]
+    \f[ \text{range correction} = 2 \cdot \text{absorption\_db\_m} \cdot
+    \text{ranges\_m} + \text{tvg\_factor} \cdot
+    \log_{10}(\text{ranges\_m}) \f]
     
     If the absorption coefficient is finite and non-zero, it is used in
     the calculation. If the TVG factor is finite and non-zero, it is also
