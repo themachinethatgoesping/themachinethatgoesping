@@ -9,10 +9,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - tools -> 0.28.4
+- echosounders -> 0.45.1
 
 ### Maintanance
 
 - updated sse2neon 1.7.0 -> 1.8.0
+- update pugixml 1.14 -> 1.15
 
 ## [0.28.1] - 06-02-2024
 

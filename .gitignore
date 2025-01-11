@@ -211,3 +211,7 @@ cython_debug/
 /win.ini
 *.tmtgp.cache
 *.tmtgp.index
+
+# pixi environments
+.pixi
+*.egg-info
