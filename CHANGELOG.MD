@@ -11,6 +11,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.28.4
 - echosounders -> 0.45.1
 
+### Added
+
+- tools:
+  - BiVectorInterpolators
+
 ### Maintanance
 
 - updated sse2neon 1.7.0 -> 1.8.0

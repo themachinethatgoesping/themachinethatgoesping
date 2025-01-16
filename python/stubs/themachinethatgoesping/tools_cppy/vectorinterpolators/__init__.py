@@ -4,7 +4,8 @@ Classes for getting interpolated values from within vectors
 from __future__ import annotations
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['AkimaInterpolator', 'AkimaInterpolatorFF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
+from . import bivectorinterpolators
+__all__ = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
 class AkimaInterpolator:
     """
     Interpolator class to perform a (modified) akima interpolation. Uses
@@ -193,7 +194,7 @@ class AkimaInterpolator:
         """
         convert object to bytearray
         """
-class AkimaInterpolatorFF:
+class AkimaInterpolatorF:
     """
     Interpolator class to perform a (modified) akima interpolation. Uses
     boost makima interpolator. Note: this interpolator acts as linear
@@ -206,7 +207,7 @@ class AkimaInterpolatorFF:
     def _pybind11_conduit_v1_(*args, **kwargs):
         ...
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AkimaInterpolatorFF:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AkimaInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
@@ -233,11 +234,11 @@ class AkimaInterpolatorFF:
         Returns:
             corresponding y value
         """
-    def __copy__(self) -> AkimaInterpolatorFF:
+    def __copy__(self) -> AkimaInterpolatorF:
         ...
-    def __deepcopy__(self, arg0: dict) -> AkimaInterpolatorFF:
+    def __deepcopy__(self, arg0: dict) -> AkimaInterpolatorF:
         ...
-    def __eq__(self, other: AkimaInterpolatorFF) -> bool:
+    def __eq__(self, other: AkimaInterpolatorF) -> bool:
         ...
     def __getstate__(self) -> bytes:
         ...
@@ -284,7 +285,7 @@ class AkimaInterpolatorFF:
         Parameter ``y``:
             corresponding y value
         """
-    def copy(self) -> AkimaInterpolatorFF:
+    def copy(self) -> AkimaInterpolatorF:
         """
         return a copy using the c++ default copy constructor
         """

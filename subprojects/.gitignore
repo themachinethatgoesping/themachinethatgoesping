@@ -15,7 +15,7 @@ pugixml*
 xsimd*
 xtl*
 fast_float*
-xxhash_cpp**
+xxhash_cpp*
 date**
 sse2neon**
 flat_map**

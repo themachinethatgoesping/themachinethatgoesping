@@ -58,9 +58,9 @@ class AmplitudeCalibration:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+    def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
         ...
-    def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorFF:
+    def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
         ...
     @typing.overload
     def get_offset_per_beamangle(self, beamangle: list[float]) -> list[float]:
