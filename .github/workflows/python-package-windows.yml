@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2019]
+        os: [windows-2025]
         python-version: ['3.10','3.11','3.12']
         boost-version: [1.87.0]
         boost-version_: [1_87_0]
