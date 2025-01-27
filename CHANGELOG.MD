@@ -20,7 +20,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - updated sse2neon 1.7.0 -> 1.8.0
 - update pugixml 1.14 -> 1.15
-- fmt 11.1.1 -> 11.1.2
+- fmt 11.1.1 -> 11.1.3
 
 ## [0.28.1] - 06-02-2024
 
