@@ -9,6 +9,9 @@ import typing
 import warnings as warnings
 __all__ = ['EchoGrid', 'EchoGridDict', 'ForwardGridder', 'MutableMapping', 'gf', 'njit', 'np', 'static_get_target_pos', 'warnings']
 class EchoGrid:
+    @classmethod
+    def from_data(cls, res, sx, sy, sz, sv):
+        ...
     def __init__(self, imagesums, imagenums, gridder):
         ...
     def cutDepthLayer(self, layer_z, layer_size):
