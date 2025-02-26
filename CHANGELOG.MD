@@ -6,6 +6,14 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
+## [Unreleased]
+
+- tools -> 0.28.5
+
+### Maintanances
+
+- updated xsimd 13.0.0 -> 13.2.0
+
 ## [0.28.1] - 17-02-2024
 
 - tools -> 0.28.4
