@@ -509,7 +509,7 @@ def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., pre
     Returns:
         converted latitude string
     """
-def latlon_to_utm(latitude: list[float], longitude: list[float], setzone: int) -> tuple[list[float], list[float], int, bool]:
+def latlon_to_utm(latitude: numpy.ndarray[numpy.float64], longitude: numpy.ndarray[numpy.float64], setzone: int = -1, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64], int, bool]:
     ...
 @typing.overload
 def longitude_to_string(longitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
@@ -548,10 +548,10 @@ def longitude_to_string(longitude: list[float], format: t_latlon_format = ..., p
         converted latitude string
     """
 @typing.overload
-def utm_to_latlon(northing: list[float], easting: list[float], zone: int, northern_hemisphere: bool) -> tuple[list[float], list[float]]:
+def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: int, northern_hemisphere: bool, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     ...
 @typing.overload
-def utm_to_latlon(northing: list[float], easting: list[float], zone: list[int], northern_hemisphere: list[bool]) -> tuple[list[float], list[float]]:
+def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: numpy.ndarray[numpy.int32], northern_hemisphere: numpy.ndarray[numpy.int32], mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     ...
 degrees: t_latlon_format  # value = <t_latlon_format.degrees: 0>
 minutes: t_latlon_format  # value = <t_latlon_format.minutes: 1>

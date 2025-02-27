@@ -9,10 +9,17 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased]
 
 - tools -> 0.28.5
+- navigation -> 17.4.0
+
+### Improvements
+
+- navigation:
+  - multicoreprocessing for utm/latlon conversion
 
 ### Maintanances
 
 - updated xsimd 13.0.0 -> 13.2.0
+- updated fmt 11.1.3 -> 11.1.4
 
 ## [0.28.1] - 17-02-2024
 
