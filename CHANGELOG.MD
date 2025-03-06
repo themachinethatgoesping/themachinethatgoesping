@@ -10,11 +10,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools -> 0.28.5
 - navigation -> 17.4.0
+- algorithms -> 0.9.1
+- gridding -> 0.2.3
 
 ### Improvements
 
 - navigation:
   - multicoreprocessing for utm/latlon conversion
+- algorithms:
+  - added imageprocessing/find_local_maxima function
+- tools:
+  - add xtensor_3d concept
+- gridding:
+  - blockmean function for from_data method
 
 ### Maintanances
 
