@@ -15,6 +15,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Improvements
 
+- themachinethatgoesping:
+  - added bindings for python 3.13
 - navigation:
   - multicoreprocessing for utm/latlon conversion
 - algorithms:

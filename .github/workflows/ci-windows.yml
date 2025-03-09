@@ -87,7 +87,7 @@ jobs:
     - name: setup python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     
     # make sure meson can find msvc
     - uses: TheMrMilchmann/setup-msvc-dev@v2
