@@ -1,4 +1,4 @@
-sphinx == 7.2.6
+sphinx == 8.2.3
 readthedocs-sphinx-ext
 sphinx-autoapi
 sphinx-design

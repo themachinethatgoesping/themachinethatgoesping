@@ -11,12 +11,13 @@ from themachinethatgoesping.pingprocessing.core.asserts import assert_valid_argu
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import EchoLayer
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import PingData
+from themachinethatgoesping.pingprocessing.watercolumn import helper as wchelper
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import typing
-__all__ = ['EchoLayer', 'EchogramBuilder', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'tools', 'tqdm']
+__all__ = ['EchoLayer', 'EchogramBuilder', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'tools', 'tqdm', 'wchelper']
 class EchogramBuilder:
-    __firstlineno__: typing.ClassVar[int] = 24
+    __firstlineno__: typing.ClassVar[int] = 26
     __static_attributes__: typing.ClassVar[tuple] = ('__x_kwargs', '__y_kwargs', 'beam_sample_selections', 'depth_to_y_coordinate_interpolator', 'has_depths', 'has_ranges', 'has_sample_nrs', 'indice_to_x_coordinate_interpolator', 'initialized', 'layers', 'linear_mean', 'main_layer', 'max_depths', 'max_number_of_samples', 'max_ranges', 'max_sample_nrs', 'min_depths', 'min_ranges', 'min_sample_nrs', 'param', 'ping_numbers', 'ping_times', 'pings', 'range_to_y_coordinate_interpolator', 'res_depths', 'res_ranges', 'res_sample_nrs', 'sample_nr_to_y_coordinate_interpolator', 'time_zone', 'vec_max_y', 'vec_min_y', 'vec_x_val', 'wci_value', 'x_axis_function', 'x_axis_name', 'x_coordinate_indice_interpolator', 'x_coordinates', 'x_extent', 'x_interpolation_limit', 'x_resolution', 'y_axis_function', 'y_axis_name', 'y_coordinate_indice_interpolator', 'y_coordinates', 'y_extent', 'y_indice_to_depth_interpolator', 'y_indice_to_range_interpolator', 'y_indice_to_sample_nr_interpolator', 'y_indice_to_y_coordinate_interpolator', 'y_resolution')
     @staticmethod
     def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_steps = 1024):
