@@ -3,7 +3,7 @@ from collections import defaultdict
 import hashlib as hashlib
 import numpy as np
 import os as os
-from pathlib import Path
+from pathlib._local import Path
 import pickle as pickle
 from themachinethatgoesping.echosounders.index_functions.find_files import find_files
 from themachinethatgoesping.echosounders.index_functions.find_files import find_folders_with_files

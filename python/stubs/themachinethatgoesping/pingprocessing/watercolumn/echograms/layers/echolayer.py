@@ -1,10 +1,15 @@
 from __future__ import annotations
 import datetime as dt
 import numpy as np
-import themachinethatgoesping as theping
+from themachinethatgoesping.pingprocessing.core.asserts import assert_length
+from themachinethatgoesping.pingprocessing.core.asserts import assert_valid_argument
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-__all__ = ['EchoLayer', 'PingData', 'dt', 'get_progress_iterator', 'np', 'theping']
+from themachinethatgoesping import tools
+import typing
+__all__ = ['EchoLayer', 'PingData', 'assert_length', 'assert_valid_argument', 'dt', 'get_progress_iterator', 'np', 'tools']
 class EchoLayer:
+    __firstlineno__: typing.ClassVar[int] = 13
+    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'i0', 'i1')
     @classmethod
     def from_ping_param_offsets_absolute(cls, echodata, ping_param_name, offset_0, offset_1):
         ...
@@ -23,6 +28,8 @@ class EchoLayer:
     def set_indices(self, i0, i1):
         ...
 class PingData:
+    __firstlineno__: typing.ClassVar[int] = 117
+    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'nr')
     def __init__(self, echodata, nr):
         ...
     def get_datetime(self):

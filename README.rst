@@ -64,7 +64,7 @@
    
 .. |info-python| image:: https://img.shields.io/badge/python-3%2E10 | 3%2E11 | 3%2E12 -informational
    :target: https://pypi.org/project/themachinethatgoesping/
-   :alt: Python versions 3.10 | 3.11 | 3.12
+   :alt: Python versions 3.11 | 3.12 | 3.13
 
 .. |info-pypi| image:: https://img.shields.io/pypi/v/themachinethatgoesping
    :target: https://pypi.org/project/themachinethatgoesping/

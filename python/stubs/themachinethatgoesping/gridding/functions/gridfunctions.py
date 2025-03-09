@@ -17,28 +17,26 @@ def get_index_fraction(*args, **kwargs):
 def get_index_weights(*args, **kwargs):
     """
     
-        Return a vector with fraction and weights for the neighboring grid cells.
-        
+    Return a vector with fraction and weights for the neighboring grid cells.
     """
 def get_minmax(*args, **kwargs):
     """
     returns the min/max value of three lists (same size).
-        Sometimes faster than separate numpy functions because it only loops once.
+    Sometimes faster than separate numpy functions because it only loops once.
     
-        Parameters
-        ----------
-        sx : np.array
-            1D array with x positions (same size)
-        sy : np.array
-            1D array with x positions (same size)
-        sz : np.array
-            1D array with x positions (same size)
+    Parameters
+    ----------
+    sx : np.array
+        1D array with x positions (same size)
+    sy : np.array
+        1D array with x positions (same size)
+    sz : np.array
+        1D array with x positions (same size)
     
-        Returns
-        -------
-        tuple
-            with (xmin,xmax,ymin,ymax,zmin,zmax)
-        
+    Returns
+    -------
+    tuple
+        with (xmin,xmax,ymin,ymax,zmin,zmax)
     """
 def get_value(*args, **kwargs):
     ...

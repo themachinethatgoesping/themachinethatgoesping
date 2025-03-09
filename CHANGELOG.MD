@@ -31,6 +31,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - updated xsimd 13.0.0 -> 13.2.0
 - updated fmt 11.1.3 -> 11.1.4
+- drop support for python 3.10
 
 ## [0.28.1] - 17-02-2024
 

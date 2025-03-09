@@ -7,12 +7,15 @@ import numpy as np
 import pandas as pd
 import pytimeparse2 as pytimeparse2
 from scipy import stats
-import themachinethatgoesping as theping
-from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
+from themachinethatgoesping.pingprocessing.core.asserts import assert_length
+from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
+import typing
 import warnings as warnings
-__all__ = ['LayerProcessor', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'get_progress_iterator', 'np', 'pd', 'pytimeparse2', 'stats', 'theping', 'tqdm', 'warnings']
+__all__ = ['LayerProcessor', 'assert_length', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'np', 'pd', 'pytimeparse2', 'stats', 'tools', 'tqdm', 'warnings']
 class LayerProcessor:
+    __firstlineno__: typing.ClassVar[int] = 17
+    __static_attributes__: typing.ClassVar[tuple] = ('__base_name', '__compare_name', '__data', '__deltaT', '__dmin', '__echograms', '__layers', '__qmin')
     @staticmethod
     def __filter_by_layer_size__(data, layers, names = ['mbes', 'sbes']):
         ...

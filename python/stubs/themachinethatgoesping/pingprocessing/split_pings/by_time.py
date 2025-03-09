@@ -9,18 +9,17 @@ def by_time_difference(pings: typing.List[themachinethatgoesping.echosounders_cp
     """
     Split pings into groups based on the time difference between them.
     
-        Parameters
-        ----------
-        pings : List[I_Ping]
-            List of pings to be split.
-        seconds : float
-            Time difference in seconds to split the pings.
-        progress : bool, optional
-            Flag to show progress bar, by default False.
+    Parameters
+    ----------
+    pings : List[I_Ping]
+        List of pings to be split.
+    seconds : float
+        Time difference in seconds to split the pings.
+    progress : bool, optional
+        Flag to show progress bar, by default False.
     
-        Returns
-        -------
-        Dict[int, List[I_Ping]]
-            Dictionary containing the split pings.
-        
+    Returns
+    -------
+    Dict[int, List[I_Ping]]
+        Dictionary containing the split pings.
     """
