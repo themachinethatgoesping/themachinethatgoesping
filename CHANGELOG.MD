@@ -23,6 +23,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - added imageprocessing/find_local_maxima function
   - added pointprocessing/weighted_mean function
   - added pointprocessing/segment_in_weighted_quantiles function
+  - added pointprocessing/bubblestreams/zspine class
 - tools:
   - add xtensor_3d concept
 - gridding:
@@ -32,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - updated xsimd 13.0.0 -> 13.2.0
 - updated fmt 11.1.3 -> 11.1.4
+- updated fast_float 8.0.0 -> 8.0.2
 - drop support for python 3.10
 
 ## [0.28.1] - 17-02-2024
