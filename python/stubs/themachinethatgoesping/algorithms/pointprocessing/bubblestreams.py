@@ -69,6 +69,30 @@ class ZSpine:
         """
         return a copy using the c++ default copy constructor
         """
+    @typing.overload
+    def displace_points(self, x: numpy.ndarray[numpy.float64], y: numpy.ndarray[numpy.float64], z: numpy.ndarray[numpy.float64], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+        ...
+    @typing.overload
+    def displace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
+        ...
+    @typing.overload
+    def displace_points_inplace(self, x: numpy.ndarray[numpy.float64], y: numpy.ndarray[numpy.float64], z: numpy.ndarray[numpy.float64], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> None:
+        ...
+    @typing.overload
+    def displace_points_inplace(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> None:
+        ...
+    @typing.overload
+    def displace_points_x(self, x: numpy.ndarray[numpy.float64], z: numpy.ndarray[numpy.float64], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def displace_points_x(self, x: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
+    @typing.overload
+    def displace_points_y(self, y: numpy.ndarray[numpy.float64], z: numpy.ndarray[numpy.float64], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+        ...
+    @typing.overload
+    def displace_points_y(self, y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], bottom_z: float | None = None, inverse: bool = False, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+        ...
     def estimate_origin(self, bottom_z: float, slope_modifier: float = 1.0) -> None:
         ...
     def get_is_altitude(self) -> bool:

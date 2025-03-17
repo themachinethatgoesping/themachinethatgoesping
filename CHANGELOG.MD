@@ -24,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - added pointprocessing/weighted_mean function
   - added pointprocessing/segment_in_weighted_quantiles function
   - added pointprocessing/bubblestreams/zspine class
+  - added pointprocessing/bubblestreams/zspine displace_points function
 - tools:
   - add xtensor_3d concept
 - gridding:
