@@ -6,12 +6,12 @@ Once the project is more stable, this changelog will be updated more frequently.
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 ---
-## [Unreleased]
+## [0.29.0] - 26-03-2025
 
 - tools -> 0.28.5
 - navigation -> 17.4.0
 - algorithms -> 0.9.1
-- gridding -> 0.2.3
+- gridding -> 0.3.0
 
 ### Improvements
 
@@ -30,6 +30,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - add xtensor_3d concept
 - gridding:
   - blockmean function for from_data method
+  - improved get_extent and get_grd_extent functions
+
+### Changed
+- gridding:
+  - refractoring names in echogrid class
+  - removed unused class (EchoGridDict)
 
 ### Maintanances
 
@@ -38,7 +44,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - updated fast_float 8.0.0 -> 8.0.2
 - drop support for python 3.10
 
-## [0.28.1] - 17-02-2024
+## [0.28.1] - 17-02-2025
 
 - tools -> 0.28.4
 - echosounders -> 0.45.1
@@ -59,7 +65,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - fmt 11.1.1 -> 11.1.3
 - fast_float 7.0.0 -> 8.0.0
 
-## [0.28.1] - 06-02-2024
+## [0.28.1] - 06-02-2025
 
 - pingprocessing -> 0.11.1
 
@@ -69,7 +75,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - import errors (make_wci)
 
 
-## [0.28.0] - 06-02-2024
+## [0.28.0] - 06-02-2025
 
 - pingprocessing -> 0.11.0
 - echosounders -> 0.45.0

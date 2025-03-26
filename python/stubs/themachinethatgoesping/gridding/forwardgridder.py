@@ -3,8 +3,8 @@
 Simple gridder class that can create quantitative 3D images from x,z,y,val from some custom data.
 """
 from __future__ import annotations
-import numpy as np
 import numpy
+import numpy as np
 from themachinethatgoesping.gridding.functions import gridfunctions as grdf
 import typing
 __all__ = ['ArrayLike', 'ForwardGridder', 'grdf', 'np']
@@ -126,6 +126,10 @@ class ForwardGridder:
         (image_values, image_weights):
             image_values: summed value for each grid position
             image_weights: weights for each grid position
+        """
+    def get_extent(self, axis: str = 'xyz') -> list:
+        """
+        return x,y,z extend (useful for plotting)
         """
     def get_extent_x(self) -> list:
         """
