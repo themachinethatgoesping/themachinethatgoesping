@@ -6,6 +6,7 @@ from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
 import numpy as np
 import themachinethatgoesping as theping
+from themachinethatgoesping import echosounders
 from themachinethatgoesping.pingprocessing.watercolumn import echograms
 from themachinethatgoesping.pingprocessing.watercolumn.helper import make_image_helper as mi_hlp
 from themachinethatgoesping.pingprocessing.watercolumn import image as mi
@@ -18,4 +19,4 @@ import types as types
 from . import echogramviewer
 from . import tqdmwidget
 from . import wciviewer
-__all__ = ['EchogramViewer', 'TqdmWidget', 'WCIViewer', 'asyncio', 'display', 'echograms', 'echogramviewer', 'ipywidgets', 'mdates', 'mi', 'mi_hlp', 'np', 'plt', 'theping', 'time', 'tqdm', 'tqdmwidget', 'types', 'wciviewer']
+__all__ = ['EchogramViewer', 'TqdmWidget', 'WCIViewer', 'asyncio', 'display', 'echograms', 'echogramviewer', 'echosounders', 'ipywidgets', 'mdates', 'mi', 'mi_hlp', 'np', 'plt', 'theping', 'time', 'tqdm', 'tqdmwidget', 'types', 'wciviewer']
