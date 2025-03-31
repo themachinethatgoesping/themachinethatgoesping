@@ -11,7 +11,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Maintanances
 - fixed: windows circular imports error
-- xtl 0.7.7 -> 0.8.0
+#- xtl 0.7.7 -> 0.8.0
 
 
 ## [0.29.0] - 26-03-2025
