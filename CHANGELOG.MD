@@ -5,13 +5,24 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
+## [0.29.2] - Unreleased
+- pingprocessing -> 0.11.3
+- tools -> 0.28.6
+
+### Improved
+- tools
+  - nearfield estimation scripts
+
+### Fixed
+- pingprocessing:
+  - missing import for wciviewer
+
 ---
 ## [0.29.1] - 26-03-2025
 - pingprocessing -> 0.11.2
 
-### Maintanances
+### Fixed
 - fixed: windows circular imports error
-#- xtl 0.7.7 -> 0.8.0
 
 
 ## [0.29.0] - 26-03-2025
