@@ -40,7 +40,7 @@ jobs:
         include:  
           - { os : ubuntu-latest,
               shell : 'bash -l {0}'}
-          - { os: windows-latest,
+          - { os: windows-2025,
               shell : powershell}
           - { os: macos-latest,
               shell: 'bash -l {0}'}
