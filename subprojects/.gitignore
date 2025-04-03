@@ -20,6 +20,7 @@ date**
 sse2neon**
 flat_map**
 gswteos-10**
+boost**
 
 #inherited wrap files
 catch2.wrap
