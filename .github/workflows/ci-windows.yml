@@ -150,7 +150,7 @@ jobs:
     - name: test (cpp)
       #run: meson test -C builddir/ --print-errorlogs 
       # meson test does not work with the custom ninja executable
-      run: ninja test -C builddir/ --verbose
+      run: d:\ninja.exe test -C builddir/ --verbose
 
     - name: install project
       run: meson install -C builddir/
