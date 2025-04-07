@@ -5,13 +5,24 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-## [0.29.2] - Unreleased
+## [0.30.20] - Unreleased
 - pingprocessing -> 0.11.3
 - tools -> 0.28.6
+- algorithms -> 0.9.2
+- gridding -> 0.4.0
+
+### Changed
+- gridding:
+  - moved forward gridder and related functions to algorithms.gridding
 
 ### Improved
 - tools
   - nearfield estimation scripts
+- algorithms
+  - added gridfunctions
+  - added geoprocessing functions (to_raypoints)
+- pingprocessing
+  - adapting echogrambuilder to new gridder
 
 ### Fixed
 - pingprocessing:
