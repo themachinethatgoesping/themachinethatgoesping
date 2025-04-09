@@ -7,6 +7,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+## [0.30.1] - 09-04-2025
+
+- gridding -> 0.4.1
+
+### Fixed
+
+- gridding:
+  - globbing error
 
 ## [0.30.0] - 09-04-2025
 - pingprocessing -> 0.11.3
