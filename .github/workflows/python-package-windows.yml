@@ -144,7 +144,7 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        ninja test -C pybuild --verbose
+        d:\ninja.exe test -C pybuild --verbose
         
     - name: Test with pytest
       run: |
