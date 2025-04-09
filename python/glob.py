@@ -23,7 +23,7 @@ subproject_list = [
     "subprojects/algorithms",
     "subprojects/echosounders",
     "subprojects/pingprocessing",
-    #"subprojects/gridding",
+    "subprojects/gridding",
 ]
 
 path_mkdoc = []

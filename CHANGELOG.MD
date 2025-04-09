@@ -5,9 +5,12 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-## [0.30.20] - Unreleased
+## [Unreleased]
+
+
+## [0.30.0] - 09-04-2025
 - pingprocessing -> 0.11.3
-- tools -> 0.28.6
+- tools -> 0.28.7
 - algorithms -> 0.9.2
 - gridding -> 0.4.0
 
@@ -27,6 +30,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ### Fixed
 - pingprocessing:
   - missing import for wciviewer
+
+### Maintenance
+
+- tools:
+  - update Catch2 3.8.0 -> 3.8.1
 
 ---
 ## [0.29.1] - 26-03-2025
