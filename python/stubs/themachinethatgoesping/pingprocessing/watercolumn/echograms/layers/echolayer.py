@@ -9,7 +9,7 @@ import typing
 __all__ = ['EchoLayer', 'PingData', 'assert_length', 'assert_valid_argument', 'dt', 'get_progress_iterator', 'np', 'tools']
 class EchoLayer:
     __firstlineno__: typing.ClassVar[int] = 13
-    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'i0', 'i1', 'y0', 'y1')
+    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'i0', 'i1', 'vec_max_y', 'vec_min_y', 'y0', 'y1')
     @classmethod
     def from_ping_param_offsets_absolute(cls, echodata, ping_param_name, offset_0, offset_1):
         ...
@@ -27,10 +27,12 @@ class EchoLayer:
         ...
     def get_y_indices_range_stack(self, wci_nr):
         ...
-    def set_indices(self, i0, i1, y0, y1):
+    def set_indices(self, i0, i1, vec_min_y, vec_max_y):
+        ...
+    def update_y_gridder(self):
         ...
 class PingData:
-    __firstlineno__: typing.ClassVar[int] = 139
+    __firstlineno__: typing.ClassVar[int] = 143
     __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'nr')
     def __init__(self, echodata, nr):
         ...

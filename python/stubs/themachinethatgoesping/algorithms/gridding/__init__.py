@@ -141,7 +141,7 @@ class ForwardGridder1D:
     def get_x_index(self, x: float) -> int:
         ...
     @typing.overload
-    def get_x_index(self, x: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.int32]:
+    def get_x_index(self, x: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.int32]:
         ...
     @typing.overload
     def get_x_index_fraction(self, x: float) -> float:
@@ -153,7 +153,7 @@ class ForwardGridder1D:
     def get_x_value(self, x_index: int) -> float:
         ...
     @typing.overload
-    def get_x_value(self, x_index: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
+    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float64]:
         ...
     def get_xbase(self) -> float:
         ...
@@ -397,7 +397,7 @@ class ForwardGridder1DF:
     def get_x_index(self, x: float) -> int:
         ...
     @typing.overload
-    def get_x_index(self, x: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.int32]:
+    def get_x_index(self, x: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.int32]:
         ...
     @typing.overload
     def get_x_index_fraction(self, x: float) -> float:
@@ -409,7 +409,7 @@ class ForwardGridder1DF:
     def get_x_value(self, x_index: int) -> float:
         ...
     @typing.overload
-    def get_x_value(self, x_index: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
+    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float32]:
         ...
     def get_xbase(self) -> float:
         ...

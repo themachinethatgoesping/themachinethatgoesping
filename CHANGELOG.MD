@@ -7,6 +7,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
+- algorithms -> 0.9.3
+- tools -> 0.28.8
+
+### Fixed
+
+- algorithms
+  - fixed integer conversion for vectorized 1d gridder functions
+
+### Maintenance
+
+- tools
+  - update nlohmann/json 3.11.2 -> 3.11.3
+
 ## [0.30.1] - 09-04-2025
 
 - gridding -> 0.4.1
