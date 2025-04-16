@@ -9,16 +9,23 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - algorithms -> 0.9.3
 - tools -> 0.28.8
+- navigation -> 0.17.4
+- echosounders -> 0.45.2
 
 ### Fixed
 
+- pingprocessing
+  - fixes to range/depth stack function names
 - algorithms
   - fixed integer conversion for vectorized 1d gridder functions
 
 ### Maintenance
 
-- tools
-  - update nlohmann/json 3.11.2 -> 3.11.3
+- update nlohmann/json 3.11.2 -> 3.11.3
+- update xtensor custom -> 0.26
+- update xtensor-python 0.27 -> 0.28
+- update xtl 0.7.7 -> 0.8
+
 
 ## [0.30.1] - 09-04-2025
 
