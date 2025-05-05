@@ -30,6 +30,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - update xtensor custom -> 0.26
 - update xtensor-python 0.27 -> 0.28
 - update xtl 0.7.7 -> 0.8
+- update fmt 11.1.4 -> 11.2.0
 
 
 ## [0.30.1] - 09-04-2025
