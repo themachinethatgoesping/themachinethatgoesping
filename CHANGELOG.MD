@@ -12,6 +12,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation -> 0.17.4
 - echosounders -> 0.45.2
 
+### Improvements
+
+- echosounders
+  - towards GSF raw file reading
+
 ### Fixed
 
 - pingprocessing
