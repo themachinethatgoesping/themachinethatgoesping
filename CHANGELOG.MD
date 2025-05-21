@@ -16,6 +16,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders
   - towards GSF raw file reading
+  - use 'p' instead of middle mouse button to update echogramview
 
 ### Fixed
 
