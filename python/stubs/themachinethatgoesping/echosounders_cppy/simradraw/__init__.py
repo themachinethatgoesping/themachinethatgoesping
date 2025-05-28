@@ -12,9 +12,6 @@ __all__ = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram_type_from_string',
 class SimradRawFileHandler:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @typing.overload
     def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
@@ -82,9 +79,6 @@ class SimradRawFileHandler:
 class SimradRawFileHandler_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @typing.overload
     def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
@@ -174,9 +168,6 @@ class t_SimradRawDatagramIdentifier:
     TAG0: typing.ClassVar[t_SimradRawDatagramIdentifier]  # value = <t_SimradRawDatagramIdentifier.TAG0: 809976148>
     XML0: typing.ClassVar[t_SimradRawDatagramIdentifier]  # value = <t_SimradRawDatagramIdentifier.XML0: 810306904>
     __members__: typing.ClassVar[dict[str, t_SimradRawDatagramIdentifier]]  # value = {'XML0': <t_SimradRawDatagramIdentifier.XML0: 810306904>, 'FIL1': <t_SimradRawDatagramIdentifier.FIL1: 827083078>, 'NME0': <t_SimradRawDatagramIdentifier.NME0: 809848142>, 'MRU0': <t_SimradRawDatagramIdentifier.MRU0: 810897997>, 'TAG0': <t_SimradRawDatagramIdentifier.TAG0: 809976148>, 'RAW3': <t_SimradRawDatagramIdentifier.RAW3: 861356370>}
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

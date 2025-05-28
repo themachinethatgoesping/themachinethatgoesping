@@ -9,9 +9,6 @@ class BiAkimaInterpolator:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiAkimaInterpolator:
         """
         create T_CLASS object from bytearray
@@ -96,9 +93,6 @@ class BiAkimaInterpolator:
 class BiAkimaInterpolatorF:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiAkimaInterpolatorF:
         """
@@ -185,9 +179,6 @@ class BiLinearInterpolator:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiLinearInterpolator:
         """
         create T_CLASS object from bytearray
@@ -272,9 +263,6 @@ class BiLinearInterpolator:
 class BiLinearInterpolatorDF:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiLinearInterpolatorDF:
         """
@@ -361,9 +349,6 @@ class BiLinearInterpolatorF:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiLinearInterpolatorF:
         """
         create T_CLASS object from bytearray
@@ -448,9 +433,6 @@ class BiLinearInterpolatorF:
 class BiLinearInterpolatorFD:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiLinearInterpolatorFD:
         """
@@ -537,9 +519,6 @@ class BiNearestInterpolator:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolator:
         """
         create T_CLASS object from bytearray
@@ -624,9 +603,6 @@ class BiNearestInterpolator:
 class BiNearestInterpolatorDF:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolatorDF:
         """
@@ -713,9 +689,6 @@ class BiNearestInterpolatorDI:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolatorDI:
         """
         create T_CLASS object from bytearray
@@ -800,9 +773,6 @@ class BiNearestInterpolatorDI:
 class BiNearestInterpolatorF:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolatorF:
         """
@@ -889,9 +859,6 @@ class BiNearestInterpolatorFD:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolatorFD:
         """
         create T_CLASS object from bytearray
@@ -976,9 +943,6 @@ class BiNearestInterpolatorFD:
 class BiNearestInterpolatorFI:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BiNearestInterpolatorFI:
         """

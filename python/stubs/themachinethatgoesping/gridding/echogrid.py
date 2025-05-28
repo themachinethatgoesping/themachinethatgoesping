@@ -6,12 +6,9 @@ from themachinethatgoesping.algorithms.gridding import ForwardGridder3D
 from themachinethatgoesping.gridding.forwardgridderlegacy import ForwardGridderLegacy
 from themachinethatgoesping.gridding.forwardgridderlegacynew import ForwardGridderLegacyNew
 from themachinethatgoesping.gridding.functions import gridfunctions as gf
-import typing
 import warnings as warnings
 __all__ = ['EchoGrid', 'ForwardGridder3D', 'ForwardGridderLegacy', 'ForwardGridderLegacyNew', 'MutableMapping', 'gf', 'njit', 'np', 'static_get_target_pos', 'warnings']
 class EchoGrid:
-    __firstlineno__: typing.ClassVar[int] = 49
-    __static_attributes__: typing.ClassVar[tuple] = ('ZDiff', 'extent_x', 'extent_y', 'extent_z', 'gridder_type', 'image_avg', 'image_nums', 'image_sums', 'max_x', 'max_y', 'max_z', 'min_x', 'min_y', 'min_z', 'res_x', 'res_y', 'res_z', 'total_value', 'total_value_layer')
     @classmethod
     def from_data(cls, res, sx, sy, sz, sv, blockmean = False):
         ...

@@ -16,8 +16,6 @@ from themachinethatgoesping.scripts.sbes import SBES
 import typing
 __all__ = ['MBES', 'SBES', 'asin', 'cos', 'deepcopy', 'degrees', 'knots_to_ms', 'math', 'np', 'pi', 'plt', 'prepare_plt', 'radians', 'sin', 'sqrt', 'tan']
 class MBES:
-    __firstlineno__: typing.ClassVar[int] = 21
-    __static_attributes__: typing.ClassVar[tuple] = ('beamopening_angle_across', 'beamopening_angle_along', 'draw_delta_angle', 'max_range_factor', 'sbes', 'seafloor_alpha', 'seafloor_beta', 'swathopening_angle', 'x', 'y', 'z')
     plt_aspect: typing.ClassVar[bool] = True
     plt_grid: typing.ClassVar[bool] = True
     plt_title: typing.ClassVar[str] = 'MBES overlap'

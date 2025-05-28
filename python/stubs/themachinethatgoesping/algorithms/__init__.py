@@ -10,9 +10,6 @@ from . import pointprocessing
 from . import signalprocessing
 __all__ = ['amplitudecorrection', 'geoprocessing', 'gridding', 'imageprocessing', 'ostream_redirect', 'pointprocessing', 'signalprocessing']
 class ostream_redirect:
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __enter__(self) -> None:
         ...
     def __exit__(self, *args) -> None:

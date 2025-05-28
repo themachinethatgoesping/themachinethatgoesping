@@ -10,9 +10,6 @@ class ZSpine:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ZSpine:
         """
         create T_CLASS object from bytearray

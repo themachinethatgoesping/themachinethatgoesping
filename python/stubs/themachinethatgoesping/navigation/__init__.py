@@ -15,9 +15,6 @@ class NavigationInterpolatorLatLon:
     specified in the sensor configuration class
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NavigationInterpolatorLatLon:
         """
         create T_CLASS object from bytearray
@@ -287,9 +284,6 @@ class NavigationInterpolatorLocal:
     zone specified) values and attitude information and transform the
     values using the offsets specified in the sensor configuration class
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NavigationInterpolatorLocal:
         """
@@ -561,9 +555,6 @@ class SensorConfiguration:
     the class and specify target_id and current sensor data to derive the
     geolocation and attitude of the specified targets
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorConfiguration:
         """
@@ -939,9 +930,6 @@ class SensorConfiguration:
             SensorConfiguration
         """
 class ostream_redirect:
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __enter__(self) -> None:
         ...
     def __exit__(self, *args) -> None:

@@ -14,9 +14,6 @@ class AmplitudeCalibration:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AmplitudeCalibration:
         """
         create T_CLASS object from bytearray
@@ -114,9 +111,6 @@ class FileCache:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FileCache:
         """
         create T_CLASS object from bytearray
@@ -195,9 +189,6 @@ class FileCache:
 class I_Ping(I_PingCommon):
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> I_Ping:
         ...
     def __deepcopy__(self, arg0: dict) -> I_Ping:
@@ -305,9 +296,6 @@ class I_PingBottom(I_PingCommon):
     """
     Interface for all ping bottom detection functions
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> I_PingBottom:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingBottom:
@@ -478,9 +466,6 @@ class I_PingBottom(I_PingCommon):
 class I_PingCommon:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> I_PingCommon:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingCommon:
@@ -622,9 +607,6 @@ class I_PingFileData:
     The class provides a `__printer__` function for object printing, which
     can be used to print the properties of the ping data.
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> I_PingFileData:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingFileData:
@@ -719,9 +701,6 @@ class I_PingWatercolumn(I_PingCommon):
     functions and variables specific to watercolumn pings.
     """
     _test_mode: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> I_PingWatercolumn:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingWatercolumn:
@@ -1120,9 +1099,6 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> KongsbergAllMultiSectorWaterColumnCalibration:
         """
         create T_CLASS object from bytearray
@@ -1248,9 +1224,6 @@ class MultiSectorWaterColumnCalibration:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MultiSectorWaterColumnCalibration:
         """
         create T_CLASS object from bytearray
@@ -1375,9 +1348,6 @@ class MultiSectorWaterColumnCalibration:
 class WaterColumnCalibration:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> WaterColumnCalibration:
         """
@@ -1633,9 +1603,6 @@ class t_pingfeature:
     watercolumn: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn: 9>
     watercolumn_calibration: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.watercolumn_calibration: 30>
     xyz: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.xyz: 18>
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

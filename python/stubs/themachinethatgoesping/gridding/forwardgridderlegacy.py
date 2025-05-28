@@ -13,8 +13,6 @@ class ForwardGridderLegacy:
     Simple class to generate 3D grids (images) and interpolate xyz data onto a grid using simple forward mapping algorithms.
     (e.g. block mean, weighted mean interpolation)
     """
-    __firstlineno__: typing.ClassVar[int] = 19
-    __static_attributes__: typing.ClassVar[tuple] = ('border_xmax', 'border_xmin', 'border_ymax', 'border_ymin', 'border_zmax', 'border_zmin', 'nx', 'ny', 'nz', 'xbase', 'xmax', 'xmin', 'xres', 'ybase', 'ymax', 'ymin', 'yres', 'zbase', 'zmax', 'zmin', 'zres')
     @staticmethod
     def get_minmax(sx: typing.Union[collections.abc.Buffer, numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]], numpy._typing._nested_sequence._NestedSequence[numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]]], bool, int, float, complex, str, bytes, numpy._typing._nested_sequence._NestedSequence[bool | int | float | complex | str | bytes]], sy: typing.Union[collections.abc.Buffer, numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]], numpy._typing._nested_sequence._NestedSequence[numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]]], bool, int, float, complex, str, bytes, numpy._typing._nested_sequence._NestedSequence[bool | int | float | complex | str | bytes]], sz: typing.Union[collections.abc.Buffer, numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]], numpy._typing._nested_sequence._NestedSequence[numpy._typing._array_like._SupportsArray[numpy.dtype[typing.Any]]], bool, int, float, complex, str, bytes, numpy._typing._nested_sequence._NestedSequence[bool | int | float | complex | str | bytes]]) -> tuple:
         """

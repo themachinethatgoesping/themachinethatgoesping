@@ -11,9 +11,6 @@ class I_Raytracer:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> I_Raytracer:
         """
         create T_CLASS object from bytearray
@@ -235,9 +232,6 @@ class I_Raytracer:
 class RTConstantSVP(I_Raytracer):
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RTConstantSVP:
         """

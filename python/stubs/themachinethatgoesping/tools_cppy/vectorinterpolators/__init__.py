@@ -16,9 +16,6 @@ class AkimaInterpolator:
         type of the x and y values (must be floating point))
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AkimaInterpolator:
         """
         create T_CLASS object from bytearray
@@ -203,9 +200,6 @@ class AkimaInterpolatorF:
     Template parameter ``XYType:``:
         type of the x and y values (must be floating point))
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> AkimaInterpolatorF:
         """
@@ -393,9 +387,6 @@ class LinearInterpolator:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> LinearInterpolator:
         """
         create T_CLASS object from bytearray
@@ -581,9 +572,6 @@ class LinearInterpolatorDF:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> LinearInterpolatorDF:
         """
@@ -771,9 +759,6 @@ class LinearInterpolatorF:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> LinearInterpolatorF:
         """
         create T_CLASS object from bytearray
@@ -959,9 +944,6 @@ class LinearInterpolatorFD:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> LinearInterpolatorFD:
         """
@@ -1149,9 +1131,6 @@ class NearestInterpolator:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolator:
         """
         create T_CLASS object from bytearray
@@ -1337,9 +1316,6 @@ class NearestInterpolatorDF:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorDF:
         """
@@ -1527,9 +1503,6 @@ class NearestInterpolatorDI:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorDI:
         """
         create T_CLASS object from bytearray
@@ -1715,9 +1688,6 @@ class NearestInterpolatorDO:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorDO:
         """
@@ -1905,9 +1875,6 @@ class NearestInterpolatorF:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorF:
         """
         create T_CLASS object from bytearray
@@ -2093,9 +2060,6 @@ class NearestInterpolatorFD:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorFD:
         """
@@ -2283,9 +2247,6 @@ class NearestInterpolatorFI:
         type of the y values (must be floating point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorFI:
         """
         create T_CLASS object from bytearray
@@ -2471,9 +2432,6 @@ class NearestInterpolatorFO:
     Template parameter ``YType:``:
         type of the y values (must be floating point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NearestInterpolatorFO:
         """
@@ -2665,9 +2623,6 @@ class SlerpInterpolator:
         floating point type of the y quaternion values (must be floating
         point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolator:
         """
@@ -3016,9 +2971,6 @@ class SlerpInterpolatorDF:
         point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolatorDF:
         """
         create T_CLASS object from bytearray
@@ -3365,9 +3317,6 @@ class SlerpInterpolatorF:
         floating point type of the y quaternion values (must be floating
         point)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolatorF:
         """
@@ -3716,9 +3665,6 @@ class SlerpInterpolatorFD:
         point)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SlerpInterpolatorFD:
         """
         create T_CLASS object from bytearray
@@ -4066,9 +4012,6 @@ class t_extr_mode:
     extrapolate: typing.ClassVar[t_extr_mode]  # value = <t_extr_mode.extrapolate: 0>
     fail: typing.ClassVar[t_extr_mode]  # value = <t_extr_mode.fail: 1>
     nearest: typing.ClassVar[t_extr_mode]  # value = <t_extr_mode.nearest: 2>
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

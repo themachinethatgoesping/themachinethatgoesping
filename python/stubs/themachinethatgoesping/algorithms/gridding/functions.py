@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['get_grd_value', 'get_index', 'get_index_fraction', 'get_index_weights', 'get_minmax', 'get_value', 'grd_block_mean', 'grd_weighted_mean']
+__all__ = ['get_grd_value', 'get_index', 'get_index_fraction', 'get_index_weights', 'get_minmax', 'get_value', 'grd_block_mean', 'grd_weighted_mean', 'group_blocks']
 @typing.overload
 def get_grd_value(value: float, grd_val_min: float, grd_res: float) -> float:
     ...
@@ -101,4 +101,22 @@ def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.
     ...
 @typing.overload
 def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int) -> dict[int, list[float]]:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int) -> dict[int, list[float]]:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int) -> dict[int, list[float]]:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int) -> dict[int, list[float]]:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int) -> dict[int, list[float]]:
+    ...
+@typing.overload
+def group_blocks(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int) -> dict[int, list[float]]:
     ...

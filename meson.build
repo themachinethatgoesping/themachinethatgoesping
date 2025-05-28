@@ -11,7 +11,7 @@ project(
 
   version: '0.30.1',
   default_options: ['warning_level=2', 'buildtype=release', 'cpp_std=c++20'],
-  meson_version: '>=1.3.2' #first version with  clang-cl openmp support
+  meson_version: '>=1.8.1' #there is a problem with meson 1.8.0 so just use a higher version
 )
 # Set-Item -Path Env:\CXX -Value 'sccache clang-cl'
 projectnamespace = 'themachinethatgoesping'

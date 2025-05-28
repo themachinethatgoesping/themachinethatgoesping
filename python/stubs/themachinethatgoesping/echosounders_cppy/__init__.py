@@ -8,9 +8,6 @@ from . import pingtools
 from . import simradraw
 __all__ = ['filetemplates', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
 class ostream_redirect:
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __enter__(self) -> None:
         ...
     def __exit__(self, *args) -> None:

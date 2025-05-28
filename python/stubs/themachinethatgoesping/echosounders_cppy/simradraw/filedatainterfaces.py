@@ -21,9 +21,6 @@ class SimradRawAnnotationDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -103,9 +100,6 @@ class SimradRawAnnotationDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -205,9 +199,6 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -310,9 +301,6 @@ class SimradRawAnnotationDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -386,9 +374,6 @@ class SimradRawAnnotationDataInterface_stream:
 class SimradRawConfigurationDataInterface:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -467,9 +452,6 @@ class SimradRawConfigurationDataInterface:
 class SimradRawConfigurationDataInterfacePerFile:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -603,9 +585,6 @@ class SimradRawConfigurationDataInterfacePerFile:
 class SimradRawConfigurationDataInterfacePerFile_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -740,9 +719,6 @@ class SimradRawConfigurationDataInterface_stream:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -829,9 +805,6 @@ class SimradRawDatagramDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -913,9 +886,6 @@ class SimradRawDatagramDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1017,9 +987,6 @@ class SimradRawDatagramDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1122,9 +1089,6 @@ class SimradRawDatagramDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -1198,9 +1162,6 @@ class SimradRawDatagramDataInterface_stream:
 class SimradRawDatagramInterface:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1248,9 +1209,6 @@ class SimradRawDatagramInterface:
 class SimradRawDatagramInterface_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1298,9 +1256,6 @@ class SimradRawDatagramInterface_stream:
 class SimradRawEnvironmentDataInterface:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -1379,9 +1334,6 @@ class SimradRawEnvironmentDataInterface:
 class SimradRawEnvironmentDataInterfacePerFile:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1479,9 +1431,6 @@ class SimradRawEnvironmentDataInterfacePerFile:
 class SimradRawEnvironmentDataInterfacePerFile_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1580,9 +1529,6 @@ class SimradRawEnvironmentDataInterface_stream:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -1660,9 +1606,6 @@ class SimradRawEnvironmentDataInterface_stream:
 class SimradRawNavigationDataInterface:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -1759,9 +1702,6 @@ class SimradRawNavigationDataInterface:
 class SimradRawNavigationDataInterfacePerFile:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1867,9 +1807,6 @@ class SimradRawNavigationDataInterfacePerFile:
 class SimradRawNavigationDataInterfacePerFile_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -1976,9 +1913,6 @@ class SimradRawNavigationDataInterface_stream:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -2083,9 +2017,6 @@ class SimradRawOtherFileDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
@@ -2167,9 +2098,6 @@ class SimradRawOtherFileDataInterfacePerFile:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2271,9 +2199,6 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
     
     Template parameter ``t_ifstream``:
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2376,9 +2301,6 @@ class SimradRawOtherFileDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
@@ -2452,9 +2374,6 @@ class SimradRawOtherFileDataInterface_stream:
 class SimradRawPingDataInterface:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[...]) -> list[...]:
         ...
@@ -2543,9 +2462,6 @@ class SimradRawPingDataInterface:
 class SimradRawPingDataInterfacePerFile:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2649,9 +2565,6 @@ class SimradRawPingDataInterfacePerFile:
 class SimradRawPingDataInterfacePerFile_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -2755,9 +2668,6 @@ class SimradRawPingDataInterfacePerFile_stream:
 class SimradRawPingDataInterface_stream:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
         ...

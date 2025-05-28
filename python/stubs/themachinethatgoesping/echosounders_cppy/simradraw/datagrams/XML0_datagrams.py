@@ -12,9 +12,6 @@ class ChannelConfiguration:
     XML base datagram
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ChannelConfiguration:
         """
         create T_CLASS object from bytearray
@@ -87,9 +84,6 @@ class XMLConfigurationActivePingMode:
     Mode: str
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationActivePingMode:
         """
@@ -165,9 +159,6 @@ class XMLConfigurationTransceiverChannelTransducer:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationTransceiverChannelTransducer:
         """
         create T_CLASS object from bytearray
@@ -231,9 +222,6 @@ class XML_Configuration:
     Transceivers: list[XML_Configuration_Transceiver]
     Transducers: list[XML_Configuration_Transducer]
     Version: str
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration:
         """
@@ -317,9 +305,6 @@ class XML_Configuration_Sensor:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor:
         """
         create T_CLASS object from bytearray
@@ -388,9 +373,6 @@ class XML_Configuration_Sensor_Telegram:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_Telegram:
         """
         create T_CLASS object from bytearray
@@ -447,9 +429,6 @@ class XML_Configuration_Sensor_TelegramValue:
     Priority: int
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_TelegramValue:
         """
@@ -519,9 +498,6 @@ class XML_Configuration_Transceiver:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver:
         """
         create T_CLASS object from bytearray
@@ -590,9 +566,6 @@ class XML_Configuration_Transceiver_Channel:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel:
         """
         create T_CLASS object from bytearray
@@ -658,9 +631,6 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         create T_CLASS object from bytearray
@@ -725,9 +695,6 @@ class XML_Configuration_Transducer:
     TransducerSerialNumber: int
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transducer:
         """
@@ -813,9 +780,6 @@ class XML_Environment:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment:
         """
         create T_CLASS object from bytearray
@@ -873,9 +837,6 @@ class XML_Environment_Transducer:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment_Transducer:
         """
         create T_CLASS object from bytearray
@@ -930,9 +891,6 @@ class XML_InitialParameter:
     """
     Channels: list[XML_Parameter_Channel]
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_InitialParameter:
         """
         create T_CLASS object from bytearray
@@ -985,9 +943,6 @@ class XML_Node:
     """
     XML base datagram
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Node:
         """
@@ -1057,9 +1012,6 @@ class XML_Parameter:
     """
     Channels: list[XML_Parameter_Channel]
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter:
         """
         create T_CLASS object from bytearray
@@ -1120,9 +1072,6 @@ class XML_Parameter_Channel:
     TransmitPower: float
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter_Channel:
         """
@@ -1252,9 +1201,6 @@ class XML_PingSequence:
     unknown_attributes: int
     unknown_children: int
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence:
         """
         create T_CLASS object from bytearray
@@ -1310,9 +1256,6 @@ class XML_PingSequence_Ping:
     ChannelID: str
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence_Ping:
         """
@@ -1371,9 +1314,6 @@ class XML_Sensor:
     Type: str
     unknown_attributes: int
     unknown_children: int
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Sensor:
         """
@@ -1457,9 +1397,6 @@ class t_BeamType:
     BeamTypeSplit3CN: typing.ClassVar[t_BeamType]  # value = <t_BeamType.BeamTypeSplit3CN: 65>
     BeamTypeSplit3CW: typing.ClassVar[t_BeamType]  # value = <t_BeamType.BeamTypeSplit3CW: 81>
     __members__: typing.ClassVar[dict[str, t_BeamType]]  # value = {'BeamTypeSingle': <t_BeamType.BeamTypeSingle: 0>, 'BeamTypeSplit': <t_BeamType.BeamTypeSplit: 1>, 'BeamTypeRef': <t_BeamType.BeamTypeRef: 2>, 'BeamTypeRefB': <t_BeamType.BeamTypeRefB: 4>, 'BeamTypeSplit3': <t_BeamType.BeamTypeSplit3: 17>, 'BeamTypeSplit2': <t_BeamType.BeamTypeSplit2: 33>, 'BeamTypeSplit3C': <t_BeamType.BeamTypeSplit3C: 49>, 'BeamTypeSplit3CN': <t_BeamType.BeamTypeSplit3CN: 65>, 'BeamTypeSplit3CW': <t_BeamType.BeamTypeSplit3CW: 81>}
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

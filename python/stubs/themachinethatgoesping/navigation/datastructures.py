@@ -11,9 +11,6 @@ class Geolocation:
     (z)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Geolocation:
         """
         create T_CLASS object from bytearray
@@ -141,9 +138,6 @@ class GeolocationLatLon(Geolocation):
     and longitude coordinates
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationLatLon:
         """
         create T_CLASS object from bytearray
@@ -267,9 +261,6 @@ class GeolocationLocal(Geolocation):
     converted to UTM coordinates if the zone and hemisphere are known.
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationLocal:
         """
         create T_CLASS object from bytearray
@@ -381,9 +372,6 @@ class GeolocationUTM(GeolocationLocal):
     """
     northern_hemisphere: bool
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> GeolocationUTM:
         """
         create T_CLASS object from bytearray
@@ -493,9 +481,6 @@ class PositionalOffsets:
     A structure to store positional offsets (e.g. of a sensor) relative to
     the vessel coordinate system
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionalOffsets:
         """
@@ -649,9 +634,6 @@ class Sensordata:
     this structure (only depth).
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Sensordata:
         """
         create T_CLASS object from bytearray
@@ -791,9 +773,6 @@ class SensordataLatLon(Sensordata):
     latitude: float
     longitude: float
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataLatLon:
         """
         create T_CLASS object from bytearray
@@ -902,9 +881,6 @@ class SensordataLocal(Sensordata):
     different sensors (e.g. GPS, IMU, etc.) Unlike SensordataUTM, this
     structure stores coordinates without zone and hemisphere information.
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataLocal:
         """
@@ -1030,9 +1006,6 @@ class SensordataUTM(SensordataLocal):
     structure stores UTM coordinates.
     """
     northern_hemisphere: bool
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataUTM:
         """

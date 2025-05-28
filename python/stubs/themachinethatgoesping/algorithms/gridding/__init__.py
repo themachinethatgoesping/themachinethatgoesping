@@ -13,9 +13,6 @@ class ForwardGridder1D:
     mean interpolation)
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder1D:
         """
         create T_CLASS object from bytearray
@@ -163,6 +160,8 @@ class ForwardGridder1D:
         ...
     def get_xres(self) -> float:
         ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64]) -> dict[int, list[float]]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -268,9 +267,6 @@ class ForwardGridder1DF:
     using simple forward mapping algorithms (e.g. block mean, weighted
     mean interpolation)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder1DF:
         """
@@ -419,6 +415,8 @@ class ForwardGridder1DF:
         ...
     def get_xres(self) -> float:
         ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32]) -> dict[int, list[float]]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -524,9 +522,6 @@ class ForwardGridder2D:
     onto a grid using simple forward mapping algorithms (e.g. block mean,
     weighted mean interpolation)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder2D:
         """
@@ -710,6 +705,8 @@ class ForwardGridder2D:
         ...
     def get_yres(self) -> float:
         ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64]) -> dict[int, list[float]]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -814,9 +811,6 @@ class ForwardGridder2DF:
     onto a grid using simple forward mapping algorithms (e.g. block mean,
     weighted mean interpolation)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder2DF:
         """
@@ -1000,6 +994,8 @@ class ForwardGridder2DF:
         ...
     def get_yres(self) -> float:
         ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32]) -> dict[int, list[float]]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1104,9 +1100,6 @@ class ForwardGridder3D:
     onto a grid using simple forward mapping algorithms (e.g. block mean,
     weighted mean interpolation)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder3D:
         """
@@ -1340,6 +1333,8 @@ class ForwardGridder3D:
         ...
     def get_zres(self) -> float:
         ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64]) -> dict[int, list[float]]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1456,9 +1451,6 @@ class ForwardGridder3DF:
     onto a grid using simple forward mapping algorithms (e.g. block mean,
     weighted mean interpolation)
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ForwardGridder3DF:
         """
@@ -1691,6 +1683,8 @@ class ForwardGridder3DF:
     def get_zmin(self) -> float:
         ...
     def get_zres(self) -> float:
+        ...
+    def group_blocks(self, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32]) -> dict[int, list[float]]:
         ...
     def hash(self) -> int:
         """

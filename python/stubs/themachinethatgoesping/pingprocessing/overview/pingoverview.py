@@ -3,7 +3,6 @@ from collections import defaultdict
 import numpy as np
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping.pingprocessing.overview import nav_plot
-import typing
 __all__ = ['PingOverview', 'defaultdict', 'get_ping_overview', 'get_progress_iterator', 'nav_plot', 'np']
 class PingOverview:
     """
@@ -38,8 +37,6 @@ class PingOverview:
     get_median(self, key)
         Returns the median value of a variable.
     """
-    __firstlineno__: typing.ClassVar[int] = 15
-    __static_attributes__: typing.ClassVar[tuple] = ('stats', 'variables')
     def __init__(self, ping_list: typing.List = None, progress: bool = False) -> None:
         """
         

@@ -5,11 +5,8 @@ from themachinethatgoesping.pingprocessing.core.asserts import assert_length
 from themachinethatgoesping.pingprocessing.core.asserts import assert_valid_argument
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping import tools
-import typing
 __all__ = ['EchoLayer', 'PingData', 'assert_length', 'assert_valid_argument', 'dt', 'get_progress_iterator', 'np', 'tools']
 class EchoLayer:
-    __firstlineno__: typing.ClassVar[int] = 13
-    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'i0', 'i1', 'vec_max_y', 'vec_min_y', 'y0', 'y1')
     @classmethod
     def from_ping_param_offsets_absolute(cls, echodata, ping_param_name, offset_0, offset_1):
         ...
@@ -32,8 +29,6 @@ class EchoLayer:
     def update_y_gridder(self):
         ...
 class PingData:
-    __firstlineno__: typing.ClassVar[int] = 143
-    __static_attributes__: typing.ClassVar[tuple] = ('echodata', 'nr')
     def __init__(self, echodata, nr):
         ...
     def get_datetime(self):

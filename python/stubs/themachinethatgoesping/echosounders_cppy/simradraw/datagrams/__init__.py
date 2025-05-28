@@ -15,9 +15,6 @@ class FIL1(SimradRawDatagram):
     coefficients used by the EK80 to filter the received signal.
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FIL1:
         """
         create T_CLASS object from bytearray
@@ -114,9 +111,6 @@ class MRU0(SimradRawDatagram):
     they are defined in the default coordinate system / value range.
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MRU0:
         """
         create T_CLASS object from bytearray
@@ -203,9 +197,6 @@ class NME0(SimradRawDatagram):
     received by the EK60/EK80 transceiver.
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> NME0:
         """
         create T_CLASS object from bytearray
@@ -286,9 +277,6 @@ class RAW3(SimradRawDatagram):
     for each ping. The exact datatype and size depends on the data_type
     field!
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> RAW3:
         """
@@ -413,9 +401,6 @@ class SimradRawDatagram:
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradRawDatagram:
         """
         create T_CLASS object from bytearray
@@ -523,9 +508,6 @@ class SimradRawUnknown(SimradRawDatagram):
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradRawUnknown:
         """
         create T_CLASS object from bytearray
@@ -590,9 +572,6 @@ class TAG0(SimradRawDatagram):
     they are defined in the default coordinate system / value range.
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> TAG0:
         """
         create T_CLASS object from bytearray
@@ -656,9 +635,6 @@ class XML0(SimradRawDatagram):
     used directly in themachinethatgoesping navigation processing because
     they are defined in the default coordinate system / value range.
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML0:
         """

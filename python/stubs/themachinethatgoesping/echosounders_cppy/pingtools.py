@@ -12,9 +12,6 @@ class BeamSampleSelection(BeamSelection):
     transducer
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSampleSelection:
         """
         create T_CLASS object from bytearray
@@ -182,9 +179,6 @@ class BeamSelection:
     transducer
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSelection:
         """
         create T_CLASS object from bytearray
@@ -293,9 +287,6 @@ class BeamSelection:
 class PingSampleSelector:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PingSampleSelector:
         """
@@ -467,9 +458,6 @@ class ReadSampleRange:
     """
     A class to hold range of samples for a single beam
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ReadSampleRange:
         """

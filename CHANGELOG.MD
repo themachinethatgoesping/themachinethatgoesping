@@ -24,6 +24,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - fixes to range/depth stack function names
 - algorithms
   - fixed integer conversion for vectorized 1d gridder functions
+- tools
+  - require meson 1.8.1 (1.8.0 had a bug)
 
 ### Maintenance
 

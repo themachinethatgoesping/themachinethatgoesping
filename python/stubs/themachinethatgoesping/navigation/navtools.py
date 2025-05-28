@@ -22,9 +22,6 @@ class t_latlon_format:
     degrees: typing.ClassVar[t_latlon_format]  # value = <t_latlon_format.degrees: 0>
     minutes: typing.ClassVar[t_latlon_format]  # value = <t_latlon_format.minutes: 1>
     seconds: typing.ClassVar[t_latlon_format]  # value = <t_latlon_format.seconds: 2>
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

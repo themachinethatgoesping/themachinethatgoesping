@@ -9,9 +9,6 @@ class RAW3DataAngle(i_RAW3Data):
     """
     """
     __hash__: typing.ClassVar[None] = None
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> RAW3DataAngle:
         ...
     def __deepcopy__(self, arg0: dict) -> RAW3DataAngle:
@@ -58,9 +55,6 @@ class RAW3DataComplexFloat32(i_RAW3Data):
     """
     """
     __hash__: typing.ClassVar[None] = None
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> RAW3DataComplexFloat32:
         ...
     def __deepcopy__(self, arg0: dict) -> RAW3DataComplexFloat32:
@@ -119,9 +113,6 @@ class RAW3DataPower(i_RAW3Data):
     """
     """
     __hash__: typing.ClassVar[None] = None
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> RAW3DataPower:
         ...
     def __deepcopy__(self, arg0: dict) -> RAW3DataPower:
@@ -168,9 +159,6 @@ class RAW3DataPowerAndAngle(i_RAW3Data):
     """
     """
     __hash__: typing.ClassVar[None] = None
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> RAW3DataPowerAndAngle:
         ...
     def __deepcopy__(self, arg0: dict) -> RAW3DataPowerAndAngle:
@@ -230,9 +218,6 @@ class RAW3DataSkipped(i_RAW3Data):
     the samples.
     """
     __hash__: typing.ClassVar[None] = None
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __copy__(self) -> RAW3DataSkipped:
         ...
     def __deepcopy__(self, arg0: dict) -> RAW3DataSkipped:
@@ -267,9 +252,6 @@ class i_RAW3Data:
     number of different data types. - power - angle - power and angle -
     complex float 32 - ...
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __init__(self, name: str) -> None:
         ...
     def class_name(self) -> str:
@@ -304,9 +286,6 @@ class t_RAW3DataType:
     Power: typing.ClassVar[t_RAW3DataType]  # value = <t_RAW3DataType.Power: 1>
     PowerAndAngle: typing.ClassVar[t_RAW3DataType]  # value = <t_RAW3DataType.PowerAndAngle: 3>
     __members__: typing.ClassVar[dict[str, t_RAW3DataType]]  # value = {'Power': <t_RAW3DataType.Power: 1>, 'Angle': <t_RAW3DataType.Angle: 2>, 'PowerAndAngle': <t_RAW3DataType.PowerAndAngle: 3>, 'ComplexFloat16': <t_RAW3DataType.ComplexFloat16: 4>, 'ComplexFloat32': <t_RAW3DataType.ComplexFloat32: 8>}
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     def __eq__(self, other: typing.Any) -> bool:
         ...
     def __getstate__(self) -> int:

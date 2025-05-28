@@ -12,9 +12,6 @@ class BTConstantSVP(I_Backtracer):
     """
     """
     @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
-    @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BTConstantSVP:
         """
         create T_CLASS object from bytearray
@@ -76,9 +73,6 @@ class BacktracedWCI:
     A structure to store a watercolumn image together with the necessary
     informations for raytracing.
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BacktracedWCI:
         """
@@ -170,9 +164,6 @@ class BacktracedWCI:
 class I_Backtracer:
     """
     """
-    @staticmethod
-    def _pybind11_conduit_v1_(*args, **kwargs):
-        ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> I_Backtracer:
         """
