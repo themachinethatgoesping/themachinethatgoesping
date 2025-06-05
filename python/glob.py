@@ -41,6 +41,9 @@ for r,d,f in os.walk('../'):
 
     if 'stubs' in r:
         continue
+    
+    if 'output' in r:
+        continue
 
     if not 'meson.build' in f:
         continue

@@ -27,6 +27,11 @@ for r,d,f in os.walk('../'):
     if r.count('subprojects') == 2:
         continue
     
+    if 'output' in r:
+        continue
+    if 'build' in r:
+        continue
+    
     for file in f:
         if file == "mkdoc.py":
             path_mkdoc.append((os.path.abspath(r),file))

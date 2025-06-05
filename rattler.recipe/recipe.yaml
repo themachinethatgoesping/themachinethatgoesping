@@ -12,13 +12,23 @@ source:
 
 build:
   script: 
-    - export CPPFLAGS="-I$PREFIX/include $CPPFLAGS"  # [unix]
-    - export LDFLAGS="-L$PREFIX/lib $LDFLAGS"        # [unix]
-    - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"  # [unix]
-    - export BOOST_ROOT="$PREFIX"                    # [unix]
-    - export MACOSX_DEPLOYMENT_TARGET=11.0           # [osx]
-    - export C="ccache $C"
-    - export CXX="ccache $CXX"
+    - if: unix
+      then:
+      - export CPPFLAGS="-I$PREFIX/include $CPPFLAGS"  # [unix]
+      - export LDFLAGS="-L$PREFIX/lib $LDFLAGS"        # [unix]
+      - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"  # [unix]
+      - export BOOST_ROOT="$PREFIX"                    # [unix]
+      - export C="ccache $C"
+      - export CXX="ccache $CXX"
+    - if: win
+      then:
+      - set BOOST_ROOT=%PREFIX%\Library                        # [win]
+      - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
+      - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
+      - set LIB=%PREFIX%\Library\lib;%LIB%             # [win]
+    - if: osx
+      then:
+      - export MACOSX_DEPLOYMENT_TARGET=11.0           # [osx]
     - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   # environment:
@@ -35,13 +45,14 @@ requirements:
     - ${{ compiler('cxx') }}
     - cmake
     - pkgconfig
+    - boost-cpp >=1.84.0,<1.88.0
   host:
   - python >=3.11
   - meson-python>=0.15.0,<0.20.0
   - pybind11>=2.13.2,<2.14.0
   - numpy>=2.0.0,<2.5
   - pip
-  - boost-cpp >=1.81.0,<1.84.0
+  - boost-cpp >=1.84.0,<1.88.0
   run:
   - ${{ pin_compatible('python') }}
   - ${{ pin_compatible('numpy') }}

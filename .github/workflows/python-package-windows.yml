@@ -64,7 +64,7 @@ jobs:
     env:
       CC: ${{matrix.compiler}}
       CXX: ${{matrix.compiler}}
-      NINJA: d:\ninja.exe
+      NINJA: c:\ninja.exe
 
     steps:
     - uses: actions/setup-python@v3
@@ -122,12 +122,12 @@ jobs:
         
     - name: download ninja long path
       run : |
-        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile d:\ninja.exe
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile c:\ninja.exe
 
     - name: check ninja executable path
       run: |
         $env:NINJA
-        d:\ninja.exe --version
+        c:\ninja.exe --version
          
     - name: build and install wheel
       run: |
@@ -144,7 +144,7 @@ jobs:
          
     - name: Test with meson (c++)
       run: |
-        d:\ninja.exe test -C pybuild --verbose
+        c:\ninja.exe test -C pybuild --verbose
         
     - name: Test with pytest
       run: |
