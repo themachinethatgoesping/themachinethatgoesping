@@ -13,6 +13,8 @@
 */builddir/*
 *.vscode/*
 conanbuild/*
+output/*
+rattler.recipe/output/*
 
 #pip build
 .mesonpy-native-file.ini

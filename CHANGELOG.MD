@@ -11,12 +11,15 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.28.8
 - navigation -> 0.17.4
 - echosounders -> 0.45.2
+- pingprocessing -> 0.11.5
 
 ### Improvements
 
 - echosounders
   - towards GSF raw file reading
   - use 'p' instead of middle mouse button to update echogramview
+- pingprocessing
+  - echogramviewer: deal with echogramdata dictionaries
 
 ### Fixed
 
