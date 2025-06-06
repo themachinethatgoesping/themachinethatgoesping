@@ -47,12 +47,13 @@ jobs:
     name: Build package
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
             target-platform: linux-64
-          - os: ubuntu-latest
-            target-platform: linux-aarch64
+          #- os: ubuntu-latest
+          #  target-platform: linux-aarch64
           - os: windows-latest
             target-platform: win-64
           - os: macos-latest
