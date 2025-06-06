@@ -30,7 +30,7 @@ build:
       - set NINJA=%CD%\ninja.exe                       # [win]
     - if: osx
       then:
-      - export MACOSX_DEPLOYMENT_TARGET=11.0           # [osx]
+      - export MACOSX_DEPLOYMENT_TARGET=14.0           # [osx]
     - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   # environment:
