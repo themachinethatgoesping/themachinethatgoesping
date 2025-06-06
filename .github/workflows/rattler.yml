@@ -65,9 +65,32 @@ jobs:
             extra-args: ""
     steps:
       - uses: actions/checkout@v4
+      
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.33
         with:
           # needs to be unique for each matrix entry
           artifact-name: package-${{ matrix.target-platform }}
-          build-args: ${{matrix.extra-args}} --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
+          build-args: ${{matrix.extra-args}} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
+
+      - name: Upload to Anaconda
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Install anaconda-client
+          pip install anaconda-client
+          
+          # Find and upload packages
+          if [ "${{ matrix.target-platform }}" == "win-64" ]; then
+            PACKAGE_DIR="C:/rattler"
+          else
+            PACKAGE_DIR="output"
+          fi
+          
+          # Upload all .conda and .tar.bz2 files
+          find $PACKAGE_DIR -name "*.conda" -o -name "*.tar.bz2" | while read package; do
+            echo "Uploading $package"
+            anaconda -t ${{ secrets.ANACONDA_API_TOKEN }} upload "$package" --user themachinethatgoesping --force
+          done
+        shell: bash
+        env:
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
