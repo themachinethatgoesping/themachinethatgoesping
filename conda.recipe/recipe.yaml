@@ -18,16 +18,18 @@ build:
       - export LDFLAGS="-L$PREFIX/lib $LDFLAGS"        # [unix]
       - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"  # [unix]
       - export BOOST_ROOT="$PREFIX"                    # [unix]
-      - export C="ccache $C"
+      - export CC="ccache $C"
       - export CXX="ccache $CXX"
     - if: win
       then:
-      - set CC=clang-cl
-      - set CXX=clang-cl
+      - set CC=sccache clang-cl
+      - set CXX=sccache clang-cl
       - set BOOST_ROOT=%PREFIX%\Library                        # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
       - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
       - set LIB=%PREFIX%\Library\lib;%LIB%             # [win]
+      - curl -L https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -o ninja.exe  # [win]
+      - set NINJA=%CD%\ninja.exe                       # [win]
     - if: osx
       then:
       - export MACOSX_DEPLOYMENT_TARGET=11.0           # [osx]
@@ -45,10 +47,16 @@ requirements:
     - ninja
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
-    - clang             # [win]
     - cmake
     - pkgconfig
     - boost-cpp >=1.84.0,<1.88.0
+    - if: win
+      then:
+      - sccache   
+      - clang             # [win]
+    - if: unix
+      then:
+      - ccache        
   host:
   - python >=3.11
   - meson-python>=0.15.0,<0.20.0
@@ -56,7 +64,10 @@ requirements:
   - numpy>=2.0.0,<2.5
   - pip
   - boost-cpp >=1.84.0,<1.88.0
-  - vs2022_win-64     # [win]
+  
+  - if: win
+    then:
+    - vs2022_win-64     # [win]
   run:
   - ${{ pin_compatible('python') }}
   - ${{ pin_compatible('numpy') }}

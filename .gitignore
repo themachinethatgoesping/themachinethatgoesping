@@ -13,7 +13,7 @@
 */builddir/*
 *.vscode/*
 conanbuild/*
-output/*
+*/output/*
 rattler.recipe/output/*
 
 #pip build

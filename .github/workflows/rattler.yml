@@ -1,0 +1,71 @@
+# SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+name: rattler packages
+
+on:
+  push:
+    branches: [ main ]
+    
+    paths-ignore:
+      - '.github/workflows/python-package*'
+      - '.github/workflows/cibuildwheels*'
+      - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-mac*'
+      - '.github/workflows/ci-windows*'
+      - 'conda.recipe/*'
+      - '*.md'
+      - 'doc/*'
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+  pull_request:
+    branches: [ main ]
+    
+    paths-ignore:
+      - '.github/workflows/python-package*'
+      - '.github/workflows/cibuildwheels*'
+      - '.github/workflows/test_*'
+      - '.github/workflows/ci-linux*'
+      - '.github/workflows/ci-mac*'
+      - '.github/workflows/ci-windows*'
+      - 'conda.recipe/*'
+      - '*.md'
+      - 'doc/*'
+    #paths:
+    #  - "**meson.build"
+    #  - "**.cpp"
+    #  - "**.c"
+    #  - "**.h"
+
+jobs:
+  build:
+    name: Build package
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target-platform: linux-64
+          - os: ubuntu-latest
+            target-platform: linux-aarch64
+          - os: windows-latest
+            target-platform: win-64
+          - os: macos-latest
+            target-platform: osx-64
+          - os: macos-14
+            target-platform: osx-arm64
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build conda package
+      uses: prefix-dev/rattler-build-action@v0.2.33
+      with:
+        # needs to be unique for each matrix entry
+        artifact-name: package-${{ matrix.target-platform }}
+        build-args: --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
+
+      
