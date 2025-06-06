@@ -94,11 +94,9 @@ jobs:
     
     - name: configure meson
       run: |
-        #meson setup builddir -Dpython.install_env=auto
         CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
-        LDFLAGS="-L${{ matrix.llvm }}/lib \
-                 -L${{ matrix.llvm }}/lib/c++ \
-                 -lunwind" \
+        LDFLAGS="-L${{ matrix.libomp }}/lib" \
+        CPPFLAGS="-I${{ matrix.libomp }}/include" \
                   meson setup builddir -Dpython.install_env=auto
 
     - name: compile project
