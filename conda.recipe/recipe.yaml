@@ -31,6 +31,7 @@ build:
     - if: osx
       then:
       - export MACOSX_DEPLOYMENT_TARGET=14.0           # [osx]
+      - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx] - Force system libc++
     - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   # environment:
@@ -51,17 +52,23 @@ requirements:
     - if: win
       then:
       - clang             # [win]
+    - if: osx
+      then:
+      - clang_osx-arm64 =20    # [osx] - Use conda-forge clang, not brew
+      - clangxx_osx-arm64 =20  # [osx]
   host:
-  - python >=3.11
-  - meson-python>=0.15.0,<0.20.0
-  - pybind11>=2.13.2,<2.14.0
-  - numpy>=2.0.0,<2.5
-  - pip
-  - boost-cpp >=1.84.0,<1.88.0
-  
-  - if: win
-    then:
-    - vs2022_win-64     # [win]
+    - python >=3.11
+    - meson-python>=0.15.0,<0.20.0
+    - pybind11>=2.13.2,<2.14.0
+    - numpy>=2.0.0,<2.5
+    - pip
+    - boost-cpp >=1.84.0,<1.88.0
+    - if: win
+      then:
+      - vs2022_win-64     # [win]
+    - if: osx
+      then:
+      - libcxx =20        # [osx] - Match clang version
   run:
   - ${{ pin_compatible('python') }}
   - ${{ pin_compatible('numpy') }}
