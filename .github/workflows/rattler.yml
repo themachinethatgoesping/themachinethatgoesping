@@ -89,8 +89,9 @@ jobs:
             echo "Uploading $package to anaconda.org"
             anaconda -t ${{ secrets.ANACONDA_API_TOKEN }} upload "$package" --user themachinethatgoesping --force
             echo "Uploading ${package} to prefix channel"
-            rattler-build upload prefix -c themachinethatgoesping "${package}"
+            rattler-build upload prefix -a ${{ secrets.PREFIX_API_TOKEN }} -c themachinethatgoesping "${package}"
           done
         shell: bash
         env:
           ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.PREFIX_API_TOKEN }}
