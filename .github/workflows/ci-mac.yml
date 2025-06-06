@@ -95,8 +95,11 @@ jobs:
     - name: configure meson
       run: |
         CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
-        LDFLAGS="-L${{ matrix.libomp }}/lib" \
-        CPPFLAGS="-I${{ matrix.libomp }}/include" \
+        LDFLAGS="-L${{ matrix.libomp }}/lib \
+                 -L${{ matrix.boost }}/lib" \
+        CPPFLAGS="-I${{ matrix.libomp }}/include \
+                  -I${{ matrix.boost }}/include" \
+        BOOST_ROOT=${{ matrix.boost }} \
                   meson setup builddir -Dpython.install_env=auto
 
     - name: compile project
