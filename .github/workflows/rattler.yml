@@ -15,7 +15,6 @@ on:
       - ".github/workflows/ci-linux*"
       - ".github/workflows/ci-mac*"
       - ".github/workflows/ci-windows*"
-      - "conda.recipe/*"
       - "*.md"
       - "doc/*"
     #paths:
@@ -33,7 +32,6 @@ on:
       - ".github/workflows/ci-linux*"
       - ".github/workflows/ci-mac*"
       - ".github/workflows/ci-windows*"
-      - "conda.recipe/*"
       - "*.md"
       - "doc/*"
     #paths:
