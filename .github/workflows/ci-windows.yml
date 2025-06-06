@@ -11,7 +11,7 @@ on:
     paths-ignore:
       - '.github/workflows/python-package*'
       - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/conda*'
+      - '.github/workflows/rattler*'
       - '.github/workflows/test_*'
       - '.github/workflows/ci-linux*'
       - '.github/workflows/ci-mac*'
@@ -29,7 +29,7 @@ on:
     paths-ignore:
       - '.github/workflows/python-package*'
       - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/conda*'
+      - '.github/workflows/rattler*'
       - '.github/workflows/test_*'
       - '.github/workflows/ci-linux*'
       - '.github/workflows/ci-mac*'

@@ -18,12 +18,10 @@ build:
       - export LDFLAGS="-L$PREFIX/lib $LDFLAGS"        # [unix]
       - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"  # [unix]
       - export BOOST_ROOT="$PREFIX"                    # [unix]
-      - export CC="ccache $C"
-      - export CXX="ccache $CXX"
     - if: win
       then:
-      - set CC=sccache clang-cl
-      - set CXX=sccache clang-cl
+      - set CC=clang-cl
+      - set CXX=clang-cl
       - set BOOST_ROOT=%PREFIX%\Library                        # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
       - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
@@ -52,11 +50,7 @@ requirements:
     - boost-cpp >=1.84.0,<1.88.0
     - if: win
       then:
-      - sccache   
       - clang             # [win]
-    - if: unix
-      then:
-      - ccache        
   host:
   - python >=3.11
   - meson-python>=0.15.0,<0.20.0
