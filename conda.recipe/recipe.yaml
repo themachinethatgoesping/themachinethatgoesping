@@ -57,7 +57,7 @@ requirements:
       - clang_osx-arm64 =20    # [osx] - Use conda-forge clang, not brew
       - clangxx_osx-arm64 =20  # [osx]
   host:
-    - python >=3.11
+    - python  
     - meson-python>=0.15.0,<0.20.0
     - pybind11>=2.13.2,<2.14.0
     - numpy>=2.0.0,<2.5
@@ -70,7 +70,7 @@ requirements:
       then:
       - libcxx =20        # [osx] - Match clang version
   run:
-  - ${{ pin_compatible('python') }}
+  - python  
   - ${{ pin_compatible('numpy') }}
   - ${{ pin_compatible('boost-cpp') }}
   - ipywidgets
