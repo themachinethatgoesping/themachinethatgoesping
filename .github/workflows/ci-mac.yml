@@ -62,7 +62,7 @@ jobs:
       matrix:
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        llvm: ["$(brew --prefix llvm@18)"]
+        llvm: ["$(brew --prefix llvm)"]
         os: ["macos-15"] 
         
     steps:
@@ -88,18 +88,18 @@ jobs:
       with:
         key: super-ci-mac-2  # name for the cache
         
-    - run: brew install libomp boost coreutils llvm@18
+    - run: brew install libomp boost coreutils llvm
     
     - run: pip install meson meson-python ninja pytest numpy
     
     - name: configure meson
       run: |
-        meson setup builddir -Dpython.install_env=auto
-        # CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
-        # LDFLAGS="-L${{ matrix.llvm }}/lib \
-        #          -L${{ matrix.llvm }}/lib/c++ \
-        #          -lunwind" \
-        #           meson setup builddir -Dpython.install_env=auto
+        #meson setup builddir -Dpython.install_env=auto
+        CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
+        LDFLAGS="-L${{ matrix.llvm }}/lib \
+                 -L${{ matrix.llvm }}/lib/c++ \
+                 -lunwind" \
+                  meson setup builddir -Dpython.install_env=auto
 
     - name: compile project
       run: meson compile -C builddir/

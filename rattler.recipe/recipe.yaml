@@ -22,6 +22,8 @@ build:
       - export CXX="ccache $CXX"
     - if: win
       then:
+      - set CC=clang-cl
+      - set CXX=clang-cl
       - set BOOST_ROOT=%PREFIX%\Library                        # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
       - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
@@ -43,6 +45,7 @@ requirements:
     - ninja
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
+    - clang             # [win]
     - cmake
     - pkgconfig
     - boost-cpp >=1.84.0,<1.88.0
@@ -53,6 +56,7 @@ requirements:
   - numpy>=2.0.0,<2.5
   - pip
   - boost-cpp >=1.84.0,<1.88.0
+  - vs2022_win-64     # [win]
   run:
   - ${{ pin_compatible('python') }}
   - ${{ pin_compatible('numpy') }}
