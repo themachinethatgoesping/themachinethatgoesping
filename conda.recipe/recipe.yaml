@@ -71,18 +71,22 @@ requirements:
     - if: osx
       then:
       - libcxx =20        # [osx] - Match clang version
+      - llvm-openmp =20  # [osx] - Match clang version
+
   run:
   - python  
-  - ${{ pin_compatible('numpy') }}
+  - numba
+  #- ${{ pin_compatible('numpy') }} this is installed by numba
   - ${{ pin_compatible('boost-cpp') }}
   - ipywidgets
+  - ipympl
   - matplotlib
-  - numba
   - pandas
   - rasterio
   - tqdm
   - scipy
   - pytimeparse2
+  - numpy < 2.3
 
 tests:
 - python:
