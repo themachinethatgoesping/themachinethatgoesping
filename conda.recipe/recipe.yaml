@@ -32,6 +32,8 @@ build:
       then:
       - export MACOSX_DEPLOYMENT_TARGET=14.0           # [osx]
       - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx] - Force system libc++
+      - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
+      - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx] - Disable availability errors
     - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   # environment:
