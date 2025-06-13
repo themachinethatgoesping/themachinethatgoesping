@@ -1,0 +1,43 @@
+context:
+  version: 2.6.2
+
+package:
+  name: pybind11_mkdoc
+  version: ${{ version }}
+
+source:
+- url: https://pypi.org/packages/source/p/pybind11_mkdoc/pybind11_mkdoc-${{ version }}.tar.gz
+  sha256: a47570699058c8c6bdb3bf16420cf0ebd7fb11058ee812d765b365a8ed9aaae8
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  python:
+    entry_points:
+    - pybind11-mkdoc = pybind11_mkdoc:main
+  noarch: python
+
+requirements:
+  host:
+  - python >=3.11
+  - flit-core >=2,<4
+  - pip
+  run:
+  - python >=3.11
+  - libclang ==18         # Add libclang for the C library
+  - python-clang ==18     # Add Python bindings for clang - THIS IS THE KEY FIX
+  - clang ==18            # Add clang for the C++ librar
+  # - pytest  # extra == "test"
+  # - pybind11  # extra == "test"
+  # - pytest-xdist  # extra == "test"
+
+# tests:
+# - python:
+#     imports:
+#     - pybind11_mkdoc
+#     #pip_check: true
+
+about:
+  homepage: https://github.com/pybind/pybind11_mkdoc
+  summary: This is a package for building pybind11 docstrings from C++ header comments.
+  description: ''
+  license: ''
