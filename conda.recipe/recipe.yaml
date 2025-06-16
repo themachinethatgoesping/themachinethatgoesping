@@ -1,5 +1,5 @@
 context:
-  version: 0.30.2.dev3
+  version: 0.30.2.dev4
 
 package:
   name: themachinethatgoesping
@@ -22,7 +22,6 @@ build:
       - set CC=clang-cl
       - set CXX=clang-cl
       - set CXXFLAGS=/openmp
-      - set CXXFLAGS=%CXXFLAGS% /EHsc                  # [win] - Append to existing CXXFLAGS
       - set LDFLAGS=libomp.lib
       - set BOOST_ROOT=%PREFIX%\Library                        # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
@@ -57,12 +56,12 @@ requirements:
       then:
       - clang             # [win]
       - lld               # [win]
-      - llvm-openmp            # [win] 
+      #- llvm-openmp            # [win] 
     - if: osx
       then:
       - clang_osx-arm64 =20    # [osx]
       - clangxx_osx-arm64 =20  # [osx]
-      - llvm-openmp            # [osx] 
+      #- llvm-openmp            # [osx] 
   host:
     - python  
     - meson-python>=0.15.0,<0.20.0
@@ -76,7 +75,7 @@ requirements:
     - if: osx
       then:
       - libcxx =20        # [osx]
-      - llvm-openmp       # [osx]
+      #- llvm-openmp       # [osx]
 
   run:
   - python  
@@ -91,9 +90,9 @@ requirements:
   - scipy
   - pytimeparse2
   - numpy < 2.3
-  - if: osx
-    then:
-    - llvm-openmp       # [osx] - Keep for macOS
+  # - if: osx
+  #   then:
+  #   - llvm-openmp       # [osx] - Keep for macOS
 
 tests:
 - python:
