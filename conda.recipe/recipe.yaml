@@ -1,5 +1,5 @@
 context:
-  version: 0.30.2.dev2
+  version: 0.30.2.dev3
 
 package:
   name: themachinethatgoesping
@@ -23,7 +23,7 @@ build:
       - set CXX=clang-cl
       - set CXXFLAGS=/openmp
       - set CXXFLAGS=%CXXFLAGS% /EHsc                  # [win] - Append to existing CXXFLAGS
-      - set LDFLAGS=libomp.lib
+      #- set LDFLAGS=libomp.lib
       - set BOOST_ROOT=%PREFIX%\Library                        # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
       - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
@@ -33,9 +33,9 @@ build:
     - if: osx
       then:
       - export MACOSX_DEPLOYMENT_TARGET=14.0           # [osx]
-      - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx] - Force system libc++
+      - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx]
       - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
-      - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx] - Disable availability errors
+      - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
     - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
   number: 0
   # environment:
@@ -56,13 +56,12 @@ requirements:
     - if: win
       then:
       - clang             # [win]
-      - intel-openmp      # [win]
       - lld               # [win]
     - if: osx
       then:
-      - clang_osx-arm64 =20    # [osx] - Use conda-forge clang, not brew
+      - clang_osx-arm64 =20    # [osx]
       - clangxx_osx-arm64 =20  # [osx]
-      - llvm-openmp            # [osx]
+      - llvm-openmp            # [osx] - Keep for macOS as it's needed
   host:
     - python  
     - meson-python>=0.15.0,<0.20.0
@@ -73,16 +72,14 @@ requirements:
     - if: win
       then:
       - vs2022_win-64     # [win]
-      - intel-openmp      # [win]
     - if: osx
       then:
-      - libcxx =20        # [osx] - Match clang version
+      - libcxx =20        # [osx]
       - llvm-openmp       # [osx]
 
   run:
   - python  
   - numba
-  #- ${{ pin_compatible('numpy') }} this is installed by numba
   - ${{ pin_compatible('boost-cpp') }}
   - ipywidgets
   - ipympl
@@ -93,12 +90,9 @@ requirements:
   - scipy
   - pytimeparse2
   - numpy < 2.3
-  - if: win
-    then:
-    - intel-openmp      # [win]
   - if: osx
     then:
-    - llvm-openmp       # [osx]
+    - llvm-openmp       # [osx] - Keep for macOS
 
 tests:
 - python:
