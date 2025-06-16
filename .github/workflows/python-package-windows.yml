@@ -67,7 +67,7 @@ jobs:
       NINJA: c:\ninja.exe
 
     steps:
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v5
       with:
         python-version: ${{matrix.python-version}}
 
@@ -166,7 +166,7 @@ jobs:
         #     pip-pre: '--pre'
     steps:
 
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v5
       with:
         python-version: 3.${{matrix.python-3-version}}
 
@@ -205,7 +205,7 @@ jobs:
         python-version: ['3.11','3.12','3.13']
         
     steps:
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v5
 
     - name: install pip dependencies
       # missing typing_extensions caused an error with pypi-publish ...
@@ -258,7 +258,7 @@ jobs:
         submodules: recursive
         lfs: false
 
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v5
       with:
         python-version: ${{matrix.python-version}}
 

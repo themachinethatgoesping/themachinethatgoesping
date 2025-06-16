@@ -75,7 +75,7 @@ jobs:
           xcode-version: latest-stable
 
       - name: Setup Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: ${{matrix.python-version}}
 
@@ -144,7 +144,7 @@ jobs:
         os: ["macos-14","macos-15"]
 
     steps:
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.${{matrix.python-3-version}}
 
@@ -191,7 +191,7 @@ jobs:
 
 
     steps:
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
 
       - name: install pip dependencies
         # missing typing_extensions caused an error with pypi-publish ...
@@ -251,7 +251,7 @@ jobs:
           submodules: recursive
           lfs: false
 
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{matrix.python-version}}
 
