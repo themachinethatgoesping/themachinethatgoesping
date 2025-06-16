@@ -12,6 +12,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation -> 0.17.4
 - echosounders -> 0.45.2
 - pingprocessing -> 0.11.5
+- gridding -> 0.4.2
 
 ### Improvements
 
@@ -29,6 +30,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - fixed integer conversion for vectorized 1d gridder functions
 - tools
   - require meson 1.8.1 (1.8.0 had a bug)
+- gridding
+  - fixed: echogrid failures using new ForwardGridder3D
 
 ### Maintenance
 
