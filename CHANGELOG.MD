@@ -19,6 +19,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders
   - towards GSF raw file reading
   - use 'p' instead of middle mouse button to update echogramview
+  - add InteractiveLineBuilder to pingprocessing/widgets/tools
 - pingprocessing
   - echogramviewer: deal with echogramdata dictionaries
 
