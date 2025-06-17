@@ -1,5 +1,5 @@
 context:
-  version: 0.30.2
+  version: 0.30.3.dev1
 
 package:
   name: themachinethatgoesping
@@ -21,8 +21,8 @@ build:
       then:
       - set CC=clang-cl
       - set CXX=clang-cl
-      - set CXXFLAGS=/EHsc                             # [win] - Remove /openmp
-      # Remove LDFLAGS=libomp.lib and llvm-openmp dependency
+      - set CXXFLAGS=/openmp:llvm
+      - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
       - set BOOST_ROOT=%PREFIX%\Library                # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
       - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
@@ -50,8 +50,8 @@ requirements:
     - if: win
       then:
       - clang             # [win]
+      - llvm-openmp       # [win] - Add back LLVM OpenMP for Windows
       - lld               # [win]
-      # Remove llvm-openmp for Windows
     - if: osx
       then:
       - clang_osx-arm64 =20    # [osx]
@@ -68,7 +68,7 @@ requirements:
     - if: win
       then:
       - vs2022_win-64     # [win]
-      - llvm-openmp       # [win]
+      - llvm-openmp       # [win] - Keep LLVM OpenMP
     - if: osx
       then:
       - libcxx =20        # [osx]
@@ -87,10 +87,12 @@ requirements:
   - scipy
   - pytimeparse2
   - numpy < 2.3
-  # Remove llvm-openmp from Windows run dependencies
+  - if: win
+    then:
+    - llvm-openmp       # [win] - Add back LLVM OpenMP for Windows runtime
   - if: osx
     then:
-    - llvm-openmp       # [osx] - Keep for macOS only
+    - llvm-openmp       # [osx] - Keep for macOS
 
 tests:
 - python:
