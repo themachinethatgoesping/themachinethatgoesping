@@ -21,7 +21,8 @@ build:
       then:
       - set CC=clang-cl
       - set CXX=clang-cl
-      - set CXXFLAGS=/openmp:llvm
+      - set CXXFLAGS=/openmp
+      - set LDFLAGS=libomp.lib
       - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
       - set BOOST_ROOT=%PREFIX%\Library                # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
@@ -29,6 +30,7 @@ build:
       - set LIB=%PREFIX%\Library\lib;%LIB%             # [win]
       - curl -L https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -o ninja.exe  # [win]
       - set NINJA=%CD%\ninja.exe                       # [win]
+      - copy %PREFIX%\Library\bin\libomp.lib .
     - if: osx
       then:
       - export MACOSX_DEPLOYMENT_TARGET=14.0           # [osx]
