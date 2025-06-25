@@ -21,7 +21,6 @@ build:
       then:
       - set CC=clang-cl
       - set CXX=clang-cl
-      - set CXXFLAGS=/openmp
       - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
       - set BOOST_ROOT=%PREFIX%\Library                # [win]
       - set PATH=%PREFIX%\Library\bin;%PATH%           # [win]
@@ -35,7 +34,7 @@ build:
       - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx]
       - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
       - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
-    - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled"
+    - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled -Dforce_openmp=enabled"
   number: 0
 
 requirements:
