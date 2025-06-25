@@ -70,6 +70,10 @@
    :target: https://pypi.org/project/themachinethatgoesping/
    :alt: PyPI - Version
 
+.. |info-conda| image:: https://anaconda.org/themachinethatgoesping/themachinethatgoesping/badges/version.svg
+   :target: https://anaconda.org/themachinethatgoesping/themachinethatgoesping
+   :alt: Conda - Version
+
 .. |info-docs| image:: https://img.shields.io/badge/Documentation-readthedocs-informational
    :target: https://themachinethatgoesping.readthedocs.io
    :alt: readthedocs
@@ -95,7 +99,7 @@
    :height: 30
    
 
-| |info-python| |info-pypi|
+| |info-python| |info-pypi| |info-conda|
 
 | |badge-license| |info-docs|
 
