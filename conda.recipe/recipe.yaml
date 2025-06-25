@@ -34,7 +34,7 @@ build:
       - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"     # [osx]
       - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
       - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
-    - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled --config-settings=setup-args="-Dforce_openmp=enabled"
+    - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
   number: 0
 
 requirements:
