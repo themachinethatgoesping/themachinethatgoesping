@@ -1,5 +1,5 @@
 context:
-  version: 0.30.3.dev2
+  version: 0.30.3.dev3
 
 package:
   name: themachinethatgoesping
@@ -89,9 +89,11 @@ requirements:
   - if: win
     then:
     - llvm-openmp       # [win] - Add back LLVM OpenMP for Windows runtime
+    - nomkl
   - if: osx
     then:
     - llvm-openmp       # [osx] - Keep for macOS
+    - nomkl
 
 tests:
 - python:
