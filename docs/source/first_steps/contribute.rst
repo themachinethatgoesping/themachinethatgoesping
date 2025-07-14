@@ -105,7 +105,7 @@ To setup meson run (within the source directory):
 
 .. code-block:: console
 
-   $     meson setup builddir -Dunity=on 
+   $     meson setup builddir -Dunity=on -Dunity_size=9999999 
    
 This will create a build directory called ``builddir``. You can change the name of the build directory to your liking. 
 For general build options refer to the `meson documentation <https://mesonbuild.com/Reference-manual.html>`_.

@@ -100,7 +100,7 @@ jobs:
         CPPFLAGS="-I${{ matrix.libomp }}/include \
                   -I${{ matrix.boost }}/include" \
         BOOST_ROOT=${{ matrix.boost }} \
-                  meson setup builddir -Dunity=on -Dpython.install_env=auto
+                  meson setup builddir -Dunity=on -Dunity_size=9999999 -Dpython.install_env=auto
 
     - name: compile project
       run: meson compile -C builddir/

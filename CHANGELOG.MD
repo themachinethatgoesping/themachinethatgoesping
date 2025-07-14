@@ -7,10 +7,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased]
 
-- tools 0.29.0
+- tools -> 0.29.0
+- navigation -> 0.17.6
+- algorithms -> 0.9.4
+- echosounders -> 0.45.3
 
 ### Maintenance
-- refractoring of tools library to move implementations to cpp files
+- tools: 
+  - refractoring to move implementations to cpp files
+  - update xtensor 0.27 -> 0.28
+- all libraries:
+  - activatiung unity builds for ci scripts
+  - make builds compatible with fill unity builds
+  - adapt new tools libray
 
 ## [0.30.2] - 17-06-2025
 

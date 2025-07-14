@@ -6,20 +6,17 @@ import typing
 __all__ = ['datestring_to_unixtime', 'datetime_to_unixtime', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
 def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
     """
-    Converting between date strings and unixtime stamps (ref 1970)
+    Parses a date/time string to a UNIX timestamp using the specified
+    format.
     
-    Parameter ``DateString:``:
-        DateString to be converted. Must fit format string.
+    Parameter ``DateString``:
+        Date/time string to parse
     
-    Parameter ``format:``:
-        Format string to convert Date string. Default Format:
-        "%z__%d-%m-%Y__%H:%M:%S" see
-        https://m.cplusplus.com/reference/ctime/strftime/ * https://themac
-        hinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.h
-        tml#format-string
+    Parameter ``format``:
+        Format string (default: "%z__%d-%m-%Y__%H:%M:%S")
     
     Returns:
-        unixtime as double (seconds since 01.01.1970)
+        UNIX timestamp as double (seconds since 1970-01-01T00:00:00Z)
     """
 def datetime_to_unixtime(datetime: typing.Any) -> float:
     """
@@ -33,24 +30,19 @@ def datetime_to_unixtime(datetime: typing.Any) -> float:
     """
 def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
-    Converting between date strings and unixtime stamps (ref 1970)
+    Converts a UNIX timestamp to a formatted date/time string.
     
-    Parameter ``unixtime:``:
-        seconds since 01.01.1970 as double
+    Parameter ``unixtime``:
+        UNIX timestamp as double (seconds since 1970-01-01T00:00:00Z)
     
-    Parameter ``fractionalSecondsDigits:``:
-        How many digits to use for the split seconds. Minimum is 0 (second
-        resolution) Maximum is 6 (microsecond resolution)
+    Parameter ``fractionalSecondsDigits``:
+        Number of digits for fractional seconds (default: 0)
     
-    Parameter ``format:``:
-        Format string to convert Date string. Default Format:
-        "%z__%d-%m-%Y__%H:%M:%S" see:
-        https://m.cplusplus.com/reference/ctime/strftime/ * https://themac
-        hinethatgoesping.readthedocs.io/en/latest/modules/tools/timeconv.h
-        tml#format-string
+    Parameter ``format``:
+        Format string (default: "%z__%d-%m-%Y__%H:%M:%S")
     
     Returns:
-        DateString that fits to the specified format
+        Formatted date/time string
     """
 def unixtime_to_datetime(unixtime: float, timezone_offset_hours: float = 0.0) -> typing.Any:
     """
@@ -67,16 +59,21 @@ def unixtime_to_datetime(unixtime: float, timezone_offset_hours: float = 0.0) ->
     """
 def year_month_day_to_unixtime(year: int, month: int, day: int, micro_seconds: int = 0) -> float:
     """
-    Convert a year, month and day to a unixtime stamp (ref 1970)
+    Converts a calendar date (year, month, day) and optional microseconds
+    to a UNIX timestamp.
     
     Parameter ``year``:
-        $Parameter ``month``:
+        Year (e.g. 2024)
+    
+    Parameter ``month``:
+        Month (1-12)
     
     Parameter ``day``:
-        $Parameter ``micro_seconds``:
+        Day (1-31)
     
-    microseconds since midnight
+    Parameter ``micro_seconds``:
+        Optional microseconds to add
     
     Returns:
-        double
+        UNIX timestamp as double (seconds since 1970-01-01T00:00:00Z)
     """
