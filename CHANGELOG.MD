@@ -5,6 +5,13 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
+## [Unreleased]
+
+- tools 0.29.0
+
+### Maintenance
+- refractoring of tools library to move implementations to cpp files
+
 ## [0.30.2] - 17-06-2025
 
 - algorithms -> 0.9.3

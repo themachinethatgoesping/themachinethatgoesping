@@ -17,6 +17,7 @@ from time import time
 from tqdm.notebook import tqdm_notebook as tqdm
 import types as types
 from . import echogramviewer
+from . import tools
 from . import tqdmwidget
 from . import wciviewer
-__all__ = ['EchogramViewer', 'TqdmWidget', 'WCIViewer', 'asyncio', 'display', 'echograms', 'echogramviewer', 'echosounders', 'ipywidgets', 'mdates', 'mi', 'mi_hlp', 'np', 'plt', 'theping', 'time', 'tqdm', 'tqdmwidget', 'types', 'wciviewer']
+__all__ = ['EchogramViewer', 'TqdmWidget', 'WCIViewer', 'asyncio', 'display', 'echograms', 'echogramviewer', 'echosounders', 'ipywidgets', 'mdates', 'mi', 'mi_hlp', 'np', 'plt', 'theping', 'time', 'tools', 'tqdm', 'tqdmwidget', 'types', 'wciviewer']

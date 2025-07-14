@@ -24,7 +24,7 @@ def version():
     ...
 __modules_installed__: list = [('tools_cppy', '0.28.8'), ('tools', '@PROJECT_VERSION@'), ('scripts', '@PROJECT_VERSION@'), ('algorithms', '0.9.3'), ('navigation', '0.17.5'), ('echosounders_cppy', '0.45.2'), ('echosounders', '0.45.2'), ('pingprocessing_cppy', '0.11.5'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '@PROJECT_VERSION@')]
 __submodule: str = '../'
-__version__: str = '0.30.1'
+__version__: str = '0.30.2'
 pydev_install_module_paths: list = ['/home/peurban/.local/share/mamba/envs/dev/lib/python3.13/site-packages/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//tools/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//gridding/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//echosounders/python/themachinethatgoesping', '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/..//pingprocessing/python/themachinethatgoesping']
 pydev_install_modules: list = ['tools', 'navigation', 'gridding', 'echosounders', 'pingprocessing', '../']
 pydev_install_src_path: str = '/ssd/src/themachinethatgoesping/themachinethatgoesping/subprojects/meta/../'

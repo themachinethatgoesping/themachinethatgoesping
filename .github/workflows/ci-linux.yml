@@ -104,7 +104,7 @@ jobs:
       run: ${{matrix.pip}}
 
     - name: configure meson
-      run: meson setup builddir/; meson configure builddir -Dpython.install_env=auto -Dprefix=/usr/;
+      run: meson setup builddir -Dunity=on -Dpython.install_env=auto -Dprefix=/usr/;
 
     - name: compile project
       run: meson compile -C builddir/

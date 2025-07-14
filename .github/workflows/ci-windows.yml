@@ -142,7 +142,7 @@ jobs:
 
     - name: configure meson
       run: |
-        meson setup builddir/ -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
+        meson setup builddir -Dunity=on -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
 
     - name: compile project
       run: meson compile -C builddir/
