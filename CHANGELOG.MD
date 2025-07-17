@@ -5,12 +5,17 @@ Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-## [Unreleased]
+## [0.30.3] - 18-07-2025
 
 - tools -> 0.29.0
 - navigation -> 0.17.6
 - algorithms -> 0.9.4
 - echosounders -> 0.45.3
+
+### Improvements
+- algorithms:
+  - added eat_neighbor_regions parameter to grow_regions function
+  - vectorized functions for forward gridder transformation functions
 
 ### Maintenance
 - tools: 
@@ -489,7 +494,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing -> 0.8.3
 - tools -> 0.26.0
 - algorithms -> 0.8.1
-
+sta
 ### Changed
 
 - echosounders:
