@@ -51,7 +51,7 @@ class FIL1(SimradRawDatagram):
         """
         < Channel identification (size is always 128)
         """
-    def get_coefficients(self) -> numpy.ndarray[numpy.float32]:
+    def get_coefficients(self) -> numpy.ndarray[numpy.complex64]:
         """
         < Filter coefficients, ...)
         """
@@ -83,7 +83,7 @@ class FIL1(SimradRawDatagram):
         """
         < Channel identification (size is always 128)
         """
-    def set_coefficients(self, arg0: numpy.ndarray[numpy.float32]) -> None:
+    def set_coefficients(self, arg0: numpy.ndarray[numpy.complex64]) -> None:
         """
         < Filter coefficients, ...)
         """

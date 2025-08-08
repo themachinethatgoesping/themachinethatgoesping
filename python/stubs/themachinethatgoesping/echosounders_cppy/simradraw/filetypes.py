@@ -396,6 +396,8 @@ class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplate
         """
 class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.filetemplates.WaterColumnCalibration):
     """
+    TODO: check effective pulse length - for power/angle data, do I only
+    use the nominal pulse length?
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradRawWaterColumnCalibration:
