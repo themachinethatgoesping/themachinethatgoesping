@@ -16,7 +16,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Maintenance
 - tools: 
-  - update catch2 3.8.1 -> 3.9.0
+  - update catch2 3.8.1 -> 3.9.1
+  - refractoring stream.hpp and classversion.hpp
+  - refractoring progressbars into cpp files
+  - refractoring rotationfunctions into cpp files
 
 ## [0.30.3] - 18-07-2025
 
