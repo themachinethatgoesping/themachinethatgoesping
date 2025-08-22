@@ -7,8 +7,8 @@ import typing
 from . import datagrams
 from . import filedatacontainers
 from . import filedatainterfaces
-from . import filetypes
-__all__ = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram_type_from_string', 'SimradRawFileHandler', 'SimradRawFileHandler_stream', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filetypes', 't_SimradRawDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
+from . import filedatatypes
+__all__: list[str] = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram_type_from_string', 'SimradRawFileHandler', 'SimradRawFileHandler_stream', 'TAG0', 'XML0', 'datagram_type_to_string', 'datagrams', 'filedatacontainers', 'filedatainterfaces', 'filedatatypes', 't_SimradRawDatagramIdentifier', 'test_speed_decode_nmea', 'test_speed_decode_xml', 'test_speed_header', 'test_speed_raw', 'test_speed_raw_all', 'test_speed_type']
 class SimradRawFileHandler:
     """
     """

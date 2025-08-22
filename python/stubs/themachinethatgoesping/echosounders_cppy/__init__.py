@@ -6,7 +6,7 @@ from . import filetemplates
 from . import kongsbergall
 from . import pingtools
 from . import simradraw
-__all__ = ['filetemplates', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
+__all__: list[str] = ['filetemplates', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...

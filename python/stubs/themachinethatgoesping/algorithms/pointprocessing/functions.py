@@ -4,7 +4,7 @@ M that holds functions used for amplitude corrections
 from __future__ import annotations
 import numpy
 import typing
-__all__ = ['segment_in_weighted_quantiles', 'weighted_median']
+__all__: list[str] = ['segment_in_weighted_quantiles', 'weighted_median']
 @typing.overload
 def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float64], n_quantiles: int, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
     ...

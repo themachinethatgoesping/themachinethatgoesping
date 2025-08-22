@@ -7,7 +7,7 @@ import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['BTConstantSVP', 'BacktracedWCI', 'I_Backtracer']
+__all__: list[str] = ['BTConstantSVP', 'BacktracedWCI', 'I_Backtracer']
 class BTConstantSVP(I_Backtracer):
     """
     """

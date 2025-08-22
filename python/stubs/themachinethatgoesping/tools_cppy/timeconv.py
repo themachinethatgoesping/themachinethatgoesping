@@ -3,7 +3,7 @@ Convenient functions for converting time strings.
 """
 from __future__ import annotations
 import typing
-__all__ = ['datestring_to_unixtime', 'datetime_to_unixtime', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
+__all__: list[str] = ['datestring_to_unixtime', 'datetime_to_unixtime', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
 def datestring_to_unixtime(unixtime: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:
     """
     Parses a date/time string to a UNIX timestamp using the specified

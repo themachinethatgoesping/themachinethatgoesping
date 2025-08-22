@@ -9,7 +9,7 @@ import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.pingtools
 import typing
-__all__ = ['FilePackageIndex_kongsbergall_FilePackageIndex', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_stream', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_stream', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_stream', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_stream', 'KongsbergAllPing_stream', 'KongsbergAllWaterColumnCalibration']
+__all__: list[str] = ['FilePackageIndex_kongsbergall_FilePackageIndex', 'KongsbergAllPing', 'KongsbergAllPingBottom', 'KongsbergAllPingBottom_stream', 'KongsbergAllPingCommon', 'KongsbergAllPingCommon_stream', 'KongsbergAllPingFileData', 'KongsbergAllPingFileData_stream', 'KongsbergAllPingWatercolumn', 'KongsbergAllPingWatercolumn_stream', 'KongsbergAllPing_stream', 'KongsbergAllWaterColumnCalibration']
 class FilePackageIndex_kongsbergall_FilePackageIndex:
     """
     """

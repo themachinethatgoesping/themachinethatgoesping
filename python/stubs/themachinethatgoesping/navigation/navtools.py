@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__ = ['compute_latlon_distance_m', 'compute_latlon_distances_m', 'cumulative_latlon_distances_m', 'degrees', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'seconds', 't_latlon_format', 'utm_to_latlon']
+__all__: list[str] = ['compute_latlon_distance_m', 'compute_latlon_distances_m', 'cumulative_latlon_distances_m', 'degrees', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'seconds', 't_latlon_format', 'utm_to_latlon']
 class t_latlon_format:
     """
     lat/lon format specifications

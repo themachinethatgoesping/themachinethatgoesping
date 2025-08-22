@@ -3,7 +3,7 @@ Classes that provide python helper functionality
 """
 from __future__ import annotations
 import typing
-__all__ = ['PyIndexerSlice']
+__all__: list[str] = ['PyIndexerSlice']
 class PyIndexerSlice:
     """
     A structure to hold a slice

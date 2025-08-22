@@ -4,7 +4,7 @@ M that holds functions used for image processing functions
 from __future__ import annotations
 import numpy
 import typing
-__all__ = ['find_local_maxima', 'find_local_maxima2', 'grow_regions']
+__all__: list[str] = ['find_local_maxima', 'find_local_maxima2', 'grow_regions']
 @typing.overload
 def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[float]]:
     ...

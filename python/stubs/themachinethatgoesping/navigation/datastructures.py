@@ -3,7 +3,7 @@ Submodule that contains datastructures that store navigation data or navigation 
 """
 from __future__ import annotations
 import typing
-__all__ = ['Geolocation', 'GeolocationLatLon', 'GeolocationLocal', 'GeolocationUTM', 'PositionalOffsets', 'Sensordata', 'SensordataLatLon', 'SensordataLocal', 'SensordataUTM']
+__all__: list[str] = ['Geolocation', 'GeolocationLatLon', 'GeolocationLocal', 'GeolocationUTM', 'PositionalOffsets', 'Sensordata', 'SensordataLatLon', 'SensordataLocal', 'SensordataUTM']
 class Geolocation:
     """
     A structure to store a georeferenced location and attitude (e.g. of a

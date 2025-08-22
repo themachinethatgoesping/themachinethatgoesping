@@ -9,7 +9,7 @@ import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.navigation.datastructures
 import typing
 from . import substructures
-__all__ = ['AttitudeDatagram', 'Bscorr', 'CalibTxt', 'ClockDatagram', 'DepthOrHeightDatagram', 'ExtraDetections', 'ExtraParameters', 'ExtraParameters_t_ContentIdentifier', 'HeadingDatagram', 'InstallationParameters', 'KongsbergAllDatagram', 'KongsbergAllUnknown', 'LogAllHeights', 'MultiCastInputStatus', 'NetworkAttitudeVelocityDatagram', 'PUIDOutput', 'PUStatusOutput', 'PositionDatagram', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SoundSpeedProfileDatagram', 'SoundVelocityAtTransducer', 'SoundVelocityProfile', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'substructures']
+__all__: list[str] = ['AttitudeDatagram', 'Bscorr', 'CalibTxt', 'ClockDatagram', 'DepthOrHeightDatagram', 'ExtraDetections', 'ExtraParameters', 'ExtraParameters_t_ContentIdentifier', 'HeadingDatagram', 'InstallationParameters', 'KongsbergAllDatagram', 'KongsbergAllUnknown', 'LogAllHeights', 'MultiCastInputStatus', 'NetworkAttitudeVelocityDatagram', 'PUIDOutput', 'PUStatusOutput', 'PositionDatagram', 'QualityFactorDatagram', 'RawRangeAndAngle', 'RuntimeParameters', 'SeabedImageData', 'SingleBeamEchoSounderDepth', 'SoundSpeedProfileDatagram', 'SoundVelocityAtTransducer', 'SoundVelocityProfile', 'SurfaceSoundSpeedDatagram', 'WatercolumnDatagram', 'XYZDatagram', 'substructures']
 class AttitudeDatagram(KongsbergAllDatagram):
     """
     This datagram is used for the models EM 2040, EM 2040C, EM 710, EM

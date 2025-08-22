@@ -17,7 +17,7 @@ from themachinethatgoesping.pingprocessing.watercolumn import helper as wchelper
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import warnings as warnings
-__all__ = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
+__all__: list[str] = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
 class EchogramBuilder:
     @staticmethod
     def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_steps = 1024):

@@ -3,7 +3,7 @@ Submodule that holds datastructures that hold the signal processing input/result
 """
 from __future__ import annotations
 import typing
-__all__ = ['CW', 'CWSignalParameters', 'FMSignalParameters', 'FM_DOWN_SWEEP', 'FM_UP_SWEEP', 'GenericSignalParameters', 'UNKNOWN', 't_TxSignalType']
+__all__: list[str] = ['CW', 'CWSignalParameters', 'FMSignalParameters', 'FM_DOWN_SWEEP', 'FM_UP_SWEEP', 'GenericSignalParameters', 'UNKNOWN', 't_TxSignalType']
 class CWSignalParameters:
     """
     @class CWSignalParameters Class representing information about a

@@ -14,7 +14,7 @@ from themachinethatgoesping.scripts.oceanographic import knots_to_ms
 from themachinethatgoesping.scripts.plot_tools import prepare_plt
 from themachinethatgoesping.scripts.sbes import SBES
 import typing
-__all__ = ['MBES', 'SBES', 'asin', 'cos', 'deepcopy', 'degrees', 'knots_to_ms', 'math', 'np', 'pi', 'plt', 'prepare_plt', 'radians', 'sin', 'sqrt', 'tan']
+__all__: list[str] = ['MBES', 'SBES', 'asin', 'cos', 'deepcopy', 'degrees', 'knots_to_ms', 'math', 'np', 'pi', 'plt', 'prepare_plt', 'radians', 'sin', 'sqrt', 'tan']
 class MBES:
     plt_aspect: typing.ClassVar[bool] = True
     plt_grid: typing.ClassVar[bool] = True

@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['BeamSampleParameters', 'RaytraceResult', 'RaytraceResults_1', 'RaytraceResults_2', 'RaytraceResults_3', 'SampleDirectionsRange_1', 'SampleDirectionsRange_2', 'SampleDirectionsRange_3', 'SampleDirectionsTime_1', 'SampleDirectionsTime_2', 'SampleDirectionsTime_3', 'SampleDirections_1', 'SampleDirections_2', 'SampleDirections_3', 'SampleIndices_1', 'SampleIndices_2', 'SampleIndices_3', 'XYZ_1', 'XYZ_2', 'XYZ_3']
+__all__: list[str] = ['BeamSampleParameters', 'RaytraceResult', 'RaytraceResults_1', 'RaytraceResults_2', 'RaytraceResults_3', 'SampleDirectionsRange_1', 'SampleDirectionsRange_2', 'SampleDirectionsRange_3', 'SampleDirectionsTime_1', 'SampleDirectionsTime_2', 'SampleDirectionsTime_3', 'SampleDirections_1', 'SampleDirections_2', 'SampleDirections_3', 'SampleIndices_1', 'SampleIndices_2', 'SampleIndices_3', 'XYZ_1', 'XYZ_2', 'XYZ_3']
 class BeamSampleParameters:
     """
     A structure to store directional parameters of multibeam system.

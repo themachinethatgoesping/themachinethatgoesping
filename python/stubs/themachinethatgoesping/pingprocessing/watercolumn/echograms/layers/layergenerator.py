@@ -2,7 +2,7 @@ from __future__ import annotations
 from copy import copy
 from themachinethatgoesping.pingprocessing.core.asserts import assert_length
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import EchoLayer
-__all__ = ['EchoLayer', 'LayerGenerator', 'assert_length', 'copy']
+__all__: list[str] = ['EchoLayer', 'LayerGenerator', 'assert_length', 'copy']
 class LayerGenerator:
     def __copy_layer__(self, echogram2, layer_name):
         ...

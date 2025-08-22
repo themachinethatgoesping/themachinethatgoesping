@@ -7,7 +7,7 @@ from themachinethatgoesping.gridding.forwardgridderlegacy import ForwardGridderL
 from themachinethatgoesping.gridding.forwardgridderlegacynew import ForwardGridderLegacyNew
 from themachinethatgoesping.gridding.functions import gridfunctions as gf
 import warnings as warnings
-__all__ = ['EchoGrid', 'ForwardGridder3D', 'ForwardGridderLegacy', 'ForwardGridderLegacyNew', 'MutableMapping', 'gf', 'njit', 'np', 'static_get_target_pos', 'warnings']
+__all__: list[str] = ['EchoGrid', 'ForwardGridder3D', 'ForwardGridderLegacy', 'ForwardGridderLegacyNew', 'MutableMapping', 'gf', 'njit', 'np', 'static_get_target_pos', 'warnings']
 class EchoGrid:
     @classmethod
     def from_data(cls, res, sx, sy, sz, sv, blockmean = False):

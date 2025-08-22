@@ -4,7 +4,7 @@ from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import mak
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci_dual_head
 from themachinethatgoesping.pingprocessing.watercolumn.image.make_wci import make_wci_stack
-__all__ = ['ImageBuilder', 'get_progress_iterator', 'make_beam_sample_image', 'make_wci', 'make_wci_dual_head', 'make_wci_stack']
+__all__: list[str] = ['ImageBuilder', 'get_progress_iterator', 'make_beam_sample_image', 'make_wci', 'make_wci_dual_head', 'make_wci_stack']
 class ImageBuilder:
     def __init__(self, pings, horizontal_pixels, wci_render = 'linear', progress = False, **kwargs):
         ...

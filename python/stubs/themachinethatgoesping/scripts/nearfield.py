@@ -1,7 +1,7 @@
 from __future__ import annotations
 from matplotlib import pyplot as plt
 import numpy as np
-__all__ = ['minimum_recommended_calibration_range', 'nearfield_range_sbes', 'np', 'plot_nearfield_range', 'plot_recommended_sphere_range', 'plt']
+__all__: list[str] = ['minimum_recommended_calibration_range', 'nearfield_range_sbes', 'np', 'plot_nearfield_range', 'plot_recommended_sphere_range', 'plt']
 def _compute_kappa(wavelength):
     ...
 def _compute_wavelength(frequency, sound_speed):

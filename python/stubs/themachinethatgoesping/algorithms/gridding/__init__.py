@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import typing
 from . import functions
-__all__ = ['ForwardGridder1D', 'ForwardGridder1DF', 'ForwardGridder2D', 'ForwardGridder2DF', 'ForwardGridder3D', 'ForwardGridder3DF', 'functions']
+__all__: list[str] = ['ForwardGridder1D', 'ForwardGridder1DF', 'ForwardGridder2D', 'ForwardGridder2DF', 'ForwardGridder3D', 'ForwardGridder3DF', 'functions']
 class ForwardGridder1D:
     """
     Simple class to generate 1D grids and interpolate x data onto a grid

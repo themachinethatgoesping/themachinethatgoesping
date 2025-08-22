@@ -9,7 +9,7 @@ from themachinethatgoesping.pingprocessing.watercolumn import image as mi
 from themachinethatgoesping.pingprocessing.widgets.tqdmwidget import TqdmWidget
 from time import time
 import types as types
-__all__ = ['TqdmWidget', 'WCIViewer', 'display', 'echosounders', 'ipywidgets', 'mi', 'mi_hlp', 'np', 'plt', 'time', 'types']
+__all__: list[str] = ['TqdmWidget', 'WCIViewer', 'display', 'echosounders', 'ipywidgets', 'mi', 'mi_hlp', 'np', 'plt', 'time', 'types']
 class WCIViewer:
     def __init__(self, pings, horizontal_pixels = 1024, name = 'WCI', figure = None, progress = None, show = True, cmap = 'YlGnBu_r', **kwargs):
         ...

@@ -4,7 +4,7 @@ M that holds functions used for amplitude corrections
 from __future__ import annotations
 import numpy
 import typing
-__all__ = ['apply_beam_correction', 'apply_beam_sample_correction', 'apply_beam_sample_correction_loop', 'apply_beam_sample_correction_xsimd', 'apply_beam_sample_correction_xtensor2', 'apply_beam_sample_correction_xtensor3', 'apply_sample_correction', 'apply_system_offset', 'approximate_range_factor', 'approximate_ranges', 'calc_absorption_coefficient_db_m', 'calc_sound_velocity', 'compute_cw_range_correction', 'get_sample_numbers_plus_half', 'inplace_beam_correction', 'inplace_beam_sample_correction', 'inplace_sample_correction', 'inplace_system_offset']
+__all__: list[str] = ['apply_beam_correction', 'apply_beam_sample_correction', 'apply_beam_sample_correction_loop', 'apply_beam_sample_correction_xsimd', 'apply_beam_sample_correction_xtensor2', 'apply_beam_sample_correction_xtensor3', 'apply_sample_correction', 'apply_system_offset', 'approximate_range_factor', 'approximate_ranges', 'calc_absorption_coefficient_db_m', 'calc_sound_velocity', 'compute_cw_range_correction', 'get_sample_numbers_plus_half', 'inplace_beam_correction', 'inplace_beam_sample_correction', 'inplace_sample_correction', 'inplace_system_offset']
 @typing.overload
 def apply_beam_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
     ...

@@ -5,7 +5,7 @@ from __future__ import annotations
 import pybind11_stubgen.typing_ext
 import typing
 from . import bivectorinterpolators
-__all__ = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
+__all__: list[str] = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
 class AkimaInterpolator:
     """
     Interpolator class to perform a (modified) akima interpolation. Uses

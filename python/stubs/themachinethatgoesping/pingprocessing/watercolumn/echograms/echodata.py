@@ -11,7 +11,7 @@ from themachinethatgoesping.pingprocessing.core.progress import get_progress_ite
 from themachinethatgoesping.pingprocessing.watercolumn import helper as wchelper
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
-__all__ = ['EchoData', 'assert_length', 'assert_valid_argument', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'tools', 'tqdm', 'wchelper']
+__all__: list[str] = ['EchoData', 'assert_length', 'assert_valid_argument', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'tools', 'tqdm', 'wchelper']
 class EchoData:
     @staticmethod
     def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_samples = 2048):

@@ -8,7 +8,7 @@ import themachinethatgoesping.navigation.nmea_0183
 import typing
 from . import XML0_datagrams
 from . import raw3datatypes
-__all__ = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram', 'SimradRawUnknown', 'TAG0', 'XML0', 'XML0_datagrams', 'raw3datatypes']
+__all__: list[str] = ['FIL1', 'MRU0', 'NME0', 'RAW3', 'SimradRawDatagram', 'SimradRawUnknown', 'TAG0', 'XML0', 'XML0_datagrams', 'raw3datatypes']
 class FIL1(SimradRawDatagram):
     """
     Filter binary datagram (FIL1) This datagram contains filter
@@ -51,9 +51,11 @@ class FIL1(SimradRawDatagram):
         """
         < Channel identification (size is always 128)
         """
+    def get_channel_id_stripped(self) -> str:
+        ...
     def get_coefficients(self) -> numpy.ndarray[numpy.complex64]:
         """
-        < Filter coefficients, ...)
+        < Filter coefficients
         """
     def get_decimation_factor(self) -> int:
         """
@@ -85,7 +87,7 @@ class FIL1(SimradRawDatagram):
         """
     def set_coefficients(self, arg0: numpy.ndarray[numpy.complex64]) -> None:
         """
-        < Filter coefficients, ...)
+        < Filter coefficients
         """
     def set_decimation_factor(self, arg0: int) -> None:
         """

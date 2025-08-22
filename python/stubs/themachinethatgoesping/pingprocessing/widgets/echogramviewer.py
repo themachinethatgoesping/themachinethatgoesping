@@ -9,7 +9,7 @@ import themachinethatgoesping as theping
 from themachinethatgoesping.pingprocessing.watercolumn import echograms
 from time import time
 import types as types
-__all__ = ['EchogramViewer', 'asyncio', 'display', 'echograms', 'ipywidgets', 'mdates', 'np', 'plt', 'theping', 'time', 'types']
+__all__: list[str] = ['EchogramViewer', 'asyncio', 'display', 'echograms', 'ipywidgets', 'mdates', 'np', 'plt', 'theping', 'time', 'types']
 class EchogramViewer:
     def __init__(self, echogramdata, name = 'Echogram', names = None, figure = None, progress = None, show = True, voffsets = None, cmap = 'YlGnBu_r', cmap_layer = 'jet', **kwargs):
         ...

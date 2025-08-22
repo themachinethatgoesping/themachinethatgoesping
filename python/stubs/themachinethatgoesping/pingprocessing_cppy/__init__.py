@@ -3,7 +3,7 @@ Python module process pings from echosounders.
 """
 from __future__ import annotations
 from . import watercolumn
-__all__ = ['ostream_redirect', 'watercolumn']
+__all__: list[str] = ['ostream_redirect', 'watercolumn']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...

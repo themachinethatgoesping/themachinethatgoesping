@@ -3,7 +3,7 @@ Submodule that contains nmea 0183 datastructures
 """
 from __future__ import annotations
 import typing
-__all__ = ['NMEA_Base', 'NMEA_GGA', 'NMEA_GLL', 'NMEA_GST', 'NMEA_HDT', 'NMEA_RMC', 'NMEA_Unknown', 'NMEA_VHW', 'NMEA_VLW', 'NMEA_VTG', 'NMEA_ZDA', 'decode']
+__all__: list[str] = ['NMEA_Base', 'NMEA_GGA', 'NMEA_GLL', 'NMEA_GST', 'NMEA_HDT', 'NMEA_RMC', 'NMEA_Unknown', 'NMEA_VHW', 'NMEA_VLW', 'NMEA_VTG', 'NMEA_ZDA', 'decode']
 class NMEA_Base:
     """
     """

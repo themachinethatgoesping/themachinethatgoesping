@@ -3,7 +3,7 @@ Classes that help adding common functionality to themachinethatgoesping classes
 """
 from __future__ import annotations
 import typing
-__all__ = ['ObjectPrinter']
+__all__: list[str] = ['ObjectPrinter']
 class ObjectPrinter:
     """
     Class that allows for easy pretty printing of class members usage: 1.

@@ -3,7 +3,7 @@ from collections import defaultdict
 import numpy as np
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping.pingprocessing.overview import nav_plot
-__all__ = ['PingOverview', 'defaultdict', 'get_ping_overview', 'get_progress_iterator', 'nav_plot', 'np']
+__all__: list[str] = ['PingOverview', 'defaultdict', 'get_ping_overview', 'get_progress_iterator', 'nav_plot', 'np']
 class PingOverview:
     """
     

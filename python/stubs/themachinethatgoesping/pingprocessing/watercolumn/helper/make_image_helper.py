@@ -1,13 +1,13 @@
 from __future__ import annotations
-import numpy
 import numpy as np
+import numpy
 from themachinethatgoesping.algorithms import geoprocessing
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 from themachinethatgoesping import echosounders
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import themachinethatgoesping.echosounders_cppy.pingtools
 from themachinethatgoesping import navigation
-__all__ = ['echosounders', 'geoprocessing', 'get_bottom_directions_bottom', 'get_bottom_directions_wci', 'navigation', 'np']
+__all__: list[str] = ['echosounders', 'geoprocessing', 'get_bottom_directions_bottom', 'get_bottom_directions_wci', 'navigation', 'np']
 def get_bottom_directions_bottom(ping: themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping) -> (themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, numpy.ndarray):
     """
     

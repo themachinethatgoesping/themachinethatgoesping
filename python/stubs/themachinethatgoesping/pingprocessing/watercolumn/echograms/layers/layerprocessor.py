@@ -11,7 +11,7 @@ from themachinethatgoesping.pingprocessing.core.asserts import assert_length
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import warnings as warnings
-__all__ = ['LayerProcessor', 'assert_length', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'np', 'pd', 'pytimeparse2', 'stats', 'tools', 'tqdm', 'warnings']
+__all__: list[str] = ['LayerProcessor', 'assert_length', 'copy', 'datetime', 'deepcopy', 'defaultdict', 'np', 'pd', 'pytimeparse2', 'stats', 'tools', 'tqdm', 'warnings']
 class LayerProcessor:
     @staticmethod
     def __filter_by_layer_size__(data, layers, names = ['mbes', 'sbes']):

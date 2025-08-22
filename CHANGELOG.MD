@@ -9,10 +9,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools -> 0.29.1
 - echosounders -> 0.45.4
+- navigation -> 0.17.7
 
 ### Improvements
 - echosounders
   - SimradRaw/FIL1: return coefficients as complex numbers
+  - implement correct effective pulse length computation for complex cw data
 
 ### Maintenance
 - tools: 
@@ -20,6 +22,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - refractoring stream.hpp and classversion.hpp
   - refractoring progressbars into cpp files
   - refractoring rotationfunctions into cpp files
+  - refractoring tools_pybind in cpp files where appropriate (tools_pybind is now a static lib again)
+- navigation
+  - refractoring datastructures into cpp files
+  - update geographiclib 2.5 -> 2.5.1
+- echosounders
+  - refractoring numerous files into cpp files
 
 ## [0.30.3] - 18-07-2025
 

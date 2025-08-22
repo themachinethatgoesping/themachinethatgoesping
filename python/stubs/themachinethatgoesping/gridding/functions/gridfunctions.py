@@ -7,7 +7,7 @@ import math as math
 from numba.core.decorators import njit
 import numpy as np
 from themachinethatgoesping.gridding.functions import helperfunctions as hlp
-__all__ = ['get_grd_value', 'get_index', 'get_index_fraction', 'get_index_weights', 'get_minmax', 'get_value', 'grd_block_mean', 'grd_weighted_mean', 'hlp', 'math', 'njit', 'np']
+__all__: list[str] = ['get_grd_value', 'get_index', 'get_index_fraction', 'get_index_weights', 'get_minmax', 'get_value', 'grd_block_mean', 'grd_weighted_mean', 'hlp', 'math', 'njit', 'np']
 def get_grd_value(*args, **kwargs):
     ...
 def get_index(*args, **kwargs):

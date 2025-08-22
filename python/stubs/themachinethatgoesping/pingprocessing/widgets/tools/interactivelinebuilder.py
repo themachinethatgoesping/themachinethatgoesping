@@ -4,7 +4,7 @@ from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
 import numpy as np
 import os as os
-__all__ = ['InteractiveLineBuilder', 'datetime', 'find_closest_index', 'mdates', 'np', 'os', 'plt']
+__all__: list[str] = ['InteractiveLineBuilder', 'datetime', 'find_closest_index', 'mdates', 'np', 'os', 'plt']
 class InteractiveLineBuilder:
     def __del__(self):
         ...

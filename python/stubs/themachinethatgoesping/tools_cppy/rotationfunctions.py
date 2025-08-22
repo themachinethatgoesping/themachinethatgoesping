@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import pybind11_stubgen.typing_ext
 import typing
-__all__ = ['quaternion_from_rpy', 'quaternion_from_ypr', 'rotateXYZ', 'rotateYPR', 'rpy_from_quaternion', 'ypr_from_quaternion']
+__all__: list[str] = ['quaternion_from_rpy', 'quaternion_from_ypr', 'rotateXYZ', 'rotateYPR', 'rpy_from_quaternion', 'ypr_from_quaternion']
 @typing.overload
 def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
     """

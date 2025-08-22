@@ -7,7 +7,8 @@ import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import typing
-__all__ = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingBottom', 'SimradRawPingBottom_stream', 'SimradRawPingCommon', 'SimradRawPingCommon_stream', 'SimradRawPingFileData', 'SimradRawPingFileData_stream', 'SimradRawPingWatercolumn', 'SimradRawPingWatercolumn_stream', 'SimradRawPing_stream', 'SimradRawWaterColumnCalibration', 'TransceiverInformation']
+from . import calibration
+__all__: list[str] = ['FilePackageIndex_simradraw_FilePackageIndex', 'SimradRawPing', 'SimradRawPingBottom', 'SimradRawPingBottom_stream', 'SimradRawPingCommon', 'SimradRawPingCommon_stream', 'SimradRawPingFileData', 'SimradRawPingFileData_stream', 'SimradRawPingWatercolumn', 'SimradRawPingWatercolumn_stream', 'SimradRawPing_stream', 'TransceiverInformation', 'calibration']
 class FilePackageIndex_simradraw_FilePackageIndex:
     """
     """
@@ -186,6 +187,8 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     @typing.overload
     def get_environment(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment:
         ...
+    def get_filter_stages(self) -> tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1]:
+        ...
     def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
         ...
     def get_ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
@@ -205,7 +208,7 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
+    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration:
         ...
     def has_watercolumn_calibration(self) -> bool:
         ...
@@ -237,7 +240,7 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
         """
     def release_watercolumn_calibration(self) -> None:
         ...
-    def set_watercolumn_calibration(self, calibration: SimradRawWaterColumnCalibration) -> None:
+    def set_watercolumn_calibration(self, calibration: calibration.SimradRawWaterColumnCalibration) -> None:
         ...
     def watercolumn_calibration_loaded(self) -> bool:
         ...
@@ -299,6 +302,8 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
     @typing.overload
     def get_environment(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment:
         ...
+    def get_filter_stages(self) -> tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1]:
+        ...
     def get_parameter(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel:
         ...
     def get_ping_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.RAW3:
@@ -318,7 +323,7 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
+    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration:
         ...
     def has_watercolumn_calibration(self) -> bool:
         ...
@@ -350,7 +355,7 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
         """
     def release_watercolumn_calibration(self) -> None:
         ...
-    def set_watercolumn_calibration(self, calibration: SimradRawWaterColumnCalibration) -> None:
+    def set_watercolumn_calibration(self, calibration: calibration.SimradRawWaterColumnCalibration) -> None:
         ...
     def watercolumn_calibration_loaded(self) -> bool:
         ...
@@ -368,7 +373,7 @@ class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_cppy.filetemp
         """
         return a copy using the c++ default copy constructor
         """
-    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
+    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration:
         ...
 class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_PingWatercolumn, SimradRawPingCommon_stream):
     """
@@ -381,7 +386,7 @@ class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_cppy.f
         """
         return a copy using the c++ default copy constructor
         """
-    def get_watercolumn_calibration(self) -> SimradRawWaterColumnCalibration:
+    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration:
         ...
 class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon_stream):
     """
@@ -393,153 +398,6 @@ class SimradRawPing_stream(themachinethatgoesping.echosounders_cppy.filetemplate
     def copy(self) -> SimradRawPing_stream:
         """
         return a copy using the c++ default copy constructor
-        """
-class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.filetemplates.WaterColumnCalibration):
-    """
-    TODO: check effective pulse length - for power/angle data, do I only
-    use the nominal pulse length?
-    """
-    @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SimradRawWaterColumnCalibration:
-        """
-        create T_CLASS object from bytearray
-        """
-    def __copy__(self) -> SimradRawWaterColumnCalibration:
-        ...
-    def __deepcopy__(self, arg0: dict) -> SimradRawWaterColumnCalibration:
-        ...
-    def __eq__(self, other: SimradRawWaterColumnCalibration) -> bool:
-        ...
-    def __getstate__(self) -> bytes:
-        ...
-    def __hash__(self) -> int:
-        """
-        hash function implemented using binary_hash
-        """
-    @typing.overload
-    def __init__(self) -> None:
-        ...
-    @typing.overload
-    def __init__(self, environment: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment, parameters: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel, transceiver_information: TransceiverInformation, n_complex_samples: int) -> None:
-        ...
-    def __repr__(self) -> str:
-        """
-        Return object information as string
-        """
-    def __setstate__(self, arg0: bytes) -> None:
-        ...
-    def __str__(self) -> str:
-        """
-        Return object information as string
-        """
-    def check_can_be_initialized(self) -> None:
-        ...
-    def check_initialization(self) -> None:
-        ...
-    def check_initialized(self) -> None:
-        ...
-    def copy(self) -> SimradRawWaterColumnCalibration:
-        """
-        return a copy using the c++ default copy constructor
-        """
-    def force_absorption_db_m(self, forced_absorption_db_m: float | None) -> None:
-        ...
-    def force_sound_velocity_m_s(self, forced_sound_velocity_m_s: float | None) -> None:
-        ...
-    def get_absorption_db_m(self) -> float:
-        ...
-    def get_acidity_ph(self) -> float:
-        ...
-    def get_computed_absorption_db_m(self) -> float:
-        ...
-    def get_computed_sound_velocity_m_s(self) -> float:
-        ...
-    def get_corr_equivalent_beam_angle_db(self) -> float:
-        ...
-    def get_corr_transducer_gain_db(self) -> float:
-        ...
-    def get_effective_pulse_duration_s(self) -> float:
-        ...
-    def get_equivalent_beam_angle_db(self) -> float:
-        ...
-    def get_forced_absorption_db_m(self) -> float | None:
-        ...
-    def get_forced_sound_velocity_m_s(self) -> float | None:
-        ...
-    def get_frequency_hz(self) -> float:
-        ...
-    def get_frequency_nominal_hz(self) -> float:
-        ...
-    def get_n_complex_samples(self) -> int | None:
-        ...
-    def get_power_conversion_factor_db(self) -> float | None:
-        ...
-    def get_reference_depth_m(self) -> float:
-        ...
-    def get_rounded_latitude_deg(self) -> float | None:
-        ...
-    def get_rounded_longitude_deg(self) -> float | None:
-        ...
-    def get_sa_correction_db(self) -> float:
-        ...
-    def get_salinity_psu(self) -> float:
-        ...
-    def get_sound_velocity_m_s(self) -> float:
-        ...
-    def get_temperature_c(self) -> float:
-        ...
-    def get_transducer_gain_db(self) -> float:
-        ...
-    def get_transmit_power_w(self) -> float:
-        ...
-    def get_wavelength_m(self) -> float:
-        ...
-    def hash(self) -> int:
-        """
-        hash function implemented using binary_hash
-        """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
-        """
-        Return object information as string
-        """
-    def initialized(self) -> bool:
-        ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """
-        Print object information
-        """
-    def set_absorption_db_m(self, transducer: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer, pulse_duration_index: int) -> None:
-        ...
-    @typing.overload
-    def set_environment_parameters(self, environment: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment) -> None:
-        ...
-    @typing.overload
-    def set_environment_parameters(self, reference_depth_m: float, temperature_c: float, salinity_psu: float, acidity_ph: float = 8.0600004196167) -> None:
-        ...
-    @typing.overload
-    def set_environment_parameters(self, forced_sound_velocity_m_s: float, forced_absorption_db_m: float) -> None:
-        ...
-    def set_optional_parameters(self, rounded_latitude_deg: float | None = None, rounded_longitude_deg: float | None = None) -> None:
-        ...
-    def set_power_calibration_parameters(self, n_complex_samples: int, impedance_factor: float | None = None) -> None:
-        ...
-    @typing.overload
-    def set_runtime_parameters(self, parameters: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel) -> None:
-        ...
-    @typing.overload
-    def set_runtime_parameters(self, frequency_hz: float, transmit_power_w: float, effective_pulse_duration_s: float) -> None:
-        ...
-    @typing.overload
-    def set_transducer_parameters(self, transducer: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer, pulse_duration_index: int) -> None:
-        ...
-    @typing.overload
-    def set_transducer_parameters(self, transducer_gain_db: float, sa_correction_db: float, equivalent_beam_angle_db: float, frequency_nominal_hz: float) -> None:
-        ...
-    def setup_simrad_calibration(self) -> None:
-        ...
-    def to_binary(self, resize_buffer: bool = True) -> bytes:
-        """
-        convert object to bytearray
         """
 class TransceiverInformation:
     """

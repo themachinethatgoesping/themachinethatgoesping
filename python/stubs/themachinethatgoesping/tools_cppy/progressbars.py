@@ -3,7 +3,7 @@ Progress indicators that can be called directly or passed to specific themachine
 """
 from __future__ import annotations
 import typing
-__all__ = ['ConsoleProgressBar', 'I_ProgressBar', 'I_ProgressBarTimed', 'NoIndicator', 'ProgressIndicator', 'ProgressTqdm', 'test_loop']
+__all__: list[str] = ['ConsoleProgressBar', 'I_ProgressBar', 'I_ProgressBarTimed', 'NoIndicator', 'ProgressIndicator', 'ProgressTqdm', 'test_loop']
 class ConsoleProgressBar(I_ProgressBar):
     """
     Old-school progress bar that prints to terminal. For reference only,

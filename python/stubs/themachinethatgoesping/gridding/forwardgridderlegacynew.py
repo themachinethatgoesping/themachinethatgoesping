@@ -3,11 +3,11 @@
 Simple gridder class that can create quantitative 3D images from x,z,y,val from some custom data.
 """
 from __future__ import annotations
-import numpy
 import numpy as np
+import numpy
 from themachinethatgoesping.algorithms.gridding import functions as grdf
 import typing
-__all__ = ['ArrayLike', 'ForwardGridderLegacyNew', 'grdf', 'np']
+__all__: list[str] = ['ArrayLike', 'ForwardGridderLegacyNew', 'grdf', 'np']
 class ForwardGridderLegacyNew:
     """
     Simple class to generate 3D grids (images) and interpolate xyz data onto a grid using simple forward mapping algorithms.

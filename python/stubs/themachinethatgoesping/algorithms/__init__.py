@@ -8,7 +8,7 @@ from . import gridding
 from . import imageprocessing
 from . import pointprocessing
 from . import signalprocessing
-__all__ = ['amplitudecorrection', 'geoprocessing', 'gridding', 'imageprocessing', 'ostream_redirect', 'pointprocessing', 'signalprocessing']
+__all__: list[str] = ['amplitudecorrection', 'geoprocessing', 'gridding', 'imageprocessing', 'ostream_redirect', 'pointprocessing', 'signalprocessing']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...

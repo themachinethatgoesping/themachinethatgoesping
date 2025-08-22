@@ -3,7 +3,7 @@ import numpy as np
 from themachinethatgoesping.echosounders_cppy import filetemplates
 from themachinethatgoesping.echosounders_cppy.filetemplates import I_Ping
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-__all__ = ['I_Ping', 'by_latlon', 'filetemplates', 'get_progress_iterator', 'np']
+__all__: list[str] = ['I_Ping', 'by_latlon', 'filetemplates', 'get_progress_iterator', 'np']
 def by_latlon(pings: list[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping], min_lat: float = ..., max_lat: float = ..., min_lon: float = ..., max_lon: float = ..., progress: bool = False) -> list[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping]:
     """
     

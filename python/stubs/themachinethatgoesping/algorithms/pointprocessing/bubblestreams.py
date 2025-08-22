@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__ = ['ZSpine']
+__all__: list[str] = ['ZSpine']
 class ZSpine:
     """
     """

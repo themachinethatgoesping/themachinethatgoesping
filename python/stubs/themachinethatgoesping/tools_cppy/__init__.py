@@ -9,7 +9,7 @@ from . import pyhelper
 from . import rotationfunctions
 from . import timeconv
 from . import vectorinterpolators
-__all__ = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'rotationfunctions', 'timeconv', 'vectorinterpolators']
+__all__: list[str] = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'rotationfunctions', 'timeconv', 'vectorinterpolators']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...

@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from themachinethatgoesping.scripts.oceanographic import knots_to_ms
 from themachinethatgoesping.scripts.plot_tools import prepare_plt
 import typing
-__all__ = ['SBES', 'deepcopy', 'knots_to_ms', 'plt', 'prepare_plt', 'radians', 'tan']
+__all__: list[str] = ['SBES', 'deepcopy', 'knots_to_ms', 'plt', 'prepare_plt', 'radians', 'tan']
 class SBES:
     plt_aspect: typing.ClassVar[bool] = False
     plt_grid: typing.ClassVar[bool] = True

@@ -7,4 +7,4 @@ from themachinethatgoesping.pingprocessing.filter_pings.by_time import by_time
 from themachinethatgoesping.pingprocessing.filter_pings.by_time_list import by_ping_times
 from themachinethatgoesping.pingprocessing.filter_pings.by_time_list import by_time_list
 from . import by_region
-__all__ = ['by_features', 'by_files', 'by_folders', 'by_latlon', 'by_ping_times', 'by_region', 'by_time', 'by_time_list']
+__all__: list[str] = ['by_features', 'by_files', 'by_folders', 'by_latlon', 'by_ping_times', 'by_region', 'by_time', 'by_time_list']

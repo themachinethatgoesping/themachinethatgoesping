@@ -2,7 +2,7 @@ from __future__ import annotations
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import typing
 from typing import Any
-__all__ = ['Any', 'get_progress_iterator', 'tqdm']
+__all__: list[str] = ['Any', 'get_progress_iterator', 'tqdm']
 def get_progress_iterator(iteratable: typing.Iterable[typing.Any], progress: typing.Union[bool, typing.Type[typing.Callable[..., typing.Any]], NoneType] = False, **kwargs: typing.Any) -> typing.Iterable[typing.Any]:
     """
     

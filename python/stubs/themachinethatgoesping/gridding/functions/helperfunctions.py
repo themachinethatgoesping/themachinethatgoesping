@@ -5,7 +5,7 @@ Simple helper functions
 from __future__ import annotations
 import math as math
 from numba.core.decorators import njit
-__all__ = ['MIN_DB_VALUE', 'M_2_PI', 'M_PI', 'M_PI_180', 'M_PI_2', 'math', 'njit', 'round_int']
+__all__: list[str] = ['MIN_DB_VALUE', 'M_2_PI', 'M_PI', 'M_PI_180', 'M_PI_2', 'math', 'njit', 'round_int']
 def round_int(*args, **kwargs):
     ...
 MIN_DB_VALUE: float = -50.0

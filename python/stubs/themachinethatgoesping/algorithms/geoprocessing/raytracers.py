@@ -6,7 +6,7 @@ import numpy
 import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import typing
-__all__ = ['I_Raytracer', 'RTConstantSVP']
+__all__: list[str] = ['I_Raytracer', 'RTConstantSVP']
 class I_Raytracer:
     """
     """

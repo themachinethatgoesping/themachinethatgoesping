@@ -3,12 +3,13 @@ SimradRaw EK60 and EK80 file data interface classes
 """
 from __future__ import annotations
 import themachinethatgoesping.echosounders_cppy.simradraw
+import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers
 import themachinethatgoesping.navigation
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
-__all__ = ['SimradRawAnnotationDataInterface', 'SimradRawAnnotationDataInterfacePerFile', 'SimradRawAnnotationDataInterfacePerFile_stream', 'SimradRawAnnotationDataInterface_stream', 'SimradRawConfigurationDataInterface', 'SimradRawConfigurationDataInterfacePerFile', 'SimradRawConfigurationDataInterfacePerFile_stream', 'SimradRawConfigurationDataInterface_stream', 'SimradRawDatagramDataInterface', 'SimradRawDatagramDataInterfacePerFile', 'SimradRawDatagramDataInterfacePerFile_stream', 'SimradRawDatagramDataInterface_stream', 'SimradRawDatagramInterface', 'SimradRawDatagramInterface_stream', 'SimradRawEnvironmentDataInterface', 'SimradRawEnvironmentDataInterfacePerFile', 'SimradRawEnvironmentDataInterfacePerFile_stream', 'SimradRawEnvironmentDataInterface_stream', 'SimradRawNavigationDataInterface', 'SimradRawNavigationDataInterfacePerFile', 'SimradRawNavigationDataInterfacePerFile_stream', 'SimradRawNavigationDataInterface_stream', 'SimradRawOtherFileDataInterface', 'SimradRawOtherFileDataInterfacePerFile', 'SimradRawOtherFileDataInterfacePerFile_stream', 'SimradRawOtherFileDataInterface_stream', 'SimradRawPingDataInterface', 'SimradRawPingDataInterfacePerFile', 'SimradRawPingDataInterfacePerFile_stream', 'SimradRawPingDataInterface_stream']
+__all__: list[str] = ['SimradRawAnnotationDataInterface', 'SimradRawAnnotationDataInterfacePerFile', 'SimradRawAnnotationDataInterfacePerFile_stream', 'SimradRawAnnotationDataInterface_stream', 'SimradRawConfigurationDataInterface', 'SimradRawConfigurationDataInterfacePerFile', 'SimradRawConfigurationDataInterfacePerFile_stream', 'SimradRawConfigurationDataInterface_stream', 'SimradRawDatagramDataInterface', 'SimradRawDatagramDataInterfacePerFile', 'SimradRawDatagramDataInterfacePerFile_stream', 'SimradRawDatagramDataInterface_stream', 'SimradRawDatagramInterface', 'SimradRawDatagramInterface_stream', 'SimradRawEnvironmentDataInterface', 'SimradRawEnvironmentDataInterfacePerFile', 'SimradRawEnvironmentDataInterfacePerFile_stream', 'SimradRawEnvironmentDataInterface_stream', 'SimradRawNavigationDataInterface', 'SimradRawNavigationDataInterfacePerFile', 'SimradRawNavigationDataInterfacePerFile_stream', 'SimradRawNavigationDataInterface_stream', 'SimradRawOtherFileDataInterface', 'SimradRawOtherFileDataInterfacePerFile', 'SimradRawOtherFileDataInterfacePerFile_stream', 'SimradRawOtherFileDataInterface_stream', 'SimradRawPingDataInterface', 'SimradRawPingDataInterfacePerFile', 'SimradRawPingDataInterfacePerFile_stream', 'SimradRawPingDataInterface_stream']
 class SimradRawAnnotationDataInterface:
     """
     Interface to read SimradRaw annotation data (TAG0) from a file
@@ -578,6 +579,16 @@ class SimradRawConfigurationDataInterfacePerFile:
         """
         Print object information
         """
+    def read_fil1_datagrams(self) -> dict[str, tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1]]:
+        """
+        Read the fil1 datagrams from the file and return them as a map with
+        the channel ID as key and a pair of stage 1 and stage 2 datagrams.
+        Function will fail if a channel id does not exactly have two stages or
+        if it detects a duplicated channel/stage
+        
+        Returns:
+            std::map<std::string, std::pair<datagrams::FIL1, datagrams::FIL1>>
+        """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
@@ -710,6 +721,16 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
+        """
+    def read_fil1_datagrams(self) -> dict[str, tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1]]:
+        """
+        Read the fil1 datagrams from the file and return them as a map with
+        the channel ID as key and a pair of stage 1 and stage 2 datagrams.
+        Function will fail if a channel id does not exactly have two stages or
+        if it detects a duplicated channel/stage
+        
+        Returns:
+            std::map<std::string, std::pair<datagrams::FIL1, datagrams::FIL1>>
         """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...

@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import typing
-__all__ = ['BeamSampleSelection', 'BeamSelection', 'PingSampleSelector', 'ReadSampleRange']
+__all__: list[str] = ['BeamSampleSelection', 'BeamSelection', 'PingSampleSelector', 'ReadSampleRange']
 class BeamSampleSelection(BeamSelection):
     """
     A class to hold the selected beams/sample range for a single

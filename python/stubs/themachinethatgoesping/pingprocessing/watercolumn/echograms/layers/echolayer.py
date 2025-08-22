@@ -5,7 +5,7 @@ from themachinethatgoesping.pingprocessing.core.asserts import assert_length
 from themachinethatgoesping.pingprocessing.core.asserts import assert_valid_argument
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
 from themachinethatgoesping import tools
-__all__ = ['EchoLayer', 'PingData', 'assert_length', 'assert_valid_argument', 'dt', 'get_progress_iterator', 'np', 'tools']
+__all__: list[str] = ['EchoLayer', 'PingData', 'assert_length', 'assert_valid_argument', 'dt', 'get_progress_iterator', 'np', 'tools']
 class EchoLayer:
     @classmethod
     def from_ping_param_offsets_absolute(cls, echodata, ping_param_name, offset_0, offset_1):

@@ -6,5 +6,5 @@ from . import echogrid
 from . import forwardgridderlegacy
 from . import forwardgridderlegacynew
 from . import functions
-__all__ = ['EchoGrid', 'ForwardGridderLegacy', 'ForwardGridderLegacyNew', 'echogrid', 'forwardgridderlegacy', 'forwardgridderlegacynew', 'functions']
+__all__: list[str] = ['EchoGrid', 'ForwardGridderLegacy', 'ForwardGridderLegacyNew', 'echogrid', 'forwardgridderlegacy', 'forwardgridderlegacynew', 'functions']
 __version__: str = '@PROJECT_VERSION@'

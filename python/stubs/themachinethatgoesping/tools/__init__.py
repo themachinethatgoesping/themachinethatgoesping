@@ -7,6 +7,6 @@ from themachinethatgoesping.tools_cppy import pyhelper
 from themachinethatgoesping.tools_cppy import rotationfunctions
 from themachinethatgoesping.tools_cppy import vectorinterpolators
 from . import timeconv
-__all__ = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'rotationfunctions', 'timeconv', 'timeconv_ext', 'vectorinterpolators']
+__all__: list[str] = ['classhelper', 'helper', 'ostream_redirect', 'progressbars', 'pyhelper', 'rotationfunctions', 'timeconv', 'timeconv_ext', 'vectorinterpolators']
 __version__: str = '@PROJECT_VERSION@'
 timeconv_ext = timeconv

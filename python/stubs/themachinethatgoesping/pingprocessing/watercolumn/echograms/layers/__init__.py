@@ -5,4 +5,4 @@ from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.layerpro
 from . import echolayer
 from . import layergenerator
 from . import layerprocessor
-__all__ = ['EchoLayer', 'LayerGenerator', 'LayerProcessor', 'echolayer', 'layergenerator', 'layerprocessor']
+__all__: list[str] = ['EchoLayer', 'LayerGenerator', 'LayerProcessor', 'echolayer', 'layergenerator', 'layerprocessor']

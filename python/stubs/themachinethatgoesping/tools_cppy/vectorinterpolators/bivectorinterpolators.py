@@ -4,7 +4,7 @@
 from __future__ import annotations
 import numpy
 import themachinethatgoesping.tools_cppy.vectorinterpolators
-__all__ = ['BiAkimaInterpolator', 'BiAkimaInterpolatorF', 'BiLinearInterpolator', 'BiLinearInterpolatorDF', 'BiLinearInterpolatorF', 'BiLinearInterpolatorFD', 'BiNearestInterpolator', 'BiNearestInterpolatorDF', 'BiNearestInterpolatorDI', 'BiNearestInterpolatorF', 'BiNearestInterpolatorFD', 'BiNearestInterpolatorFI']
+__all__: list[str] = ['BiAkimaInterpolator', 'BiAkimaInterpolatorF', 'BiLinearInterpolator', 'BiLinearInterpolatorDF', 'BiLinearInterpolatorF', 'BiLinearInterpolatorFD', 'BiNearestInterpolator', 'BiNearestInterpolatorDF', 'BiNearestInterpolatorDI', 'BiNearestInterpolatorF', 'BiNearestInterpolatorFD', 'BiNearestInterpolatorFI']
 class BiAkimaInterpolator:
     """
     """

@@ -11,4 +11,4 @@ from themachinethatgoesping.pingprocessing.split_pings.into_time_blocks import i
 from . import by_distance
 from . import by_file
 from . import by_time
-__all__ = ['by_channel_id', 'by_distance', 'by_distance_difference', 'by_file', 'by_file_nr', 'by_file_path', 'by_function_return', 'by_time', 'by_time_blocks', 'by_time_difference', 'into_ping_blocks', 'into_time_blocks']
+__all__: list[str] = ['by_channel_id', 'by_distance', 'by_distance_difference', 'by_file', 'by_file_nr', 'by_file_path', 'by_function_return', 'by_time', 'by_time_blocks', 'by_time_difference', 'into_ping_blocks', 'into_time_blocks']

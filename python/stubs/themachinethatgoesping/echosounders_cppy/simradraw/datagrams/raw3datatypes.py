@@ -4,7 +4,7 @@ SimradRaw EK80 sample datagram data structures used in RAW3 datagrams).
 from __future__ import annotations
 import numpy
 import typing
-__all__ = ['Angle', 'ComplexFloat16', 'ComplexFloat32', 'Power', 'PowerAndAngle', 'RAW3DataAngle', 'RAW3DataComplexFloat32', 'RAW3DataPower', 'RAW3DataPowerAndAngle', 'RAW3DataSkipped', 'i_RAW3Data', 't_RAW3DataType']
+__all__: list[str] = ['Angle', 'ComplexFloat16', 'ComplexFloat32', 'Power', 'PowerAndAngle', 'RAW3DataAngle', 'RAW3DataComplexFloat32', 'RAW3DataPower', 'RAW3DataPowerAndAngle', 'RAW3DataSkipped', 'i_RAW3Data', 't_RAW3DataType']
 class RAW3DataAngle(i_RAW3Data):
     """
     """

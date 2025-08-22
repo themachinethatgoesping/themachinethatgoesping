@@ -7,7 +7,7 @@ import typing
 from . import datastructures
 from . import navtools
 from . import nmea_0183
-__all__ = ['NavigationInterpolatorLatLon', 'NavigationInterpolatorLocal', 'SensorConfiguration', 'datastructures', 'navtools', 'nmea_0183', 'ostream_redirect']
+__all__: list[str] = ['NavigationInterpolatorLatLon', 'NavigationInterpolatorLocal', 'SensorConfiguration', 'datastructures', 'navtools', 'nmea_0183', 'ostream_redirect']
 class NavigationInterpolatorLatLon:
     """
     The NavInterpolator class: Interpolate navigation (lat/lon) values and
@@ -936,4 +936,4 @@ class ostream_redirect:
         ...
     def __init__(self, stdout: bool = True, stderr: bool = True) -> None:
         ...
-__version__: str = '0.17.6'
+__version__: str = '0.17.7'

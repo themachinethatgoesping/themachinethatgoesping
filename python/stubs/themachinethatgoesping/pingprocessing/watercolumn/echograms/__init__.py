@@ -4,4 +4,4 @@ from themachinethatgoesping.pingprocessing.watercolumn.echograms.echogrambuilder
 from . import echodata
 from . import echogrambuilder
 from . import layers
-__all__ = ['EchoData', 'EchogramBuilder', 'echodata', 'echogrambuilder', 'layers']
+__all__: list[str] = ['EchoData', 'EchogramBuilder', 'echodata', 'echogrambuilder', 'layers']

@@ -4,11 +4,11 @@ SimradRaw EK60 and EK80 file data container classes
 from __future__ import annotations
 import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
-import themachinethatgoesping.echosounders_cppy.simradraw.filetypes
+import themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes
 import themachinethatgoesping.navigation
 import themachinethatgoesping.tools_cppy.pyhelper
 import typing
-__all__ = ['SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_stream', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_stream', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_stream', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_stream', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_stream', 'SimradRawDatagramContainer_RAW3_stream', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_stream', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_stream', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_stream', 'SimradRawDatagramContainer_Variant_stream', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_stream', 'SimradRawPingContainer', 'SimradRawPingContainer_stream']
+__all__: list[str] = ['SimradRawDatagramContainer_FIL1', 'SimradRawDatagramContainer_FIL1_stream', 'SimradRawDatagramContainer_Header', 'SimradRawDatagramContainer_Header_stream', 'SimradRawDatagramContainer_MRU0', 'SimradRawDatagramContainer_MRU0_stream', 'SimradRawDatagramContainer_NME0', 'SimradRawDatagramContainer_NME0_stream', 'SimradRawDatagramContainer_RAW3', 'SimradRawDatagramContainer_RAW3_skipped_data', 'SimradRawDatagramContainer_RAW3_skipped_data_stream', 'SimradRawDatagramContainer_RAW3_stream', 'SimradRawDatagramContainer_TAG0', 'SimradRawDatagramContainer_TAG0_stream', 'SimradRawDatagramContainer_Unknown', 'SimradRawDatagramContainer_Unknown_stream', 'SimradRawDatagramContainer_Variant', 'SimradRawDatagramContainer_Variant_skipped_data', 'SimradRawDatagramContainer_Variant_skipped_data_stream', 'SimradRawDatagramContainer_Variant_stream', 'SimradRawDatagramContainer_XML0', 'SimradRawDatagramContainer_XML0_stream', 'SimradRawPingContainer', 'SimradRawPingContainer_stream']
 class SimradRawDatagramContainer_FIL1:
     """
     """
@@ -1431,7 +1431,7 @@ class SimradRawPingContainer:
     def __deepcopy__(self, arg0: dict) -> SimradRawPingContainer:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing:
         ...
     @typing.overload
     def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawPingContainer:
@@ -1442,7 +1442,7 @@ class SimradRawPingContainer:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -1466,7 +1466,7 @@ class SimradRawPingContainer:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing]:
         ...
     def get_sorted_by_time(self) -> SimradRawPingContainer:
         ...
@@ -1511,7 +1511,7 @@ class SimradRawPingContainer_stream:
     def __deepcopy__(self, arg0: dict) -> SimradRawPingContainer_stream:
         ...
     @typing.overload
-    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream:
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing_stream:
         ...
     @typing.overload
     def __getitem__(self, slice: themachinethatgoesping.tools_cppy.pyhelper.PyIndexerSlice) -> SimradRawPingContainer_stream:
@@ -1522,7 +1522,7 @@ class SimradRawPingContainer_stream:
         Construct a new empty PingContainer object
         """
     @typing.overload
-    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream]) -> None:
+    def __init__(self, arg0: list[themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing_stream]) -> None:
         """
         Construct a new empty PingContainer object
         """
@@ -1546,7 +1546,7 @@ class SimradRawPingContainer_stream:
         ...
     def find_channel_ids(self) -> list[str]:
         ...
-    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filetypes.SimradRawPing_stream]:
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.SimradRawPing_stream]:
         ...
     def get_sorted_by_time(self) -> SimradRawPingContainer_stream:
         ...

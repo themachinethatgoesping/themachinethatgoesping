@@ -6,7 +6,7 @@ from themachinethatgoesping.echosounders_cppy import filetemplates
 from themachinethatgoesping.echosounders_cppy.filetemplates import I_Ping
 from themachinethatgoesping import navigation as nav
 from themachinethatgoesping.pingprocessing.core.progress import get_progress_iterator
-__all__ = ['I_Ping', 'by_file_nr', 'by_file_path', 'defaultdict', 'filetemplates', 'get_progress_iterator', 'math', 'nav', 'np']
+__all__: list[str] = ['I_Ping', 'by_file_nr', 'by_file_path', 'defaultdict', 'filetemplates', 'get_progress_iterator', 'math', 'nav', 'np']
 def by_file_nr(pings: typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping], progress: bool = True) -> typing.Dict[int, typing.List[themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping]]:
     """
     

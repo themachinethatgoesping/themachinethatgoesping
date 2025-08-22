@@ -10,5 +10,5 @@ from themachinethatgoesping.echosounders_cppy import pingtools
 from themachinethatgoesping.echosounders_cppy import simradraw
 from . import evaluate
 from . import index_functions
-__all__ = ['evaluate', 'evaluate_ping_features_can_be_called', 'filetemplates', 'get_index_paths', 'importlib', 'index_functions', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
+__all__: list[str] = ['evaluate', 'evaluate_ping_features_can_be_called', 'filetemplates', 'get_index_paths', 'importlib', 'index_functions', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
 __version__: str = '@PROJECT_VERSION@'

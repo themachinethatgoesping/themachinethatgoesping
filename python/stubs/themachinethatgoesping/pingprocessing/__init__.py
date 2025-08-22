@@ -8,6 +8,6 @@ from . import split_pings
 from . import testing
 from . import watercolumn
 from . import widgets
-__all__ = ['core', 'filter_pings', 'group_pings', 'ostream_redirect', 'overview', 'split_pings', 'testing', 'watercolumn', 'watercolumn_ext', 'widgets']
+__all__: list[str] = ['core', 'filter_pings', 'group_pings', 'ostream_redirect', 'overview', 'split_pings', 'testing', 'watercolumn', 'watercolumn_ext', 'widgets']
 __version__: str = '@PROJECT_VERSION@'
 watercolumn_ext = watercolumn

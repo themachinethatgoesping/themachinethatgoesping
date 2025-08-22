@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy
 import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import typing
-__all__ = ['AmplitudeDetect', 'AttitudeDatagramAttitude', 'Estimated', 'ExtraDetectionsDetectionClasses', 'ExtraDetectionsExtraDetections', 'Interpolated', 'Invalid', 'InvalidNormalDetection', 'NetworkAttitudeVelocityDatagramAttitude', 'NoDetection', 'PhaseDetect', 'RawRangeAndAngleBeam', 'RawRangeAndAngleTransmitSector', 'Rejected', 'SampleAmplitudesStructure_int16_t', 'SeabedImageDataBeam', 'WatercolumnDatagramBeam', 'WatercolumnDatagramTransmitSector', 'XYZDatagramBeam', 'XYZDatagramBeam_t_DetectionType']
+__all__: list[str] = ['AmplitudeDetect', 'AttitudeDatagramAttitude', 'Estimated', 'ExtraDetectionsDetectionClasses', 'ExtraDetectionsExtraDetections', 'Interpolated', 'Invalid', 'InvalidNormalDetection', 'NetworkAttitudeVelocityDatagramAttitude', 'NoDetection', 'PhaseDetect', 'RawRangeAndAngleBeam', 'RawRangeAndAngleTransmitSector', 'Rejected', 'SampleAmplitudesStructure_int16_t', 'SeabedImageDataBeam', 'WatercolumnDatagramBeam', 'WatercolumnDatagramTransmitSector', 'XYZDatagramBeam', 'XYZDatagramBeam_t_DetectionType']
 class AttitudeDatagramAttitude:
     """
     The beam data are given re the transmit transducer or sonar head depth

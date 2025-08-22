@@ -2,7 +2,7 @@
 Small helper functions
 """
 from __future__ import annotations
-__all__ = ['int_as_string_4b', 'int_as_string_8b', 'string_as_int_4b', 'string_as_int_8b', 'superscript']
+__all__: list[str] = ['int_as_string_4b', 'int_as_string_8b', 'string_as_int_4b', 'string_as_int_8b', 'superscript']
 def int_as_string_4b(value: int) -> str:
     """
     Interprete an integer to a 4 byte string

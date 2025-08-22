@@ -10,5 +10,5 @@ from themachinethatgoesping.pingprocessing.core.progress import get_progress_ite
 from . import asserts
 from . import helper
 from . import progress
-__all__ = ['assert_length', 'assert_valid_argument', 'asserts', 'clear_memory', 'close_plots', 'create_figure', 'get_progress_iterator', 'helper', 'mdates', 'plt', 'progress', 'set_ax_timeformat']
+__all__: list[str] = ['assert_length', 'assert_valid_argument', 'asserts', 'clear_memory', 'close_plots', 'create_figure', 'get_progress_iterator', 'helper', 'mdates', 'plt', 'progress', 'set_ax_timeformat']
 close_plots: bool = True

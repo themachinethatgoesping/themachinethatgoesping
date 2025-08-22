@@ -6,4 +6,4 @@ from . import backtracers
 from . import datastructures
 from . import functions
 from . import raytracers
-__all__ = ['backtracers', 'datastructures', 'functions', 'raytracers']
+__all__: list[str] = ['backtracers', 'datastructures', 'functions', 'raytracers']

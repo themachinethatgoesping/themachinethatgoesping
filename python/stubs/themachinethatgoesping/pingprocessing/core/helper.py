@@ -1,7 +1,7 @@
 from __future__ import annotations
 from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
-__all__ = ['clear_memory', 'close_plots', 'create_figure', 'mdates', 'plt', 'set_ax_timeformat']
+__all__: list[str] = ['clear_memory', 'close_plots', 'create_figure', 'mdates', 'plt', 'set_ax_timeformat']
 def clear_memory():
     ...
 def create_figure(name: str, return_ax: bool = True):
