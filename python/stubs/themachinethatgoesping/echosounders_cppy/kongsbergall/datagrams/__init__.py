@@ -901,10 +901,10 @@ class InstallationParameters(KongsbergAllDatagram):
     line. It may also be sent to a remote port as an information datagram.
     It is usually followed by a sound speed profile datagram. In the
     datagram all ASCII fields start with a unique three character
-    identifier followed by “=”. This should be used when searching for a
+    identifier followed by "=". This should be used when searching for a
     specific field as the position of a field within the datagram is not
     guaranteed. The number or character part following is in a variable
-    format with a minus sign and decimal point if needed, and with “,” as
+    format with a minus sign and decimal point if needed, and with "," as
     the field delimiter. The format may at any time later be expanded with
     the addition of new fields at any place in the datagram.
     """
