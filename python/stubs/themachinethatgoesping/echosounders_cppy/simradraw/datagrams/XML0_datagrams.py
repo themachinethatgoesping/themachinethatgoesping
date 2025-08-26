@@ -9,7 +9,6 @@ import typing
 __all__: list[str] = ['BeamTypeRef', 'BeamTypeRefB', 'BeamTypeSingle', 'BeamTypeSplit', 'BeamTypeSplit2', 'BeamTypeSplit3', 'BeamTypeSplit3C', 'BeamTypeSplit3CN', 'BeamTypeSplit3CW', 'ChannelConfiguration', 'XMLConfigurationActivePingMode', 'XMLConfigurationTransceiverChannelTransducer', 'XML_Configuration', 'XML_Configuration_Sensor', 'XML_Configuration_Sensor_Telegram', 'XML_Configuration_Sensor_TelegramValue', 'XML_Configuration_Transceiver', 'XML_Configuration_Transceiver_Channel', 'XML_Configuration_Transceiver_Channel_FrequencyPar', 'XML_Configuration_Transducer', 'XML_Environment', 'XML_Environment_Transducer', 'XML_InitialParameter', 'XML_Node', 'XML_Parameter', 'XML_Parameter_Channel', 'XML_PingSequence', 'XML_PingSequence_Ping', 'XML_Sensor', 't_BeamType']
 class ChannelConfiguration:
     """
-    XML base datagram
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ChannelConfiguration:
@@ -209,7 +208,7 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
 class XML_Configuration:
     """
-    XML base datagram
+    XML Configuration datagram structure.
     """
     ActivePingMode: XMLConfigurationActivePingMode
     ApplicationName: str
@@ -363,7 +362,7 @@ class XML_Configuration_Sensor:
         """
 class XML_Configuration_Sensor_Telegram:
     """
-    XML base datagram
+    XML Configuration Sensor Telegram (single <Telegram> node).
     """
     Enabled: bool
     Name: str
@@ -412,7 +411,9 @@ class XML_Configuration_Sensor_Telegram:
         Return object information as string
         """
     def parsed_completely(self) -> bool:
-        ...
+        """
+        Returns true if no unknown children/attributes were encountered.
+        """
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -423,7 +424,7 @@ class XML_Configuration_Sensor_Telegram:
         """
 class XML_Configuration_Sensor_TelegramValue:
     """
-    XML base datagram
+    XML Configuration Sensor Telegram Value (single <Value> node).
     """
     Name: str
     Priority: int
@@ -469,7 +470,9 @@ class XML_Configuration_Sensor_TelegramValue:
         Return object information as string
         """
     def parsed_completely(self) -> bool:
-        ...
+        """
+        Returns true if no unknown children/attributes were encountered.
+        """
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information

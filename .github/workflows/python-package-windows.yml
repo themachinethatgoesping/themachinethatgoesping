@@ -48,8 +48,8 @@ jobs:
       matrix:
         os: [windows-2025]
         python-version: ['3.11','3.12','3.13']
-        boost-version: [1.87.0]
-        boost-version_: [1_87_0]
+        boost-version: [1.89.0]
+        boost-version_: [1_89_0]
         boost-modules: [--with-iostreams]
         #toolset: [msvc-14.32]
         #toolset: [clang-cl]

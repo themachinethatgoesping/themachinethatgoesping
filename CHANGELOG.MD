@@ -18,14 +18,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Maintenance
 - tools: 
-  - update catch2 3.8.1 -> 3.9.1
+  - update catch2 3.8.1 -> 3.10.0
   - refractoring stream.hpp and classversion.hpp
   - refractoring progressbars into cpp files
   - refractoring rotationfunctions into cpp files
   - refractoring tools_pybind in cpp files where appropriate (tools_pybind is now a static lib again)
 - navigation
   - refractoring datastructures into cpp files
-  - update geographiclib 2.5 -> 2.5.1
+  - update geographiclib 2.5 -> 2.5.2
 - echosounders
   - refractoring numerous files into cpp files
 

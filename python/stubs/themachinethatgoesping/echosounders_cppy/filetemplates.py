@@ -117,7 +117,15 @@ class FileCache:
         """
     @staticmethod
     def from_file(index_path: str) -> FileCache:
-        ...
+        """
+        Create a FileCache from a file
+        
+        Parameter ``index_path``:
+            Path to the cache file to read
+        
+        Returns:
+            FileCache object created from the file
+        """
     def __copy__(self) -> FileCache:
         ...
     def __deepcopy__(self, arg0: dict) -> FileCache:
@@ -165,7 +173,15 @@ class FileCache:
     def get_not_loaded_cache_names(self) -> list[str]:
         ...
     def has_cache(self, cache_name: str) -> bool:
-        ...
+        """
+        Check if a cache entry with the given name exists
+        
+        Parameter ``name``:
+            Name of the cache entry to check
+        
+        Returns:
+            true if the cache entry exists
+        """
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -179,13 +195,26 @@ class FileCache:
         Print object information
         """
     def remove_from_cache(self, name: str) -> None:
-        ...
+        """
+        Remove a cache entry and all entries added after it
+        
+        Parameter ``name``:
+            Name of the cache entry to remove
+        """
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
         """
     def update_file(self, index_path: str, emulate_only: bool = False) -> None:
-        ...
+        """
+        Update or create the cache file at the specified path
+        
+        Parameter ``index_path``:
+            Path where to write the cache file
+        
+        Parameter ``emulate_only``:
+            If true, only simulate the update without actually writing
+        """
 class I_Ping(I_PingCommon):
     """
     """

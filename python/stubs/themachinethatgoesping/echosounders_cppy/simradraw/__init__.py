@@ -145,7 +145,7 @@ class SimradRawFileHandler_stream:
         ...
 class t_SimradRawDatagramIdentifier:
     """
-    
+    Datagram identifiers used in Simrad raw (EK60/EK80) files.
     
     Members:
     
@@ -157,7 +157,7 @@ class t_SimradRawDatagramIdentifier:
     
       MRU0 : < Motion datagram
     
-      TAG0 : < ???
+      TAG0 : < Annotation datagram
     
       RAW3 : < Raw sample data datagram
     """
@@ -201,13 +201,37 @@ class t_SimradRawDatagramIdentifier:
     def value(self) -> int:
         ...
 def SimradRawDatagram_type_from_string(datagram_type: str) -> int:
-    ...
+    """
+    Parse datagram type from string representation.
+    
+    Parameter ``value``:
+        String view containing decimal representation.
+    
+    Returns:
+        Parsed datagram type numeric value.
+    """
 @typing.overload
 def datagram_type_to_string(datagram_type: int) -> str:
-    ...
+    """
+    Convert datagram type from simradraw_long to string representation.
+    
+    Parameter ``value``:
+        Datagram type as simradraw_long.
+    
+    Returns:
+        String representation (decimal) of the datagram type.
+    """
 @typing.overload
 def datagram_type_to_string(datagram_type: t_SimradRawDatagramIdentifier) -> str:
-    ...
+    """
+    Convert datagram type identifier to string representation.
+    
+    Parameter ``value``:
+        Datagram type identifier enum.
+    
+    Returns:
+        String representation (decimal) of the datagram type.
+    """
 def test_speed_decode_nmea(arg0: SimradRawFileHandler) -> None:
     ...
 def test_speed_decode_xml(mapped_file_stream: SimradRawFileHandler, level: int = 10) -> None:
