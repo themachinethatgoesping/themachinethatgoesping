@@ -28,6 +28,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
   - update geographiclib 2.5 -> 2.5.2
 - echosounders
   - refractoring numerous files into cpp files
+  - basic parsing of GSF files (only listing package headers so far)
 
 ## [0.30.3] - 18-07-2025
 

@@ -43,14 +43,14 @@ class BeamSampleSelection(BeamSelection):
         """
         Initialize a beam sample selection from a whole swath
         
-        Parameter ``beam_nr``:
-            beam number
-        
-        Parameter ``first_sample_number``:
-            first sample number to select
+        Parameter ``first_sample_number_per_beam``:
+            first sample number per beam
         
         Parameter ``last_sample_number_per_beam``:
-            last sample number to select
+            last sample number per beam
+        
+        Parameter ``sample_step_ensemble``:
+            sample step size (same for the entire ensemble)
         """
     def __repr__(self) -> str:
         """
@@ -72,7 +72,7 @@ class BeamSampleSelection(BeamSelection):
         Parameter ``first_sample_number``:
             first sample number to select
         
-        Parameter ``last_sample_number_per_beam``:
+        Parameter ``last_sample_number``:
             last sample number to select
         """
     def copy(self) -> BeamSampleSelection:

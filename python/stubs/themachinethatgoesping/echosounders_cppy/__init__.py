@@ -3,10 +3,11 @@ Python module to read, write and process single- and multibeam echosounder data 
 """
 from __future__ import annotations
 from . import filetemplates
+from . import gsf
 from . import kongsbergall
 from . import pingtools
 from . import simradraw
-__all__: list[str] = ['filetemplates', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
+__all__: list[str] = ['filetemplates', 'gsf', 'kongsbergall', 'ostream_redirect', 'pingtools', 'simradraw']
 class ostream_redirect:
     def __enter__(self) -> None:
         ...
