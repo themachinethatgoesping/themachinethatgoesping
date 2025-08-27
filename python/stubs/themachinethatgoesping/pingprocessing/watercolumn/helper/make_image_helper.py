@@ -1,6 +1,6 @@
 from __future__ import annotations
-import numpy
 import numpy as np
+import numpy
 from themachinethatgoesping.algorithms import geoprocessing
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 from themachinethatgoesping import echosounders
