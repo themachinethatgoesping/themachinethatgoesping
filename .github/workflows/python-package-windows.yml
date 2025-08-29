@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025]
+        os: [windows-2022]
         python-version: ['3.11','3.12','3.13']
         boost-version: [1.89.0]
         boost-version_: [1_89_0]
@@ -96,7 +96,7 @@ jobs:
         key: windows-${{matrix.toolset}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
     - name: Install boost
-      if: steps.index-boost.outputs.index-hit != 'true'
+      if: steps.cache-boost.outputs.cache-hit != 'true'
       run: |
           Invoke-WebRequest -Uri https://archives.boost.io/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
           7z x boost.7z
@@ -140,7 +140,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: python-${{ matrix.python-version }}-package-windows
-        path: dist    
+        path: dist
+        compression-level: 0    
          
     - name: Test with meson (c++)
       run: |
@@ -154,7 +155,7 @@ jobs:
   install_and_test:
     name: Install and test windows wheel for python 3.${{ matrix.python-3-version }}
     needs: build_wheel
-    runs-on: windows-2025
+    runs-on: windows-2022
 
     strategy:
       fail-fast: false
@@ -224,10 +225,10 @@ jobs:
       #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        skip_existing: true
+        skip-existing: true
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: ./dist/
+        packages-dir: ./dist/
 
   # delay for one minute before attempting to download the packages from pypi
   delay_after_publish:
