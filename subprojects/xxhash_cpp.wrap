@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+[wrap-git]
+url = https://github.com/RedSpah/xxhash_cpp.git
+revision = master
+directory = xxhash_cpp-git-master
+patch_directory = xxhash_cpp
+
+[provide]
+xxhash_cpp = xxhash_cpp_dep
