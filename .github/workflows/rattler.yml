@@ -53,12 +53,15 @@ jobs:
             extra-args: ""
           #- os: ubuntu-latest
           #  target-platform: linux-aarch64
-          - os: windows-latest
+          - os: windows-2022
             target-platform: win-64
             extra-args: --output-dir=C:/rattler
           # - os: macos-latest
           #   target-platform: osx-64
           - os: macos-14
+            target-platform: osx-arm64
+            extra-args: ""
+          - os: macos-15
             target-platform: osx-arm64
             extra-args: ""
     steps:
@@ -98,3 +101,5 @@ jobs:
         env:
           ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.PREFIX_API_TOKEN }}
+
+          
