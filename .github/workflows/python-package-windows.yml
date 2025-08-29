@@ -132,9 +132,9 @@ jobs:
     - name: build and install wheel
       run: |
         # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-deps -v--no-build-isolation 
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-deps -v # --no-build-isolation 
         # install wheel
-        pip install . --config-settings="builddir=pybuild" # --no-build-isolation
+        pip install . --config-settings="builddir=pybuild" -v # --no-build-isolation
         
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
