@@ -186,7 +186,7 @@ jobs:
 
     - name: install wheels
       run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl)
         
     - name: test (pytest)
       run: pytest
@@ -260,7 +260,7 @@ jobs:
         python-version: ${{matrix.python-version}}
 
     - name: install via pip
-      run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+      run: pip install themachinethatgoesping pytest
 
     - name: pytest from git repo
       run: pytest -v
