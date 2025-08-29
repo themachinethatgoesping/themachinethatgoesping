@@ -162,7 +162,7 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package--${{ matrix.os }}
+          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
           path: dist/
 
       - name: install pip dependencies
@@ -204,7 +204,7 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package--${{ matrix.os }}
+          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
           path: dist/
 
       - name: install pip
