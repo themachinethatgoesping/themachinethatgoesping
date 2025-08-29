@@ -124,7 +124,7 @@ jobs:
       - name: Store the binary wheel
         uses: actions/upload-artifact@v4
         with:
-          name: python-${{ matrix.python-version }}-package-macos
+          name: python-${{ matrix.python-version }}-package-${{ matrix.os }}
           path: wheelhouse
 
       - name: Test with meson (c++)
@@ -162,7 +162,7 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-macos
+          name: python-3.${{matrix.python-3-version}}-package--${{ matrix.os }}
           path: dist/
 
       - name: install pip dependencies
@@ -204,7 +204,7 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-macos
+          name: python-3.${{matrix.python-3-version}}-package--${{ matrix.os }}
           path: dist/
 
       - name: install pip
