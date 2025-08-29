@@ -60,7 +60,7 @@ jobs:
           - os: "macos-14"
             arch: "arch -arm64"
             deployment_target: "14.0"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
+            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
 
     env:
       MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
