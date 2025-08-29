@@ -50,7 +50,7 @@ jobs:
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-14"]
+        os: ["macos-14","macos-15"]
 
         include:
           # - os: "macos-15"
@@ -60,6 +60,10 @@ jobs:
           - os: "macos-14"
             arch: "arch -arm64"
             deployment_target: "14.0"
+            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
+          - os: "macos-15"
+            arch: "arch -arm64"
+            deployment_target: "15.0"
             FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
 
     env:
