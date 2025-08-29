@@ -46,6 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        python-version: ["3.11", "3.12", "3.13"]
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
@@ -59,18 +60,7 @@ jobs:
           - os: "macos-14"
             arch: "arch -arm64"
             deployment_target: "14.0"
-            python-version: "3.11"
             FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
-          - os: "macos-14"
-            arch: "arch -arm64"
-            deployment_target: "14.0"
-            python-version: "3.12"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-dead_strip"
-          - os: "macos-14"
-            arch: "arch -arm64"
-            deployment_target: "14.0"
-            python-version: "3.13"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-dead_strip"
 
     env:
       MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
