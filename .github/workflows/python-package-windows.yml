@@ -117,7 +117,7 @@ jobs:
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
-        pip install meson meson-python pytest twine wheel pyproject-metadata
+        pip install meson meson-python pytest twine wheel pyproject-metadata repairwheel
         pip install -r requirements.txt ${{ matrix.pip-pre }}
         
     - name: download ninja long path
@@ -129,13 +129,20 @@ jobs:
         $env:NINJA
         c:\ninja.exe --version
          
-    - name: build and install wheel
+    - name: Build
       run: |
         # build wheel
         pip wheel -w dist . --config-settings="builddir=pybuild" --no-deps -v --no-build-isolation 
+
         # install wheel
         pip install . --config-settings="builddir=pybuild" -v --no-build-isolation
         
+    - name: Install wheel
+      run: |
+        # repairwheel
+        ${{matrix.arch}} repairwheel -o wheelhouse dist/*
+        ${{matrix.arch}} pip install wheelhouse/*
+
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
       with:
