@@ -138,9 +138,12 @@ jobs:
         
     - name: Install wheel
       run: |
-        # repairwheel
+        # repairwheel outputs to wheelhouse/
         repairwheel -o wheelhouse dist/*
-        pip install wheelhouse/*
+        
+        # Install from wheelhouse/ using correct PowerShell syntax
+        $wheelFile = Get-ChildItem wheelhouse/*.whl | Select-Object -First 1
+        pip install $wheelFile.FullName
 
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
@@ -273,4 +276,4 @@ jobs:
 
     - name: pytest from git repo
       run: pytest -v
-      
+
