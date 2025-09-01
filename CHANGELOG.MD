@@ -7,6 +7,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased] - Unreleased
 
+- echosounders -> 0.45.5
+
+### Improvements
+- echosounders
+  - SimradRaw/FIL1: move FIL1 to pingdatainterface and buffer logic
+
 ## [0.30.4] - 27-08-2025
 
 - tools -> 0.29.1
