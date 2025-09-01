@@ -140,8 +140,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: python-${{ matrix.python-version }}-package-windows
-        path: dist
-        compression-level: 0    
+        path: wheelhouse
          
     - name: Test with meson (c++)
       run: |
