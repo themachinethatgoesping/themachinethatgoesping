@@ -7,6 +7,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased] - Unreleased
 
+## [0.30.5] - 02-09-2025
+
 - echosounders -> 0.45.5
 
 ### Improvements
