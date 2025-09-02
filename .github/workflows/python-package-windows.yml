@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022]
+        os: [windows-2025]
         python-version: ['3.11','3.12','3.13']
         boost-version: [1.89.0]
         boost-version_: [1_89_0]
@@ -131,19 +131,51 @@ jobs:
          
     - name: Build
       run: |
-        # build wheel
-        pip wheel -w dist . --config-settings="builddir=pybuild" --no-deps -v --no-build-isolation 
-        # install wheel
-        # pip install . --config-settings="builddir=pybuild" -v --no-build-isolation
-        
+        # Create dist directory and build wheel without cache
+        New-Item -ItemType Directory -Force -Path dist
+        pip wheel -w dist . --config-settings="builddir=pybuild" --no-deps -v --no-build-isolation --no-cache-dir
+
+    - name: Debug - List files after build
+      run: |
+        Write-Host "=== Root directory contents ==="
+        Get-ChildItem . -Name
+        Write-Host "`n=== Dist directory contents ==="
+        if (Test-Path dist) {
+          Get-ChildItem dist -Name
+        } else {
+          Write-Host "dist/ directory does not exist"
+        }
+        Write-Host "`n=== Wheelhouse directory contents (before repairwheel) ==="
+        if (Test-Path wheelhouse) {
+          Get-ChildItem wheelhouse -Name
+        } else {
+          Write-Host "wheelhouse/ directory does not exist"
+        }
+
     - name: Install wheel
       run: |
-        # repairwheel outputs to wheelhouse/
-        repairwheel -o wheelhouse dist/*
-        
+        # Create wheelhouse directory
+        New-Item -ItemType Directory -Force -Path wheelhouse
+    
+        # Use PowerShell syntax for repairwheel - get all .whl files explicitly
+        $wheelFiles = Get-ChildItem dist/*.whl
+        foreach ($wheel in $wheelFiles) {
+          Write-Host "Processing wheel: $($wheel.FullName)"
+          repairwheel -o wheelhouse $wheel.FullName
+        }
+    
+        Write-Host "`n=== Wheelhouse directory contents (after repairwheel) ==="
+        Get-ChildItem wheelhouse -Name
+    
         # Install from wheelhouse/ using correct PowerShell syntax
-        $wheelFile = Get-ChildItem wheelhouse/*.whl | Select-Object -First 1
-        pip install $wheelFile.FullName
+        $repairedWheelFile = Get-ChildItem wheelhouse/*.whl | Select-Object -First 1
+        if ($repairedWheelFile) {
+          Write-Host "Installing wheel: $($repairedWheelFile.FullName)"
+          pip install $repairedWheelFile.FullName
+        } else {
+          Write-Host "ERROR: No repaired wheel found in wheelhouse/"
+          exit 1
+        }
 
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
