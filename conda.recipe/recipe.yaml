@@ -22,6 +22,7 @@ build:
         - set CC=clang-cl
         - set CXX=clang-cl
         - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
+        - set AR=llvm-lib  # Add this line - use LLVM archiver instead of lib.exe
         - set BOOST_ROOT=%PREFIX%\Library # [win]
         - set PATH=%PREFIX%\Library\bin;%PATH% # [win]
         - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
@@ -46,12 +47,13 @@ requirements:
     - ${{ compiler('cxx') }}
     - cmake
     - pkgconfig
-    - boost-cpp >=1.84.0,<1.88.0
+    - boost-cpp >=1.84.0,<1.90.0
     - if: win
       then:
-        - clang # [win]
-        - llvm-openmp # [win] - Add back LLVM OpenMP for Windows
-        - lld # [win]
+        - clang # Use clang toolchain consistently
+        - lld   # Use LLD linker (not lib.exe)  
+        - llvm-tools # Add LLVM tools including llvm-lib
+        - llvm-openmp # [win]
     - if: osx
       then:
         - clang_osx-arm64 =20 # [osx]
@@ -64,7 +66,7 @@ requirements:
     - pybind11>=2.13.2,<2.14.0
     - numpy>=2.0.0,<2.5
     - pip
-    - boost-cpp >=1.84.0,<1.88.0
+    - boost-cpp >=1.84.0,<1.90.0
     - if: win
       then:
         - vs2022_win-64 # [win]
