@@ -8,6 +8,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [Unreleased] - Unreleased
 
 - tools -> 0.29.2
+- algorithms -> 0.9.5
+- pingprocessing -> 0.11.6
+
+### Improvements
+- move functions from pingprocessing/echograms to algorithms/gridding
 
 ### Maintenance
 - tools:
