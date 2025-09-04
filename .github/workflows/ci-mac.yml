@@ -97,6 +97,7 @@ jobs:
         CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
         LDFLAGS="-L${{ matrix.libomp }}/lib \
                  -L${{ matrix.boost }}/lib" \
+        LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip"
         CPPFLAGS="-I${{ matrix.libomp }}/include \
                   -I${{ matrix.boost }}/include" \
         BOOST_ROOT=${{ matrix.boost }} \
