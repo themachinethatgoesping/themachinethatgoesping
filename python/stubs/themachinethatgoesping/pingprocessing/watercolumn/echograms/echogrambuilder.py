@@ -5,6 +5,7 @@ import datetime as dt
 import matplotlib as mpl
 from matplotlib import dates as mdates
 import numpy as np
+import themachinethatgoesping as theping
 from themachinethatgoesping.algorithms.geoprocessing.functions import to_raypoints
 from themachinethatgoesping.algorithms.gridding import ForwardGridder1D
 from themachinethatgoesping import echosounders
@@ -17,11 +18,8 @@ from themachinethatgoesping.pingprocessing.watercolumn import helper as wchelper
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import warnings as warnings
-__all__: list[str] = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
+__all__: list[str] = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'theping', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
 class EchogramBuilder:
-    @staticmethod
-    def sample_y_coordinates(vec_min_y, vec_max_y, vec_res_y, min_y, max_y, max_steps = 1024):
-        ...
     @classmethod
     def from_pings(cls, pings, pss = ..., wci_value: str = 'sv/av/pv/rv', linear_mean = True, no_navigation = False, apply_pss_to_bottom = False, force_angle = None, depth_stack = False, verbose = True):
         ...
@@ -99,11 +97,11 @@ class EchogramBuilder:
         ...
     def set_x_axis_date_time(self, min_ping_time = ..., max_ping_time = ..., time_resolution = ..., time_interpolation_limit = ..., max_steps = 4096, **kwargs):
         ...
-    def set_x_axis_ping_nr(self, min_ping_nr = 0, max_ping_nr = ..., max_steps = 4096, **kwargs):
+    def set_x_axis_ping_index(self, min_ping_index = 0, max_ping_index = ..., max_steps = 4096, **kwargs):
         ...
     def set_x_axis_ping_time(self, min_timestamp = ..., max_timestamp = ..., time_resolution = ..., time_interpolation_limit = ..., max_steps = 4096, **kwargs):
         ...
-    def set_x_coordinates(self, name, x_coordinates, x_resolution, x_interpolation_limit, vec_x_val):
+    def set_x_coordinates(self, name, x_coordinates, x_interpolation_limit):
         ...
     def set_y_axis_depth(self, min_depth = ..., max_depth = ..., max_steps = 1024, **kwargs):
         ...
@@ -113,5 +111,5 @@ class EchogramBuilder:
         ...
     def set_y_axis_y_indice(self, min_sample_nr = 0, max_sample_nr = ..., max_steps = 1024, **kwargs):
         ...
-    def set_y_coordinates(self, name, y_coordinates, y_resolution, vec_min_y, vec_max_y):
+    def set_y_coordinates(self, name, y_coordinates, vec_min_y, vec_max_y):
         ...
