@@ -13,6 +13,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ### Improvements
 - move functions from pingprocessing/echograms to algorithms/gridding
+- algorithms: added nearestfeaturemapper with multiprocessing support
 
 ### Maintenance
 - tools:
