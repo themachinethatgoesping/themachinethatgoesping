@@ -64,6 +64,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Configure Git to skip LFS
+        run: |
+          git config --global filter.lfs.clean cat
+          git config --global filter.lfs.smudge cat
+          git config --global filter.lfs.process ''
+          git config --global filter.lfs.required false
+        shell: bash
+      
       - name: Build conda package
         uses: prefix-dev/rattler-build-action@v0.2.33
         with:
