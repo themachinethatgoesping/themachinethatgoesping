@@ -1,7 +1,6 @@
 # Changelog
 
 Ping is still in the bootstrapping phase, thus changes will be frequent and not always documented. 
-Once the project is more stable, this changelog will be updated more frequently.
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
@@ -10,14 +9,22 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.29.2
 - algorithms -> 0.9.5
 - pingprocessing -> 0.11.6
+- echosounders -> 0.45.6
 
 ### Improvements
 - move functions from pingprocessing/echograms to algorithms/gridding
 - algorithms: added nearestfeaturemapper with multiprocessing support
+- tools:bivecorinterpolator: added insert_row function
+
+### Fixed
+- tools: bivector interpolators throw error if appended row is not larger than last row
 
 ### Maintenance
 - tools:
   - various fixed or supressed build warnings
+- updated fmt 11.2.0 -> 12.0.0
+- echosounders:
+  - refractored KongsbergAllWaterColumnCalibration into cpp file
 
 ## [0.30.5] - 02-09-2025
 

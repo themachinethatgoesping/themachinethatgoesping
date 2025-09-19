@@ -56,6 +56,8 @@ class BiAkimaInterpolator:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolator]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -65,6 +67,8 @@ class BiAkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -73,6 +77,8 @@ class BiAkimaInterpolator:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -141,6 +147,8 @@ class BiAkimaInterpolatorF:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -150,6 +158,8 @@ class BiAkimaInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -158,6 +168,8 @@ class BiAkimaInterpolatorF:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -226,6 +238,8 @@ class BiLinearInterpolator:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolator]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -235,6 +249,8 @@ class BiLinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -243,6 +259,8 @@ class BiLinearInterpolator:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -311,6 +329,8 @@ class BiLinearInterpolatorDF:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorDF]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -320,6 +340,8 @@ class BiLinearInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -328,6 +350,8 @@ class BiLinearInterpolatorDF:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -396,6 +420,8 @@ class BiLinearInterpolatorF:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorF]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -405,6 +431,8 @@ class BiLinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -413,6 +441,8 @@ class BiLinearInterpolatorF:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -481,6 +511,8 @@ class BiLinearInterpolatorFD:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.LinearInterpolatorFD]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -490,6 +522,8 @@ class BiLinearInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -498,6 +532,8 @@ class BiLinearInterpolatorFD:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -566,6 +602,8 @@ class BiNearestInterpolator:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolator]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -575,6 +613,8 @@ class BiNearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -583,6 +623,8 @@ class BiNearestInterpolator:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -651,6 +693,8 @@ class BiNearestInterpolatorDF:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolatorDF]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -660,6 +704,8 @@ class BiNearestInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -668,6 +714,8 @@ class BiNearestInterpolatorDF:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -736,6 +784,8 @@ class BiNearestInterpolatorDI:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolatorDI]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -745,6 +795,8 @@ class BiNearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -753,6 +805,8 @@ class BiNearestInterpolatorDI:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -821,6 +875,8 @@ class BiNearestInterpolatorF:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolatorF]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -830,6 +886,8 @@ class BiNearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -838,6 +896,8 @@ class BiNearestInterpolatorF:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -906,6 +966,8 @@ class BiNearestInterpolatorFD:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolatorFD]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -915,6 +977,8 @@ class BiNearestInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -923,6 +987,8 @@ class BiNearestInterpolatorFD:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
@@ -991,6 +1057,8 @@ class BiNearestInterpolatorFI:
         """
     def empty(self) -> bool:
         ...
+    def get_col_interpolators(self) -> list[themachinethatgoesping.tools_cppy.vectorinterpolators.NearestInterpolatorFI]:
+        ...
     def get_extrapolation_mode(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode:
         """
         Get the currently set extrapolation mode
@@ -1000,6 +1068,8 @@ class BiNearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def get_row_coordinates(self) -> list[float]:
+        ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
@@ -1008,6 +1078,8 @@ class BiNearestInterpolatorFI:
         """
         Return object information as string
         """
+    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+        ...
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
