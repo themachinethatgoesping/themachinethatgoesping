@@ -2,6 +2,7 @@
 Classes related to SimradRaw EK60 and EK80 data files
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
 from . import datagrams
@@ -13,16 +14,16 @@ class SimradRawFileHandler:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -38,7 +39,7 @@ class SimradRawFileHandler:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -48,7 +49,7 @@ class SimradRawFileHandler:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -80,16 +81,16 @@ class SimradRawFileHandler_stream:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -105,7 +106,7 @@ class SimradRawFileHandler_stream:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.SimradRawPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -115,7 +116,7 @@ class SimradRawFileHandler_stream:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -177,7 +178,7 @@ class t_SimradRawDatagramIdentifier:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -190,7 +191,7 @@ class t_SimradRawDatagramIdentifier:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...
@@ -211,7 +212,7 @@ def SimradRawDatagram_type_from_string(datagram_type: str) -> int:
         Parsed datagram type numeric value.
     """
 @typing.overload
-def datagram_type_to_string(datagram_type: int) -> str:
+def datagram_type_to_string(datagram_type: typing.SupportsInt) -> str:
     """
     Convert datagram type from simradraw_long to string representation.
     
@@ -234,7 +235,7 @@ def datagram_type_to_string(datagram_type: t_SimradRawDatagramIdentifier) -> str
     """
 def test_speed_decode_nmea(arg0: SimradRawFileHandler) -> None:
     ...
-def test_speed_decode_xml(mapped_file_stream: SimradRawFileHandler, level: int = 10) -> None:
+def test_speed_decode_xml(mapped_file_stream: SimradRawFileHandler, level: typing.SupportsInt = 10) -> None:
     ...
 def test_speed_header(arg0: SimradRawFileHandler, arg1: t_SimradRawDatagramIdentifier) -> None:
     ...

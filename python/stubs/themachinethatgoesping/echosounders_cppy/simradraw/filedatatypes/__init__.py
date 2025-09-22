@@ -2,6 +2,7 @@
 SimradRaw EK60 and EK80 file data types
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams
@@ -13,7 +14,6 @@ class FilePackageIndex_simradraw_FilePackageIndex:
     """
     """
     file_path: str
-    file_size: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_simradraw_FilePackageIndex:
         """
@@ -51,11 +51,11 @@ class FilePackageIndex_simradraw_FilePackageIndex:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -69,7 +69,13 @@ class FilePackageIndex_simradraw_FilePackageIndex:
         < all datagrams
         """
     @datagram_info_data.setter
-    def datagram_info_data(self, arg0: list[...]) -> None:
+    def datagram_info_data(self, arg0: collections.abc.Sequence[...]) -> None:
+        ...
+    @property
+    def file_size(self) -> int:
+        ...
+    @file_size.setter
+    def file_size(self, arg0: typing.SupportsInt) -> None:
         ...
 class SimradRawPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, SimradRawPingCommon):
     """
@@ -213,12 +219,12 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -229,12 +235,12 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_cppy.filetemplat
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -328,12 +334,12 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -344,12 +350,12 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_cppy.file
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -409,7 +415,7 @@ class TransceiverInformation:
     API or pybind11 interface.
     """
     @staticmethod
-    def compute_impedance_factor(transceiver_impedance: float, transducer_impedance: float = 75) -> float:
+    def compute_impedance_factor(transceiver_impedance: typing.SupportsFloat, transducer_impedance: typing.SupportsFloat = 75) -> float:
         ...
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> TransceiverInformation:
@@ -450,13 +456,13 @@ class TransceiverInformation:
     def get_pulse_duration_index(self, xml_parameter_datagram: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel) -> int:
         ...
     @typing.overload
-    def get_pulse_duration_index(self, pulse_duration: float, fm: bool) -> int:
+    def get_pulse_duration_index(self, pulse_duration: typing.SupportsFloat, fm: bool) -> int:
         ...
     @typing.overload
     def get_pulse_duration_index_optional(self, xml_parameter_datagram: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel) -> int:
         ...
     @typing.overload
-    def get_pulse_duration_index_optional(self, pulse_duration: float, fm: bool) -> int:
+    def get_pulse_duration_index_optional(self, pulse_duration: typing.SupportsFloat, fm: bool) -> int:
         ...
     def get_transceiver(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver:
         ...
@@ -468,13 +474,13 @@ class TransceiverInformation:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def is_initialized(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

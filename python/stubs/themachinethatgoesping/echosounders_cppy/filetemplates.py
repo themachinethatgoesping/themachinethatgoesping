@@ -2,9 +2,9 @@
 Trampoline classes for abstract file template classes
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
-import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
@@ -34,7 +34,7 @@ class AmplitudeCalibration:
     def __init__(self) -> None:
         ...
     @typing.overload
-    def __init__(self, system_offset: float) -> None:
+    def __init__(self, system_offset: typing.SupportsFloat) -> None:
         ...
     @typing.overload
     def __init__(self, arg0: AmplitudeCalibration) -> None:
@@ -49,7 +49,7 @@ class AmplitudeCalibration:
         """
         Return object information as string
         """
-    def apply_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: float | None, tvg_factor: float | None, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: typing.SupportsFloat | None, tvg_factor: typing.SupportsFloat | None, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     def copy(self) -> AmplitudeCalibration:
         """
@@ -58,18 +58,6 @@ class AmplitudeCalibration:
     def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
         ...
     def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
-        ...
-    @typing.overload
-    def get_offset_per_beamangle(self, beamangle: list[float]) -> list[float]:
-        ...
-    @typing.overload
-    def get_offset_per_beamangle(self, beamangle: float) -> float:
-        ...
-    @typing.overload
-    def get_offset_per_range(self, range: list[float]) -> list[float]:
-        ...
-    @typing.overload
-    def get_offset_per_range(self, range: float) -> float:
         ...
     def get_per_beam_offsets(self, beamangles: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
         ...
@@ -87,13 +75,13 @@ class AmplitudeCalibration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def inplace_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: float | None, tvg_factor: float | None, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], absorption_db_m: typing.SupportsFloat | None, tvg_factor: typing.SupportsFloat | None, min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -101,7 +89,7 @@ class AmplitudeCalibration:
         ...
     def set_offset_per_range(self, range: numpy.ndarray[numpy.float32], offset: numpy.ndarray[numpy.float32]) -> None:
         ...
-    def set_system_offset(self, value: float) -> None:
+    def set_system_offset(self, value: typing.SupportsFloat) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -139,10 +127,10 @@ class FileCache:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, file_name: str, file_size: int) -> None:
+    def __init__(self, file_name: str, file_size: typing.SupportsInt) -> None:
         ...
     @typing.overload
-    def __init__(self, index_path: str, file_name: str, file_size: int, cache_keys: list[str] = []) -> None:
+    def __init__(self, index_path: str, file_name: str, file_size: typing.SupportsInt, cache_keys: collections.abc.Sequence[str] = []) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -186,11 +174,11 @@ class FileCache:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -240,7 +228,7 @@ class I_Ping(I_PingCommon):
         """
         < channel id of the transducer
         """
-    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+    def get_datetime(self, timezone_offset_hours: typing.SupportsFloat = 0.0) -> typing.Any:
         """
         Return the timestamp as datetime object
         """
@@ -291,11 +279,11 @@ class I_Ping(I_PingCommon):
         ...
     def has_watercolumn(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -311,7 +299,7 @@ class I_Ping(I_PingCommon):
         ...
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation.SensorConfiguration) -> None:
         ...
-    def set_timestamp(self, timestamp: float) -> None:
+    def set_timestamp(self, timestamp: typing.SupportsFloat) -> None:
         """
         < Unix timestamp in seconds (saved in UTC0)
         """
@@ -539,7 +527,7 @@ class I_PingCommon:
         Returns:
             std::string
         """
-    def has_all_of_features(self, feature_names: list[t_pingfeature]) -> bool:
+    def has_all_of_features(self, feature_names: collections.abc.Sequence[t_pingfeature]) -> bool:
         """
         Check if all of the specified features are available
         
@@ -549,7 +537,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_any_of_features(self, feature_names: list[t_pingfeature]) -> bool:
+    def has_any_of_features(self, feature_names: collections.abc.Sequence[t_pingfeature]) -> bool:
         """
         Check if any of the specified features is available
         
@@ -589,7 +577,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -608,7 +596,7 @@ class I_PingCommon:
         Returns:
             std::string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -697,22 +685,22 @@ class I_PingFileData:
         Throws:
             not_implemented Exception if not implemented.
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_file_ping_counter(self, file_ping_counter: int) -> None:
+    def set_file_ping_counter(self, file_ping_counter: typing.SupportsInt) -> None:
         """
         Set the file ping counter.
         
         Parameter ``file_ping_counter``:
             The file ping counter to set.
         """
-    def set_primary_file_nr(self, file_nr: int) -> None:
+    def set_primary_file_nr(self, file_nr: typing.SupportsInt) -> None:
         """
         Set the primary file number for this ping.
         
@@ -729,7 +717,6 @@ class I_PingWatercolumn(I_PingCommon):
     data. It inherits from the I_PingCommon class and provides additional
     functions and variables specific to watercolumn pings.
     """
-    _test_mode: int
     def __copy__(self) -> I_PingWatercolumn:
         ...
     def __deepcopy__(self, arg0: dict) -> I_PingWatercolumn:
@@ -739,7 +726,7 @@ class I_PingWatercolumn(I_PingCommon):
         return a copy using the c++ default copy constructor
         """
     @typing.overload
-    def get_amplitudes(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_amplitudes(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get tha raw water amplitude data converted to float(32bit)
         
@@ -747,7 +734,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_amplitudes(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_amplitudes(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get tha raw water amplitude data converted to float(32bit)
         
@@ -755,7 +742,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_ap(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_ap(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AP (uncalibrated point scattering)
         
@@ -763,7 +750,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_ap(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_ap(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AP (uncalibrated point scattering)
         
@@ -777,7 +764,7 @@ class I_PingWatercolumn(I_PingCommon):
     def get_approximate_ranges(self, beam_sample_selection: ...) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def get_av(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_av(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AV (uncalibrated volume
         scattering)
@@ -786,7 +773,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_av(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_av(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to AV (uncalibrated volume
         scattering)
@@ -922,7 +909,7 @@ class I_PingWatercolumn(I_PingCommon):
             The number of transmission sectors.
         """
     @typing.overload
-    def get_power(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to power
         
@@ -930,7 +917,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_power(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_power(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to power
         
@@ -938,7 +925,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_pp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_pp(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to PP (power +2 alpha R + 40log(R))
         
@@ -946,7 +933,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_pp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_pp(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to PP (power +2 alpha R + 40log(R))
         
@@ -954,7 +941,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_pv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_pv(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to PV (power +2 alpha R + 20log(R))
         
@@ -962,7 +949,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_pv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_pv(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to PV (power +2 alpha R + 20log(R))
         
@@ -970,7 +957,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_rp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_rp(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to RP (power 40log(R))
         
@@ -978,7 +965,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_rp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_rp(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to RP (power 40log(R))
         
@@ -986,7 +973,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_rv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_rv(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to RV (power 20log(R))
         
@@ -994,7 +981,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_rv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_rv(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the power data converted to RV (power 20log(R))
         
@@ -1011,7 +998,7 @@ class I_PingWatercolumn(I_PingCommon):
     def get_sound_speed_at_transducer(self) -> float:
         ...
     @typing.overload
-    def get_sp(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sp(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SP (calibrated point scattering)
         
@@ -1019,7 +1006,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sp(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sp(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SP (calibrated point scattering)
         
@@ -1027,7 +1014,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sv(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sv(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SV (calibrated volume scattering)
         
@@ -1035,7 +1022,7 @@ class I_PingWatercolumn(I_PingCommon):
             xt::xtensor<float,2>
         """
     @typing.overload
-    def get_sv(self, beam_selection: ..., mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sv(self, beam_selection: ..., mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         Get the amplitude data converted to SV (calibrated volume scattering)
         
@@ -1060,7 +1047,7 @@ class I_PingWatercolumn(I_PingCommon):
     def get_watercolumn_calibration(self) -> WaterColumnCalibration:
         ...
     @typing.overload
-    def get_watercolumn_calibration(self, sector_nr: int) -> WaterColumnCalibration:
+    def get_watercolumn_calibration(self, sector_nr: typing.SupportsInt) -> WaterColumnCalibration:
         ...
     def has_amplitudes(self) -> bool:
         ...
@@ -1124,6 +1111,12 @@ class I_PingWatercolumn(I_PingCommon):
         """
         Check this pings has valid power calibration data
         """
+    @property
+    def _test_mode(self) -> int:
+        ...
+    @_test_mode.setter
+    def _test_mode(self, arg1: typing.SupportsInt) -> None:
+        ...
 class KongsbergAllMultiSectorWaterColumnCalibration:
     """
     """
@@ -1148,7 +1141,7 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
     def __init__(self) -> None:
         ...
     @typing.overload
-    def __init__(self, calibration_per_sector: list[...]) -> None:
+    def __init__(self, calibration_per_sector: collections.abc.Sequence[...]) -> None:
         ...
     @typing.overload
     def __init__(self, other: KongsbergAllMultiSectorWaterColumnCalibration) -> None:
@@ -1166,46 +1159,46 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     def copy(self) -> KongsbergAllMultiSectorWaterColumnCalibration:
         """
@@ -1231,17 +1224,17 @@ class KongsbergAllMultiSectorWaterColumnCalibration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> None:
         ...
     @typing.overload
-    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1273,7 +1266,7 @@ class MultiSectorWaterColumnCalibration:
     def __init__(self) -> None:
         ...
     @typing.overload
-    def __init__(self, calibration_per_sector: list[WaterColumnCalibration]) -> None:
+    def __init__(self, calibration_per_sector: collections.abc.Sequence[WaterColumnCalibration]) -> None:
         ...
     @typing.overload
     def __init__(self, other: MultiSectorWaterColumnCalibration) -> None:
@@ -1291,46 +1284,46 @@ class MultiSectorWaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     def copy(self) -> MultiSectorWaterColumnCalibration:
         """
@@ -1356,17 +1349,17 @@ class MultiSectorWaterColumnCalibration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> None:
         ...
     @typing.overload
-    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: list[list[int]], mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], beam_numbers_per_tx_sector: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsInt]], mp_cores: typing.SupportsInt = 1) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1395,10 +1388,10 @@ class WaterColumnCalibration:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, tvg_absorption_db_m: float = 0.0, tvg_factor: float = 0.0) -> None:
+    def __init__(self, tvg_absorption_db_m: typing.SupportsFloat = 0.0, tvg_factor: typing.SupportsFloat = 0.0) -> None:
         ...
     @typing.overload
-    def __init__(self, power_calibration: AmplitudeCalibration = ..., ap_calibration: AmplitudeCalibration = ..., av_calibration: AmplitudeCalibration = ..., tvg_absorption_db_m: float = 0.0, tvg_factor: float = 0.0) -> None:
+    def __init__(self, power_calibration: AmplitudeCalibration = ..., ap_calibration: AmplitudeCalibration = ..., av_calibration: AmplitudeCalibration = ..., tvg_absorption_db_m: typing.SupportsFloat = 0.0, tvg_factor: typing.SupportsFloat = 0.0) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -1411,58 +1404,58 @@ class WaterColumnCalibration:
         Return object information as string
         """
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_ap(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_av(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_power(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_pv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_rp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_rv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sp(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float32], beam_angles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def apply_beam_sample_correction_sv(self, wci: numpy.ndarray[numpy.float64], beam_angles: numpy.ndarray[numpy.float64], ranges: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         ...
     def check_initialized(self) -> None:
         ...
@@ -1474,7 +1467,7 @@ class WaterColumnCalibration:
         """
     def get_absorption_db_m(self) -> float:
         ...
-    def get_absorption_to_apply(self, absorption_db_m: float | None = None) -> float | None:
+    def get_absorption_to_apply(self, absorption_db_m: typing.SupportsFloat | None = None) -> float | None:
         ...
     def get_ap_calibration(self) -> AmplitudeCalibration:
         ...
@@ -1490,7 +1483,7 @@ class WaterColumnCalibration:
         ...
     def get_tvg_factor(self) -> float:
         ...
-    def get_tvg_factor_to_apply(self, tvg_factor: float) -> float | None:
+    def get_tvg_factor_to_apply(self, tvg_factor: typing.SupportsFloat) -> float | None:
         ...
     def has_ap_calibration(self) -> bool:
         ...
@@ -1508,15 +1501,15 @@ class WaterColumnCalibration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_absorption_db_m(self, absorption_db_m: float | None) -> None:
+    def set_absorption_db_m(self, absorption_db_m: typing.SupportsFloat | None) -> None:
         ...
     def set_ap_calibration(self, calibration: AmplitudeCalibration) -> None:
         ...
@@ -1641,7 +1634,7 @@ class t_pingfeature:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -1654,7 +1647,7 @@ class t_pingfeature:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

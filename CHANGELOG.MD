@@ -23,6 +23,9 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools:
   - various fixed or supressed build warnings
 - updated fmt 11.2.0 -> 12.0.0
+- updated fast_float 8.0.2 -> 8.1.0
+- updated xtensor 0.27.1 -> 0.27.1
+- update pybind11 2.13.6 -> 3.0.1
 - echosounders:
   - refractored KongsbergAllWaterColumnCalibration into cpp file
 

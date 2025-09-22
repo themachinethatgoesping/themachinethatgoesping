@@ -2,6 +2,7 @@
 Classes related to Kongsberg KongsbergAll data files (old Kongsberg .all / .wcd format, used until SIS 4.0)
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
 from . import datagrams
@@ -13,16 +14,16 @@ class KongsbergAllFileHandler:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -38,7 +39,7 @@ class KongsbergAllFileHandler:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -48,7 +49,7 @@ class KongsbergAllFileHandler:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -80,16 +81,16 @@ class KongsbergAllFileHandler_stream:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -105,7 +106,7 @@ class KongsbergAllFileHandler_stream:
         ...
     def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.KongsbergAllPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -115,7 +116,7 @@ class KongsbergAllFileHandler_stream:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -193,7 +194,7 @@ class t_KongsbergAllActiveSensor:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -206,7 +207,7 @@ class t_KongsbergAllActiveSensor:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...
@@ -300,7 +301,7 @@ class t_KongsbergAllDatagramIdentifier:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -313,7 +314,7 @@ class t_KongsbergAllDatagramIdentifier:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...
@@ -363,7 +364,7 @@ class t_KongsbergAllSystemTransducerConfiguration:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -376,7 +377,7 @@ class t_KongsbergAllSystemTransducerConfiguration:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

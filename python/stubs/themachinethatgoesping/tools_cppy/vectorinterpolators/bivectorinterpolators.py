@@ -2,8 +2,10 @@
 2D interpolators
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.tools_cppy.vectorinterpolators
+import typing
 __all__: list[str] = ['BiAkimaInterpolator', 'BiAkimaInterpolatorF', 'BiLinearInterpolator', 'BiLinearInterpolatorDF', 'BiLinearInterpolatorF', 'BiLinearInterpolatorFD', 'BiNearestInterpolator', 'BiNearestInterpolatorDF', 'BiNearestInterpolatorDI', 'BiNearestInterpolatorF', 'BiNearestInterpolatorFD', 'BiNearestInterpolatorFI']
 class BiAkimaInterpolator:
     """
@@ -13,7 +15,7 @@ class BiAkimaInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -48,7 +50,9 @@ class BiAkimaInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiAkimaInterpolator:
         """
@@ -73,13 +77,13 @@ class BiAkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -92,6 +96,8 @@ class BiAkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -104,7 +110,7 @@ class BiAkimaInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -139,7 +145,9 @@ class BiAkimaInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiAkimaInterpolatorF:
         """
@@ -164,13 +172,13 @@ class BiAkimaInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -183,6 +191,8 @@ class BiAkimaInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -195,7 +205,7 @@ class BiLinearInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -230,7 +240,9 @@ class BiLinearInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiLinearInterpolator:
         """
@@ -255,13 +267,13 @@ class BiLinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -274,6 +286,8 @@ class BiLinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -286,7 +300,7 @@ class BiLinearInterpolatorDF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -321,7 +335,9 @@ class BiLinearInterpolatorDF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiLinearInterpolatorDF:
         """
@@ -346,13 +362,13 @@ class BiLinearInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -365,6 +381,8 @@ class BiLinearInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -377,7 +395,7 @@ class BiLinearInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -412,7 +430,9 @@ class BiLinearInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiLinearInterpolatorF:
         """
@@ -437,13 +457,13 @@ class BiLinearInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -456,6 +476,8 @@ class BiLinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -468,7 +490,7 @@ class BiLinearInterpolatorFD:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -503,7 +525,9 @@ class BiLinearInterpolatorFD:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiLinearInterpolatorFD:
         """
@@ -528,13 +552,13 @@ class BiLinearInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -547,6 +571,8 @@ class BiLinearInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -559,7 +585,7 @@ class BiNearestInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -594,7 +620,9 @@ class BiNearestInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolator:
         """
@@ -619,13 +647,13 @@ class BiNearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -638,6 +666,8 @@ class BiNearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -650,7 +680,7 @@ class BiNearestInterpolatorDF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -685,7 +715,9 @@ class BiNearestInterpolatorDF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolatorDF:
         """
@@ -710,13 +742,13 @@ class BiNearestInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -729,6 +761,8 @@ class BiNearestInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -741,7 +775,7 @@ class BiNearestInterpolatorDI:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.int64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -776,7 +810,9 @@ class BiNearestInterpolatorDI:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolatorDI:
         """
@@ -801,13 +837,13 @@ class BiNearestInterpolatorDI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -820,6 +856,8 @@ class BiNearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -832,7 +870,7 @@ class BiNearestInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -867,7 +905,9 @@ class BiNearestInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolatorF:
         """
@@ -892,13 +932,13 @@ class BiNearestInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -911,6 +951,8 @@ class BiNearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -923,7 +965,7 @@ class BiNearestInterpolatorFD:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -958,7 +1000,9 @@ class BiNearestInterpolatorFD:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolatorFD:
         """
@@ -983,13 +1027,13 @@ class BiNearestInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[float]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1002,6 +1046,8 @@ class BiNearestInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray
@@ -1014,7 +1060,7 @@ class BiNearestInterpolatorFI:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: list[float], column_coordinates: list[float], mp_cores: int = 1) -> numpy.ndarray[numpy.int64]:
+    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -1049,7 +1095,9 @@ class BiNearestInterpolatorFI:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
+        ...
+    def clear(self) -> None:
         ...
     def copy(self) -> BiNearestInterpolatorFI:
         """
@@ -1074,13 +1122,13 @@ class BiNearestInterpolatorFI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert_row(self, row_coordinate: float, column_coordinates: list[float], values: list[int]) -> None:
+    def insert_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1093,6 +1141,8 @@ class BiNearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
+    def size(self) -> int:
+        ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
         convert object to bytearray

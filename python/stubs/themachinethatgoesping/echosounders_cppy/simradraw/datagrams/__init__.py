@@ -73,11 +73,11 @@ class FIL1(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -89,15 +89,15 @@ class FIL1(SimradRawDatagram):
         """
         < Filter coefficients
         """
-    def set_decimation_factor(self, arg0: int) -> None:
+    def set_decimation_factor(self, arg0: typing.SupportsInt) -> None:
         """
         < Filter decimation factor
         """
-    def set_no_of_coefficients(self, arg0: int) -> None:
+    def set_no_of_coefficients(self, arg0: typing.SupportsInt) -> None:
         """
         < Number of complex filter coefficients
         """
-    def set_stage(self, arg0: int) -> None:
+    def set_stage(self, arg0: typing.SupportsInt) -> None:
         """
         < Filter stage number
         """
@@ -165,27 +165,27 @@ class MRU0(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_heading(self, arg0: float) -> None:
+    def set_heading(self, arg0: typing.SupportsFloat) -> None:
         """
         < Heading in degrees, 0° north, 90° east
         """
-    def set_heave(self, arg0: float) -> None:
+    def set_heave(self, arg0: typing.SupportsFloat) -> None:
         """
         < Heave in m, positive up
         """
-    def set_pitch(self, arg0: float) -> None:
+    def set_pitch(self, arg0: typing.SupportsFloat) -> None:
         """
         < Pitch in degrees, positive nose up
         """
-    def set_roll(self, arg0: float) -> None:
+    def set_roll(self, arg0: typing.SupportsFloat) -> None:
         """
         < Roll in degrees, positive port up
         """
@@ -233,11 +233,11 @@ class NME0(SimradRawDatagram):
         """
     def decode(self) -> themachinethatgoesping.navigation.nmea_0183.NMEA_Unknown | themachinethatgoesping.navigation.nmea_0183.NMEA_ZDA | themachinethatgoesping.navigation.nmea_0183.NMEA_VLW | themachinethatgoesping.navigation.nmea_0183.NMEA_VTG | themachinethatgoesping.navigation.nmea_0183.NMEA_VHW | themachinethatgoesping.navigation.nmea_0183.NMEA_RMC | themachinethatgoesping.navigation.nmea_0183.NMEA_HDT | themachinethatgoesping.navigation.nmea_0183.NMEA_GLL | themachinethatgoesping.navigation.nmea_0183.NMEA_GGA | themachinethatgoesping.navigation.nmea_0183.NMEA_GST:
         ...
-    def get_field(self, arg0: int) -> str:
+    def get_field(self, arg0: typing.SupportsInt) -> str:
         ...
-    def get_field_as_floattype(self, arg0: int) -> float:
+    def get_field_as_floattype(self, arg0: typing.SupportsInt) -> float:
         ...
-    def get_field_as_int(self, arg0: int) -> int:
+    def get_field_as_int(self, arg0: typing.SupportsInt) -> int:
         ...
     def get_nmea_base(self) -> themachinethatgoesping.navigation.nmea_0183.NMEA_Base:
         """
@@ -255,13 +255,13 @@ class NME0(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parse_fields(self) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -334,7 +334,7 @@ class RAW3(SimradRawDatagram):
         """
         < First sample number in the datagram
         """
-    def get_sample_data(self) -> raw3datatypes.RAW3DataSkipped | raw3datatypes.RAW3DataComplexFloat32 | raw3datatypes.RAW3DataPowerAndAngle | raw3datatypes.RAW3DataPower | raw3datatypes.RAW3DataAngle:
+    def get_sample_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataAngle:
         """
         < Sample data
         """
@@ -350,15 +350,15 @@ class RAW3(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def sample_data(self) -> raw3datatypes.RAW3DataSkipped | raw3datatypes.RAW3DataComplexFloat32 | raw3datatypes.RAW3DataPowerAndAngle | raw3datatypes.RAW3DataPower | raw3datatypes.RAW3DataAngle:
+    def sample_data(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataAngle:
         """
         < Sample data
         """
@@ -366,7 +366,7 @@ class RAW3(SimradRawDatagram):
         """
         < Channel identification (size is always 128)
         """
-    def set_count(self, arg0: int) -> None:
+    def set_count(self, arg0: typing.SupportsInt) -> None:
         """
         < Number of samples in the datagram
         """
@@ -374,16 +374,16 @@ class RAW3(SimradRawDatagram):
         """
         < data_type
         """
-    def set_number_of_complex_samples(self, arg0: int) -> None:
+    def set_number_of_complex_samples(self, arg0: typing.SupportsInt) -> None:
         """
         < Number of transducer samples per sample (used when < data_type is
         complex)
         """
-    def set_offset(self, arg0: int) -> None:
+    def set_offset(self, arg0: typing.SupportsInt) -> None:
         """
         < First sample number in the datagram
         """
-    def set_sample_data(self, arg0: raw3datatypes.RAW3DataSkipped | raw3datatypes.RAW3DataComplexFloat32 | raw3datatypes.RAW3DataPowerAndAngle | raw3datatypes.RAW3DataPower | raw3datatypes.RAW3DataAngle) -> None:
+    def set_sample_data(self, arg0: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataSkipped | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataComplexFloat32 | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPowerAndAngle | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataPower | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.raw3datatypes.RAW3DataAngle) -> None:
         """
         < Sample data
         """
@@ -443,9 +443,9 @@ class SimradRawDatagram:
         """
         < Raw: Datagram type as
         """
-    def get_date_string(self, arg0: int, arg1: str) -> str:
+    def get_date_string(self, arg0: typing.SupportsInt, arg1: str) -> str:
         ...
-    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+    def get_datetime(self, timezone_offset_hours: typing.SupportsFloat = 0.0) -> typing.Any:
         """
         Return the timestamp as datetime object
         """
@@ -470,17 +470,17 @@ class SimradRawDatagram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def set_datagram_identifier(self, arg0: themachinethatgoesping.echosounders_cppy.simradraw.t_SimradRawDatagramIdentifier) -> None:
         ...
-    def set_datagram_type(self, arg0: int) -> None:
+    def set_datagram_type(self, arg0: typing.SupportsInt) -> None:
         """
         < Raw: Datagram type as
         """
@@ -488,19 +488,19 @@ class SimradRawDatagram:
         """
         Set the timestamp using a datetime object
         """
-    def set_high_date_time(self, arg0: int) -> None:
+    def set_high_date_time(self, arg0: typing.SupportsInt) -> None:
         """
         < Raw: High part of Windows NT FILETIME (100ns ticks since 1601-01-01)
         """
-    def set_length(self, arg0: int) -> None:
+    def set_length(self, arg0: typing.SupportsInt) -> None:
         """
         < Raw: Length of the datagram in bytes
         """
-    def set_low_date_time(self, arg0: int) -> None:
+    def set_low_date_time(self, arg0: typing.SupportsInt) -> None:
         """
         < Raw: Low part of Windows NT FILETIME (100ns ticks since 1601-01-01)
         """
-    def set_timestamp(self, arg0: float) -> None:
+    def set_timestamp(self, arg0: typing.SupportsFloat) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -550,11 +550,11 @@ class SimradRawUnknown(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -614,11 +614,11 @@ class TAG0(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -670,7 +670,7 @@ class XML0(SimradRawDatagram):
         """
         return a copy using the c++ default copy constructor
         """
-    def decode(self) -> XML0_datagrams.XML_Node | XML0_datagrams.XML_Parameter | XML0_datagrams.XML_InitialParameter | XML0_datagrams.XML_PingSequence | XML0_datagrams.XML_Environment | XML0_datagrams.XML_Sensor | XML0_datagrams.XML_Configuration:
+    def decode(self) -> themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Node | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_InitialParameter | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_PingSequence | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Sensor | themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Configuration:
         ...
     def get_raw_xml_content(self) -> str:
         ...
@@ -686,11 +686,11 @@ class XML0(SimradRawDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

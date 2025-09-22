@@ -2,6 +2,7 @@
 Python module to store, interpolate and transform navigation data
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
 from . import datastructures
@@ -19,7 +20,7 @@ class NavigationInterpolatorLatLon:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeolocationLatLon:
+    def __call__(self, target_id: str, timestamp: typing.SupportsFloat) -> datastructures.GeolocationLatLon:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -67,7 +68,7 @@ class NavigationInterpolatorLatLon:
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None:
+    def add_target(self, target_id: str, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat) -> None:
         """
         add a target sensor with positional offsets
         
@@ -103,7 +104,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``sensor_offsets``:
             structure that contains the sensor position
         """
-    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeolocationLatLon:
+    def compute_target_position(self, target_id: str, timestamp: typing.SupportsFloat) -> datastructures.GeolocationLatLon:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -129,7 +130,7 @@ class NavigationInterpolatorLatLon:
         Returns:
             SensorConfiguration&
         """
-    def get_sensor_data(self, timestamp: float) -> datastructures.SensordataLatLon:
+    def get_sensor_data(self, timestamp: typing.SupportsFloat) -> datastructures.SensordataLatLon:
         """
         Interpolate the saved sensor data for a specified timestamp stamp
         
@@ -144,7 +145,7 @@ class NavigationInterpolatorLatLon:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -155,11 +156,11 @@ class NavigationInterpolatorLatLon:
         
         Parameter ``other``:
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_attitude(self, timestamp: list[float], pitch: list[float], roll: list[float]) -> None:
+    def set_data_attitude(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], roll: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the attitude data (no yaw, this is set in set_data_heading)
         
@@ -172,7 +173,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``roll``:
             in °, positive is port up
         """
-    def set_data_depth(self, timestamp: list[float], depth: list[float]) -> None:
+    def set_data_depth(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], depth: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the depth data
         
@@ -182,7 +183,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``depth``:
             in meters, positive downwards
         """
-    def set_data_heading(self, timestamp: list[float], heading: list[float]) -> None:
+    def set_data_heading(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], heading: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the compass data
         
@@ -192,7 +193,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``heading``:
             in °, positive clockwise (north is 0°)
         """
-    def set_data_heave(self, timestamp: list[float], heave: list[float]) -> None:
+    def set_data_heave(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], heave: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the heave data
         
@@ -202,7 +203,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``heave``:
             in meters, positive upwards
         """
-    def set_data_position(self, timestamp: list[float], latitude: list[float], longitude: list[float]) -> None:
+    def set_data_position(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], latitude: collections.abc.Sequence[typing.SupportsFloat], longitude: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the data of the position system (latitude, longitude)
         
@@ -289,7 +290,7 @@ class NavigationInterpolatorLocal:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, target_id: str, timestamp: float) -> datastructures.GeolocationLocal:
+    def __call__(self, target_id: str, timestamp: typing.SupportsFloat) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -337,7 +338,7 @@ class NavigationInterpolatorLocal:
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None:
+    def add_target(self, target_id: str, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat) -> None:
         """
         add a target sensor with positional offsets
         
@@ -373,7 +374,7 @@ class NavigationInterpolatorLocal:
         Parameter ``sensor_offsets``:
             structure that contains the sensor position
         """
-    def compute_target_position(self, target_id: str, timestamp: float) -> datastructures.GeolocationLocal:
+    def compute_target_position(self, target_id: str, timestamp: typing.SupportsFloat) -> datastructures.GeolocationLocal:
         """
         Compute the position of the target "target_id" based on the sensor
         data for the given timestamp stamp
@@ -399,7 +400,7 @@ class NavigationInterpolatorLocal:
         Returns:
             SensorConfiguration&
         """
-    def get_sensor_data(self, timestamp: float) -> datastructures.SensordataLocal:
+    def get_sensor_data(self, timestamp: typing.SupportsFloat) -> datastructures.SensordataLocal:
         """
         Interpolate the saved sensor data for a specified timestamp stamp
         
@@ -414,7 +415,7 @@ class NavigationInterpolatorLocal:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -425,11 +426,11 @@ class NavigationInterpolatorLocal:
         
         Parameter ``other``:
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_attitude(self, timestamp: list[float], pitch: list[float], roll: list[float]) -> None:
+    def set_data_attitude(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], roll: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the attitude data (no yaw, this is set in set_data_heading)
         
@@ -442,7 +443,7 @@ class NavigationInterpolatorLocal:
         Parameter ``roll``:
             in °, positive is port up
         """
-    def set_data_depth(self, timestamp: list[float], depth: list[float]) -> None:
+    def set_data_depth(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], depth: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the depth data
         
@@ -452,7 +453,7 @@ class NavigationInterpolatorLocal:
         Parameter ``depth``:
             in meters, positive downwards
         """
-    def set_data_heading(self, timestamp: list[float], heading: list[float]) -> None:
+    def set_data_heading(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], heading: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the compass data
         
@@ -462,7 +463,7 @@ class NavigationInterpolatorLocal:
         Parameter ``heading``:
             in °, positive clockwise (north is 0°)
         """
-    def set_data_heave(self, timestamp: list[float], heave: list[float]) -> None:
+    def set_data_heave(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], heave: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the heave data
         
@@ -472,7 +473,7 @@ class NavigationInterpolatorLocal:
         Parameter ``heave``:
             in meters, positive upwards
         """
-    def set_data_position(self, timestamp: list[float], northing: list[float], easting: list[float]) -> None:
+    def set_data_position(self, timestamp: collections.abc.Sequence[typing.SupportsFloat], northing: collections.abc.Sequence[typing.SupportsFloat], easting: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Set the data of the position system (northing, easting)
         
@@ -600,7 +601,7 @@ class SensorConfiguration:
         Return object information as string
         """
     @typing.overload
-    def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None:
+    def add_target(self, target_id: str, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat) -> None:
         """
         add a target (e.g. MBES) with offsets to the sensor position system
         
@@ -639,7 +640,7 @@ class SensorConfiguration:
         Parameter ``target_offsets``:
             mounting offsets of the target
         """
-    def add_targets(self, targets: dict[str, datastructures.PositionalOffsets]) -> None:
+    def add_targets(self, targets: collections.abc.Mapping[str, datastructures.PositionalOffsets]) -> None:
         """
         add targets (e.g. MBES) with given target_ids and offsets to the
         sensor position system
@@ -806,11 +807,11 @@ class SensorConfiguration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -826,7 +827,7 @@ class SensorConfiguration:
         Remove all stored targets
         """
     @typing.overload
-    def set_attitude_source(self, name: str, yaw: float, pitch: float, roll: float) -> None:
+    def set_attitude_source(self, name: str, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat) -> None:
         """
         Set the attitude sensor offsets
         
@@ -851,7 +852,7 @@ class SensorConfiguration:
             x-axis) (in degrees, positive = port up)
         """
     @typing.overload
-    def set_depth_source(self, name: str, x: float, y: float, z: float) -> None:
+    def set_depth_source(self, name: str, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat) -> None:
         """
         Set the depth sensor offsets
         
@@ -873,7 +874,7 @@ class SensorConfiguration:
             offsets structure (only x, y and z are used)
         """
     @typing.overload
-    def set_heading_source(self, name: str, yaw: float) -> None:
+    def set_heading_source(self, name: str, yaw: typing.SupportsFloat) -> None:
         """
         Set the compass offsets
         
@@ -890,7 +891,7 @@ class SensorConfiguration:
             offsets structure (only yaw is used)
         """
     @typing.overload
-    def set_position_source(self, name: str, x: float, y: float, z: float) -> None:
+    def set_position_source(self, name: str, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat) -> None:
         """
         Set the position system offsets
         
@@ -911,7 +912,7 @@ class SensorConfiguration:
         Parameter ``sensor_offsets``:
             offsets structure (only x, y and z are used)
         """
-    def set_waterline_offset(self, z: float) -> None:
+    def set_waterline_offset(self, z: typing.SupportsFloat) -> None:
         """
         Set the waterline offset Negative waterline offset means that z=0 is
         below the waterline

@@ -6,18 +6,18 @@ import numpy
 import typing
 __all__: list[str] = ['compute_effective_pulse_duration_cw', 'create_linear_chirp_signal_d', 'create_linear_chirp_signal_f', 'filter_and_decimate_pulse', 'generate_transmit_pulse_d', 'generate_transmit_pulse_f', 'hann_d', 'hann_f']
 @typing.overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex64], sample_interval: float, round_to_full_samples: bool = True) -> float:
+def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex64], sample_interval: typing.SupportsFloat, round_to_full_samples: bool = True) -> float:
     ...
 @typing.overload
 def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex64], pulse_times: numpy.ndarray[numpy.float32]) -> float:
     ...
 @typing.overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex128], sample_interval: float, round_to_full_samples: bool = True) -> float:
+def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex128], sample_interval: typing.SupportsFloat, round_to_full_samples: bool = True) -> float:
     ...
 @typing.overload
 def compute_effective_pulse_duration_cw(pulse_amplitudes: numpy.ndarray[numpy.complex128], pulse_times: numpy.ndarray[numpy.float64]) -> float:
     ...
-def create_linear_chirp_signal_d(f0: float, f1: float, pulse_duration: float, sampling_frequency: float = 1500000, start_phase_degrees: float = 90) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+def create_linear_chirp_signal_d(f0: typing.SupportsFloat, f1: typing.SupportsFloat, pulse_duration: typing.SupportsFloat, sampling_frequency: typing.SupportsFloat = 1500000, start_phase_degrees: typing.SupportsFloat = 90) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     """
     Create a sampled linear chirp signal and its time vector.
     
@@ -45,7 +45,7 @@ def create_linear_chirp_signal_d(f0: float, f1: float, pulse_duration: float, sa
         std::pair<t_xtensor_val, t_xtensor_val> First: times t [s], shape
         {nsamples} Second: amplitudes y = sin(phi(t)), shape {nsamples}
     """
-def create_linear_chirp_signal_f(f0: float, f1: float, pulse_duration: float, sampling_frequency: float = 1500000, start_phase_degrees: float = 90) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
+def create_linear_chirp_signal_f(f0: typing.SupportsFloat, f1: typing.SupportsFloat, pulse_duration: typing.SupportsFloat, sampling_frequency: typing.SupportsFloat = 1500000, start_phase_degrees: typing.SupportsFloat = 90) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
     """
     Create a sampled linear chirp signal and its time vector.
     
@@ -74,12 +74,12 @@ def create_linear_chirp_signal_f(f0: float, f1: float, pulse_duration: float, sa
         {nsamples} Second: amplitudes y = sin(phi(t)), shape {nsamples}
     """
 @typing.overload
-def filter_and_decimate_pulse(pulse_amplitudes: numpy.ndarray[numpy.float32], stage1_decimation_factor: int, stage1_filter_coefficients: numpy.ndarray[numpy.complex64], stage2_decimation_factor: int, stage2_filter_coefficients: numpy.ndarray[numpy.complex64], sampling_frequency: float = 1500000) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.complex64]]:
+def filter_and_decimate_pulse(pulse_amplitudes: numpy.ndarray[numpy.float32], stage1_decimation_factor: typing.SupportsInt, stage1_filter_coefficients: numpy.ndarray[numpy.complex64], stage2_decimation_factor: typing.SupportsInt, stage2_filter_coefficients: numpy.ndarray[numpy.complex64], sampling_frequency: typing.SupportsFloat = 1500000) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.complex64]]:
     ...
 @typing.overload
-def filter_and_decimate_pulse(pulse_amplitudes: numpy.ndarray[numpy.float64], stage1_decimation_factor: int, stage1_filter_coefficients: numpy.ndarray[numpy.complex128], stage2_decimation_factor: int, stage2_filter_coefficients: numpy.ndarray[numpy.complex128], sampling_frequency: float = 1500000) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.complex128]]:
+def filter_and_decimate_pulse(pulse_amplitudes: numpy.ndarray[numpy.float64], stage1_decimation_factor: typing.SupportsInt, stage1_filter_coefficients: numpy.ndarray[numpy.complex128], stage2_decimation_factor: typing.SupportsInt, stage2_filter_coefficients: numpy.ndarray[numpy.complex128], sampling_frequency: typing.SupportsFloat = 1500000) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.complex128]]:
     ...
-def generate_transmit_pulse_d(f0: float, f1: float, pulse_duration: float, slope_factor: float, sampling_frequency: float = 1500000, start_phase_degrees: float = 0) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+def generate_transmit_pulse_d(f0: typing.SupportsFloat, f1: typing.SupportsFloat, pulse_duration: typing.SupportsFloat, slope_factor: typing.SupportsFloat, sampling_frequency: typing.SupportsFloat = 1500000, start_phase_degrees: typing.SupportsFloat = 0) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     """
     Generate a windowed transmit pulse from a linear chirp.
     
@@ -123,7 +123,7 @@ def generate_transmit_pulse_d(f0: float, f1: float, pulse_duration: float, slope
     See also:
         create_linear_chirp_signal
     """
-def generate_transmit_pulse_f(f0: float, f1: float, pulse_duration: float, slope_factor: float, sampling_frequency: float = 1500000, start_phase_degrees: float = 0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
+def generate_transmit_pulse_f(f0: typing.SupportsFloat, f1: typing.SupportsFloat, pulse_duration: typing.SupportsFloat, slope_factor: typing.SupportsFloat, sampling_frequency: typing.SupportsFloat = 1500000, start_phase_degrees: typing.SupportsFloat = 0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
     """
     Generate a windowed transmit pulse from a linear chirp.
     
@@ -167,7 +167,7 @@ def generate_transmit_pulse_f(f0: float, f1: float, pulse_duration: float, slope
     See also:
         create_linear_chirp_signal
     """
-def hann_d(length: int) -> numpy.ndarray[numpy.float64]:
+def hann_d(length: typing.SupportsInt) -> numpy.ndarray[numpy.float64]:
     """
     Generate Hann window weights of a given length.
     
@@ -187,7 +187,7 @@ def hann_d(length: int) -> numpy.ndarray[numpy.float64]:
     Returns:
         t_xtensor_val Window weights of shape {L} in range [0, 1]
     """
-def hann_f(length: int) -> numpy.ndarray[numpy.float32]:
+def hann_f(length: typing.SupportsInt) -> numpy.ndarray[numpy.float32]:
     """
     Generate Hann window weights of a given length.
     

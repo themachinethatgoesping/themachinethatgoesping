@@ -43,7 +43,7 @@ class I_ProgressBar:
         Returns:
             progress state
         """
-    def init(self, first: float, last: float, process_name: str = 'process') -> None:
+    def init(self, first: typing.SupportsFloat, last: typing.SupportsFloat, process_name: str = 'process') -> None:
         """
         Initialize a new progressbar within the given range
         
@@ -70,7 +70,7 @@ class I_ProgressBar:
         Parameter ``prefix``:
             prefix message
         """
-    def set_progress(self, progress: float) -> None:
+    def set_progress(self, progress: typing.SupportsFloat) -> None:
         """
         Set the progress state to the given value. Note some implementations
         may require the new_progress to be higher than the current progress!
@@ -78,7 +78,7 @@ class I_ProgressBar:
         Parameter ``new_progress``:
             New progress state (within the given first/last range)
         """
-    def tick(self, increment: float = 1) -> None:
+    def tick(self, increment: typing.SupportsFloat = 1) -> None:
         """
         Increment the progress state by the given amount
         
@@ -110,15 +110,15 @@ class I_ProgressBarTimed(I_ProgressBar):
         ...
     def callback_current(self) -> float:
         ...
-    def callback_init(self, first: float, last: float, process_name: str = 'process') -> None:
+    def callback_init(self, first: typing.SupportsFloat, last: typing.SupportsFloat, process_name: str = 'process') -> None:
         ...
     def callback_set_postfix(self, postfix: str) -> None:
         ...
     def callback_set_prefix(self, prefix: str) -> None:
         ...
-    def callback_set_progress(self, progress: float) -> None:
+    def callback_set_progress(self, progress: typing.SupportsFloat) -> None:
         ...
-    def callback_tick(self, increment: float = 1) -> None:
+    def callback_tick(self, increment: typing.SupportsFloat = 1) -> None:
         ...
 class NoIndicator(I_ProgressBar):
     """
@@ -155,5 +155,5 @@ class ProgressTqdm(I_ProgressBar):
         Parameter ``tqdm``:
             A python tqdm class object
         """
-def test_loop(ProgressBar: I_ProgressBar, loops: int = 1000, sleep_us: int = 10, show_progress: bool = True) -> float:
+def test_loop(ProgressBar: I_ProgressBar, loops: typing.SupportsInt = 1000, sleep_us: typing.SupportsInt = 10, show_progress: bool = True) -> float:
     ...

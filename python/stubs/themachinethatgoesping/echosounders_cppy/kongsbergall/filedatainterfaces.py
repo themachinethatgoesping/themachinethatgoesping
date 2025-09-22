@@ -2,6 +2,7 @@
 KongsbergAll (kongsberg .all/.wcd) file data interface classes
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers
@@ -20,7 +21,7 @@ class KongsbergAllAnnotationDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -36,15 +37,15 @@ class KongsbergAllAnnotationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -62,7 +63,7 @@ class KongsbergAllAnnotationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -82,7 +83,7 @@ class KongsbergAllAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -170,7 +171,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -186,7 +187,7 @@ class KongsbergAllAnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -270,7 +271,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -286,7 +287,7 @@ class KongsbergAllAnnotationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -301,7 +302,7 @@ class KongsbergAllAnnotationDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -317,15 +318,15 @@ class KongsbergAllAnnotationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -343,7 +344,7 @@ class KongsbergAllAnnotationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -363,7 +364,7 @@ class KongsbergAllAnnotationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -375,7 +376,7 @@ class KongsbergAllConfigurationDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -391,19 +392,19 @@ class KongsbergAllConfigurationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_sensor_configuration(self, index: typing.SupportsInt) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
+    def get_trx_sensor_configuration_per_target_id(self, index: typing.SupportsInt) -> dict:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -421,7 +422,7 @@ class KongsbergAllConfigurationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -441,7 +442,7 @@ class KongsbergAllConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -522,7 +523,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         Returns:
             std::string
         """
-    def get_runtime_parameters(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self, system_serial_number: typing.SupportsInt, ping_counter: typing.SupportsInt, ping_time: typing.SupportsFloat, last_index: typing.SupportsInt = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
@@ -534,7 +535,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -556,7 +557,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -594,7 +595,7 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         
         Parameter ``sensor``:
         """
-    def set_active_position_system_number(self, number: int) -> None:
+    def set_active_position_system_number(self, number: typing.SupportsInt) -> None:
         """
         Set the active position system number 0: this will be overwritten by
         "read_sensor_configuration" / "init_interface" 1-3: position system
@@ -677,7 +678,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         Returns:
             std::string
         """
-    def get_runtime_parameters(self, system_serial_number: int, ping_counter: int, ping_time: float, last_index: int = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
+    def get_runtime_parameters(self, system_serial_number: typing.SupportsInt, ping_counter: typing.SupportsInt, ping_time: typing.SupportsFloat, last_index: typing.SupportsInt = 0) -> themachinethatgoesping.echosounders_cppy.kongsbergall.datagrams.RuntimeParameters:
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
@@ -689,7 +690,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -711,7 +712,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -749,7 +750,7 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         
         Parameter ``sensor``:
         """
-    def set_active_position_system_number(self, number: int) -> None:
+    def set_active_position_system_number(self, number: typing.SupportsInt) -> None:
         """
         Set the active position system number 0: this will be overwritten by
         "read_sensor_configuration" / "init_interface" 1-3: position system
@@ -763,7 +764,7 @@ class KongsbergAllConfigurationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -779,19 +780,19 @@ class KongsbergAllConfigurationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_sensor_configuration(self, index: typing.SupportsInt) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
+    def get_trx_sensor_configuration_per_target_id(self, index: typing.SupportsInt) -> dict:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -809,7 +810,7 @@ class KongsbergAllConfigurationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -829,7 +830,7 @@ class KongsbergAllConfigurationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -849,7 +850,7 @@ class KongsbergAllDatagramDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -865,15 +866,15 @@ class KongsbergAllDatagramDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -891,7 +892,7 @@ class KongsbergAllDatagramDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -911,7 +912,7 @@ class KongsbergAllDatagramDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1000,7 +1001,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1016,7 +1017,7 @@ class KongsbergAllDatagramDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1101,7 +1102,7 @@ class KongsbergAllDatagramDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1117,7 +1118,7 @@ class KongsbergAllDatagramDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1133,7 +1134,7 @@ class KongsbergAllDatagramDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1149,15 +1150,15 @@ class KongsbergAllDatagramDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1175,7 +1176,7 @@ class KongsbergAllDatagramDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -1195,7 +1196,7 @@ class KongsbergAllDatagramDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1238,7 +1239,7 @@ class KongsbergAllDatagramInterface:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1246,7 +1247,7 @@ class KongsbergAllDatagramInterface:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1285,7 +1286,7 @@ class KongsbergAllDatagramInterface_stream:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1293,7 +1294,7 @@ class KongsbergAllDatagramInterface_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1301,7 +1302,7 @@ class KongsbergAllEnvironmentDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1319,15 +1320,15 @@ class KongsbergAllEnvironmentDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1347,7 +1348,7 @@ class KongsbergAllEnvironmentDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -1367,7 +1368,7 @@ class KongsbergAllEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1450,7 +1451,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1468,7 +1469,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1547,7 +1548,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1565,7 +1566,7 @@ class KongsbergAllEnvironmentDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1573,7 +1574,7 @@ class KongsbergAllEnvironmentDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1591,15 +1592,15 @@ class KongsbergAllEnvironmentDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1619,7 +1620,7 @@ class KongsbergAllEnvironmentDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -1639,7 +1640,7 @@ class KongsbergAllEnvironmentDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1651,7 +1652,7 @@ class KongsbergAllNavigationDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1673,23 +1674,23 @@ class KongsbergAllNavigationDataInterface:
     def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
-    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+    def get_channel_ids(self, sensor_configuration_hash: typing.SupportsInt) -> list[str]:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: typing.SupportsInt) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolator_keys(self) -> list[int]:
         ...
-    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+    def has_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1707,7 +1708,7 @@ class KongsbergAllNavigationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -1727,13 +1728,13 @@ class KongsbergAllNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+    def set_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
         ...
-    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+    def set_navigation_interpolators(self, navigation_interpolators: collections.abc.Mapping[typing.SupportsInt, ..., ..., ..., ..., ..., ...]) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
@@ -1814,7 +1815,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1830,7 +1831,7 @@ class KongsbergAllNavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1911,7 +1912,7 @@ class KongsbergAllNavigationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1927,7 +1928,7 @@ class KongsbergAllNavigationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1937,7 +1938,7 @@ class KongsbergAllNavigationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1959,23 +1960,23 @@ class KongsbergAllNavigationDataInterface_stream:
     def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
-    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+    def get_channel_ids(self, sensor_configuration_hash: typing.SupportsInt) -> list[str]:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: typing.SupportsInt) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolator_keys(self) -> list[int]:
         ...
-    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+    def has_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1993,7 +1994,7 @@ class KongsbergAllNavigationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -2013,13 +2014,13 @@ class KongsbergAllNavigationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+    def set_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
         ...
-    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+    def set_navigation_interpolators(self, navigation_interpolators: collections.abc.Mapping[typing.SupportsInt, ..., ..., ..., ..., ..., ...]) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
@@ -2037,7 +2038,7 @@ class KongsbergAllOtherFileDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2053,15 +2054,15 @@ class KongsbergAllOtherFileDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2079,7 +2080,7 @@ class KongsbergAllOtherFileDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -2099,7 +2100,7 @@ class KongsbergAllOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2188,7 +2189,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2204,7 +2205,7 @@ class KongsbergAllOtherFileDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2289,7 +2290,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2305,7 +2306,7 @@ class KongsbergAllOtherFileDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2321,7 +2322,7 @@ class KongsbergAllOtherFileDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2337,15 +2338,15 @@ class KongsbergAllOtherFileDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2363,7 +2364,7 @@ class KongsbergAllOtherFileDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -2383,7 +2384,7 @@ class KongsbergAllOtherFileDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2395,7 +2396,7 @@ class KongsbergAllPingDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2423,15 +2424,15 @@ class KongsbergAllPingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2451,7 +2452,7 @@ class KongsbergAllPingDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -2471,7 +2472,7 @@ class KongsbergAllPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2558,7 +2559,7 @@ class KongsbergAllPingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2576,11 +2577,11 @@ class KongsbergAllPingDataInterfacePerFile:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
+    def read_pings(self, index_paths: collections.abc.Mapping[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer:
         ...
 class KongsbergAllPingDataInterfacePerFile_stream:
     """
@@ -2661,7 +2662,7 @@ class KongsbergAllPingDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2679,17 +2680,17 @@ class KongsbergAllPingDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[KongsbergAllDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
+    def read_pings(self, index_paths: collections.abc.Mapping[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
 class KongsbergAllPingDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2717,15 +2718,15 @@ class KongsbergAllPingDataInterface_stream:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.kongsbergall.filedatacontainers.KongsbergAllPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2745,7 +2746,7 @@ class KongsbergAllPingDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -2765,7 +2766,7 @@ class KongsbergAllPingDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

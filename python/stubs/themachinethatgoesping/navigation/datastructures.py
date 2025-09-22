@@ -53,7 +53,7 @@ class Geolocation:
         Construct a new Position object
         """
     @typing.overload
-    def __init__(self, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, z: typing.SupportsFloat = 0, yaw: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new Geolocation object
         
@@ -87,11 +87,11 @@ class Geolocation:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -105,7 +105,7 @@ class Geolocation:
         < in °, positive means bow up
         """
     @pitch.setter
-    def pitch(self, arg0: float) -> None:
+    def pitch(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def roll(self) -> float:
@@ -113,7 +113,7 @@ class Geolocation:
         < in °, positive means port up
         """
     @roll.setter
-    def roll(self, arg0: float) -> None:
+    def roll(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def yaw(self) -> float:
@@ -121,7 +121,7 @@ class Geolocation:
         < in °, 0° is north, 90° is east
         """
     @yaw.setter
-    def yaw(self, arg0: float) -> None:
+    def yaw(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def z(self) -> float:
@@ -129,7 +129,7 @@ class Geolocation:
         < in m, positive downwards
         """
     @z.setter
-    def z(self, arg0: float) -> None:
+    def z(self, arg0: typing.SupportsFloat) -> None:
         ...
 class GeolocationLatLon(Geolocation):
     """
@@ -165,7 +165,7 @@ class GeolocationLatLon(Geolocation):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, location: Geolocation, latitude: float, longitude: float) -> None:
+    def __init__(self, location: Geolocation, latitude: typing.SupportsFloat, longitude: typing.SupportsFloat) -> None:
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -185,7 +185,7 @@ class GeolocationLatLon(Geolocation):
         object (this allows for explicit conversion from GeolocationUTM class)
         """
     @typing.overload
-    def __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, latitude: typing.SupportsFloat = 0, longitude: typing.SupportsFloat = 0, z: typing.SupportsFloat = 0, yaw: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new GeolocationLatLon object
         
@@ -225,11 +225,11 @@ class GeolocationLatLon(Geolocation):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -243,7 +243,7 @@ class GeolocationLatLon(Geolocation):
         < in °, positive northwards
         """
     @latitude.setter
-    def latitude(self, arg0: float) -> None:
+    def latitude(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def longitude(self) -> float:
@@ -251,7 +251,7 @@ class GeolocationLatLon(Geolocation):
         < in °, positive eastwards
         """
     @longitude.setter
-    def longitude(self, arg0: float) -> None:
+    def longitude(self, arg0: typing.SupportsFloat) -> None:
         ...
 class GeolocationLocal(Geolocation):
     """
@@ -283,7 +283,7 @@ class GeolocationLocal(Geolocation):
         Construct a new Sensor Position object (all offsets set to 0)
         """
     @typing.overload
-    def __init__(self, geolocation: Geolocation, northing: float, easting: float) -> None:
+    def __init__(self, geolocation: Geolocation, northing: typing.SupportsFloat, easting: typing.SupportsFloat) -> None:
         """
         Construct a new GeolocationLocal object
         
@@ -296,7 +296,7 @@ class GeolocationLocal(Geolocation):
             in m, positive eastwards
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, northing: typing.SupportsFloat = 0, easting: typing.SupportsFloat = 0, z: typing.SupportsFloat = 0, yaw: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new GeolocationLocal object
         
@@ -336,11 +336,11 @@ class GeolocationLocal(Geolocation):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -354,7 +354,7 @@ class GeolocationLocal(Geolocation):
         < in m, positive eastwards
         """
     @easting.setter
-    def easting(self, arg0: float) -> None:
+    def easting(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def northing(self) -> float:
@@ -362,7 +362,7 @@ class GeolocationLocal(Geolocation):
         < in m, positive northwards
         """
     @northing.setter
-    def northing(self, arg0: float) -> None:
+    def northing(self, arg0: typing.SupportsFloat) -> None:
         ...
 class GeolocationUTM(GeolocationLocal):
     """
@@ -389,7 +389,7 @@ class GeolocationUTM(GeolocationLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, geolocationlocal: GeolocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, geolocationlocal: GeolocationLocal, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> None:
         """
         Construct an GeolocationUTM object from an existing GeolocationLocal
         object (using a known zone and hemisphere)
@@ -403,14 +403,14 @@ class GeolocationUTM(GeolocationLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, geolocationlatlon: GeolocationLatLon, setzone: int = -1) -> None:
+    def __init__(self, geolocationlatlon: GeolocationLatLon, setzone: typing.SupportsInt = -1) -> None:
         """
         Construct an GeolocationUTM object from an existing GeolocationLatLon
         object (this allows for explicit conversion from GeolocationLatLon
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, northing: typing.SupportsFloat = 0, easting: typing.SupportsFloat = 0, utm_zone: typing.SupportsInt = 0, northern_hemisphere: bool = True, z: typing.SupportsFloat = 0, yaw: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new GeolocationUTM object
         
@@ -456,11 +456,11 @@ class GeolocationUTM(GeolocationLocal):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -474,7 +474,7 @@ class GeolocationUTM(GeolocationLocal):
         < UTM/UPS zone number
         """
     @utm_zone.setter
-    def utm_zone(self, arg0: int) -> None:
+    def utm_zone(self, arg0: typing.SupportsInt) -> None:
         ...
 class PositionalOffsets:
     """
@@ -516,7 +516,7 @@ class PositionalOffsets:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, name: str = '', x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, name: str = '', x: typing.SupportsFloat = 0, y: typing.SupportsFloat = 0, z: typing.SupportsFloat = 0, yaw: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new PositionalOffsets object
         
@@ -559,11 +559,11 @@ class PositionalOffsets:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -585,7 +585,7 @@ class PositionalOffsets:
         < in °, positive means bow up
         """
     @pitch.setter
-    def pitch(self, arg0: float) -> None:
+    def pitch(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def roll(self) -> float:
@@ -593,7 +593,7 @@ class PositionalOffsets:
         < in °, positive means port up
         """
     @roll.setter
-    def roll(self, arg0: float) -> None:
+    def roll(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def x(self) -> float:
@@ -601,7 +601,7 @@ class PositionalOffsets:
         < in m, positive forward
         """
     @x.setter
-    def x(self, arg0: float) -> None:
+    def x(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def y(self) -> float:
@@ -609,7 +609,7 @@ class PositionalOffsets:
         < in m, positive starboard
         """
     @y.setter
-    def y(self, arg0: float) -> None:
+    def y(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def yaw(self) -> float:
@@ -617,7 +617,7 @@ class PositionalOffsets:
         < in °, positive means clockwise rotation
         """
     @yaw.setter
-    def yaw(self, arg0: float) -> None:
+    def yaw(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def z(self) -> float:
@@ -625,7 +625,7 @@ class PositionalOffsets:
         < in m, positive downwards
         """
     @z.setter
-    def z(self, arg0: float) -> None:
+    def z(self, arg0: typing.SupportsFloat) -> None:
         ...
 class Sensordata:
     """
@@ -676,7 +676,7 @@ class Sensordata:
         Construct a new Sensordata object
         """
     @typing.overload
-    def __init__(self, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, depth: typing.SupportsFloat = 0, heave: typing.SupportsFloat = 0, heading: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new Sensordata object
         
@@ -713,11 +713,11 @@ class Sensordata:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -731,7 +731,7 @@ class Sensordata:
         < in m, positive downwards
         """
     @depth.setter
-    def depth(self, arg0: float) -> None:
+    def depth(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def heading(self) -> float:
@@ -739,7 +739,7 @@ class Sensordata:
         < from heading source in °, 0° is north, 90° is east
         """
     @heading.setter
-    def heading(self, arg0: float) -> None:
+    def heading(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def heave(self) -> float:
@@ -747,7 +747,7 @@ class Sensordata:
         < from heave source, will be added to depth in m, positive upwards
         """
     @heave.setter
-    def heave(self, arg0: float) -> None:
+    def heave(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def pitch(self) -> float:
@@ -755,7 +755,7 @@ class Sensordata:
         < from attitude source, in °, positive means bow up
         """
     @pitch.setter
-    def pitch(self, arg0: float) -> None:
+    def pitch(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def roll(self) -> float:
@@ -763,15 +763,13 @@ class Sensordata:
         < from attitude source, in °, positive means port up
         """
     @roll.setter
-    def roll(self, arg0: float) -> None:
+    def roll(self, arg0: typing.SupportsFloat) -> None:
         ...
 class SensordataLatLon(Sensordata):
     """
     A structure to store a georeferenced location and attitude data from
     different sensors (e.g. GPS, IMU, etc.)
     """
-    latitude: float
-    longitude: float
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensordataLatLon:
         """
@@ -800,7 +798,7 @@ class SensordataLatLon(Sensordata):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sensordata: Sensordata, latitude: float, longitude: float) -> None:
+    def __init__(self, sensordata: Sensordata, latitude: typing.SupportsFloat, longitude: typing.SupportsFloat) -> None:
         """
         Construct a new Sensor Data Lat Lon object using a base sensor data
         object
@@ -820,7 +818,7 @@ class SensordataLatLon(Sensordata):
         object (this allows for explicit conversion from SensordataUTM class)
         """
     @typing.overload
-    def __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, latitude: typing.SupportsFloat = 0, longitude: typing.SupportsFloat = 0, depth: typing.SupportsFloat = 0, heave: typing.SupportsFloat = 0, heading: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new SensordataLatLon object
         
@@ -863,11 +861,11 @@ class SensordataLatLon(Sensordata):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -875,6 +873,18 @@ class SensordataLatLon(Sensordata):
         """
         convert object to bytearray
         """
+    @property
+    def latitude(self) -> float:
+        ...
+    @latitude.setter
+    def latitude(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def longitude(self) -> float:
+        ...
+    @longitude.setter
+    def longitude(self, arg0: typing.SupportsFloat) -> None:
+        ...
 class SensordataLocal(Sensordata):
     """
     A structure to store a georeferenced data and attitude data from
@@ -914,7 +924,7 @@ class SensordataLocal(Sensordata):
         Construct a new Sensor Position object (all offsets set to 0)
         """
     @typing.overload
-    def __init__(self, sensordata: Sensordata, northing: float, easting: float) -> None:
+    def __init__(self, sensordata: Sensordata, northing: typing.SupportsFloat, easting: typing.SupportsFloat) -> None:
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -928,7 +938,7 @@ class SensordataLocal(Sensordata):
             in m, positive eastwards
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, northing: typing.SupportsFloat = 0, easting: typing.SupportsFloat = 0, depth: typing.SupportsFloat = 0, heave: typing.SupportsFloat = 0, heading: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new SensordataLocal object
         
@@ -971,11 +981,11 @@ class SensordataLocal(Sensordata):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -989,7 +999,7 @@ class SensordataLocal(Sensordata):
         < in m, positive eastwards
         """
     @easting.setter
-    def easting(self, arg0: float) -> None:
+    def easting(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def northing(self) -> float:
@@ -997,7 +1007,7 @@ class SensordataLocal(Sensordata):
         < in m, positive northwards
         """
     @northing.setter
-    def northing(self, arg0: float) -> None:
+    def northing(self, arg0: typing.SupportsFloat) -> None:
         ...
 class SensordataUTM(SensordataLocal):
     """
@@ -1012,7 +1022,7 @@ class SensordataUTM(SensordataLocal):
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_sensordata(sensordatalatlon: SensordataLatLon, setutm_zone: int = -1) -> SensordataUTM:
+    def from_sensordata(sensordatalatlon: SensordataLatLon, setutm_zone: typing.SupportsInt = -1) -> SensordataUTM:
         """
         Construct convert a SensordataLatLon Object to UTM
         
@@ -1059,7 +1069,7 @@ class SensordataUTM(SensordataLocal):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: Sensordata, northing: float, easting: float, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, sensordatalatlon: Sensordata, northing: typing.SupportsFloat, easting: typing.SupportsFloat, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> None:
         """
         Construct a new Sensor Data Local object using a base sensor data
         object
@@ -1079,7 +1089,7 @@ class SensordataUTM(SensordataLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordata_local: SensordataLocal, utm_zone: int, northern_hemisphere: bool) -> None:
+    def __init__(self, sensordata_local: SensordataLocal, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> None:
         """
         Construct an SensordataUTM object from an existing SensordataLocal
         object (using a known zone and hemisphere)
@@ -1093,14 +1103,14 @@ class SensordataUTM(SensordataLocal):
             if true: northern hemisphere, else: southern hemisphere
         """
     @typing.overload
-    def __init__(self, sensordatalatlon: SensordataLatLon, setutm_zone: int = -1) -> None:
+    def __init__(self, sensordatalatlon: SensordataLatLon, setutm_zone: typing.SupportsInt = -1) -> None:
         """
         Construct an SensordataUTM object from an existing SensordataLatLon
         object (this allows for explicit conversion from SensordataLatLon
         class)
         """
     @typing.overload
-    def __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, northing: typing.SupportsFloat = 0, easting: typing.SupportsFloat = 0, utm_zone: typing.SupportsInt = 0, northern_hemisphere: bool = True, depth: typing.SupportsFloat = 0, heave: typing.SupportsFloat = 0, heading: typing.SupportsFloat = 0, pitch: typing.SupportsFloat = 0, roll: typing.SupportsFloat = 0) -> None:
         """
         Construct a new SensordataUTM object
         
@@ -1149,11 +1159,11 @@ class SensordataUTM(SensordataLocal):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1167,5 +1177,5 @@ class SensordataUTM(SensordataLocal):
         < UTM/UPS zone number
         """
     @utm_zone.setter
-    def utm_zone(self, arg0: int) -> None:
+    def utm_zone(self, arg0: typing.SupportsInt) -> None:
         ...

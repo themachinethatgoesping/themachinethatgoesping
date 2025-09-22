@@ -2,6 +2,7 @@
 Classes that help adding common functionality to themachinethatgoesping classes
 """
 from __future__ import annotations
+import collections.abc
 import typing
 __all__: list[str] = ['ObjectPrinter']
 class ObjectPrinter:
@@ -32,7 +33,7 @@ class ObjectPrinter:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, name: str, float_precission: int, superscript_exponents: bool) -> None:
+    def __init__(self, name: str, float_precission: typing.SupportsInt, superscript_exponents: bool) -> None:
         """
         Construct a new Object Printer object
         
@@ -71,16 +72,16 @@ class ObjectPrinter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def register_container(self, name: str, value: list[float], value_info: str = '', pos: int = -1) -> None:
+    def register_container(self, name: str, value: collections.abc.Sequence[typing.SupportsFloat], value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a 1D container for printing
         
@@ -101,7 +102,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_container(self, name: str, value: list[int], value_info: str = '', pos: int = -1) -> None:
+    def register_container(self, name: str, value: collections.abc.Sequence[typing.SupportsInt], value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a 1D container for printing
         
@@ -122,7 +123,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_container(self, name: str, value: list[str], value_info: str = '', pos: int = -1) -> None:
+    def register_container(self, name: str, value: collections.abc.Sequence[str], value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a 1D container for printing
         
@@ -143,7 +144,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: float | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: typing.SupportsFloat | None, value_info: str = '', optional_value: str = 'Not set', pos: typing.SupportsInt = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -170,7 +171,7 @@ class ObjectPrinter:
             The position to register the value at (default is -1).
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: int | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: typing.SupportsInt | None, value_info: str = '', optional_value: str = 'Not set', pos: typing.SupportsInt = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -197,7 +198,7 @@ class ObjectPrinter:
             The position to register the value at (default is -1).
         """
     @typing.overload
-    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: typing.SupportsInt = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -223,7 +224,7 @@ class ObjectPrinter:
         Parameter ``pos``:
             The position to register the value at (default is -1).
         """
-    def register_section(self, name: str, underliner: str = '-', pos: int = -1) -> None:
+    def register_section(self, name: str, underliner: str = '-', pos: typing.SupportsInt = -1) -> None:
         """
         register a section break for printing
         
@@ -237,7 +238,7 @@ class ObjectPrinter:
             position where the value is registers (if negative, the value is
             appended)
         """
-    def register_string(self, name: str, value: str, value_info: str = '', pos: int = -1, max_visible_elements: int = 0) -> None:
+    def register_string(self, name: str, value: str, value_info: str = '', pos: typing.SupportsInt = -1, max_visible_elements: typing.SupportsInt = 0) -> None:
         """
         register a formatted string field for printing
         
@@ -257,7 +258,7 @@ class ObjectPrinter:
         Parameter ``max_visible_elements``:
             maximum of chars that are printed (if 0, all elements are printed)
         """
-    def register_string_with_delimiters(self, name: str, value: str, value_info: str = '', delimiter_left: str = '"', delimiter_right: str = '"', pos: int = -1, max_visible_elements: int = 0) -> None:
+    def register_string_with_delimiters(self, name: str, value: str, value_info: str = '', delimiter_left: str = '"', delimiter_right: str = '"', pos: typing.SupportsInt = -1, max_visible_elements: typing.SupportsInt = 0) -> None:
         """
         register a formatted string field for printing, with delimiters
         
@@ -284,7 +285,7 @@ class ObjectPrinter:
             maximum of chars that are printed (if 0, all elements are printed)
         """
     @typing.overload
-    def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None:
+    def register_value(self, name: str, value: typing.SupportsFloat, value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -305,7 +306,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_value(self, name: str, value: int, value_info: str = '', pos: int = -1) -> None:
+    def register_value(self, name: str, value: typing.SupportsInt, value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -326,7 +327,7 @@ class ObjectPrinter:
             appended)
         """
     @typing.overload
-    def register_value(self, name: str, value: str, value_info: str = '', pos: int = -1) -> None:
+    def register_value(self, name: str, value: str, value_info: str = '', pos: typing.SupportsInt = -1) -> None:
         """
         register a single integer of floating point value for printing
         
@@ -346,7 +347,7 @@ class ObjectPrinter:
             position where the value is registers (if negative, the value is
             appended)
         """
-    def register_value_bytes(self, name: str, value: int, pos: int = -1) -> None:
+    def register_value_bytes(self, name: str, value: typing.SupportsInt, pos: typing.SupportsInt = -1) -> None:
         """
         register a single integer of floating point value for printing The
         value is assumed to be in bytes. It will be converted to bytes, KB,

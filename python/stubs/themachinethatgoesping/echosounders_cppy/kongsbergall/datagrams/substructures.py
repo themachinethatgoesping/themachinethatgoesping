@@ -2,6 +2,7 @@
 Kongsberg KongsbergAll datagram substructures. These are substuctures of existing datagrams (repeated cycles, e.g. beams)
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.algorithms.signalprocessing.datastructures
 import typing
@@ -91,33 +92,33 @@ class AttitudeDatagramAttitude:
         Returns:
             _time * 0.001f (float)
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_heading(self, arg0: int) -> None:
+    def set_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_heave(self, arg0: int) -> None:
+    def set_heave(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
-    def set_pitch(self, arg0: int) -> None:
+    def set_pitch(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_roll(self, arg0: int) -> None:
+    def set_roll(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_sensor_status(self, arg0: int) -> None:
+    def set_sensor_status(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_time(self, arg0: int) -> None:
+    def set_time(self, arg0: typing.SupportsInt) -> None:
         """
         < in_milliseconds_since_record_start
         """
@@ -193,32 +194,32 @@ class ExtraDetectionsDetectionClasses:
         """
         < % of depth (1-300)
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_alarm_flag_1(self, arg0: int) -> None:
+    def set_alarm_flag_1(self, arg0: typing.SupportsInt) -> None:
         """
         < 0: (no alarm) 1:Number of extra detections are above Alarm
         threshold.
         """
-    def set_alarm_threshold(self, arg0: int) -> None:
+    def set_alarm_threshold(self, arg0: typing.SupportsInt) -> None:
         """
         < number of extra det. required (1-99 0=off)
         """
-    def set_bs_threshold(self, arg0: int) -> None:
+    def set_bs_threshold(self, arg0: typing.SupportsInt) -> None:
         """
         < dB (-10 - 60)
         """
-    def set_number_of_extra_detections(self, arg0: int) -> None:
+    def set_number_of_extra_detections(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_qf_threshold_100(self, arg0: int) -> None:
+    def set_qf_threshold_100(self, arg0: typing.SupportsInt) -> None:
         """
         < 100 * QF threshold (1-100)
         """
@@ -226,15 +227,15 @@ class ExtraDetectionsDetectionClasses:
         """
         < 0-1
         """
-    def set_snr_threshold(self, arg0: int) -> None:
+    def set_snr_threshold(self, arg0: typing.SupportsInt) -> None:
         """
         < 5-15
         """
-    def set_start_depth(self, arg0: int) -> None:
+    def set_start_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < % of depth (0-300)
         """
-    def set_stop_depth(self, arg0: int) -> None:
+    def set_stop_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < % of depth (1-300)
         """
@@ -406,107 +407,107 @@ class ExtraDetectionsExtraDetections:
         """
         <
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_across(self, arg0: float) -> None:
+    def set_across(self, arg0: typing.SupportsFloat) -> None:
         """
         < y in m
         """
-    def set_along(self, arg0: float) -> None:
+    def set_along(self, arg0: typing.SupportsFloat) -> None:
         """
         < x in m
         """
-    def set_applied_pointing_angle_correction(self, arg0: float) -> None:
+    def set_applied_pointing_angle_correction(self, arg0: typing.SupportsFloat) -> None:
         """
         <
         """
-    def set_applied_two_way_travel_time_corrections(self, arg0: float) -> None:
+    def set_applied_two_way_travel_time_corrections(self, arg0: typing.SupportsFloat) -> None:
         """
         < seconds, f.ex. Doppler correction
         """
-    def set_backscatter(self, arg0: int) -> None:
+    def set_backscatter(self, arg0: typing.SupportsInt) -> None:
         """
         < 0.1 dB
         """
-    def set_beam_angle_across(self, arg0: float) -> None:
+    def set_beam_angle_across(self, arg0: typing.SupportsFloat) -> None:
         """
         < re vertical °
         """
-    def set_beam_crosstrack_angle(self, arg0: float) -> None:
+    def set_beam_crosstrack_angle(self, arg0: typing.SupportsFloat) -> None:
         """
         < deg. re array
         """
-    def set_beam_incidence_angle_adjustment(self, arg0: int) -> None:
+    def set_beam_incidence_angle_adjustment(self, arg0: typing.SupportsInt) -> None:
         """
         < IBA in 0.1°
         """
-    def set_confidence_level(self, arg0: int) -> None:
+    def set_confidence_level(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_delta_latitude(self, arg0: float) -> None:
+    def set_delta_latitude(self, arg0: typing.SupportsFloat) -> None:
         """
         < °
         """
-    def set_delta_longitude(self, arg0: float) -> None:
+    def set_delta_longitude(self, arg0: typing.SupportsFloat) -> None:
         """
         < °
         """
-    def set_depth(self, arg0: float) -> None:
+    def set_depth(self, arg0: typing.SupportsFloat) -> None:
         """
         < z in m
         """
-    def set_detected_range(self, arg0: int) -> None:
+    def set_detected_range(self, arg0: typing.SupportsInt) -> None:
         """
         < in (WCsr) samples
         """
-    def set_detection_class_number(self, arg0: int) -> None:
+    def set_detection_class_number(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_detection_info(self, arg0: int) -> None:
+    def set_detection_info(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_detection_window_length(self, arg0: int) -> None:
+    def set_detection_window_length(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_number_of_raw_amplitude_samples(self, arg0: int) -> None:
+    def set_number_of_raw_amplitude_samples(self, arg0: typing.SupportsInt) -> None:
         """
         < NS
         """
-    def set_qf_10(self, arg0: int) -> None:
+    def set_qf_10(self, arg0: typing.SupportsInt) -> None:
         """
         < Ifremer Quality factor * 10
         """
-    def set_quality_factor_old(self, arg0: int) -> None:
+    def set_quality_factor_old(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_range_factor(self, arg0: int) -> None:
+    def set_range_factor(self, arg0: typing.SupportsInt) -> None:
         """
         < in %
         """
-    def set_real_time_cleaning_info(self, arg0: int) -> None:
+    def set_real_time_cleaning_info(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_two_way_travel_time(self, arg0: float) -> None:
+    def set_two_way_travel_time(self, arg0: typing.SupportsFloat) -> None:
         """
         < s
         """
-    def set_tx_sector_number(self, arg0: int) -> None:
+    def set_tx_sector_number(self, arg0: typing.SupportsInt) -> None:
         """
         < or TX array index
         """
-    def set_water_column_beam_number(self, arg0: int) -> None:
+    def set_water_column_beam_number(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
@@ -617,19 +618,19 @@ class NetworkAttitudeVelocityDatagramAttitude:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_heading(self, arg0: int) -> None:
+    def set_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_heave(self, arg0: int) -> None:
+    def set_heave(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
@@ -637,19 +638,19 @@ class NetworkAttitudeVelocityDatagramAttitude:
         """
         < as received from the network
         """
-    def set_number_of_bytes_in_input_datagram(self, arg0: int) -> None:
+    def set_number_of_bytes_in_input_datagram(self, arg0: typing.SupportsInt) -> None:
         """
         < Nx
         """
-    def set_pitch(self, arg0: int) -> None:
+    def set_pitch(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_roll(self, arg0: int) -> None:
+    def set_roll(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_time(self, arg0: int) -> None:
+    def set_time(self, arg0: typing.SupportsInt) -> None:
         """
         < in_milliseconds_since_record_start
         """
@@ -745,37 +746,37 @@ class RawRangeAndAngleBeam:
         """
         < in s
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_beam_crosstrack_angle(self, arg0: int) -> None:
+    def set_beam_crosstrack_angle(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_d_corr(self, arg0: int) -> None:
+    def set_d_corr(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_detection_info(self, arg0: int) -> None:
+    def set_detection_info(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_detection_window_length_in_samples(self, arg0: int) -> None:
+    def set_detection_window_length_in_samples(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_quality_factor(self, arg0: int) -> None:
+    def set_quality_factor(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_realtime_cleaning_info(self, arg0: int) -> None:
+    def set_realtime_cleaning_info(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_reflectivity(self, arg0: int) -> None:
+    def set_reflectivity(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 dB resolution
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_transmit_sector_number(self, arg0: int) -> None:
+    def set_transmit_sector_number(self, arg0: typing.SupportsInt) -> None:
         """
         M relative RX array in 0.01°
         """
-    def set_two_way_travel_time(self, arg0: float) -> None:
+    def set_two_way_travel_time(self, arg0: typing.SupportsFloat) -> None:
         """
         < in s
         """
@@ -862,45 +863,45 @@ class RawRangeAndAngleTransmitSector:
         ...
     def get_tx_signal_type(self) -> themachinethatgoesping.algorithms.signalprocessing.datastructures.t_TxSignalType:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_center_frequency(self, arg0: float) -> None:
+    def set_center_frequency(self, arg0: typing.SupportsFloat) -> None:
         """
         < in Hz
         """
-    def set_focus_range(self, arg0: int) -> None:
+    def set_focus_range(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1m 0 = no focus applied
         """
-    def set_mean_absorption_coefficient(self, arg0: int) -> None:
+    def set_mean_absorption_coefficient(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 dB/km
         """
-    def set_sector_transmit_delay(self, arg0: float) -> None:
+    def set_sector_transmit_delay(self, arg0: typing.SupportsFloat) -> None:
         """
         < relative first TX pulse, in s
         """
-    def set_signal_bandwidth(self, arg0: float) -> None:
+    def set_signal_bandwidth(self, arg0: typing.SupportsFloat) -> None:
         """
         < in Hz
         """
-    def set_signal_length(self, arg0: float) -> None:
+    def set_signal_length(self, arg0: typing.SupportsFloat) -> None:
         """
         < in s
         """
-    def set_signal_waveform_identifier(self, arg0: int) -> None:
+    def set_signal_waveform_identifier(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tilt_angle(self, arg0: int) -> None:
+    def set_tilt_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < re TX array in 0.01°
         """
-    def set_transmit_sector_number(self, arg0: int) -> None:
+    def set_transmit_sector_number(self, arg0: typing.SupportsInt) -> None:
         ...
 class SampleAmplitudesStructure_int16_t:
     """
@@ -932,7 +933,7 @@ class SampleAmplitudesStructure_int16_t:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_beam(self, arg0: int) -> numpy.ndarray[numpy.int16]:
+    def get_beam(self, arg0: typing.SupportsInt) -> numpy.ndarray[numpy.int16]:
         """
         return a view of the sample amplitudes of a single beam
         
@@ -941,7 +942,7 @@ class SampleAmplitudesStructure_int16_t:
         
         xt::xtensor<t_sample, 1>
         """
-    def get_beam_in_db(self, arg0: int) -> numpy.ndarray[numpy.float32]:
+    def get_beam_in_db(self, arg0: typing.SupportsInt) -> numpy.ndarray[numpy.float32]:
         """
         return a xtensor of the sample amplitudes of a single beam converted
         to db
@@ -965,14 +966,14 @@ class SampleAmplitudesStructure_int16_t:
         Returns:
             xt::xtensor<float, 1>
         """
-    def get_sample_amplitudes_per_beam(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sample_amplitudes_per_beam(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get all sample amplitude values of all beams in a single xtensor
         
         Returns:
             xt::xtensor<float, 1>
         """
-    def get_sample_amplitudes_per_beam_in_db(self, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def get_sample_amplitudes_per_beam_in_db(self, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get all sample amplitude valuesof all beams in a single xtensor in db
         Convert the sample amplitudes to db using _db_step_size.
@@ -987,11 +988,11 @@ class SampleAmplitudesStructure_int16_t:
         ...
     def get_start_index_per_beam(self) -> list[int]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -999,15 +1000,15 @@ class SampleAmplitudesStructure_int16_t:
         """
         < in db steps
         """
-    def set_samples_per_beam(self, arg0: list[int]) -> None:
+    def set_samples_per_beam(self, arg0: collections.abc.Sequence[typing.SupportsInt]) -> None:
         ...
-    def set_start_index_per_beam(self, arg0: list[int]) -> None:
+    def set_start_index_per_beam(self, arg0: collections.abc.Sequence[typing.SupportsInt]) -> None:
         ...
     @typing.overload
     def size(self) -> int:
         ...
     @typing.overload
-    def size(self, beam_index: int) -> int:
+    def size(self, beam_index: typing.SupportsInt) -> int:
         ...
 class SeabedImageDataBeam:
     """
@@ -1080,23 +1081,23 @@ class SeabedImageDataBeam:
         """
     def get_sorting_direction(self) -> int:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_centre_sample_number(self, arg0: int) -> None:
+    def set_centre_sample_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_detection_info(self, arg0: int) -> None:
+    def set_detection_info(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_number_of_samples(self, arg0: int) -> None:
+    def set_number_of_samples(self, arg0: typing.SupportsInt) -> None:
         """
         < per beam
         """
-    def set_sorting_direction(self, arg0: int) -> None:
+    def set_sorting_direction(self, arg0: typing.SupportsInt) -> None:
         ...
 class WatercolumnDatagramBeam:
     """
@@ -1159,7 +1160,7 @@ class WatercolumnDatagramBeam:
         """
         < in 0.5 dB steps
         """
-    def get_samples_in_db(self, arg0: float) -> numpy.ndarray[numpy.float32]:
+    def get_samples_in_db(self, arg0: typing.SupportsFloat) -> numpy.ndarray[numpy.float32]:
         ...
     def get_start_range_sample_number(self) -> int:
         ...
@@ -1169,33 +1170,33 @@ class WatercolumnDatagramBeam:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def samples(self) -> numpy.ndarray[numpy.int8]:
         ...
-    def set_beam_crosstrack_angle(self, arg0: int) -> None:
+    def set_beam_crosstrack_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < re vertical in 0.01 steps°
         """
-    def set_beam_number(self, arg0: int) -> None:
+    def set_beam_number(self, arg0: typing.SupportsInt) -> None:
         """
         < redundant info, max 255 even if more beams exist
         """
-    def set_detected_range_in_samples(self, arg0: int) -> None:
+    def set_detected_range_in_samples(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_number_of_samples(self, arg0: int) -> None:
+    def set_number_of_samples(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_samples(self, arg0: numpy.ndarray[numpy.int8]) -> None:
         ...
-    def set_start_range_sample_number(self, arg0: int) -> None:
+    def set_start_range_sample_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_transmit_sector_number(self, arg0: int) -> None:
+    def set_transmit_sector_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1251,25 +1252,25 @@ class WatercolumnDatagramTransmitSector:
         """
     def get_transmit_sector_number(self) -> int:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_center_frequency(self, arg0: int) -> None:
+    def set_center_frequency(self, arg0: typing.SupportsInt) -> None:
         """
         < in 10 Hz
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tilt_angle(self, arg0: int) -> None:
+    def set_tilt_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
-    def set_transmit_sector_number(self, arg0: int) -> None:
+    def set_transmit_sector_number(self, arg0: typing.SupportsInt) -> None:
         ...
 class XYZDatagramBeam:
     """
@@ -1383,49 +1384,49 @@ class XYZDatagramBeam:
         """
     def get_reflectivity(self) -> int:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_acrosstrack_distance(self, arg0: float) -> None:
+    def set_acrosstrack_distance(self, arg0: typing.SupportsFloat) -> None:
         """
         < distance (y) in meter
         """
-    def set_alongtrack_distance(self, arg0: float) -> None:
+    def set_alongtrack_distance(self, arg0: typing.SupportsFloat) -> None:
         """
         < distance (x) in meter
         """
-    def set_beam_incidence_angle_adjustment(self, arg0: float) -> None:
+    def set_beam_incidence_angle_adjustment(self, arg0: typing.SupportsFloat) -> None:
         """
         < (IBA) in 0.1 degree
         """
-    def set_depth(self, arg0: float) -> None:
+    def set_depth(self, arg0: typing.SupportsFloat) -> None:
         """
         < (Z) from transmit transducer in meter
         """
-    def set_detection_info(self, arg0: int) -> None:
+    def set_detection_info(self, arg0: typing.SupportsInt) -> None:
         """
         < Flag that indicates the type and validity of detection
         """
-    def set_detection_window_length(self, arg0: int) -> None:
+    def set_detection_window_length(self, arg0: typing.SupportsInt) -> None:
         """
         < in samples
         """
-    def set_quality_factor(self, arg0: int) -> None:
+    def set_quality_factor(self, arg0: typing.SupportsInt) -> None:
         """
         < 0-254 Scaled standard deviation (sd) of the range detection <
         divided by the detected range (dr) (qf = 250*sd/sr)
         """
-    def set_realtime_cleaning_information(self, arg0: int) -> None:
+    def set_realtime_cleaning_information(self, arg0: typing.SupportsInt) -> None:
         """
         < Flag that indicates if the beam was flagged by real < time cleaning
         (negative values indicate that this < beam is flagged out)
         """
-    def set_reflectivity(self, arg0: int) -> None:
+    def set_reflectivity(self, arg0: typing.SupportsInt) -> None:
         ...
 class XYZDatagramBeam_t_DetectionType:
     """
@@ -1468,7 +1469,7 @@ class XYZDatagramBeam_t_DetectionType:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -1481,7 +1482,7 @@ class XYZDatagramBeam_t_DetectionType:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

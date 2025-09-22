@@ -6,16 +6,16 @@ import numpy
 import typing
 __all__: list[str] = ['segment_in_weighted_quantiles', 'weighted_median']
 @typing.overload
-def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float64], n_quantiles: int, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
+def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float64], n_quantiles: typing.SupportsInt, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
     ...
 @typing.overload
-def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float32], n_quantiles: int, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
+def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float32], n_quantiles: typing.SupportsInt, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
     ...
 @typing.overload
-def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float32], weights: numpy.ndarray[numpy.float64], n_quantiles: int, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
+def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float32], weights: numpy.ndarray[numpy.float64], n_quantiles: typing.SupportsInt, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
     ...
 @typing.overload
-def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float32], weights: numpy.ndarray[numpy.float32], n_quantiles: int, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
+def segment_in_weighted_quantiles(values: numpy.ndarray[numpy.float32], weights: numpy.ndarray[numpy.float32], n_quantiles: typing.SupportsInt, return_empty_segments: bool = False) -> list[numpy.ndarray[numpy.uint64]]:
     ...
 @typing.overload
 def weighted_median(values: numpy.ndarray[numpy.float64], weights: numpy.ndarray[numpy.float64]) -> float:

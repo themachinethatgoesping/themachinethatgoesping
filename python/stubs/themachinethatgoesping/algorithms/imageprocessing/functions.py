@@ -6,326 +6,326 @@ import numpy
 import typing
 __all__: list[str] = ['find_local_maxima', 'find_local_maxima2', 'grow_regions']
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[float]]:
+def find_local_maxima(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[float]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> tuple[list[int], list[int]]:
+def find_local_maxima(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> tuple[list[int], list[int]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float64], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: float | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.float32], threshold: typing.SupportsFloat | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int64], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int32], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int16], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[numpy.ndarray[numpy.int64]]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[numpy.ndarray[numpy.int64]]:
     ...
 @typing.overload
-def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: int | None = None, accept_nans: bool = True, mp_cores: int = 1) -> list[int]:
+def find_local_maxima2(data: numpy.ndarray[numpy.int8], threshold: typing.SupportsInt | None = None, accept_nans: bool = True, mp_cores: typing.SupportsInt = 1) -> list[int]:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: int = 0, threshold: float | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.float32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsFloat | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int64], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int32], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int16], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int64], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int32], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int16], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...
 @typing.overload
-def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: int = 0, threshold: int | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: int = 1) -> bool:
+def grow_regions(region_volume: numpy.ndarray[numpy.int8], data_volume: numpy.ndarray[numpy.int8], null_region: typing.SupportsInt = 0, threshold: typing.SupportsInt | None = None, force_negative_gradient: bool = True, eat_neighbor_regions: bool = False, mp_cores: typing.SupportsInt = 1) -> bool:
     ...

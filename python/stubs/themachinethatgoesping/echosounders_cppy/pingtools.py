@@ -2,6 +2,7 @@
 Tools for working with ping objects.
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.echosounders_cppy.filetemplates
 import typing
@@ -29,10 +30,10 @@ class BeamSampleSelection(BeamSelection):
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, sample_step_ensemble: int = 1) -> None:
+    def __init__(self, sample_step_ensemble: typing.SupportsInt = 1) -> None:
         ...
     @typing.overload
-    def __init__(self, first_sample_number_per_beam: list[int], last_sample_number_per_beam: list[int], sample_step_ensemble: int = 1) -> None:
+    def __init__(self, first_sample_number_per_beam: collections.abc.Sequence[typing.SupportsInt], last_sample_number_per_beam: collections.abc.Sequence[typing.SupportsInt], sample_step_ensemble: typing.SupportsInt = 1) -> None:
         """
         Construct a new Beam Sample Selection object
         
@@ -62,7 +63,7 @@ class BeamSampleSelection(BeamSelection):
         """
         Return object information as string
         """
-    def add_beam(self, beam_number: int, first_sample_number: int, max_number_of_samples: int) -> None:
+    def add_beam(self, beam_number: typing.SupportsInt, first_sample_number: typing.SupportsInt, max_number_of_samples: typing.SupportsInt) -> None:
         """
         Add a beam to the selection
         
@@ -124,7 +125,7 @@ class BeamSampleSelection(BeamSelection):
         Returns:
             uint32_t
         """
-    def get_read_sample_range(self, beam_index: int, first_sample_offset_in_beam: int, number_of_samples_in_beam: int) -> ReadSampleRange:
+    def get_read_sample_range(self, beam_index: typing.SupportsInt, first_sample_offset_in_beam: typing.SupportsInt, number_of_samples_in_beam: typing.SupportsInt) -> ReadSampleRange:
         """
         Return the read sample range for a given beam
         
@@ -155,19 +156,19 @@ class BeamSampleSelection(BeamSelection):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_first_sample_number_ensemble(self, first_sample_number_ensemble: int) -> None:
+    def set_first_sample_number_ensemble(self, first_sample_number_ensemble: typing.SupportsInt) -> None:
         ...
-    def set_last_sample_number_ensemble(self, last_sample_number_ensemble: int) -> None:
+    def set_last_sample_number_ensemble(self, last_sample_number_ensemble: typing.SupportsInt) -> None:
         ...
-    def set_sample_step_ensemble(self, sample_step_ensemble: int) -> None:
+    def set_sample_step_ensemble(self, sample_step_ensemble: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -202,7 +203,7 @@ class BeamSelection:
     def __init__(self, beam_sample_selection: ...) -> None:
         ...
     @typing.overload
-    def __init__(self, number_of_beams: int) -> None:
+    def __init__(self, number_of_beams: typing.SupportsInt) -> None:
         """
         Initialize a beam sample selection from a whole swath
         
@@ -210,7 +211,7 @@ class BeamSelection:
             number of beams in the swath
         """
     @typing.overload
-    def __init__(self, beam_numbers: list[int]) -> None:
+    def __init__(self, beam_numbers: collections.abc.Sequence[typing.SupportsInt]) -> None:
         """
         Initialize a beam sample selection from a whole swath
         
@@ -227,7 +228,7 @@ class BeamSelection:
         """
         Return object information as string
         """
-    def add_beam(self, beam_number: int) -> None:
+    def add_beam(self, beam_number: typing.SupportsInt) -> None:
         """
         Add a beam to the selection
         
@@ -272,11 +273,11 @@ class BeamSelection:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -414,41 +415,41 @@ class PingSampleSelector:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def select_beam_range_by_angles(self, min_beam_angle: float | None = None, max_beam_angle: float | None = None, beam_step: int | None = None) -> None:
+    def select_beam_range_by_angles(self, min_beam_angle: typing.SupportsFloat | None = None, max_beam_angle: typing.SupportsFloat | None = None, beam_step: typing.SupportsInt | None = None) -> None:
         ...
-    def select_beam_range_by_numbers(self, min_beam_number: int | None = None, max_beam_number: int | None = None, beam_step: int | None = None) -> None:
+    def select_beam_range_by_numbers(self, min_beam_number: typing.SupportsInt | None = None, max_beam_number: typing.SupportsInt | None = None, beam_step: typing.SupportsInt | None = None) -> None:
         ...
-    def select_bottom_range_percent(self, min_bottom_range_percent: float | None = None, max_bottom_range_percent: float | None = None) -> None:
+    def select_bottom_range_percent(self, min_bottom_range_percent: typing.SupportsFloat | None = None, max_bottom_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_max_bottom_range_percent(self, max_bottom_range_percent: float | None = None) -> None:
+    def select_max_bottom_range_percent(self, max_bottom_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_max_minslant_range_percent(self, max_minslant_range_percent: float | None = None) -> None:
+    def select_max_minslant_range_percent(self, max_minslant_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_min_bottom_range_percent(self, min_bottom_range_percent: float | None = None) -> None:
+    def select_min_bottom_range_percent(self, min_bottom_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_min_minslant_range_percent(self, min_minslant_range_percent: float | None = None) -> None:
+    def select_min_minslant_range_percent(self, min_minslant_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_minslant_range_percent(self, min_minslant_range_percent: float | None = None, max_minslant_range_percent: float | None = None) -> None:
+    def select_minslant_range_percent(self, min_minslant_range_percent: typing.SupportsFloat | None = None, max_minslant_range_percent: typing.SupportsFloat | None = None) -> None:
         ...
-    def select_sample_range_by_numbers(self, min_sample_number: int | None = None, max_sample_number: int | None = None, sample_step: int | None = None) -> None:
+    def select_sample_range_by_numbers(self, min_sample_number: typing.SupportsInt | None = None, max_sample_number: typing.SupportsInt | None = None, sample_step: typing.SupportsInt | None = None) -> None:
         ...
-    def select_sample_range_by_ranges(self, min_sample_range: float | None = None, max_sample_range: float | None = None, sample_step: int | None = None) -> None:
+    def select_sample_range_by_ranges(self, min_sample_range: typing.SupportsFloat | None = None, max_sample_range: typing.SupportsFloat | None = None, sample_step: typing.SupportsInt | None = None) -> None:
         ...
-    def select_transmit_sectors(self, transmit_sectors: list[int] | None = None) -> None:
+    def select_transmit_sectors(self, transmit_sectors: collections.abc.Sequence[typing.SupportsInt] | None = None) -> None:
         ...
-    def select_transmit_sectors_by_beam_angles(self, transmit_sector_min_beam_angle: float | None = None, transmit_sector_max_beam_angle: float | None = None) -> None:
+    def select_transmit_sectors_by_beam_angles(self, transmit_sector_min_beam_angle: typing.SupportsFloat | None = None, transmit_sector_max_beam_angle: typing.SupportsFloat | None = None) -> None:
         ...
-    def set_beam_step(self, beam_step: int) -> None:
+    def set_beam_step(self, beam_step: typing.SupportsInt) -> None:
         ...
-    def set_sample_step(self, sample_step: int) -> None:
+    def set_sample_step(self, sample_step: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -475,7 +476,7 @@ class ReadSampleRange:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, first_sample_to_read: int, number_of_samples_to_read: int, first_read_sample_offset: int, last_read_sample_offset: int) -> None:
+    def __init__(self, first_sample_to_read: typing.SupportsInt, number_of_samples_to_read: typing.SupportsInt, first_read_sample_offset: typing.SupportsInt, last_read_sample_offset: typing.SupportsInt) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -508,11 +509,11 @@ class ReadSampleRange:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

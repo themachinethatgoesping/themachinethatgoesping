@@ -3,11 +3,10 @@ Submodule for gridding functions
 """
 from __future__ import annotations
 import numpy
-import pybind11_stubgen.typing_ext
 import typing
 __all__: list[str] = ['compute_resampled_coordinates', 'get_grd_value', 'get_index', 'get_index_fraction', 'get_index_weights', 'get_minmax', 'get_value', 'grd_block_mean', 'grd_weighted_mean', 'group_blocks']
 @typing.overload
-def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float32], values_max: numpy.ndarray[numpy.float32], values_res: numpy.ndarray[numpy.float32], grid_min: float = ..., grid_max: float = ..., max_steps: int = 1024) -> numpy.ndarray[numpy.float32]:
+def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float32], values_max: numpy.ndarray[numpy.float32], values_res: numpy.ndarray[numpy.float32], grid_min: typing.SupportsFloat = ..., grid_max: typing.SupportsFloat = ..., max_steps: typing.SupportsInt = 1024) -> numpy.ndarray[numpy.float32]:
     """
     Compute resampled coordinates for gridding operations using
     statistical heuristics
@@ -41,7 +40,7 @@ def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float32], valu
         coordinates: xtensor array of uniformly spaced grid coordinates
     """
 @typing.overload
-def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float64], values_max: numpy.ndarray[numpy.float64], values_res: numpy.ndarray[numpy.float64], grid_min: float = ..., grid_max: float = ..., max_steps: int = 1024) -> numpy.ndarray[numpy.float64]:
+def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float64], values_max: numpy.ndarray[numpy.float64], values_res: numpy.ndarray[numpy.float64], grid_min: typing.SupportsFloat = ..., grid_max: typing.SupportsFloat = ..., max_steps: typing.SupportsInt = 1024) -> numpy.ndarray[numpy.float64]:
     """
     Compute resampled coordinates for gridding operations using
     statistical heuristics
@@ -75,116 +74,116 @@ def compute_resampled_coordinates(values_min: numpy.ndarray[numpy.float64], valu
         coordinates: xtensor array of uniformly spaced grid coordinates
     """
 @typing.overload
-def get_grd_value(value: float, grd_val_min: float, grd_res: float) -> float:
+def get_grd_value(value: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def get_grd_value(value: float, grd_val_min: float, grd_res: float) -> float:
+def get_grd_value(value: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def get_index(val: float, grd_val_min: float, grd_res: float) -> int:
+def get_index(val: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> int:
     ...
 @typing.overload
-def get_index(val: float, grd_val_min: float, grd_res: float) -> int:
+def get_index(val: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> int:
     ...
 @typing.overload
-def get_index_fraction(val: float, grd_val_min: float, grd_res: float) -> float:
+def get_index_fraction(val: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def get_index_fraction(val: float, grd_val_min: float, grd_res: float) -> float:
+def get_index_fraction(val: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def get_index_weights(frac_x: float, frac_y: float, frac_z: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(8)]]:
+def get_index_weights(frac_x: typing.SupportsFloat, frac_y: typing.SupportsFloat, frac_z: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[float], "FixedSize(8)"]]:
     ...
 @typing.overload
-def get_index_weights(frac_x: float, frac_y: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(4)]]:
+def get_index_weights(frac_x: typing.SupportsFloat, frac_y: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(4)"], typing.Annotated[list[int], "FixedSize(4)"], typing.Annotated[list[float], "FixedSize(4)"]]:
     ...
 @typing.overload
-def get_index_weights(frac_x: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]]:
+def get_index_weights(frac_x: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(2)"], typing.Annotated[list[float], "FixedSize(2)"]]:
     ...
 @typing.overload
-def get_index_weights(frac_x: float, frac_y: float, frac_z: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(8)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(8)]]:
+def get_index_weights(frac_x: typing.SupportsFloat, frac_y: typing.SupportsFloat, frac_z: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[int], "FixedSize(8)"], typing.Annotated[list[float], "FixedSize(8)"]]:
     ...
 @typing.overload
-def get_index_weights(frac_x: float, frac_y: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)], typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(4)]]:
+def get_index_weights(frac_x: typing.SupportsFloat, frac_y: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(4)"], typing.Annotated[list[int], "FixedSize(4)"], typing.Annotated[list[float], "FixedSize(4)"]]:
     ...
 @typing.overload
-def get_index_weights(frac_x: float) -> tuple[typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)], typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]]:
+def get_index_weights(frac_x: typing.SupportsFloat) -> tuple[typing.Annotated[list[int], "FixedSize(2)"], typing.Annotated[list[float], "FixedSize(2)"]]:
     ...
 @typing.overload
-def get_minmax(sb: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> tuple[float, float]:
+def get_minmax(sb: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> tuple[float, float]:
     ...
 @typing.overload
-def get_minmax(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> tuple[float, float, float, float]:
+def get_minmax(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> tuple[float, float, float, float]:
     ...
 @typing.overload
-def get_minmax(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> tuple[float, float, float, float, float, float]:
+def get_minmax(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> tuple[float, float, float, float, float, float]:
     ...
 @typing.overload
-def get_minmax(sb: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> tuple[float, float]:
+def get_minmax(sb: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> tuple[float, float]:
     ...
 @typing.overload
-def get_minmax(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> tuple[float, float, float, float]:
+def get_minmax(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> tuple[float, float, float, float]:
     ...
 @typing.overload
-def get_minmax(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> tuple[float, float, float, float, float, float]:
+def get_minmax(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> tuple[float, float, float, float, float, float]:
     ...
 @typing.overload
-def get_value(index: float, grd_val_min: float, grd_res: float) -> float:
+def get_value(index: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def get_value(index: float, grd_val_min: float, grd_res: float) -> float:
+def get_value(index: typing.SupportsFloat, grd_val_min: typing.SupportsFloat, grd_res: typing.SupportsFloat) -> float:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def grd_block_mean(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_block_mean(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, image_values: numpy.ndarray[numpy.float32], image_weights: numpy.ndarray[numpy.float32]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
+def grd_weighted_mean(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, image_values: numpy.ndarray[numpy.float64], image_weights: numpy.ndarray[numpy.float64]) -> None:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt) -> dict[int, list[float]]:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt) -> dict[int, list[float]]:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: float, xres: float, nx: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float32], sv: numpy.ndarray[numpy.float32], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt) -> dict[int, list[float]]:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int, zmin: float, zres: float, nz: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt, zmin: typing.SupportsFloat, zres: typing.SupportsFloat, nz: typing.SupportsInt) -> dict[int, list[float]]:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int, ymin: float, yres: float, ny: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt, ymin: typing.SupportsFloat, yres: typing.SupportsFloat, ny: typing.SupportsInt) -> dict[int, list[float]]:
     ...
 @typing.overload
-def group_blocks(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: float, xres: float, nx: int) -> dict[int, list[float]]:
+def group_blocks(sx: numpy.ndarray[numpy.float64], sv: numpy.ndarray[numpy.float64], xmin: typing.SupportsFloat, xres: typing.SupportsFloat, nx: typing.SupportsInt) -> dict[int, list[float]]:
     ...

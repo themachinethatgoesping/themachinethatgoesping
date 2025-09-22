@@ -28,7 +28,7 @@ def datetime_to_unixtime(datetime: typing.Any) -> float:
     Returns:
         The Unix timestamp representing the given datetime.
     """
-def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
+def unixtime_to_datestring(unixtime: typing.SupportsFloat, fractionalSecondsDigits: typing.SupportsInt = 0, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
     """
     Converts a UNIX timestamp to a formatted date/time string.
     
@@ -44,7 +44,7 @@ def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, fo
     Returns:
         Formatted date/time string
     """
-def unixtime_to_datetime(unixtime: float, timezone_offset_hours: float = 0.0) -> typing.Any:
+def unixtime_to_datetime(unixtime: typing.SupportsFloat, timezone_offset_hours: typing.SupportsFloat = 0.0) -> typing.Any:
     """
     Converts a Unix timestamp to a Python datetime object.
     
@@ -57,7 +57,7 @@ def unixtime_to_datetime(unixtime: float, timezone_offset_hours: float = 0.0) ->
     Returns:
         The Python datetime object representing the given timestamp.
     """
-def year_month_day_to_unixtime(year: int, month: int, day: int, micro_seconds: int = 0) -> float:
+def year_month_day_to_unixtime(year: typing.SupportsInt, month: typing.SupportsInt, day: typing.SupportsInt, micro_seconds: typing.SupportsInt = 0) -> float:
     """
     Converts a calendar date (year, month, day) and optional microseconds
     to a UNIX timestamp.

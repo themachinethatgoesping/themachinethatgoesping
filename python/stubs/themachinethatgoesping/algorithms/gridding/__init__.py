@@ -3,6 +3,7 @@ Submodule for gridding (raytracers and georefencing) echosounder samples
 """
 from __future__ import annotations
 import numpy
+import numpy.typing
 import typing
 from . import functions
 __all__: list[str] = ['ForwardGridder1D', 'ForwardGridder1DF', 'ForwardGridder2D', 'ForwardGridder2DF', 'ForwardGridder3D', 'ForwardGridder3DF', 'functions']
@@ -18,7 +19,7 @@ class ForwardGridder1D:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float64]) -> ForwardGridder1D:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float64]) -> ForwardGridder1D:
         """
         Create gridder with resolution "res" xmin,xmax are determined to
         exactly contain the given data vector (sx)
@@ -33,7 +34,7 @@ class ForwardGridder1D:
             ForwardGridder1D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float) -> ForwardGridder1D:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat) -> ForwardGridder1D:
         """
         Create gridder setting xres to "res"
         
@@ -74,7 +75,7 @@ class ForwardGridder1D:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, min_x: float, max_x: float, xbase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -129,25 +130,25 @@ class ForwardGridder1D:
     def get_x_coordinates(self) -> list[float]:
         ...
     @typing.overload
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
     @typing.overload
     def get_x_grd_value(self, x: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def get_x_index(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
     @typing.overload
     def get_x_index(self, x: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.int32]:
         ...
     @typing.overload
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
     @typing.overload
     def get_x_index_fraction(self, x: numpy.ndarray[numpy.float64]) -> numpy.ndarray[numpy.float64]:
         ...
     @typing.overload
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     @typing.overload
     def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float64]:
@@ -166,7 +167,7 @@ class ForwardGridder1D:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -253,7 +254,7 @@ class ForwardGridder1D:
             std::tuple<xt::xtensor<t_float, 1>, xt::xtensor<t_float, 1>>
             image_values, image_weights
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -273,7 +274,7 @@ class ForwardGridder1DF:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float32]) -> ForwardGridder1DF:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float32]) -> ForwardGridder1DF:
         """
         Create gridder with resolution "res" xmin,xmax are determined to
         exactly contain the given data vector (sx)
@@ -288,7 +289,7 @@ class ForwardGridder1DF:
             ForwardGridder1D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float) -> ForwardGridder1DF:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat) -> ForwardGridder1DF:
         """
         Create gridder setting xres to "res"
         
@@ -329,7 +330,7 @@ class ForwardGridder1DF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, min_x: float, max_x: float, xbase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -384,25 +385,25 @@ class ForwardGridder1DF:
     def get_x_coordinates(self) -> list[float]:
         ...
     @typing.overload
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
     @typing.overload
     def get_x_grd_value(self, x: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def get_x_index(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
     @typing.overload
     def get_x_index(self, x: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.int32]:
         ...
     @typing.overload
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
     @typing.overload
     def get_x_index_fraction(self, x: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
         ...
     @typing.overload
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     @typing.overload
     def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float32]:
@@ -421,7 +422,7 @@ class ForwardGridder1DF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -508,7 +509,7 @@ class ForwardGridder1DF:
             std::tuple<xt::xtensor<t_float, 1>, xt::xtensor<t_float, 1>>
             image_values, image_weights
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -528,7 +529,7 @@ class ForwardGridder2D:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64]) -> ForwardGridder2D:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64]) -> ForwardGridder2D:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax are
         determined to exactly contain the given data vectors (sx,sy)
@@ -546,7 +547,7 @@ class ForwardGridder2D:
             ForwardGridder2D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float, min_y: float, max_y: float) -> ForwardGridder2D:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat) -> ForwardGridder2D:
         """
         Create gridder setting xres and yres to "res"
         
@@ -597,7 +598,7 @@ class ForwardGridder2D:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, yres: float, min_x: float, max_x: float, min_y: float, max_y: float, xbase: float = 0.0, ybase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, yres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0, ybase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -671,13 +672,13 @@ class ForwardGridder2D:
         ...
     def get_x_coordinates(self) -> list[float]:
         ...
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_index(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_xbase(self) -> float:
         ...
@@ -689,13 +690,13 @@ class ForwardGridder2D:
         ...
     def get_y_coordinates(self) -> list[float]:
         ...
-    def get_y_grd_value(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_grd_value(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_index(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_index(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_index_fraction(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_index_fraction(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_value(self, y_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_y_value(self, y_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_ybase(self) -> float:
         ...
@@ -711,7 +712,7 @@ class ForwardGridder2D:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -797,7 +798,7 @@ class ForwardGridder2D:
         Parameter ``image_weights``:
             Image with weights will be edited inplace
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -817,7 +818,7 @@ class ForwardGridder2DF:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32]) -> ForwardGridder2DF:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32]) -> ForwardGridder2DF:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax are
         determined to exactly contain the given data vectors (sx,sy)
@@ -835,7 +836,7 @@ class ForwardGridder2DF:
             ForwardGridder2D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float, min_y: float, max_y: float) -> ForwardGridder2DF:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat) -> ForwardGridder2DF:
         """
         Create gridder setting xres and yres to "res"
         
@@ -886,7 +887,7 @@ class ForwardGridder2DF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, yres: float, min_x: float, max_x: float, min_y: float, max_y: float, xbase: float = 0.0, ybase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, yres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0, ybase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -960,13 +961,13 @@ class ForwardGridder2DF:
         ...
     def get_x_coordinates(self) -> list[float]:
         ...
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_index(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_xbase(self) -> float:
         ...
@@ -978,13 +979,13 @@ class ForwardGridder2DF:
         ...
     def get_y_coordinates(self) -> list[float]:
         ...
-    def get_y_grd_value(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_grd_value(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_index(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_index(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_index_fraction(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_index_fraction(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_value(self, y_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_y_value(self, y_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_ybase(self) -> float:
         ...
@@ -1000,7 +1001,7 @@ class ForwardGridder2DF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1086,7 +1087,7 @@ class ForwardGridder2DF:
         Parameter ``image_weights``:
             Image with weights will be edited inplace
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1106,7 +1107,7 @@ class ForwardGridder3D:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64]) -> ForwardGridder3D:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float64], sy: numpy.ndarray[numpy.float64], sz: numpy.ndarray[numpy.float64]) -> ForwardGridder3D:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax,zmin,zmax are
         determined to exactly contain the given data vectors (sx,sy,sz)
@@ -1127,7 +1128,7 @@ class ForwardGridder3D:
             ForwardGridder3D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float, min_y: float, max_y: float, min_z: float, max_z: float) -> ForwardGridder3D:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, min_z: typing.SupportsFloat, max_z: typing.SupportsFloat) -> ForwardGridder3D:
         """
         Create gridder setting xres,yres and zres to "res"
         
@@ -1187,7 +1188,7 @@ class ForwardGridder3D:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, yres: float, zres: float, min_x: float, max_x: float, min_y: float, max_y: float, min_z: float, max_z: float, xbase: float = 0.0, ybase: float = 0.0, zbase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, yres: typing.SupportsFloat, zres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, min_z: typing.SupportsFloat, max_z: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0, ybase: typing.SupportsFloat = 0.0, zbase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -1281,13 +1282,13 @@ class ForwardGridder3D:
         ...
     def get_x_coordinates(self) -> list[float]:
         ...
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_index(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_xbase(self) -> float:
         ...
@@ -1299,13 +1300,13 @@ class ForwardGridder3D:
         ...
     def get_y_coordinates(self) -> list[float]:
         ...
-    def get_y_grd_value(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_grd_value(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_index(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_index(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_index_fraction(self, y: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_y_index_fraction(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_y_value(self, y_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_y_value(self, y_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_ybase(self) -> float:
         ...
@@ -1317,13 +1318,13 @@ class ForwardGridder3D:
         ...
     def get_z_coordinates(self) -> list[float]:
         ...
-    def get_z_grd_value(self, z: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_z_grd_value(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_z_index(self, z: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_z_index(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_z_index_fraction(self, z: numpy.ndarray[numpy.float64]) -> typing.Any:
+    def get_z_index_fraction(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float64]) -> typing.Any:
         ...
-    def get_z_value(self, z_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_z_value(self, z_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_zbase(self) -> float:
         ...
@@ -1339,7 +1340,7 @@ class ForwardGridder3D:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1437,7 +1438,7 @@ class ForwardGridder3D:
         Parameter ``image_weights``:
             Image with weights will be edited inplace
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1457,7 +1458,7 @@ class ForwardGridder3DF:
         create T_CLASS object from bytearray
         """
     @staticmethod
-    def from_data(res: float, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32]) -> ForwardGridder3DF:
+    def from_data(res: typing.SupportsFloat, sx: numpy.ndarray[numpy.float32], sy: numpy.ndarray[numpy.float32], sz: numpy.ndarray[numpy.float32]) -> ForwardGridder3DF:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax,zmin,zmax are
         determined to exactly contain the given data vectors (sx,sy,sz)
@@ -1478,7 +1479,7 @@ class ForwardGridder3DF:
             ForwardGridder3D object
         """
     @staticmethod
-    def from_res(res: float, min_x: float, max_x: float, min_y: float, max_y: float, min_z: float, max_z: float) -> ForwardGridder3DF:
+    def from_res(res: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, min_z: typing.SupportsFloat, max_z: typing.SupportsFloat) -> ForwardGridder3DF:
         """
         Create gridder setting xres,yres and zres to "res"
         
@@ -1538,7 +1539,7 @@ class ForwardGridder3DF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, xres: float, yres: float, zres: float, min_x: float, max_x: float, min_y: float, max_y: float, min_z: float, max_z: float, xbase: float = 0.0, ybase: float = 0.0, zbase: float = 0.0) -> None:
+    def __init__(self, xres: typing.SupportsFloat, yres: typing.SupportsFloat, zres: typing.SupportsFloat, min_x: typing.SupportsFloat, max_x: typing.SupportsFloat, min_y: typing.SupportsFloat, max_y: typing.SupportsFloat, min_z: typing.SupportsFloat, max_z: typing.SupportsFloat, xbase: typing.SupportsFloat = 0.0, ybase: typing.SupportsFloat = 0.0, zbase: typing.SupportsFloat = 0.0) -> None:
         """
         Initialize forward gridder class using grid parameters.
         
@@ -1632,13 +1633,13 @@ class ForwardGridder3DF:
         ...
     def get_x_coordinates(self) -> list[float]:
         ...
-    def get_x_grd_value(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_grd_value(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_index(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_index_fraction(self, x: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_x_index_fraction(self, x: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_x_value(self, x_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_x_value(self, x_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_xbase(self) -> float:
         ...
@@ -1650,13 +1651,13 @@ class ForwardGridder3DF:
         ...
     def get_y_coordinates(self) -> list[float]:
         ...
-    def get_y_grd_value(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_grd_value(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_index(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_index(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_index_fraction(self, y: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_y_index_fraction(self, y: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_y_value(self, y_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_y_value(self, y_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_ybase(self) -> float:
         ...
@@ -1668,13 +1669,13 @@ class ForwardGridder3DF:
         ...
     def get_z_coordinates(self) -> list[float]:
         ...
-    def get_z_grd_value(self, z: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_z_grd_value(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_z_index(self, z: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_z_index(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_z_index_fraction(self, z: numpy.ndarray[numpy.float32]) -> typing.Any:
+    def get_z_index_fraction(self, z: typing.Annotated[numpy.typing.ArrayLike, numpy.float32]) -> typing.Any:
         ...
-    def get_z_value(self, z_index: numpy.ndarray[numpy.int32]) -> typing.Any:
+    def get_z_value(self, z_index: typing.Annotated[numpy.typing.ArrayLike, numpy.int32]) -> typing.Any:
         ...
     def get_zbase(self) -> float:
         ...
@@ -1690,7 +1691,7 @@ class ForwardGridder3DF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1788,7 +1789,7 @@ class ForwardGridder3DF:
         Parameter ``image_weights``:
             Image with weights will be edited inplace
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

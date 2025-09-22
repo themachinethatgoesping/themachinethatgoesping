@@ -2,6 +2,7 @@
 Functions and classes for featuremapping and interpolation
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import typing
 __all__: list[str] = ['NearestFeatureMapper']
@@ -42,7 +43,7 @@ class NearestFeatureMapper:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, features: dict[str, list[float]] = {}) -> None:
+    def __init__(self, features: collections.abc.Mapping[str, collections.abc.Sequence[typing.SupportsFloat]] = {}) -> None:
         """
         Constructor with optional initial features
         
@@ -68,7 +69,7 @@ class NearestFeatureMapper:
         return a copy using the c++ default copy constructor
         """
     @typing.overload
-    def feature_to_feature(self, feature_from: str, feature_to: str, value: float) -> float:
+    def feature_to_feature(self, feature_from: str, feature_to: str, value: typing.SupportsFloat) -> float:
         """
         Convert a value from one feature space to another
         
@@ -88,7 +89,7 @@ class NearestFeatureMapper:
             std::runtime_error if either feature is not found
         """
     @typing.overload
-    def feature_to_feature(self, feature_from: str, feature_to: str, values: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def feature_to_feature(self, feature_from: str, feature_to: str, values: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         Convert multiple values from one feature space to another (vectorized)
         
@@ -114,7 +115,7 @@ class NearestFeatureMapper:
             std::runtime_error if either feature is not found
         """
     @typing.overload
-    def feature_to_index(self, feature: str, value: float) -> int:
+    def feature_to_index(self, feature: str, value: typing.SupportsFloat) -> int:
         """
         Convert a feature value to its corresponding index
         
@@ -131,7 +132,7 @@ class NearestFeatureMapper:
             std::runtime_error if the feature is not found
         """
     @typing.overload
-    def feature_to_index(self, feature: str, values: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.uint64]:
+    def feature_to_index(self, feature: str, values: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.uint64]:
         """
         Convert multiple feature values to their corresponding indices
         (vectorized)
@@ -194,7 +195,7 @@ class NearestFeatureMapper:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def index_to_feature(self, feature: str, index: int) -> float:
+    def index_to_feature(self, feature: str, index: typing.SupportsInt) -> float:
         """
         Convert an index to its corresponding feature value
         
@@ -211,7 +212,7 @@ class NearestFeatureMapper:
             std::runtime_error if the feature is not found
         """
     @typing.overload
-    def index_to_feature(self, feature: str, indices: numpy.ndarray[numpy.uint64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+    def index_to_feature(self, feature: str, indices: numpy.ndarray[numpy.uint64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         Convert multiple indices to their corresponding feature values
         (vectorized)
@@ -237,7 +238,7 @@ class NearestFeatureMapper:
         Throws:
             std::runtime_error if the feature is not found
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -248,7 +249,7 @@ class NearestFeatureMapper:
         Returns:
             Vector of all feature names currently stored in the mapper
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -259,7 +260,7 @@ class NearestFeatureMapper:
         Parameter ``feature``:
             Name of the feature to remove
         """
-    def set_feature(self, feature: str, values: list[float]) -> None:
+    def set_feature(self, feature: str, values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         Add or update a feature with the given values
         

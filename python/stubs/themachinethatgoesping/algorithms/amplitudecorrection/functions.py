@@ -6,13 +6,13 @@ import numpy
 import typing
 __all__: list[str] = ['apply_beam_correction', 'apply_beam_sample_correction', 'apply_beam_sample_correction_loop', 'apply_beam_sample_correction_xsimd', 'apply_beam_sample_correction_xtensor2', 'apply_beam_sample_correction_xtensor3', 'apply_sample_correction', 'apply_system_offset', 'approximate_range_factor', 'approximate_ranges', 'calc_absorption_coefficient_db_m', 'calc_sound_velocity', 'compute_cw_range_correction', 'get_sample_numbers_plus_half', 'inplace_beam_correction', 'inplace_beam_sample_correction', 'inplace_sample_correction', 'inplace_system_offset']
 @typing.overload
-def apply_beam_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_beam_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     """
     Applies beam and sample corrections to the given 2D tensor.
     
@@ -42,7 +42,7 @@ def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float32], per_beam_off
         A 2D tensor with the applied beam and sample corrections.
     """
 @typing.overload
-def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     """
     Applies beam and sample corrections to the given 2D tensor.
     
@@ -72,43 +72,43 @@ def apply_beam_sample_correction(wci: numpy.ndarray[numpy.float64], per_beam_off
         A 2D tensor with the applied beam and sample corrections.
     """
 @typing.overload
-def apply_beam_sample_correction_loop(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_sample_correction_loop(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_beam_sample_correction_loop(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_sample_correction_loop(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xsimd(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_sample_correction_xsimd(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xsimd(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_sample_correction_xsimd(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xtensor2(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_sample_correction_xtensor2(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xtensor2(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_sample_correction_xtensor2(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xtensor3(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_beam_sample_correction_xtensor3(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_beam_sample_correction_xtensor3(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_beam_sample_correction_xtensor3(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_sample_correction(wci: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_sample_correction(wci: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_sample_correction(wci: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_sample_correction(wci: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def apply_system_offset(wci: numpy.ndarray[numpy.float32], system_offset: float, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+def apply_system_offset(wci: numpy.ndarray[numpy.float32], system_offset: typing.SupportsFloat, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     ...
 @typing.overload
-def apply_system_offset(wci: numpy.ndarray[numpy.float64], system_offset: float, mp_cores: int = 1) -> numpy.ndarray[numpy.float64]:
+def apply_system_offset(wci: numpy.ndarray[numpy.float64], system_offset: typing.SupportsFloat, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     ...
 @typing.overload
-def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float) -> float:
+def approximate_range_factor(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat) -> float:
     """
     Approximates the range factor based on the sample interval and a
     single sound velocity.
@@ -130,7 +130,7 @@ def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float
         The approximated range factor.
     """
 @typing.overload
-def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float) -> float:
+def approximate_range_factor(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat) -> float:
     """
     Approximates the range factor based on the sample interval and a
     single sound velocity.
@@ -152,7 +152,7 @@ def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float
         The approximated range factor.
     """
 @typing.overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, first_sample_nr: int, last_sample_nr: int, step: int = 1) -> numpy.ndarray[numpy.float32]:
+def approximate_ranges(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, first_sample_nr: typing.SupportsInt, last_sample_nr: typing.SupportsInt, step: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     """
     Approximates the ranges based on the provided sample interval and a
     single sound velocity.
@@ -186,7 +186,7 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, firs
         A 1D tensor containing the approximated ranges.
     """
 @typing.overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, sample_numbers: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float32]:
+def approximate_ranges(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, sample_numbers: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float32]:
     """
     Approximates the ranges based on sample interval, a single sound
     velocity, and sample numbers.
@@ -217,7 +217,7 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, samp
         A 1D tensor containing the approximated ranges.
     """
 @typing.overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, first_sample_nr: int, last_sample_nr: int, step: int = 1) -> numpy.ndarray[numpy.float64]:
+def approximate_ranges(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, first_sample_nr: typing.SupportsInt, last_sample_nr: typing.SupportsInt, step: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     """
     Approximates the ranges based on the provided sample interval and a
     single sound velocity.
@@ -251,7 +251,7 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, firs
         A 1D tensor containing the approximated ranges.
     """
 @typing.overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, sample_numbers: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float64]:
+def approximate_ranges(sample_interval_s: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, sample_numbers: numpy.ndarray[numpy.int32]) -> numpy.ndarray[numpy.float64]:
     """
     Approximates the ranges based on sample interval, a single sound
     velocity, and sample numbers.
@@ -282,7 +282,7 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, samp
         A 1D tensor containing the approximated ranges.
     """
 @typing.overload
-def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_velocity_m_s: float, temperature_c: float, salinity_psu: float, pH: float = 8) -> float:
+def calc_absorption_coefficient_db_m(frequency_hz: typing.SupportsFloat, depth_m: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, temperature_c: typing.SupportsFloat, salinity_psu: typing.SupportsFloat, pH: typing.SupportsFloat = 8) -> float:
     """
     Compute the logarithmic absorption coefficient in dB/m based on
     Francois and Garrison (1982) [taken from Fisheries Acoustics Theory
@@ -310,7 +310,7 @@ def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_
         double
     """
 @typing.overload
-def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_velocity_m_s: float, temperature_c: float, salinity_psu: float, pH: float = 8) -> float:
+def calc_absorption_coefficient_db_m(frequency_hz: typing.SupportsFloat, depth_m: typing.SupportsFloat, sound_velocity_m_s: typing.SupportsFloat, temperature_c: typing.SupportsFloat, salinity_psu: typing.SupportsFloat, pH: typing.SupportsFloat = 8) -> float:
     """
     Compute the logarithmic absorption coefficient in dB/m based on
     Francois and Garrison (1982) [taken from Fisheries Acoustics Theory
@@ -338,7 +338,7 @@ def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_
         double
     """
 @typing.overload
-def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: float, latitude: float = 0.0, longitude: float = 0.0) -> float:
+def calc_sound_velocity(depth_m: typing.SupportsFloat, temperature_c: typing.SupportsFloat, salinity_psu: typing.SupportsFloat, latitude: typing.SupportsFloat = 0.0, longitude: typing.SupportsFloat = 0.0) -> float:
     """
     Compute the speed of sound in seawater using the TEOS-10 library
     
@@ -354,7 +354,7 @@ def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: floa
     double
     """
 @typing.overload
-def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: float, latitude: float = 0.0, longitude: float = 0.0) -> float:
+def calc_sound_velocity(depth_m: typing.SupportsFloat, temperature_c: typing.SupportsFloat, salinity_psu: typing.SupportsFloat, latitude: typing.SupportsFloat = 0.0, longitude: typing.SupportsFloat = 0.0) -> float:
     """
     Compute the speed of sound in seawater using the TEOS-10 library
     
@@ -370,7 +370,7 @@ def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: floa
     double
     """
 @typing.overload
-def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float32], absorption_db_m: float | None, tvg_factor: float | None) -> numpy.ndarray[numpy.float32]:
+def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float32], absorption_db_m: typing.SupportsFloat | None, tvg_factor: typing.SupportsFloat | None) -> numpy.ndarray[numpy.float32]:
     """
     Computes the continuous wave (CW) range correction.
     
@@ -405,7 +405,7 @@ def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float32], absorpti
         A 1D tensor representing the computed range correction.
     """
 @typing.overload
-def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float64], absorption_db_m: float | None, tvg_factor: float | None) -> numpy.ndarray[numpy.float64]:
+def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float64], absorption_db_m: typing.SupportsFloat | None, tvg_factor: typing.SupportsFloat | None) -> numpy.ndarray[numpy.float64]:
     """
     Computes the continuous wave (CW) range correction.
     
@@ -440,7 +440,7 @@ def compute_cw_range_correction(ranges_m: numpy.ndarray[numpy.float64], absorpti
         A 1D tensor representing the computed range correction.
     """
 @typing.overload
-def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> numpy.ndarray[numpy.float32]:
+def get_sample_numbers_plus_half(first_sample_nr: typing.SupportsInt, last_sample_nr: typing.SupportsInt, step: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
     """
     Generates a 1D tensor of sample numbers incremented by half. (used for
     range compuation)
@@ -470,7 +470,7 @@ def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step
         template parameter must be a 1D tensor.
     """
 @typing.overload
-def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> numpy.ndarray[numpy.float64]:
+def get_sample_numbers_plus_half(first_sample_nr: typing.SupportsInt, last_sample_nr: typing.SupportsInt, step: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
     """
     Generates a 1D tensor of sample numbers incremented by half. (used for
     range compuation)
@@ -500,26 +500,26 @@ def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step
         template parameter must be a 1D tensor.
     """
 @typing.overload
-def inplace_beam_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_beam_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_beam_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_beam_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_beam_sample_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_beam_sample_correction(wci: numpy.ndarray[numpy.float32], per_beam_offset: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_beam_sample_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_beam_sample_correction(wci: numpy.ndarray[numpy.float64], per_beam_offset: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_sample_correction(wci: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_sample_correction(wci: numpy.ndarray[numpy.float32], per_sample_offset: numpy.ndarray[numpy.float32], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_sample_correction(wci: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_sample_correction(wci: numpy.ndarray[numpy.float64], per_sample_offset: numpy.ndarray[numpy.float64], min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_system_offset(wci: numpy.ndarray[numpy.float32], system_offset: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_system_offset(wci: numpy.ndarray[numpy.float32], system_offset: typing.SupportsFloat, min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...
 @typing.overload
-def inplace_system_offset(wci: numpy.ndarray[numpy.float64], system_offset: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_system_offset(wci: numpy.ndarray[numpy.float64], system_offset: typing.SupportsFloat, min_beam_index: typing.SupportsInt | None = None, max_beam_index: typing.SupportsInt | None = None, mp_cores: typing.SupportsInt = 1) -> None:
     ...

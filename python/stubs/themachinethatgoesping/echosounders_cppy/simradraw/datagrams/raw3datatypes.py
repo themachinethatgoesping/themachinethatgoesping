@@ -35,11 +35,11 @@ class RAW3DataAngle(i_RAW3Data):
         """
     def get_angle(self) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -83,7 +83,7 @@ class RAW3DataComplexFloat32(i_RAW3Data):
         ...
     def get_coherent_sum(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def get_complex_samples_bfloat16(self, max_samples: int) -> numpy.ndarray[numpy.float32]:
+    def get_complex_samples_bfloat16(self, max_samples: typing.SupportsInt) -> numpy.ndarray[numpy.float32]:
         ...
     def get_incoherent_sum(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
@@ -93,11 +93,11 @@ class RAW3DataComplexFloat32(i_RAW3Data):
         ...
     def get_power_xtensor(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -139,11 +139,11 @@ class RAW3DataPower(i_RAW3Data):
         """
     def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -187,11 +187,11 @@ class RAW3DataPowerAndAngle(i_RAW3Data):
         ...
     def get_power(self, dB: bool = False) -> numpy.ndarray[numpy.float32]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -238,11 +238,11 @@ class RAW3DataSkipped(i_RAW3Data):
         """
         return a copy using the c++ default copy constructor
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -295,7 +295,7 @@ class t_RAW3DataType:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -308,7 +308,7 @@ class t_RAW3DataType:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

@@ -44,11 +44,11 @@ class NMEA_Base:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_field(self, index: int) -> str:
+    def get_field(self, index: typing.SupportsInt) -> str:
         ...
-    def get_field_as_floattype(self, index: int) -> float:
+    def get_field_as_floattype(self, index: typing.SupportsInt) -> float:
         ...
-    def get_field_as_int(self, index: int) -> int:
+    def get_field_as_int(self, index: typing.SupportsInt) -> int:
         ...
     def get_sender_id(self) -> str:
         ...
@@ -62,11 +62,11 @@ class NMEA_Base:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -144,11 +144,11 @@ class NMEA_GGA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -216,11 +216,11 @@ class NMEA_GLL(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -292,11 +292,11 @@ class NMEA_GST(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -354,11 +354,11 @@ class NMEA_HDT(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -435,11 +435,11 @@ class NMEA_RMC(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -514,11 +514,11 @@ class NMEA_Unknown(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -582,11 +582,11 @@ class NMEA_VHW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -650,11 +650,11 @@ class NMEA_VLW(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -722,11 +722,11 @@ class NMEA_VTG(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -794,11 +794,11 @@ class NMEA_ZDA(NMEA_Base):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -825,5 +825,5 @@ class NMEA_ZDA(NMEA_Base):
         Returns:
             unixtime (seconds since 1970-01-01 00:00:00 UTC)
         """
-def decode(nmea_sentence: str) -> NMEA_Unknown | NMEA_ZDA | NMEA_VLW | NMEA_VTG | NMEA_VHW | NMEA_RMC | NMEA_HDT | NMEA_GLL | NMEA_GGA | NMEA_GST:
+def decode(nmea_sentence: str) -> themachinethatgoesping.navigation.nmea_0183.NMEA_Unknown | themachinethatgoesping.navigation.nmea_0183.NMEA_ZDA | themachinethatgoesping.navigation.nmea_0183.NMEA_VLW | themachinethatgoesping.navigation.nmea_0183.NMEA_VTG | themachinethatgoesping.navigation.nmea_0183.NMEA_VHW | themachinethatgoesping.navigation.nmea_0183.NMEA_RMC | themachinethatgoesping.navigation.nmea_0183.NMEA_HDT | themachinethatgoesping.navigation.nmea_0183.NMEA_GLL | themachinethatgoesping.navigation.nmea_0183.NMEA_GGA | themachinethatgoesping.navigation.nmea_0183.NMEA_GST:
     ...

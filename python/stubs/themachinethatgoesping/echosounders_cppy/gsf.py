@@ -2,6 +2,7 @@
 Classes related to GSF data files
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.tools_cppy.progressbars
 import typing
 __all__: list[str] = ['ATTITUDE', 'COMMENT', 'GSFDatagram_type_from_string', 'GSFFileHandler', 'GSFFileHandler_stream', 'HEADER', 'HISTORY', 'NAVIGATION_ERROR', 'PROCESSING_PARAMETERS', 'SENSOR_PARAMETERS', 'SINGLE_BEAM_SOUNDING', 'SOUND_VELOCITY_PROFILE', 'SWATH_BATHYMETRY', 'SWATH_BATHY_SUMMARY', 'datagram_type_to_string', 't_GSFDatagramIdentifier', 'unspecified']
@@ -9,16 +10,16 @@ class GSFFileHandler:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -30,7 +31,7 @@ class GSFFileHandler:
         """
     def get_index_paths(self) -> dict[str, str]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -40,7 +41,7 @@ class GSFFileHandler:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -51,16 +52,16 @@ class GSFFileHandler_stream:
     """
     """
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: str, index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_path: str, index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     @typing.overload
-    def __init__(self, file_path: list[str], index_paths: dict[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
+    def __init__(self, file_path: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str] = {}, init: bool = True, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def __init__(self, file_paths: list[str], index_paths: dict[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
+    def __init__(self, file_paths: collections.abc.Sequence[str], index_paths: collections.abc.Mapping[str, str], init: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -72,7 +73,7 @@ class GSFFileHandler_stream:
         """
     def get_index_paths(self) -> dict[str, str]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -82,7 +83,7 @@ class GSFFileHandler_stream:
     @typing.overload
     def init_interfaces(self, force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -141,7 +142,7 @@ class t_GSFDatagramIdentifier:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -154,7 +155,7 @@ class t_GSFDatagramIdentifier:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

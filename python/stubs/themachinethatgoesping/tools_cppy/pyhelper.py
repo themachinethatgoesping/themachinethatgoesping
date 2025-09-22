@@ -26,7 +26,7 @@ class PyIndexerSlice:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, start: int = 9223372036854775807, stop: int = 9223372036854775807, step: int = 1) -> None:
+    def __init__(self, start: typing.SupportsInt = 9223372036854775807, stop: typing.SupportsInt = 9223372036854775807, step: typing.SupportsInt = 1) -> None:
         ...
     @typing.overload
     def __init__(self, slice: typing.Any) -> None:
@@ -49,11 +49,11 @@ class PyIndexerSlice:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -67,7 +67,7 @@ class PyIndexerSlice:
         < the start index of the slice (None if not sliced)
         """
     @start.setter
-    def start(self, arg0: int) -> None:
+    def start(self, arg0: typing.SupportsInt) -> None:
         ...
     @property
     def step(self) -> int:
@@ -75,7 +75,7 @@ class PyIndexerSlice:
         < the step size of the slice (1 if not sliced)
         """
     @step.setter
-    def step(self, arg0: int) -> None:
+    def step(self, arg0: typing.SupportsInt) -> None:
         ...
     @property
     def stop(self) -> int:
@@ -84,5 +84,5 @@ class PyIndexerSlice:
         exclusive)
         """
     @stop.setter
-    def stop(self, arg0: int) -> None:
+    def stop(self, arg0: typing.SupportsInt) -> None:
         ...

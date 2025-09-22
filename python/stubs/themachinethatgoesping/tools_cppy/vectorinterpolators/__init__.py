@@ -2,7 +2,7 @@
 Classes for getting interpolated values from within vectors
 """
 from __future__ import annotations
-import pybind11_stubgen.typing_ext
+import collections.abc
 import typing
 from . import bivectorinterpolators
 __all__: list[str] = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
@@ -21,7 +21,7 @@ class AkimaInterpolator:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -32,7 +32,7 @@ class AkimaInterpolator:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -55,7 +55,7 @@ class AkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -83,7 +83,7 @@ class AkimaInterpolator:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -102,7 +102,7 @@ class AkimaInterpolator:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -137,17 +137,17 @@ class AkimaInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -164,11 +164,11 @@ class AkimaInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -206,7 +206,7 @@ class AkimaInterpolatorF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -217,7 +217,7 @@ class AkimaInterpolatorF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -240,7 +240,7 @@ class AkimaInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -268,7 +268,7 @@ class AkimaInterpolatorF:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -287,7 +287,7 @@ class AkimaInterpolatorF:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -322,17 +322,17 @@ class AkimaInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -349,11 +349,11 @@ class AkimaInterpolatorF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -392,7 +392,7 @@ class LinearInterpolator:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -403,7 +403,7 @@ class LinearInterpolator:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -426,7 +426,7 @@ class LinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -454,7 +454,7 @@ class LinearInterpolator:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -473,7 +473,7 @@ class LinearInterpolator:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -508,17 +508,17 @@ class LinearInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -535,11 +535,11 @@ class LinearInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -578,7 +578,7 @@ class LinearInterpolatorDF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -589,7 +589,7 @@ class LinearInterpolatorDF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -612,7 +612,7 @@ class LinearInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -640,7 +640,7 @@ class LinearInterpolatorDF:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -659,7 +659,7 @@ class LinearInterpolatorDF:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -694,17 +694,17 @@ class LinearInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -721,11 +721,11 @@ class LinearInterpolatorDF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -764,7 +764,7 @@ class LinearInterpolatorF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -775,7 +775,7 @@ class LinearInterpolatorF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -798,7 +798,7 @@ class LinearInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -826,7 +826,7 @@ class LinearInterpolatorF:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -845,7 +845,7 @@ class LinearInterpolatorF:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -880,17 +880,17 @@ class LinearInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -907,11 +907,11 @@ class LinearInterpolatorF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -950,7 +950,7 @@ class LinearInterpolatorFD:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -961,7 +961,7 @@ class LinearInterpolatorFD:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -984,7 +984,7 @@ class LinearInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1012,7 +1012,7 @@ class LinearInterpolatorFD:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1031,7 +1031,7 @@ class LinearInterpolatorFD:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1066,17 +1066,17 @@ class LinearInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -1093,11 +1093,11 @@ class LinearInterpolatorFD:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -1136,7 +1136,7 @@ class NearestInterpolator:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -1147,7 +1147,7 @@ class NearestInterpolator:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -1170,7 +1170,7 @@ class NearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1198,7 +1198,7 @@ class NearestInterpolator:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1217,7 +1217,7 @@ class NearestInterpolator:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1252,17 +1252,17 @@ class NearestInterpolator:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -1279,11 +1279,11 @@ class NearestInterpolator:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -1322,7 +1322,7 @@ class NearestInterpolatorDF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -1333,7 +1333,7 @@ class NearestInterpolatorDF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -1356,7 +1356,7 @@ class NearestInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1384,7 +1384,7 @@ class NearestInterpolatorDF:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1403,7 +1403,7 @@ class NearestInterpolatorDF:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1438,17 +1438,17 @@ class NearestInterpolatorDF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -1465,11 +1465,11 @@ class NearestInterpolatorDF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -1508,7 +1508,7 @@ class NearestInterpolatorDI:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> int:
+    def __call__(self, target_x: typing.SupportsFloat) -> int:
         """
         get the interpolated y value for given x target
         
@@ -1519,7 +1519,7 @@ class NearestInterpolatorDI:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[int]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[int]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -1542,7 +1542,7 @@ class NearestInterpolatorDI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[int] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1570,7 +1570,7 @@ class NearestInterpolatorDI:
         """
         Return object information as string
         """
-    def append(self, x: float, y: int) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsInt) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1589,7 +1589,7 @@ class NearestInterpolatorDI:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[int]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1624,17 +1624,17 @@ class NearestInterpolatorDI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> int:
+    def get_y(self, target_x: typing.SupportsFloat) -> int:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[int], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -1651,11 +1651,11 @@ class NearestInterpolatorDI:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[int]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -1694,7 +1694,7 @@ class NearestInterpolatorDO:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> typing.Any:
+    def __call__(self, target_x: typing.SupportsFloat) -> typing.Any:
         """
         get the interpolated y value for given x target
         
@@ -1705,7 +1705,7 @@ class NearestInterpolatorDO:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[typing.Any]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[typing.Any]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -1728,7 +1728,7 @@ class NearestInterpolatorDO:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1756,7 +1756,7 @@ class NearestInterpolatorDO:
         """
         Return object information as string
         """
-    def append(self, x: float, y: typing.Any) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.Any) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1775,7 +1775,7 @@ class NearestInterpolatorDO:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[typing.Any]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1810,17 +1810,17 @@ class NearestInterpolatorDO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> typing.Any:
+    def get_y(self, target_x: typing.SupportsFloat) -> typing.Any:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[typing.Any], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -1837,11 +1837,11 @@ class NearestInterpolatorDO:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[typing.Any]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -1880,7 +1880,7 @@ class NearestInterpolatorF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -1891,7 +1891,7 @@ class NearestInterpolatorF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -1914,7 +1914,7 @@ class NearestInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1942,7 +1942,7 @@ class NearestInterpolatorF:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -1961,7 +1961,7 @@ class NearestInterpolatorF:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -1996,17 +1996,17 @@ class NearestInterpolatorF:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -2023,11 +2023,11 @@ class NearestInterpolatorF:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -2066,7 +2066,7 @@ class NearestInterpolatorFD:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> float:
+    def __call__(self, target_x: typing.SupportsFloat) -> float:
         """
         get the interpolated y value for given x target
         
@@ -2077,7 +2077,7 @@ class NearestInterpolatorFD:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[float]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[float]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -2100,7 +2100,7 @@ class NearestInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[float] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2128,7 +2128,7 @@ class NearestInterpolatorFD:
         """
         Return object information as string
         """
-    def append(self, x: float, y: float) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsFloat) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -2147,7 +2147,7 @@ class NearestInterpolatorFD:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[float]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -2182,17 +2182,17 @@ class NearestInterpolatorFD:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> float:
+    def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[float], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -2209,11 +2209,11 @@ class NearestInterpolatorFD:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[float]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsFloat]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -2252,7 +2252,7 @@ class NearestInterpolatorFI:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> int:
+    def __call__(self, target_x: typing.SupportsFloat) -> int:
         """
         get the interpolated y value for given x target
         
@@ -2263,7 +2263,7 @@ class NearestInterpolatorFI:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[int]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[int]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -2286,7 +2286,7 @@ class NearestInterpolatorFI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[int] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2314,7 +2314,7 @@ class NearestInterpolatorFI:
         """
         Return object information as string
         """
-    def append(self, x: float, y: int) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.SupportsInt) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -2333,7 +2333,7 @@ class NearestInterpolatorFI:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[int]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -2368,17 +2368,17 @@ class NearestInterpolatorFI:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> int:
+    def get_y(self, target_x: typing.SupportsFloat) -> int:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[int], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -2395,11 +2395,11 @@ class NearestInterpolatorFI:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[int]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.SupportsInt]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -2438,7 +2438,7 @@ class NearestInterpolatorFO:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float) -> typing.Any:
+    def __call__(self, target_x: typing.SupportsFloat) -> typing.Any:
         """
         get the interpolated y value for given x target
         
@@ -2449,7 +2449,7 @@ class NearestInterpolatorFO:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float]) -> list[typing.Any]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat]) -> list[typing.Any]:
         """
         get nearest y values for given x targets (vectorized call)
         
@@ -2472,7 +2472,7 @@ class NearestInterpolatorFO:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Y: list[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2500,7 +2500,7 @@ class NearestInterpolatorFO:
         """
         Return object information as string
         """
-    def append(self, x: float, y: typing.Any) -> None:
+    def append(self, x: typing.SupportsFloat, y: typing.Any) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
         Exception: raises domain error, strong exception guarantee
@@ -2519,7 +2519,7 @@ class NearestInterpolatorFO:
         """
         check if the interpolator contains data
         """
-    def extend(self, X: list[float], Y: list[typing.Any]) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any]) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         Exception: raises domain error, strong exception guarantee
@@ -2554,17 +2554,17 @@ class NearestInterpolatorFO:
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object (enumerator) that describes the extrapolation mode
         """
-    def get_y(self, target_x: float) -> typing.Any:
+    def get_y(self, target_x: typing.SupportsFloat) -> typing.Any:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def insert(self, X: list[float], Y: list[typing.Any], bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any], bool: bool = False) -> None:
         """
         append x and y value lists to the interpolator data (vectorized call)
         This call is much more expensive than extend as it requires copying
@@ -2581,11 +2581,11 @@ class NearestInterpolatorFO:
             this indicates that X is already sorted in ascending order.
             (default: false)
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_data_XY(self, X: list[float], Y: list[typing.Any]) -> None:
+    def set_data_XY(self, X: collections.abc.Sequence[typing.SupportsFloat], Y: collections.abc.Sequence[typing.Any]) -> None:
         """
         change the input data to these X and Y vectors
         
@@ -2629,7 +2629,7 @@ class SlerpInterpolator:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def __call__(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -2643,7 +2643,7 @@ class SlerpInterpolator:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -2670,7 +2670,7 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Yaw: list[float] = [], Pitch: list[float] = [], Roll: list[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -2709,7 +2709,7 @@ class SlerpInterpolator:
         Return object information as string
         """
     @typing.overload
-    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -2729,7 +2729,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -2751,7 +2751,7 @@ class SlerpInterpolator:
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -2774,7 +2774,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -2795,7 +2795,7 @@ class SlerpInterpolator:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         return the internal yrp data vector
         
@@ -2818,12 +2818,12 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -2846,7 +2846,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -2860,12 +2860,12 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -2889,7 +2889,7 @@ class SlerpInterpolator:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -2926,7 +2926,7 @@ class SlerpInterpolator:
         convert object to bytearray
         """
     @typing.overload
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def ypr(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -2940,7 +2940,7 @@ class SlerpInterpolator:
             corresponding y value
         """
     @typing.overload
-    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def ypr(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -2976,7 +2976,7 @@ class SlerpInterpolatorDF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def __call__(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -2990,7 +2990,7 @@ class SlerpInterpolatorDF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3017,7 +3017,7 @@ class SlerpInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Yaw: list[float] = [], Pitch: list[float] = [], Roll: list[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3056,7 +3056,7 @@ class SlerpInterpolatorDF:
         Return object information as string
         """
     @typing.overload
-    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3076,7 +3076,7 @@ class SlerpInterpolatorDF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3098,7 +3098,7 @@ class SlerpInterpolatorDF:
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3121,7 +3121,7 @@ class SlerpInterpolatorDF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3142,7 +3142,7 @@ class SlerpInterpolatorDF:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         return the internal yrp data vector
         
@@ -3165,12 +3165,12 @@ class SlerpInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3193,7 +3193,7 @@ class SlerpInterpolatorDF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3207,12 +3207,12 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3236,7 +3236,7 @@ class SlerpInterpolatorDF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3273,7 +3273,7 @@ class SlerpInterpolatorDF:
         convert object to bytearray
         """
     @typing.overload
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def ypr(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3287,7 +3287,7 @@ class SlerpInterpolatorDF:
             corresponding y value
         """
     @typing.overload
-    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def ypr(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3323,7 +3323,7 @@ class SlerpInterpolatorF:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def __call__(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3337,7 +3337,7 @@ class SlerpInterpolatorF:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3364,7 +3364,7 @@ class SlerpInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Yaw: list[float] = [], Pitch: list[float] = [], Roll: list[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3403,7 +3403,7 @@ class SlerpInterpolatorF:
         Return object information as string
         """
     @typing.overload
-    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3423,7 +3423,7 @@ class SlerpInterpolatorF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3445,7 +3445,7 @@ class SlerpInterpolatorF:
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3468,7 +3468,7 @@ class SlerpInterpolatorF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3489,7 +3489,7 @@ class SlerpInterpolatorF:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         return the internal yrp data vector
         
@@ -3512,12 +3512,12 @@ class SlerpInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3540,7 +3540,7 @@ class SlerpInterpolatorF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3554,12 +3554,12 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3583,7 +3583,7 @@ class SlerpInterpolatorF:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3620,7 +3620,7 @@ class SlerpInterpolatorF:
         convert object to bytearray
         """
     @typing.overload
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def ypr(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3634,7 +3634,7 @@ class SlerpInterpolatorF:
             corresponding y value
         """
     @typing.overload
-    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def ypr(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3670,7 +3670,7 @@ class SlerpInterpolatorFD:
         create T_CLASS object from bytearray
         """
     @typing.overload
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def __call__(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3684,7 +3684,7 @@ class SlerpInterpolatorFD:
             corresponding y value
         """
     @typing.overload
-    def __call__(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def __call__(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3711,7 +3711,7 @@ class SlerpInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: list[float] = [], Yaw: list[float] = [], Pitch: list[float] = [], Roll: list[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3750,7 +3750,7 @@ class SlerpInterpolatorFD:
         Return object information as string
         """
     @typing.overload
-    def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3770,7 +3770,7 @@ class SlerpInterpolatorFD:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def append(self, x: float, ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> None:
+    def append(self, x: typing.SupportsFloat, ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> None:
         """
         append an x, yaw, pitch, roll data point
         
@@ -3792,7 +3792,7 @@ class SlerpInterpolatorFD:
         check if the interpolator contains data
         """
     @typing.overload
-    def extend(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3815,7 +3815,7 @@ class SlerpInterpolatorFD:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def extend(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def extend(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3836,7 +3836,7 @@ class SlerpInterpolatorFD:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         return the internal yrp data vector
         
@@ -3859,12 +3859,12 @@ class SlerpInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def insert(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
         
@@ -3887,7 +3887,7 @@ class SlerpInterpolatorFD:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def insert(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3901,12 +3901,12 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], Yaw: list[float], Pitch: list[float], Roll: list[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], Yaw: collections.abc.Sequence[typing.SupportsFloat], Pitch: collections.abc.Sequence[typing.SupportsFloat], Roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3930,7 +3930,7 @@ class SlerpInterpolatorFD:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
     @typing.overload
-    def set_data_XYPR(self, X: list[float], YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: collections.abc.Sequence[typing.SupportsFloat], YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3967,7 +3967,7 @@ class SlerpInterpolatorFD:
         convert object to bytearray
         """
     @typing.overload
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def ypr(self, target_x: typing.SupportsFloat, output_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3981,7 +3981,7 @@ class SlerpInterpolatorFD:
             corresponding y value
         """
     @typing.overload
-    def ypr(self, targets_x: list[float], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+    def ypr(self, targets_x: collections.abc.Sequence[typing.SupportsFloat], output_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
         """
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -4021,7 +4021,7 @@ class t_extr_mode:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -4034,7 +4034,7 @@ class t_extr_mode:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

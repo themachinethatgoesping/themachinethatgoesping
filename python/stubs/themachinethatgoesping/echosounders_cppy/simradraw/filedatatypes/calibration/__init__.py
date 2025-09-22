@@ -39,7 +39,7 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
     def __init__(self, other: themachinethatgoesping.echosounders_cppy.filetemplates.WaterColumnCalibration) -> None:
         ...
     @typing.overload
-    def __init__(self, environment: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment, parameters: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel, transceiver_information: themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.TransceiverInformation, filter_stages: tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1], n_complex_samples: int) -> None:
+    def __init__(self, environment: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment, parameters: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel, transceiver_information: themachinethatgoesping.echosounders_cppy.simradraw.filedatatypes.TransceiverInformation, filter_stages: tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1], n_complex_samples: typing.SupportsInt) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -59,7 +59,7 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
         ...
     def check_modifying_base_calibration_allowed(self) -> None:
         ...
-    def compute_effective_pulse_duration_s(self, round_to_full_samples: bool = True, start_phase_degrees: float = 0.0) -> float:
+    def compute_effective_pulse_duration_s(self, round_to_full_samples: bool = True, start_phase_degrees: typing.SupportsFloat = 0.0) -> float:
         """
         Compute the effective pulse duration by integrating the filtered
         transmit pulse.
@@ -79,7 +79,7 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
         Returns:
             float
         """
-    def compute_filtered_transmit_pulse(self, start_phase_degrees: float = 0.0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.complex64]]:
+    def compute_filtered_transmit_pulse(self, start_phase_degrees: typing.SupportsFloat = 0.0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.complex64]]:
         """
         This function computes the filtered transmit signal from the
         parameters set in this calibration. It is used to generate the
@@ -110,7 +110,7 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
         Returns:
             float
         """
-    def compute_raw_transmit_pulse(self, start_phase_degrees: float = 0.0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
+    def compute_raw_transmit_pulse(self, start_phase_degrees: typing.SupportsFloat = 0.0) -> tuple[numpy.ndarray[numpy.float32], numpy.ndarray[numpy.float32]]:
         """
         This function computes the raw, unfiltered transmit signal from the
         parameters set in this calibration. It is used as input for the
@@ -136,11 +136,11 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
         """
         return a copy using the c++ default copy constructor
         """
-    def force_absorption_db_m(self, forced_absorption_db_m: float | None) -> None:
+    def force_absorption_db_m(self, forced_absorption_db_m: typing.SupportsFloat | None) -> None:
         ...
-    def force_effective_pulse_duration_s(self, forced_effective_pulse_duration_s: float | None = None) -> None:
+    def force_effective_pulse_duration_s(self, forced_effective_pulse_duration_s: typing.SupportsFloat | None = None) -> None:
         ...
-    def force_sound_velocity_m_s(self, forced_sound_velocity_m_s: float | None) -> None:
+    def force_sound_velocity_m_s(self, forced_sound_velocity_m_s: typing.SupportsFloat | None) -> None:
         ...
     def get_absorption_db_m(self) -> float:
         ...
@@ -210,13 +210,13 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def initialized(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -224,32 +224,32 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_cppy.f
     def set_environment_parameters(self, environment: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Environment) -> None:
         ...
     @typing.overload
-    def set_environment_parameters(self, reference_depth_m: float, temperature_c: float, salinity_psu: float, acidity_ph: float = 8.0600004196167) -> None:
+    def set_environment_parameters(self, reference_depth_m: typing.SupportsFloat, temperature_c: typing.SupportsFloat, salinity_psu: typing.SupportsFloat, acidity_ph: typing.SupportsFloat = 8.0600004196167) -> None:
         ...
     @typing.overload
-    def set_environment_parameters(self, forced_sound_velocity_m_s: float, forced_absorption_db_m: float) -> None:
+    def set_environment_parameters(self, forced_sound_velocity_m_s: typing.SupportsFloat, forced_absorption_db_m: typing.SupportsFloat) -> None:
         ...
     @typing.overload
     def set_filter_parameters(self, filter_stages: tuple[themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1, themachinethatgoesping.echosounders_cppy.simradraw.datagrams.FIL1]) -> None:
         ...
     @typing.overload
-    def set_filter_parameters(self, stage1_decimation_factor: int, stage1_coefficients: numpy.ndarray[numpy.complex64], stage2_decimation_factor: int, stage2_coefficients: numpy.ndarray[numpy.complex64]) -> None:
+    def set_filter_parameters(self, stage1_decimation_factor: typing.SupportsInt, stage1_coefficients: numpy.ndarray[numpy.complex64], stage2_decimation_factor: typing.SupportsInt, stage2_coefficients: numpy.ndarray[numpy.complex64]) -> None:
         ...
-    def set_optional_parameters(self, rounded_latitude_deg: float | None = None, rounded_longitude_deg: float | None = None) -> None:
+    def set_optional_parameters(self, rounded_latitude_deg: typing.SupportsFloat | None = None, rounded_longitude_deg: typing.SupportsFloat | None = None) -> None:
         ...
-    def set_power_calibration_parameters(self, n_complex_samples: int, impedance_factor: float | None = None) -> None:
+    def set_power_calibration_parameters(self, n_complex_samples: typing.SupportsInt, impedance_factor: typing.SupportsFloat | None = None) -> None:
         ...
     @typing.overload
     def set_runtime_parameters(self, parameters: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel) -> None:
         ...
     @typing.overload
-    def set_runtime_parameters(self, frequency_hz: float, transmit_power_w: float, nominal_pulse_duration_s: float, slope: float, sample_interval_s: float) -> None:
+    def set_runtime_parameters(self, frequency_hz: typing.SupportsFloat, transmit_power_w: typing.SupportsFloat, nominal_pulse_duration_s: typing.SupportsFloat, slope: typing.SupportsFloat, sample_interval_s: typing.SupportsFloat) -> None:
         ...
     @typing.overload
-    def set_transducer_parameters(self, transducer: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer, pulse_duration_index: int) -> None:
+    def set_transducer_parameters(self, transducer: themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams.XMLConfigurationTransceiverChannelTransducer, pulse_duration_index: typing.SupportsInt) -> None:
         ...
     @typing.overload
-    def set_transducer_parameters(self, transducer_gain_db: float, sa_correction_db: float, equivalent_beam_angle_db: float, frequency_nominal_hz: float) -> None:
+    def set_transducer_parameters(self, transducer_gain_db: typing.SupportsFloat, sa_correction_db: typing.SupportsFloat, equivalent_beam_angle_db: typing.SupportsFloat, frequency_nominal_hz: typing.SupportsFloat) -> None:
         ...
     def setup_simrad_calibration(self) -> None:
         ...

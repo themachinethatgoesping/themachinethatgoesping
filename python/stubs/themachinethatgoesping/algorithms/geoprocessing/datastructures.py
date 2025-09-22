@@ -2,8 +2,8 @@
 Submodule that holds datastructures that hold the raytracers/georeferncing results
 """
 from __future__ import annotations
+import collections.abc
 import numpy
-import pybind11_stubgen.typing_ext
 import typing
 __all__: list[str] = ['BeamSampleParameters', 'RaytraceResult', 'RaytraceResults_1', 'RaytraceResults_2', 'RaytraceResults_3', 'SampleDirectionsRange_1', 'SampleDirectionsRange_2', 'SampleDirectionsRange_3', 'SampleDirectionsTime_1', 'SampleDirectionsTime_2', 'SampleDirectionsTime_3', 'SampleDirections_1', 'SampleDirections_2', 'SampleDirections_3', 'SampleIndices_1', 'SampleIndices_2', 'SampleIndices_3', 'XYZ_1', 'XYZ_2', 'XYZ_3']
 class BeamSampleParameters:
@@ -29,7 +29,7 @@ class BeamSampleParameters:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, number_of_beams: int) -> None:
+    def __init__(self, number_of_beams: typing.SupportsInt) -> None:
         """
         Construct a new BeamSampleParameters object (all values uninitialized)
         
@@ -72,11 +72,11 @@ class BeamSampleParameters:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -125,7 +125,7 @@ class RaytraceResult:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, x: float, y: float, z: float, true_range: float) -> None:
+    def __init__(self, x: typing.SupportsFloat, y: typing.SupportsFloat, z: typing.SupportsFloat, true_range: typing.SupportsFloat) -> None:
         """
         Construct a new RaytraceResult object
         
@@ -159,11 +159,11 @@ class RaytraceResult:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -177,7 +177,7 @@ class RaytraceResult:
         < in m, accumulated ray path length
         """
     @true_range.setter
-    def true_range(self, arg0: float) -> None:
+    def true_range(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def x(self) -> float:
@@ -185,7 +185,7 @@ class RaytraceResult:
         < in m, positive forward
         """
     @x.setter
-    def x(self, arg0: float) -> None:
+    def x(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def y(self) -> float:
@@ -193,7 +193,7 @@ class RaytraceResult:
         < in m, positive starboard
         """
     @y.setter
-    def y(self, arg0: float) -> None:
+    def y(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def z(self) -> float:
@@ -201,7 +201,7 @@ class RaytraceResult:
         < in m, positive downwards
         """
     @z.setter
-    def z(self, arg0: float) -> None:
+    def z(self, arg0: typing.SupportsFloat) -> None:
         ...
 class RaytraceResults_1(XYZ_1):
     """
@@ -212,7 +212,7 @@ class RaytraceResults_1(XYZ_1):
     position (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[RaytraceResults_1]) -> RaytraceResults_1:
+    def concat(arg0: collections.abc.Sequence[RaytraceResults_1]) -> RaytraceResults_1:
         """
         Concatenate multiple RaytraceResults objects Note: the dimensionality
         of the RaytraceResults objects will be lost (transformed
@@ -245,7 +245,7 @@ class RaytraceResults_1(XYZ_1):
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -288,11 +288,11 @@ class RaytraceResults_1(XYZ_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -317,7 +317,7 @@ class RaytraceResults_2(XYZ_2):
     position (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[RaytraceResults_2]) -> RaytraceResults_1:
+    def concat(arg0: collections.abc.Sequence[RaytraceResults_2]) -> RaytraceResults_1:
         """
         Concatenate multiple RaytraceResults objects Note: the dimensionality
         of the RaytraceResults objects will be lost (transformed
@@ -350,7 +350,7 @@ class RaytraceResults_2(XYZ_2):
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -393,11 +393,11 @@ class RaytraceResults_2(XYZ_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -422,7 +422,7 @@ class RaytraceResults_3(XYZ_3):
     position (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[RaytraceResults_3]) -> RaytraceResults_1:
+    def concat(arg0: collections.abc.Sequence[RaytraceResults_3]) -> RaytraceResults_1:
         """
         Concatenate multiple RaytraceResults objects Note: the dimensionality
         of the RaytraceResults objects will be lost (transformed
@@ -455,7 +455,7 @@ class RaytraceResults_3(XYZ_3):
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -498,11 +498,11 @@ class RaytraceResults_3(XYZ_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -546,7 +546,7 @@ class SampleDirectionsRange_1(SampleDirections_1):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -595,11 +595,11 @@ class SampleDirectionsRange_1(SampleDirections_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -643,7 +643,7 @@ class SampleDirectionsRange_2(SampleDirections_2):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -692,11 +692,11 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -740,7 +740,7 @@ class SampleDirectionsRange_3(SampleDirections_3):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -789,11 +789,11 @@ class SampleDirectionsRange_3(SampleDirections_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -837,7 +837,7 @@ class SampleDirectionsTime_1(SampleDirections_1):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -886,11 +886,11 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -934,7 +934,7 @@ class SampleDirectionsTime_2(SampleDirections_2):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -983,11 +983,11 @@ class SampleDirectionsTime_2(SampleDirections_2):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1031,7 +1031,7 @@ class SampleDirectionsTime_3(SampleDirections_3):
         Construct a new SampleDirections object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new SampleDirections object (initialize all tensors using
         the specified shape (empty))
@@ -1080,11 +1080,11 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1128,7 +1128,7 @@ class SampleDirections_1:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1169,15 +1169,15 @@ class SampleDirections_1:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(1)"]:
         ...
     def size(self) -> int:
         ...
@@ -1229,7 +1229,7 @@ class SampleDirections_2:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1270,15 +1270,15 @@ class SampleDirections_2:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
         ...
     def size(self) -> int:
         ...
@@ -1330,7 +1330,7 @@ class SampleDirections_3:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1371,15 +1371,15 @@ class SampleDirections_3:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(3)"]:
         ...
     def size(self) -> int:
         ...
@@ -1431,7 +1431,7 @@ class SampleIndices_1:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1472,15 +1472,15 @@ class SampleIndices_1:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(1)"]:
         ...
     def size(self) -> int:
         ...
@@ -1532,7 +1532,7 @@ class SampleIndices_2:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1573,15 +1573,15 @@ class SampleIndices_2:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
         ...
     def size(self) -> int:
         ...
@@ -1633,7 +1633,7 @@ class SampleIndices_3:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1674,15 +1674,15 @@ class SampleIndices_3:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(3)"]:
         ...
     def size(self) -> int:
         ...
@@ -1715,7 +1715,7 @@ class XYZ_1:
     (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[XYZ_1]) -> XYZ_1:
+    def concat(arg0: collections.abc.Sequence[XYZ_1]) -> XYZ_1:
         """
         Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
         objects will be lost (transformed to XYZ<1>)
@@ -1758,7 +1758,7 @@ class XYZ_1:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(1)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1794,26 +1794,26 @@ class XYZ_1:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_minmax_x(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_x(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_y(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_y(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_z(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def rotate(self, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None:
+    def rotate(self, yaw: typing.SupportsFloat = 0.0, pitch: typing.SupportsFloat = 0.0, roll: typing.SupportsFloat = 0.0) -> None:
         """
         Rotate the XYZ object using yaw, pitch, roll in °
         
@@ -1826,7 +1826,7 @@ class XYZ_1:
         Parameter ``roll``:
             in °
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(1)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(1)"]:
         ...
     def size(self) -> int:
         ...
@@ -1834,9 +1834,9 @@ class XYZ_1:
         """
         convert object to bytearray
         """
-    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+    def to_latlon(self, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
         ...
-    def translate(self, x: float = 0.0, y: float = 0.0, z: float = 0.0) -> None:
+    def translate(self, x: typing.SupportsFloat = 0.0, y: typing.SupportsFloat = 0.0, z: typing.SupportsFloat = 0.0) -> None:
         ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:
@@ -1871,7 +1871,7 @@ class XYZ_2:
     (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[XYZ_2]) -> XYZ_1:
+    def concat(arg0: collections.abc.Sequence[XYZ_2]) -> XYZ_1:
         """
         Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
         objects will be lost (transformed to XYZ<1>)
@@ -1914,7 +1914,7 @@ class XYZ_2:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -1950,26 +1950,26 @@ class XYZ_2:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_minmax_x(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_x(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_y(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_y(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_z(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def rotate(self, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None:
+    def rotate(self, yaw: typing.SupportsFloat = 0.0, pitch: typing.SupportsFloat = 0.0, roll: typing.SupportsFloat = 0.0) -> None:
         """
         Rotate the XYZ object using yaw, pitch, roll in °
         
@@ -1982,7 +1982,7 @@ class XYZ_2:
         Parameter ``roll``:
             in °
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
         ...
     def size(self) -> int:
         ...
@@ -1990,9 +1990,9 @@ class XYZ_2:
         """
         convert object to bytearray
         """
-    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+    def to_latlon(self, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
         ...
-    def translate(self, x: float = 0.0, y: float = 0.0, z: float = 0.0) -> None:
+    def translate(self, x: typing.SupportsFloat = 0.0, y: typing.SupportsFloat = 0.0, z: typing.SupportsFloat = 0.0) -> None:
         ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:
@@ -2027,7 +2027,7 @@ class XYZ_3:
     (for coordinate 0) is known.
     """
     @staticmethod
-    def concat(arg0: list[XYZ_3]) -> XYZ_1:
+    def concat(arg0: collections.abc.Sequence[XYZ_3]) -> XYZ_1:
         """
         Concatenate multiple XYZ objects Note: the dimensionality of the XYZ
         objects will be lost (transformed to XYZ<1>)
@@ -2070,7 +2070,7 @@ class XYZ_3:
         Construct a new sample location object (all values set to 0)
         """
     @typing.overload
-    def __init__(self, shape: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def __init__(self, shape: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -2106,26 +2106,26 @@ class XYZ_3:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_minmax_x(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_x(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_y(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_y(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
-    def get_minmax_z(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def get_minmax_z(self) -> typing.Annotated[list[float], "FixedSize(2)"]:
         ...
     def hash(self) -> int:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def rotate(self, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None:
+    def rotate(self, yaw: typing.SupportsFloat = 0.0, pitch: typing.SupportsFloat = 0.0, roll: typing.SupportsFloat = 0.0) -> None:
         """
         Rotate the XYZ object using yaw, pitch, roll in °
         
@@ -2138,7 +2138,7 @@ class XYZ_3:
         Parameter ``roll``:
             in °
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(3)"]:
         ...
     def size(self) -> int:
         ...
@@ -2146,9 +2146,9 @@ class XYZ_3:
         """
         convert object to bytearray
         """
-    def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+    def to_latlon(self, utm_zone: typing.SupportsInt, northern_hemisphere: bool) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
         ...
-    def translate(self, x: float = 0.0, y: float = 0.0, z: float = 0.0) -> None:
+    def translate(self, x: typing.SupportsFloat = 0.0, y: typing.SupportsFloat = 0.0, z: typing.SupportsFloat = 0.0) -> None:
         ...
     @property
     def x(self) -> numpy.ndarray[numpy.float32]:

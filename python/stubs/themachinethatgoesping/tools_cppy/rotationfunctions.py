@@ -2,12 +2,13 @@
 functions for rotating coordinates using libeigen quaternions
 """
 from __future__ import annotations
+import collections.abc
 import numpy
-import pybind11_stubgen.typing_ext
+import numpy.typing
 import typing
 __all__: list[str] = ['quaternion_from_rpy', 'quaternion_from_ypr', 'rotateXYZ', 'rotateYPR', 'rpy_from_quaternion', 'ypr_from_quaternion']
 @typing.overload
-def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
+def quaternion_from_rpy(rpy: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -25,7 +26,7 @@ def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typi
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(roll: float, pitch: float, yaw: float, input_in_degrees: bool = True) -> ...:
+def quaternion_from_rpy(roll: typing.SupportsFloat, pitch: typing.SupportsFloat, yaw: typing.SupportsFloat, input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -43,7 +44,7 @@ def quaternion_from_rpy(roll: float, pitch: float, yaw: float, input_in_degrees:
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(RPY: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_rpy(RPY: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -61,7 +62,7 @@ def quaternion_from_rpy(RPY: list[typing.Annotated[list[float], pybind11_stubgen
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(roll: list[float], pitch: list[float], yaw: list[float], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_rpy(roll: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], yaw: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -79,7 +80,7 @@ def quaternion_from_rpy(roll: list[float], pitch: list[float], yaw: list[float],
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
+def quaternion_from_rpy(rpy: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -97,7 +98,7 @@ def quaternion_from_rpy(rpy: typing.Annotated[list[float], pybind11_stubgen.typi
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(roll: float, pitch: float, yaw: float, input_in_degrees: bool = True) -> ...:
+def quaternion_from_rpy(roll: typing.SupportsFloat, pitch: typing.SupportsFloat, yaw: typing.SupportsFloat, input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -115,7 +116,7 @@ def quaternion_from_rpy(roll: float, pitch: float, yaw: float, input_in_degrees:
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(RPY: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_rpy(RPY: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -133,7 +134,7 @@ def quaternion_from_rpy(RPY: list[typing.Annotated[list[float], pybind11_stubgen
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_rpy(roll: list[float], pitch: list[float], yaw: list[float], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_rpy(roll: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], yaw: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating roll (X), pitch (Y) and yaw
     (Z).
@@ -151,7 +152,7 @@ def quaternion_from_rpy(roll: list[float], pitch: list[float], yaw: list[float],
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
+def quaternion_from_ypr(ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -169,7 +170,7 @@ def quaternion_from_ypr(ypr: typing.Annotated[list[float], pybind11_stubgen.typi
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> ...:
+def quaternion_from_ypr(yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -187,7 +188,7 @@ def quaternion_from_ypr(yaw: float, pitch: float, roll: float, input_in_degrees:
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_ypr(YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -205,7 +206,7 @@ def quaternion_from_ypr(YPR: list[typing.Annotated[list[float], pybind11_stubgen
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(yaw: list[float], pitch: list[float], roll: list[float], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_ypr(yaw: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -223,7 +224,7 @@ def quaternion_from_ypr(yaw: list[float], pitch: list[float], roll: list[float],
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(ypr: typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)], input_in_degrees: bool = True) -> ...:
+def quaternion_from_ypr(ypr: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"], input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -241,7 +242,7 @@ def quaternion_from_ypr(ypr: typing.Annotated[list[float], pybind11_stubgen.typi
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> ...:
+def quaternion_from_ypr(yaw: typing.SupportsFloat, pitch: typing.SupportsFloat, roll: typing.SupportsFloat, input_in_degrees: bool = True) -> ...:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -259,7 +260,7 @@ def quaternion_from_ypr(yaw: float, pitch: float, roll: float, input_in_degrees:
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(YPR: list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_ypr(YPR: collections.abc.Sequence[typing.Annotated[collections.abc.Sequence[typing.SupportsFloat], "FixedSize(3)"]], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -277,7 +278,7 @@ def quaternion_from_ypr(YPR: list[typing.Annotated[list[float], pybind11_stubgen
         EigenQuaternion<t_float>
     """
 @typing.overload
-def quaternion_from_ypr(yaw: list[float], pitch: list[float], roll: list[float], input_in_degrees: bool = True) -> list[..., ...]:
+def quaternion_from_ypr(yaw: collections.abc.Sequence[typing.SupportsFloat], pitch: collections.abc.Sequence[typing.SupportsFloat], roll: collections.abc.Sequence[typing.SupportsFloat], input_in_degrees: bool = True) -> list[..., ...]:
     """
     Create an Eigen quaternion by rotating yaw (Z), pitch (Y) and roll
     (X).
@@ -295,7 +296,7 @@ def quaternion_from_ypr(yaw: list[float], pitch: list[float], roll: list[float],
         EigenQuaternion<t_float>
     """
 @typing.overload
-def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float32[3, 1]]:
+def rotateXYZ(*args, **kwargs) -> typing.Annotated[numpy.typing.NDArray[numpy.float32], "[3, 1]"]:
     """
     Rotate a 3D vector (x, y, z) by quaternion q.
     
@@ -306,7 +307,7 @@ def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float32[3, 1]]:
         rotated vector
     """
 @typing.overload
-def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float32[3, 1]]:
+def rotateXYZ(*args, **kwargs) -> typing.Annotated[numpy.typing.NDArray[numpy.float32], "[3, 1]"]:
     """
     Rotate a 3D vector (x, y, z) by quaternion q.
     
@@ -317,7 +318,7 @@ def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float32[3, 1]]:
         rotated vector
     """
 @typing.overload
-def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float64[3, 1]]:
+def rotateXYZ(*args, **kwargs) -> typing.Annotated[numpy.typing.NDArray[numpy.float64], "[3, 1]"]:
     """
     Rotate a 3D vector (x, y, z) by quaternion q.
     
@@ -328,7 +329,7 @@ def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float64[3, 1]]:
         rotated vector
     """
 @typing.overload
-def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float64[3, 1]]:
+def rotateXYZ(*args, **kwargs) -> typing.Annotated[numpy.typing.NDArray[numpy.float64], "[3, 1]"]:
     """
     Rotate a 3D vector (x, y, z) by quaternion q.
     
@@ -339,27 +340,27 @@ def rotateXYZ(*args, **kwargs) -> numpy.ndarray[numpy.float64[3, 1]]:
         rotated vector
     """
 @typing.overload
-def rotateYPR(yaw1: float, pitch1: float, roll1: float, yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def rotateYPR(yaw1: typing.SupportsFloat, pitch1: typing.SupportsFloat, roll1: typing.SupportsFloat, yaw2: typing.SupportsFloat, pitch2: typing.SupportsFloat, roll2: typing.SupportsFloat, input_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Rotate yaw pitch roll angles by other yaw pitch and roll angles
     """
 @typing.overload
-def rotateYPR(yaw1: list[float], pitch1: list[float], roll1: list[float], yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def rotateYPR(yaw1: collections.abc.Sequence[typing.SupportsFloat], pitch1: collections.abc.Sequence[typing.SupportsFloat], roll1: collections.abc.Sequence[typing.SupportsFloat], yaw2: typing.SupportsFloat, pitch2: typing.SupportsFloat, roll2: typing.SupportsFloat, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Rotate yaw pitch roll angles by other yaw pitch and roll angles
     """
 @typing.overload
-def rotateYPR(yaw1: float, pitch1: float, roll1: float, yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def rotateYPR(yaw1: typing.SupportsFloat, pitch1: typing.SupportsFloat, roll1: typing.SupportsFloat, yaw2: typing.SupportsFloat, pitch2: typing.SupportsFloat, roll2: typing.SupportsFloat, input_in_degrees: bool = True) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Rotate yaw pitch roll angles by other yaw pitch and roll angles
     """
 @typing.overload
-def rotateYPR(yaw1: list[float], pitch1: list[float], roll1: list[float], yaw2: float, pitch2: float, roll2: float, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def rotateYPR(yaw1: collections.abc.Sequence[typing.SupportsFloat], pitch1: collections.abc.Sequence[typing.SupportsFloat], roll1: collections.abc.Sequence[typing.SupportsFloat], yaw2: typing.SupportsFloat, pitch2: typing.SupportsFloat, roll2: typing.SupportsFloat, input_in_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Rotate yaw pitch roll angles by other yaw pitch and roll angles
     """
 @typing.overload
-def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Convert quaternion to roll, pitch, yaw.
     
@@ -379,7 +380,7 @@ def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind
         {roll, pitch, yaw}
     """
 @typing.overload
-def rpy_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def rpy_from_quaternion(Q: collections.abc.Sequence[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Convert quaternion to roll, pitch, yaw.
     
@@ -399,7 +400,7 @@ def rpy_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> li
         {roll, pitch, yaw}
     """
 @typing.overload
-def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Convert quaternion to roll, pitch, yaw.
     
@@ -419,7 +420,7 @@ def rpy_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind
         {roll, pitch, yaw}
     """
 @typing.overload
-def rpy_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def rpy_from_quaternion(Q: collections.abc.Sequence[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Convert quaternion to roll, pitch, yaw.
     
@@ -439,7 +440,7 @@ def rpy_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> li
         {roll, pitch, yaw}
     """
 @typing.overload
-def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Convert quaternion to yaw, pitch, roll.
     
@@ -459,7 +460,7 @@ def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind
         {yaw, pitch, roll}
     """
 @typing.overload
-def ypr_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def ypr_from_quaternion(Q: collections.abc.Sequence[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Convert quaternion to yaw, pitch, roll.
     
@@ -479,7 +480,7 @@ def ypr_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> li
         {yaw, pitch, roll}
     """
 @typing.overload
-def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], "FixedSize(3)"]:
     """
     Convert quaternion to yaw, pitch, roll.
     
@@ -499,7 +500,7 @@ def ypr_from_quaternion(*args, **kwargs) -> typing.Annotated[list[float], pybind
         {yaw, pitch, roll}
     """
 @typing.overload
-def ypr_from_quaternion(Q: list[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]]:
+def ypr_from_quaternion(Q: collections.abc.Sequence[..., ...], output_to_degrees: bool = True) -> list[typing.Annotated[list[float], "FixedSize(3)"]]:
     """
     Convert quaternion to yaw, pitch, roll.
     

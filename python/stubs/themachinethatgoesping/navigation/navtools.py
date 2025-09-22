@@ -2,6 +2,7 @@
 Convenient functions for converting latlon and utm strings.
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.navigation.datastructures
 import typing
@@ -31,7 +32,7 @@ class t_latlon_format:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -44,7 +45,7 @@ class t_latlon_format:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...
@@ -57,7 +58,7 @@ class t_latlon_format:
     def value(self) -> int:
         ...
 @typing.overload
-def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+def compute_latlon_distance_m(lat1: typing.SupportsFloat, lon1: typing.SupportsFloat, lat2: typing.SupportsFloat, lon2: typing.SupportsFloat) -> float:
     """
     Compute the distance in meters between two latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -81,7 +82,7 @@ def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float
         Distance between the two coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+def compute_latlon_distance_m(lat1: typing.SupportsFloat, lon1: typing.SupportsFloat, lat2: typing.SupportsFloat, lon2: typing.SupportsFloat) -> float:
     """
     Compute the distance in meters between two latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -153,7 +154,7 @@ def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navig
         Distance between the two coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float:
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[typing.SupportsFloat, typing.SupportsFloat], geolocation_latlon_2: tuple[typing.SupportsFloat, typing.SupportsFloat]) -> float:
     """
     Compute the distance in meters between two latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -177,7 +178,7 @@ def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geoloca
         Distance between the two coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float:
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[typing.SupportsFloat, typing.SupportsFloat], geolocation_latlon_2: tuple[typing.SupportsFloat, typing.SupportsFloat]) -> float:
     """
     Compute the distance in meters between two latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -245,7 +246,7 @@ def compute_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longitud
         Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
+def compute_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the distances in meters between consecutive latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -267,7 +268,7 @@ def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.
         Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
+def compute_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the distances in meters between consecutive latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -289,7 +290,7 @@ def compute_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.
         Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+def compute_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[tuple[typing.SupportsFloat, typing.SupportsFloat]]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the distances in meters between consecutive latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -311,7 +312,7 @@ def compute_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -
         Vector of distances between consecutive coordinates in meters.
     """
 @typing.overload
-def compute_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+def compute_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[tuple[typing.SupportsFloat, typing.SupportsFloat]]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the distances in meters between consecutive latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -379,7 +380,7 @@ def cumulative_latlon_distances_m(latitudes: numpy.ndarray[numpy.float64], longi
         meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
+def cumulative_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[themachinethatgoesping.navigation.datastructures.GeolocationLatLon]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the cumulative distances in meters between consecutive
     latitude-longitude coordinates using the WGS84 ellipsoid.
@@ -402,7 +403,7 @@ def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoespi
         meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
+def cumulative_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[themachinethatgoesping.navigation.datastructures.SensordataLatLon]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the cumulative distances in meters between consecutive
     latitude-longitude coordinates using the WGS84 ellipsoid.
@@ -425,7 +426,7 @@ def cumulative_latlon_distances_m(geolocations_latlon: list[themachinethatgoespi
         meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+def cumulative_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[tuple[typing.SupportsFloat, typing.SupportsFloat]]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the cumulative distances in meters between consecutive
     latitude-longitude coordinates using the WGS84 ellipsoid.
@@ -448,7 +449,7 @@ def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]
         meters.
     """
 @typing.overload
-def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]) -> numpy.ndarray[numpy.float64]:
+def cumulative_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[tuple[typing.SupportsFloat, typing.SupportsFloat]]) -> numpy.ndarray[numpy.float64]:
     """
     Compute the cumulative distances in meters between consecutive
     latitude-longitude coordinates using the WGS84 ellipsoid.
@@ -471,7 +472,7 @@ def cumulative_latlon_distances_m(geolocations_latlon: list[tuple[float, float]]
         meters.
     """
 @typing.overload
-def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
+def latitude_to_string(latitude: typing.SupportsFloat, format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -489,7 +490,7 @@ def latitude_to_string(latitude: float, format: t_latlon_format = ..., precision
         converted latitude string
     """
 @typing.overload
-def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., precision: int = 6) -> list[str]:
+def latitude_to_string(latitude: collections.abc.Sequence[typing.SupportsFloat], format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
     """
     convert a latitude value to a string
     
@@ -506,10 +507,10 @@ def latitude_to_string(latitude: list[float], format: t_latlon_format = ..., pre
     Returns:
         converted latitude string
     """
-def latlon_to_utm(latitude: numpy.ndarray[numpy.float64], longitude: numpy.ndarray[numpy.float64], setzone: int = -1, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64], int, bool]:
+def latlon_to_utm(latitude: numpy.ndarray[numpy.float64], longitude: numpy.ndarray[numpy.float64], setzone: typing.SupportsInt = -1, mp_cores: typing.SupportsInt = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64], int, bool]:
     ...
 @typing.overload
-def longitude_to_string(longitude: float, format: t_latlon_format = ..., precision: int = 6) -> str:
+def longitude_to_string(longitude: typing.SupportsFloat, format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -527,7 +528,7 @@ def longitude_to_string(longitude: float, format: t_latlon_format = ..., precisi
         converted latitude string
     """
 @typing.overload
-def longitude_to_string(longitude: list[float], format: t_latlon_format = ..., precision: int = 6) -> list[str]:
+def longitude_to_string(longitude: collections.abc.Sequence[typing.SupportsFloat], format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
     """
     convert a latitude value to a string
     
@@ -545,10 +546,10 @@ def longitude_to_string(longitude: list[float], format: t_latlon_format = ..., p
         converted latitude string
     """
 @typing.overload
-def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: int, northern_hemisphere: bool, mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: typing.SupportsInt, northern_hemisphere: bool, mp_cores: typing.SupportsInt = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     ...
 @typing.overload
-def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: numpy.ndarray[numpy.int32], northern_hemisphere: numpy.ndarray[numpy.int32], mp_cores: int = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
+def utm_to_latlon(northing: numpy.ndarray[numpy.float64], easting: numpy.ndarray[numpy.float64], zone: numpy.ndarray[numpy.int32], northern_hemisphere: numpy.ndarray[numpy.int32], mp_cores: typing.SupportsInt = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64]]:
     ...
 degrees: t_latlon_format  # value = <t_latlon_format.degrees: 0>
 minutes: t_latlon_format  # value = <t_latlon_format.minutes: 1>

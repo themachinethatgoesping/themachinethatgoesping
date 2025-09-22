@@ -2,7 +2,7 @@
 SimradRaw EK80 XML datagram classes (subtypes of XML0)
 """
 from __future__ import annotations
-import themachinethatgoesping.algorithms.signalprocessing.datastructures
+import collections.abc
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import typing
@@ -49,11 +49,11 @@ class ChannelConfiguration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -81,8 +81,6 @@ class XMLConfigurationActivePingMode:
     XML base datagram
     """
     Mode: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationActivePingMode:
         """
@@ -118,13 +116,13 @@ class XMLConfigurationActivePingMode:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -132,31 +130,25 @@ class XMLConfigurationActivePingMode:
         """
         convert object to bytearray
         """
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XMLConfigurationTransceiverChannelTransducer:
     """
     XML base datagram
     """
-    AngleOffsetAlongship: float
-    AngleOffsetAthwartship: float
-    AngleSensitivityAlongship: float
-    AngleSensitivityAthwartship: float
     ArticleNumber: str
     BeamType: t_BeamType
-    BeamWidthAlongship: float
-    BeamWidthAthwartship: float
-    DirectivityDropAt2XBeamWidth: float
-    EquivalentBeamAngle: float
-    Frequency: float
-    FrequencyMaximum: float
-    FrequencyMinimum: float
-    FrequencyPars: list[XML_Configuration_Transceiver_Channel_FrequencyPar]
-    Gain: list[float]
-    MaxTxPowerTransducer: float
-    SaCorrection: list[float]
-    SerialNumber: int
     TransducerName: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XMLConfigurationTransceiverChannelTransducer:
         """
@@ -192,13 +184,13 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -206,20 +198,123 @@ class XMLConfigurationTransceiverChannelTransducer:
         """
         convert object to bytearray
         """
+    @property
+    def AngleOffsetAlongship(self) -> float:
+        ...
+    @AngleOffsetAlongship.setter
+    def AngleOffsetAlongship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleOffsetAthwartship(self) -> float:
+        ...
+    @AngleOffsetAthwartship.setter
+    def AngleOffsetAthwartship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleSensitivityAlongship(self) -> float:
+        ...
+    @AngleSensitivityAlongship.setter
+    def AngleSensitivityAlongship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleSensitivityAthwartship(self) -> float:
+        ...
+    @AngleSensitivityAthwartship.setter
+    def AngleSensitivityAthwartship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def BeamWidthAlongship(self) -> float:
+        ...
+    @BeamWidthAlongship.setter
+    def BeamWidthAlongship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def BeamWidthAthwartship(self) -> float:
+        ...
+    @BeamWidthAthwartship.setter
+    def BeamWidthAthwartship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def DirectivityDropAt2XBeamWidth(self) -> float:
+        ...
+    @DirectivityDropAt2XBeamWidth.setter
+    def DirectivityDropAt2XBeamWidth(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def EquivalentBeamAngle(self) -> float:
+        ...
+    @EquivalentBeamAngle.setter
+    def EquivalentBeamAngle(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Frequency(self) -> float:
+        ...
+    @Frequency.setter
+    def Frequency(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def FrequencyMaximum(self) -> float:
+        ...
+    @FrequencyMaximum.setter
+    def FrequencyMaximum(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def FrequencyMinimum(self) -> float:
+        ...
+    @FrequencyMinimum.setter
+    def FrequencyMinimum(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def FrequencyPars(self) -> list[XML_Configuration_Transceiver_Channel_FrequencyPar]:
+        ...
+    @FrequencyPars.setter
+    def FrequencyPars(self, arg0: collections.abc.Sequence[XML_Configuration_Transceiver_Channel_FrequencyPar]) -> None:
+        ...
+    @property
+    def Gain(self) -> list[float]:
+        ...
+    @Gain.setter
+    def Gain(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def MaxTxPowerTransducer(self) -> float:
+        ...
+    @MaxTxPowerTransducer.setter
+    def MaxTxPowerTransducer(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SaCorrection(self) -> list[float]:
+        ...
+    @SaCorrection.setter
+    def SaCorrection(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def SerialNumber(self) -> int:
+        ...
+    @SerialNumber.setter
+    def SerialNumber(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration:
     """
     XML Configuration datagram structure.
     """
     ActivePingMode: XMLConfigurationActivePingMode
     ApplicationName: str
-    ChannelConfigurations: dict[str, ChannelConfiguration]
-    ConfiguredSensors: list[XML_Configuration_Sensor]
     Copyright: str
     FileFormatVersion: str
-    SensorConfigurations: dict[str, list[XML_Configuration_Sensor]]
     TimeBias: str
-    Transceivers: list[XML_Configuration_Transceiver]
-    Transducers: list[XML_Configuration_Transducer]
     Version: str
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration:
@@ -252,11 +347,11 @@ class XML_Configuration:
         """
         return a copy using the c++ default copy constructor
         """
-    def get_prioritized_sensor(self, prio_values: list[str]) -> XML_Configuration_Sensor:
+    def get_prioritized_sensor(self, prio_values: collections.abc.Sequence[str]) -> XML_Configuration_Sensor:
         ...
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_sensors_sorted_by_priority(self, prio_values: list[str]) -> list[XML_Configuration_Sensor]:
+    def get_sensors_sorted_by_priority(self, prio_values: collections.abc.Sequence[str]) -> list[XML_Configuration_Sensor]:
         ...
     def get_transceiver(self, channel_id: str) -> XML_Configuration_Transceiver:
         ...
@@ -270,13 +365,13 @@ class XML_Configuration:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -284,25 +379,44 @@ class XML_Configuration:
         """
         convert object to bytearray
         """
+    @property
+    def ChannelConfigurations(self) -> dict[str, ChannelConfiguration]:
+        ...
+    @ChannelConfigurations.setter
+    def ChannelConfigurations(self, arg0: collections.abc.Mapping[str, ChannelConfiguration]) -> None:
+        ...
+    @property
+    def ConfiguredSensors(self) -> list[XML_Configuration_Sensor]:
+        ...
+    @ConfiguredSensors.setter
+    def ConfiguredSensors(self, arg0: collections.abc.Sequence[XML_Configuration_Sensor]) -> None:
+        ...
+    @property
+    def SensorConfigurations(self) -> dict[str, list[XML_Configuration_Sensor]]:
+        ...
+    @SensorConfigurations.setter
+    def SensorConfigurations(self, arg0: collections.abc.Mapping[str, collections.abc.Sequence[XML_Configuration_Sensor]]) -> None:
+        ...
+    @property
+    def Transceivers(self) -> list[XML_Configuration_Transceiver]:
+        ...
+    @Transceivers.setter
+    def Transceivers(self, arg0: collections.abc.Sequence[XML_Configuration_Transceiver]) -> None:
+        ...
+    @property
+    def Transducers(self) -> list[XML_Configuration_Transducer]:
+        ...
+    @Transducers.setter
+    def Transducers(self, arg0: collections.abc.Sequence[XML_Configuration_Transducer]) -> None:
+        ...
 class XML_Configuration_Sensor:
     """
     XML base datagram
     """
-    AngleX: float
-    AngleY: float
-    AngleZ: float
     Name: str
     Port: str
     TalkerID: str
-    Telegrams: list[XML_Configuration_Sensor_Telegram]
-    Timeout: float
     Type: str
-    Unique: int
-    X: float
-    Y: float
-    Z: float
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor:
         """
@@ -346,13 +460,13 @@ class XML_Configuration_Sensor:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -360,6 +474,72 @@ class XML_Configuration_Sensor:
         """
         convert object to bytearray
         """
+    @property
+    def AngleX(self) -> float:
+        ...
+    @AngleX.setter
+    def AngleX(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleY(self) -> float:
+        ...
+    @AngleY.setter
+    def AngleY(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleZ(self) -> float:
+        ...
+    @AngleZ.setter
+    def AngleZ(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Telegrams(self) -> list[XML_Configuration_Sensor_Telegram]:
+        ...
+    @Telegrams.setter
+    def Telegrams(self, arg0: collections.abc.Sequence[XML_Configuration_Sensor_Telegram]) -> None:
+        ...
+    @property
+    def Timeout(self) -> float:
+        ...
+    @Timeout.setter
+    def Timeout(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Unique(self) -> int:
+        ...
+    @Unique.setter
+    def Unique(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def X(self) -> float:
+        ...
+    @X.setter
+    def X(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Y(self) -> float:
+        ...
+    @Y.setter
+    def Y(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Z(self) -> float:
+        ...
+    @Z.setter
+    def Z(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Sensor_Telegram:
     """
     XML Configuration Sensor Telegram (single <Telegram> node).
@@ -368,9 +548,6 @@ class XML_Configuration_Sensor_Telegram:
     Name: str
     SubscriptionPath: str
     Type: str
-    Values: list[XML_Configuration_Sensor_TelegramValue]
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_Telegram:
         """
@@ -406,7 +583,7 @@ class XML_Configuration_Sensor_Telegram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -414,7 +591,7 @@ class XML_Configuration_Sensor_Telegram:
         """
         Returns true if no unknown children/attributes were encountered.
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -422,14 +599,29 @@ class XML_Configuration_Sensor_Telegram:
         """
         convert object to bytearray
         """
+    @property
+    def Values(self) -> list[XML_Configuration_Sensor_TelegramValue]:
+        ...
+    @Values.setter
+    def Values(self, arg0: collections.abc.Sequence[XML_Configuration_Sensor_TelegramValue]) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Sensor_TelegramValue:
     """
     XML Configuration Sensor Telegram Value (single <Value> node).
     """
     Name: str
-    Priority: int
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Sensor_TelegramValue:
         """
@@ -465,7 +657,7 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -473,7 +665,7 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         Returns true if no unknown children/attributes were encountered.
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -481,25 +673,35 @@ class XML_Configuration_Sensor_TelegramValue:
         """
         convert object to bytearray
         """
+    @property
+    def Priority(self) -> int:
+        ...
+    @Priority.setter
+    def Priority(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Transceiver:
     """
     XML base datagram
     """
-    Channels: list[XML_Configuration_Transceiver_Channel]
     EthernetAddress: str
     IPAddress: str
-    Impedance: float
     MarketSegment: str
-    Multiplexing: int
-    RxSampleFrequency: float
-    SerialNumber: int
     TransceiverName: str
-    TransceiverNumber: int
     TransceiverSoftwareVersion: str
     TransceiverType: str
     Version: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver:
         """
@@ -537,13 +739,13 @@ class XML_Configuration_Transceiver:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -551,23 +753,62 @@ class XML_Configuration_Transceiver:
         """
         convert object to bytearray
         """
+    @property
+    def Channels(self) -> list[XML_Configuration_Transceiver_Channel]:
+        ...
+    @Channels.setter
+    def Channels(self, arg0: collections.abc.Sequence[XML_Configuration_Transceiver_Channel]) -> None:
+        ...
+    @property
+    def Impedance(self) -> float:
+        ...
+    @Impedance.setter
+    def Impedance(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Multiplexing(self) -> int:
+        ...
+    @Multiplexing.setter
+    def Multiplexing(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def RxSampleFrequency(self) -> float:
+        ...
+    @RxSampleFrequency.setter
+    def RxSampleFrequency(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SerialNumber(self) -> int:
+        ...
+    @SerialNumber.setter
+    def SerialNumber(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def TransceiverNumber(self) -> int:
+        ...
+    @TransceiverNumber.setter
+    def TransceiverNumber(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Transceiver_Channel:
     """
     XML base datagram
     """
     ChannelID: str
     ChannelIdShort: str
-    ChannelNumber: int
-    HWChannelConfiguration: int
     LogicalChannelID: str
-    MaxTxPowerTransceiver: float
-    PulseDuration: list[float]
-    PulseDurationFM: list[float]
-    PulseLength: list[float]
-    SampleInterval: list[float]
     Transducer: XMLConfigurationTransceiverChannelTransducer
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel:
         """
@@ -605,13 +846,13 @@ class XML_Configuration_Transceiver_Channel:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -619,20 +860,64 @@ class XML_Configuration_Transceiver_Channel:
         """
         convert object to bytearray
         """
+    @property
+    def ChannelNumber(self) -> int:
+        ...
+    @ChannelNumber.setter
+    def ChannelNumber(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def HWChannelConfiguration(self) -> int:
+        ...
+    @HWChannelConfiguration.setter
+    def HWChannelConfiguration(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def MaxTxPowerTransceiver(self) -> float:
+        ...
+    @MaxTxPowerTransceiver.setter
+    def MaxTxPowerTransceiver(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def PulseDuration(self) -> list[float]:
+        ...
+    @PulseDuration.setter
+    def PulseDuration(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def PulseDurationFM(self) -> list[float]:
+        ...
+    @PulseDurationFM.setter
+    def PulseDurationFM(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def PulseLength(self) -> list[float]:
+        ...
+    @PulseLength.setter
+    def PulseLength(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def SampleInterval(self) -> list[float]:
+        ...
+    @SampleInterval.setter
+    def SampleInterval(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Transceiver_Channel_FrequencyPar:
     """
     XML base datagram
     """
-    AngleOffsetAlongship: float
-    AngleOffsetAthwartship: float
-    BeamWidthAlongship: float
-    BeamWidthAthwartship: float
-    Frequency: float
-    Gain: float
-    Impedance: float
-    Phase: float
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
@@ -668,13 +953,13 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -682,22 +967,73 @@ class XML_Configuration_Transceiver_Channel_FrequencyPar:
         """
         convert object to bytearray
         """
+    @property
+    def AngleOffsetAlongship(self) -> float:
+        ...
+    @AngleOffsetAlongship.setter
+    def AngleOffsetAlongship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def AngleOffsetAthwartship(self) -> float:
+        ...
+    @AngleOffsetAthwartship.setter
+    def AngleOffsetAthwartship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def BeamWidthAlongship(self) -> float:
+        ...
+    @BeamWidthAlongship.setter
+    def BeamWidthAlongship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def BeamWidthAthwartship(self) -> float:
+        ...
+    @BeamWidthAthwartship.setter
+    def BeamWidthAthwartship(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Frequency(self) -> float:
+        ...
+    @Frequency.setter
+    def Frequency(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Gain(self) -> float:
+        ...
+    @Gain.setter
+    def Gain(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Impedance(self) -> float:
+        ...
+    @Impedance.setter
+    def Impedance(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Phase(self) -> float:
+        ...
+    @Phase.setter
+    def Phase(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Configuration_Transducer:
     """
     XML base datagram
     """
-    TransducerAlphaX: float
-    TransducerAlphaY: float
-    TransducerAlphaZ: float
     TransducerCustomName: str
     TransducerMounting: str
     TransducerName: str
-    TransducerOffsetX: float
-    TransducerOffsetY: float
-    TransducerOffsetZ: float
-    TransducerSerialNumber: int
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Configuration_Transducer:
         """
@@ -741,13 +1077,13 @@ class XML_Configuration_Transducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -761,27 +1097,69 @@ class XML_Configuration_Transducer:
         < Seems to be used seldomly?
         """
     @HeadingQuickCalibration.setter
-    def HeadingQuickCalibration(self, arg0: float) -> None:
+    def HeadingQuickCalibration(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerAlphaX(self) -> float:
+        ...
+    @TransducerAlphaX.setter
+    def TransducerAlphaX(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerAlphaY(self) -> float:
+        ...
+    @TransducerAlphaY.setter
+    def TransducerAlphaY(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerAlphaZ(self) -> float:
+        ...
+    @TransducerAlphaZ.setter
+    def TransducerAlphaZ(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerOffsetX(self) -> float:
+        ...
+    @TransducerOffsetX.setter
+    def TransducerOffsetX(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerOffsetY(self) -> float:
+        ...
+    @TransducerOffsetY.setter
+    def TransducerOffsetY(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerOffsetZ(self) -> float:
+        ...
+    @TransducerOffsetZ.setter
+    def TransducerOffsetZ(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransducerSerialNumber(self) -> int:
+        ...
+    @TransducerSerialNumber.setter
+    def TransducerSerialNumber(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
         ...
 class XML_Environment:
     """
     XML base datagram
     """
-    Acidity: float
-    Depth: float
-    DropKeelOffset: float
     DropKeelOffsetIsManual: bool
-    Latitude: float
-    Salinity: float
-    SoundSpeed: float
-    SoundVelocityProfile: list[float]
     SoundVelocitySource: str
-    Temperature: float
-    Transducers: list[XML_Environment_Transducer]
-    WaterLevelDraft: float
     WaterLevelDraftIsManual: bool
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment:
         """
@@ -817,13 +1195,13 @@ class XML_Environment:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -831,14 +1209,83 @@ class XML_Environment:
         """
         convert object to bytearray
         """
+    @property
+    def Acidity(self) -> float:
+        ...
+    @Acidity.setter
+    def Acidity(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Depth(self) -> float:
+        ...
+    @Depth.setter
+    def Depth(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def DropKeelOffset(self) -> float:
+        ...
+    @DropKeelOffset.setter
+    def DropKeelOffset(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Latitude(self) -> float:
+        ...
+    @Latitude.setter
+    def Latitude(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Salinity(self) -> float:
+        ...
+    @Salinity.setter
+    def Salinity(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SoundSpeed(self) -> float:
+        ...
+    @SoundSpeed.setter
+    def SoundSpeed(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SoundVelocityProfile(self) -> list[float]:
+        ...
+    @SoundVelocityProfile.setter
+    def SoundVelocityProfile(self, arg0: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+        ...
+    @property
+    def Temperature(self) -> float:
+        ...
+    @Temperature.setter
+    def Temperature(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Transducers(self) -> list[XML_Environment_Transducer]:
+        ...
+    @Transducers.setter
+    def Transducers(self, arg0: collections.abc.Sequence[XML_Environment_Transducer]) -> None:
+        ...
+    @property
+    def WaterLevelDraft(self) -> float:
+        ...
+    @WaterLevelDraft.setter
+    def WaterLevelDraft(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Environment_Transducer:
     """
     XML base datagram
     """
-    SoundSpeed: float
     TransducerName: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Environment_Transducer:
         """
@@ -874,13 +1321,13 @@ class XML_Environment_Transducer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -888,11 +1335,28 @@ class XML_Environment_Transducer:
         """
         convert object to bytearray
         """
+    @property
+    def SoundSpeed(self) -> float:
+        ...
+    @SoundSpeed.setter
+    def SoundSpeed(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_InitialParameter:
     """
     XML base datagram
     """
-    Channels: list[XML_Parameter_Channel]
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_InitialParameter:
         """
@@ -928,13 +1392,13 @@ class XML_InitialParameter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -942,6 +1406,12 @@ class XML_InitialParameter:
         """
         convert object to bytearray
         """
+    @property
+    def Channels(self) -> list[XML_Parameter_Channel]:
+        ...
+    @Channels.setter
+    def Channels(self, arg0: collections.abc.Sequence[XML_Parameter_Channel]) -> None:
+        ...
 class XML_Node:
     """
     XML base datagram
@@ -995,13 +1465,13 @@ class XML_Node:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def name(self) -> str:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1013,7 +1483,6 @@ class XML_Parameter:
     """
     XML base datagram
     """
-    Channels: list[XML_Parameter_Channel]
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter:
         """
@@ -1049,13 +1518,13 @@ class XML_Parameter:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1063,18 +1532,17 @@ class XML_Parameter:
         """
         convert object to bytearray
         """
+    @property
+    def Channels(self) -> list[XML_Parameter_Channel]:
+        ...
+    @Channels.setter
+    def Channels(self, arg0: collections.abc.Sequence[XML_Parameter_Channel]) -> None:
+        ...
 class XML_Parameter_Channel:
     """
     XML base datagram
     """
     ChannelID: str
-    ChannelMode: int
-    SampleInterval: float
-    Slope: float
-    SoundVelocity: float
-    TransmitPower: float
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Parameter_Channel:
         """
@@ -1118,13 +1586,13 @@ class XML_Parameter_Channel:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1138,7 +1606,13 @@ class XML_Parameter_Channel:
         < TODO: when is this one used
         """
     @BandWidth.setter
-    def BandWidth(self, arg0: float) -> None:
+    def BandWidth(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def ChannelMode(self) -> int:
+        ...
+    @ChannelMode.setter
+    def ChannelMode(self, arg0: typing.SupportsInt) -> None:
         ...
     @property
     def Frequency(self) -> float:
@@ -1146,7 +1620,7 @@ class XML_Parameter_Channel:
         < used for cv ( PulseForm == 0)
         """
     @Frequency.setter
-    def Frequency(self, arg0: float) -> None:
+    def Frequency(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def FrequencyEnd(self) -> float:
@@ -1154,7 +1628,7 @@ class XML_Parameter_Channel:
         < used used for chirp pulse (PulseForm > 0)
         """
     @FrequencyEnd.setter
-    def FrequencyEnd(self, arg0: float) -> None:
+    def FrequencyEnd(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def FrequencyStart(self) -> float:
@@ -1162,7 +1636,7 @@ class XML_Parameter_Channel:
         < used used for chirp pulse (PulseForm > 0)
         """
     @FrequencyStart.setter
-    def FrequencyStart(self, arg0: float) -> None:
+    def FrequencyStart(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def PulseDuration(self) -> float:
@@ -1170,7 +1644,7 @@ class XML_Parameter_Channel:
         < used for cv ( PulseForm == 0)
         """
     @PulseDuration.setter
-    def PulseDuration(self, arg0: float) -> None:
+    def PulseDuration(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def PulseForm(self) -> int:
@@ -1178,7 +1652,7 @@ class XML_Parameter_Channel:
         < 0 means cw, ?1 means chirp?
         """
     @PulseForm.setter
-    def PulseForm(self, arg0: int) -> None:
+    def PulseForm(self, arg0: typing.SupportsInt) -> None:
         ...
     @property
     def PulseLength(self) -> float:
@@ -1186,7 +1660,25 @@ class XML_Parameter_Channel:
         < used for chirp pulse (PulseForm > 0)
         """
     @PulseLength.setter
-    def PulseLength(self, arg0: float) -> None:
+    def PulseLength(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SampleInterval(self) -> float:
+        ...
+    @SampleInterval.setter
+    def SampleInterval(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def Slope(self) -> float:
+        ...
+    @Slope.setter
+    def Slope(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def SoundVelocity(self) -> float:
+        ...
+    @SoundVelocity.setter
+    def SoundVelocity(self, arg0: typing.SupportsFloat) -> None:
         ...
     @property
     def TransducerDepth(self) -> float:
@@ -1194,15 +1686,30 @@ class XML_Parameter_Channel:
         < when is this one used? only old format?
         """
     @TransducerDepth.setter
-    def TransducerDepth(self, arg0: float) -> None:
+    def TransducerDepth(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def TransmitPower(self) -> float:
+        ...
+    @TransmitPower.setter
+    def TransmitPower(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
         ...
 class XML_PingSequence:
     """
     XML base datagram
     """
-    Pings: list[XML_PingSequence_Ping]
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence:
         """
@@ -1238,13 +1745,13 @@ class XML_PingSequence:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1252,13 +1759,29 @@ class XML_PingSequence:
         """
         convert object to bytearray
         """
+    @property
+    def Pings(self) -> list[XML_PingSequence_Ping]:
+        ...
+    @Pings.setter
+    def Pings(self, arg0: collections.abc.Sequence[XML_PingSequence_Ping]) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_PingSequence_Ping:
     """
     XML base datagram
     """
     ChannelID: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_PingSequence_Ping:
         """
@@ -1294,13 +1817,13 @@ class XML_PingSequence_Ping:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1308,15 +1831,24 @@ class XML_PingSequence_Ping:
         """
         convert object to bytearray
         """
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class XML_Sensor:
     """
     XML base datagram
     """
     IsManual: bool
-    ManualValue: float
     Type: str
-    unknown_attributes: int
-    unknown_children: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> XML_Sensor:
         """
@@ -1352,13 +1884,13 @@ class XML_Sensor:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def parsed_completely(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1366,6 +1898,24 @@ class XML_Sensor:
         """
         convert object to bytearray
         """
+    @property
+    def ManualValue(self) -> float:
+        ...
+    @ManualValue.setter
+    def ManualValue(self, arg0: typing.SupportsFloat) -> None:
+        ...
+    @property
+    def unknown_attributes(self) -> int:
+        ...
+    @unknown_attributes.setter
+    def unknown_attributes(self, arg0: typing.SupportsInt) -> None:
+        ...
+    @property
+    def unknown_children(self) -> int:
+        ...
+    @unknown_children.setter
+    def unknown_children(self, arg0: typing.SupportsInt) -> None:
+        ...
 class t_BeamType:
     """
     
@@ -1409,7 +1959,7 @@ class t_BeamType:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -1422,7 +1972,7 @@ class t_BeamType:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

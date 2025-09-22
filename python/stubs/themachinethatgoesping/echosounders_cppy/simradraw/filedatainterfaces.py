@@ -2,6 +2,7 @@
 SimradRaw EK60 and EK80 file data interface classes
 """
 from __future__ import annotations
+import collections.abc
 import themachinethatgoesping.echosounders_cppy.simradraw
 import themachinethatgoesping.echosounders_cppy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers
@@ -21,7 +22,7 @@ class SimradRawAnnotationDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -37,15 +38,15 @@ class SimradRawAnnotationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -63,7 +64,7 @@ class SimradRawAnnotationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -83,7 +84,7 @@ class SimradRawAnnotationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -170,7 +171,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -186,7 +187,7 @@ class SimradRawAnnotationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -269,7 +270,7 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -285,7 +286,7 @@ class SimradRawAnnotationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -301,7 +302,7 @@ class SimradRawAnnotationDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -317,15 +318,15 @@ class SimradRawAnnotationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -343,7 +344,7 @@ class SimradRawAnnotationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -363,7 +364,7 @@ class SimradRawAnnotationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -375,7 +376,7 @@ class SimradRawConfigurationDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -391,19 +392,19 @@ class SimradRawConfigurationDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_sensor_configuration(self, index: typing.SupportsInt) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
+    def get_trx_sensor_configuration_per_target_id(self, index: typing.SupportsInt) -> dict:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -421,7 +422,7 @@ class SimradRawConfigurationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -441,7 +442,7 @@ class SimradRawConfigurationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -558,7 +559,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -574,7 +575,7 @@ class SimradRawConfigurationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -691,7 +692,7 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -707,7 +708,7 @@ class SimradRawConfigurationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -719,7 +720,7 @@ class SimradRawConfigurationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -735,19 +736,19 @@ class SimradRawConfigurationDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation.SensorConfiguration:
+    def get_sensor_configuration(self, index: typing.SupportsInt) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict:
+    def get_trx_sensor_configuration_per_target_id(self, index: typing.SupportsInt) -> dict:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -765,7 +766,7 @@ class SimradRawConfigurationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -785,7 +786,7 @@ class SimradRawConfigurationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -805,7 +806,7 @@ class SimradRawDatagramDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -821,15 +822,15 @@ class SimradRawDatagramDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -847,7 +848,7 @@ class SimradRawDatagramDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -867,7 +868,7 @@ class SimradRawDatagramDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -956,7 +957,7 @@ class SimradRawDatagramDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -972,7 +973,7 @@ class SimradRawDatagramDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1057,7 +1058,7 @@ class SimradRawDatagramDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1073,7 +1074,7 @@ class SimradRawDatagramDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1089,7 +1090,7 @@ class SimradRawDatagramDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1105,15 +1106,15 @@ class SimradRawDatagramDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1131,7 +1132,7 @@ class SimradRawDatagramDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -1151,7 +1152,7 @@ class SimradRawDatagramDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1194,7 +1195,7 @@ class SimradRawDatagramInterface:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1202,7 +1203,7 @@ class SimradRawDatagramInterface:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1241,7 +1242,7 @@ class SimradRawDatagramInterface_stream:
         ...
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1249,7 +1250,7 @@ class SimradRawDatagramInterface_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1257,7 +1258,7 @@ class SimradRawEnvironmentDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1275,15 +1276,15 @@ class SimradRawEnvironmentDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1303,7 +1304,7 @@ class SimradRawEnvironmentDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -1323,7 +1324,7 @@ class SimradRawEnvironmentDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1406,7 +1407,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1424,7 +1425,7 @@ class SimradRawEnvironmentDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1503,7 +1504,7 @@ class SimradRawEnvironmentDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1521,7 +1522,7 @@ class SimradRawEnvironmentDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1529,7 +1530,7 @@ class SimradRawEnvironmentDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1547,15 +1548,15 @@ class SimradRawEnvironmentDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1575,7 +1576,7 @@ class SimradRawEnvironmentDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -1595,7 +1596,7 @@ class SimradRawEnvironmentDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1607,7 +1608,7 @@ class SimradRawNavigationDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1629,23 +1630,23 @@ class SimradRawNavigationDataInterface:
     def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
-    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+    def get_channel_ids(self, sensor_configuration_hash: typing.SupportsInt) -> list[str]:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: typing.SupportsInt) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolator_keys(self) -> list[int]:
         ...
-    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+    def has_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1663,7 +1664,7 @@ class SimradRawNavigationDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -1683,17 +1684,17 @@ class SimradRawNavigationDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_max_gga_quality(self, max_gga_quality: int) -> None:
+    def set_max_gga_quality(self, max_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_min_gga_quality(self, min_gga_quality: int) -> None:
+    def set_min_gga_quality(self, min_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+    def set_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
         ...
-    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+    def set_navigation_interpolators(self, navigation_interpolators: collections.abc.Mapping[typing.SupportsInt, ..., ..., ..., ..., ..., ...]) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
@@ -1778,7 +1779,7 @@ class SimradRawNavigationDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1794,15 +1795,15 @@ class SimradRawNavigationDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def set_max_gga_quality(self, max_gga_quality: int) -> None:
+    def set_max_gga_quality(self, max_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_min_gga_quality(self, min_gga_quality: int) -> None:
+    def set_min_gga_quality(self, min_gga_quality: typing.SupportsInt) -> None:
         ...
 class SimradRawNavigationDataInterfacePerFile_stream:
     """
@@ -1883,7 +1884,7 @@ class SimradRawNavigationDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -1899,21 +1900,21 @@ class SimradRawNavigationDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def read_navigation_data(self) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
-    def set_max_gga_quality(self, max_gga_quality: int) -> None:
+    def set_max_gga_quality(self, max_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_min_gga_quality(self, min_gga_quality: int) -> None:
+    def set_min_gga_quality(self, min_gga_quality: typing.SupportsInt) -> None:
         ...
 class SimradRawNavigationDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -1935,23 +1936,23 @@ class SimradRawNavigationDataInterface_stream:
     def get_channel_ids(self) -> list[str]:
         ...
     @typing.overload
-    def get_channel_ids(self, sensor_configuration_hash: int) -> list[str]:
+    def get_channel_ids(self, sensor_configuration_hash: typing.SupportsInt) -> list[str]:
         ...
-    def get_navigation_interpolator(self, sensor_configuration: int) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
+    def get_navigation_interpolator(self, sensor_configuration: typing.SupportsInt) -> themachinethatgoesping.navigation.NavigationInterpolatorLatLon:
         ...
     def get_navigation_interpolator_keys(self) -> list[int]:
         ...
-    def has_navigation_interpolator(self, sensor_configuration_hash: int) -> bool:
+    def has_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -1969,7 +1970,7 @@ class SimradRawNavigationDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -1989,17 +1990,17 @@ class SimradRawNavigationDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_max_gga_quality(self, max_gga_quality: int) -> None:
+    def set_max_gga_quality(self, max_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_min_gga_quality(self, min_gga_quality: int) -> None:
+    def set_min_gga_quality(self, min_gga_quality: typing.SupportsInt) -> None:
         ...
-    def set_navigation_interpolator(self, sensor_configuration_hash: int, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
+    def set_navigation_interpolator(self, sensor_configuration_hash: typing.SupportsInt, navigation_interpolator: themachinethatgoesping.navigation.NavigationInterpolatorLatLon) -> None:
         ...
-    def set_navigation_interpolators(self, navigation_interpolators: dict[int, ..., ..., ..., ..., ..., ...]) -> None:
+    def set_navigation_interpolators(self, navigation_interpolators: collections.abc.Mapping[typing.SupportsInt, ..., ..., ..., ..., ..., ...]) -> None:
         ...
     def verify_linked_file_interfaces_are_consistent(self) -> None:
         """
@@ -2017,7 +2018,7 @@ class SimradRawOtherFileDataInterface:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2033,15 +2034,15 @@ class SimradRawOtherFileDataInterface:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2059,7 +2060,7 @@ class SimradRawOtherFileDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -2079,7 +2080,7 @@ class SimradRawOtherFileDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2168,7 +2169,7 @@ class SimradRawOtherFileDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2184,7 +2185,7 @@ class SimradRawOtherFileDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2269,7 +2270,7 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2285,7 +2286,7 @@ class SimradRawOtherFileDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2301,7 +2302,7 @@ class SimradRawOtherFileDataInterface_stream:
     Template parameter ``t_ifstream``:
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2317,15 +2318,15 @@ class SimradRawOtherFileDataInterface_stream:
     @typing.overload
     def deinitialize(self) -> None:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2343,7 +2344,7 @@ class SimradRawOtherFileDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -2363,7 +2364,7 @@ class SimradRawOtherFileDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2375,7 +2376,7 @@ class SimradRawPingDataInterface:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[...]) -> list[...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[...]) -> list[...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2403,15 +2404,15 @@ class SimradRawPingDataInterface:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2431,7 +2432,7 @@ class SimradRawPingDataInterface:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[...]:
         """
@@ -2451,7 +2452,7 @@ class SimradRawPingDataInterface:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -2538,7 +2539,7 @@ class SimradRawPingDataInterfacePerFile:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2556,11 +2557,11 @@ class SimradRawPingDataInterfacePerFile:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
+    def read_pings(self, index_paths: collections.abc.Mapping[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer:
         ...
 class SimradRawPingDataInterfacePerFile_stream:
     """
@@ -2641,7 +2642,7 @@ class SimradRawPingDataInterfacePerFile_stream:
         ...
     def has_linked_file(self) -> bool:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -2659,17 +2660,17 @@ class SimradRawPingDataInterfacePerFile_stream:
         ...
     def per_file(self) -> list[SimradRawDatagramInterface_stream]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def read_pings(self, index_paths: dict[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
+    def read_pings(self, index_paths: collections.abc.Mapping[str, str] = {}) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
         ...
 class SimradRawPingDataInterface_stream:
     """
     """
     @staticmethod
-    def sort_by_time(fileinterfaces: list[..., ...]) -> list[..., ...]:
+    def sort_by_time(fileinterfaces: collections.abc.Sequence[..., ...]) -> list[..., ...]:
         ...
     def __repr__(self) -> str:
         """
@@ -2697,15 +2698,15 @@ class SimradRawPingDataInterface_stream:
     @typing.overload
     def get_pings(self, channel_id: str) -> themachinethatgoesping.echosounders_cppy.simradraw.filedatacontainers.SimradRawPingContainer_stream:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str] = {}, force: bool = False, show_progress: bool = True) -> None:
         ...
     @typing.overload
-    def init_from_file(self, index_paths: dict[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
+    def init_from_file(self, index_paths: collections.abc.Mapping[str, str], force: bool, progress_bar: themachinethatgoesping.tools_cppy.progressbars.I_ProgressBar, external_progress_tick: bool = False) -> None:
         ...
     @typing.overload
     def is_initialized(self) -> bool:
@@ -2725,7 +2726,7 @@ class SimradRawPingDataInterface_stream:
             std::vector<t_filedatainterface_perfile&>
         """
     @typing.overload
-    def per_file(self, file_nr: int) -> ...:
+    def per_file(self, file_nr: typing.SupportsInt) -> ...:
         ...
     def per_primary_file(self) -> list[..., ...]:
         """
@@ -2745,7 +2746,7 @@ class SimradRawPingDataInterface_stream:
         Returns:
             std::vector<t_filedatainterface_perfile&>
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

@@ -2,6 +2,7 @@
 KongsbergAll EK60 and EK80 file data types
 """
 from __future__ import annotations
+import collections.abc
 import numpy
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.echosounders_cppy.filetemplates
@@ -14,7 +15,6 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
     """
     """
     file_path: str
-    file_size: int
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageIndex_kongsbergall_FilePackageIndex:
         """
@@ -52,11 +52,11 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -70,7 +70,13 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
         < all datagrams
         """
     @datagram_info_data.setter
-    def datagram_info_data(self, arg0: list[...]) -> None:
+    def datagram_info_data(self, arg0: collections.abc.Sequence[...]) -> None:
+        ...
+    @property
+    def file_size(self) -> int:
+        ...
+    @file_size.setter
+    def file_size(self, arg0: typing.SupportsInt) -> None:
         ...
 class KongsbergAllPing(themachinethatgoesping.echosounders_cppy.filetemplates.I_Ping, KongsbergAllPingCommon):
     """
@@ -193,7 +199,7 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def get_watercolumn_calibration(self, tx_sector: int) -> KongsbergAllWaterColumnCalibration:
+    def get_watercolumn_calibration(self, tx_sector: typing.SupportsInt) -> KongsbergAllWaterColumnCalibration:
         ...
     @typing.overload
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration:
@@ -201,12 +207,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -219,12 +225,12 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def per_file(self) -> list[...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -265,7 +271,7 @@ class KongsbergAllPingFileData(themachinethatgoesping.echosounders_cppy.filetemp
     def set_watercolumn_calibration(self, calibration: KongsbergAllWaterColumnCalibration) -> None:
         ...
     @typing.overload
-    def set_watercolumn_calibration(self, calibrations: list[KongsbergAllWaterColumnCalibration]) -> None:
+    def set_watercolumn_calibration(self, calibrations: collections.abc.Sequence[KongsbergAllWaterColumnCalibration]) -> None:
         ...
     def sys_loaded(self) -> bool:
         ...
@@ -331,7 +337,7 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def get_timestamp_range(self) -> tuple[float, float]:
         ...
     @typing.overload
-    def get_watercolumn_calibration(self, tx_sector: int) -> KongsbergAllWaterColumnCalibration:
+    def get_watercolumn_calibration(self, tx_sector: typing.SupportsInt) -> KongsbergAllWaterColumnCalibration:
         ...
     @typing.overload
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration:
@@ -339,12 +345,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def has_watercolumn_calibration(self) -> bool:
         ...
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     @typing.overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
@@ -357,12 +363,12 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def per_file(self) -> list[..., ...]:
         ...
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     @typing.overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -403,7 +409,7 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_cppy.f
     def set_watercolumn_calibration(self, calibration: KongsbergAllWaterColumnCalibration) -> None:
         ...
     @typing.overload
-    def set_watercolumn_calibration(self, calibrations: list[KongsbergAllWaterColumnCalibration]) -> None:
+    def set_watercolumn_calibration(self, calibrations: collections.abc.Sequence[KongsbergAllWaterColumnCalibration]) -> None:
         ...
     def sys_loaded(self) -> bool:
         ...
@@ -506,7 +512,7 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sound_velocity: float, effective_pulse_duration: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None:
+    def __init__(self, sound_velocity: typing.SupportsFloat, effective_pulse_duration: typing.SupportsFloat, system_gain_offset: typing.SupportsFloat, tvg_absorption_db_m: typing.SupportsFloat, tvg_factor: typing.SupportsFloat) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -536,15 +542,15 @@ class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_cpp
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def initialized(self) -> bool:
         ...
-    def modify_kongsberg_em_calibrations(self, sound_velocity: float | None = None, effective_pulse_duration: float | None = None, system_gain_offset: float | None = None, tvg_absorption_db_m: float | None = None, tvg_factor: float | None = None) -> None:
+    def modify_kongsberg_em_calibrations(self, sound_velocity: typing.SupportsFloat | None = None, effective_pulse_duration: typing.SupportsFloat | None = None, system_gain_offset: typing.SupportsFloat | None = None, tvg_absorption_db_m: typing.SupportsFloat | None = None, tvg_factor: typing.SupportsFloat | None = None) -> None:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """

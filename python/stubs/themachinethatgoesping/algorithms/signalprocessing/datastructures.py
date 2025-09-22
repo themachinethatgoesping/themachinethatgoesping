@@ -34,7 +34,7 @@ class CWSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float) -> None:
+    def __init__(self, center_frequency: typing.SupportsFloat, bandwidth: typing.SupportsFloat, effective_pulse_duration: typing.SupportsFloat) -> None:
         """
         Default constructor.
         """
@@ -70,19 +70,19 @@ class CWSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_bandwidth(self, bandwidth: float) -> None:
+    def set_bandwidth(self, bandwidth: typing.SupportsFloat) -> None:
         ...
-    def set_center_frequency(self, center_frequency: float) -> None:
+    def set_center_frequency(self, center_frequency: typing.SupportsFloat) -> None:
         ...
-    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+    def set_effective_pulse_duration(self, effective_pulse_duration: typing.SupportsFloat) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -119,12 +119,12 @@ class FMSignalParameters:
         hash function implemented using binary_hash
         """
     @typing.overload
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, up_sweep: bool) -> None:
+    def __init__(self, center_frequency: typing.SupportsFloat, bandwidth: typing.SupportsFloat, effective_pulse_duration: typing.SupportsFloat, up_sweep: bool) -> None:
         """
         Default constructor.
         """
     @typing.overload
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: t_TxSignalType) -> None:
+    def __init__(self, center_frequency: typing.SupportsFloat, bandwidth: typing.SupportsFloat, effective_pulse_duration: typing.SupportsFloat, tx_signal_type: t_TxSignalType) -> None:
         """
         Default constructor.
         """
@@ -164,19 +164,19 @@ class FMSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_bandwidth(self, bandwidth: float) -> None:
+    def set_bandwidth(self, bandwidth: typing.SupportsFloat) -> None:
         ...
-    def set_center_frequency(self, center_frequency: float) -> None:
+    def set_center_frequency(self, center_frequency: typing.SupportsFloat) -> None:
         ...
-    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+    def set_effective_pulse_duration(self, effective_pulse_duration: typing.SupportsFloat) -> None:
         ...
     def set_up_sweep(self, up_sweep: bool) -> None:
         ...
@@ -214,7 +214,7 @@ class GenericSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: t_TxSignalType) -> None:
+    def __init__(self, center_frequency: typing.SupportsFloat, bandwidth: typing.SupportsFloat, effective_pulse_duration: typing.SupportsFloat, tx_signal_type: t_TxSignalType) -> None:
         """
         Default constructor.
         """
@@ -250,23 +250,23 @@ class GenericSignalParameters:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_bandwidth(self, bandwidth: float) -> None:
+    def set_bandwidth(self, bandwidth: typing.SupportsFloat) -> None:
         """
         < Bandwidth of the signal in Hz.
         """
-    def set_center_frequency(self, center_frequency: float) -> None:
+    def set_center_frequency(self, center_frequency: typing.SupportsFloat) -> None:
         """
         < Center frequency of the signal in Hz.
         """
-    def set_effective_pulse_duration(self, effective_pulse_duration: float) -> None:
+    def set_effective_pulse_duration(self, effective_pulse_duration: typing.SupportsFloat) -> None:
         """
         < Effective pulse duration of the signal in seconds.
         """
@@ -304,7 +304,7 @@ class t_TxSignalType:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -317,7 +317,7 @@ class t_TxSignalType:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...

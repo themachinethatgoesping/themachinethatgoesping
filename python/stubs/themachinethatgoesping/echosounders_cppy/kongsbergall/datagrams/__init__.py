@@ -2,8 +2,8 @@
 Kongsberg KongsbergAll (.all/.wcd) EK80 datagram classes
 """
 from __future__ import annotations
+import collections.abc
 import numpy
-import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.echosounders_cppy.kongsbergall
 import themachinethatgoesping.navigation.datastructures
@@ -119,33 +119,33 @@ class AttitudeDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_attitude_counter(self, arg0: int) -> None:
+    def set_attitude_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_attitudes(self, arg0: list[substructures.AttitudeDatagramAttitude]) -> None:
+    def set_attitudes(self, arg0: collections.abc.Sequence[substructures.AttitudeDatagramAttitude]) -> None:
         """
         < N x Attitude data
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_entries(self, arg0: int) -> None:
+    def set_number_of_entries(self, arg0: typing.SupportsInt) -> None:
         """
         < N
         """
-    def set_sensor_system_descriptor(self, arg0: int) -> None:
+    def set_sensor_system_descriptor(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -232,37 +232,37 @@ class ClockDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_clock_counter(self, arg0: int) -> None:
+    def set_clock_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < sequential number
         """
-    def set_date_external(self, arg0: int) -> None:
+    def set_date_external(self, arg0: typing.SupportsInt) -> None:
         """
         < from external clock input year*1000 + month*100 + day(Example:Jun <
         27, 2020 = 20200627)
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_pps_active(self, arg0: int) -> None:
+    def set_pps_active(self, arg0: typing.SupportsInt) -> None:
         """
         < 0 = inactive (Shows if the system clock is synchronized to an
         external < PPS signal or not)
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_time_since_midnight_external(self, arg0: int) -> None:
+    def set_time_since_midnight_external(self, arg0: typing.SupportsInt) -> None:
         """
         < in ms from external clock datagram
         """
@@ -346,34 +346,34 @@ class DepthOrHeightDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_height(self, arg0: int) -> None:
+    def set_height(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
-    def set_height_counter(self, arg0: int) -> None:
+    def set_height_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_height_type(self, arg0: int) -> None:
+    def set_height_type(self, arg0: typing.SupportsInt) -> None:
         """
         < 0: derived from GGK or GGA, 1-99 ???, 100 depth is taken from the <
         DepthOrheight datagram, 200: Input from depth sensor
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -525,71 +525,71 @@ class ExtraDetections(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def raw_amplitude_samples(self) -> substructures.SampleAmplitudesStructure_int16_t:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_datagram_counter(self, arg0: int) -> None:
+    def set_datagram_counter(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_datagram_version_id(self, arg0: int) -> None:
+    def set_datagram_version_id(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_depth_of_reference_point(self, arg0: float) -> None:
+    def set_depth_of_reference_point(self, arg0: typing.SupportsFloat) -> None:
         """
         < m
         """
-    def set_detection_classes(self, arg0: list[substructures.ExtraDetectionsDetectionClasses]) -> None:
+    def set_detection_classes(self, arg0: collections.abc.Sequence[substructures.ExtraDetectionsDetectionClasses]) -> None:
         """
         < substructure 1
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_extra_detections(self, arg0: list[substructures.ExtraDetectionsExtraDetections]) -> None:
+    def set_extra_detections(self, arg0: collections.abc.Sequence[substructures.ExtraDetectionsExtraDetections]) -> None:
         """
         < substructure 2
         """
-    def set_heading(self, arg0: int) -> None:
+    def set_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < 0.01°
         """
-    def set_number_of_alarm_flags(self, arg0: int) -> None:
+    def set_number_of_alarm_flags(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_number_of_bytes_per_class(self, arg0: int) -> None:
+    def set_number_of_bytes_per_class(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_number_of_bytes_per_detection(self, arg0: int) -> None:
+    def set_number_of_bytes_per_detection(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_number_of_detection_classes(self, arg0: int) -> None:
+    def set_number_of_detection_classes(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_number_of_extra_detections(self, arg0: int) -> None:
+    def set_number_of_extra_detections(self, arg0: typing.SupportsInt) -> None:
         """
         < Nd
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_raw_amplitude_sample_rate(self, arg0: float) -> None:
+    def set_raw_amplitude_sample_rate(self, arg0: typing.SupportsFloat) -> None:
         """
         < (SIsr)
         """
@@ -597,27 +597,27 @@ class ExtraDetections(KongsbergAllDatagram):
         """
         < 0.1 dB
         """
-    def set_rx_transducer_index(self, arg0: int) -> None:
+    def set_rx_transducer_index(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sound_speed(self, arg0: int) -> None:
+    def set_sound_speed(self, arg0: typing.SupportsInt) -> None:
         """
         < dm/s
         """
-    def set_swath_counter(self, arg0: int) -> None:
+    def set_swath_counter(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_swath_index(self, arg0: int) -> None:
+    def set_swath_index(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_water_column_sample_rate(self, arg0: float) -> None:
+    def set_water_column_sample_rate(self, arg0: typing.SupportsFloat) -> None:
         """
         < (WCsr)
         """
@@ -684,31 +684,31 @@ class ExtraParameters(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_content_identifier(self, arg0: ExtraParameters_t_ContentIdentifier) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_raw_content(self, arg0: str) -> None:
         """
         < depends on the content identifier
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -748,7 +748,7 @@ class ExtraParameters_t_ContentIdentifier:
     def __index__(self) -> int:
         ...
     @typing.overload
-    def __init__(self, value: int) -> None:
+    def __init__(self, value: typing.SupportsInt) -> None:
         ...
     @typing.overload
     def __init__(self, str: str) -> None:
@@ -761,7 +761,7 @@ class ExtraParameters_t_ContentIdentifier:
         ...
     def __repr__(self) -> str:
         ...
-    def __setstate__(self, state: int) -> None:
+    def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
         ...
@@ -852,33 +852,33 @@ class HeadingDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_heading_counter(self, arg0: int) -> None:
+    def set_heading_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_heading_indicator(self, arg0: int) -> None:
+    def set_heading_indicator(self, arg0: typing.SupportsInt) -> None:
         """
         < 0 = inactive
         """
-    def set_number_of_entries(self, arg0: int) -> None:
+    def set_number_of_entries(self, arg0: typing.SupportsInt) -> None:
         """
         < N
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_times_and_headings(self, arg0: numpy.ndarray[numpy.uint16]) -> None:
         """
@@ -1007,7 +1007,7 @@ class InstallationParameters(KongsbergAllDatagram):
             navigation::datastructures::PositionalOffsets
         """
     @typing.overload
-    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_attitude_sensor_offsets(self, sensor: typing.SupportsInt) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the attitude sensor offsets of sensor 1 or 2
         
@@ -1038,7 +1038,7 @@ class InstallationParameters(KongsbergAllDatagram):
         """
         < end identifier (always 0x03)
         """
-    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_position_system_offsets(self, position_system_number: typing.SupportsInt) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the position system offsets of system 1, 2 or 3
         
@@ -1085,7 +1085,7 @@ class InstallationParameters(KongsbergAllDatagram):
         ...
     def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllSystemTransducerConfiguration:
         ...
-    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+    def get_transducer_offsets(self, transducer_number: typing.SupportsInt, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the transducer offsets of transducer 0, 1, 2 or 3
         
@@ -1107,13 +1107,13 @@ class InstallationParameters(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
     def is_dual_rx(self) -> bool:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -1131,21 +1131,21 @@ class InstallationParameters(KongsbergAllDatagram):
         the datagram is read from a file, but must be called manually when the
         installation parameters string is changed manually.
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
     def set_installation_parameters(self, arg0: str) -> None:
         ...
-    def set_installation_parameters_counter(self, arg0: int) -> None:
+    def set_installation_parameters_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_secondary_system_serial_number(self, arg0: int) -> None:
+    def set_secondary_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1200,7 +1200,7 @@ class KongsbergAllDatagram:
         """
         < year*1000 + month*100 + day(Example:Jun 27, 2020 = 20200627)
         """
-    def get_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
+    def get_date_string(self, fractional_seconds_digits: typing.SupportsInt = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Get the time as string
         
@@ -1210,7 +1210,7 @@ class KongsbergAllDatagram:
         Returns:
             std::string
         """
-    def get_datetime(self, timezone_offset_hours: float = 0.0) -> typing.Any:
+    def get_datetime(self, timezone_offset_hours: typing.SupportsFloat = 0.0) -> typing.Any:
         """
         Return the timestamp as datetime object
         """
@@ -1243,15 +1243,15 @@ class KongsbergAllDatagram:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_bytes(self, arg0: int) -> None:
+    def set_bytes(self, arg0: typing.SupportsInt) -> None:
         """
         < number of bytes in the datagram (not including the _bytes field
         itself)
@@ -1260,19 +1260,19 @@ class KongsbergAllDatagram:
         """
         < KongsbergAll datagram identifier
         """
-    def set_date(self, arg0: int) -> None:
+    def set_date(self, arg0: typing.SupportsInt) -> None:
         """
         < year*1000 + month*100 + day(Example:Jun 27, 2020 = 20200627)
         """
-    def set_model_number(self, arg0: int) -> None:
+    def set_model_number(self, arg0: typing.SupportsInt) -> None:
         """
         < KongsbergAll model number (example: EM 3002 = 3002)
         """
-    def set_stx(self, arg0: int) -> None:
+    def set_stx(self, arg0: typing.SupportsInt) -> None:
         """
         < (start identifier)
         """
-    def set_time_since_midnight(self, arg0: int) -> None:
+    def set_time_since_midnight(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1324,17 +1324,17 @@ class KongsbergAllUnknown(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_raw_content(self, arg0: str) -> None:
         ...
@@ -1476,37 +1476,37 @@ class NetworkAttitudeVelocityDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_attitudes(self, arg0: list[substructures.NetworkAttitudeVelocityDatagramAttitude]) -> None:
+    def set_attitudes(self, arg0: collections.abc.Sequence[substructures.NetworkAttitudeVelocityDatagramAttitude]) -> None:
         """
         < N x Attitude data
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_network_attitude_counter(self, arg0: int) -> None:
+    def set_network_attitude_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_number_of_entries(self, arg0: int) -> None:
+    def set_number_of_entries(self, arg0: typing.SupportsInt) -> None:
         """
         < N
         """
-    def set_sensor_system_descriptor(self, arg0: int) -> None:
+    def set_sensor_system_descriptor(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_spare_align(self, arg0: int) -> None:
+    def set_spare_align(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -1672,7 +1672,7 @@ class PUIDOutput(KongsbergAllDatagram):
         Returns:
             false (deep water sonar head)
         """
-    def get_host_ip_address(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)]:
+    def get_host_ip_address(self) -> typing.Annotated[list[int], "FixedSize(4)"]:
         ...
     def get_host_ip_address_as_string(self) -> str:
         """
@@ -1689,7 +1689,7 @@ class PUIDOutput(KongsbergAllDatagram):
         ...
     def get_sonar_transceiver_2_software_version(self) -> str:
         ...
-    def get_spare(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(7)]:
+    def get_spare(self) -> typing.Annotated[list[int], "FixedSize(7)"]:
         ...
     def get_system_descriptor(self) -> int:
         ...
@@ -1739,49 +1739,49 @@ class PUIDOutput(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
     def set_bsp_software_date(self, arg0: str) -> None:
         ...
-    def set_byte_order_flag(self, arg0: int) -> None:
+    def set_byte_order_flag(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_host_ip_address(self, arg0: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(4)]) -> None:
+    def set_host_ip_address(self, arg0: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(4)"]) -> None:
         ...
     def set_pu_software_version(self, arg0: str) -> None:
         ...
-    def set_rx_opening_angle(self, arg0: int) -> None:
+    def set_rx_opening_angle(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_sonar_transceiver_1_software_version(self, arg0: str) -> None:
         ...
     def set_sonar_transceiver_2_software_version(self, arg0: str) -> None:
         ...
-    def set_spare(self, arg0: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(7)]) -> None:
+    def set_spare(self, arg0: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(7)"]) -> None:
         ...
-    def set_system_descriptor(self, arg0: int) -> None:
+    def set_system_descriptor(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tx_opening_angle(self, arg0: int) -> None:
+    def set_tx_opening_angle(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_udp_port_no_1(self, arg0: int) -> None:
+    def set_udp_port_no_1(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_udp_port_no_2(self, arg0: int) -> None:
+    def set_udp_port_no_2(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_udp_port_no_3(self, arg0: int) -> None:
+    def set_udp_port_no_3(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_udp_port_no_4(self, arg0: int) -> None:
+    def set_udp_port_no_4(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2065,161 +2065,161 @@ class PUStatusOutput(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_across_ship_velocity(self, arg0: int) -> None:
+    def set_across_ship_velocity(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm/s (or port coverage or spare)
         """
-    def set_along_ship_velocity(self, arg0: int) -> None:
+    def set_along_ship_velocity(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm/s
         """
-    def set_attitude_status(self, arg0: int) -> None:
+    def set_attitude_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_attitude_velocity_sensor_status(self, arg0: int) -> None:
+    def set_attitude_velocity_sensor_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_backscatter_at_normal_incidence(self, arg0: int) -> None:
+    def set_backscatter_at_normal_incidence(self, arg0: typing.SupportsInt) -> None:
         """
         < in dB
         """
-    def set_backscatter_at_oblique_angle(self, arg0: int) -> None:
+    def set_backscatter_at_oblique_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < in dB
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_clock_status(self, arg0: int) -> None:
+    def set_clock_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_depth_to_normal_incidence(self, arg0: int) -> None:
+    def set_depth_to_normal_incidence(self, arg0: typing.SupportsInt) -> None:
         """
         < in m
         """
-    def set_distance_between_swath(self, arg0: int) -> None:
+    def set_distance_between_swath(self, arg0: typing.SupportsInt) -> None:
         """
         < in 10%
         """
-    def set_downward_velocity(self, arg0: int) -> None:
+    def set_downward_velocity(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm/s (or starboard coverage or spare)
         """
-    def set_em2040_cpu_temperature(self, arg0: int) -> None:
+    def set_em2040_cpu_temperature(self, arg0: typing.SupportsInt) -> None:
         """
         < in degree Celsius (or spare)
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_fixed_gain(self, arg0: int) -> None:
+    def set_fixed_gain(self, arg0: typing.SupportsInt) -> None:
         """
         < in dB
         """
-    def set_heading_status(self, arg0: int) -> None:
+    def set_heading_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_last_received_depth(self, arg0: int) -> None:
+    def set_last_received_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
-    def set_last_received_heading(self, arg0: int) -> None:
+    def set_last_received_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 degree
         """
-    def set_last_received_heave_at_sonar_head(self, arg0: int) -> None:
+    def set_last_received_heave_at_sonar_head(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
-    def set_last_received_pitch(self, arg0: int) -> None:
+    def set_last_received_pitch(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 degree
         """
-    def set_last_received_roll(self, arg0: int) -> None:
+    def set_last_received_roll(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 degree
         """
-    def set_mammal_protection_ramp(self, arg0: int) -> None:
+    def set_mammal_protection_ramp(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < of latest ping
         """
-    def set_ping_rate(self, arg0: int) -> None:
+    def set_ping_rate(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 Hz
         """
-    def set_port_coverage(self, arg0: int) -> None:
+    def set_port_coverage(self, arg0: typing.SupportsInt) -> None:
         """
         < in degrees
         """
-    def set_position_status(self, arg0: int) -> None:
+    def set_position_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_pps_status(self, arg0: int) -> None:
+    def set_pps_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_pu_status(self, arg0: int) -> None:
+    def set_pu_status(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_range_to_normal_incidence(self, arg0: int) -> None:
+    def set_range_to_normal_incidence(self, arg0: typing.SupportsInt) -> None:
         """
         < in m
         """
-    def set_sensor_input_status_serial_port_1(self, arg0: int) -> None:
+    def set_sensor_input_status_serial_port_1(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sensor_input_status_serial_port_2(self, arg0: int) -> None:
+    def set_sensor_input_status_serial_port_2(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sensor_input_status_serial_port_3(self, arg0: int) -> None:
+    def set_sensor_input_status_serial_port_3(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sensor_input_status_serial_port_4(self, arg0: int) -> None:
+    def set_sensor_input_status_serial_port_4(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sensor_input_status_udp_port_2(self, arg0: int) -> None:
+    def set_sensor_input_status_udp_port_2(self, arg0: typing.SupportsInt) -> None:
         """
         <
         """
-    def set_sound_speed_at_transducer(self, arg0: int) -> None:
+    def set_sound_speed_at_transducer(self, arg0: typing.SupportsInt) -> None:
         """
         < in dm/s
         """
-    def set_sound_speed_at_transducer_from_profile(self, arg0: int) -> None:
+    def set_sound_speed_at_transducer_from_profile(self, arg0: typing.SupportsInt) -> None:
         """
         < in dm/s
         """
-    def set_starboard_coverage(self, arg0: int) -> None:
+    def set_starboard_coverage(self, arg0: typing.SupportsInt) -> None:
         """
         < in degrees
         """
-    def set_status_datagram_counter(self, arg0: int) -> None:
+    def set_status_datagram_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_yaw_stabilization_angle(self, arg0: int) -> None:
+    def set_yaw_stabilization_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 degree, or tilt used at 3D scanning
         """
@@ -2383,59 +2383,59 @@ class PositionDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_course(self, arg0: int) -> None:
+    def set_course(self, arg0: typing.SupportsInt) -> None:
         """
         < over ground in 0.01°
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_heading(self, arg0: int) -> None:
+    def set_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01°
         """
     def set_input_datagram(self, arg0: str) -> None:
         ...
-    def set_latitude(self, arg0: int) -> None:
+    def set_latitude(self, arg0: typing.SupportsInt) -> None:
         """
         < latitude in 0.00000005° negative if southern hemishpere
         """
-    def set_longitude(self, arg0: int) -> None:
+    def set_longitude(self, arg0: typing.SupportsInt) -> None:
         """
         < longitude in 0.0000001° negative if western hemishpere
         """
-    def set_position_counter(self, arg0: int) -> None:
+    def set_position_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_position_fix_quality(self, arg0: int) -> None:
+    def set_position_fix_quality(self, arg0: typing.SupportsInt) -> None:
         """
         < fix quality in cm;
         """
-    def set_position_system_descriptor(self, arg0: int) -> None:
+    def set_position_system_descriptor(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_size_of_input_datagram(self, arg0: int) -> None:
+    def set_size_of_input_datagram(self, arg0: typing.SupportsInt) -> None:
         """
         < in input datagram;
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         """
         < only if required to make the datagram size even
         """
-    def set_speed(self, arg0: int) -> None:
+    def set_speed(self, arg0: typing.SupportsInt) -> None:
         """
         < over ground in cm/s
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2519,15 +2519,15 @@ class QualityFactorDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def qf_shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def qf_shape(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
         """
         return the shape of the quality factor array Computed as
         [_number_of_receive_beams, _number_of_parameters_per_beam]
@@ -2539,21 +2539,21 @@ class QualityFactorDatagram(KongsbergAllDatagram):
         """
         < dimension is [Nrx, Npar]
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_parameters_per_beam(self, arg0: int) -> None:
+    def set_number_of_parameters_per_beam(self, arg0: typing.SupportsInt) -> None:
         """
         < Npar
         """
-    def set_number_of_receive_beams(self, arg0: int) -> None:
+    def set_number_of_receive_beams(self, arg0: typing.SupportsInt) -> None:
         """
         < Nrx
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < 0-65535 ping number (in this file)
         """
@@ -2561,11 +2561,11 @@ class QualityFactorDatagram(KongsbergAllDatagram):
         """
         < dimension is [Nrx, Npar]
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         """
         < always 0
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         """
         < 100 -
         """
@@ -2623,7 +2623,7 @@ class RawRangeAndAngle(KongsbergAllDatagram):
             xt::xtensor<float, 1>
         """
     @typing.overload
-    def get_beam_crosstrack_angles(self, beam_numbers: list[int]) -> ...:
+    def get_beam_crosstrack_angles(self, beam_numbers: collections.abc.Sequence[typing.SupportsInt]) -> ...:
         """
         Read the two way travel times for given beam_number vector from the
         RawRangeAndAngle structure Note: if a beam number is not found, the
@@ -2684,7 +2684,7 @@ class RawRangeAndAngle(KongsbergAllDatagram):
             xt::xtensor<float, 1>
         """
     @typing.overload
-    def get_two_way_travel_times(self, beam_numbers: list[int]) -> ...:
+    def get_two_way_travel_times(self, beam_numbers: collections.abc.Sequence[typing.SupportsInt]) -> ...:
         """
         Read the two way travel times for given beam_number vector from the
         RawRangeAndAngle structure Note: if a beam number is not found, the
@@ -2699,47 +2699,47 @@ class RawRangeAndAngle(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_beams(self, arg0: list[substructures.RawRangeAndAngleBeam]) -> None:
+    def set_beams(self, arg0: collections.abc.Sequence[substructures.RawRangeAndAngleBeam]) -> None:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_d_scale(self, arg0: int) -> None:
+    def set_d_scale(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_receiver_beams(self, arg0: int) -> None:
+    def set_number_of_receiver_beams(self, arg0: typing.SupportsInt) -> None:
         """
         < in Datagram nrx
         """
-    def set_number_of_transmit_sectors(self, arg0: int) -> None:
+    def set_number_of_transmit_sectors(self, arg0: typing.SupportsInt) -> None:
         """
         < ntx
         """
-    def set_number_of_valid_detections(self, arg0: int) -> None:
+    def set_number_of_valid_detections(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < sequential number
         """
-    def set_sampling_frequency(self, arg0: float) -> None:
+    def set_sampling_frequency(self, arg0: typing.SupportsFloat) -> None:
         ...
-    def set_sound_speed_at_transducer(self, arg0: int) -> None:
+    def set_sound_speed_at_transducer(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 m/s
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_transmit_sectors(self, arg0: list[substructures.RawRangeAndAngleTransmitSector]) -> None:
+    def set_transmit_sectors(self, arg0: collections.abc.Sequence[substructures.RawRangeAndAngleTransmitSector]) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -2971,7 +2971,7 @@ class RuntimeParameters(KongsbergAllDatagram):
         Returns:
             A string representing Pulselength as encoded by 'mode2'
         """
-    def get_mode2_as_receive_fixed_gain_setting_dB(self, unhandled_value: int | None = None) -> int | None:
+    def get_mode2_as_receive_fixed_gain_setting_dB(self, unhandled_value: typing.SupportsInt | None = None) -> int | None:
         """
         Retrieves receiver fixed gain setting encoded in the mode2 variable
         
@@ -3206,103 +3206,103 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
     def hash_content_only(self) -> int:
         ...
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_absorption_coefficient(self, arg0: int) -> None:
+    def set_absorption_coefficient(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 dB/km
         """
-    def set_beam_spacing(self, arg0: int) -> None:
+    def set_beam_spacing(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_bsp_status(self, arg0: int) -> None:
+    def set_bsp_status(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_filter_identifier(self, arg0: int) -> None:
+    def set_filter_identifier(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_filter_identifier2(self, arg0: int) -> None:
+    def set_filter_identifier2(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_maximum_depth(self, arg0: int) -> None:
+    def set_maximum_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < in meter
         """
-    def set_maximum_port_coverage(self, arg0: int) -> None:
+    def set_maximum_port_coverage(self, arg0: typing.SupportsInt) -> None:
         """
         < in degrees
         """
-    def set_maximum_port_swath_width(self, arg0: int) -> None:
+    def set_maximum_port_swath_width(self, arg0: typing.SupportsInt) -> None:
         """
         < in meter
         """
-    def set_maximum_starboard_coverage(self, arg0: int) -> None:
+    def set_maximum_starboard_coverage(self, arg0: typing.SupportsInt) -> None:
         """
         < in degrees
         """
-    def set_maximum_starboard_swath_width(self, arg0: int) -> None:
+    def set_maximum_starboard_swath_width(self, arg0: typing.SupportsInt) -> None:
         """
         < in meter
         """
-    def set_minimum_depth(self, arg0: int) -> None:
+    def set_minimum_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < in meter
         """
-    def set_mode(self, arg0: int) -> None:
+    def set_mode(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_mode2_or_receiver_fixed_gain_setting(self, arg0: int) -> None:
+    def set_mode2_or_receiver_fixed_gain_setting(self, arg0: typing.SupportsInt) -> None:
         """
         < in dB
         """
-    def set_operator_station_status(self, arg0: int) -> None:
+    def set_operator_station_status(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_processing_unit_status(self, arg0: int) -> None:
+    def set_processing_unit_status(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_receive_bandwidth_50hz(self, arg0: int) -> None:
+    def set_receive_bandwidth_50hz(self, arg0: typing.SupportsInt) -> None:
         """
         < in 50 Hz resolution
         """
-    def set_receive_beamwidth_degree(self, arg0: int) -> None:
+    def set_receive_beamwidth_degree(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 degrees
         """
-    def set_sonar_head_or_transceiver_status(self, arg0: int) -> None:
+    def set_sonar_head_or_transceiver_status(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_source_of_sound_speed_at_transducer(self, arg0: int) -> None:
+    def set_source_of_sound_speed_at_transducer(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_transmit_along_tilt(self, arg0: int) -> None:
+    def set_transmit_along_tilt(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 degree
         """
-    def set_transmit_beamwidth(self, arg0: int) -> None:
+    def set_transmit_beamwidth(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 degrees
         """
-    def set_transmit_power_relative_maximum(self, arg0: int) -> None:
+    def set_transmit_power_relative_maximum(self, arg0: typing.SupportsInt) -> None:
         """
         < in dB
         """
-    def set_transmit_pulse_length(self, arg0: int) -> None:
+    def set_transmit_pulse_length(self, arg0: typing.SupportsInt) -> None:
         """
         < in μs
         """
-    def set_tvg_law_crossover_angle(self, arg0: int) -> None:
+    def set_tvg_law_crossover_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < in degrees
         """
-    def set_yaw_and_pitch_stabilization_mode(self, arg0: int) -> None:
+    def set_yaw_and_pitch_stabilization_mode(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -3427,11 +3427,11 @@ class SeabedImageData(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -3439,29 +3439,29 @@ class SeabedImageData(KongsbergAllDatagram):
         """
         < in 0.1 dB (size = sum of _Number_of_samples of all Beams
         """
-    def set_beams(self, arg0: list[substructures.SeabedImageDataBeam]) -> None:
+    def set_beams(self, arg0: collections.abc.Sequence[substructures.SeabedImageDataBeam]) -> None:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_normal_incidence_backscatter(self, arg0: int) -> None:
+    def set_normal_incidence_backscatter(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 dB (BSN)
         """
-    def set_number_of_valid_beams(self, arg0: int) -> None:
+    def set_number_of_valid_beams(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_oblique_backscatter(self, arg0: int) -> None:
+    def set_oblique_backscatter(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.01 dB (BSO)
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < sequential number
         """
-    def set_range_to_normal_incidence(self, arg0: int) -> None:
+    def set_range_to_normal_incidence(self, arg0: typing.SupportsInt) -> None:
         """
         < used to correct sample amplitudes in no. of samples
         """
@@ -3469,19 +3469,19 @@ class SeabedImageData(KongsbergAllDatagram):
         """
         < in 0.1 dB (size = sum of _Number_of_samples of all Beams
         """
-    def set_sampling_frequency(self, arg0: float) -> None:
+    def set_sampling_frequency(self, arg0: typing.SupportsFloat) -> None:
         """
         < in Hz
         """
-    def set_spare_byte(self, arg0: int) -> None:
+    def set_spare_byte(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tvg_law_crossover_angle(self, arg0: int) -> None:
+    def set_tvg_law_crossover_angle(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 degree
         """
-    def set_tx_beamwidth_along(self, arg0: int) -> None:
+    def set_tx_beamwidth_along(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 degree
         """
@@ -3551,7 +3551,7 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
         """
         < year*10000 + month*100 + day (from input datagram if available)
         """
-    def get_input_date_string(self, arg0: int, arg1: str) -> str:
+    def get_input_date_string(self, arg0: typing.SupportsInt, arg1: str) -> str:
         """
         Get the time as string
         
@@ -3583,33 +3583,33 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_echo_sounder_counter(self, arg0: int) -> None:
+    def set_echo_sounder_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_echo_sounder_depth(self, arg0: int) -> None:
+    def set_echo_sounder_depth(self, arg0: typing.SupportsInt) -> None:
         """
         < from waterline in cm
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_input_date(self, arg0: int) -> None:
+    def set_input_date(self, arg0: typing.SupportsInt) -> None:
         """
         < year*10000 + month*100 + day (from input datagram if available)
         """
-    def set_input_time_since_midnight(self, arg0: int) -> None:
+    def set_input_time_since_midnight(self, arg0: typing.SupportsInt) -> None:
         """
         < time since midnight in milliseconds (from input < datagram if
         available)
@@ -3618,7 +3618,7 @@ class SingleBeamEchoSounderDepth(KongsbergAllDatagram):
         """
         < 'S', 'T', '1', '2' or '3'
         """
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -3706,7 +3706,7 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
         """
         < year*10000 + month*100 + day (when profile was taken)
         """
-    def get_profile_date_string(self, arg0: int, arg1: str) -> str:
+    def get_profile_date_string(self, arg0: typing.SupportsInt, arg1: str) -> str:
         """
         Get the profile time as string
         
@@ -3744,17 +3744,17 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_depth_resolution(self, arg0: int) -> None:
+    def set_depth_resolution(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
@@ -3762,29 +3762,29 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
         """
         < 2xN array of depth in cm and sound speed in dm/s
         """
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_entries(self, arg0: int) -> None:
+    def set_number_of_entries(self, arg0: typing.SupportsInt) -> None:
         """
         < N
         """
-    def set_profile_counter(self, arg0: int) -> None:
+    def set_profile_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_profile_date(self, arg0: int) -> None:
+    def set_profile_date(self, arg0: typing.SupportsInt) -> None:
         """
         < year*10000 + month*100 + day (when profile was taken)
         """
-    def set_profile_time_since_midnight(self, arg0: int) -> None:
+    def set_profile_time_since_midnight(self, arg0: typing.SupportsInt) -> None:
         """
         < time since midnight in milliseconds (when profile < was taken)
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
@@ -3866,31 +3866,31 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_entries(self, arg0: int) -> None:
+    def set_number_of_entries(self, arg0: typing.SupportsInt) -> None:
         """
         < N
         """
-    def set_sound_speed_counter(self, arg0: int) -> None:
+    def set_sound_speed_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < Sequential Number
         """
-    def set_spare(self, arg0: int) -> None:
+    def set_spare(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
     def set_times_and_sound_speeds(self, arg0: numpy.ndarray[numpy.uint16]) -> None:
         """
@@ -3990,7 +3990,7 @@ class WatercolumnDatagram(KongsbergAllDatagram):
         Returns:
             _sound_speed * 0.1 m/s (float)
         """
-    def get_spare(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def get_spare(self) -> typing.Annotated[list[int], "FixedSize(3)"]:
         ...
     def get_system_serial_number(self) -> int:
         ...
@@ -4017,57 +4017,57 @@ class WatercolumnDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_beams(self, arg0: list[substructures.WatercolumnDatagramBeam]) -> None:
+    def set_beams(self, arg0: collections.abc.Sequence[substructures.WatercolumnDatagramBeam]) -> None:
         ...
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_datagram_number(self, arg0: int) -> None:
+    def set_datagram_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_number_of_beams_in_datagram(self, arg0: int) -> None:
+    def set_number_of_beams_in_datagram(self, arg0: typing.SupportsInt) -> None:
         """
         < Beam vector of 2 elements
         """
-    def set_number_of_datagrams(self, arg0: int) -> None:
+    def set_number_of_datagrams(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_number_of_transmit_sectors(self, arg0: int) -> None:
+    def set_number_of_transmit_sectors(self, arg0: typing.SupportsInt) -> None:
         """
         < Transmit_sector vector of 2 elements
         """
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_sampling_frequency(self, arg0: int) -> None:
+    def set_sampling_frequency(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_scanning_info(self, arg0: int) -> None:
+    def set_scanning_info(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_sound_speed(self, arg0: int) -> None:
+    def set_sound_speed(self, arg0: typing.SupportsInt) -> None:
         """
         < in 0.1 m/s
         """
-    def set_spare(self, arg0: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def set_spare(self, arg0: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_total_no_of_receive_beams(self, arg0: int) -> None:
+    def set_total_no_of_receive_beams(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_transmit_sectors(self, arg0: list[substructures.WatercolumnDatagramTransmitSector]) -> None:
+    def set_transmit_sectors(self, arg0: collections.abc.Sequence[substructures.WatercolumnDatagramTransmitSector]) -> None:
         ...
-    def set_tvg_function_applied(self, arg0: int) -> None:
+    def set_tvg_function_applied(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tvg_offset_in_db(self, arg0: int) -> None:
+    def set_tvg_offset_in_db(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_tx_time_heave(self, arg0: int) -> None:
+    def set_tx_time_heave(self, arg0: typing.SupportsInt) -> None:
         """
         < in cm
         """
@@ -4172,7 +4172,7 @@ class XYZDatagram(KongsbergAllDatagram):
         """
     def get_spare_byte(self) -> int:
         ...
-    def get_spare_bytes(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def get_spare_bytes(self) -> typing.Annotated[list[int], "FixedSize(3)"]:
         ...
     def get_system_serial_number(self) -> int:
         """
@@ -4191,7 +4191,7 @@ class XYZDatagram(KongsbergAllDatagram):
             algorithms::geoprocessing::datastructures::XYZ<1>
         """
     @typing.overload
-    def get_xyz(self, beam_numbers: list[int]) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
+    def get_xyz(self, beam_numbers: collections.abc.Sequence[typing.SupportsInt]) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1:
         """
         Convert the XYZDatagramBeams for a given beam_number vector to a XYZ
         structure Note: if a beam number is not found, the corresponding XYZ
@@ -4206,59 +4206,59 @@ class XYZDatagram(KongsbergAllDatagram):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_beams(self, arg0: list[substructures.XYZDatagramBeam]) -> None:
+    def set_beams(self, arg0: collections.abc.Sequence[substructures.XYZDatagramBeam]) -> None:
         """
         < beam detection information
         """
-    def set_checksum(self, arg0: int) -> None:
+    def set_checksum(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_etx(self, arg0: int) -> None:
+    def set_etx(self, arg0: typing.SupportsInt) -> None:
         """
         < end identifier (always 0x03)
         """
-    def set_heading(self, arg0: int) -> None:
+    def set_heading(self, arg0: typing.SupportsInt) -> None:
         """
         < (at TX time) in 0.01 degree
         """
-    def set_number_of_beams(self, arg0: int) -> None:
+    def set_number_of_beams(self, arg0: typing.SupportsInt) -> None:
         """
         < in Datagram
         """
-    def set_number_of_valid_detections(self, arg0: int) -> None:
+    def set_number_of_valid_detections(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_ping_counter(self, arg0: int) -> None:
+    def set_ping_counter(self, arg0: typing.SupportsInt) -> None:
         """
         < 0-65535 ping number (in this file)
         """
-    def set_sampling_frequency(self, arg0: float) -> None:
+    def set_sampling_frequency(self, arg0: typing.SupportsFloat) -> None:
         """
         < in Hz
         """
-    def set_scanning_info(self, arg0: int) -> None:
+    def set_scanning_info(self, arg0: typing.SupportsInt) -> None:
         """
         < only used by em2040. 0 means scanning is not used.
         """
-    def set_sound_speed(self, arg0: int) -> None:
+    def set_sound_speed(self, arg0: typing.SupportsInt) -> None:
         """
         < at transducer in dm/s
         """
-    def set_spare_byte(self, arg0: int) -> None:
+    def set_spare_byte(self, arg0: typing.SupportsInt) -> None:
         ...
-    def set_spare_bytes(self, arg0: typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(3)]) -> None:
+    def set_spare_bytes(self, arg0: typing.Annotated[collections.abc.Sequence[typing.SupportsInt], "FixedSize(3)"]) -> None:
         ...
-    def set_system_serial_number(self, arg0: int) -> None:
+    def set_system_serial_number(self, arg0: typing.SupportsInt) -> None:
         """
         < 100 -
         """
-    def set_transmit_transducer_depth(self, arg0: float) -> None:
+    def set_transmit_transducer_depth(self, arg0: typing.SupportsFloat) -> None:
         """
         < in meter relative water level at time of ping
         """

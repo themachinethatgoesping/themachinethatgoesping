@@ -2,8 +2,8 @@
 Submodule for backtracing echo sounder sample locations to beamangle and twoway traveltime
 """
 from __future__ import annotations
+import collections.abc
 import numpy
-import pybind11_stubgen.typing_ext
 import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
@@ -28,7 +28,7 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
+    def __init__(self, sensor_location: ..., sensor_x: typing.SupportsFloat, sensor_y: typing.SupportsFloat) -> None:
         """
         Construct a new BTConstantSVP object
         
@@ -56,11 +56,11 @@ class BTConstantSVP(I_Backtracer):
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
@@ -90,7 +90,7 @@ class BacktracedWCI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], wci_first_sample_number: int, wci_sample_number_step: int = 1) -> None:
+    def __init__(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: collections.abc.Sequence[typing.SupportsInt], wci_first_sample_number: typing.SupportsInt, wci_sample_number_step: typing.SupportsInt = 1) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -143,17 +143,17 @@ class BacktracedWCI:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def lookup(self, beam_angle: float, range: float) -> float:
+    def lookup(self, beam_angle: typing.SupportsFloat, range: typing.SupportsFloat) -> float:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def shape(self) -> typing.Annotated[list[int], pybind11_stubgen.typing_ext.FixedSize(2)]:
+    def shape(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
         ...
     def size(self) -> int:
         ...
@@ -181,7 +181,7 @@ class I_Backtracer:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_location: ..., sensor_x: float, sensor_y: float, backtracer_name: str) -> None:
+    def __init__(self, sensor_location: ..., sensor_x: typing.SupportsFloat, sensor_y: typing.SupportsFloat, backtracer_name: str) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -193,7 +193,7 @@ class I_Backtracer:
         """
         Return object information as string
         """
-    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2:
+    def backtrace_image(self, y_coordinates: numpy.ndarray[numpy.float32], z_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2:
         """
         Backtrace the location of an image specified by two coordinate vectors
         x is assumed to be 0
@@ -212,7 +212,7 @@ class I_Backtracer:
             (y_coordinates.size(), z_coordinates.size())
         """
     @typing.overload
-    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, x: numpy.ndarray[numpy.float32], y: numpy.ndarray[numpy.float32], z: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -232,7 +232,7 @@ class I_Backtracer:
             datastructures::SampleDirectionsRange
         """
     @typing.overload
-    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, xyz: themachinethatgoesping.algorithms.geoprocessing.datastructures.XYZ_1, mp_cores: typing.SupportsInt = 1) -> themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
         
@@ -257,7 +257,7 @@ class I_Backtracer:
         """
     def get_sensor_location(self) -> ...:
         ...
-    def get_sensor_orientation_quat_ypr(self) -> typing.Annotated[list[float], pybind11_stubgen.typing_ext.FixedSize(3)]:
+    def get_sensor_orientation_quat_ypr(self) -> typing.Annotated[list[float], "FixedSize(3)"]:
         ...
     def get_sensor_x(self) -> float:
         ...
@@ -267,17 +267,17 @@ class I_Backtracer:
         """
         hash function implemented using binary_hash
         """
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
         """
         Return object information as string
         """
-    def lookup(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: list[int], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, wci_first_sample_number: int, wci_sample_number_step: int = 1, mp_cores: int = 1) -> numpy.ndarray[numpy.float32]:
+    def lookup(self, wci: numpy.ndarray[numpy.float32], beam_reference_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: collections.abc.Sequence[typing.SupportsInt], target_directions: themachinethatgoesping.algorithms.geoprocessing.datastructures.SampleDirectionsRange_2, wci_first_sample_number: typing.SupportsInt, wci_sample_number_step: typing.SupportsInt = 1, mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         ...
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
         """
         Print object information
         """
-    def set_sensor_location(self, sensor_location: ..., sensor_x: float, sensor_y: float) -> None:
+    def set_sensor_location(self, sensor_location: ..., sensor_x: typing.SupportsFloat, sensor_y: typing.SupportsFloat) -> None:
         ...
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """
