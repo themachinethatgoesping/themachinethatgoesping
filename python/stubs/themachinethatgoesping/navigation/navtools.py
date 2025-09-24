@@ -6,7 +6,100 @@ import collections.abc
 import numpy
 import themachinethatgoesping.navigation.datastructures
 import typing
-__all__: list[str] = ['compute_latlon_distance_m', 'compute_latlon_distances_m', 'cumulative_latlon_distances_m', 'degrees', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'seconds', 't_latlon_format', 'utm_to_latlon']
+__all__: list[str] = ['compute_latlon_distance_m', 'compute_latlon_distances_m', 'cumulative_latlon_distances_m', 'degrees', 'inplace_1', 'latitude_to_string', 'latlon_to_utm', 'longitude_to_string', 'minutes', 'o_latlon_format', 'seconds', 't_latlon_format', 'utm_to_latlon']
+class o_latlon_format:
+    """
+    Helper class to convert between strings and enum values of type 't_latlon_format'
+    """
+    __default_value__: typing.ClassVar[t_latlon_format]  # value = <t_latlon_format.degrees: 0>
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> o_latlon_format:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> o_latlon_format:
+        ...
+    def __deepcopy__(self, arg0: dict) -> o_latlon_format:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: o_latlon_format) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: t_latlon_format) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: typing.SupportsInt) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: str) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __init__(self, value: t_latlon_format = ...) -> None:
+        """
+        Construct from enum value
+        """
+    @typing.overload
+    def __init__(self, value: str) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __init__(self, value: typing.SupportsInt) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def __repr__(self) -> None:
+        ...
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> o_latlon_format:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def value(self) -> t_latlon_format:
+        """
+        enum value
+        """
+    @value.setter
+    def value(self, arg0: t_latlon_format) -> None:
+        ...
 class t_latlon_format:
     """
     lat/lon format specifications
@@ -31,14 +124,8 @@ class t_latlon_format:
         ...
     def __index__(self) -> int:
         ...
-    @typing.overload
     def __init__(self, value: typing.SupportsInt) -> None:
         ...
-    @typing.overload
-    def __init__(self, str: str) -> None:
-        """
-        Construct this enum type from string
-        """
     def __int__(self) -> int:
         ...
     def __ne__(self, other: typing.Any) -> bool:
@@ -48,8 +135,6 @@ class t_latlon_format:
     def __setstate__(self, state: typing.SupportsInt) -> None:
         ...
     def __str__(self) -> str:
-        ...
-    def str(self) -> str:
         ...
     @property
     def name(self) -> str:
@@ -471,8 +556,10 @@ def cumulative_latlon_distances_m(geolocations_latlon: collections.abc.Sequence[
         Vector of cumulative distances between consecutive coordinates in
         meters.
     """
+def inplace_1(arg0: numpy.ndarray[numpy.float64]) -> None:
+    ...
 @typing.overload
-def latitude_to_string(latitude: typing.SupportsFloat, format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
+def latitude_to_string(latitude: typing.SupportsFloat, format: o_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -490,7 +577,7 @@ def latitude_to_string(latitude: typing.SupportsFloat, format: t_latlon_format =
         converted latitude string
     """
 @typing.overload
-def latitude_to_string(latitude: collections.abc.Sequence[typing.SupportsFloat], format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
+def latitude_to_string(latitude: collections.abc.Sequence[typing.SupportsFloat], format: o_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
     """
     convert a latitude value to a string
     
@@ -510,7 +597,7 @@ def latitude_to_string(latitude: collections.abc.Sequence[typing.SupportsFloat],
 def latlon_to_utm(latitude: numpy.ndarray[numpy.float64], longitude: numpy.ndarray[numpy.float64], setzone: typing.SupportsInt = -1, mp_cores: typing.SupportsInt = 1) -> tuple[numpy.ndarray[numpy.float64], numpy.ndarray[numpy.float64], int, bool]:
     ...
 @typing.overload
-def longitude_to_string(longitude: typing.SupportsFloat, format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
+def longitude_to_string(longitude: typing.SupportsFloat, format: o_latlon_format = ..., precision: typing.SupportsInt = 6) -> str:
     """
     convert a latitude value to a string
     
@@ -528,7 +615,7 @@ def longitude_to_string(longitude: typing.SupportsFloat, format: t_latlon_format
         converted latitude string
     """
 @typing.overload
-def longitude_to_string(longitude: collections.abc.Sequence[typing.SupportsFloat], format: t_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
+def longitude_to_string(longitude: collections.abc.Sequence[typing.SupportsFloat], format: o_latlon_format = ..., precision: typing.SupportsInt = 6) -> list[str]:
     """
     convert a latitude value to a string
     
