@@ -20,5 +20,5 @@ def modules():
     ...
 def version():
     ...
-__modules_installed__: list = [('tools_cppy', '0.29.2'), ('tools', '@PROJECT_VERSION@'), ('scripts', '@PROJECT_VERSION@'), ('algorithms', '0.9.5'), ('navigation', '0.17.7'), ('echosounders_cppy', '0.45.6'), ('echosounders', '0.45.6'), ('pingprocessing_cppy', '0.11.6'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '0.4.2')]
+__modules_installed__: list = [('tools_cppy', '0.30.0'), ('tools', '@PROJECT_VERSION@'), ('scripts', '@PROJECT_VERSION@'), ('algorithms', '0.9.5'), ('navigation', '0.17.7'), ('echosounders_cppy', '0.45.6'), ('echosounders', '0.45.6'), ('pingprocessing_cppy', '0.11.6'), ('pingprocessing', '@PROJECT_VERSION@'), ('gridding', '0.4.2')]
 __version__: str = '0.30.5'

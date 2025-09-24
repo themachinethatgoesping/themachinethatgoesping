@@ -5,7 +5,7 @@ from __future__ import annotations
 import collections.abc
 import typing
 from . import bivectorinterpolators
-__all__: list[str] = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'extrapolate', 'fail', 'nearest', 't_extr_mode']
+__all__: list[str] = ['AkimaInterpolator', 'AkimaInterpolatorF', 'LinearInterpolator', 'LinearInterpolatorDF', 'LinearInterpolatorF', 'LinearInterpolatorFD', 'NearestInterpolator', 'NearestInterpolatorDF', 'NearestInterpolatorDI', 'NearestInterpolatorDO', 'NearestInterpolatorF', 'NearestInterpolatorFD', 'NearestInterpolatorFI', 'NearestInterpolatorFO', 'SlerpInterpolator', 'SlerpInterpolatorDF', 'SlerpInterpolatorF', 'SlerpInterpolatorFD', 'bivectorinterpolators', 'o_extr_mode', 't_extr_mode']
 class AkimaInterpolator:
     """
     Interpolator class to perform a (modified) akima interpolation. Uses
@@ -55,7 +55,7 @@ class AkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -69,7 +69,7 @@ class AkimaInterpolator:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -128,14 +128,12 @@ class AkimaInterpolator:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -178,7 +176,7 @@ class AkimaInterpolator:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -240,7 +238,7 @@ class AkimaInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -254,7 +252,7 @@ class AkimaInterpolatorF:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -313,14 +311,12 @@ class AkimaInterpolatorF:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -363,7 +359,7 @@ class AkimaInterpolatorF:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -426,7 +422,7 @@ class LinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -440,7 +436,7 @@ class LinearInterpolator:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -499,14 +495,12 @@ class LinearInterpolator:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -549,7 +543,7 @@ class LinearInterpolator:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -612,7 +606,7 @@ class LinearInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -626,7 +620,7 @@ class LinearInterpolatorDF:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -685,14 +679,12 @@ class LinearInterpolatorDF:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -735,7 +727,7 @@ class LinearInterpolatorDF:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -798,7 +790,7 @@ class LinearInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -812,7 +804,7 @@ class LinearInterpolatorF:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -871,14 +863,12 @@ class LinearInterpolatorF:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -921,7 +911,7 @@ class LinearInterpolatorF:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -984,7 +974,7 @@ class LinearInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -998,7 +988,7 @@ class LinearInterpolatorFD:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1057,14 +1047,12 @@ class LinearInterpolatorFD:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -1107,7 +1095,7 @@ class LinearInterpolatorFD:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -1170,7 +1158,7 @@ class NearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1184,7 +1172,7 @@ class NearestInterpolator:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1243,14 +1231,12 @@ class NearestInterpolator:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -1293,7 +1279,7 @@ class NearestInterpolator:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -1356,7 +1342,7 @@ class NearestInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1370,7 +1356,7 @@ class NearestInterpolatorDF:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1429,14 +1415,12 @@ class NearestInterpolatorDF:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -1479,7 +1463,7 @@ class NearestInterpolatorDF:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -1542,7 +1526,7 @@ class NearestInterpolatorDI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1556,7 +1540,7 @@ class NearestInterpolatorDI:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1615,14 +1599,12 @@ class NearestInterpolatorDI:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> int:
         ...
@@ -1665,7 +1647,7 @@ class NearestInterpolatorDI:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -1728,7 +1710,7 @@ class NearestInterpolatorDO:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1742,7 +1724,7 @@ class NearestInterpolatorDO:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1801,14 +1783,12 @@ class NearestInterpolatorDO:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> typing.Any:
         ...
@@ -1851,7 +1831,7 @@ class NearestInterpolatorDO:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -1914,7 +1894,7 @@ class NearestInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -1928,7 +1908,7 @@ class NearestInterpolatorF:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -1987,14 +1967,12 @@ class NearestInterpolatorF:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -2037,7 +2015,7 @@ class NearestInterpolatorF:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -2100,7 +2078,7 @@ class NearestInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsFloat] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2114,7 +2092,7 @@ class NearestInterpolatorFD:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -2173,14 +2151,12 @@ class NearestInterpolatorFD:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> float:
         ...
@@ -2223,7 +2199,7 @@ class NearestInterpolatorFD:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -2286,7 +2262,7 @@ class NearestInterpolatorFI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.SupportsInt] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2300,7 +2276,7 @@ class NearestInterpolatorFI:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -2359,14 +2335,12 @@ class NearestInterpolatorFI:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> int:
         ...
@@ -2409,7 +2383,7 @@ class NearestInterpolatorFI:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -2472,7 +2446,7 @@ class NearestInterpolatorFO:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Y: collections.abc.Sequence[typing.Any] = [], extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Interpolator object from a vector of pairs usage:
         interpolated_y_value = interpolator.interpolate(x_value)
@@ -2486,7 +2460,7 @@ class NearestInterpolatorFO:
             as X!
         
         Parameter ``extrapolation_mode``:
-            :py:class:`t_extr_mode
+            :option o_extr_mode
             <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
             object that describes the extrapolation mode
         """
@@ -2545,14 +2519,12 @@ class NearestInterpolatorFO:
         Returns:
             std::vector<YType>
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def get_y(self, target_x: typing.SupportsFloat) -> typing.Any:
         ...
@@ -2595,7 +2567,7 @@ class NearestInterpolatorFO:
         Parameter ``Y:``:
             y vector (must be same size)
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -2670,7 +2642,7 @@ class SlerpInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -2805,14 +2777,12 @@ class SlerpInterpolator:
         Returns:
             std::vector<std::array<3, YType>> YPR
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def hash(self) -> int:
         """
@@ -2912,7 +2882,7 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -3017,7 +2987,7 @@ class SlerpInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3152,14 +3122,12 @@ class SlerpInterpolatorDF:
         Returns:
             std::vector<std::array<3, YType>> YPR
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def hash(self) -> int:
         """
@@ -3259,7 +3227,7 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -3364,7 +3332,7 @@ class SlerpInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3499,14 +3467,12 @@ class SlerpInterpolatorF:
         Returns:
             std::vector<std::array<3, YType>> YPR
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def hash(self) -> int:
         """
@@ -3606,7 +3572,7 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -3711,7 +3677,7 @@ class SlerpInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = ...) -> None:
+    def __init__(self, X: collections.abc.Sequence[typing.SupportsFloat] = [], Yaw: collections.abc.Sequence[typing.SupportsFloat] = [], Pitch: collections.abc.Sequence[typing.SupportsFloat] = [], Roll: collections.abc.Sequence[typing.SupportsFloat] = [], input_in_degrees: bool = True, extrapolation_mode: o_extr_mode = ...) -> None:
         """
         Construct a new Slerp Interpolator object using vectors of x, yaw,
         pitch and roll
@@ -3846,14 +3812,12 @@ class SlerpInterpolatorFD:
         Returns:
             std::vector<std::array<3, YType>> YPR
         """
-    def get_extrapolation_mode(self) -> t_extr_mode:
+    def get_extrapolation_mode(self) -> o_extr_mode:
         """
         Get the currently set extrapolation mode
         
         Returns:
-            :py:class:`t_extr_mode
-            <themachinethatgoesping.tools.vectorinterpolators.t_extr_mode>`
-            object (enumerator) that describes the extrapolation mode
+            :o_extr_mode
         """
     def hash(self) -> int:
         """
@@ -3953,7 +3917,7 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         """
-    def set_extrapolation_mode(self, extrapolation_mode: t_extr_mode) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
         
@@ -3996,17 +3960,111 @@ class SlerpInterpolatorFD:
         Returns:
             corresponding y value
         """
+class o_extr_mode:
+    """
+    Helper class to convert between strings and enum values of type 't_extr_mode'
+    """
+    __default_value__: typing.ClassVar[t_extr_mode]  # value = <t_extr_mode.extrapolate: 0>
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> o_extr_mode:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> o_extr_mode:
+        ...
+    def __deepcopy__(self, arg0: dict) -> o_extr_mode:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: o_extr_mode) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: t_extr_mode) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: typing.SupportsInt) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: str) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __init__(self, value: t_extr_mode = ...) -> None:
+        """
+        Construct from enum value
+        """
+    @typing.overload
+    def __init__(self, value: str) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __init__(self, value: typing.SupportsInt) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def __repr__(self) -> None:
+        ...
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> o_extr_mode:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def value(self) -> t_extr_mode:
+        """
+        enum value
+        """
+    @value.setter
+    def value(self, arg0: t_extr_mode) -> None:
+        ...
 class t_extr_mode:
     """
     extrapolation mode type.
     
     Members:
     
-      extrapolate
+      extrapolate : < interpolate using the closest value pair in the internal x vector
     
-      nearest
+      nearest : < return nearest value in the vector.
     
-      fail
+      fail : < throw out_of_range exception if x value exceeds boundaries of
+    internal vector
     """
     __members__: typing.ClassVar[dict[str, t_extr_mode]]  # value = {'extrapolate': <t_extr_mode.extrapolate: 0>, 'nearest': <t_extr_mode.nearest: 2>, 'fail': <t_extr_mode.fail: 1>}
     extrapolate: typing.ClassVar[t_extr_mode]  # value = <t_extr_mode.extrapolate: 0>
@@ -4020,14 +4078,8 @@ class t_extr_mode:
         ...
     def __index__(self) -> int:
         ...
-    @typing.overload
     def __init__(self, value: typing.SupportsInt) -> None:
         ...
-    @typing.overload
-    def __init__(self, str: str) -> None:
-        """
-        Construct this enum type from string
-        """
     def __int__(self) -> int:
         ...
     def __ne__(self, other: typing.Any) -> bool:
@@ -4038,14 +4090,9 @@ class t_extr_mode:
         ...
     def __str__(self) -> str:
         ...
-    def str(self) -> str:
-        ...
     @property
     def name(self) -> str:
         ...
     @property
     def value(self) -> int:
         ...
-extrapolate: t_extr_mode  # value = <t_extr_mode.extrapolate: 0>
-fail: t_extr_mode  # value = <t_extr_mode.fail: 1>
-nearest: t_extr_mode  # value = <t_extr_mode.nearest: 2>

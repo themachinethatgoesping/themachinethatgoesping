@@ -6,7 +6,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased] - Unreleased
 
-- tools -> 0.29.2
+- tools -> 0.30.0
 - algorithms -> 0.9.5
 - pingprocessing -> 0.11.6
 - echosounders -> 0.45.6
@@ -15,6 +15,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - move functions from pingprocessing/echograms to algorithms/gridding
 - algorithms: added nearestfeaturemapper with multiprocessing support
 - tools:bivecorinterpolator: added insert_row function
+- added Option class as convenience wrapper for enums
+- created nanobind version of tools (pybind11 version is still default)
 
 ### Fixed
 - tools: bivector interpolators throw error if appended row is not larger than last row

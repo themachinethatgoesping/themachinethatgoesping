@@ -47,7 +47,7 @@ class NavigationInterpolatorLatLon:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         """
         Construct a new i navigationinterpolator interface
         
@@ -216,7 +216,7 @@ class NavigationInterpolatorLatLon:
         Parameter ``longitude``:
             longitude in °
         """
-    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         """
         Set the extrapolation mode for all interpolators
         
@@ -317,7 +317,7 @@ class NavigationInterpolatorLocal:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, sensor_configuration: SensorConfiguration, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         """
         Construct a new i navigationinterpolator interface
         
@@ -486,7 +486,7 @@ class NavigationInterpolatorLocal:
         Parameter ``easting``:
             easting in meters
         """
-    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def set_extrapolation_mode(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         """
         Set the extrapolation mode for all interpolators
         

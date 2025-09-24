@@ -38,7 +38,7 @@ class BiAkimaInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -133,7 +133,7 @@ class BiAkimaInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -228,7 +228,7 @@ class BiLinearInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -323,7 +323,7 @@ class BiLinearInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -418,7 +418,7 @@ class BiLinearInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -513,7 +513,7 @@ class BiLinearInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -608,7 +608,7 @@ class BiNearestInterpolator:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -703,7 +703,7 @@ class BiNearestInterpolatorDF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -798,7 +798,7 @@ class BiNearestInterpolatorDI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -893,7 +893,7 @@ class BiNearestInterpolatorF:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -988,7 +988,7 @@ class BiNearestInterpolatorFD:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
@@ -1083,7 +1083,7 @@ class BiNearestInterpolatorFI:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.t_extr_mode = ...) -> None:
+    def __init__(self, extrapolation_mode: themachinethatgoesping.tools_cppy.vectorinterpolators.o_extr_mode = ...) -> None:
         ...
     def __repr__(self) -> str:
         """
