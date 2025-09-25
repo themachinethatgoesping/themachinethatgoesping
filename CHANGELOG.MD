@@ -674,7 +674,7 @@ sta
     - add tests that actually load data and loop through datagrams and pings
     - solved diamond inheritance mess
     - removed deprecated functions
-  - set warning_level=2 to silence external warnings
+  - set warning_level=0 to silence external warnings
   - fix missing override warning
   - cleaned numerous unused xtensor headers
   - finally fixed building for mac (intel only)
