@@ -181,7 +181,7 @@ class GeolocationLatLon(Geolocation):
     def __init__(self, location: Geolocation, latitude: float, longitude: float) -> None:
         """
         __init__(self, geolocationlatlon_utm: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationUTM) -> None
-        __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, latitude: float = 0, longitude: float = 0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -203,7 +203,7 @@ class GeolocationLatLon(Geolocation):
         Construct an GeolocationLatLon object from an existing GeolocationUTM
         object (this allows for explicit conversion from GeolocationUTM class)
         
-        3. ``__init__(self, latitude: float = 0, longitude: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        3. ``__init__(self, latitude: float = 0, longitude: float = 0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new GeolocationLatLon object
         
@@ -303,7 +303,7 @@ class GeolocationLocal(Geolocation):
     def __init__(self, geolocationutm: GeolocationUTM) -> None:
         """
         __init__(self, geolocation: themachinethatgoesping.navigation_nanopy.datastructures.Geolocation, northing: float, easting: float) -> None
-        __init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, northing: float = 0.0, easting: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -323,7 +323,7 @@ class GeolocationLocal(Geolocation):
         Parameter ``easting``:
             in m, positive eastwards
         
-        3. ``__init__(self, northing: float = 0, easting: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        3. ``__init__(self, northing: float = 0.0, easting: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new GeolocationLocal object
         
@@ -423,7 +423,7 @@ class GeolocationUTM(GeolocationLocal):
     def __init__(self, geolocationlocal: GeolocationLocal, utm_zone: int, northern_hemisphere: bool) -> None:
         """
         __init__(self, geolocationlatlon: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon, setzone: int = -1) -> None
-        __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -446,7 +446,7 @@ class GeolocationUTM(GeolocationLocal):
         object (this allows for explicit conversion from GeolocationLatLon
         class)
         
-        3. ``__init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        3. ``__init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new GeolocationUTM object
         
@@ -538,7 +538,7 @@ class PositionalOffsets:
         """
         hash function implemented using binary_hash
         """
-    def __init__(self, name: str = '', x: float = 0, y: float = 0, z: float = 0, yaw: float = 0, pitch: float = 0, roll: float = 0) -> None:
+    def __init__(self, name: str = '', x: float = 0.0, y: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None:
         """
         Construct a new PositionalOffsets object
         
@@ -701,7 +701,7 @@ class Sensordata:
         """
         __init__(self, arg: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLocal, /) -> None
         __init__(self, arg: themachinethatgoesping.navigation_nanopy.datastructures.SensordataUTM, /) -> None
-        __init__(self, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -717,7 +717,7 @@ class Sensordata:
         
         Construct a new Sensordata object
         
-        4. ``__init__(self, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        4. ``__init__(self, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new Sensordata object
         
@@ -854,7 +854,7 @@ class SensordataLatLon(Sensordata):
     def __init__(self, sensordata: Sensordata, latitude: float, longitude: float) -> None:
         """
         __init__(self, sensordata_utm: themachinethatgoesping.navigation_nanopy.datastructures.SensordataUTM) -> None
-        __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -876,7 +876,7 @@ class SensordataLatLon(Sensordata):
         Construct an SensordataLatLon object from an existing SensordataUTM
         object (this allows for explicit conversion from SensordataUTM class)
         
-        3. ``__init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        3. ``__init__(self, latitude: float = 0, longitude: float = 0, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new SensordataLatLon object
         
@@ -968,7 +968,7 @@ class SensordataLocal(Sensordata):
     def __init__(self, sensordatautm: SensordataUTM) -> None:
         """
         __init__(self, sensordata: themachinethatgoesping.navigation_nanopy.datastructures.Sensordata, northing: float, easting: float) -> None
-        __init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, northing: float = 0, easting: float = 0, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -989,7 +989,7 @@ class SensordataLocal(Sensordata):
         Parameter ``easting``:
             in m, positive eastwards
         
-        3. ``__init__(self, northing: float = 0, easting: float = 0, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        3. ``__init__(self, northing: float = 0, easting: float = 0, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new SensordataLocal object
         
@@ -1105,7 +1105,7 @@ class SensordataUTM(SensordataLocal):
         """
         __init__(self, sensordata_local: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLocal, utm_zone: int, northern_hemisphere: bool) -> None
         __init__(self, sensordatalatlon: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon, setutm_zone: int = -1) -> None
-        __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None
+        __init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None
         
         Overloaded function.
         
@@ -1147,7 +1147,7 @@ class SensordataUTM(SensordataLocal):
         object (this allows for explicit conversion from SensordataLatLon
         class)
         
-        4. ``__init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0, heave: float = 0, heading: float = 0, pitch: float = 0, roll: float = 0) -> None``
+        4. ``__init__(self, northing: float = 0, easting: float = 0, utm_zone: int = 0, northern_hemisphere: bool = True, depth: float = 0.0, heave: float = 0.0, heading: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None``
         
         Construct a new SensordataUTM object
         
