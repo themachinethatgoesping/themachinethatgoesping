@@ -8,6 +8,7 @@ import numpy as np
 import themachinethatgoesping as theping
 from themachinethatgoesping.algorithms.geoprocessing.functions import to_raypoints
 from themachinethatgoesping.algorithms.gridding import ForwardGridder1D
+from themachinethatgoesping.algorithms_nanopy.featuremapping import NearestFeatureMapper
 from themachinethatgoesping import echosounders
 from themachinethatgoesping.pingprocessing.core.asserts import assert_length
 from themachinethatgoesping.pingprocessing.core.asserts import assert_valid_argument
@@ -18,7 +19,7 @@ from themachinethatgoesping.pingprocessing.watercolumn import helper as wchelper
 from themachinethatgoesping import tools
 from tqdm.asyncio import tqdm_asyncio as tqdm
 import warnings as warnings
-__all__: list[str] = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'theping', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
+__all__: list[str] = ['EchoLayer', 'EchogramBuilder', 'ForwardGridder1D', 'NearestFeatureMapper', 'PingData', 'assert_length', 'assert_valid_argument', 'deepcopy', 'defaultdict', 'dt', 'echosounders', 'get_progress_iterator', 'mdates', 'mpl', 'np', 'theping', 'to_raypoints', 'tools', 'tqdm', 'warnings', 'wchelper']
 class EchogramBuilder:
     @classmethod
     def from_pings(cls, pings, pss = ..., wci_value: str = 'sv/av/pv/rv', linear_mean = True, no_navigation = False, apply_pss_to_bottom = False, force_angle = None, depth_stack = False, verbose = True):
