@@ -3,5 +3,6 @@ Python module process ping data, e.g. apply absorption, spreading loss, compute 
 """
 from __future__ import annotations
 from . import featuremapping
-__all__: list[str] = ['featuremapping']
+from . import imageprocessing
+__all__: list[str] = ['featuremapping', 'imageprocessing']
 __version__: str = '0.9.5'
