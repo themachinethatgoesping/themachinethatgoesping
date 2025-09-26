@@ -1,0 +1,11 @@
+--- a/include/xxhash.hpp
++++ b/include/xxhash.hpp
+@@ -2169,7 +2169,7 @@ namespace xxh
+ 
+ 		void reset_internal(uint64_t seed_reset, const void* secret_reset, size_t secret_size)
+ 		{
+-			memset(this, 0, sizeof(*this));
++			memset((void*)this, 0, sizeof(*this));
+ 			memcpy(acc, detail3::init_acc.data(), sizeof(detail3::init_acc));
+ 			seed = seed_reset;
+ 			useSeed = (seed != 0);
