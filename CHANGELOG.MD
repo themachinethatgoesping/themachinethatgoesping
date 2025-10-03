@@ -28,6 +28,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - updated fast_float 8.0.2 -> 8.1.0
 - updated xtensor 0.27.1 -> 0.27.1
 - update pybind11 2.13.6 -> 3.0.1
+#- update geographiclib 2.5.2 -> 2.6.0 (postponed because of build issues)
 - echosounders:
   - refractored KongsbergAllWaterColumnCalibration into cpp file
 

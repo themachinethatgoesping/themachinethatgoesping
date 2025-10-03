@@ -3,6 +3,7 @@
 """
 from __future__ import annotations
 import collections.abc
+import numpy
 import themachinethatgoesping.tools_nanopy.vectorinterpolators
 import typing
 __all__: list[str] = ['BiAkimaInterpolator', 'BiAkimaInterpolatorF', 'BiLinearInterpolator', 'BiLinearInterpolatorDF', 'BiLinearInterpolatorF', 'BiLinearInterpolatorFD', 'BiNearestInterpolator', 'BiNearestInterpolatorDF', 'BiNearestInterpolatorDI', 'BiNearestInterpolatorF', 'BiNearestInterpolatorFD', 'BiNearestInterpolatorFI']
@@ -15,7 +16,7 @@ class BiAkimaInterpolator:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -111,7 +112,7 @@ class BiAkimaInterpolatorF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float32, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -207,7 +208,7 @@ class BiLinearInterpolator:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -303,7 +304,7 @@ class BiLinearInterpolatorDF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float32, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -399,7 +400,7 @@ class BiLinearInterpolatorF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float32, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -495,7 +496,7 @@ class BiLinearInterpolatorFD:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -591,7 +592,7 @@ class BiNearestInterpolator:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -687,7 +688,7 @@ class BiNearestInterpolatorDF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float32, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -783,7 +784,7 @@ class BiNearestInterpolatorDI:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=int64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -879,7 +880,7 @@ class BiNearestInterpolatorF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float32, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -975,7 +976,7 @@ class BiNearestInterpolatorFD:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -1071,7 +1072,7 @@ class BiNearestInterpolatorFI:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> ...:
+    def __call__(self, row_coordinates: collections.abc.Sequence[float], column_coordinates: collections.abc.Sequence[float], mp_cores: int = 1) -> numpy.ndarray[dtype=int64, ..., order='C']:
         """
         get interpolated y values for given x targets (vectorized call)
         

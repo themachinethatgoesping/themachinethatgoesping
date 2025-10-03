@@ -9,7 +9,7 @@ import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
 import typing
-__all__: list[str] = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'amplitudes', 'ap', 'av', 'beam_crosstrack_angles', 'beam_numbers_per_tx_sector', 'beam_selection_all', 'bottom', 'bottom_range_samples', 'channel_id', 'datetime', 'geolocation', 'multisectorwatercolumn_calibration', 'navigation_interpolator_latlon', 'number_of_beams', 'number_of_tx_sectors', 'power', 'pp', 'pv', 'rp', 'rv', 'sensor_configuration', 'sensor_data_latlon', 'sp', 'sv', 't_pingfeature', 'timestamp', 'two_way_travel_times', 'tx_sector_per_beam', 'tx_signal_parameters', 'watercolumn', 'watercolumn_calibration', 'xyz']
+__all__: list[str] = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'o_pingfeature', 't_pingfeature']
 class AmplitudeCalibration:
     """
     """
@@ -527,7 +527,7 @@ class I_PingCommon:
         Returns:
             std::string
         """
-    def has_all_of_features(self, feature_names: collections.abc.Sequence[t_pingfeature]) -> bool:
+    def has_all_of_features(self, feature_names: collections.abc.Sequence[o_pingfeature]) -> bool:
         """
         Check if all of the specified features are available
         
@@ -537,7 +537,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_any_of_features(self, feature_names: collections.abc.Sequence[t_pingfeature]) -> bool:
+    def has_any_of_features(self, feature_names: collections.abc.Sequence[o_pingfeature]) -> bool:
         """
         Check if any of the specified features is available
         
@@ -547,7 +547,7 @@ class I_PingCommon:
         Returns:
             false
         """
-    def has_feature(self, feature_name: t_pingfeature) -> bool:
+    def has_feature(self, feature_name: o_pingfeature) -> bool:
         """
         Check if any of the registered features is available
         
@@ -1525,6 +1525,99 @@ class WaterColumnCalibration:
         """
         convert object to bytearray
         """
+class o_pingfeature:
+    """
+    Helper class to convert between strings and enum values of type 't_pingfeature'
+    """
+    __default_value__: typing.ClassVar[t_pingfeature]  # value = <t_pingfeature.timestamp: 0>
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> o_pingfeature:
+        """
+        create T_CLASS object from bytearray
+        """
+    def __copy__(self) -> o_pingfeature:
+        ...
+    def __deepcopy__(self, arg0: dict) -> o_pingfeature:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: o_pingfeature) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: t_pingfeature) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: typing.SupportsInt) -> bool:
+        ...
+    @typing.overload
+    def __eq__(self, arg0: str) -> bool:
+        ...
+    def __getstate__(self) -> bytes:
+        ...
+    def __hash__(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    @typing.overload
+    def __init__(self, value: t_pingfeature = ...) -> None:
+        """
+        Construct from enum value
+        """
+    @typing.overload
+    def __init__(self, value: str) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __init__(self, value: typing.SupportsInt) -> None:
+        """
+        Construct from string
+        """
+    @typing.overload
+    def __repr__(self) -> str:
+        """
+        Return object information as string
+        """
+    @typing.overload
+    def __repr__(self) -> None:
+        ...
+    def __setstate__(self, arg0: bytes) -> None:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        ...
+    @typing.overload
+    def __str__(self) -> str:
+        """
+        Return object information as string
+        """
+    def copy(self) -> o_pingfeature:
+        """
+        return a copy using the c++ default copy constructor
+        """
+    def hash(self) -> int:
+        """
+        hash function implemented using binary_hash
+        """
+    def info_string(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> str:
+        """
+        Return object information as string
+        """
+    def print(self, float_precision: typing.SupportsInt = 3, superscript_exponents: bool = True) -> None:
+        """
+        Print object information
+        """
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """
+        convert object to bytearray
+        """
+    @property
+    def value(self) -> t_pingfeature:
+        """
+        enum value
+        """
+    @value.setter
+    def value(self, arg0: t_pingfeature) -> None:
+        ...
 class t_pingfeature:
     """
     
@@ -1633,14 +1726,8 @@ class t_pingfeature:
         ...
     def __index__(self) -> int:
         ...
-    @typing.overload
     def __init__(self, value: typing.SupportsInt) -> None:
         ...
-    @typing.overload
-    def __init__(self, str: str) -> None:
-        """
-        Construct this enum type from string
-        """
     def __int__(self) -> int:
         ...
     def __ne__(self, other: typing.Any) -> bool:
@@ -1651,42 +1738,9 @@ class t_pingfeature:
         ...
     def __str__(self) -> str:
         ...
-    def str(self) -> str:
-        ...
     @property
     def name(self) -> str:
         ...
     @property
     def value(self) -> int:
         ...
-amplitudes: t_pingfeature  # value = <t_pingfeature.amplitudes: 20>
-ap: t_pingfeature  # value = <t_pingfeature.ap: 25>
-av: t_pingfeature  # value = <t_pingfeature.av: 26>
-beam_crosstrack_angles: t_pingfeature  # value = <t_pingfeature.beam_crosstrack_angles: 16>
-beam_numbers_per_tx_sector: t_pingfeature  # value = <t_pingfeature.beam_numbers_per_tx_sector: 12>
-beam_selection_all: t_pingfeature  # value = <t_pingfeature.beam_selection_all: 13>
-bottom: t_pingfeature  # value = <t_pingfeature.bottom: 8>
-bottom_range_samples: t_pingfeature  # value = <t_pingfeature.bottom_range_samples: 19>
-channel_id: t_pingfeature  # value = <t_pingfeature.channel_id: 2>
-datetime: t_pingfeature  # value = <t_pingfeature.datetime: 1>
-geolocation: t_pingfeature  # value = <t_pingfeature.geolocation: 6>
-multisectorwatercolumn_calibration: t_pingfeature  # value = <t_pingfeature.multisectorwatercolumn_calibration: 31>
-navigation_interpolator_latlon: t_pingfeature  # value = <t_pingfeature.navigation_interpolator_latlon: 4>
-number_of_beams: t_pingfeature  # value = <t_pingfeature.number_of_beams: 14>
-number_of_tx_sectors: t_pingfeature  # value = <t_pingfeature.number_of_tx_sectors: 11>
-power: t_pingfeature  # value = <t_pingfeature.power: 27>
-pp: t_pingfeature  # value = <t_pingfeature.pp: 23>
-pv: t_pingfeature  # value = <t_pingfeature.pv: 24>
-rp: t_pingfeature  # value = <t_pingfeature.rp: 21>
-rv: t_pingfeature  # value = <t_pingfeature.rv: 22>
-sensor_configuration: t_pingfeature  # value = <t_pingfeature.sensor_configuration: 3>
-sensor_data_latlon: t_pingfeature  # value = <t_pingfeature.sensor_data_latlon: 5>
-sp: t_pingfeature  # value = <t_pingfeature.sp: 28>
-sv: t_pingfeature  # value = <t_pingfeature.sv: 29>
-timestamp: t_pingfeature  # value = <t_pingfeature.timestamp: 0>
-two_way_travel_times: t_pingfeature  # value = <t_pingfeature.two_way_travel_times: 17>
-tx_sector_per_beam: t_pingfeature  # value = <t_pingfeature.tx_sector_per_beam: 15>
-tx_signal_parameters: t_pingfeature  # value = <t_pingfeature.tx_signal_parameters: 10>
-watercolumn: t_pingfeature  # value = <t_pingfeature.watercolumn: 9>
-watercolumn_calibration: t_pingfeature  # value = <t_pingfeature.watercolumn_calibration: 30>
-xyz: t_pingfeature  # value = <t_pingfeature.xyz: 18>

@@ -70,7 +70,7 @@ class NearestFeatureMapper:
         """
     def feature_to_feature(self, feature_from: str, feature_to: str, value: float) -> float:
         """
-        feature_to_feature(self, feature_from: str, feature_to: str, values: ndarray[dtype=float64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=float64, shape=(*), order='C']
+        feature_to_feature(self, feature_from: str, feature_to: str, values: numpy.ndarray[dtype=float64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, shape=(*), order='A']
         
         Overloaded function.
         
@@ -93,7 +93,7 @@ class NearestFeatureMapper:
         Throws:
             std::runtime_error if either feature is not found
         
-        2. ``feature_to_feature(self, feature_from: str, feature_to: str, values: ndarray[dtype=float64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=float64, shape=(*), order='C']``
+        2. ``feature_to_feature(self, feature_from: str, feature_to: str, values: numpy.ndarray[dtype=float64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, shape=(*), order='A']``
         
         Convert multiple values from one feature space to another (vectorized)
         
@@ -120,7 +120,7 @@ class NearestFeatureMapper:
         """
     def feature_to_index(self, feature: str, value: float) -> int:
         """
-        feature_to_index(self, feature: str, values: ndarray[dtype=float64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=uint64, shape=(*), order='C']
+        feature_to_index(self, feature: str, values: numpy.ndarray[dtype=float64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=uint64, shape=(*), order='A']
         
         Overloaded function.
         
@@ -140,7 +140,7 @@ class NearestFeatureMapper:
         Throws:
             std::runtime_error if the feature is not found
         
-        2. ``feature_to_index(self, feature: str, values: ndarray[dtype=float64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=uint64, shape=(*), order='C']``
+        2. ``feature_to_index(self, feature: str, values: numpy.ndarray[dtype=float64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=uint64, shape=(*), order='A']``
         
         Convert multiple feature values to their corresponding indices
         (vectorized)
@@ -204,7 +204,7 @@ class NearestFeatureMapper:
         """
     def index_to_feature(self, feature: str, index: int) -> float:
         """
-        index_to_feature(self, feature: str, indices: ndarray[dtype=uint64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=float64, shape=(*), order='C']
+        index_to_feature(self, feature: str, indices: numpy.ndarray[dtype=uint64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, shape=(*), order='A']
         
         Overloaded function.
         
@@ -224,7 +224,7 @@ class NearestFeatureMapper:
         Throws:
             std::runtime_error if the feature is not found
         
-        2. ``index_to_feature(self, feature: str, indices: ndarray[dtype=uint64, shape=(*), order='C'], mp_cores: int = 1) -> ndarray[dtype=float64, shape=(*), order='C']``
+        2. ``index_to_feature(self, feature: str, indices: numpy.ndarray[dtype=uint64, shape=(*), order='A'], mp_cores: int = 1) -> numpy.ndarray[dtype=float64, shape=(*), order='A']``
         
         Convert multiple indices to their corresponding feature values
         (vectorized)

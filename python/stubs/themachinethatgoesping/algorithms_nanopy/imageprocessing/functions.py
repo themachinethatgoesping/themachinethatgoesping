@@ -1,5 +1,5 @@
 """
-M that holds functions used for image processing functions
+Module that holds functions used for image processing functions
 """
 from __future__ import annotations
 __all__: list[str] = ['find_local_maxima', 'find_local_maxima2', 'grow_regions']
