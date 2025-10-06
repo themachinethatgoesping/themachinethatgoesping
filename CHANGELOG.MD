@@ -17,6 +17,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools:bivecorinterpolator: added insert_row function
 - added Option class as convenience wrapper for enums
 - created nanobind version of tools (pybind11 version is still default)
+- tools: more overloads for bivectorinterpolator with xtensor input
+- echosounders: amplitude calibration functions now support beam and sample varying offsets (as matrix)
 
 ### Fixed
 - tools: bivector interpolators throw error if appended row is not larger than last row

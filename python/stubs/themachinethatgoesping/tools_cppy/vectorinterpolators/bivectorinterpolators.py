@@ -15,7 +15,7 @@ class BiAkimaInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -50,7 +50,7 @@ class BiAkimaInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.float64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -110,7 +110,7 @@ class BiAkimaInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -145,7 +145,7 @@ class BiAkimaInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float32]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -205,7 +205,7 @@ class BiLinearInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -240,7 +240,7 @@ class BiLinearInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.float64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -300,7 +300,7 @@ class BiLinearInterpolatorDF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -335,7 +335,7 @@ class BiLinearInterpolatorDF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.float32]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -395,7 +395,7 @@ class BiLinearInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -430,7 +430,7 @@ class BiLinearInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float32]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -490,7 +490,7 @@ class BiLinearInterpolatorFD:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -525,7 +525,7 @@ class BiLinearInterpolatorFD:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -585,7 +585,7 @@ class BiNearestInterpolator:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -620,7 +620,7 @@ class BiNearestInterpolator:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.float64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -680,7 +680,7 @@ class BiNearestInterpolatorDF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -715,7 +715,7 @@ class BiNearestInterpolatorDF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.float32]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -775,7 +775,7 @@ class BiNearestInterpolatorDI:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float64], column_coordinates: numpy.ndarray[numpy.float64], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -810,7 +810,7 @@ class BiNearestInterpolatorDI:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float64], values: numpy.ndarray[numpy.int64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -870,7 +870,7 @@ class BiNearestInterpolatorF:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float32]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -905,7 +905,7 @@ class BiNearestInterpolatorF:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float32]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -965,7 +965,7 @@ class BiNearestInterpolatorFD:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.float64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -1000,7 +1000,7 @@ class BiNearestInterpolatorFD:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsFloat]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float64]) -> None:
         ...
     def clear(self) -> None:
         ...
@@ -1060,7 +1060,7 @@ class BiNearestInterpolatorFI:
         """
         create T_CLASS object from bytearray
         """
-    def __call__(self, row_coordinates: collections.abc.Sequence[typing.SupportsFloat], column_coordinates: collections.abc.Sequence[typing.SupportsFloat], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
+    def __call__(self, row_coordinates: numpy.ndarray[numpy.float32], column_coordinates: numpy.ndarray[numpy.float32], mp_cores: typing.SupportsInt = 1) -> numpy.ndarray[numpy.int64]:
         """
         get interpolated y values for given x targets (vectorized call)
         
@@ -1095,7 +1095,7 @@ class BiNearestInterpolatorFI:
         """
         Return object information as string
         """
-    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: collections.abc.Sequence[typing.SupportsFloat], values: collections.abc.Sequence[typing.SupportsInt]) -> None:
+    def append_row(self, row_coordinate: typing.SupportsFloat, column_coordinates: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.int64]) -> None:
         ...
     def clear(self) -> None:
         ...

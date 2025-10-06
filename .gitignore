@@ -217,3 +217,7 @@ cython_debug/
 # pixi environments
 .pixi
 *.egg-info
+
+# header include exploration artefacts
+header-logs/
+*/header-logs/*

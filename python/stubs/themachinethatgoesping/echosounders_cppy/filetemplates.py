@@ -8,6 +8,7 @@ import themachinethatgoesping.algorithms.geoprocessing.datastructures
 import themachinethatgoesping.navigation
 import themachinethatgoesping.navigation.datastructures
 import themachinethatgoesping.tools_cppy.vectorinterpolators
+import themachinethatgoesping.tools_cppy.vectorinterpolators.bivectorinterpolators
 import typing
 __all__: list[str] = ['AmplitudeCalibration', 'FileCache', 'I_Ping', 'I_PingBottom', 'I_PingCommon', 'I_PingFileData', 'I_PingWatercolumn', 'KongsbergAllMultiSectorWaterColumnCalibration', 'MultiSectorWaterColumnCalibration', 'WaterColumnCalibration', 'o_pingfeature', 't_pingfeature']
 class AmplitudeCalibration:
@@ -57,6 +58,8 @@ class AmplitudeCalibration:
         """
     def get_interpolator_offset_per_beamangle(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
         ...
+    def get_interpolator_offset_per_beamangle_and_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.bivectorinterpolators.BiAkimaInterpolatorF:
+        ...
     def get_interpolator_offset_per_range(self) -> themachinethatgoesping.tools_cppy.vectorinterpolators.AkimaInterpolatorF:
         ...
     def get_per_beam_offsets(self, beamangles: numpy.ndarray[numpy.float32]) -> numpy.ndarray[numpy.float32]:
@@ -66,6 +69,8 @@ class AmplitudeCalibration:
     def get_system_offset(self) -> float:
         ...
     def has_offset_per_beamangle(self) -> bool:
+        ...
+    def has_offset_per_beamangle_and_range(self) -> bool:
         ...
     def has_offset_per_range(self) -> bool:
         ...
@@ -86,6 +91,12 @@ class AmplitudeCalibration:
         Print object information
         """
     def set_offset_per_beamangle(self, beamangle: numpy.ndarray[numpy.float32], offset: numpy.ndarray[numpy.float32]) -> None:
+        ...
+    @typing.overload
+    def set_offset_per_beamangle_and_range(self, beamangles: numpy.ndarray[numpy.float32], ranges: numpy.ndarray[numpy.float32], values: numpy.ndarray[numpy.float32]) -> None:
+        ...
+    @typing.overload
+    def set_offset_per_beamangle_and_range(self, offset_per_beamangle_and_range: themachinethatgoesping.tools_cppy.vectorinterpolators.bivectorinterpolators.BiAkimaInterpolatorF) -> None:
         ...
     def set_offset_per_range(self, range: numpy.ndarray[numpy.float32], offset: numpy.ndarray[numpy.float32]) -> None:
         ...
