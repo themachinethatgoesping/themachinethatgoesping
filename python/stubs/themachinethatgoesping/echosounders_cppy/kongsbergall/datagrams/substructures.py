@@ -354,7 +354,7 @@ class ExtraDetectionsExtraDetections:
         Returns:
             false
         """
-    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType:
+    def get_detection_type(self) -> ...:
         """
         This function evaluates the detection information flag. The first 3
         bits indicate the type of detection.
@@ -711,7 +711,7 @@ class RawRangeAndAngleBeam:
         Returns:
             false
         """
-    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType:
+    def get_detection_type(self) -> ...:
         """
         This function evaluates the detection information flag. The first 3
         bits indicate the type of detection.
@@ -1067,7 +1067,7 @@ class SeabedImageDataBeam:
         Returns:
             false
         """
-    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType:
+    def get_detection_type(self) -> ...:
         """
         This function evaluates the detection information flag. The first 3
         bits indicate the type of detection.
@@ -1360,7 +1360,7 @@ class XYZDatagramBeam:
         Returns:
             false
         """
-    def get_detection_type(self) -> XYZDatagramBeam_t_DetectionType:
+    def get_detection_type(self) -> ...:
         """
         This function evaluates the detection information flag. The first 3
         bits indicate the type of detection.

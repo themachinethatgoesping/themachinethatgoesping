@@ -453,6 +453,33 @@ class KongsbergAllConfigurationDataInterface:
 class KongsbergAllConfigurationDataInterfacePerFile:
     """
     """
+    @staticmethod
+    def set_active_heading_sensor(*args, **kwargs) -> None:
+        """
+        Set the active heading sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
+    @staticmethod
+    def set_active_heave_sensor(*args, **kwargs) -> None:
+        """
+        Set the active heave sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
+    @staticmethod
+    def set_active_pitch_roll_sensor(*args, **kwargs) -> None:
+        """
+        Set the active roll pitch sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -571,30 +598,6 @@ class KongsbergAllConfigurationDataInterfacePerFile:
         """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active heading sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
-    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active heave sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
-    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active roll pitch sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
     def set_active_position_system_number(self, number: typing.SupportsInt) -> None:
         """
         Set the active position system number 0: this will be overwritten by
@@ -608,6 +611,33 @@ class KongsbergAllConfigurationDataInterfacePerFile:
 class KongsbergAllConfigurationDataInterfacePerFile_stream:
     """
     """
+    @staticmethod
+    def set_active_heading_sensor(*args, **kwargs) -> None:
+        """
+        Set the active heading sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
+    @staticmethod
+    def set_active_heave_sensor(*args, **kwargs) -> None:
+        """
+        Set the active heave sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
+    @staticmethod
+    def set_active_pitch_roll_sensor(*args, **kwargs) -> None:
+        """
+        Set the active roll pitch sensor "NotSet": this will be overwritten by
+        "read_sensor_configuration" / "init_interface" All other values: see
+        o_KongsbergAllActiveSensor
+        
+        Parameter ``sensor``:
+        """
     def __repr__(self) -> str:
         """
         Return object information as string
@@ -726,30 +756,6 @@ class KongsbergAllConfigurationDataInterfacePerFile_stream:
         """
     def read_sensor_configuration(self) -> themachinethatgoesping.navigation.SensorConfiguration:
         ...
-    def set_active_heading_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active heading sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
-    def set_active_heave_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active heave sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
-    def set_active_pitch_roll_sensor(self, sensor: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> None:
-        """
-        Set the active roll pitch sensor "NotSet": this will be overwritten by
-        "read_sensor_configuration" / "init_interface" All other values: see
-        t_KongsbergAllActiveSensor
-        
-        Parameter ``sensor``:
-        """
     def set_active_position_system_number(self, number: typing.SupportsInt) -> None:
         """
         Set the active position system number 0: this will be overwritten by

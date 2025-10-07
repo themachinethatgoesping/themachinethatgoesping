@@ -627,7 +627,6 @@ class ExtraDetections(KongsbergAllDatagram):
         """
 class ExtraParameters(KongsbergAllDatagram):
     """
-    Clock datagrams
     """
     @staticmethod
     def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> ExtraParameters:
@@ -914,6 +913,18 @@ class InstallationParameters(KongsbergAllDatagram):
         create T_CLASS object from bytearray
         """
     @staticmethod
+    @typing.overload
+    def get_attitude_sensor_offsets(*args, **kwargs) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
+        """
+        Get the attitude sensor offsets of sensor 1 or 2
+        
+        Parameter ``sensor_number``:
+            o_KongsbergAllActiveSensor (enum)
+        
+        Returns:
+            navigation::datastructures::PositionalOffsets
+        """
+    @staticmethod
     def merge(datagram_1: InstallationParameters, datagram_2: InstallationParameters) -> InstallationParameters:
         """
         Merge two InstallationParameters datagrams into one If the datagrams
@@ -964,29 +975,29 @@ class InstallationParameters(KongsbergAllDatagram):
         physical equal to Attitude sensor 2)
         
         Returns:
-            t_KongsbergAllActiveSensor
+            o_KongsbergAllActiveSensor
         """
-    def get_active_heading_sensor(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor:
+    def get_active_heading_sensor(self) -> ...:
         """
         Get the active heading sensor (0-9) here returned as an enum
         
         Returns:
-            t_KongsbergAllActiveSensor
+            o_KongsbergAllActiveSensor
         """
-    def get_active_heave_sensor(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor:
+    def get_active_heave_sensor(self) -> ...:
         """
         Get the active heave sensor (2, 3, 8 or 9) here returned as an enum
         
         Returns:
-            t_KongsbergAllActiveSensor
+            o_KongsbergAllActiveSensor
         """
-    def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor:
+    def get_active_pitch_roll_sensor(self) -> ...:
         """
         Get the active roll pitch sensor (2, 3, 8 or 9) here returned as an
         enum
         
         Returns:
-            t_KongsbergAllActiveSensor
+            o_KongsbergAllActiveSensor
         """
     def get_active_position_system_number(self) -> int:
         """
@@ -996,23 +1007,12 @@ class InstallationParameters(KongsbergAllDatagram):
             uint8_t
         """
     @typing.overload
-    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllActiveSensor) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
-        """
-        Get the attitude sensor offsets of sensor 1 or 2
-        
-        Parameter ``sensor_number``:
-            t_KongsbergAllActiveSensor (enum)
-        
-        Returns:
-            navigation::datastructures::PositionalOffsets
-        """
-    @typing.overload
     def get_attitude_sensor_offsets(self, sensor: typing.SupportsInt) -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
         Get the attitude sensor offsets of sensor 1 or 2
         
         Parameter ``sensor_number``:
-            t_KongsbergAllActiveSensor (enum)
+            o_KongsbergAllActiveSensor (enum)
         
         Returns:
             navigation::datastructures::PositionalOffsets
@@ -1083,7 +1083,7 @@ class InstallationParameters(KongsbergAllDatagram):
         ...
     def get_system_serial_number(self) -> int:
         ...
-    def get_system_transducer_configuration(self) -> themachinethatgoesping.echosounders_cppy.kongsbergall.t_KongsbergAllSystemTransducerConfiguration:
+    def get_system_transducer_configuration(self) -> ...:
         ...
     def get_transducer_offsets(self, transducer_number: typing.SupportsInt, transducer_name: str = '') -> themachinethatgoesping.navigation.datastructures.PositionalOffsets:
         """
