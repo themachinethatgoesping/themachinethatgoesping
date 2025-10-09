@@ -2672,13 +2672,13 @@ class SlerpInterpolator:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]
+        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> std::array<double, 3ul>``
+        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -2691,7 +2691,7 @@ class SlerpInterpolator:
         Returns:
             corresponding y value
         
-        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]``
+        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -2758,7 +2758,7 @@ class SlerpInterpolator:
         """
     def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
         """
-        append(self, x: float, ypr: std::array<double, 3ul>, input_in_degrees: bool = True) -> None
+        append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -2781,7 +2781,7 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``append(self, x: float, ypr: std::array<double, 3ul>, input_in_degrees: bool = True) -> None``
+        2. ``append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None``
         
         append an x, yaw, pitch, roll data point
         
@@ -2804,7 +2804,7 @@ class SlerpInterpolator:
         """
     def extend(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None
+        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -2830,7 +2830,7 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None``
+        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -2851,7 +2851,7 @@ class SlerpInterpolator:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[..., ...]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
         """
         return the internal yrp data vector
         
@@ -2878,7 +2878,7 @@ class SlerpInterpolator:
         """
     def insert(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
-        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None
+        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None
         
         Overloaded function.
         
@@ -2904,7 +2904,7 @@ class SlerpInterpolator:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None``
+        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -2924,7 +2924,7 @@ class SlerpInterpolator:
         """
     def set_data_XYPR(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None
+        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -2960,13 +2960,13 @@ class SlerpInterpolator:
         """
         convert object to bytearray
         """
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]
+        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> std::array<double, 3ul>``
+        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -2979,7 +2979,7 @@ class SlerpInterpolator:
         Returns:
             corresponding y value
         
-        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]``
+        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3015,13 +3015,13 @@ class SlerpInterpolatorDF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]
+        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> std::array<float, 3ul>``
+        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3034,7 +3034,7 @@ class SlerpInterpolatorDF:
         Returns:
             corresponding y value
         
-        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]``
+        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3101,7 +3101,7 @@ class SlerpInterpolatorDF:
         """
     def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
         """
-        append(self, x: float, ypr: std::array<float, 3ul>, input_in_degrees: bool = True) -> None
+        append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3124,7 +3124,7 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``append(self, x: float, ypr: std::array<float, 3ul>, input_in_degrees: bool = True) -> None``
+        2. ``append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None``
         
         append an x, yaw, pitch, roll data point
         
@@ -3147,7 +3147,7 @@ class SlerpInterpolatorDF:
         """
     def extend(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None
+        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3173,7 +3173,7 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None``
+        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3194,7 +3194,7 @@ class SlerpInterpolatorDF:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[..., ...]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
         """
         return the internal yrp data vector
         
@@ -3221,7 +3221,7 @@ class SlerpInterpolatorDF:
         """
     def insert(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
-        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None
+        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None
         
         Overloaded function.
         
@@ -3247,7 +3247,7 @@ class SlerpInterpolatorDF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None``
+        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3267,7 +3267,7 @@ class SlerpInterpolatorDF:
         """
     def set_data_XYPR(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None
+        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3303,13 +3303,13 @@ class SlerpInterpolatorDF:
         """
         convert object to bytearray
         """
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]
+        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> std::array<float, 3ul>``
+        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3322,7 +3322,7 @@ class SlerpInterpolatorDF:
         Returns:
             corresponding y value
         
-        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]``
+        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3358,13 +3358,13 @@ class SlerpInterpolatorF:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]
+        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> std::array<float, 3ul>``
+        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3377,7 +3377,7 @@ class SlerpInterpolatorF:
         Returns:
             corresponding y value
         
-        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]``
+        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3444,7 +3444,7 @@ class SlerpInterpolatorF:
         """
     def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
         """
-        append(self, x: float, ypr: std::array<float, 3ul>, input_in_degrees: bool = True) -> None
+        append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3467,7 +3467,7 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``append(self, x: float, ypr: std::array<float, 3ul>, input_in_degrees: bool = True) -> None``
+        2. ``append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None``
         
         append an x, yaw, pitch, roll data point
         
@@ -3490,7 +3490,7 @@ class SlerpInterpolatorF:
         """
     def extend(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None
+        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3516,7 +3516,7 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None``
+        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3537,7 +3537,7 @@ class SlerpInterpolatorF:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[..., ...]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
         """
         return the internal yrp data vector
         
@@ -3564,7 +3564,7 @@ class SlerpInterpolatorF:
         """
     def insert(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
-        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None
+        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None
         
         Overloaded function.
         
@@ -3590,7 +3590,7 @@ class SlerpInterpolatorF:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None``
+        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3610,7 +3610,7 @@ class SlerpInterpolatorF:
         """
     def set_data_XYPR(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<float, 3ul>], input_in_degrees: bool = True) -> None
+        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3646,13 +3646,13 @@ class SlerpInterpolatorF:
         """
         convert object to bytearray
         """
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]
+        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> std::array<float, 3ul>``
+        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3665,7 +3665,7 @@ class SlerpInterpolatorF:
         Returns:
             corresponding y value
         
-        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<float, 3ul>]``
+        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3701,13 +3701,13 @@ class SlerpInterpolatorFD:
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
-    def __call__(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def __call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]
+        __call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> std::array<double, 3ul>``
+        1. ``__call__(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -3720,7 +3720,7 @@ class SlerpInterpolatorFD:
         Returns:
             corresponding y value
         
-        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]``
+        2. ``__call__(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)
@@ -3787,7 +3787,7 @@ class SlerpInterpolatorFD:
         """
     def append(self, x: float, yaw: float, pitch: float, roll: float, input_in_degrees: bool = True) -> None:
         """
-        append(self, x: float, ypr: std::array<double, 3ul>, input_in_degrees: bool = True) -> None
+        append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3810,7 +3810,7 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``append(self, x: float, ypr: std::array<double, 3ul>, input_in_degrees: bool = True) -> None``
+        2. ``append(self, x: float, ypr: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None``
         
         append an x, yaw, pitch, roll data point
         
@@ -3833,7 +3833,7 @@ class SlerpInterpolatorFD:
         """
     def extend(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None
+        extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         Overloaded function.
         
@@ -3859,7 +3859,7 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None``
+        2. ``extend(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3880,7 +3880,7 @@ class SlerpInterpolatorFD:
         Returns:
             std::vector<XType>
         """
-    def get_data_YPR(self, output_in_degrees: bool = True) -> list[..., ...]:
+    def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
         """
         return the internal yrp data vector
         
@@ -3907,7 +3907,7 @@ class SlerpInterpolatorFD:
         """
     def insert(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
         """
-        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None
+        insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None
         
         Overloaded function.
         
@@ -3933,7 +3933,7 @@ class SlerpInterpolatorFD:
         Parameter ``input_in_degrees``:
             if true, yaw pitch and roll input values are in ° otherwise rad
         
-        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True, bool: bool = False) -> None``
+        2. ``insert(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None``
         
         append data with list of x, yaw, pitch, roll data (vectorized call)
         
@@ -3953,7 +3953,7 @@ class SlerpInterpolatorFD:
         """
     def set_data_XYPR(self, X: collections.abc.Sequence[float], Yaw: collections.abc.Sequence[float], Pitch: collections.abc.Sequence[float], Roll: collections.abc.Sequence[float], input_in_degrees: bool = True) -> None:
         """
-        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[std::array<double, 3ul>], input_in_degrees: bool = True) -> None
+        set_data_XYPR(self, X: collections.abc.Sequence[float], YPR: collections.abc.Sequence[collections.abc.Sequence[float]], input_in_degrees: bool = True) -> None
         
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3989,13 +3989,13 @@ class SlerpInterpolatorFD:
         """
         convert object to bytearray
         """
-    def ypr(self, target_x: float, output_in_degrees: bool = True) -> ...:
+    def ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]:
         """
-        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]
+        ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]
         
         Overloaded function.
         
-        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> std::array<double, 3ul>``
+        1. ``ypr(self, target_x: float, output_in_degrees: bool = True) -> list[float]``
         
         get the interpolated yaw, pitch and roll values for given x target
         
@@ -4008,7 +4008,7 @@ class SlerpInterpolatorFD:
         Returns:
             corresponding y value
         
-        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[std::array<double, 3ul>]``
+        2. ``ypr(self, targets_x: collections.abc.Sequence[float], output_in_degrees: bool = True) -> list[list[float]]``
         
         get the interpolated yaw, pitch and roll values for given x target
         (vectorized call)

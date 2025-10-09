@@ -6,10 +6,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [Unreleased] - Unreleased
 
-- tools -> 0.30.0
-- algorithms -> 0.9.5
-- pingprocessing -> 0.11.6
-- echosounders -> 0.45.6
+- tools -> 0.31.0
+- algorithms -> 0.10.0
+- pingprocessing -> 0.12.0
+- echosounders -> 0.46.0
+- pingprocessing -> 0.12.0
+- navigation -> 0.18.0
+- gridding -> 0.5.0
+- meta -> 0.3.0
 
 ### Improvements
 - move functions from pingprocessing/echograms to algorithms/gridding
@@ -32,6 +36,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - updated fast_float 8.0.2 -> 8.1.0
 - updated xtensor 0.27.1 -> 0.27.1
 - update pybind11 2.13.6 -> 3.0.1
+- updated xtl 0.8.0 -> 0.8.1
 #- update geographiclib 2.5.2 -> 2.6.0 (postponed because of build issues)
 - echosounders:
   - refractored KongsbergAllWaterColumnCalibration into cpp file

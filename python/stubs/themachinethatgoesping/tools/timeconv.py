@@ -6,11 +6,6 @@ This module extends the tools.timeconv with some functions implemented in pure p
 from __future__ import annotations
 from datetime import datetime
 from datetime import timezone
-from themachinethatgoesping.tools_cppy.timeconv import datestring_to_unixtime
-from themachinethatgoesping.tools_cppy.timeconv import datetime_to_unixtime
-from themachinethatgoesping.tools_cppy.timeconv import unixtime_to_datestring
-from themachinethatgoesping.tools_cppy.timeconv import unixtime_to_datetime
-from themachinethatgoesping.tools_cppy.timeconv import year_month_day_to_unixtime
 __all__: list[str] = ['datestring_to_datetime', 'datestring_to_unixtime', 'datetime', 'datetime_to_datestring', 'datetime_to_unixtime', 'timezone', 'unixtime_to_datestring', 'unixtime_to_datetime', 'year_month_day_to_unixtime']
 def datestring_to_datetime(datestring: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> datetime:
     """
@@ -52,3 +47,8 @@ def datetime_to_datestring(dt: datetime, fractionalSecondsDigits: int = 0, forma
     str
         DateString that fits to the specified format
     """
+datestring_to_unixtime: nanobind.nb_func  # value = <nanobind.nb_func object>
+datetime_to_unixtime: nanobind.nb_func  # value = <nanobind.nb_func object>
+unixtime_to_datestring: nanobind.nb_func  # value = <nanobind.nb_func object>
+unixtime_to_datetime: nanobind.nb_func  # value = <nanobind.nb_func object>
+year_month_day_to_unixtime: nanobind.nb_func  # value = <nanobind.nb_func object>

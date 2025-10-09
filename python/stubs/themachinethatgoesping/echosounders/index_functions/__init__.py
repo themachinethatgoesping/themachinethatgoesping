@@ -14,7 +14,7 @@ from themachinethatgoesping.echosounders.index_functions.get_index_paths import 
 from themachinethatgoesping.echosounders.index_functions.get_index_paths import get_index_paths
 from themachinethatgoesping.echosounders.index_functions.index_file_functions import print_index_file_statistics
 from themachinethatgoesping.echosounders.index_functions.index_file_functions import remove_name_from_index
-from themachinethatgoesping.echosounders_cppy import filetemplates
+from themachinethatgoesping.echosounders_nanopy import filetemplates
 from tqdm.asyncio import tqdm_asyncio as tqdm
 from . import index_file_functions
 __all__: list[str] = ['Path', 'defaultdict', 'filetemplates', 'find_files', 'find_folders_with_files', 'get_hash', 'get_index_path', 'get_index_paths', 'group_by_hash', 'hashlib', 'index_file_functions', 'np', 'os', 'pickle', 'print_index_file_statistics', 'remove_duplicates', 'remove_name_from_index', 'tqdm']
