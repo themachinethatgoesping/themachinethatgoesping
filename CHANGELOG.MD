@@ -25,6 +25,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: more overloads for bivectorinterpolator with xtensor input
 - echosounders: amplitude calibration functions now support beam and sample varying offsets (as matrix)
 - pingprocessing: mp_cores parameter for get_av / get_sv functions
+- kongsbergall: add pre_hash function to kongsberg calibration and update_calibration to watercolumn_calibration
 
 ### Fixed
 - tools: bivector interpolators throw error if appended row is not larger than last row
