@@ -1,0 +1,40 @@
+// Auto-generated precompiled header
+// Target: tools:themachinethatgoesping_tools
+#pragma once
+
+#include <string>
+#include <iostream>
+#include <cmath>
+#include <stdexcept>
+#include <string_view>
+#include <vector>
+#include <fmt/format.h>
+#include <streambuf>
+#include <sstream>
+#include <memory>
+#include <istream>
+#include <boost/iostreams/stream.hpp>
+#include <iosfwd>
+#include <boost/iostreams/concepts.hpp>
+#include <atomic>
+#include <magic_enum/magic_enum.hpp>
+#include <xxhash.hpp>
+#include <set>
+#include <optional>
+#include <array>
+#include <concepts>
+#include <utility>
+#include <Eigen/Eigen>
+#include <tuple>
+#include <chrono>
+#include <type_traits>
+#include <fmt/ranges.h>
+#include <unordered_map>
+#include <indicators/progress_spinner.hpp>
+#include <fmt/core.h>
+#include <Eigen/Geometry>
+#include <complex>
+#include <algorithm>
+#include <Eigen/Core>
+#include <numbers>
+#include <boost/algorithm/string.hpp>

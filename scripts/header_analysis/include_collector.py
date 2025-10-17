@@ -1,28 +1,28 @@
 #!/usr/bin/env python3
-"""Collect include directives for Meson build targets.
+"""Minimal include collection helper.
 
-This helper reuses ``meson_target_parser`` to enumerate build targets and their
-associated source files, then scans every source for ``#include`` directives.
+The module exposes :class:`IncludeCollector`, a tiny utility that scans source
+files for ``#include`` directives and splits them into three categories:
 
-For each analysed source file the includes are grouped into *internal* and
-*external* lists:
+* ``internal`` – headers included with double quotes (``"header.h"``)
+* ``ext_internal`` – angled headers (``<header>``) that start with one of the
+    user-supplied ``--include-prefix`` values
+* ``external`` – all other angled headers
 
-* Internal: ``"quoted"`` includes, plus any ``<angled>`` includes whose header
-  begins with a user-provided ``--internal-prefix`` value.
-* External: all remaining ``<angled>`` includes.
-
-Results are printed grouped by target label/name for easy inspection.
+The collector caches results per source file so repeated queries are
+essentially free. A lightweight CLI is provided to exercise the functionality
+with the output of :mod:`meson_target_parser`.
 """
 from __future__ import annotations
 
 import argparse
-import os
 import re
 import sys
-from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from collections import defaultdict
+from tqdm.auto import tqdm
 
 if __package__ in (None, ""):
     sys.path.append(str(Path(__file__).resolve().parent))
@@ -31,358 +31,200 @@ else:
     from .meson_target_parser import MesonTargetCollector, SOURCE_SUFFIXES
 
 INCLUDE_PATTERN = re.compile(r"^\s*#\s*include\s*(<[^>]+>|\"[^\"]+\")", re.MULTILINE)
-HEADER_SUFFIXES: Set[str] = {".h", ".hpp", ".hh", ".hxx", ".inl", ".ipp"}
-OPTIONAL_HAS_INCLUDE_HEADERS: Set[str] = {
-    "arm_neon.h",
-    "intrin.h",
-    "machine/endian.h",
-    "sys/byteorder.h",
-    "sys/endian.h",
-}
 
 
-@dataclass
-class IncludeReport:
-    """Holds include categorisation for a single source file."""
+class IncludeSets:
+    """Categorised include lists for a single source file."""
 
-    source: Path
-    internal: List[str]
-    external: List[str]
-    missing: bool = False
-
-
-@dataclass
-class TargetSummary:
-    """Aggregated include statistics for a target."""
-
-    label: str
-    name: str
-    internal_counts: Dict[str, int]
-    external_counts: Dict[str, int]
-    source_count: int
+    def __init__(self, internal: List[str], ext_internal: List[str], external: List[str]) -> None:
+        self.internal = set(internal)
+        self.ext_internal = set(ext_internal)
+        self.external = set(external)
+        self.resolved = {}
+        
+        self.include_count = defaultdict(int)
+        for header in list(self.internal) + list(self.ext_internal) + list(self.external):
+            self.include_count[header] = 1
+        
+    def add(self, other: IncludeSets) -> None:
+        self.internal.update(other.internal)
+        self.ext_internal.update(other.ext_internal)
+        self.external.update(other.external)
+        self.resolved.update(other.resolved)
+        for header in list(self.internal) + list(self.ext_internal) + list(self.external):
+            self.include_count[header] = 1
+        
+    def sum(self, other: IncludeSets) -> None:
+        self.internal.update(other.internal)
+        self.ext_internal.update(other.ext_internal)
+        self.external.update(other.external)
+        self.resolved.update(other.resolved)
+        
+        for header in list(self.internal) + list(self.ext_internal) + list(self.external):
+            self.include_count[header] += other.include_count[header] 
+        
+    def add_header_paths(self, internal, paths):
+        for header, path in zip(internal, paths):
+            self.resolved[header] = path
+            
+    def get_internal_headers(self, sorted_by_count=True):
+        
+        headers = list(self.internal) + list(self.ext_internal)
+        if sorted_by_count:
+            headers.sort(key=lambda h: self.include_count[h], reverse=True)
+        
+        return headers
+    
+    def get_external_headers(self, sorted_by_count=True):
+        headers = list(self.external)
+        if sorted_by_count:
+            headers.sort(key=lambda h: self.include_count[h], reverse=True)
+        return headers
+    
+    def get_header_count(self, header):
+        return self.include_count.get(header, 0)
+            
+    def get_header_path(self, header, default='<unresolved>'):
+        return self.resolved.get(header, default)
+            
+    def get_header_paths(self, headers):
+        paths = []
+        for header in headers:
+            paths.append(self.get_header_path(header))
+        return paths
+        
+    
 
 
 class IncludeCollector:
-    """Collects include information for Meson targets."""
+    """Cache-backed include parser for individual source files."""
 
-    def __init__(self, project_root: Path, subprojects: Sequence[str], internal_prefixes: Sequence[str]) -> None:
-        self.project_root = project_root.resolve()
-        self.subprojects = subprojects
-        self.internal_prefixes = tuple(prefix for prefix in internal_prefixes if prefix)
-        self.collector = MesonTargetCollector(self.project_root, self.subprojects)
-        self._cache: Dict[Path, IncludeReport] = {}
-        self._scan_cache: Dict[Path, Tuple[IncludeReport, List[Path]]] = {}
-    self._header_index: Dict[str, Path] = {}
-    self._header_suffix_index: Dict[str, List[Path]] = {}
-        self._header_basename_index: Dict[str, List[Path]] = {}
-        self._header_index_ready = False
-        self._resolve_cache: Dict[Tuple[Path, str], Optional[Path]] = {}
-        self._ignore_dirs = {
-            "build",
-            "builddir",
-            "builddir-clang",
-            "dist",
-            "node_modules",
-            "__pycache__",
-            ".git",
-            ".mypy_cache",
-            ".pytest_cache",
-            ".venv",
-        }
-        self.target_summaries: Dict[str, TargetSummary] = {}
+    def __init__(self, include_prefixes: Sequence[str], encoding: str = "utf-8") -> None:
+        self.include_prefixes = tuple(prefix for prefix in include_prefixes if prefix)
+        self.encoding = encoding
+        self._cache: Dict[Path, IncludeSets] = {}
 
-    def run(self) -> Dict[str, List[IncludeReport]]:
-        self.collector.run()
+    def collect(self, source: Path) -> IncludeSets:
+        """Return cached include sets for *source*, scanning the file if needed."""
 
-        all_sources: List[Path] = []
-        target_sources: Dict[str, List[Path]] = {}
+        source = source.resolve()
+        cached = self._cache.get(source)
+        if cached is not None:
+            return cached
 
-        for key in sorted(self.collector.targets):
-            record = self.collector.targets[key]
-            relevant_sources = [src for src in sorted(record.source_paths) if self._is_relevant_source(src)]
-            target_sources[key] = relevant_sources
-            all_sources.extend(relevant_sources)
+        includes = self._scan_file(source)
+        self._cache[source] = includes
+        return includes
 
-        unique_sources = sorted({path for path in all_sources})
+    def collect_many(self, sources: Iterable[Path]) -> Dict[Path, IncludeSets]:
+        """Convenience wrapper returning include sets for ``sources`` as a dict."""
 
-        iterator: Iterable[Path]
-        try:
-            from tqdm import tqdm
-
-            iterator = tqdm(unique_sources, desc="Collecting includes", unit="file")
-        except ImportError:  # pragma: no cover - tqdm optional
-            iterator = unique_sources
-
-        for path in iterator:
-            self._get_or_collect(path)
-
-        results: Dict[str, List[IncludeReport]] = {}
-        for key, paths in target_sources.items():
-            reports: List[IncludeReport] = []
-            for path in paths:
-                report = self._cache.get(path)
-                if report is not None:
-                    reports.append(report)
-            results[key] = reports
-        self.target_summaries = self._summarise_target_reports(results)
+        results: Dict[Path, IncludeSets] = {}
+        for src in sources:
+            results[src] = self.collect(src)
         return results
 
-    def _get_or_collect(self, source_path: Path, visited: Optional[Set[Path]] = None) -> Optional[IncludeReport]:
-        if not self._is_relevant_source(source_path):
-            return None
-
-        if visited is None:
-            visited = set()
-
-        cached = self._cache.get(source_path)
-        if cached is not None:
-            return cached
-
-        if source_path in visited:
-            return cached
-
-        visited.add(source_path)
-
-        direct_report, resolved_internal = self._scan_source(source_path)
-        if direct_report.missing:
-            self._cache[source_path] = direct_report
-            return direct_report
-
-        aggregate_internal: Set[str] = set(direct_report.internal)
-        aggregate_external: Set[str] = set(direct_report.external)
-
-        for internal_path in resolved_internal:
-            nested_report = self._get_or_collect(internal_path, visited)
-            if nested_report is None or nested_report.missing:
-                continue
-            aggregate_internal.update(nested_report.internal)
-            aggregate_external.update(nested_report.external)
-
-        final_report = IncludeReport(
-            source=source_path,
-            internal=sorted(aggregate_internal),
-            external=sorted(aggregate_external),
-            missing=False,
-        )
-        self._cache[source_path] = final_report
-        return final_report
-
-    def _scan_source(self, source_path: Path) -> Tuple[IncludeReport, List[Path]]:
-        cached = self._scan_cache.get(source_path)
-        if cached is not None:
-            return cached
-
-        report = IncludeReport(source=source_path, internal=[], external=[], missing=False)
-
-        if not source_path.is_file():
-            report.missing = True
-            self._scan_cache[source_path] = (report, [])
-            return report, []
+    def _scan_file(self, source: Path) -> IncludeSets:
+        if not source.is_file():
+            return IncludeSets(internal=[], ext_internal=[], external=[])
 
         try:
-            content = source_path.read_text(encoding="utf-8", errors="ignore")
-        except OSError as exc:
-            print(f"[warning] Failed to read {source_path}: {exc}", file=sys.stderr)
-            report.missing = True
-            self._scan_cache[source_path] = (report, [])
-            return report, []
+            content = source.read_text(encoding=self.encoding, errors="ignore")
+        except (OSError, UnicodeDecodeError) as exc:
+            print(f"[warning] Failed to read {source}: {exc}", file=sys.stderr)
+            return IncludeSets(internal=[], ext_internal=[], external=[])
 
-        internal: set[str] = set()
-        external: set[str] = set()
-        resolved_internal: Set[Path] = set()
+        internal: List[str] = []
+        ext_internal: List[str] = []
+        external: List[str] = []
 
         for match in INCLUDE_PATTERN.finditer(content):
             token = match.group(1)
             header = token[1:-1]
-            is_quoted = token.startswith('"')
-            if is_quoted or any(header.startswith(prefix) for prefix in self.internal_prefixes):
-                internal.add(header)
-                resolved = self._resolve_internal_header(source_path, header, is_quoted)
-                if resolved is not None:
-                    resolved_internal.add(resolved)
+            if token.startswith('"'):
+                internal.append(header)
+                continue
+            if any(header.startswith(prefix) for prefix in self.include_prefixes):
+                ext_internal.append(header)
             else:
-                external.add(header)
+                external.append(header)
 
-        report.internal = sorted(internal)
-        report.external = sorted(external)
-        resolved_list = sorted(resolved_internal)
-        self._scan_cache[source_path] = (report, resolved_list)
-        return report, resolved_list
+        return IncludeSets(
+            internal=_dedupe_preserve_order(internal),
+            ext_internal=_dedupe_preserve_order(ext_internal),
+            external=_dedupe_preserve_order(external),
+        )
 
-    def _summarise_target_reports(self, results: Dict[str, List[IncludeReport]]) -> Dict[str, TargetSummary]:
-        summaries: Dict[str, TargetSummary] = {}
-        for key, reports in results.items():
-            internal_counter: Counter[str] = Counter()
-            external_counter: Counter[str] = Counter()
-            label, name = key.split(":", 1)
-            valid_reports = 0
-            for report in reports:
-                if report.missing:
-                    continue
-                valid_reports += 1
-                for header in report.internal:
-                    internal_counter[header] += 1
-                for header in report.external:
-                    external_counter[header] += 1
-            summaries[key] = TargetSummary(
-                label=label,
-                name=name,
-                internal_counts=dict(sorted(internal_counter.items())),
-                external_counts=dict(sorted(external_counter.items())),
-                source_count=valid_reports,
-            )
-        return summaries
 
-    def _prepare_header_index(self) -> None:
-        if self._header_index_ready:
-            return
+def _dedupe_preserve_order(values: Iterable[str]) -> List[str]:
+    seen: Dict[str, None] = {}
+    for value in values:
+        if value not in seen:
+            seen[value] = None
+    return list(seen.keys())
 
-        for root, dirs, files in os.walk(self.project_root):
-            root_path = Path(root)
-            dirs[:] = [d for d in dirs if d not in self._ignore_dirs]
-            for filename in files:
-                lower_name = filename.lower()
-                if not any(lower_name.endswith(suffix) for suffix in HEADER_SUFFIXES):
-                    continue
-                full_path = (root_path / filename).resolve()
-                rel_path = full_path.relative_to(self.project_root).as_posix()
-                self._register_header_key(rel_path, full_path)
-                parts = rel_path.split("/")
-                for i in range(1, len(parts)):
-                    trimmed = "/".join(parts[i:])
-                    if trimmed:
-                        self._register_header_key(trimmed, full_path)
-                self._header_basename_index.setdefault(full_path.name, []).append(full_path)
 
-        self._header_index_ready = True
+def resolve_include_paths(
+    headings: Sequence[str],
+    include_directories: Sequence[Path],
+    source_file: Path,
+    *,
+    relative_to_source: bool,
+) -> List[Path]:
+    """Resolve *headings* to absolute file paths.
 
-    def _register_header_key(self, key: str, path: Path) -> None:
-        normalized = key.lstrip("./")
-        existing = self._header_index.get(normalized)
-        if existing is None:
-            self._header_index[normalized] = path
-        self._header_suffix_index.setdefault(normalized, []).append(path)
+    Parameters
+    ----------
+    headings:
+        Ordered include header strings to resolve.
+    include_directories:
+        Candidate include search paths (typically Meson include directories).
+    source_file:
+        Source file that issued the include directive.
+    relative_to_source:
+        When ``True`` the headings are treated as relative to ``source_file``;
+        otherwise they are searched within ``include_directories``.
+    """
 
-    def _resolve_internal_header(self, origin: Path, header: str, is_quoted: bool) -> Optional[Path]:
-        cache_key = (origin, header)
-        if cache_key in self._resolve_cache:
-            return self._resolve_cache[cache_key]
+    resolved: List[Path] = []
+    source_dir = source_file.parent.resolve()
+    candidate_roots = [inc.resolve() for inc in include_directories]
 
-        header_norm = header.lstrip("./")
+    for heading in headings:
         candidates: List[Path] = []
-        header_path = Path(header_norm)
-
-        if is_quoted:
-            quoted_candidate = (origin.parent / header_path).resolve()
-            candidates.append(quoted_candidate)
-            if quoted_candidate.is_file():
-                self._resolve_cache[cache_key] = quoted_candidate
-                return quoted_candidate
-
-        if header_path.is_absolute():
-            if header_path.is_file():
-                self._resolve_cache[cache_key] = header_path
-                return header_path
-            candidates.append(header_path)
+        if relative_to_source:
+            candidates.append((source_dir / heading).resolve())
         else:
-            project_candidate = (self.project_root / header_path).resolve()
-            candidates.append(project_candidate)
-            if project_candidate.is_file():
-                self._resolve_cache[cache_key] = project_candidate
-                return project_candidate
+            for root in candidate_roots:
+                candidates.append((root / heading).resolve())
 
-        # Fall back to indexed lookup only when direct resolution failed.
-        self._prepare_header_index()
-
-        if header_norm in self._header_index:
-            candidates.append(self._header_index[header_norm])
-
-        header_posix = header_norm.replace("\\", "/")
-        if header_posix in self._header_index and self._header_index[header_posix] not in candidates:
-            candidates.append(self._header_index[header_posix])
-
-        suffix_matches = self._find_suffix_matches(header_posix)
-        for candidate in suffix_matches:
-            if candidate not in candidates:
-                candidates.append(candidate)
-
-        resolved: Optional[Path] = None
+        chosen: Optional[Path] = None
         for candidate in candidates:
-            if candidate.is_file():
-                resolved = candidate
+            if candidate.exists():
+                chosen = candidate
                 break
 
-        self._resolve_cache[cache_key] = resolved
-        return resolved
+        if chosen is None:
+            if candidates:
+                chosen = candidates[0]
+            else:
+                chosen = (source_dir / heading).resolve()
 
-    def _find_suffix_matches(self, header: str) -> List[Path]:
-        if not header:
-            return []
-        header = header.replace("\\", "/")
-        matches = list(self._header_suffix_index.get(header, []))
-        if matches:
-            return matches
-        base = header.split("/")[-1]
-        return list(self._header_basename_index.get(base, []))
+        resolved.append(chosen)
 
-    @staticmethod
-    def _sanitize_for_filename(value: str) -> str:
-        safe = re.sub(r"[^A-Za-z0-9_.-]", "_", value)
-        return safe or "unnamed"
+    return resolved
 
-    def write_pch_files(self, output_dir: Path) -> None:
-        if not self.target_summaries:
-            raise RuntimeError("Target summaries are not available. Run collector.run() first.")
 
-        output_dir = output_dir.resolve()
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-        for old_file in output_dir.glob("*.pch"):
-            try:
-                old_file.unlink()
-            except OSError:
-                pass
-
-        for key, summary in self.target_summaries.items():
-            if not summary.external_counts:
-                continue
-            label_safe = self._sanitize_for_filename(summary.label)
-            name_safe = self._sanitize_for_filename(summary.name)
-            filename = output_dir / f"{label_safe}_{name_safe}.hpp"
-            lines = [
-                "// Auto-generated precompiled header",
-                "#pragma once",
-                "",
-            ]
-            for header in sorted(summary.external_counts):
-                lines.extend(self._format_include_block(header))
-            filename.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-    @staticmethod
-    def _is_relevant_source(path: Path) -> bool:
-        suffix = path.suffix.lower()
-        if suffix in HEADER_SUFFIXES:
-            return True
-        return path.name.lower().endswith(SOURCE_SUFFIXES)
-
-    @staticmethod
-    def _format_include_block(header: str) -> List[str]:
-        header = header.strip()
-        if not header:
-            return []
-        if header in OPTIONAL_HAS_INCLUDE_HEADERS:
-            return [
-                "#if defined(__has_include)",
-                f"#  if __has_include(<{header}>)",
-                f"#    include <{header}>",
-                "#  endif",
-                "#endif",
-            ]
-        return [f"#include <{header}>"]
+def _sanitize_pch_name(key: str) -> str:
+    # Replace characters that are awkward in filenames (colon, whitespace, etc.).
+    cleaned = re.sub(r"[^A-Za-z0-9_.-]+", "_", key)
+    if not cleaned:
+        cleaned = "pch"
+    return cleaned + ".hpp"
 
 
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Collect include directives for Meson targets.")
+    parser = argparse.ArgumentParser(description="Collect includes for Meson targets.")
     parser.add_argument(
         "project_root",
         type=Path,
@@ -401,74 +243,141 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         dest="internal_prefixes",
         action="append",
         default=[],
-        help="Treat angled includes starting with this prefix as internal (can be repeated).",
+        help="Treat angled includes starting with this prefix as ext-internal (can be repeated).",
     )
     parser.add_argument(
         "--pch-output",
         type=Path,
         default=None,
-        help="Directory to write generated precompiled headers (one per target).",
+        help="Directory to emit per-target PCH headers (auto-created, files end with .hpp)",
     )
     return parser.parse_args(argv)
 
-
-def display(results: Dict[str, List[IncludeReport]]) -> None:
-    if not results:
-        print("[info] No targets detected.")
-        return
-
-    for key in sorted(results):
-        label, target = key.split(":", 1)
-        print(f"[{label}] {target}")
-        reports = results[key]
-        if not reports:
-            print("  (no relevant source files)")
-            continue
-        for report in reports:
-            status = " (missing)" if report.missing else ""
-            print(f"  {report.source}{status}")
-            if report.missing:
-                continue
-            if report.internal:
-                print("    internal:")
-                for header in report.internal:
-                    print(f"      {header}")
-            if report.external:
-                print("    external:")
-                for header in report.external:
-                    print(f"      {header}")
-
-
-def display_target_summaries(summaries: Dict[str, TargetSummary]) -> None:
-    if not summaries:
-        return
-
-    print("\n[summary] Aggregate includes per target")
-    for key in sorted(summaries):
-        summary = summaries[key]
-        print(f"[{summary.label}] {summary.name}")
-        if summary.internal_counts:
-            print("  internal includes (source count):")
-            for header, count in sorted(summary.internal_counts.items(), key=lambda item: (-item[1], item[0])):
-                print(f"    {header}: {count}")
-        if summary.external_counts:
-            print("  external includes (source count):")
-            for header, count in sorted(summary.external_counts.items(), key=lambda item: (-item[1], item[0])):
-                print(f"    {header}: {count}")
-        print(f"  analysed sources: {summary.source_count}")
-
+def get_includes_for_source(
+    source: Path,
+    record: MesonTargetCollector.TargetRecord,
+    include_collector: IncludeCollector):
+    
+    if not _is_relevant_source(source):
+        raise ValueError(f"Source {source} is not a relevant source file.")
+    
+    includes = include_collector.collect(source)
+    include_dirs = record.include_paths
+    resolved_internal = resolve_include_paths(
+        includes.internal,
+        include_dirs,
+        source,
+        relative_to_source=True,
+    )
+    resolved_ext_internal = resolve_include_paths(
+        includes.ext_internal,
+        include_dirs,
+        source,
+        relative_to_source=False,
+    )
+    
+    includes.add_header_paths(includes.internal, resolved_internal)
+    includes.add_header_paths(includes.ext_internal, resolved_ext_internal)
+    
+    return includes, resolved_internal + resolved_ext_internal
+    
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parse_args(argv)
     subprojects = [name.strip() for name in args.subprojects.split(",") if name.strip()]
 
-    collector = IncludeCollector(args.project_root, subprojects, args.internal_prefixes)
-    results = collector.run()
-    display(results)
-    display_target_summaries(collector.target_summaries)
-    if args.pch_output is not None:
-        collector.write_pch_files(args.pch_output)
+    target_collector = MesonTargetCollector(args.project_root, subprojects)
+    target_collector.run()
+
+    include_collector = IncludeCollector(args.internal_prefixes)
+    pch_dir: Optional[Path] = None
+    if args.pch_output:
+        pch_dir = args.pch_output.resolve()
+        pch_dir.mkdir(parents=True, exist_ok=True)
+
+    for key in sorted(target_collector.targets):
+        record = target_collector.targets[key]
+        print()
+        print("-" * 60)
+        print(f"[{key}] {record.name}")
+        target_includes = IncludeSets(internal=[], ext_internal=[], external=[])
+
+        prg1 = tqdm(sorted(record.source_paths), desc="Collecting includes", unit="files")
+        #prg2 = tqdm(    desc="Collecting includes (internal)", unit="files")
+        for source in prg1:            
+            if not _is_relevant_source(source):
+                continue
+            
+            includes, header_sources = get_includes_for_source(
+                source,
+                record,
+                include_collector,
+            )
+            nheaderstotal=0
+            nheaders=0
+            done_headers = set()
+            while len(header_sources) > 0:
+                header_sources_ = header_sources
+                header_sources = []
+                nheaderstotal += len(header_sources_)
+                nheaders_still = len(header_sources_)
+                for header in header_sources_:
+                    if header in done_headers:
+                        continue
+                    done_headers.add(header)
+                    nheaders+=1
+                    #prg2.update(1)
+                    #prg2.set_postfix_str(f'{nheaders}/{nheaders_still}/{nheaderstotal}')
+                    includes_, header_sources__ = get_includes_for_source(
+                        header,
+                        record,
+                        include_collector,
+                    )
+                    includes.add(includes_)
+                    header_sources.extend(header_sources__)
+                    
+            target_includes.sum(includes)
+                        
+        if target_includes.internal:
+            for header in target_includes.get_internal_headers():
+                #print(f"      {header} -> {target_includes.get_header_path(header)}")
+                if target_includes.get_header_path(header) == '<unresolved>':
+                    print(f"WARNING: {header} (unresolved)")
+        if target_includes.external:
+            print("external includes:")
+            for header in target_includes.get_external_headers():
+                print(f"{header} [{target_includes.get_header_count(header)}]")
+
+        if pch_dir is not None:
+            pch_path = pch_dir / _sanitize_pch_name(key)
+            external_headers = target_includes.get_external_headers()
+            include_lines: List[str] = []
+            for header in external_headers:
+                if target_includes.get_header_count(header) > 1:
+                    include_lines.append(f'#include <{header}>')
+
+            content_lines = [
+                "// Auto-generated precompiled header",
+                f"// Target: {key}",
+                "#pragma once",
+                "",
+            ]
+            content_lines.extend(include_lines)
+            content = "\n".join(content_lines) + "\n"
+            try:
+                pch_path.write_text(content, encoding="utf-8")
+            except OSError as exc:
+                print(f"[warning] Failed to write PCH header {pch_path}: {exc}", file=sys.stderr)
+            else:
+                print(f"[info] Wrote PCH header: {pch_path}")
     return 0
+
+
+def _is_relevant_source(path: Path) -> bool:
+    suffix = path.suffix.lower()
+    if suffix in {".h", ".hpp", ".hh", ".hxx", ".inl", ".ipp"}:
+        return True
+    return path.name.lower().endswith(SOURCE_SUFFIXES)
 
 
 if __name__ == "__main__":

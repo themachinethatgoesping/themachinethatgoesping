@@ -31,6 +31,10 @@ TARGET_FUNCTIONS: Tuple[str, ...] = (
     "shared_library",
     "extension_module",
 )
+INCLUDE_ONLY_FUNCTIONS: Tuple[str, ...] = (
+    "declare_dependency",
+)
+CALLABLE_FUNCTIONS: Tuple[str, ...] = TARGET_FUNCTIONS + INCLUDE_ONLY_FUNCTIONS
 SOURCE_SUFFIXES: Tuple[str, ...] = (
     ".c",
     ".cc",
@@ -48,11 +52,27 @@ SOURCE_SUFFIXES: Tuple[str, ...] = (
     ".inl",
     ".ipp",
 )
+SOURCE_KEYWORDS: Tuple[str, ...] = (
+    "sources",
+    "c_sources",
+    "cpp_sources",
+    "cuda_sources",
+    "objc_sources",
+    "objcpp_sources",
+    "extra_files",
+)
+INCLUDE_KEYWORDS: Tuple[str, ...] = (
+    "include_directories",
+    "include_dirs",
+)
 STRING_LITERAL_RE = re.compile(r"'([^'\\]*(?:\\.[^'\\]*)*)'")
 CALL_HEAD_RE = re.compile(
-    r"(?P<func>(?:[A-Za-z_][A-Za-z0-9_]*\.)*(?:" + "|".join(TARGET_FUNCTIONS) + r"))\s*\("
+    r"(?P<func>(?:[A-Za-z_][A-Za-z0-9_]*\.)*(?:" + "|".join(CALLABLE_FUNCTIONS) + r"))\s*\("
 )
 SUBDIR_RE = re.compile(r"subdir\s*\(\s*'([^']+)'\s*\)")
+INCLUDE_DIRECTORIES_RE = re.compile(r"include_directories\s*\(")
+
+
 def _extract_balanced_block(
     text: str,
     start: int,
@@ -95,11 +115,17 @@ class TargetRecord:
     name: str
     origin: Path
     source_paths: List[Path] = field(default_factory=list)
+    include_paths: List[Path] = field(default_factory=list)
 
     def add_sources(self, sources: Iterable[Path]) -> None:
         for src in sources:
             if src not in self.source_paths:
                 self.source_paths.append(src)
+
+    def add_include_dirs(self, include_dirs: Iterable[Path]) -> None:
+        for inc in include_dirs:
+            if inc not in self.include_paths:
+                self.include_paths.append(inc)
 
 
 class MesonCallExtractor:
@@ -136,12 +162,19 @@ class MesonTargetCollector:
         self.requested_subprojects = sorted({name.strip() for name in subprojects if name.strip()})
         self.targets: Dict[str, TargetRecord] = {}
         self._visited: set[Path] = set()
+        self.include_paths: set[Path] = set()
 
     def run(self) -> None:
         if not self.meson_file.is_file():
             raise FileNotFoundError(f"Meson file not found: {self.meson_file}")
 
-        self._parse_meson_file(self.meson_file, label="root", list_scope={}, string_scope={})
+        self._parse_meson_file(
+            self.meson_file,
+            label="root",
+            list_scope={},
+            string_scope={},
+            include_scope={},
+        )
 
         for subproject in self.requested_subprojects:
             sub_meson = self.project_root / "subprojects" / subproject / "meson.build"
@@ -153,6 +186,7 @@ class MesonTargetCollector:
                 label=subproject,
                 list_scope={},
                 string_scope={},
+                include_scope={},
             )
 
     # ------------------------------------------------------------------
@@ -162,6 +196,7 @@ class MesonTargetCollector:
         label: str,
         list_scope: Optional[Dict[str, List[str]]] = None,
         string_scope: Optional[Dict[str, str]] = None,
+        include_scope: Optional[Dict[str, List[str]]] = None,
     ) -> None:
         meson_file = meson_file.resolve()
         if meson_file in self._visited:
@@ -172,23 +207,47 @@ class MesonTargetCollector:
 
         local_list_scope: Dict[str, List[str]] = {}
         if list_scope:
-            local_list_scope.update(list_scope)
+            for key, values in list_scope.items():
+                local_list_scope[key] = values[:]
 
         local_string_scope: Dict[str, str] = {}
         if string_scope:
             local_string_scope.update(string_scope)
 
-        list_updates, string_updates = self._collect_literal_lists(text, local_string_scope)
-        local_list_scope.update(list_updates)
+        local_include_scope: Dict[str, List[str]] = {}
+        if include_scope:
+            for key, values in include_scope.items():
+                local_include_scope[key] = values[:]
+
+        list_updates, string_updates, include_updates = self._collect_literal_lists(
+            text,
+            local_string_scope,
+            local_include_scope,
+            local_list_scope,
+        )
+        for key, values in list_updates.items():
+            local_list_scope[key] = values[:]
         local_string_scope.update(string_updates)
+        for key, values in include_updates.items():
+            local_include_scope[key] = values[:]
 
         extractor = MesonCallExtractor(text)
 
         for func, args in extractor.iter_calls():
-            target_name, raw_sources = self._parse_call_arguments(
-                args, local_list_scope, local_string_scope
+            expect_name = func in TARGET_FUNCTIONS
+            target_name, raw_sources, raw_includes = self._parse_call_arguments(
+                args,
+                local_list_scope,
+                local_string_scope,
+                local_include_scope,
+                expect_name=expect_name,
             )
-            if target_name is None:
+
+            abs_includes = [self._resolve_include(meson_file.parent, raw) for raw in raw_includes]
+            for inc in abs_includes:
+                self.include_paths.add(inc)
+
+            if not expect_name or target_name is None:
                 continue
 
             abs_sources = [self._resolve_source(meson_file.parent, raw) for raw in raw_sources]
@@ -199,6 +258,7 @@ class MesonTargetCollector:
                 record = TargetRecord(name=target_name, origin=meson_file)
                 self.targets[key] = record
             record.add_sources(abs_sources)
+            record.add_include_dirs(abs_includes)
 
         for subdir in SUBDIR_RE.findall(text):
             sub_meson = meson_file.parent / subdir / "meson.build"
@@ -206,8 +266,9 @@ class MesonTargetCollector:
                 self._parse_meson_file(
                     sub_meson,
                     label=label,
-                    list_scope=dict(local_list_scope),
+                    list_scope={key: values[:] for key, values in local_list_scope.items()},
                     string_scope=dict(local_string_scope),
+                    include_scope={key: values[:] for key, values in local_include_scope.items()},
                 )
 
     def _parse_call_arguments(
@@ -215,34 +276,64 @@ class MesonTargetCollector:
         args: str,
         list_scope: Dict[str, List[str]],
         string_scope: Dict[str, str],
-    ) -> Tuple[Optional[str], List[str]]:
+        include_scope: Dict[str, List[str]],
+        expect_name: bool = True,
+    ) -> Tuple[Optional[str], List[str], List[str]]:
         arg_slices = self._split_top_level_arguments(args)
         if not arg_slices:
-            return None, []
+            return None, [], []
 
-        target_expr = arg_slices[0].strip()
-        target_name = self._normalise_target_name(target_expr, string_scope)
-
-        remaining = arg_slices[1:]
-        literal_text = ",".join(remaining)
+        target_name: Optional[str]
+        if expect_name:
+            target_expr = arg_slices[0].strip()
+            target_name = self._normalise_target_name(target_expr, string_scope)
+            remaining = arg_slices[1:]
+        else:
+            target_name = None
+            remaining = arg_slices
         source_literals: List[str] = []
-
-        for match in STRING_LITERAL_RE.finditer(literal_text):
-            literal = self._unescape_literal(match.group(1))
-            if literal.lower().endswith(SOURCE_SUFFIXES):
-                source_literals.append(literal)
+        include_literals: List[str] = []
 
         for argument in remaining:
-            source_literals.extend(self._lookup_variable_sources(argument, list_scope))
+            key_name: Optional[str] = None
+            payload = argument
+            if ":" in argument:
+                key, value = argument.split(":", 1)
+                key_name = key.strip()
+                payload = value
+            lookup_expr = payload if key_name is not None else argument
 
-        deduped: List[str] = []
-        seen = set()
-        for literal in source_literals:
-            if literal not in seen:
-                seen.add(literal)
-                deduped.append(literal)
+            if key_name is not None and key_name in INCLUDE_KEYWORDS:
+                include_literals.extend(
+                    self._extract_include_literals(
+                        lookup_expr,
+                        list_scope,
+                        include_scope,
+                        assume_direct=True,
+                    )
+                )
+                continue
 
-        return target_name, deduped
+            if key_name is not None and key_name not in SOURCE_KEYWORDS:
+                include_literals.extend(
+                    self._extract_include_literals(lookup_expr, list_scope, include_scope)
+                )
+                continue
+
+            for match in STRING_LITERAL_RE.finditer(lookup_expr):
+                literal = self._unescape_literal(match.group(1))
+                if literal.lower().endswith(SOURCE_SUFFIXES):
+                    source_literals.append(literal)
+
+            source_literals.extend(self._lookup_variable_sources(lookup_expr, list_scope))
+            include_literals.extend(
+                self._extract_include_literals(lookup_expr, list_scope, include_scope)
+            )
+
+        deduped_sources = self._dedupe_preserve_order(source_literals)
+        deduped_includes = self._dedupe_preserve_order(include_literals)
+
+        return target_name, deduped_sources, deduped_includes
 
     def _split_top_level_arguments(self, args: str) -> List[str]:
         pieces: List[str] = []
@@ -309,6 +400,10 @@ class MesonTargetCollector:
         return pieces
 
     def _lookup_variable_sources(self, argument: str, scope: Dict[str, List[str]]) -> List[str]:
+        literals = self._lookup_variable_literals(argument, scope)
+        return [literal for literal in literals if literal.lower().endswith(SOURCE_SUFFIXES)]
+
+    def _lookup_variable_literals(self, argument: str, scope: Dict[str, List[str]]) -> List[str]:
         expr = argument.strip()
         if not expr:
             return []
@@ -318,13 +413,59 @@ class MesonTargetCollector:
             expr = rhs.strip()
 
         candidates = re.findall(r"[A-Za-z_][A-Za-z0-9_]*", expr)
-        sources: List[str] = []
+        literals: List[str] = []
         for candidate in candidates:
             if candidate in scope:
-                for literal in scope[candidate]:
-                    if literal.lower().endswith(SOURCE_SUFFIXES):
-                        sources.append(literal)
-        return sources
+                literals.extend(scope[candidate])
+        return literals
+
+    def _lookup_include_variables(self, argument: str, scope: Dict[str, List[str]]) -> List[str]:
+        literals = self._lookup_variable_literals(argument, scope)
+        return [literal for literal in literals if not literal.lower().endswith(SOURCE_SUFFIXES)]
+
+    def _gather_include_literals(
+        self,
+        expression: str,
+        list_scope: Dict[str, List[str]],
+        include_scope: Dict[str, List[str]],
+    ) -> List[str]:
+        includes: List[str] = []
+
+        for match in STRING_LITERAL_RE.finditer(expression):
+            literal = self._unescape_literal(match.group(1))
+            if not literal.lower().endswith(SOURCE_SUFFIXES):
+                includes.append(literal)
+
+        includes.extend(
+            literal
+            for literal in self._lookup_variable_literals(expression, list_scope)
+            if not literal.lower().endswith(SOURCE_SUFFIXES)
+        )
+        includes.extend(self._lookup_include_variables(expression, include_scope))
+
+        return includes
+
+    def _extract_include_literals(
+        self,
+        argument: str,
+        list_scope: Dict[str, List[str]],
+        include_scope: Dict[str, List[str]],
+        assume_direct: bool = False,
+    ) -> List[str]:
+        includes: List[str] = []
+
+        for match in INCLUDE_DIRECTORIES_RE.finditer(argument):
+            body, _ = _extract_balanced_block(argument, match.end(), "(", ")")
+            if body is None:
+                continue
+            includes.extend(self._gather_include_literals(body, list_scope, include_scope))
+
+        includes.extend(self._lookup_include_variables(argument, include_scope))
+
+        if assume_direct:
+            includes.extend(self._gather_include_literals(argument, list_scope, include_scope))
+
+        return self._dedupe_preserve_order(includes)
 
     def _normalise_target_name(self, expression: str, string_scope: Dict[str, str]) -> str:
         expr = expression.strip()
@@ -410,18 +551,30 @@ class MesonTargetCollector:
         self,
         text: str,
         inherited_string_scope: Dict[str, str],
-    ) -> Tuple[Dict[str, List[str]], Dict[str, str]]:
+        inherited_include_scope: Dict[str, List[str]],
+        inherited_list_scope: Dict[str, List[str]],
+    ) -> Tuple[Dict[str, List[str]], Dict[str, str], Dict[str, List[str]]]:
         list_scope: Dict[str, List[str]] = {}
         string_scope: Dict[str, str] = {}
+        include_scope: Dict[str, List[str]] = {}
 
         list_assign_re = re.compile(r"(?m)^(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*\[")
         files_assign_re = re.compile(r"(?m)^(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*files\s*\(")
         string_assign_re = re.compile(
             r"(?m)^(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?P<value>[^#\n]+)"
         )
+        include_assign_re = re.compile(
+            r"(?m)^(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*include_directories\s*\(")
+        include_aug_assign_re = re.compile(
+            r"(?m)^(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*\+=\s*include_directories\s*\(")
         foreach_alias_re = re.compile(
             r"(?m)^\s*foreach\s+(?P<item>[A-Za-z_][A-Za-z0-9_]*)\s*:\s*(?P<source>[A-Za-z_][A-Za-z0-9_]*)\b"
         )
+
+        combined_list_scope = {key: values[:] for key, values in inherited_list_scope.items()}
+        evaluation_include_scope = {
+            key: values[:] for key, values in inherited_include_scope.items()
+        }
 
         for match in list_assign_re.finditer(text):
             name = match.group("name")
@@ -429,7 +582,11 @@ class MesonTargetCollector:
             if body is None:
                 continue
             literals = [self._unescape_literal(m.group(1)) for m in STRING_LITERAL_RE.finditer(body)]
-            list_scope[name] = literals
+            deduped = self._dedupe_preserve_order(literals)
+            if not deduped:
+                continue
+            list_scope[name] = deduped[:]
+            combined_list_scope[name] = deduped[:]
 
         for match in files_assign_re.finditer(text):
             name = match.group("name")
@@ -437,10 +594,15 @@ class MesonTargetCollector:
             if body is None:
                 continue
             literals = [self._unescape_literal(m.group(1)) for m in STRING_LITERAL_RE.finditer(body)]
-            existing = list_scope.setdefault(name, [])
+            if not literals:
+                continue
+            local_list = list_scope.setdefault(name, [])
+            combined_list = combined_list_scope.setdefault(name, [])
             for literal in literals:
-                if literal not in existing:
-                    existing.append(literal)
+                if literal not in combined_list:
+                    combined_list.append(literal)
+                if literal not in local_list:
+                    local_list.append(literal)
 
         evaluation_scope = dict(inherited_string_scope)
 
@@ -459,14 +621,46 @@ class MesonTargetCollector:
             string_scope[name] = value
             evaluation_scope[name] = value
 
+        for match in include_assign_re.finditer(text):
+            name = match.group("name")
+            body, _ = _extract_balanced_block(text, match.end(), "(", ")")
+            if body is None:
+                continue
+            includes = self._gather_include_literals(body, combined_list_scope, evaluation_include_scope)
+            deduped = self._dedupe_preserve_order(includes)
+            if not deduped:
+                continue
+            include_scope[name] = deduped[:]
+            evaluation_include_scope[name] = deduped[:]
+
+        for match in include_aug_assign_re.finditer(text):
+            name = match.group("name")
+            body, _ = _extract_balanced_block(text, match.end(), "(", ")")
+            if body is None:
+                continue
+            includes = self._gather_include_literals(body, combined_list_scope, evaluation_include_scope)
+            deduped = self._dedupe_preserve_order(includes)
+            if not deduped:
+                continue
+            local_list = include_scope.setdefault(name, [])
+            eval_list = evaluation_include_scope.setdefault(name, [])
+            for literal in deduped:
+                if literal not in eval_list:
+                    eval_list.append(literal)
+                if literal not in local_list:
+                    local_list.append(literal)
+
         for match in foreach_alias_re.finditer(text):
             item = match.group("item")
             source_name = match.group("source")
-            referenced = list_scope.get(source_name)
-            if referenced:
-                list_scope[item] = referenced
+            if source_name in combined_list_scope:
+                list_scope[item] = combined_list_scope[source_name]
+                combined_list_scope[item] = combined_list_scope[source_name]
+            if source_name in evaluation_include_scope:
+                include_scope[item] = evaluation_include_scope[source_name]
+                evaluation_include_scope[item] = evaluation_include_scope[source_name]
 
-        return list_scope, string_scope
+        return list_scope, string_scope, include_scope
 
     def _resolve_source(self, base_dir: Path, literal: str) -> Path:
         candidate = (base_dir / literal).resolve()
@@ -475,9 +669,23 @@ class MesonTargetCollector:
         # so that downstream tooling has a deterministic location to inspect.
         return candidate
 
+    def _resolve_include(self, base_dir: Path, literal: str) -> Path:
+        candidate = (base_dir / literal).resolve()
+        return candidate
+
     @staticmethod
     def _unescape_literal(value: str) -> str:
         return value.encode("utf-8").decode("unicode_escape")
+
+    @staticmethod
+    def _dedupe_preserve_order(values: Iterable[str]) -> List[str]:
+        seen: set[str] = set()
+        result: List[str] = []
+        for value in values:
+            if value not in seen:
+                seen.add(value)
+                result.append(value)
+        return result
 
     # ------------------------------------------------------------------
     def display(self) -> None:
@@ -494,6 +702,11 @@ class MesonTargetCollector:
                 continue
             for src in sorted(record.source_paths):
                 print(f"  {src}")
+
+        if self.include_paths:
+            print("[includes]")
+            for inc in sorted(self.include_paths, key=str):
+                print(f"  {inc}")
 
 
 # ----------------------------------------------------------------------

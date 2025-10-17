@@ -5,11 +5,7 @@
 #include <Eigen/Eigen>
 #include <Eigen/Geometry>
 #include <algorithm>
-#if defined(__has_include)
-#  if __has_include(<arm_neon.h>)
-#    include <arm_neon.h>
-#  endif
-#endif
+#include <arm_neon.h>
 #include <array>
 #include <atomic>
 #include <bit>
@@ -38,20 +34,12 @@
 #include <frozen/map.h>
 #include <indicators/block_progress_bar.hpp>
 #include <indicators/progress_spinner.hpp>
-#if defined(__has_include)
-#  if __has_include(<intrin.h>)
-#    include <intrin.h>
-#  endif
-#endif
+#include <intrin.h>
 #include <iostream>
 #include <istream>
 #include <iterator>
 #include <limits>
-#if defined(__has_include)
-#  if __has_include(<machine/endian.h>)
-#    include <machine/endian.h>
-#  endif
-#endif
+#include <machine/endian.h>
 #include <magic_enum/magic_enum.hpp>
 #include <memory>
 #include <numbers>
@@ -72,16 +60,8 @@
 #include <streambuf>
 #include <string>
 #include <string_view>
-#if defined(__has_include)
-#  if __has_include(<sys/byteorder.h>)
-#    include <sys/byteorder.h>
-#  endif
-#endif
-#if defined(__has_include)
-#  if __has_include(<sys/endian.h>)
-#    include <sys/endian.h>
-#  endif
-#endif
+#include <sys/byteorder.h>
+#include <sys/endian.h>
 #include <system_error>
 #include <thread>
 #include <tuple>
