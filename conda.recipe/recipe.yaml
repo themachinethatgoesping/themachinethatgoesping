@@ -67,6 +67,8 @@ requirements:
     - numpy>=2.0.0,<2.5
     - pip
     - boost-cpp >=1.84.0,<1.90.0
+    - pyarrow
+    - pandas >=2.0
     - if: win
       then:
         - vs2022_win-64 # [win]
@@ -83,7 +85,8 @@ requirements:
     - ipywidgets
     - ipympl
     - matplotlib
-    - pandas
+    - pyarrow
+    - pandas >=2.0
     - rasterio
     - tqdm
     - scipy
