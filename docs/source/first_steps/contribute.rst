@@ -25,14 +25,14 @@ If you want to contribute to the development of **Ping** or if you want to use t
    We have no build instructions for Windows and Mac. (Except as github action workflows)
    If you are experienced with building c++ libraries on Windows or Mac, please contact us to help us improve the situation.
 
-Installation on Linux (22.04 and above)
+Installation on Linux (24.04 and above)
 ----------------------------------------
 
 First install the build requirements:
 
 .. tab-set::
 
-    .. tab-item:: Ubuntu (22.04 or higher)
+    .. tab-item:: Ubuntu (24.04 or higher)
         :sync: key_ubuntu
 
         .. code-block:: console
