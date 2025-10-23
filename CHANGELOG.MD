@@ -4,7 +4,7 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-## [Unreleased] - Unreleased
+## [0.31.0] - 23-10-2025
 
 - tools -> 0.31.0
 - algorithms -> 0.10.0
