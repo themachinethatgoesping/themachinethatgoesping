@@ -4,6 +4,23 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
+## [Unreleased]
+
+- echosounders -> 0.46.1
+- tools -> 0.31.1
+
+## Improvements
+
+- echosounders: initial support for kmall reading
+- echosoudners/kongsbergall: use frozen unordered_map to speed up installtionparamter lookup
+
+## Fixes
+
+- echosounders: Reintroduced Simradraw string to datagram identifier conversion
+
+## Maintanance
+- tools: many objectprinter functions now take string_views
+
 ## [0.31.0] - 23-10-2025
 
 - tools -> 0.31.0
