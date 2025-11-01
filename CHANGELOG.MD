@@ -20,6 +20,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Maintanance
 - tools: many objectprinter functions now take string_views
+- update fmt 12.0.0 -> 12.1.0
 
 ## [0.31.0] - 23-10-2025
 
