@@ -17,6 +17,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Fixes
 
 - echosounders: Reintroduced Simradraw string to datagram identifier conversion
+- tools: added missing xtensor instantiations
 
 ## Maintanance
 - tools: many objectprinter functions now take string_views
