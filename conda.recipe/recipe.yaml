@@ -94,6 +94,7 @@ requirements:
     - numpy < 2.3
     - pyqtgraph
     - jupyter-rfb
+    - pyside6
     - if: win
       then:
         - llvm-openmp # [win] - Add back LLVM OpenMP for Windows runtime

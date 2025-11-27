@@ -13,3 +13,4 @@ pyarrow
 scipy
 pyqtgraph
 jupyter-rfb
+pyside6

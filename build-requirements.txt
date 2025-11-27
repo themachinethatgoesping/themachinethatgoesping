@@ -16,3 +16,4 @@ pandas
 scipy
 pyqtgraph
 jupyter-rfb
+pyside6

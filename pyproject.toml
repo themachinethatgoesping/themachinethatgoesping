@@ -49,6 +49,7 @@ dependencies = [
   'scipy',
   'pyqtgraph',
   'jupyter-rfb',
+  'pyside6'
 ]
 
 
