@@ -47,6 +47,8 @@ dependencies = [
   'pandas >= 2.1.0',
   'pyarrow',
   'scipy',
+  'pyqtgraph',
+  'jupyter-rfb',
 ]
 
 

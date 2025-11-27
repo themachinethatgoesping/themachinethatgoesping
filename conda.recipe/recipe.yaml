@@ -92,6 +92,8 @@ requirements:
     - scipy
     - pytimeparse2
     - numpy < 2.3
+    - pyqtgraph
+    - jupyter-rfb
     - if: win
       then:
         - llvm-openmp # [win] - Add back LLVM OpenMP for Windows runtime

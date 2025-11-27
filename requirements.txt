@@ -11,3 +11,5 @@ pytimeparse2 >= 1.7.1
 pandas >= 2.1.0
 pyarrow
 scipy
+pyqtgraph
+jupyter-rfb

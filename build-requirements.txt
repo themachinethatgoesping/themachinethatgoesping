@@ -14,3 +14,5 @@ tqdm
 pytimeparse2 >= 1.7.1
 pandas
 scipy
+pyqtgraph
+jupyter-rfb
