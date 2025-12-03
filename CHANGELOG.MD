@@ -12,7 +12,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 
 - echosounders: initial support for kmall reading
-- echosoudners/kongsbergall: use frozen unordered_map to speed up installtionparamter lookup
+- echosoudners/kongsbergall: use frozen unordered_map to speed up installtionparamter lookups
 
 ## Fixes
 
@@ -23,6 +23,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: many objectprinter functions now take string_views
 - update fmt 12.0.0 -> 12.1.0
 - update eigen 3.4.0 -> 5.0.0
+- update xsimd 13.2.0 -> 14.0.0
+- remove hinnant_date dependency (use c++20 date features instead)
 
 ## [0.31.0] - 23-10-2025
 

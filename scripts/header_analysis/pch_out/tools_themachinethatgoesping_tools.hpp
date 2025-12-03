@@ -15,7 +15,6 @@
 #include <cmath>
 #include <complex>
 #include <concepts>
-#include <date/date.h>
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
