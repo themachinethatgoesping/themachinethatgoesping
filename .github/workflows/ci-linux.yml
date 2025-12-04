@@ -66,12 +66,12 @@ jobs:
           - { container: 'ubuntu:24.04', 
               ccache: 'true',
               pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev libgl1', 
               pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
               pip2: 'pip install -r requirements.txt --break-system-packages' }
           - { container: 'archlinux', 
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
-              dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl', 
+              dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl mesa', 
               pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
               pip2: 'pip install -r requirements.txt --break-system-packages --pre' }
     
