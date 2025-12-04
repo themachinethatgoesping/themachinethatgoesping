@@ -23,11 +23,11 @@ RUN yum install -y git git-lfs
 RUN yum install -y bzip2 curl zlib
 RUN yum install -y pkgconfig cmake
 #RUN yum install -y proj
-RUN yum install -y gcc-toolset-12
+RUN yum install -y gcc-toolset-14
 
 # -- install package versions from source --
 # BOOST
-RUN curl -O -L https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
+RUN curl -O -L https://archives.boost.io/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_}.tar.bz2
 RUN tar -xf boost_${BOOST_VERSION_}.tar.bz2
 RUN cd boost_${BOOST_VERSION_} && ./bootstrap.sh
 RUN cd boost_${BOOST_VERSION_} && ./b2 install --variant=release --threading=multi --link=static ${BOOST_MODULES} cxxflags=-fPIC cflags=-fPIC
