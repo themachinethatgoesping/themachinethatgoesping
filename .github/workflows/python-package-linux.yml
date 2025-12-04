@@ -81,8 +81,8 @@ jobs:
          
     - name: Build and install wheel
       run: |
-        # enable gcc-12
-        scl enable gcc-toolset-12 bash
+        # enable gcc-14
+        scl enable gcc-toolset-14 bash
         # build wheel
         python${{ matrix.python-version }} -m build -w -Cbuilddir=pybuild
         # repair with auditwheel
