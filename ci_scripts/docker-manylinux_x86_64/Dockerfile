@@ -24,6 +24,8 @@ RUN yum install -y bzip2 curl zlib
 RUN yum install -y pkgconfig cmake
 #RUN yum install -y proj
 RUN yum install -y gcc-toolset-14
+# Required for PySide6/pyqtgraph during testing
+RUN yum install -y libxkbcommon libxkbcommon-x11
 
 # -- install package versions from source --
 # BOOST
