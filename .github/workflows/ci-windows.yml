@@ -68,7 +68,7 @@ jobs:
         include:
           - toolset: vc143
             compiler: clang-cl
-            cpp_std: c++23
+            cpp_std: c++latest
           # - toolset: msvc
           #   compiler: sccache cl
           #   cpp_std: c++23
@@ -142,6 +142,7 @@ jobs:
 
     - name: configure meson
       run: |
+        # meson setup builddir -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
         meson setup builddir -Dunity=on -Dunity_size=9999999 -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
 
     - name: compile project

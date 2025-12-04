@@ -103,6 +103,13 @@ jobs:
       if:  ${{matrix.pip}}
       run: ${{matrix.pip}}
 
+    - name: activate gcc-14 toolchain
+      if: ${{ matrix.container == 'ubuntu:24.04' }}
+      run: |
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-14 g++-14
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 140
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 140
+
     - name: configure meson
       run: meson setup builddir -Dunity=on -Dunity_size=9999999 -Dpython.install_env=auto -Dprefix=/usr/;
 
