@@ -38,6 +38,7 @@ build:
         - export MACOSX_DEPLOYMENT_TARGET=14.0 # [osx]
         - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS" # [osx]
         - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
+        - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" # [osx]
 
         - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
     
