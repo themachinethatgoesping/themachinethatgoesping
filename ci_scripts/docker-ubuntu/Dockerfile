@@ -18,16 +18,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 # install dependencies (c++)
 RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libproj-dev
 
-# set g++12 as default compiler
-# RUN apt install -y  g++-12
-# RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 12
-# RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-12 12
-# RUN update-alternatives --install /usr/bin/cpp cpp /usr/bin/g++-12 12
-# update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11
-# update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-11 11
-# update-alternatives --install /usr/bin/cpp cpp /usr/bin/g++-11 11
+# set g++14 as default compiler
+RUN apt install -y gcc-14 g++-14
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 110 \
+    --slave /usr/bin/g++ g++ /usr/bin/g++-14
 
-# update-alternatives --install /usr/bin/gcc gcc /usr/bin/g++-11 11
+RUN update-alternatives --config gcc
 
 
 # install extra dependencies (instead of subprojects)
