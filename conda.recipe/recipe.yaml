@@ -17,26 +17,42 @@ build:
         - export LDFLAGS="-L$PREFIX/lib $LDFLAGS" # [unix]
         - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH" # [unix]
         - export BOOST_ROOT="$PREFIX" # [unix]
+
+        - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" \
+                                            --config-settings=setup-args="-Dunity_size=999999999" \
+                                            --config-settings=setup-args="-Ddynamic_boost=enabled" \
+                                            --config-settings=setup-args="-Dforce_openmp=enabled"
     - if: win
       then:
         - set CC=clang-cl
         - set CXX=clang-cl
         - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
-        - set AR=llvm-lib  # Add this line - use LLVM archiver instead of lib.exe
+        - set AR=llvm-lib # Add this line - use LLVM archiver instead of lib.exe
         - set BOOST_ROOT=%PREFIX%\Library # [win]
         - set PATH=%PREFIX%\Library\bin;%PATH% # [win]
         - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
         - set LIB=%PREFIX%\Library\lib;%LIB% # [win]
         - curl -L https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -o ninja.exe # [win]
         - set NINJA=%CD%\ninja.exe # [win]
+        - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" \
+                                        --config-settings=setup-args="-Dunity_size=999999999" \
+                                        --config-settings=setup-args="-Ddynamic_boost=enabled" \
+                                        --config-settings=setup-args="-Dforce_openmp=enabled" \
+                                        --config-settings=setup-args="-Dcpp_std=c++latest"
+
     - if: osx
       then:
         - export MACOSX_DEPLOYMENT_TARGET=14.0 # [osx]
         - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS" # [osx]
         - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
         - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" # [osx]
-    - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
-    #- ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
+
+        - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" \
+                                            --config-settings=setup-args="-Dunity_size=999999999" \
+                                            --config-settings=setup-args="-Ddynamic_boost=enabled" \
+                                            --config-settings=setup-args="-Dforce_openmp=enabled"
+
+
   number: 0
 
 requirements:
@@ -51,7 +67,7 @@ requirements:
     - if: win
       then:
         - clang # Use clang toolchain consistently
-        - lld   # Use LLD linker (not lib.exe)  
+        - lld # Use LLD linker (not lib.exe)
         - llvm-tools # Add LLVM tools including llvm-lib
         - llvm-openmp # [win]
     - if: osx
