@@ -41,3 +41,4 @@ cd ..
 
 # install dependencies (c++)
 yum install -y pkgconfig cmake libcurl-devel
+yum install -y libxkbcommon
