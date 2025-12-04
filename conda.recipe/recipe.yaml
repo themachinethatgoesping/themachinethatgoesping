@@ -36,10 +36,12 @@ build:
     - if: osx
       then:
         - export MACOSX_DEPLOYMENT_TARGET=14.0 # [osx]
-        - export CXXFLAGS="-stdlib=libc++ -D_LIBCPP_DISABLE_AVAILABILITY=1 $CXXFLAGS" # [osx]
-        - export CPPFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY=1 $CPPFLAGS" # [osx]
+        - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS" # [osx]
         - export LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
+        - export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY" # [osx]
 
+    - if: osx
+      then:
         - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
     
 
@@ -62,8 +64,8 @@ requirements:
         - llvm-openmp # [win]
     - if: osx
       then:
-        - clang_osx-arm64 =20 # [osx]
-        - clangxx_osx-arm64 =20 # [osx]
+        - clang_osx-arm64 =19 # [osx] - Pin to 19 to avoid clang 20 availability macro bug
+        - clangxx_osx-arm64 =19 # [osx]
         - llvm-openmp # [osx] - Keep for macOS
 
   host:
@@ -81,7 +83,7 @@ requirements:
         - llvm-openmp # [win] - Keep LLVM OpenMP
     - if: osx
       then:
-        - libcxx =20 # [osx]
+        - libcxx =19 # [osx] - Match clang version to avoid availability.h bug
         - llvm-openmp # [osx]
 
   run:
