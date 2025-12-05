@@ -67,8 +67,8 @@ jobs:
           - { name: 'ubuntu-24.04',
               runs-on: 'ubuntu-24.04',
               ccache: 'true',
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev libgl1 libglib2.0-0', 
-              pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev libgl1 libglib2.0-0 ninja-build', 
+              pip : 'sudo pip install meson meson-python --break-system-packages && pip install pytest numpy --break-system-packages',
               pip2: 'pip install -r requirements.txt --break-system-packages' }
           - { name: 'archlinux',
               container: 'archlinux', 
@@ -122,7 +122,7 @@ jobs:
       run: meson test -C builddir/ --print-errorlogs
 
     - name: install project
-      run: ${{ matrix.container && 'meson install -C builddir/' || 'sudo env PATH=$PATH meson install -C builddir/' }}
+      run: ${{ matrix.container && 'meson install -C builddir/' || 'sudo meson install -C builddir/' }}
 
     - name: install pip requirements
       if:  ${{matrix.pip2}}
