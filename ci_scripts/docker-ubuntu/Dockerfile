@@ -16,7 +16,7 @@ RUN apt update -qq
 ARG DEBIAN_FRONTEND=noninteractive
 
 # install dependencies (c++)
-RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libproj-dev libgl1 libglib2.0-0
+RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libproj-dev libgl1 libegl1 libglib2.0-0
 
 # set g++14 as default compiler
 RUN apt install -y gcc-14 g++-14

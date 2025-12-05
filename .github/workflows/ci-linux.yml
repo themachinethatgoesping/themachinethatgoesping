@@ -122,7 +122,7 @@ jobs:
       run: meson test -C builddir/ --print-errorlogs
 
     - name: install project
-      run: meson install -C builddir/
+      run: ${{ matrix.container && 'meson install -C builddir/' || 'sudo meson install -C builddir/' }}
 
     - name: install pip requirements
       if:  ${{matrix.pip2}}
