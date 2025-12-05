@@ -55,28 +55,30 @@ concurrency:
   
 jobs:
   linux:
-    name: ci on ${{matrix.container}}
+    name: ci on ${{matrix.name}}
     strategy:
       fail-fast: false
       matrix:
         include:  
-          - { container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
+          - { name: 'ubuntu-dep',
+              container: 'ghcr.io/themachinethatgoesping/ubuntu-dep:latest',
               ccache: 'true',
               pip2: 'pip install -r requirements.txt --break-system-packages' }
-          - { container: 'ubuntu:24.04', 
+          - { name: 'ubuntu-24.04',
+              runs-on: 'ubuntu-24.04',
               ccache: 'true',
-              pre-dep : 'apt update && apt-get install -y sudo git git-lfs', 
-              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev libgl1 libglib2.0-0', 
+              dep : 'sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ccache pkg-config cmake python3-pip libboost-all-dev libcurl4-openssl-dev libgl1 libglib2.0-0', 
               pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
               pip2: 'pip install -r requirements.txt --break-system-packages' }
-          - { container: 'archlinux', 
+          - { name: 'archlinux',
+              container: 'archlinux', 
               pre-dep : 'pacman -Syu --noconfirm; pacman -Syy sudo git git-lfs --noconfirm', 
-              dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl mesa glib', 
+              dep : 'sudo pacman -Syy --noconfirm base-devel ccache pkg-config cmake python-pip boost curl mesa glib2', 
               pip : 'pip install meson meson-python ninja pytest numpy --break-system-packages',
               pip2: 'pip install -r requirements.txt --break-system-packages --pre' }
     
-    runs-on: ubuntu-latest
-    container: ${{matrix.container}}
+    runs-on: ${{ matrix.runs-on || 'ubuntu-latest' }}
+    container: ${{ matrix.container || '' }}
 
     steps:
     - name: install perquisites
@@ -103,13 +105,6 @@ jobs:
       if:  ${{matrix.pip}}
       run: ${{matrix.pip}}
 
-    - name: activate gcc-14 toolchain
-      if: ${{ matrix.container == 'ubuntu:24.04' }}
-      run: |
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-14 g++-14
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 140
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 140
-
     - name: configure meson
       run: meson setup builddir -Dunity=on -Dunity_size=9999999 -Dpython.install_env=auto -Dprefix=/usr/;
 
@@ -133,7 +128,7 @@ jobs:
       uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: ${{matrix.container}}_testlog
+        name: ${{matrix.name}}_testlog
         path: builddir/meson-logs/meson-log.txt
         retention-days: 5
     
