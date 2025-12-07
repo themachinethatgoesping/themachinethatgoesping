@@ -8,11 +8,15 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - echosounders -> 0.46.1
 - tools -> 0.31.1
+- pingprocessing -> 0.12.1
 
 ## Improvements
 
 - echosounders: initial support for kmall reading
 - echosoudners/kongsbergall: use frozen unordered_map to speed up installtionparamter lookups
+- echosounders: new generative get_wci and get_wci_correction functions
+- pingprocessing: export functions for pyqtgraph_viewer
+- tools: printer for bivectorinterpolators
 
 ## Fixes
 
