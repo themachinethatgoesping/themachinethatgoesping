@@ -9,6 +9,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.46.1
 - tools -> 0.31.1
 - pingprocessing -> 0.12.1
+- navigation -> 0.18.1
+- algorithms -> 0.10.1
 
 ## Improvements
 
@@ -17,6 +19,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: new generative get_wci and get_wci_correction functions
 - pingprocessing: export functions for pyqtgraph_viewer
 - tools: printer for bivectorinterpolators
+- tools: new downsampling function for 1d vectors
+- echsounders: simpler get_navigation convenience functions
+- navigation: simpler get_navigation convenience functions
+- new geolocationvector structures for faster python access
 
 ## Fixes
 
@@ -32,6 +38,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - cleanup: remove annotation data interface
 - updated nanobind 2.9.2 -> 2.10.1
 - towards python 3.14 support
+- use github version of pybind11_mkdoc (switches comment logic fom __doc_ to mkd_doc)
 
 ## [0.31.0] - 23-10-2025
 
