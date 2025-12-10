@@ -23,6 +23,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echsounders: simpler get_navigation convenience functions
 - navigation: simpler get_navigation convenience functions
 - new geolocationvector structures for faster python access
+- support for python 3.14
 
 ## Fixes
 
@@ -36,7 +37,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - update xsimd 13.2.0 -> 14.0.0
 - cleanup: remove old pymodule files from echosounders
 - cleanup: remove annotation data interface
-- updated nanobind 2.9.2 -> 2.10.1
+- updated nanobind 2.9.2 -> 2.10.2
 - towards python 3.14 support
 - use github version of pybind11_mkdoc (switches comment logic fom __doc_ to mkd_doc)
 

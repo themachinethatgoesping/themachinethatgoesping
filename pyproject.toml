@@ -34,7 +34,7 @@ classifiers = [
   'Programming Language :: Python',
 ]
 
-requires-python = '>=3.11, <3.14'
+requires-python = '>=3.11, <3.15'
 dependencies = [
   'numba',
   #'ipympl',

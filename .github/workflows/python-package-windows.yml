@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-2025]
-        python-version: ['3.11','3.12','3.13']
+        python-version: ['3.11','3.12','3.14','3.14']
         boost-version: [1.89.0]
         boost-version_: [1_89_0]
         boost-modules: [--with-iostreams]
@@ -221,7 +221,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13']
+        python-version: ['3.11','3.12','3.14','3.14']
         
     steps:
     - uses: actions/setup-python@v5
@@ -264,7 +264,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13']
+        python-version: ['3.11','3.12','3.14','3.14']
 
         # include:
         #   - python-version: '3.12'

@@ -53,7 +53,7 @@ jobs:
               pip-path: '/opt/python/cp311-cp311/bin'}
           - { python-version: '3.12', 
               pip-path: '/opt/python/cp312-cp312/bin'}
-          - { python-version: '3.13', 
+          - { python-version: '3.14', 
               pip-path: '/opt/python/cp313-cp313/bin'}
               #pip-pre: '--pre'}
   
@@ -179,7 +179,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13']
+        python-version: ['3.11','3.12','3.14','3.14']
 
         # include:
         #   - python-version: '3.12'
