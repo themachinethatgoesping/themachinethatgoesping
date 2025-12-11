@@ -113,7 +113,19 @@ jobs:
       run: sudo meson install -C builddir/
 
     - name: install pip requirements
-      run: pip install -r requirements.txt
+      run: |
+        # Set GDAL environment variables for rasterio installation
+        export GDAL_CONFIG=$(brew --prefix gdal)/bin/gdal-config
+        export GDAL_VERSION=$($GDAL_CONFIG --version)
+        # Install rasterio with system GDAL - no-build-isolation needed to find GDAL headers
+        if pip install rasterio --no-build-isolation; then
+          pip install -r requirements.txt --ignore-installed rasterio
+        else
+          echo "rasterio installation failed, installing requirements without it"
+          grep -v "^rasterio" requirements.txt > temp_requirements.txt
+          pip install -r temp_requirements.txt
+          rm temp_requirements.txt
+        fi
 
     - name: test (pytest)
       run: pytest -v

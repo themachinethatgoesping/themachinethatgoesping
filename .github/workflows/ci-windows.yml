@@ -156,22 +156,16 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
-    - name: Setup micromamba for rasterio/GDAL
-      uses: mamba-org/setup-micromamba@v2
-      with:
-        environment-name: test-env
-        create-args: >-
-          python=3.14
-          rasterio
-          -c conda-forge
-        init-shell: powershell
-
-    - name: install pip requirements
-      shell: micromamba-shell {0}
-      run: pip install -r requirements.txt --ignore-installed rasterio
+    - name: install pip requirements (skip rasterio on Windows Python 3.14)
+      run: |
+        # rasterio requires GDAL which is not easily available for Python 3.14 on Windows
+        # Install requirements excluding rasterio (use regex to match lines starting with rasterio)
+        $requirementsContent = Get-Content requirements.txt | Where-Object { $_ -notmatch '^rasterio\b' }
+        $requirementsContent | Out-File -FilePath temp_requirements.txt -Encoding utf8
+        pip install -r temp_requirements.txt
+        Remove-Item temp_requirements.txt
 
     - name: test (pytest)
-      shell: micromamba-shell {0}
       run: pytest -v
     
     - name: 'Upload error log'
