@@ -156,14 +156,8 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
-    - name: install pip requirements (skip rasterio on Windows Python 3.14)
-      run: |
-        # rasterio requires GDAL which is not easily available for Python 3.14 on Windows
-        # Install requirements excluding rasterio (use regex to match lines starting with rasterio)
-        $requirementsContent = Get-Content requirements.txt | Where-Object { $_ -notmatch '^rasterio\b' }
-        $requirementsContent | Out-File -FilePath temp_requirements.txt -Encoding utf8
-        pip install -r temp_requirements.txt
-        Remove-Item temp_requirements.txt
+    - name: install pip requirements
+      run: pip install -r requirements.txt
 
     - name: test (pytest)
       run: pytest -v

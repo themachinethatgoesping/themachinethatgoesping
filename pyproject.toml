@@ -41,7 +41,6 @@ dependencies = [
   'matplotlib',
   'numpy >= 1.26.0',
   'tqdm',
-  'rasterio >= 1.3.10',
   'ipywidgets',
   'pytimeparse2 >= 1.7.1',
   'pandas >= 2.1.0',
@@ -56,6 +55,9 @@ dependencies = [
 [project.optional-dependencies]
 test = [
   'jupyter'
+]
+gridding = [
+  'rasterio >= 1.3.10'
 ]
 
 
