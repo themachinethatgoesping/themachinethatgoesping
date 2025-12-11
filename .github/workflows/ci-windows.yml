@@ -156,10 +156,22 @@ jobs:
     - name: install project
       run: meson install -C builddir/
 
+    - name: Setup micromamba for rasterio/GDAL
+      uses: mamba-org/setup-micromamba@v2
+      with:
+        environment-name: test-env
+        create-args: >-
+          python=3.14
+          rasterio
+          -c conda-forge
+        init-shell: powershell
+
     - name: install pip requirements
-      run: pip install -r requirements.txt
+      shell: micromamba-shell {0}
+      run: pip install -r requirements.txt --ignore-installed rasterio
 
     - name: test (pytest)
+      shell: micromamba-shell {0}
       run: pytest -v
     
     - name: 'Upload error log'
