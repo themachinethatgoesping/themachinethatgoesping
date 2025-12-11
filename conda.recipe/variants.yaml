@@ -4,5 +4,5 @@ python:
 # Using 3.13 for conda packages until ecosystem catches up
 #- "3.11"
 #- "3.12"
-- "3.13"
-#- "3.14"
+#- "3.13"
+- "3.14"
