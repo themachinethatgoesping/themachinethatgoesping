@@ -99,7 +99,7 @@ requirements:
     - tqdm
     - scipy
     - pytimeparse2
-    - numpy < 2.3
+    - numpy < 2.4
     - pyqtgraph
     - jupyter-rfb
     - pyside6
