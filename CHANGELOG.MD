@@ -25,6 +25,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - new geolocationvector structures for faster python access
 - support for python 3.14
 - algorithms: option class for TxSignalType
+- echosounders: kongsbergall: support absorption per tx sector
+- echosounders/algorithms: watercolumn calibration: support absorption per beam
 
 ## Fixes
 
