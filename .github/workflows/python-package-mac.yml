@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11',3.12','3.13']
+        python-version: ['3.11','3.12','3.13']
         llvm: ["$(brew --prefix llvm@18)"]
         boost: ["$(brew --prefix boost)"]
         libomp: ["$(brew --prefix libomp)"]
@@ -244,7 +244,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11',3.12','3.13']
+        python-version: ['3.11','3.12','3.13']
         os: ["macos-14", "macos-15"]
         arch: ["arch -arm64"]
 

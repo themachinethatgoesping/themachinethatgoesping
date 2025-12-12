@@ -73,7 +73,7 @@ jobs:
         shell: bash
       
       - name: Build conda package
-        uses: prefix-dev/rattler-build-action@v0.2.33
+        uses: prefix-dev/rattler-build-action@v0.2.34
         with:
           # needs to be unique for each matrix entry
           artifact-name: package-${{ matrix.target-platform }}

@@ -10,7 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.31.1
 - pingprocessing -> 0.12.1
 - navigation -> 0.18.1
-- algorithms -> 0.10.1
+- algorithms -> 0.11.0
 
 ## Improvements
 
@@ -24,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation: simpler get_navigation convenience functions
 - new geolocationvector structures for faster python access
 - support for python 3.14
+- algorithms: option class for TxSignalType
 
 ## Fixes
 
