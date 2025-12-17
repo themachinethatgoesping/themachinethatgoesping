@@ -4,6 +4,15 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
+## [0.32.1] - 17-12-2025
+- echosounders -> 0.46.2
+
+## Improvements
+- echosounders/kmall: support for PortableMKIIHead transducer configuration
+- echosounders/kmall: support for version 0 and 1 of MRZPingInfo structure
+- echosounders/kmall: support for 12 bytes long MWCRXBeamData structure
+- echosounders/kmall: support for phase data in MWCRXBeamData structure
+
 ## [0.32.0] - 15-12-2025
 
 - echosounders -> 0.46.1
