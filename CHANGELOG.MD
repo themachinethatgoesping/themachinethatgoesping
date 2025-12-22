@@ -9,7 +9,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
-- pingprocessing fixed wrong exclusion for layerprocessor remove_station function
+- pingprocessing fixed wrong exclusion for layerprocessor remove_station functions
 
 ## [0.32.1] - 17-12-2025
 - echosounders -> 0.46.2
