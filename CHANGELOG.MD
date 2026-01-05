@@ -13,7 +13,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.12.0
-- updated fast_float 8.1.0 -> 8.2.1
+- updated fast_float 8.1.0 -> 8.2.2
 
 ## [0.32.1] - 17-12-2025
 - echosounders -> 0.46.2
