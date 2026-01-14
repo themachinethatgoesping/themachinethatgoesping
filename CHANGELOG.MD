@@ -6,10 +6,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## [unreleased]
 - pingprocessing -> 0.12.2
+- algorithms -> 0.11.1
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
 - pingprocessing fixed wrong exclusion for layerprocessor remove_station functions
+- algorithms: added bubble backscatter models (Thuraisingham 1997, Li 2023)
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.12.0
