@@ -78,6 +78,7 @@ You may also want to check out the :ref:`contribute` section.
    :maxdepth: 2
    :hidden:
 
+   demos/demo_01_introduction.ipynb
    demos/tutorial_01_data_access_basic.ipynb
    demos/tutorial_02_data_access_advanced.ipynb
    demos/tutorial_03_WCI_viewer.ipynb

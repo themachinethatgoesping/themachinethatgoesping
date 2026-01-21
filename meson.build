@@ -30,4 +30,30 @@ module_gridding = subproject('gridding', default_options: ['cpp_std=' + get_opti
 # add python files
 subdir('python')
 
+# Stub generation using nanobind's native stubgen
+# Runs after install since stubgen needs to import the installed module
+if get_option('build_pythonmodule').enabled()
+    pymod = import('python').find_installation(get_option('python_path'), required: true, pure: false)
+    nanobind_dep = dependency('nanobind', version: '>=2.9.1')
+    stubgen = nanobind_dep.get_variable('stubgen')
+    
+    # Generate stubs
+    meson.add_install_script(
+        pymod,
+        stubgen,
+        '-m', 'themachinethatgoesping',
+        '-r',
+        '-O', meson.current_source_dir() / 'python' / 'stubs',
+        install_tag: 'python-runtime',
+    )
+    
+    # Fix invalid syntax in generated stubs (numpy.ndarray[dtype=...] etc.)
+    meson.add_install_script(
+        pymod,
+        meson.current_source_dir() / 'python' / 'fix_stubs.py',
+        meson.current_source_dir() / 'python' / 'stubs',
+        install_tag: 'python-runtime',
+    )
+endif
+
  

@@ -1,0 +1,3 @@
+
+
+def knots_to_ms(knots: float) -> float: ...

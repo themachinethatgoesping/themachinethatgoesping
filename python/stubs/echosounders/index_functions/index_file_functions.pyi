@@ -1,0 +1,6 @@
+import themachinethatgoesping.echosounders_nanopy.filetemplates as filetemplates
+
+
+def print_index_file_statistics(index_paths: list[str]): ...
+
+def remove_name_from_index(index_paths: list[str], name: str) -> None: ...

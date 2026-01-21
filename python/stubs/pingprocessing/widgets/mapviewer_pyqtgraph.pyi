@@ -1,0 +1,311 @@
+import dataclasses
+
+import np
+
+import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
+
+
+HAS_MATPLOTLIB: bool = True
+
+class LayerRenderSettings:
+    """
+    Viewer-side rendering settings for a layer.
+
+    These settings are controlled by the viewer, not the builder.
+    """
+
+    colormap: str = 'viridis'
+
+    opacity: float = 1.0
+
+    vmin: None = None
+
+    vmax: None = None
+
+    blend_mode: str = 'alpha'
+
+    __dataclass_params__: dataclasses._DataclassParams = ...
+
+    __dataclass_fields__: dict = ...
+
+    __hash__: None = None
+
+    def __init__(self, colormap: str = 'viridis', opacity: float = 1.0, vmin: Optional[float] = None, vmax: Optional[float] = None, blend_mode: str = 'alpha') -> None: ...
+
+    def __repr__(self): ...
+
+    def __eq__(self, other): ...
+
+    __match_args__: tuple = ...
+
+class TrackInfo:
+    """Track display information."""
+
+    line_width: float = 2.0
+
+    is_active: bool = False
+
+    visible: bool = True
+
+    slot_idx: None = None
+
+    __dataclass_params__: dataclasses._DataclassParams = ...
+
+    __dataclass_fields__: dict = ...
+
+    __hash__: None = None
+
+    def __init__(self, name: str, latitudes: np.ndarray, longitudes: np.ndarray, color: str, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None) -> None: ...
+
+    def __repr__(self): ...
+
+    def __eq__(self, other): ...
+
+    __match_args__: tuple = ...
+
+class MapViewerPyQtGraph:
+    """
+    PyQtGraph-based map viewer for geospatial data.
+
+    Features:
+    - Interactive pan/zoom with mouse
+    - Layer management with visibility/opacity/colorscale controls (viewer-side)
+    - Auto-update with debouncing on pan/zoom (like EchogramViewer)
+    - Track overlays showing navigation paths from echograms
+    - Current ping position marker (larger points from WCI viewer)
+    - Integration with EchogramViewerMultiChannel and WCIViewerMultiChannel
+    - Coordinate display (lat/lon)
+
+    The MapBuilder provides data; the viewer controls all rendering properties.
+
+    Example:
+        from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+        from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder
+
+        builder = MapBuilder()
+        builder.add_geotiff('map/BPNS_latlon.tiff')
+
+        # Auto-displays in Jupyter (like EchogramViewer)
+        viewer = MapViewerPyQtGraph(builder)
+
+        # Control rendering from viewer
+        viewer.set_layer_colormap("BPNS_latlon", "terrain")
+        viewer.set_layer_opacity("BPNS_latlon", 0.8)
+
+        # Connect to echogram viewer - tracks are loaded automatically
+        viewer.connect_echogram_viewer(echogram_viewer)
+    """
+
+    TRACK_COLORS: list = ...
+
+    def __init__(self, builder: Any = None, tile_builder: Any = None, width: int = 800, height: int = 600, show_controls: bool = True, max_render_size: Tuple[int, int] = (2000, 2000), auto_update: bool = True, auto_update_delay_ms: int = 300, show: bool = True):
+        """
+        Initialize the map viewer.
+
+        Args:
+            builder: MapBuilder with data layers to display (optional).
+            tile_builder: TileBuilder for background tiles (optional).
+            width: Widget width in pixels.
+            height: Widget height in pixels.
+            show_controls: Whether to show layer control widgets.
+            max_render_size: Maximum size for rendered layers (for performance).
+            auto_update: Whether to auto-update on pan/zoom.
+            auto_update_delay_ms: Delay before auto-update (debounce).
+            show: Whether to display immediately. Default True.
+        """
+
+    def show(self) -> None:
+        """Display the viewer widget."""
+
+    def set_layer_colormap(self, layer_name: str, colormap: str) -> 'MapViewerPyQtGraph':
+        """Set colormap for a layer (viewer-controlled)."""
+
+    def set_layer_opacity(self, layer_name: str, opacity: float) -> 'MapViewerPyQtGraph':
+        """Set opacity for a layer (viewer-controlled)."""
+
+    def set_layer_range(self, layer_name: str, vmin: float, vmax: float) -> 'MapViewerPyQtGraph':
+        """Set value range for a layer (viewer-controlled)."""
+
+    def set_layer_blend_mode(self, layer_name: str, blend_mode: str) -> 'MapViewerPyQtGraph':
+        """
+        Set blend mode for a layer (viewer-controlled).
+
+        Args:
+            layer_name: Layer name.
+            blend_mode: One of "alpha", "additive", "overlay".
+        """
+
+    def set_tile_source(self, source_name: str) -> 'MapViewerPyQtGraph':
+        """
+        Set the background tile source.
+
+        Args:
+            source_name: Name of tile source (e.g., 'osm', 'esri_worldimagery').
+                        Use 'None' to disable tiles.
+
+        Available sources:
+            - osm: OpenStreetMap
+            - esri_worldimagery: ESRI World Imagery (satellite)
+            - esri_ocean: ESRI Ocean Basemap
+            - esri_natgeo: ESRI National Geographic
+            - cartodb_positron: CartoDB Positron (light theme)
+            - cartodb_darkmatter: CartoDB Dark Matter (dark theme)
+            - cartodb_voyager: CartoDB Voyager
+            - stadia_terrain: Stadia Terrain
+            - stadia_toner: Stadia Toner (B&W)
+            - stadia_watercolor: Stadia Watercolor
+            - opentopomap: OpenTopoMap (topographic)
+        """
+
+    def set_tile_visible(self, visible: bool) -> 'MapViewerPyQtGraph':
+        """
+        Set tile layer visibility.
+
+        Args:
+            visible: Whether to show background tiles.
+        """
+
+    @property
+    def tile_builder(self):
+        """Access the TileBuilder instance."""
+
+    @tile_builder.setter
+    def tile_builder(self, builder):
+        """Set a new TileBuilder instance."""
+
+    def list_tile_sources(self) -> List[str]:
+        """List available tile source names."""
+
+    def zoom_to_fit(self):
+        """Zoom to fit all visible layers."""
+
+    def zoom_to_track(self):
+        """Zoom to fit all navigation tracks."""
+
+    def zoom_to_position(self, lat: float, lon: float, radius_deg: float = 0.01):
+        """
+        Zoom to center on a lat/lon position.
+
+        Args:
+            lat: Latitude in degrees.
+            lon: Longitude in degrees.
+            radius_deg: View radius in degrees.
+        """
+
+    def pan_to_wci_position(self):
+        """Pan to center on the current WCI ping position without changing zoom."""
+
+    def pan_to_position(self, lat: float, lon: float):
+        """
+        Pan to center on a position without changing zoom level.
+
+        Args:
+            lat: Latitude in degrees.
+            lon: Longitude in degrees.
+        """
+
+    def is_position_near_edge(self, lat: float, lon: float, edge_fraction: float = 0.2) -> bool:
+        """
+        Check if a position is near the edge of the current view.
+
+        Args:
+            lat: Latitude in degrees.
+            lon: Longitude in degrees.
+            edge_fraction: Fraction of view to consider as 'edge' (0.2 = 20%).
+
+        Returns:
+            True if position is in the outer edge_fraction of the view.
+        """
+
+    def pan_to_position_if_near_edge(self, lat: float, lon: float, edge_fraction: float = 0.2):
+        """
+        Pan to center on position only if it's near the edge of the view.
+
+        Args:
+            lat: Latitude in degrees.
+            lon: Longitude in degrees.
+            edge_fraction: Fraction of view to consider as 'edge' (0.2 = 20%).
+        """
+
+    def add_track(self, latitudes: np.ndarray, longitudes: np.ndarray, name: str = 'Track', color: Optional[str] = None, line_width: float = 2.0, is_active: bool = False, slot_idx: Optional[int] = None):
+        """
+        Add a navigation track overlay.
+
+        Args:
+            latitudes: Array of latitudes in degrees.
+            longitudes: Array of longitudes in degrees.
+            name: Track name (used as key).
+            color: Track color. If None, auto-assigned.
+            line_width: Line width.
+            is_active: Whether this is the active/selected track.
+            slot_idx: Echogram viewer slot index (for visible range highlighting).
+        """
+
+    def set_active_track(self, name: str):
+        """
+        Set which track is the active/highlighted one.
+
+        Args:
+            name: Name of the track to make active.
+        """
+
+    def clear_tracks(self):
+        """Remove all tracks."""
+
+    def update_ping_position(self, lat: float, lon: float):
+        """
+        Update the current ping position marker.
+
+        Args:
+            lat: Latitude in degrees.
+            lon: Longitude in degrees.
+        """
+
+    def connect_echogram_viewer(self, echogram_viewer):
+        """
+        Connect to an EchogramViewerMultiChannel to show tracks and ping positions.
+
+        This will:
+        - Add tracks for each visible channel (from echogram builders with get_track())
+        - Sync track visibility with echogramviewer slot visibility
+        - Highlight the track for the currently active slot
+        - Update ping position when the ping changes
+
+        Args:
+            echogram_viewer: EchogramViewerMultiChannel instance.
+        """
+
+    def connect_wci_viewer(self, wci_viewer):
+        """
+        Connect to a WCIViewerMultiChannel to show tracks and ping positions.
+
+        This will:
+        - Add tracks for each channel (if echogram data is available)
+        - Update ping position when the ping changes
+
+        Args:
+            wci_viewer: WCIViewerMultiChannel instance.
+        """
+
+    def refresh_tracks(self):
+        """Refresh tracks from connected viewers, preserving visibility state."""
+
+    def register_click_callback(self, callback: Callable[[float, float], None]):
+        """
+        Register a callback for map clicks.
+
+        Callback receives (lat, lon) of clicked position.
+
+        Args:
+            callback: Function to call on click.
+        """
+
+    def register_view_change_callback(self, callback: Callable):
+        """
+        Register a callback for view changes.
+
+        Callback receives new view bounds.
+
+        Args:
+            callback: Function to call on view change.
+        """

@@ -28,20 +28,25 @@ extensions = [
     'autoapi.extension',
     'sphinx_design',
     'nbsphinx',
-    'hoverxref.extension',
+    # 'hoverxref.extension',  # Deprecated, archived April 2025 - use Read the Docs "Link previews" addon instead
     'sphinx.ext.mathjax',
 ]
 
 exclude_patterns = ['_build', '**.ipynb_checkpoints']
 
+# Suppress specific warnings from auto-generated docstrings and autoapi
+# - docutils: C++ template parameter docstrings with special indentation
+# - autoapi.python_import_resolution: internal module resolution in stubs
+suppress_warnings = ['docutils', 'autoapi.python_import_resolution']
+
 #nbsphinx
 
-#hoverxref
-hoverxref_auto_ref = True
+#hoverxref (deprecated)
+# hoverxref_auto_ref = True
 
 #autoapi
 autoapi_type = 'python'
-autoapi_dirs = ['../../python/stubs/themachinethatgoesping/']
+autoapi_dirs = ['../../python/stubs/']
 autoapi_generate_api_docs = False
 
 
