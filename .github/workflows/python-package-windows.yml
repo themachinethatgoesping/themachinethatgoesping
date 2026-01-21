@@ -281,6 +281,11 @@ jobs:
       with:
         python-version: ${{matrix.python-version}}
 
+    - name: Install system dependencies for PySide6/pyqtgraph
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libegl1 libxkbcommon0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0
+
     - name: install via pip
       run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
 
