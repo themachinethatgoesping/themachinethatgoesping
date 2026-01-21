@@ -11,6 +11,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
 - pingprocessing fixed wrong exclusion for layerprocessor remove_station functions
+- complete overhaul of echogram and wci viewer widgets
 - algorithms: added bubble backscatter models (Thuraisingham 1997, Li 2023)
 
 ## Maintanance
