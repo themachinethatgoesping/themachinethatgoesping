@@ -6,13 +6,17 @@ import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base import (
     EchogramDataBackend as EchogramDataBackend
 )
+import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode import (
+    StorageAxisMode as StorageAxisMode
+)
 import themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import (
     EchogramImageRequest as EchogramImageRequest
 )
 
 
-MMAP_FORMAT_VERSION: str = '2.0'
+MMAP_FORMAT_VERSION: str = '3.0'
 
 class MmapDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend):
     """
@@ -93,6 +97,10 @@ class MmapDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
 
     @property
     def linear_mean(self) -> bool: ...
+
+    @property
+    def storage_mode(self) -> themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode.StorageAxisMode:
+        """Storage coordinate system for this backend."""
 
     def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
         """

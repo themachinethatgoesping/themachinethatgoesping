@@ -7,6 +7,10 @@ import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base import (
     EchogramDataBackend as EchogramDataBackend
 )
+import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode import (
+    StorageAxisMode as StorageAxisMode
+)
 import themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import (
     EchogramImageRequest as EchogramImageRequest
@@ -15,7 +19,7 @@ from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import
 
 HAS_ZARR: bool = True
 
-ZARR_FORMAT_VERSION: str = '1.0'
+ZARR_FORMAT_VERSION: str = '2.0'
 
 class ZarrDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend):
     """
@@ -32,7 +36,7 @@ class ZarrDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
     - range_min/max: 1D arrays of range extents (optional)
     - depth_min/max: 1D arrays of depth extents (optional)
     - ping_params/*: Ping parameter arrays (bottom, echosounder depth, etc.)
-    - Attributes: wci_value, linear_mean, has_navigation, format_version
+    - Attributes: wci_value, linear_mean, has_navigation, format_version, storage_mode
     """
 
     def __init__(self, ds: xr.Dataset, store_path: Union[str, None] = None, max_chunk_mb: float = 100.0):
@@ -101,6 +105,10 @@ class ZarrDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
 
     @property
     def linear_mean(self) -> bool: ...
+
+    @property
+    def storage_mode(self) -> themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.storage_mode.StorageAxisMode:
+        """Storage coordinate system for this backend."""
 
     def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]: ...
 

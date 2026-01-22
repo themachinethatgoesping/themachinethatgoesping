@@ -83,6 +83,15 @@ class EchogramDataBackend(abc.ABC):
     def linear_mean(self) -> bool:
         """Whether to use linear mean for beam averaging."""
 
+    @property
+    def storage_mode(self) -> StorageAxisMode:
+        """
+        Storage coordinate system for this backend.
+
+        Default implementation returns (ping_index, sample_index).
+        Override in backends that use different storage coordinates.
+        """
+
     def get_ping_params(self) -> dict[str, tuple[str, numpy.ndarray]]:
         """
         Return pre-computed ping parameters.

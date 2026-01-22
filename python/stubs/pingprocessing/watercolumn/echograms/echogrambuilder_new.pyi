@@ -107,6 +107,72 @@ class EchogramBuilder:
             >>> echogram_38k = echograms[38000]
         """
 
+    @classmethod
+    def concat(cls, builders_or_backends: list, gap_handling: str = 'preserve') -> EchogramBuilder:
+        """
+        Concatenate multiple echograms along the time/ping axis.
+
+        Creates a virtual echogram that spans all input echograms. Data is
+        loaded lazily from the original backends as needed.
+
+        Args:
+            builders_or_backends: List of EchogramBuilder or EchogramDataBackend instances.
+                Must be in temporal order.
+            gap_handling: How to handle gaps between echograms:
+                - "preserve": Keep real time gaps (x-axis shows true times)
+                - "continuous": Virtual continuous (ignore gaps between files)
+
+        Returns:
+            EchogramBuilder with ConcatBackend.
+
+        Examples:
+            >>> # Concatenate echograms from multiple files
+            >>> echograms = [EchogramBuilder.from_zarr(f) for f in file_list]
+            >>> combined = EchogramBuilder.concat(echograms)
+            >>> 
+            >>> # Build full timeline image
+            >>> image, extent = combined.build_image()
+        """
+
+    @classmethod
+    def combine(cls, builders_or_backends: list, combine_func: str = 'nanmean', name: str = 'combined') -> EchogramBuilder:
+        """
+        Combine multiple echograms with a mathematical operation.
+
+        Creates a virtual echogram that combines all input echograms using
+        the specified function (mean, median, sum, etc.). Useful for combining
+        different frequencies or averaging multiple acquisitions.
+
+        Combination happens AFTER downsampling for efficiency - each backend
+        produces its downsampled image, then they are combined.
+
+        Args:
+            builders_or_backends: List of EchogramBuilder or EchogramDataBackend instances.
+                Should have overlapping time ranges.
+            combine_func: Function to combine images, either:
+                - String name: "nanmean", "nanmedian", "nansum", "nanmax", 
+                  "nanmin", "nanstd", "mean", "first_valid"
+                - Callable with signature (stack, axis) -> result
+                  Stack has shape (n_backends, nx, ny), reduce along axis=0.
+            name: Name for the combined echogram.
+
+        Returns:
+            EchogramBuilder with CombineBackend.
+
+        Examples:
+            >>> # Combine different frequencies with mean
+            >>> echograms = {18000: echo_18k, 38000: echo_38k, 120000: echo_120k}
+            >>> combined = EchogramBuilder.combine(list(echograms.values()))
+            >>> 
+            >>> # Use median instead of mean
+            >>> combined = EchogramBuilder.combine(echograms, combine_func="nanmedian")
+            >>> 
+            >>> # Custom RMS combination
+            >>> def rms(stack, axis):
+            ...     return np.sqrt(np.nanmean(stack**2, axis=axis))
+            >>> combined = EchogramBuilder.combine(echograms, combine_func=rms)
+        """
+
     @property
     def coord_system(self) -> themachinethatgoesping.pingprocessing.watercolumn.echograms.coordinate_system.EchogramCoordinateSystem:
         """
