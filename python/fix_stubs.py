@@ -103,7 +103,7 @@ def fix_docstring_indentation(content: str) -> str:
 
 def fix_stub_file(filepath: Path) -> bool:
     """Fix invalid syntax in a single stub file. Returns True if modified."""
-    content = filepath.read_text()
+    content = filepath.read_text(encoding='utf-8')
     original = content
     
     # Fix C++ template syntax in class names (e.g., FilePackageCache<XML_Parameter_Channel>)
@@ -176,7 +176,7 @@ def fix_stub_file(filepath: Path) -> bool:
                 content = '\n'.join(lines)
     
     if content != original:
-        filepath.write_text(content)
+        filepath.write_text(content, encoding='utf-8')
         return True
     return False
 
