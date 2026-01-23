@@ -1,6 +1,48 @@
+import PySide6.QtCore
+import QtGui
+import pyqtgraph.graphicsItems.ROI
+import pyqtgraph.graphicsItems.ScatterPlotItem
+
 import themachinethatgoesping as theping
 import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
 
+
+class DraggableScatterPlotItem(pyqtgraph.graphicsItems.ScatterPlotItem.ScatterPlotItem):
+    """ScatterPlotItem that supports dragging individual points."""
+
+    sigPointDragged: PySide6.QtCore.Signal = ...
+
+    def __init__(self, *args, **kwargs): ...
+
+    def mousePressEvent(self, ev: QtGui.QMouseEvent) -> None:
+        """Handle mouse press - start drag if on a point."""
+
+    def mouseMoveEvent(self, ev: QtGui.QMouseEvent) -> None:
+        """Handle mouse move - drag point if dragging."""
+
+    def mouseReleaseEvent(self, ev: QtGui.QMouseEvent) -> None:
+        """Handle mouse release - end drag."""
+
+    staticMetaObject: PySide6.QtCore.QMetaObject = ...
+
+class SafePolyLineROI(pyqtgraph.graphicsItems.ROI.PolyLineROI):
+    """
+    PolyLineROI subclass that disables right-click context menu on handles.
+
+    The default PolyLineROI handles can crash when right-clicked due to
+    internal state issues. This subclass intercepts and ignores right-click
+    events to prevent crashes.
+    """
+
+    def __init__(self, *args, **kwargs): ...
+
+    def addHandle(self, *args, **kwargs):
+        """Override to disable context menu on newly added handles."""
+
+    def setPoints(self, points, closed=None):
+        """Override to disable context menu on handles after setting points."""
+
+    staticMetaObject: PySide6.QtCore.QMetaObject = ...
 
 class EchogramSlot:
     """Manages a single echogram display slot with lazy loading."""

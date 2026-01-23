@@ -116,7 +116,8 @@ class ConcatBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.
         Build image by delegating to sub-backends.
 
         Efficiently determines which backends have data in the requested range
-        and only queries those backends.
+        and only queries those backends. When in depth mode, computes proper
+        affine parameters for each backend.
         """
 
     def __repr__(self) -> str: ...

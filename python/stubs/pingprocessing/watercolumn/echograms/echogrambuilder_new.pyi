@@ -135,7 +135,7 @@ class EchogramBuilder:
         """
 
     @classmethod
-    def combine(cls, builders_or_backends: list, combine_func: str = 'nanmean', name: str = 'combined') -> EchogramBuilder:
+    def combine(cls, builders_or_backends, combine_func: str = 'nanmean', name: str = 'combined', linear: bool = True) -> EchogramBuilder:
         """
         Combine multiple echograms with a mathematical operation.
 
@@ -146,31 +146,42 @@ class EchogramBuilder:
         Combination happens AFTER downsampling for efficiency - each backend
         produces its downsampled image, then they are combined.
 
+        The view settings (x_axis, y_axis) from the first EchogramBuilder are
+        preserved in the combined result.
+
         Args:
-            builders_or_backends: List of EchogramBuilder or EchogramDataBackend instances.
-                Should have overlapping time ranges.
+            builders_or_backends: List or dict of EchogramBuilder or EchogramDataBackend
+                instances. If a dict, uses dict.values(). Should have overlapping 
+                time ranges.
             combine_func: Function to combine images, either:
                 - String name: "nanmean", "nanmedian", "nansum", "nanmax", 
                   "nanmin", "nanstd", "mean", "first_valid"
                 - Callable with signature (stack, axis) -> result
                   Stack has shape (n_backends, nx, ny), reduce along axis=0.
             name: Name for the combined echogram.
+            linear: If True (default), convert dB data to linear domain before
+                combining, then convert back to dB. This gives acoustically
+                correct averaging of intensities. Set to False to combine
+                directly in dB domain.
 
         Returns:
             EchogramBuilder with CombineBackend.
 
         Examples:
-            >>> # Combine different frequencies with mean
+            >>> # Combine different frequencies with mean (linear domain)
             >>> echograms = {18000: echo_18k, 38000: echo_38k, 120000: echo_120k}
-            >>> combined = EchogramBuilder.combine(list(echograms.values()))
+            >>> combined = EchogramBuilder.combine(echograms)  # dict works directly
             >>> 
             >>> # Use median instead of mean
             >>> combined = EchogramBuilder.combine(echograms, combine_func="nanmedian")
             >>> 
+            >>> # Combine directly in dB domain (not acoustically correct)
+            >>> combined = EchogramBuilder.combine(echograms, linear=False)
+            >>> 
             >>> # Custom RMS combination
             >>> def rms(stack, axis):
             ...     return np.sqrt(np.nanmean(stack**2, axis=axis))
-            >>> combined = EchogramBuilder.combine(echograms, combine_func=rms)
+            >>> combined = EchogramBuilder.combine(echograms, combine_func=rms, linear=False)
         """
 
     @property
@@ -217,6 +228,28 @@ class EchogramBuilder:
     @property
     def linear_mean(self) -> bool:
         """Whether linear mean is used for beam averaging."""
+
+    @property
+    def offset(self) -> float:
+        """
+        Value offset applied to all data.
+
+        This offset is added to all echogram values when building images
+        (build_image, build_image_and_layer_image, build_image_and_layer_images)
+        and permanently applied when saving (to_mmap, to_zarr).
+
+        Returns:
+            Current offset value (default 0.0).
+        """
+
+    @offset.setter
+    def offset(self, value: float):
+        """
+        Set the value offset applied to all data.
+
+        Args:
+            value: Offset to add to all echogram values (e.g., calibration correction).
+        """
 
     def get_track(self, start_ping: Union[int, None] = None, end_ping: Union[int, None] = None) -> Union[tuple[numpy.ndarray, numpy.ndarray], None]:
         """
@@ -401,7 +434,7 @@ class EchogramBuilder:
             Tuple of (raw_data, (sample_start, sample_end)) or None if not found.
         """
 
-    def to_zarr(self, path: str, chunks: tuple = (64, -1), compressor: str = 'zstd', compression_level: int = 3, progress: bool = True) -> str:
+    def to_zarr(self, path: str, mode: str = 'native', chunks: tuple = (64, -1), compressor: str = 'zstd', compression_level: int = 3, progress: bool = True, resolution: float = None, interpolation: str = 'nearest') -> str:
         """
         Export echogram data to a Zarr store for fast lazy loading.
 
@@ -410,20 +443,37 @@ class EchogramBuilder:
 
         Args:
             path: Path for the Zarr store (directory, will be created).
+            mode: Storage mode:
+                - "native": Store raw sample indices (fastest, smallest overhead)
+                - "view": Transform to match current axis settings (depth/range)
             chunks: Chunk sizes as (ping_chunk, sample_chunk). 
                     Use -1 for full dimension. Default (64, -1) = 64 pings per chunk.
             compressor: Compression algorithm ('zstd', 'lz4', 'zlib', 'none').
             compression_level: Compression level (1-22 for zstd, higher = smaller/slower).
             progress: Whether to show progress bar.
+            resolution: Y-axis resolution in meters (auto-detected if None).
+                        Only used when mode="view" with depth/range axis.
+            interpolation: Resampling method ("nearest" or "linear").
 
         Returns:
             Path to the created Zarr store.
+
+        Examples:
+            >>> # Default: store in native sample indices
+            >>> builder.to_zarr("output.zarr")
+            >>> 
+            >>> # First set view to depth mode, then save in those coordinates
+            >>> builder.set_y_axis_depth()
+            >>> builder.to_zarr("output.zarr", mode="view")
         """
 
     @classmethod
     def from_zarr(cls, path: str, chunks: dict = None) -> EchogramBuilder:
         """
         Load an EchogramBuilder from a Zarr store.
+
+        The axis type settings (e.g., "Date time", "Depth (m)") are restored
+        from the saved metadata, but zoom levels are not preserved.
 
         Args:
             path: Path to the Zarr store (directory).
@@ -433,7 +483,7 @@ class EchogramBuilder:
             EchogramBuilder with ZarrDataBackend.
         """
 
-    def to_mmap(self, path: str, progress: bool = True, chunk_mb: float = 10.0) -> str:
+    def to_mmap(self, path: str, mode: str = 'native', progress: bool = True, chunk_mb: float = 10.0, resolution: float = None, interpolation: str = 'nearest') -> str:
         """
         Export echogram data to a memory-mapped store for ultra-fast access.
 
@@ -441,25 +491,31 @@ class EchogramBuilder:
         them ideal for interactive visualization (zooming, panning). Trade-off:
         files are uncompressed and larger than Zarr stores.
 
-        Memory efficiency:
-        - Writes in chunks based on chunk_mb (default 10MB)
-        - Chunk size adapts to data dimensions
-        - Peak memory: ~chunk_mb + output metadata
-        - Supports exporting larger-than-memory datasets
-
-        Performance comparison (75K pings × 379 samples):
-        - Full view: Mmap 3x faster than Zarr
-        - Scattered access (100 pings): Mmap 100x faster
-        - Thumbnail (100×100): Mmap 180x faster
-
         Args:
             path: Path for the mmap store (directory, will be created).
+            mode: Storage mode:
+                - "native": Store raw sample indices (fastest, smallest overhead)
+                - "view": Transform to match current axis settings (depth/range)
             progress: Whether to show progress bar.
             chunk_mb: Chunk size in megabytes for writing (default 10MB).
-                      Larger chunks = faster export but more memory.
+            resolution: Y-axis resolution in meters (auto-detected if None).
+                        Only used when mode="view" with depth/range axis.
+            interpolation: Resampling method ("nearest" or "linear").
 
         Returns:
             Path to the created mmap store.
+
+        Examples:
+            >>> # Default: store in native sample indices (fastest)
+            >>> builder.to_mmap("output.mmap")
+            >>> 
+            >>> # First set view to depth mode, then save in those coordinates
+            >>> builder.set_y_axis_depth()
+            >>> builder.to_mmap("output.mmap", mode="view")
+            >>> 
+            >>> # Store with specific resolution
+            >>> builder.set_y_axis_depth()
+            >>> builder.to_mmap("output.mmap", mode="view", resolution=0.1)
         """
 
     @classmethod
@@ -471,6 +527,9 @@ class EchogramBuilder:
         - No data loaded into memory until accessed
         - OS page cache handles caching efficiently
         - Supports files larger than available RAM
+
+        The axis type settings (e.g., "Date time", "Depth (m)") are restored
+        from the saved metadata, but zoom levels are not preserved.
 
         Args:
             path: Path to the mmap store (directory).

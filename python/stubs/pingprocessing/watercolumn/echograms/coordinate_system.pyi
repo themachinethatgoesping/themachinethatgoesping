@@ -88,6 +88,7 @@ class EchogramCoordinateSystem:
         Get a ping parameter's values in current coordinate system.
 
         Uses vectorized affine transforms for speed.
+        Handles both dense format (one value per ping) and sparse format (control points).
 
         Args:
             name: Parameter name.

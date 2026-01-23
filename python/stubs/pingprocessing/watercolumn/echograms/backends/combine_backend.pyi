@@ -52,6 +52,19 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
     2. Images are stacked (handling different extents)
     3. combine_func reduces the stack to a single image
 
+    Alignment modes:
+    - x_align="ping_index": Backends are aligned by ping index (ping N with ping N)
+    - x_align="time": Backends are aligned by timestamp (find closest ping by time)
+    - y_align="sample_index": Backends are aligned by sample index
+    - y_align="depth": Backends are aligned by depth coordinates
+
+    Linear mode (linear=True):
+    - Data is assumed to be in dB (e.g., Sv values)
+    - Before combining: converts from dB to linear using 10^(0.1 * dB)
+    - Applies combine function (e.g., nanmean) in linear domain
+    - After combining: converts back to dB using 10 * log10(linear)
+    - This gives physically correct averaging of acoustic intensities
+
     Memory usage: O(n_backends * nx * ny) - all downsampled images must fit in RAM.
     This is typically fine since downsampled images are small (e.g., 4096 x 1024).
 
@@ -60,13 +73,16 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
         >>> combine = CombineBackend(backends, combine_func=np.nanmean)
         >>> builder = EchogramBuilder(combine)
         >>> image, extent = builder.build_image()
+        >>>
+        >>> # For acoustically correct averaging in linear domain:
+        >>> combine = CombineBackend(backends, combine_func="nanmean", linear=True)
 
     Custom combine functions must have signature:
         func(stack: np.ndarray, axis: int) -> np.ndarray
     where stack has shape (n_backends, nx, ny) and the function reduces along axis=0.
     """
 
-    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], combine_func: Union[str, _Callable[[numpy.ndarray, int], numpy.ndarray]] = 'nanmean', name: str = 'combined'):
+    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], combine_func: Union[str, _Callable[[numpy.ndarray, int], numpy.ndarray]] = 'nanmean', name: str = 'combined', x_align: str = 'ping_index', y_align: str = 'sample_index', linear: bool = True):
         """
         Initialize CombineBackend.
 
@@ -78,10 +94,45 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
                 - Callable with signature (stack, axis) -> result
                   Stack has shape (n_backends, nx, ny), reduce along axis=0.
             name: Name for the combined echogram (used in repr).
+            x_align: How to align backends on x-axis:
+                - "ping_index": Align by ping index (ping N with ping N)
+                - "time": Align by timestamp (find closest ping by time)
+            y_align: How to align backends on y-axis:
+                - "sample_index": Align by sample index
+                - "depth": Align by depth coordinates (requires depth extents)
+                - "range": Align by range coordinates (requires range extents)
+            linear: If True (default), convert dB data to linear domain before
+                combining, then convert back to dB. This gives acoustically
+                correct averaging of intensities. Set to False to combine
+                directly in dB domain.
 
         Raises:
-            ValueError: If backends list is empty.
+            ValueError: If backends list is empty or invalid align mode.
         """
+
+    @property
+    def x_align(self) -> str:
+        """X-axis alignment mode."""
+
+    @x_align.setter
+    def x_align(self, value: str):
+        """Set X-axis alignment mode."""
+
+    @property
+    def y_align(self) -> str:
+        """Y-axis alignment mode."""
+
+    @y_align.setter
+    def y_align(self, value: str):
+        """Set Y-axis alignment mode."""
+
+    @property
+    def linear(self) -> bool:
+        """Whether to combine in linear domain."""
+
+    @linear.setter
+    def linear(self, value: bool):
+        """Set whether to combine in linear domain."""
 
     @property
     def n_pings(self) -> int: ...
@@ -150,7 +201,19 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
         Build combined image by getting from each backend and combining.
 
         This is the main entry point for efficient image generation.
-        Each backend produces its own downsampled image, then we stack and combine.
+        Each backend produces its own downsampled image using its own
+        depth-to-sample mapping, then images are stacked and combined.
+
+        IMPORTANT: When combining echograms in depth mode, each backend
+        may have different sample-to-depth relationships. This method
+        computes the correct affine parameters for each backend.
+
+        IMPORTANT: Backends are aligned by TIME, not by ping index. This is
+        critical when combining different frequencies that may have different
+        ping rates or timing.
+
+        Handles backends with different coverage (different number of pings)
+        by masking out-of-range pings as invalid for each backend.
         """
 
     def __repr__(self) -> str: ...
