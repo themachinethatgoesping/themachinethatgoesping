@@ -5,5 +5,3 @@ import _nanopy.gridding as gridding
 import _nanopy.imageprocessing as imageprocessing
 import _nanopy.pointprocessing as pointprocessing
 import _nanopy.signalprocessing as signalprocessing
-
-from . import backscattermodels as backscattermodels
