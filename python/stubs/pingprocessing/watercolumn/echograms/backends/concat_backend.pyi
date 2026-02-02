@@ -1,3 +1,11 @@
+"""
+Backend for concatenating multiple echograms along the time/ping axis.
+
+This backend provides a virtual view over multiple backends, allowing them
+to be treated as a single continuous echogram. Useful for combining data
+from multiple files or acquisition sessions.
+"""
+
 from typing import Union
 
 import numpy

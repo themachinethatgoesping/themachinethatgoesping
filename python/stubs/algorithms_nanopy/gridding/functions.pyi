@@ -1,3 +1,5 @@
+"""Submodule for gridding functions"""
+
 from typing import Annotated, overload
 
 import numpy

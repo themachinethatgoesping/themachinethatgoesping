@@ -1,3 +1,5 @@
+"""Convenient functions for converting latlon and utm strings."""
+
 from collections.abc import Sequence
 from typing import Annotated, overload
 

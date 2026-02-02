@@ -1,3 +1,5 @@
+"""Submodule for geoprocessing functions"""
+
 from typing import Annotated, overload
 
 import numpy

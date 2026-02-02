@@ -1,3 +1,5 @@
+"""Classes related to SimradRaw EK60 and EK80 data files"""
+
 from collections.abc import Mapping, Sequence
 import enum
 from typing import overload

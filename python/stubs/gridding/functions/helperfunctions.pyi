@@ -1,3 +1,5 @@
+"""Simple helper functions"""
+
 import numba.core.registry
 
 

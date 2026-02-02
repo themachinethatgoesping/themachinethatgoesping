@@ -1,4 +1,6 @@
+"""Functions used for Simrad RAW water column calibration"""
 import typing
+
 from typing import Annotated, overload
 
 import numpy

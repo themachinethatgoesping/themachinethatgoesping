@@ -1,4 +1,6 @@
+"""Trampoline classes for abstract file template classes"""
 import typing
+
 from collections.abc import Sequence
 import enum
 from typing import Annotated, overload
@@ -29,9 +31,9 @@ class AmplitudeCalibration:
 
     def get_per_sample_offsets(self, ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
 
-    def apply_beam_sample_correction(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]: ...
+    def apply_beam_sample_correction(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float | None, mp_cores: int | None = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]: ...
 
-    def apply_beam_sample_correction_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]:
+    def apply_beam_sample_correction_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float, mp_cores: int | None = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]:
         """
         Apply beam and sample corrections with per-beam absorption
         coefficients.
@@ -59,9 +61,9 @@ class AmplitudeCalibration:
             Corrected 2D tensor.
         """
 
-    def inplace_beam_sample_correction(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
+    def inplace_beam_sample_correction(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float | None, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int | None = 1) -> None: ...
 
-    def inplace_beam_sample_correction_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int | None = 1) -> None:
         """
         Inplace apply beam and sample corrections with per-beam absorption
         coefficients.

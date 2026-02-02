@@ -1,3 +1,55 @@
+"""
+PyQtGraph-based map viewer widget for Jupyter notebooks.
+
+Provides interactive visualization of map layers with pan/zoom,
+track overlays, and integration with echogram/WCI viewers.
+
+The viewer handles:
+- Colorscale, opacity, blending per data layer
+- Background tiles from web sources (OSM, ESRI, CartoDB, etc.)
+- Auto-update with debouncing on pan/zoom
+- Track overlays with direct lat/lon coordinates
+- Ping position markers from connected viewers
+
+Example with data layers:
+    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder
+
+    builder = MapBuilder()
+    builder.add_geotiff('map/BPNS_latlon.tiff')
+
+    # Auto-displays in Jupyter (like EchogramViewer)
+    viewer = MapViewerPyQtGraph(builder)
+
+Example with background tiles:
+    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder, TileBuilder
+
+    # Data layer
+    builder = MapBuilder()
+    builder.add_geotiff('map/BPNS_latlon.tiff')
+
+    # Background tiles
+    tiles = TileBuilder()
+    tiles.add_osm()  # or add_esri_worldimagery(), add_cartodb_positron(), etc.
+
+    viewer = MapViewerPyQtGraph(builder, tile_builder=tiles)
+
+    # Or change tile source programmatically
+    viewer.set_tile_source('esri_worldimagery')  # Switch to satellite
+    viewer.set_tile_visible(False)  # Hide tiles
+
+Example tiles-only (no data layers):
+    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.pingprocessing.overview.map_builder import TileBuilder
+
+    tiles = TileBuilder()
+    tiles.add_osm()
+
+    viewer = MapViewerPyQtGraph(tile_builder=tiles)
+    viewer.connect_echogram_viewer(echogram_viewer)  # Just show tracks on tiles
+"""
+
 import dataclasses
 
 import np

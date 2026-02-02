@@ -1,3 +1,5 @@
+"""Module that holds functions used for image processing functions"""
+
 from typing import Annotated, overload
 
 import numpy

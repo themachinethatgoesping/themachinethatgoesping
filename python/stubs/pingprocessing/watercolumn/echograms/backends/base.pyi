@@ -1,3 +1,5 @@
+"""Abstract base class for echogram data backends."""
+
 import abc
 from collections.abc import (
     Iterable as _Iterable,

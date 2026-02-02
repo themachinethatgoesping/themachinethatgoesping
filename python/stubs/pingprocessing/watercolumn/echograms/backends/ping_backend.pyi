@@ -1,3 +1,5 @@
+"""Backend for reading echogram data from ping objects."""
+
 from typing import List, Tuple, Union
 
 import numpy

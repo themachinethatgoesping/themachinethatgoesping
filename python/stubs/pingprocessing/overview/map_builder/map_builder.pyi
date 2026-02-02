@@ -1,3 +1,18 @@
+"""
+MapBuilder class for managing multiple map layers.
+
+Provides a unified interface for loading, combining, and displaying
+multiple geospatial data layers. Acts as a data provider with axis/resolution
+control, similar to EchogramBuilder.
+
+The MapBuilder controls:
+- Layer management (add, remove, visibility, ordering)
+- Axis/resolution settings for data retrieval
+- Coordinate system handling
+
+Rendering properties (colormap, opacity, blending) are handled by the viewer.
+"""
+
 import dataclasses
 from typing import Union
 

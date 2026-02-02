@@ -1,4 +1,6 @@
+"""KongsbergAll (kongsberg .all/.wcd) file data interface classes"""
 import typing
+
 from collections.abc import Mapping, Sequence
 from typing import overload
 

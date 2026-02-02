@@ -1,3 +1,7 @@
+"""
+Submodule for gridding (raytracers and georefencing) echosounder samples
+"""
+
 from typing import Annotated, overload
 
 import numpy

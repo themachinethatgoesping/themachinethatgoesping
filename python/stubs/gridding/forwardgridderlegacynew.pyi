@@ -1,3 +1,7 @@
+"""
+Simple gridder class that can create quantitative 3D images from x,z,y,val from some custom data.
+"""
+
 from collections.abc import Buffer
 from typing import Any, TypeAlias, Union
 

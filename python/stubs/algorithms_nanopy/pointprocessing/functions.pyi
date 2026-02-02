@@ -1,4 +1,6 @@
+"""Module that holds functions used for amplitude corrections"""
 import typing
+
 from typing import Annotated, overload
 
 import numpy

@@ -1,3 +1,5 @@
+"""Classes for getting interpolated values from within vectors"""
+
 from collections.abc import Sequence
 import enum
 from typing import Annotated, overload

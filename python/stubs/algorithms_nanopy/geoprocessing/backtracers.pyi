@@ -1,3 +1,7 @@
+"""
+Submodule for backtracing echo sounder sample locations to beamangle and twoway traveltime
+"""
+
 from collections.abc import Sequence
 from typing import Annotated, overload
 

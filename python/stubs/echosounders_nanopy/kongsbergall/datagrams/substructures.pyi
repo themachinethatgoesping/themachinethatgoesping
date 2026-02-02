@@ -1,3 +1,7 @@
+"""
+Kongsberg KongsbergAll datagram substructures. These are substuctures of existing datagrams (repeated cycles, e.g. beams)
+"""
+
 from collections.abc import Sequence
 import enum
 from typing import Annotated, overload

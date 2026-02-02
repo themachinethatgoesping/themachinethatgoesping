@@ -7,16 +7,19 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## [unreleased]
 - pingprocessing -> 0.12.2
 - algorithms -> 0.11.1
+- tools -> 0.31.2
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
 - pingprocessing fixed wrong exclusion for layerprocessor remove_station functions
 - complete overhaul of echogram and wci viewer widgets
 - algorithms: added bubble backscatter models (Thuraisingham 1997, Li 2023)
+- pingprocessing: overview compute/plot ping_rate_in_Hz
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.12.0
 - updated fast_float 8.1.0 -> 8.2.2
+- updated nanobind 2.10.2 -> 2.11.0
 
 ## [0.32.1] - 17-12-2025
 - echosounders -> 0.46.2

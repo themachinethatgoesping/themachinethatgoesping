@@ -1,3 +1,11 @@
+"""
+Coordinate system management for echograms.
+
+This module provides the EchogramCoordinateSystem class which handles all
+coordinate transformations between different axis types (ping index, time,
+datetime for X; sample index, sample number, depth, range for Y).
+"""
+
 from collections.abc import Callable as _Callable
 import datetime
 from typing import Union

@@ -1,3 +1,5 @@
+"""Utility helpers shared by PyQtGraph-based widget viewers."""
+
 import PySide6.QtCore
 import ipywidgets
 import pg

@@ -1,3 +1,7 @@
+"""
+Classes related to Kongsberg KongsbergAll data files (old Kongsberg .all / .wcd format, used until SIS 4.0)
+"""
+
 from collections.abc import Mapping, Sequence
 import enum
 from typing import overload

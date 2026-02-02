@@ -1,3 +1,5 @@
+"""Submodule for raytracing echo sounder sample locations"""
+
 from typing import overload
 
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures

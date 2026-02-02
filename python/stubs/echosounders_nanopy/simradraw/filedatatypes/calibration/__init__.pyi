@@ -1,4 +1,6 @@
+"""SimradRaw EK60 and EK80 calibration structures and functions"""
 import typing
+
 from typing import Annotated, overload
 
 import numpy

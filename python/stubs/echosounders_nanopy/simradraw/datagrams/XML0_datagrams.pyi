@@ -1,3 +1,5 @@
+"""SimradRaw EK80 XML datagram classes (subtypes of XML0)"""
+
 from collections.abc import Mapping, Sequence
 import enum
 from typing import overload

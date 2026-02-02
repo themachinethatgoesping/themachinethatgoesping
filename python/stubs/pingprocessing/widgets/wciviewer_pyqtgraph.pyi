@@ -1,3 +1,5 @@
+"""PyQtGraph-based Water Column Image (WCI) viewer."""
+
 import matplotlib.axes
 import matplotlib.figure
 

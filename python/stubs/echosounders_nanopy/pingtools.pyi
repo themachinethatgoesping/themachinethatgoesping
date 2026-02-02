@@ -1,3 +1,5 @@
+"""Tools for working with ping objects."""
+
 from collections.abc import Sequence
 from typing import overload
 

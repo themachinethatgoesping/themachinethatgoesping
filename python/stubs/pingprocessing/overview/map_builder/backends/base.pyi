@@ -1,3 +1,10 @@
+"""
+Abstract base class for map data backends.
+
+Defines the interface that all map data sources must implement,
+including coordinate system access, data retrieval, and downsampling.
+"""
+
 import abc
 from typing import Any, Union
 

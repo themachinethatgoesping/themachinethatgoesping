@@ -1,3 +1,5 @@
+"""M that holds functions used for amplitude corrections"""
+
 from typing import Annotated, overload
 
 import numpy
@@ -205,7 +207,7 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, samp
     """
 
 @overload
-def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]:
+def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]:
     r"""
     Computes the continuous wave (CW) range correction.
 
@@ -237,10 +239,10 @@ def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict
     """
 
 @overload
-def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], absorption_db_m: float, tvg_factor: float) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
 
 @overload
-def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]:
+def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]:
     r"""
     Computes the per-beam continuous wave (CW) range correction for 2D
     water column data.
@@ -278,7 +280,7 @@ def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float
     """
 
 @overload
-def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], tvg_factor: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]: ...
+def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]: ...
 
 @overload
 def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]:

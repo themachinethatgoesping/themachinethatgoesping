@@ -1,3 +1,5 @@
+"""KMALL (kongsberg .kmall / .kmwcd) file data container classes"""
+
 from collections.abc import Sequence
 from typing import overload
 

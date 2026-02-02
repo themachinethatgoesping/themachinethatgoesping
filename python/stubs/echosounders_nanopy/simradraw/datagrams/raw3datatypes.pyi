@@ -1,3 +1,7 @@
+"""
+SimradRaw EK80 sample datagram data structures used in RAW3 datagrams).
+"""
+
 import enum
 from typing import Annotated, overload
 

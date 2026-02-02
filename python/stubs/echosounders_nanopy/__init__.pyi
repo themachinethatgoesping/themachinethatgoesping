@@ -1,3 +1,7 @@
+"""
+Python module to read, write and process single- and multibeam echosounder data formats
+"""
+
 from typing import overload
 
 from . import (

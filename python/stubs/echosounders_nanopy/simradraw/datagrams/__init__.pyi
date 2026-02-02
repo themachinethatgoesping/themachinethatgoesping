@@ -1,3 +1,5 @@
+"""SimradRaw EK60 and EK80 datagram classes"""
+
 from typing import Annotated, overload
 
 import numpy

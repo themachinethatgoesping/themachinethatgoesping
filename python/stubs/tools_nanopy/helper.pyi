@@ -1,3 +1,5 @@
+"""Small helper functions"""
+
 from collections.abc import Sequence
 from typing import Annotated, overload
 

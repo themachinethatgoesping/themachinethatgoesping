@@ -1,4 +1,6 @@
+"""KMALL EK60 and EK80 file data types"""
 import typing
+
 from collections.abc import Sequence
 from typing import Annotated, overload
 

@@ -1,3 +1,5 @@
+"""Helper functions for the gridder class, implemented using numba"""
+
 import numba.core.registry
 
 import themachinethatgoesping.gridding.functions.helperfunctions as hlp

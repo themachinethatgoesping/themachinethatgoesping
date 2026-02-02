@@ -1,3 +1,12 @@
+"""
+Builder for echogram images with coordinate system and layer management.
+
+This module provides the EchogramBuilder class which handles:
+- Image building from data backends
+- Layer management for region selection
+- Coordinate system delegation to EchogramCoordinateSystem
+"""
+
 from typing import Union
 
 import numpy

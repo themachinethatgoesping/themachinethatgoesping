@@ -1,3 +1,5 @@
+"""Echogram data backends for different data sources."""
+
 from . import (
     base as base,
     combine_backend as combine_backend,

@@ -1,3 +1,7 @@
+"""
+Python module process ping data, e.g. apply absorption, spreading loss, compute range/depth, raytrace ...
+"""
+
 from . import (
     amplitudecorrection as amplitudecorrection,
     featuremapping as featuremapping,

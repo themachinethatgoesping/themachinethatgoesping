@@ -1,3 +1,16 @@
+"""
+Enhanced PyQtGraph-based multi-echogram viewer with grid layout and lazy updates.
+
+Features:
+- Grid layout selector (1, 2, 2x2, 3x2, 4x2)
+- Per-slot dropdown to select which echogram/frequency to display
+- Visibility-based updates (inactive echograms don't update until shown)
+- Synchronized crosshair for target investigation across frequencies
+- Tab-based quick access for single echogram view
+- Lazy loading pattern for performance
+- Interactive parameter editing (add, move, delete points)
+"""
+
 import PySide6.QtCore
 import QtGui
 import pyqtgraph.graphicsItems.ROI

@@ -1,3 +1,20 @@
+"""
+Backend for ultra-fast echogram data access using memory-mapped files.
+
+Memory-mapped files provide near-instantaneous random access by letting the
+OS handle paging. This is ideal for interactive visualization where scattered
+ping access patterns are common.
+
+Trade-off vs Zarr:
+- Mmap: Uncompressed (larger files), but 10-100x faster random access
+- Zarr: Compressed (smaller files), but slower due to decompression
+
+Memory efficiency:
+- WCI data is truly lazy-loaded via OS page cache
+- get_image processes in chunks to avoid loading entire dataset
+- Only the requested pages are loaded from disk
+"""
+
 from typing import Dict, Union
 
 import numpy

@@ -1,3 +1,5 @@
+"""Small python tool functions for themachinethatgoesping"""
+
 from typing import overload
 
 from . import (

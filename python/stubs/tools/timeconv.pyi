@@ -1,3 +1,7 @@
+"""
+This module extends the tools.timeconv with some functions implemented in pure python
+"""
+
 from themachinethatgoesping.tools_nanopy.timeconv import (
     datestring_to_unixtime as datestring_to_unixtime,
     datetime_to_unixtime as datetime_to_unixtime,

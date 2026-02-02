@@ -1,3 +1,15 @@
+"""
+PyQtGraph-based Multi-Channel Water Column Image (WCI) viewer.
+
+Features:
+- Grid layout selector (1, 2, 2x2, 3x2, 4x2)
+- Per-slot ping number selection with time synchronization
+- Global controls except per-slot ping selection and color levels
+- Time difference display for synchronized pings
+- Per-slot interactive colorbars with global override
+- Smooth view transitions when switching slots
+"""
+
 import ipywidgets
 import mi
 

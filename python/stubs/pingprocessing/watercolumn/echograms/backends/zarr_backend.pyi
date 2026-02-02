@@ -1,3 +1,9 @@
+"""
+Backend for reading echogram data from Zarr arrays with lazy loading.
+
+Uses xarray with Dask for efficient chunked access and parallel loading.
+"""
+
 from typing import Union
 
 import numpy

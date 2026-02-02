@@ -1,3 +1,5 @@
+"""Submodule that contains nmea 0183 datastructures"""
+
 from typing import overload
 
 

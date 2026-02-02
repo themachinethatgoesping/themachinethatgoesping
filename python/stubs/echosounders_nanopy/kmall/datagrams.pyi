@@ -1,3 +1,5 @@
+"""Kongsberg KMALL (.kmall/.kmwcd) datagram classes"""
+
 from collections.abc import Iterable, Iterator, Sequence
 import enum
 from typing import Annotated, overload

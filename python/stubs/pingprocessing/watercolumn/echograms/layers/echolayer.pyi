@@ -1,3 +1,14 @@
+"""
+Layer classes for echogram region selection.
+
+EchoLayer represents a region of interest within an echogram, defined by
+upper and lower bounds that can vary across pings. Layers are used to
+isolate specific water column regions for analysis.
+
+PingData provides a convenient wrapper for accessing per-ping data including
+layer-specific extractions.
+"""
+
 import datetime
 from typing import Union
 

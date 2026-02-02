@@ -1,4 +1,8 @@
+"""
+Submodule that holds datastructures that hold the raytracers/georeferncing results
+"""
 import typing
+
 from collections.abc import Sequence
 from typing import Annotated, overload
 

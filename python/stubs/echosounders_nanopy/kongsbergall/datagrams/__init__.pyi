@@ -1,4 +1,6 @@
+"""Kongsberg KongsbergAll (.all/.wcd) EK80 datagram classes"""
 import typing
+
 from collections.abc import Sequence
 import enum
 from typing import Annotated, overload

@@ -1,3 +1,11 @@
+"""
+Backend for combining multiple echograms with mathematical operations.
+
+This backend provides a virtual view that combines multiple backends using
+a user-specified function (mean, median, sum, etc.). Useful for combining
+data from different frequencies or different acquisition systems.
+"""
+
 from collections.abc import Callable as _Callable
 from typing import Union
 

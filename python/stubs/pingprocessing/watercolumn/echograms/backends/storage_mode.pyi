@@ -1,3 +1,10 @@
+"""
+Storage axis mode definitions for echogram backends.
+
+This module defines how echogram data is stored (what coordinate system),
+which affects how backends transform data for display.
+"""
+
 import dataclasses
 import enum
 from typing import Any, Union

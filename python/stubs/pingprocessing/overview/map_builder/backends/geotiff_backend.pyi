@@ -1,3 +1,9 @@
+"""
+GeoTiff backend for loading raster data from GeoTiff files.
+
+Uses rasterio for efficient windowed reading and built-in overview support.
+"""
+
 from typing import Any, Union
 
 import numpy

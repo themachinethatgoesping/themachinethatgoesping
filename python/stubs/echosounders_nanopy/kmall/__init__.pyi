@@ -1,3 +1,5 @@
+"""Classes related to KMALL data files"""
+
 from collections.abc import Mapping, Sequence
 import enum
 from typing import overload

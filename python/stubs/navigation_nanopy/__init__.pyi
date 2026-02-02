@@ -1,4 +1,6 @@
+"""Python module to store, interpolate and transform navigation data"""
 import typing
+
 from collections.abc import Sequence, Set
 import enum
 from typing import Annotated, overload

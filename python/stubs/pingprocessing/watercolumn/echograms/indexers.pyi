@@ -1,3 +1,10 @@
+"""
+Request objects for echogram image building.
+
+This module defines the data structures used to communicate between
+the coordinate system and backends for efficient image generation.
+"""
+
 import dataclasses
 
 import np

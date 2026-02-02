@@ -1,3 +1,7 @@
+"""
+Submodule for geoprocessing (raytracers and georefencing) echosounder samples
+"""
+
 from . import (
     backtracers as backtracers,
     datastructures as datastructures,

@@ -1,4 +1,6 @@
+"""KMALL (kongsberg .kmall/.kmwcd) file data interface classes"""
 import typing
+
 from collections.abc import Mapping, Sequence
 from typing import overload
 

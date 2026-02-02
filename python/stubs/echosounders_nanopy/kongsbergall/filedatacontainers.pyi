@@ -1,3 +1,5 @@
+"""KongsbergAll (kongsberg .all / .wcd) file data container classes"""
+
 from collections.abc import Sequence
 from typing import overload
 

@@ -1,3 +1,7 @@
+"""
+Submodule that holds datastructures that hold the signal processing input/results
+"""
+
 import enum
 from typing import overload
 

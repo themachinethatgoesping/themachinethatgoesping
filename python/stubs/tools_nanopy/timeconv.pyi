@@ -1,3 +1,5 @@
+"""Convenient functions for converting time strings."""
+
 
 
 def datestring_to_unixtime(datestring: str, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> float:

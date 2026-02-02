@@ -1,3 +1,28 @@
+"""
+TileBuilder for fetching and compositing web map tiles.
+
+Provides a simple interface for loading XYZ tiles from web services
+like OpenStreetMap, ESRI, Stamen, etc. with disk caching.
+
+Tiles are pre-rendered RGB/RGBA images, unlike MapBuilder's numerical data.
+This means no colormap/colorbar is needed - the images are displayed directly.
+
+Example:
+    from themachinethatgoesping.pingprocessing.overview.map_builder import TileBuilder
+    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+
+    # Create tile builder with OSM tiles
+    tiles = TileBuilder()
+    tiles.add_osm()
+
+    # Or use other providers
+    tiles.add_esri_worldimagery()
+    tiles.add_cartodb_positron()
+
+    # Use with MapViewer
+    viewer = MapViewerPyQtGraph(tile_builder=tiles)
+"""
+
 import dataclasses
 import pathlib
 from typing import Union

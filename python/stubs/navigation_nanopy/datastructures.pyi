@@ -1,3 +1,7 @@
+"""
+Submodule that contains datastructures that store navigation data or navigation sensor input
+"""
+
 from collections.abc import Sequence
 from typing import overload
 

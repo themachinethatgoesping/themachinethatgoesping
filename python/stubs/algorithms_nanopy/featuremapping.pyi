@@ -1,3 +1,5 @@
+"""Functions and classes for featuremapping and interpolation"""
+
 from collections.abc import Mapping, Sequence
 from typing import Annotated, overload
 

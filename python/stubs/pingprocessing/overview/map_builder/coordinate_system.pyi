@@ -1,3 +1,10 @@
+"""
+Coordinate system management for map data.
+
+Provides CRS transformations, affine coordinate mapping, and extent handling
+for geospatial data visualization.
+"""
+
 import dataclasses
 from typing import Union
 

@@ -1,3 +1,7 @@
+"""
+Progress indicators that can be called directly or passed to specific themachinethatgoesping functions
+"""
+
 
 
 class I_ProgressBar:
