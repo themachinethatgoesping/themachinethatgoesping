@@ -444,10 +444,10 @@ class FIL1(SimradRawDatagram):
     def set_decimation_factor(self, arg: int, /) -> None:
         """Filter decimation factor"""
 
-    def get_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')]:
+    def get_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(order='C')]:
         """Filter coefficients"""
 
-    def set_coefficients(self, arg: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')], /) -> None:
+    def set_coefficients(self, arg: Annotated[NDArray[numpy.complex64], dict(order='C')], /) -> None:
         """Filter coefficients"""
 
     def __eq__(self, other: FIL1) -> bool: ...

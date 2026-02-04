@@ -36,7 +36,7 @@ def pytensor_sum_ref(arg: Annotated[NDArray[numpy.float64], dict(shape=(None, No
 
 def pytensor_sum_const_ref(arg: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], /) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]: ...
 
-def pytensor_sum_const_ref2(arg: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], /) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+def pytensor_sum_const_ref2(arg: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], /) -> Annotated[NDArray[numpy.float64], dict(order='C')]: ...
 
 def pytensor_sum_const_ref3(arg: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], /) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]: ...
 
@@ -46,7 +46,7 @@ def pytensor_make(arg0: int, arg1: int, /) -> Annotated[NDArray[numpy.float64], 
 
 def pytensor_from(arg0: int, arg1: int, /) -> None: ...
 
-def pytensor_make_xtensor(arg0: int, arg1: int, /) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+def pytensor_make_xtensor(arg0: int, arg1: int, /) -> Annotated[NDArray[numpy.float64], dict(order='C')]: ...
 
 class RangeDouble:
     """
@@ -221,7 +221,7 @@ def get_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float32], d
     """
 
 @overload
-def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]]:
+def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.float64], dict(order='C')]]:
     """
     Cut multiple containers to only include values within shared sections.
 
@@ -242,7 +242,7 @@ def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float64]
     """
 
 @overload
-def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
+def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.float32], dict(order='C')]]:
     """
     Cut multiple containers to only include values within shared sections.
 
@@ -260,7 +260,7 @@ def cut_to_shared_sections(containers: Sequence[Annotated[NDArray[numpy.float32]
     """
 
 @overload
-def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')]]:
+def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]:
     """
     Get indices of elements within shared sections for each container.
 
@@ -278,7 +278,7 @@ def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.floa
     """
 
 @overload
-def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')]]:
+def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]:
     """
     Get indices of elements within shared sections for each container.
 
@@ -296,7 +296,7 @@ def get_shared_section_indices(containers: Sequence[Annotated[NDArray[numpy.floa
     """
 
 @overload
-def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
     """
     Get unique values from all containers within shared sections.
 
@@ -317,7 +317,7 @@ def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float
     """
 
 @overload
-def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]], max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
     """
     Get unique values from all containers within shared sections.
 
@@ -335,7 +335,7 @@ def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float
     """
 
 @overload
-def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')]:
+def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
     """
     Compute indices for downsampling a sorted data container
 
@@ -373,10 +373,10 @@ def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(N
     """
 
 @overload
-def get_index_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')]: ...
+def get_index_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
 
 @overload
-def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
     """
     Downsample a sorted data container and return the downsampled values
 
@@ -414,4 +414,4 @@ def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(N
     """
 
 @overload
-def get_value_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+def get_value_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...

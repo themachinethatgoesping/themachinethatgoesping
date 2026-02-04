@@ -34,7 +34,7 @@ class XYZ_1:
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new XYZ object
 
@@ -89,25 +89,25 @@ class XYZ_1:
     def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> typing.Any: ...
 
     @property
-    def x(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def x(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """x coordinate in m, positive forward"""
 
     @x.setter
-    def x(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def x(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def y(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def y(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """y coordinate in m, positive starboard"""
 
     @y.setter
-    def y(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def y(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def z(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """z coordinate in m, positive downwards"""
 
     @z.setter
-    def z(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def z(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def get_minmax_x(self) -> list[float]: ...
 
@@ -175,7 +175,7 @@ class XYZ_2:
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new XYZ object
 
@@ -230,25 +230,25 @@ class XYZ_2:
     def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> typing.Any: ...
 
     @property
-    def x(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def x(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """x coordinate in m, positive forward"""
 
     @x.setter
-    def x(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def x(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def y(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def y(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """y coordinate in m, positive starboard"""
 
     @y.setter
-    def y(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def y(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def z(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """z coordinate in m, positive downwards"""
 
     @z.setter
-    def z(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def z(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def get_minmax_x(self) -> list[float]: ...
 
@@ -316,7 +316,7 @@ class XYZ_3:
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new XYZ object
 
@@ -371,25 +371,25 @@ class XYZ_3:
     def to_latlon(self, utm_zone: int, northern_hemisphere: bool) -> typing.Any: ...
 
     @property
-    def x(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def x(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """x coordinate in m, positive forward"""
 
     @x.setter
-    def x(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def x(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def y(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def y(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """y coordinate in m, positive starboard"""
 
     @y.setter
-    def y(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def y(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def z(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """z coordinate in m, positive downwards"""
 
     @z.setter
-    def z(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def z(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def get_minmax_x(self) -> list[float]: ...
 
@@ -454,7 +454,7 @@ class SampleDirections_1:
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object
 
@@ -473,18 +473,18 @@ class SampleDirections_1:
         """check if the internal variables have the same shape"""
 
     @property
-    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive bow up, 0 == downwards"""
 
     @alongtrack_angle.setter
-    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive starboard up, 0 == downwards"""
 
     @crosstrack_angle.setter
-    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirections_1:
         """return a copy using the c++ default copy constructor"""
@@ -543,7 +543,7 @@ class SampleDirections_2:
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object
 
@@ -562,18 +562,18 @@ class SampleDirections_2:
         """check if the internal variables have the same shape"""
 
     @property
-    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive bow up, 0 == downwards"""
 
     @alongtrack_angle.setter
-    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive starboard up, 0 == downwards"""
 
     @crosstrack_angle.setter
-    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirections_2:
         """return a copy using the c++ default copy constructor"""
@@ -632,7 +632,7 @@ class SampleDirections_3:
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object
 
@@ -651,18 +651,18 @@ class SampleDirections_3:
         """check if the internal variables have the same shape"""
 
     @property
-    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def alongtrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive bow up, 0 == downwards"""
 
     @alongtrack_angle.setter
-    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def alongtrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @property
-    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def crosstrack_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in °, positive starboard up, 0 == downwards"""
 
     @crosstrack_angle.setter
-    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def crosstrack_angle(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirections_3:
         """return a copy using the c++ default copy constructor"""
@@ -721,7 +721,7 @@ class SampleDirectionsRange_1(SampleDirections_1):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_1, range: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_1, range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -731,7 +731,7 @@ class SampleDirectionsRange_1(SampleDirections_1):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], range: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsRange object
 
@@ -744,11 +744,11 @@ class SampleDirectionsRange_1(SampleDirections_1):
     def __eq__(self, other: SampleDirectionsRange_1) -> bool: ...
 
     @property
-    def range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path time"""
 
     @range.setter
-    def range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsRange_1:
         """return a copy using the c++ default copy constructor"""
@@ -807,7 +807,7 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_2, range: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_2, range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -817,7 +817,7 @@ class SampleDirectionsRange_2(SampleDirections_2):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], range: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsRange object
 
@@ -830,11 +830,11 @@ class SampleDirectionsRange_2(SampleDirections_2):
     def __eq__(self, other: SampleDirectionsRange_2) -> bool: ...
 
     @property
-    def range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path time"""
 
     @range.setter
-    def range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsRange_2:
         """return a copy using the c++ default copy constructor"""
@@ -893,7 +893,7 @@ class SampleDirectionsRange_3(SampleDirections_3):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_3, range: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_3, range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -903,7 +903,7 @@ class SampleDirectionsRange_3(SampleDirections_3):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], range: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsRange object
 
@@ -916,11 +916,11 @@ class SampleDirectionsRange_3(SampleDirections_3):
     def __eq__(self, other: SampleDirectionsRange_3) -> bool: ...
 
     @property
-    def range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path time"""
 
     @range.setter
-    def range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsRange_3:
         """return a copy using the c++ default copy constructor"""
@@ -979,7 +979,7 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_1, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_1, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -989,7 +989,7 @@ class SampleDirectionsTime_1(SampleDirections_1):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsTime object
 
@@ -1002,11 +1002,11 @@ class SampleDirectionsTime_1(SampleDirections_1):
     def __eq__(self, other: SampleDirectionsTime_1) -> bool: ...
 
     @property
-    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in s, accumulated ray path time"""
 
     @two_way_travel_time.setter
-    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsTime_1:
         """return a copy using the c++ default copy constructor"""
@@ -1065,7 +1065,7 @@ class SampleDirectionsTime_2(SampleDirections_2):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_2, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_2, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -1075,7 +1075,7 @@ class SampleDirectionsTime_2(SampleDirections_2):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsTime object
 
@@ -1088,11 +1088,11 @@ class SampleDirectionsTime_2(SampleDirections_2):
     def __eq__(self, other: SampleDirectionsTime_2) -> bool: ...
 
     @property
-    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in s, accumulated ray path time"""
 
     @two_way_travel_time.setter
-    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsTime_2:
         """return a copy using the c++ default copy constructor"""
@@ -1151,7 +1151,7 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
 
     @overload
-    def __init__(self, sample_directions: SampleDirections_3, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, sample_directions: SampleDirections_3, two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirections object (from a SampleDirections
         object)
@@ -1161,7 +1161,7 @@ class SampleDirectionsTime_3(SampleDirections_3):
         """
 
     @overload
-    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, alongtrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angle: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_time: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new SampleDirectionsTime object
 
@@ -1174,11 +1174,11 @@ class SampleDirectionsTime_3(SampleDirections_3):
     def __eq__(self, other: SampleDirectionsTime_3) -> bool: ...
 
     @property
-    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def two_way_travel_time(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in s, accumulated ray path time"""
 
     @two_way_travel_time.setter
-    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def two_way_travel_time(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleDirectionsTime_3:
         """return a copy using the c++ default copy constructor"""
@@ -1331,7 +1331,7 @@ class RaytraceResults_1(XYZ_1):
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], true_range: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], true_range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new RaytraceResults object
 
@@ -1343,11 +1343,11 @@ class RaytraceResults_1(XYZ_1):
         """
 
     @property
-    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path length"""
 
     @true_range.setter
-    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], /) -> None: ...
+    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @staticmethod
     def concat(arg: Sequence[typing.Any], /) -> RaytraceResults_1:
@@ -1424,7 +1424,7 @@ class RaytraceResults_2(XYZ_2):
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], true_range: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], true_range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new RaytraceResults object
 
@@ -1436,11 +1436,11 @@ class RaytraceResults_2(XYZ_2):
         """
 
     @property
-    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path length"""
 
     @true_range.setter
-    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None: ...
+    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @staticmethod
     def concat(arg: Sequence[typing.Any], /) -> RaytraceResults_1:
@@ -1517,7 +1517,7 @@ class RaytraceResults_3(XYZ_3):
         """
 
     @overload
-    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], true_range: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], true_range: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct a new RaytraceResults object
 
@@ -1529,11 +1529,11 @@ class RaytraceResults_3(XYZ_3):
         """
 
     @property
-    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]:
+    def true_range(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """in m, accumulated ray path length"""
 
     @true_range.setter
-    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def true_range(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None: ...
 
     @staticmethod
     def concat(arg: Sequence[typing.Any], /) -> RaytraceResults_1:
@@ -1607,7 +1607,7 @@ class SampleIndices_1:
         """
 
     @overload
-    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')]) -> None:
+    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')]) -> None:
         """
         Construct a new SampleIndices object
 
@@ -1626,18 +1626,18 @@ class SampleIndices_1:
         """check if the internal variables have the same shape"""
 
     @property
-    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')]:
+    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """beam number of each sample"""
 
     @beam_numbers.setter
-    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')], /) -> None: ...
+    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     @property
-    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')]:
+    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """sample number of each sample"""
 
     @sample_numbers.setter
-    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None,), order='C')], /) -> None: ...
+    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleIndices_1:
         """return a copy using the c++ default copy constructor"""
@@ -1696,7 +1696,7 @@ class SampleIndices_2:
         """
 
     @overload
-    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]) -> None:
+    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')]) -> None:
         """
         Construct a new SampleIndices object
 
@@ -1715,18 +1715,18 @@ class SampleIndices_2:
         """check if the internal variables have the same shape"""
 
     @property
-    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """beam number of each sample"""
 
     @beam_numbers.setter
-    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')], /) -> None: ...
+    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     @property
-    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """sample number of each sample"""
 
     @sample_numbers.setter
-    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')], /) -> None: ...
+    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleIndices_2:
         """return a copy using the c++ default copy constructor"""
@@ -1785,7 +1785,7 @@ class SampleIndices_3:
         """
 
     @overload
-    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')]) -> None:
+    def __init__(self, beam_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')], sample_numbers: Annotated[NDArray[numpy.uint16], dict(order='C')]) -> None:
         """
         Construct a new SampleIndices object
 
@@ -1804,18 +1804,18 @@ class SampleIndices_3:
         """check if the internal variables have the same shape"""
 
     @property
-    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')]:
+    def beam_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """beam number of each sample"""
 
     @beam_numbers.setter
-    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def beam_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     @property
-    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')]:
+    def sample_numbers(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """sample number of each sample"""
 
     @sample_numbers.setter
-    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None, None), order='C')], /) -> None: ...
+    def sample_numbers(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None: ...
 
     def copy(self) -> SampleIndices_3:
         """return a copy using the c++ default copy constructor"""
@@ -1869,29 +1869,29 @@ class BeamSampleParameters:
         """
 
     @overload
-    def __init__(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], first_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sample_interval: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')]) -> None: ...
+    def __init__(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], first_sample_offset: Annotated[NDArray[numpy.float32], dict(order='C')], sample_interval: Annotated[NDArray[numpy.float32], dict(order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(order='C')]) -> None: ...
 
     def __eq__(self, other: BeamSampleParameters) -> bool: ...
 
-    def get_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+    def get_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+    def get_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_first_sample_offset(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+    def get_first_sample_offset(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_sample_interval(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+    def get_sample_interval(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')]: ...
+    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
-    def set_alongtrack_angles(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None: ...
+    def set_alongtrack_angles(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
 
-    def set_crosstrack_angles(self, crosstrack_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None: ...
+    def set_crosstrack_angles(self, crosstrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
 
-    def set_first_sample_offset(self, first_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None: ...
+    def set_first_sample_offset(self, first_sample_offset: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
 
-    def set_sample_interval(self, sample_interval: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None: ...
+    def set_sample_interval(self, sample_interval: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
 
-    def set_number_of_samples(self, number_of_samples: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')]) -> None: ...
+    def set_number_of_samples(self, number_of_samples: Annotated[NDArray[numpy.uint32], dict(order='C')]) -> None: ...
 
     def copy(self) -> BeamSampleParameters:
         """return a copy using the c++ default copy constructor"""

@@ -599,7 +599,7 @@ class NavigationInterpolatorLocal:
             SensordataLocalVector containing sensor data for all timestamps
         """
 
-    def get_sampled_timestamps(self, downsample_interval: float = float('nan'), max_gap: float = float('nan'), sensor_names: Set[str] = ...) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_timestamps(self, downsample_interval: float = float('nan'), max_gap: float = float('nan'), sensor_names: Set[str] = ...) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get sampled timestamps from the specified sensor interpolators
 
@@ -911,7 +911,7 @@ class NavigationInterpolatorLatLon:
             SensordataLatLonVector containing sensor data for all timestamps
         """
 
-    def get_sampled_timestamps(self, downsample_interval: float = float('nan'), max_gap: float = float('nan'), sensor_names: Set[str] = ...) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_timestamps(self, downsample_interval: float = float('nan'), max_gap: float = float('nan'), sensor_names: Set[str] = ...) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get sampled timestamps from the specified sensor interpolators
 

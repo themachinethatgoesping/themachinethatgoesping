@@ -19,7 +19,7 @@ class BacktracedWCI:
     informations for raytracing.
     """
 
-    def __init__(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_reference_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: Sequence[int], wci_first_sample_number: int, wci_sample_number_step: int = 1) -> None:
+    def __init__(self, wci: Annotated[NDArray[numpy.float32], dict(order='C')], beam_reference_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: Sequence[int], wci_first_sample_number: int, wci_sample_number_step: int = 1) -> None:
         """
         Construct a new sample location object (initialize all tensors using
         the specified shape (empty))
@@ -40,7 +40,7 @@ class BacktracedWCI:
 
     def shape(self) -> list[int]: ...
 
-    def get_wci(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+    def get_wci(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def get_angle_beamnumber_interpolator(self) -> "themachinethatgoesping::tools::vectorinterpolators::NearestInterpolator_float_unsignedshort": ...
 
@@ -106,7 +106,7 @@ class I_Backtracer:
     def __eq__(self, other: I_Backtracer) -> bool: ...
 
     @overload
-    def backtrace_points(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
 
@@ -123,7 +123,7 @@ class I_Backtracer:
     @overload
     def backtrace_points(self, xyz: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1: ...
 
-    def backtrace_image(self, y_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_2:
+    def backtrace_image(self, y_coordinates: Annotated[NDArray[numpy.float32], dict(order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_2:
         """
         Backtrace the location of an image specified by two coordinate vectors
         x is assumed to be 0
@@ -138,7 +138,7 @@ class I_Backtracer:
                            (y_coordinates.size(), z_coordinates.size())
         """
 
-    def lookup(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_reference_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: Sequence[int], target_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_2, wci_first_sample_number: int, wci_sample_number_step: int = 1, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+    def lookup(self, wci: Annotated[NDArray[numpy.float32], dict(order='C')], beam_reference_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1, beam_reference_sample_numbers: Sequence[int], target_directions: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_2, wci_first_sample_number: int, wci_sample_number_step: int = 1, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def set_sensor_location(self, sensor_location: themachinethatgoesping.navigation_nanopy.datastructures.Geolocation, sensor_x: float, sensor_y: float) -> None: ...
 

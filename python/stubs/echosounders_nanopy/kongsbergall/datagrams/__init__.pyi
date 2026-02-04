@@ -855,7 +855,7 @@ class WatercolumnDatagram(KongsbergAllDatagram):
 
     def __init__(self) -> None: ...
 
-    def get_samples(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+    def get_samples(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def set_ping_counter(self, arg: int, /) -> None: ...
 
@@ -1049,13 +1049,13 @@ class QualityFactorDatagram(KongsbergAllDatagram):
     def get_spare(self) -> int:
         """always 0"""
 
-    def get_quality_factors(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def get_quality_factors(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """dimension is [Nrx, Npar]"""
 
-    def set_quality_factors(self, arg: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], /) -> None:
+    def set_quality_factors(self, arg: Annotated[NDArray[numpy.float32], dict(order='C')], /) -> None:
         """dimension is [Nrx, Npar]"""
 
-    def quality_factors(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def quality_factors(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """dimension is [Nrx, Npar]"""
 
     def qf_shape(self) -> typing.Any:
@@ -1642,16 +1642,16 @@ class HeadingDatagram(KongsbergAllDatagram):
     def get_heading_indicator(self) -> int:
         """0 = inactive"""
 
-    def get_times_and_headings(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def get_times_and_headings(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """2xN array of time in ms since record start and heading in 0.01°"""
 
-    def set_times_and_headings(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')], /) -> None:
+    def set_times_and_headings(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None:
         """2xN array of time in ms since record start and heading in 0.01°"""
 
-    def times_and_headings(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def times_and_headings(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """2xN array of time in ms since record start and heading in 0.01°"""
 
-    def get_heading_timestamps(self) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_heading_timestamps(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         return the times converted to unix timestamps
 
@@ -1659,7 +1659,7 @@ class HeadingDatagram(KongsbergAllDatagram):
             np.array([_number_of_entries], dtype = np.float64)
         """
 
-    def get_headings_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_headings_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         return headings in degrees by multiplying the heading by 0.01
 
@@ -2047,16 +2047,16 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
 
     def get_spare(self) -> int: ...
 
-    def get_times_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def get_times_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """2xN array of time in ms since record start and sound_speed in dm/s"""
 
-    def set_times_and_sound_speeds(self, arg: Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')], /) -> None:
+    def set_times_and_sound_speeds(self, arg: Annotated[NDArray[numpy.uint16], dict(order='C')], /) -> None:
         """2xN array of time in ms since record start and sound_speed in dm/s"""
 
-    def times_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint16], dict(shape=(None, None), order='C')]:
+    def times_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]:
         """2xN array of time in ms since record start and sound_speed in dm/s"""
 
-    def get_sound_speed_timestamps(self) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sound_speed_timestamps(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         return the times converted to unix timestamps
 
@@ -2064,7 +2064,7 @@ class SurfaceSoundSpeedDatagram(KongsbergAllDatagram):
             np.array([_number_of_entries], dtype = np.float64)
         """
 
-    def get_sound_speeds_in_meters_per_second(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sound_speeds_in_meters_per_second(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         return sound_speeds in meters by multiplying the surface sound_speed
         by 0.1
@@ -2168,13 +2168,13 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
 
     def get_spare(self) -> int: ...
 
-    def get_depths_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint32], dict(shape=(None, None), order='C')]:
+    def get_depths_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
         """2xN array of depth in cm and sound speed in dm/s"""
 
-    def set_depths_and_sound_speeds(self, arg: Annotated[NDArray[numpy.uint32], dict(shape=(None, None), order='C')], /) -> None:
+    def set_depths_and_sound_speeds(self, arg: Annotated[NDArray[numpy.uint32], dict(order='C')], /) -> None:
         """2xN array of depth in cm and sound speed in dm/s"""
 
-    def depths_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint32], dict(shape=(None, None), order='C')]:
+    def depths_and_sound_speeds(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
         """2xN array of depth in cm and sound speed in dm/s"""
 
     def get_depth_resolution_in_meters(self) -> float:
@@ -2185,7 +2185,7 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
             _depth_resolution * 0.01 (float)
         """
 
-    def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         return the depths in meters by multiplying the depths by 0.01
 
@@ -2193,7 +2193,7 @@ class SoundSpeedProfileDatagram(KongsbergAllDatagram):
             np.array([_number_of_entries], dtype = np.float64)
         """
 
-    def get_sound_speeds_in_meters_per_second(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sound_speeds_in_meters_per_second(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         return sound speeds in meter per second by multiplying the
         sound_speeds by 0.1

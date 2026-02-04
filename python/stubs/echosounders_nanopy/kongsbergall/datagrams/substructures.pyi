@@ -870,10 +870,10 @@ class SampleAmplitudesStructure_int16_t:
 
     def __init__(self) -> None: ...
 
-    def set_sample_amplitudes(self, arg: Annotated[NDArray[numpy.int16], dict(shape=(None,), order='C')], /) -> None:
+    def set_sample_amplitudes(self, arg: Annotated[NDArray[numpy.int16], dict(order='C')], /) -> None:
         """in db steps"""
 
-    def get_sample_amplitudes(self) -> Annotated[NDArray[numpy.int16], dict(shape=(None,), order='C')]:
+    def get_sample_amplitudes(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
         """in db steps"""
 
     def set_start_index_per_beam(self, arg: Sequence[int], /) -> None: ...
@@ -884,7 +884,7 @@ class SampleAmplitudesStructure_int16_t:
 
     def get_samples_per_beam(self) -> list[int]: ...
 
-    def get_sample_amplitudes_in_db(self) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sample_amplitudes_in_db(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Convert the sample amplitudes to db using _db_step_size.
 
@@ -892,7 +892,7 @@ class SampleAmplitudesStructure_int16_t:
             xt::xtensor_float_1
         """
 
-    def get_beam(self, arg: int, /) -> Annotated[NDArray[numpy.int16], dict(shape=(None,), order='C')]:
+    def get_beam(self, arg: int, /) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
         """
         return a view of the sample amplitudes of a single beam
 
@@ -903,7 +903,7 @@ class SampleAmplitudesStructure_int16_t:
             xt::xtensor_t_sample_1
         """
 
-    def get_beam_in_db(self, arg: int, /) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_beam_in_db(self, arg: int, /) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         return a xtensor of the sample amplitudes of a single beam converted
         to db
@@ -916,7 +916,7 @@ class SampleAmplitudesStructure_int16_t:
             xt::xtensor_float_1
         """
 
-    def get_sample_amplitudes_per_beam(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def get_sample_amplitudes_per_beam(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get all sample amplitude values of all beams in a single xtensor
 
@@ -924,7 +924,7 @@ class SampleAmplitudesStructure_int16_t:
             xt::xtensor_float_1
         """
 
-    def get_sample_amplitudes_per_beam_in_db(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def get_sample_amplitudes_per_beam_in_db(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get all sample amplitude valuesof all beams in a single xtensor in db
         Convert the sample amplitudes to db using _db_step_size.
@@ -1057,11 +1057,11 @@ class WatercolumnDatagramBeam:
     def get_samples_are_skipped(self) -> bool:
         """< in 0.5 dB steps"""
 
-    def get_samples(self) -> Annotated[NDArray[numpy.int8], dict(shape=(None,), order='C')]: ...
+    def get_samples(self) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
-    def set_samples(self, arg: Annotated[NDArray[numpy.int8], dict(shape=(None,), order='C')], /) -> None: ...
+    def set_samples(self, arg: Annotated[NDArray[numpy.int8], dict(order='C')], /) -> None: ...
 
-    def samples(self) -> Annotated[NDArray[numpy.int8], dict(shape=(None,), order='C')]: ...
+    def samples(self) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
     def get_beam_crosstrack_angle_in_degrees(self) -> float:
         """
@@ -1071,7 +1071,7 @@ class WatercolumnDatagramBeam:
             _beam_crosstrack_angle * 0.1° (float)
         """
 
-    def get_samples_in_db(self, arg: float, /) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+    def get_samples_in_db(self, arg: float, /) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def __eq__(self, other: WatercolumnDatagramBeam) -> bool: ...
 

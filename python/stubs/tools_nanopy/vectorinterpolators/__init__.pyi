@@ -151,7 +151,7 @@ class NearestInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -168,7 +168,7 @@ class NearestInterpolator:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -322,7 +322,7 @@ class NearestInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -339,7 +339,7 @@ class NearestInterpolatorF:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -493,7 +493,7 @@ class NearestInterpolatorDF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -510,7 +510,7 @@ class NearestInterpolatorDF:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -664,7 +664,7 @@ class NearestInterpolatorFD:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -681,7 +681,7 @@ class NearestInterpolatorFD:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -835,7 +835,7 @@ class NearestInterpolatorDI:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -852,7 +852,7 @@ class NearestInterpolatorDI:
 
     def get_y(self, target_x: float) -> int: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1006,7 +1006,7 @@ class NearestInterpolatorFI:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1023,7 +1023,7 @@ class NearestInterpolatorFI:
 
     def get_y(self, target_x: float) -> int: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1194,7 +1194,7 @@ class NearestInterpolatorDO:
 
     def get_y(self, target_x: float) -> object: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1365,7 +1365,7 @@ class NearestInterpolatorFO:
 
     def get_y(self, target_x: float) -> object: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1519,7 +1519,7 @@ class LinearInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1536,7 +1536,7 @@ class LinearInterpolator:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1690,7 +1690,7 @@ class LinearInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1707,7 +1707,7 @@ class LinearInterpolatorF:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -1861,7 +1861,7 @@ class LinearInterpolatorDF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1878,7 +1878,7 @@ class LinearInterpolatorDF:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -2032,7 +2032,7 @@ class LinearInterpolatorFD:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2049,7 +2049,7 @@ class LinearInterpolatorFD:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -2204,7 +2204,7 @@ class AkimaInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2221,7 +2221,7 @@ class AkimaInterpolator:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 
@@ -2407,7 +2407,7 @@ class AkimaInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2424,7 +2424,7 @@ class AkimaInterpolatorF:
 
     def get_y(self, target_x: float) -> float: ...
 
-    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+    def get_sampled_X(self, downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Get downsampled x values from the interpolator data.
 

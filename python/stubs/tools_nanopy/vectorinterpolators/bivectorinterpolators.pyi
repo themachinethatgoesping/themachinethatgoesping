@@ -20,7 +20,7 @@ class BiLinearInterpolator:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.LinearInterpolator]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -108,7 +108,7 @@ class BiLinearInterpolatorF:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.LinearInterpolatorF]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -196,7 +196,7 @@ class BiLinearInterpolatorDF:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.LinearInterpolatorDF]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -284,7 +284,7 @@ class BiLinearInterpolatorFD:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.LinearInterpolatorFD]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -372,7 +372,7 @@ class BiAkimaInterpolator:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.AkimaInterpolator]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -460,7 +460,7 @@ class BiAkimaInterpolatorF:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.AkimaInterpolatorF]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -548,7 +548,7 @@ class BiNearestInterpolator:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolator]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -636,7 +636,7 @@ class BiNearestInterpolatorF:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolatorF]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -724,7 +724,7 @@ class BiNearestInterpolatorDF:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolatorDF]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -812,7 +812,7 @@ class BiNearestInterpolatorFD:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolatorFD]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -900,7 +900,7 @@ class BiNearestInterpolatorDI:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolatorDI]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -988,7 +988,7 @@ class BiNearestInterpolatorFI:
 
     def get_col_interpolators(self) -> list[themachinethatgoesping.tools_nanopy.vectorinterpolators.NearestInterpolatorFI]: ...
 
-    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(shape=(None, None), order='C')]:
+    def __call__(self, row_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], column_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
