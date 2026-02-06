@@ -7,7 +7,7 @@ import numpy
 from numpy.typing import NDArray
 
 
-def hann_f(length: int) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]:
+def hann_f(length: int) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
     """
     Generate Hann window weights of a given length.
 
@@ -94,24 +94,24 @@ def generate_transmit_pulse_f(f0: float, f1: float, pulse_duration: float, slope
     """
 
 @overload
-def filter_and_decimate_pulse(pulse_amplitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], stage1_decimation_factor: int, stage1_filter_coefficients: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='A')], stage2_decimation_factor: int, stage2_filter_coefficients: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='A')], sampling_frequency: float = 1500000) -> typing.Any: ...
+def filter_and_decimate_pulse(pulse_amplitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], stage1_decimation_factor: int, stage1_filter_coefficients: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')], stage2_decimation_factor: int, stage2_filter_coefficients: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')], sampling_frequency: float = 1500000) -> typing.Any: ...
 
 @overload
-def filter_and_decimate_pulse(pulse_amplitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], stage1_decimation_factor: int, stage1_filter_coefficients: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='A')], stage2_decimation_factor: int, stage2_filter_coefficients: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='A')], sampling_frequency: float = 1500000) -> typing.Any: ...
+def filter_and_decimate_pulse(pulse_amplitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], stage1_decimation_factor: int, stage1_filter_coefficients: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='C')], stage2_decimation_factor: int, stage2_filter_coefficients: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='C')], sampling_frequency: float = 1500000) -> typing.Any: ...
 
 @overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='A')], sample_interval: float, round_to_full_samples: bool = True) -> float: ...
+def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')], sample_interval: float, round_to_full_samples: bool = True) -> float: ...
 
 @overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='A')], pulse_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> float: ...
+def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex64], dict(shape=(None,), order='C')], pulse_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> float: ...
 
 @overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='A')], sample_interval: float, round_to_full_samples: bool = True) -> float: ...
+def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='C')], sample_interval: float, round_to_full_samples: bool = True) -> float: ...
 
 @overload
-def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='A')], pulse_times: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> float: ...
+def compute_effective_pulse_duration_cw(pulse_amplitudes: Annotated[NDArray[numpy.complex128], dict(shape=(None,), order='C')], pulse_times: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> float: ...
 
-def hann_d(length: int) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]:
+def hann_d(length: int) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Generate Hann window weights of a given length.
 

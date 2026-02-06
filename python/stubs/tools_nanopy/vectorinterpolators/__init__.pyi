@@ -151,7 +151,7 @@ class NearestInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -322,7 +322,7 @@ class NearestInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -493,7 +493,7 @@ class NearestInterpolatorDF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -664,7 +664,7 @@ class NearestInterpolatorFD:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -835,7 +835,7 @@ class NearestInterpolatorDI:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1006,7 +1006,7 @@ class NearestInterpolatorFI:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.int64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1519,7 +1519,7 @@ class LinearInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1690,7 +1690,7 @@ class LinearInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -1861,7 +1861,7 @@ class LinearInterpolatorDF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2032,7 +2032,7 @@ class LinearInterpolatorFD:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2204,7 +2204,7 @@ class AkimaInterpolator:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 
@@ -2407,7 +2407,7 @@ class AkimaInterpolatorF:
         """
 
     @overload
-    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def __call__(self, targets_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         get interpolated y values for given x targets (vectorized call)
 

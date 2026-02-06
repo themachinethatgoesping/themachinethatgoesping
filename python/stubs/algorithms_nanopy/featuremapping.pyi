@@ -74,7 +74,7 @@ class NearestFeatureMapper:
         """
 
     @overload
-    def feature_to_index(self, feature: str, values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='A')]:
+    def feature_to_index(self, feature: str, values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')]:
         """
         Convert multiple feature values to their corresponding indices
         (vectorized)
@@ -113,7 +113,7 @@ class NearestFeatureMapper:
         """
 
     @overload
-    def index_to_feature(self, feature: str, indices: Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]:
+    def index_to_feature(self, feature: str, indices: Annotated[NDArray[numpy.uint64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
         """
         Convert multiple indices to their corresponding feature values
         (vectorized)
@@ -153,7 +153,7 @@ class NearestFeatureMapper:
         """
 
     @overload
-    def feature_to_feature(self, feature_from: str, feature_to: str, values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]:
+    def feature_to_feature(self, feature_from: str, feature_to: str, values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
         """
         Convert multiple values from one feature space to another (vectorized)
         Args:

@@ -43,7 +43,7 @@ class ForwardGridder1D:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> ForwardGridder1D:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> ForwardGridder1D:
         """
         Create gridder with resolution "res" xmin,xmax are determined to
         exactly contain the given data vector (sx)
@@ -56,7 +56,7 @@ class ForwardGridder1D:
             ForwardGridder1D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]]:
         """
         Create empty grid images
 
@@ -65,9 +65,9 @@ class ForwardGridder1D:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]]:
         """
         Interpolate 1D points onto 1d images using block mean interpolation
 
@@ -87,7 +87,7 @@ class ForwardGridder1D:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> None:
         """
         Interpolate 1D points onto 1d images using block mean interpolation
         (inplace version)
@@ -106,7 +106,7 @@ class ForwardGridder1D:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]]:
         """
         Interpolate 1D points onto 1d images using weighted mean interpolation
 
@@ -122,7 +122,7 @@ class ForwardGridder1D:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> None:
         """
         Interpolate 1D points onto 1d images using weighted mean interpolation
 
@@ -160,25 +160,25 @@ class ForwardGridder1D:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -187,7 +187,7 @@ class ForwardGridder1D:
     def get_x_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[float, float]:
         """
         Returns the min/max value of a list.
 
@@ -276,7 +276,7 @@ class ForwardGridder1DF:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> ForwardGridder1DF:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> ForwardGridder1DF:
         """
         Create gridder with resolution "res" xmin,xmax are determined to
         exactly contain the given data vector (sx)
@@ -289,7 +289,7 @@ class ForwardGridder1DF:
             ForwardGridder1D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
         """
         Create empty grid images
 
@@ -298,9 +298,9 @@ class ForwardGridder1DF:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
         """
         Interpolate 1D points onto 1d images using block mean interpolation
 
@@ -320,7 +320,7 @@ class ForwardGridder1DF:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
         """
         Interpolate 1D points onto 1d images using block mean interpolation
         (inplace version)
@@ -339,7 +339,7 @@ class ForwardGridder1DF:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
         """
         Interpolate 1D points onto 1d images using weighted mean interpolation
 
@@ -355,7 +355,7 @@ class ForwardGridder1DF:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> None:
         """
         Interpolate 1D points onto 1d images using weighted mean interpolation
 
@@ -393,25 +393,25 @@ class ForwardGridder1DF:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -420,7 +420,7 @@ class ForwardGridder1DF:
     def get_x_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[float, float]:
         """
         Returns the min/max value of a list.
 
@@ -515,7 +515,7 @@ class ForwardGridder2D:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> ForwardGridder2D:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> ForwardGridder2D:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax are
         determined to exactly contain the given data vectors (sx,sy)
@@ -529,7 +529,7 @@ class ForwardGridder2D:
             ForwardGridder2D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]]:
         """
         Create empty grid images
 
@@ -538,9 +538,9 @@ class ForwardGridder2D:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]]:
         """
         Interpolate 2D points onto 2d images using block mean interpolation
 
@@ -557,7 +557,7 @@ class ForwardGridder2D:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]) -> None:
         """
         Interpolate 2D points onto 2d images using block mean interpolation
         (inplace version)
@@ -573,7 +573,7 @@ class ForwardGridder2D:
             T_vector:
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]]:
         """
         Interpolate 2D points onto 2d images using weighted mean interpolation
 
@@ -590,7 +590,7 @@ class ForwardGridder2D:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]) -> None:
         """
         Interpolate 2D points onto 2d images using weighted mean interpolation
         (inplace version)
@@ -638,49 +638,49 @@ class ForwardGridder2D:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index(self, y: float) -> int: ...
 
     @overload
-    def get_y_index(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_y_index(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index_fraction(self, y: float) -> float: ...
 
     @overload
-    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_value(self, y_index: int) -> float: ...
 
     @overload
-    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_grd_value(self, y: float) -> float: ...
 
     @overload
-    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -693,7 +693,7 @@ class ForwardGridder2D:
     def get_y_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[float, float, float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[float, float, float, float]:
         """
         Returns the min/max value of two lists (same size).
 
@@ -790,7 +790,7 @@ class ForwardGridder2DF:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> ForwardGridder2DF:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> ForwardGridder2DF:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax are
         determined to exactly contain the given data vectors (sx,sy)
@@ -804,7 +804,7 @@ class ForwardGridder2DF:
             ForwardGridder2D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]]:
         """
         Create empty grid images
 
@@ -813,9 +813,9 @@ class ForwardGridder2DF:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]]:
         """
         Interpolate 2D points onto 2d images using block mean interpolation
 
@@ -832,7 +832,7 @@ class ForwardGridder2DF:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
         """
         Interpolate 2D points onto 2d images using block mean interpolation
         (inplace version)
@@ -848,7 +848,7 @@ class ForwardGridder2DF:
             T_vector:
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]]:
         """
         Interpolate 2D points onto 2d images using weighted mean interpolation
 
@@ -865,7 +865,7 @@ class ForwardGridder2DF:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> None:
         """
         Interpolate 2D points onto 2d images using weighted mean interpolation
         (inplace version)
@@ -913,49 +913,49 @@ class ForwardGridder2DF:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index(self, y: float) -> int: ...
 
     @overload
-    def get_y_index(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_y_index(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index_fraction(self, y: float) -> float: ...
 
     @overload
-    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_value(self, y_index: int) -> float: ...
 
     @overload
-    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_grd_value(self, y: float) -> float: ...
 
     @overload
-    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -968,7 +968,7 @@ class ForwardGridder2DF:
     def get_y_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[float, float, float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[float, float, float, float]:
         """
         Returns the min/max value of two lists (same size).
 
@@ -1071,7 +1071,7 @@ class ForwardGridder3D:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> ForwardGridder3D:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> ForwardGridder3D:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax,zmin,zmax are
         determined to exactly contain the given data vectors (sx,sy,sz)
@@ -1086,7 +1086,7 @@ class ForwardGridder3D:
             ForwardGridder3D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')]]:
         """
         Create empty grid images
 
@@ -1095,9 +1095,9 @@ class ForwardGridder3D:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')]]:
         """
         Interpolate 3D points onto 3d images using block mean interpolation
 
@@ -1115,7 +1115,7 @@ class ForwardGridder3D:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')]) -> None:
         """
         Interpolate 3D points onto 3d images using block mean interpolation
         (inplace version)
@@ -1132,7 +1132,7 @@ class ForwardGridder3D:
             T_vector:
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')]]:
         """
         Interpolate 3D points onto 3d images using weighted mean interpolation
 
@@ -1150,7 +1150,7 @@ class ForwardGridder3D:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')], image_weights: Annotated[NDArray[numpy.float64], dict(shape=(None, None, None), order='C')]) -> None:
         """
         Interpolate 3D points onto 3d images using weighted mean interpolation
         (inplace version)
@@ -1213,73 +1213,73 @@ class ForwardGridder3D:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index(self, y: float) -> int: ...
 
     @overload
-    def get_y_index(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_y_index(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_index(self, z: float) -> int: ...
 
     @overload
-    def get_z_index(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_z_index(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index_fraction(self, y: float) -> float: ...
 
     @overload
-    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_index_fraction(self, z: float) -> float: ...
 
     @overload
-    def get_z_index_fraction(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_z_index_fraction(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_value(self, y_index: int) -> float: ...
 
     @overload
-    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_value(self, z_index: int) -> float: ...
 
     @overload
-    def get_z_value(self, z_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_z_value(self, z_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_grd_value(self, y: float) -> float: ...
 
     @overload
-    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_grd_value(self, z: float) -> float: ...
 
     @overload
-    def get_z_grd_value(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]: ...
+    def get_z_grd_value(self, z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -1296,7 +1296,7 @@ class ForwardGridder3D:
     def get_z_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[float, float, float, float, float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[float, float, float, float, float, float]:
         """
         Returns the min/max value of three lists (same size).
 
@@ -1400,7 +1400,7 @@ class ForwardGridder3DF:
         """
 
     @staticmethod
-    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> ForwardGridder3DF:
+    def from_data(res: float, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> ForwardGridder3DF:
         """
         Create gridder with resolution "res" xmin,xmax,ymin,ymax,zmin,zmax are
         determined to exactly contain the given data vectors (sx,sy,sz)
@@ -1415,7 +1415,7 @@ class ForwardGridder3DF:
             ForwardGridder3D object
         """
 
-    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')]]:
+    def get_empty_grd_images(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]]:
         """
         Create empty grid images
 
@@ -1424,9 +1424,9 @@ class ForwardGridder3DF:
                 image_values, image_weights
         """
 
-    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> dict[int, list[float]]: ...
+    def group_blocks(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sv: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> dict[int, list[float]]: ...
 
-    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')]]:
+    def interpolate_block_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]]:
         """
         Interpolate 3D points onto 3d images using block mean interpolation
 
@@ -1444,7 +1444,7 @@ class ForwardGridder3DF:
                 image_values, image_weights
         """
 
-    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')]) -> None:
+    def interpolate_block_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
         """
         Interpolate 3D points onto 3d images using block mean interpolation
         (inplace version)
@@ -1461,7 +1461,7 @@ class ForwardGridder3DF:
             T_vector:
         """
 
-    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')]]:
+    def interpolate_weighted_mean(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]]:
         """
         Interpolate 3D points onto 3d images using weighted mean interpolation
 
@@ -1479,7 +1479,7 @@ class ForwardGridder3DF:
                 image_values, image_weights
         """
 
-    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='A')]) -> None:
+    def interpolate_weighted_mean_inplace(self, sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], s_val: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], image_values: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')], image_weights: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> None:
         """
         Interpolate 3D points onto 3d images using weighted mean interpolation
         (inplace version)
@@ -1542,73 +1542,73 @@ class ForwardGridder3DF:
     def get_x_index(self, x: float) -> int: ...
 
     @overload
-    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_x_index(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index(self, y: float) -> int: ...
 
     @overload
-    def get_y_index(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_y_index(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_index(self, z: float) -> int: ...
 
     @overload
-    def get_z_index(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]: ...
+    def get_z_index(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_index_fraction(self, x: float) -> float: ...
 
     @overload
-    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_index_fraction(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_index_fraction(self, y: float) -> float: ...
 
     @overload
-    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_index_fraction(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_index_fraction(self, z: float) -> float: ...
 
     @overload
-    def get_z_index_fraction(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_z_index_fraction(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_value(self, x_index: int) -> float: ...
 
     @overload
-    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_value(self, x_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_value(self, y_index: int) -> float: ...
 
     @overload
-    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_value(self, y_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_value(self, z_index: int) -> float: ...
 
     @overload
-    def get_z_value(self, z_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_z_value(self, z_index: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_x_grd_value(self, x: float) -> float: ...
 
     @overload
-    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_x_grd_value(self, x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_y_grd_value(self, y: float) -> float: ...
 
     @overload
-    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_y_grd_value(self, y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     @overload
     def get_z_grd_value(self, z: float) -> float: ...
 
     @overload
-    def get_z_grd_value(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]: ...
+    def get_z_grd_value(self, z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
     def get_extent_x(self) -> list[float]: ...
 
@@ -1625,7 +1625,7 @@ class ForwardGridder3DF:
     def get_z_coordinates(self) -> list[float]: ...
 
     @staticmethod
-    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[float, float, float, float, float, float]:
+    def get_minmax(sx: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sy: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], sz: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[float, float, float, float, float, float]:
         """
         Returns the min/max value of three lists (same size).
 

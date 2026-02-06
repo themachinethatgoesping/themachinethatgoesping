@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 
 
 @overload
-def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> float:
+def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> float:
     """
     Computes the weighted median of a 1D xtensor without using Boost.
 
@@ -32,13 +32,13 @@ def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,)
     """
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> typing.Any: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> typing.Any: ...
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[float, float, float]: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[float, float, float]: ...
 
 @overload
-def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> float:
+def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> float:
     """
     Computes the weighted median of a 1D xtensor without using Boost.
 
@@ -62,13 +62,13 @@ def weighted_median(values: Annotated[NDArray[numpy.float64], dict(shape=(None,)
     """
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> typing.Any: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> typing.Any: ...
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], values_z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[float, float, float]: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_z: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[float, float, float]: ...
 
 @overload
-def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> float:
+def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> float:
     """
     Computes the weighted median of a 1D xtensor without using Boost.
 
@@ -92,13 +92,13 @@ def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,)
     """
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> typing.Any: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> typing.Any: ...
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')]) -> tuple[float, float, float]: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> tuple[float, float, float]: ...
 
 @overload
-def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> float:
+def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> float:
     """
     Computes the weighted median of a 1D xtensor without using Boost.
 
@@ -122,19 +122,19 @@ def weighted_median(values: Annotated[NDArray[numpy.float32], dict(shape=(None,)
     """
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> typing.Any: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> typing.Any: ...
 
 @overload
-def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], values_z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')]) -> tuple[float, float, float]: ...
+def weighted_median(values_x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_y: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_z: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[float, float, float]: ...
 
 @overload
-def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='A')]]: ...
+def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]: ...
 
 @overload
-def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='A')]]: ...
+def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]: ...
 
 @overload
-def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='A')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='A')]]: ...
+def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]: ...
 
 @overload
-def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='A')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='A')]]: ...
+def segment_in_weighted_quantiles(values: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], weights: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], n_quantiles: int, return_empty_segments: bool = False) -> list[Annotated[NDArray[numpy.uint64], dict(order='C')]]: ...

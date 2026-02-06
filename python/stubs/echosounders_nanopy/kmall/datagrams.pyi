@@ -2923,6 +2923,13 @@ class KMBinary:
     @down_acceleration.setter
     def down_acceleration(self, arg: float, /) -> None: ...
 
+    def get_sensor_timestamp(self) -> float: ...
+
+    def get_sensor_datetime(self, timezone_offset_hours: float = 0.0) -> object:
+        """Return the timestamp as datetime object"""
+
+    def get_sensor_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str: ...
+
     def get_horizontal_position_and_velocity_valid(self) -> bool: ...
 
     def get_roll_and_pitch_valid(self) -> bool: ...
@@ -3020,6 +3027,13 @@ class KMDelayedHeave:
 
     @delayed_heave_m.setter
     def delayed_heave_m(self, arg: float, /) -> None: ...
+
+    def get_sensor_timestamp(self) -> float: ...
+
+    def get_sensor_datetime(self, timezone_offset_hours: float = 0.0) -> object:
+        """Return the timestamp as datetime object"""
+
+    def get_sensor_date_string(self, fractional_seconds_digits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str: ...
 
     def copy(self) -> KMDelayedHeave:
         """return a copy using the c++ default copy constructor"""
