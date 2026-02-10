@@ -8,6 +8,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing -> 0.12.2
 - algorithms -> 0.11.1
 - tools -> 0.31.2
+- echosounders -> 0.46.3
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
@@ -15,6 +16,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - complete overhaul of echogram and wci viewer widgets
 - algorithms: added bubble backscatter models (Thuraisingham 1997, Li 2023)
 - pingprocessing: overview compute/plot ping_rate_in_Hz
+- echosounders: get_sensor_timestamp functions for KMBinary datagram
+- pingprocessing: option to filter files by overlapping time ranges and areas (overlap_filter)
+
+# Fixes
+- echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.12.0
