@@ -20,6 +20,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: get_sensor_timestamp functions for KMBinary datagram
 - pingprocessing: option to filter files by overlapping time ranges and areas (overlap_filter)
 - various new filters for pingprocessing filter and split pings
+- pingprocessing: add filter by heading
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
