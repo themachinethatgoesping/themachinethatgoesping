@@ -4,11 +4,12 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
-## [unreleased]
+# [unreleased]
 - pingprocessing -> 0.12.2
 - algorithms -> 0.11.1
 - tools -> 0.31.2
 - echosounders -> 0.46.3
+- navigation -> 0.18.2
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
@@ -18,17 +19,23 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: overview compute/plot ping_rate_in_Hz
 - echosounders: get_sensor_timestamp functions for KMBinary datagram
 - pingprocessing: option to filter files by overlapping time ranges and areas (overlap_filter)
+- various new filters for pingprocessing filter and split pings
 
-# Fixes
+## Performance
+ - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
+
+## Fixes
 - echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
+- fixed echogram layers for new echogrambuilder class
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.12.0
 - updated fast_float 8.1.0 -> 8.2.3
 - updated nanobind 2.10.2 -> 2.11.0
 - moving to experimental xtensor-python nanobind branch
+- updated xtl 0.8.1 -> 0.8.2
 
-## [0.32.1] - 17-12-2025
+# [0.32.1] - 17-12-2025
 - echosounders -> 0.46.2
 
 ## Improvements

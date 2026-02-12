@@ -84,6 +84,22 @@ class EchogramViewerMultiChannel:
 
     def __init__(self, echogramdata: Union[Dict[str, Any], Sequence[Any]], name: str = 'Multi-Echogram Viewer', names: Optional[Sequence[Optional[str]]] = None, progress: Optional[Any] = None, show: bool = True, voffsets: Optional[Dict[str, float]] = None, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', fps: int = 25, widget_height_px: int = 600, widget_width_px: int = 1000, auto_update: bool = True, auto_update_delay_ms: int = 300, initial_grid: Tuple[int, int] = (2, 2), **kwargs: Any) -> None: ...
 
+    def get_xlim(self) -> Optional[Tuple[float, float]]:
+        """
+        Get the current visible X-axis limits of the viewport.
+
+        Returns:
+            Tuple of (xmin, xmax) or None if no plot is available.
+        """
+
+    def get_ylim(self) -> Optional[Tuple[float, float]]:
+        """
+        Get the current visible Y-axis limits of the viewport.
+
+        Returns:
+            Tuple of (ymin, ymax) or None if no plot is available.
+        """
+
     def pan_view(self, direction: str, fraction: float = 0.25) -> None:
         """Pan the view in a direction."""
 

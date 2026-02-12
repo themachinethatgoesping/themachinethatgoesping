@@ -101,6 +101,32 @@ class PingOverview:
             None
         """
 
+    def get_course_over_ground(self):
+        """
+        Compute course-over-ground (COG) in degrees for each ping.
+
+        COG is the bearing from each ping to the next (north = 0°,
+        east = 90°).  The last ping gets the same COG as the
+        second-to-last.
+
+        Returns:
+            np.ndarray: COG in degrees [0, 360) per ping.
+        """
+
+    def plot_heading_vs_course(self, ax, heading_offset=0.0, **kwargs):
+        """
+        Plot true heading (yaw) and course-over-ground on the same axis.
+
+        Useful for visually checking whether the vessel heading agrees
+        with the actual track direction.
+
+        Parameters:
+            ax (matplotlib.axes.Axes): Target axis.
+            heading_offset (float): Offset added to yaw before plotting
+                (same convention as ``split_pings.by_course``).
+            **kwargs: Forwarded to both ``ax.plot`` calls.
+        """
+
     def add_ping_list(self, ping_list: List, progress: bool = False) -> None:
         """
         Adds a list of pings to the overview.
@@ -206,6 +232,174 @@ class PingOverview:
         -------
         float
             The median value of the variable.
+        """
+
+    def get_primary_file_paths(self) -> list[str]:
+        """
+        Return the list of unique primary file paths.
+
+        Returns
+        -------
+        List[str]
+            Unique primary file paths referenced by pings in this overview.
+        """
+
+    def get_file_paths(self) -> list[str]:
+        """
+        Return all unique file paths (primary and secondary).
+
+        Returns
+        -------
+        List[str]
+            All unique file paths referenced by pings in this overview.
+        """
+
+    def get_primary_file_path(self, ping_index: int) -> str:
+        """
+        Return the primary file path for a specific ping by its index.
+
+        Parameters
+        ----------
+        ping_index : int
+            Index of the ping in this overview.
+
+        Returns
+        -------
+        str
+            The primary file path of the ping.
+        """
+
+    def get_file_paths_for_ping(self, ping_index: int) -> list[str]:
+        """
+        Return all file paths for a specific ping.
+
+        Parameters
+        ----------
+        ping_index : int
+            Index of the ping in this overview.
+
+        Returns
+        -------
+        List[str]
+            All file paths associated with the ping.
+        """
+
+    def get_pings_per_primary_file_path(self) -> dict:
+        """
+        Return a mapping from primary file path to list of ping indices.
+
+        Returns
+        -------
+        dict
+            Dictionary mapping primary_file_path → list of ping indices.
+        """
+
+    def get_pings_per_file_path(self) -> dict:
+        """
+        Return a mapping from file path (any) to list of ping indices.
+
+        Returns
+        -------
+        dict
+            Dictionary mapping file_path → list of ping indices.
+        """
+
+    def get_timestamp_range_per_file(self) -> dict:
+        """
+        Return min/max timestamp per file path.
+
+        Returns
+        -------
+        dict
+            ``{file_path: (min_timestamp, max_timestamp), …}``
+        """
+
+    def get_datetime_range_per_file(self) -> dict:
+        """
+        Return min/max datetime per file path.
+
+        Returns
+        -------
+        dict
+            ``{file_path: (min_datetime, max_datetime), …}``
+        """
+
+    def get_latitude_range_per_file(self) -> dict:
+        """
+        Return min/max latitude per file path.
+
+        Returns
+        -------
+        dict
+            ``{file_path: (min_latitude, max_latitude), …}``
+        """
+
+    def get_longitude_range_per_file(self) -> dict:
+        """
+        Return min/max longitude per file path.
+
+        Returns
+        -------
+        dict
+            ``{file_path: (min_longitude, max_longitude), …}``
+        """
+
+    def to_ping_proxies(self) -> List:
+        """
+        Create lightweight proxy objects that duck-type ``I_Ping``.
+
+        Each proxy implements the methods used by
+        :mod:`~themachinethatgoesping.pingprocessing.filter_pings` and
+        :mod:`~themachinethatgoesping.pingprocessing.split_pings`, so you
+        can pass the returned list directly to any of those functions.
+
+        To convert the result back, simply pass the (filtered/split)
+        proxy list to ``PingOverview(proxy_list)`` — the constructor
+        accepts proxies since they implement the same interface as
+        real pings.
+
+        Returns
+        -------
+        list of PingProxy
+            One proxy per ping in this overview, in order.  Each proxy
+            has an ``overview_index`` attribute recording its position
+            in this overview.
+        """
+
+    def get_track_data(self, min_lat: float = None, max_lat: float = None, min_lon: float = None, max_lon: float = None, max_points: int = 50000, context_fraction: float = 0.2):
+        """
+        Return downsampled track coordinates for the given view.
+
+        The algorithm splits the point budget between **viewport** and
+        **context** (outside-viewport backbone):
+
+        * **Viewport** (``1 - context_fraction`` of *max_points*):  A
+          grid-based density filter keeps the first point per cell so
+          that dense areas are thinned while sparse outliers survive.
+        * **Context** (``context_fraction`` of *max_points*): Points
+          outside the viewport are uniformly sub-sampled to preserve
+          the overall track shape, survey-line starts/ends, and line
+          continuity when panning.
+
+        The first and last point of the *entire* track are always
+        included.
+
+        Parameters
+        ----------
+        min_lat, max_lat, min_lon, max_lon : float, optional
+            View bounding box in degrees.  ``None`` → full extent.
+        max_points : int
+            Total point budget (default 50 000).
+        context_fraction : float
+            Fraction of *max_points* reserved for the out-of-viewport
+            backbone (default 0.2 = 20 %).
+
+        Returns
+        -------
+        latitudes : np.ndarray
+        longitudes : np.ndarray
+        indices : np.ndarray of int
+            Indices into the overview arrays (sorted, temporal order).
         """
 
 def get_ping_overview(ping_list: Union[dict[str, list[float]], list[float]], progress: bool = False) -> Union[dict[str, dict[str, Union[float, int]]], 'PingOverview']:

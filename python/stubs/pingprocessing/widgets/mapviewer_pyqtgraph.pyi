@@ -53,6 +53,7 @@ Example tiles-only (no data layers):
 import dataclasses
 
 import np
+import pg
 
 import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
 
@@ -108,6 +109,53 @@ class TrackInfo:
     __hash__: None = None
 
     def __init__(self, name: str, latitudes: np.ndarray, longitudes: np.ndarray, color: str, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None) -> None: ...
+
+    def __repr__(self): ...
+
+    def __eq__(self, other): ...
+
+    __match_args__: tuple = ...
+
+class OverviewTrackInfo:
+    """
+    Track backed by a PingOverview with zoom-adaptive downsampling.
+
+    Instead of static lat/lon arrays the track is refreshed from
+    ``overview.get_track_data()`` on every zoom change so that only a
+    bounded number of points are sent to the renderer.
+    """
+
+    max_points: int = 50000
+
+    line_width: float = 2.0
+
+    is_active: bool = False
+
+    visible: bool = True
+
+    slot_idx: None = None
+
+    show_points: bool = False
+
+    point_size: float = 5.0
+
+    point_symbol: str = 'o'
+
+    point_outline: bool = True
+
+    latitudes: None = None
+
+    longitudes: None = None
+
+    indices: None = None
+
+    __dataclass_params__: dataclasses._DataclassParams = ...
+
+    __dataclass_fields__: dict = ...
+
+    __hash__: None = None
+
+    def __init__(self, name: str, overview: Any, color: str, max_points: int = 50000, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None, show_points: bool = False, point_size: float = 5.0, point_symbol: str = 'o', point_outline: bool = True, latitudes: Optional[np.ndarray] = None, longitudes: Optional[np.ndarray] = None, indices: Optional[np.ndarray] = None) -> None: ...
 
     def __repr__(self): ...
 
@@ -232,7 +280,7 @@ class MapViewerPyQtGraph:
         """Zoom to fit all visible layers."""
 
     def zoom_to_track(self):
-        """Zoom to fit all navigation tracks."""
+        """Zoom to fit all navigation tracks (regular and overview)."""
 
     def zoom_to_position(self, lat: float, lon: float, radius_deg: float = 0.01):
         """
@@ -279,6 +327,50 @@ class MapViewerPyQtGraph:
             edge_fraction: Fraction of view to consider as 'edge' (0.2 = 20%).
         """
 
+    def add_markers(self, latitudes, longitudes, name: str = 'markers', labels: Optional[List[str]] = None, color: str = 'white', edge_color: str = 'black', size: float = 10, symbol: str = 'o', edge_width: float = 1.5, z_value: float = 100, label_color: str = 'black', label_size: str = '9pt') -> pg.ScatterPlotItem:
+        """
+        Add persistent marker points that stay above tracks.
+
+        Args:
+            latitudes: Array of latitudes.
+            longitudes: Array of longitudes.
+            name: Unique key (replaces existing markers with same name).
+            labels: Optional list of per-point labels displayed next
+                    to each marker on the map.
+            color: Fill colour.
+            edge_color: Border colour.
+            size: Marker size in pixels.
+            symbol: PyQtGraph symbol ('o', 's', 't', 'd', '+', 'x', …).
+            edge_width: Border width.
+            z_value: Draw order (higher = on top). Default 100 is
+                     well above tracks.
+            label_color: Text colour for labels.
+            label_size: Font size for labels (e.g. '9pt').
+
+        Returns:
+            The ``ScatterPlotItem`` – can be used for further styling.
+        """
+
+    def add_markers_tuples(self, positions, name: str = 'markers', **kwargs) -> pg.ScatterPlotItem:
+        """
+        Add markers from ``(lat, lon)`` tuples.
+
+        Args:
+            positions: Iterable of ``(lat, lon)`` pairs.
+            name: Unique key (replaces existing markers with same name).
+            **kwargs: Forwarded to :meth:`add_markers` (color,
+                      edge_color, size, symbol, edge_width, z_value).
+
+        Returns:
+            The ``ScatterPlotItem``.
+        """
+
+    def remove_markers(self, name: str):
+        """Remove a named marker overlay (including labels)."""
+
+    def clear_markers(self):
+        """Remove all user marker overlays."""
+
     def add_track(self, latitudes: np.ndarray, longitudes: np.ndarray, name: str = 'Track', color: Optional[str] = None, line_width: float = 2.0, is_active: bool = False, slot_idx: Optional[int] = None):
         """
         Add a navigation track overlay.
@@ -293,6 +385,32 @@ class MapViewerPyQtGraph:
             slot_idx: Echogram viewer slot index (for visible range highlighting).
         """
 
+    def add_overview_track(self, overview, name: str = 'Overview', color: Optional[str] = None, line_width: float = 2.0, max_points: int = 50000, is_active: bool = False, slot_idx: Optional[int] = None, show_points: bool = False, point_size: float = 5.0, point_symbol: str = 'o', point_outline: bool = True):
+        """
+        Add a navigation track backed by a :class:`PingOverview`.
+
+        Unlike :meth:`add_track`, the track data is **resampled on every
+        zoom change** via ``overview.get_track_data()`` so that only up
+        to *max_points* are rendered regardless of dataset size.
+
+        Args:
+            overview: A ``PingOverview`` instance with latitude/longitude.
+            name: Track name (used as key; must be unique across both
+                  regular and overview tracks).
+            color: Track colour.  If *None*, auto-assigned.
+            line_width: Base line width.
+            max_points: Maximum rendered points (default 50 000).
+            is_active: Whether this is the active/highlighted track.
+            slot_idx: Echogram viewer slot index for visible-range
+                      highlighting.
+            show_points: If *True*, draw a marker at every downsampled
+                         track point.
+            point_size: Marker diameter in pixels (default 5).
+            point_symbol: PyQtGraph symbol string (default ``'o'``).
+            point_outline: If *True* (default), markers get a white
+                           outline; set *False* for no outline.
+        """
+
     def set_active_track(self, name: str):
         """
         Set which track is the active/highlighted one.
@@ -302,7 +420,16 @@ class MapViewerPyQtGraph:
         """
 
     def clear_tracks(self):
-        """Remove all tracks."""
+        """Remove all tracks (regular and overview)."""
+
+    def set_track_color(self, name: str, color: str):
+        """
+        Change the colour of a track.
+
+        Args:
+            name: Track name.
+            color: New CSS colour (hex or named).
+        """
 
     def update_ping_position(self, lat: float, lon: float):
         """
