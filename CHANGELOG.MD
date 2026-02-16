@@ -22,6 +22,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - various new filters for pingprocessing filter and split pings
 - pingprocessing: add filter by heading
 - pingprocessing echogrambuidler: allow oversampling for better plotting (mean of oversampled image)
+- echosounders: towards calibration computation documentation
+- pingprocessing: fixes for layers and new echogrambuilders
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)

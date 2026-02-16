@@ -288,6 +288,10 @@ class EchogramBuilder:
     def reinit(self):
         """Reinitialize coordinate systems if needed."""
 
+    def get_x_axis_name(self): ...
+
+    def get_y_axis_name(self): ...
+
     def get_x_kwargs(self): ...
 
     def get_y_kwargs(self): ...
@@ -469,6 +473,39 @@ class EchogramBuilder:
 
         Returns:
             Tuple of (raw_data, (sample_start, sample_end)) or None if not found.
+        """
+
+    def update_store(self, path: str = None):
+        """
+        Write current axis, oversampling, ping-param and layer settings to
+        an existing store **and** synchronise the in-memory backend state.
+
+        Only the metadata of the mmap / zarr store is touched — the
+        (potentially huge) WCI data array is left untouched.  Call this after
+        changing view settings on a loaded echogram, e.g.::
+
+            builder = EchogramBuilder.from_mmap("my_store.mmap")
+            builder.set_y_axis_depth()
+            builder.set_oversampling(x_oversampling=2, y_oversampling=2)
+            builder.add_ping_param("my_line", "Ping time", "Depth (m)", ts, vals)
+            builder.add_layer_from_static_layer("roi", 10, 50)
+            builder.update_store()          # writes back to the same store
+
+            # …or save to a *different* store's metadata
+            builder.update_store("other_store.mmap")
+
+        After the on-disk store is updated the backend's cached data
+        structures are refreshed so that subsequent calls to e.g.
+        ``backend.get_ping_params()`` return the new values.
+
+        Args:
+            path: Path to the store directory / zarr group.  If *None*, writes
+                back to the store the current backend was loaded from
+                (requires a backend with a ``store_path`` attribute).
+
+        Raises:
+            ValueError: If *path* is None and the backend has no ``store_path``.
+            FileNotFoundError: If the target path does not exist.
         """
 
     def to_zarr(self, path: str, mode: str = 'native', chunks: tuple = (64, -1), compressor: str = 'zstd', compression_level: int = 3, progress: bool = True, resolution: float = None, interpolation: str = 'nearest') -> str:

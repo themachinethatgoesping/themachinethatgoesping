@@ -1,6 +1,7 @@
 from . import imagebuilder as imagebuilder
 from .imagebuilder import ImageBuilder as ImageBuilder
 from .make_wci import (
+    downsample_wci as downsample_wci,
     make_beam_sample_image as make_beam_sample_image,
     make_wci as make_wci,
     make_wci_dual_head as make_wci_dual_head,
