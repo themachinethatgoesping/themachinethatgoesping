@@ -346,12 +346,34 @@ class EchogramBuilder:
     def get_column(self, nr):
         """Get column data for a ping from backend."""
 
+    def set_oversampling(self, x_oversampling=1, y_oversampling=1, mode='linear_mean'):
+        """
+        Configure oversampling for image building.
+
+        When oversampling > 1, build_image() will request a higher-resolution
+        image from the backend (max_steps * oversampling) and then block-average
+        it down to the original output resolution. This reduces aliasing artifacts
+        from nearest-neighbor sampling.
+
+        Args:
+            x_oversampling: Integer oversampling factor for X axis (pings). Default 1.
+            y_oversampling: Integer oversampling factor for Y axis (samples). Default 1.
+            mode: Averaging mode for block downsampling.
+                - 'linear_mean': Convert dB to linear (power(10, 0.1*v)), average,
+                  convert back (10*log10). Correct for dB-domain data.
+                - 'db_mean': Average directly in dB domain (geometric mean in
+                  linear domain). Faster but less physically correct.
+        """
+
     def build_image(self, progress=None):
         """
         Build the echogram image.
 
         Uses the backend's get_image() method with affine indexing for efficiency.
         Backends can override get_image() for vectorized implementations (e.g., Zarr/Dask).
+
+        When oversampling is configured (via set_oversampling()), requests a higher-
+        resolution image and block-averages it down for anti-aliasing.
 
         Args:
             progress: Optional progress bar or None (not currently used).
@@ -368,6 +390,9 @@ class EchogramBuilder:
         Uses fast vectorized get_image() for the main echogram when no main_layer
         is set. Falls back to per-column iteration only for layer processing.
 
+        Note: Oversampling is applied to the main echogram image only.
+        Layer images are built at native resolution (per-column iteration).
+
         Returns:
             Tuple of (image, layer_image, extent).
         """
@@ -378,6 +403,9 @@ class EchogramBuilder:
 
         Uses fast vectorized get_image() for the main echogram when no main_layer
         is set. Falls back to per-column iteration only for layer processing.
+
+        Note: Oversampling is applied to the main echogram image only.
+        Layer images are built at native resolution (per-column iteration).
 
         Returns:
             Tuple of (image, layer_images_dict, extent).

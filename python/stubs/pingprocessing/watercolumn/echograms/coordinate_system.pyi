@@ -238,3 +238,23 @@ class EchogramCoordinateSystem:
         Returns:
             EchogramImageRequest with all necessary indexing information.
         """
+
+    def make_oversampled_image_request(self, x_oversampling: int = 1, y_oversampling: int = 1) -> EchogramImageRequest:
+        """
+        Create an oversampled image request for anti-aliased downsampling.
+
+        Generates a request with x_oversampling × y_oversampling more pixels
+        than the current coordinate system grid. The oversampled grid spans
+        the same physical extent, so block-averaging the result back to the
+        original resolution produces anti-aliased output.
+
+        The oversampled Y coordinates are computed by subdividing each original
+        Y pixel into y_oversampling sub-pixels. Similarly for X.
+
+        Args:
+            x_oversampling: Integer factor for X axis oversampling.
+            y_oversampling: Integer factor for Y axis oversampling.
+
+        Returns:
+            EchogramImageRequest with oversampled dimensions.
+        """

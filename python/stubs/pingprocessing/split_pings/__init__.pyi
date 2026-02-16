@@ -16,6 +16,7 @@ from .by_file import (
 from .by_function_return import (
     by_function_return as by_function_return
 )
+from .by_heading import by_heading as by_heading
 from .by_region import by_region as by_region
 from .by_time import by_time_difference as by_time_difference
 from .by_time_blocks import by_time_blocks as by_time_blocks

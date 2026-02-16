@@ -21,9 +21,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: option to filter files by overlapping time ranges and areas (overlap_filter)
 - various new filters for pingprocessing filter and split pings
 - pingprocessing: add filter by heading
+- pingprocessing echogrambuidler: allow oversampling for better plotting (mean of oversampled image)
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
+- tools: made InputFileManager thread-safe via thread_local stream pools (zero synchronization overhead)
+- echosounders: added mp_cores parameter to init_from_file for parallel per-file ping initialization (default: 1)
+- 
 
 ## Fixes
 - echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
