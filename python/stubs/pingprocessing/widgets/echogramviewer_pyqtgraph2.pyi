@@ -13,6 +13,7 @@ Features:
 
 import PySide6.QtCore
 import QtGui
+import QtWidgets
 import pyqtgraph.graphicsItems.ROI
 import pyqtgraph.graphicsItems.ScatterPlotItem
 
@@ -83,6 +84,41 @@ class EchogramViewerMultiChannel:
     GRID_LAYOUTS: list = ...
 
     def __init__(self, echogramdata: Union[Dict[str, Any], Sequence[Any]], name: str = 'Multi-Echogram Viewer', names: Optional[Sequence[Optional[str]]] = None, progress: Optional[Any] = None, show: bool = True, voffsets: Optional[Dict[str, float]] = None, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', fps: int = 25, widget_height_px: int = 600, widget_width_px: int = 1000, auto_update: bool = True, auto_update_delay_ms: int = 300, initial_grid: Tuple[int, int] = (2, 2), **kwargs: Any) -> None: ...
+
+    def get_scene(self) -> QtWidgets.QGraphicsScene:
+        """
+        Return the QGraphicsScene backing the viewer.
+
+        Returns
+        -------
+        QGraphicsScene
+            The scene that contains all plot items.
+        """
+
+    def save_scene(self, filename: str = 'scene.svg') -> None:
+        """
+        Export the current scene to an SVG file.
+
+        Parameters
+        ----------
+        filename : str
+            Output file path (should end in .svg).
+        """
+
+    def get_matplotlib(self, dpi: int = 150):
+        """
+        Render the current scene to a matplotlib Figure.
+
+        Parameters
+        ----------
+        dpi : int
+            Resolution of the rasterised image.
+
+        Returns
+        -------
+        matplotlib.figure.Figure
+            A matplotlib figure showing the current viewer state.
+        """
 
     def get_xlim(self) -> Optional[Tuple[float, float]]:
         """

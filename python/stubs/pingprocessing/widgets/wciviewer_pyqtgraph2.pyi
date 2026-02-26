@@ -10,6 +10,7 @@ Features:
 - Smooth view transitions when switching slots
 """
 
+import QtWidgets
 import ipywidgets
 import mi
 
@@ -18,6 +19,9 @@ import themachinethatgoesping.pingprocessing.watercolumn.image as mi
 import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.pingprocessing.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
+)
+from themachinethatgoesping.pingprocessing.widgets.videoframes import (
+    VideoFrames as VideoFrames
 )
 
 
@@ -93,6 +97,41 @@ class WCIViewerMultiChannel:
             Time difference (seconds) above which to show red warning text.
         **kwargs
             Additional arguments passed to image builder.
+        """
+
+    def get_scene(self) -> QtWidgets.QGraphicsScene:
+        """
+        Return the QGraphicsScene backing the viewer.
+
+        Returns
+        -------
+        QGraphicsScene
+            The scene that contains all plot items.
+        """
+
+    def save_scene(self, filename: str = 'scene.svg') -> None:
+        """
+        Export the current scene to an SVG file.
+
+        Parameters
+        ----------
+        filename : str
+            Output file path (should end in .svg).
+        """
+
+    def get_matplotlib(self, dpi: int = 150):
+        """
+        Render the current scene to a matplotlib Figure.
+
+        Parameters
+        ----------
+        dpi : int
+            Resolution of the rasterised image.
+
+        Returns
+        -------
+        matplotlib.figure.Figure
+            A matplotlib figure showing the current viewer state.
         """
 
     def process_events(self) -> None:

@@ -38,7 +38,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Maintanance
 - updated catch2 3.11.0 -> 3.13.0
 - updated fast_float 8.1.0 -> 8.2.3
-- updated nanobind 2.10.2 -> 2.11.0
+- updated nanobind 2.10.2 -> 2.12.0
 - moving to experimental xtensor-python nanobind branch
 - updated xtl 0.8.1 -> 0.8.2
 

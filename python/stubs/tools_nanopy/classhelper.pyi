@@ -70,7 +70,7 @@ class ObjectPrinter:
     def register_value(self, name: str, value: str, value_info: str = '', pos: int = -1) -> None: ...
 
     @overload
-    def register_optional_value(self, name: str, value: float, value_info: str | None = '', optional_value: str = 'Not set', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: float | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -92,10 +92,10 @@ class ObjectPrinter:
         """
 
     @overload
-    def register_optional_value(self, name: str, value: int, value_info: str | None = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
+    def register_optional_value(self, name: str, value: int | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
 
     @overload
-    def register_optional_value(self, name: str, value: str, value_info: str | None = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
+    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
 
     def register_value_bytes(self, name: str, value: int, pos: int = -1) -> None:
         """

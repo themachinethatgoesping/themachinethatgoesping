@@ -6,6 +6,7 @@ from . import (
     pyqtgraph_helpers as pyqtgraph_helpers,
     tools as tools,
     tqdmwidget as tqdmwidget,
+    videoframes as videoframes,
     wciviewer as wciviewer,
     wciviewer_pyqtgraph as wciviewer_pyqtgraph,
     wciviewer_pyqtgraph2 as wciviewer_pyqtgraph2
@@ -21,6 +22,7 @@ from .mapviewer_pyqtgraph import (
     MapViewerPyQtGraph as MapViewerPyQtGraph
 )
 from .tqdmwidget import TqdmWidget as TqdmWidget
+from .videoframes import VideoFrames as VideoFrames
 from .wciviewer import WCIViewer as WCIViewer
 from .wciviewer_pyqtgraph import (
     WCIViewerPyQtGraph as WCIViewerPyQtGraph
