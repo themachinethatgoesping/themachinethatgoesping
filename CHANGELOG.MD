@@ -24,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing echogrambuidler: allow oversampling for better plotting (mean of oversampled image)
 - echosounders: towards calibration computation documentation
 - pingprocessing: fixes for layers and new echogrambuilders
+- pingprocessing: additional options for reprojecting navigation plots
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
