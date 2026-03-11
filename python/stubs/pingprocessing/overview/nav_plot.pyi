@@ -25,7 +25,7 @@ def create_figure(name: str, aspect: str = 'equal', close_plots: bool = True, ba
         Tuple[plt.Figure, plt.Axes]: The created figure and axes.
     """
 
-def plot_latlon(lat, lon, ax, label='survey', annotate=True, max_points=100000, **kwargs):
+def plot_latlon(lat, lon, ax, label='survey', annotate=True, max_points=100000, coord_format=None, decimal_places=None, **kwargs):
     """
     Plot latitude and longitude coordinates on a given axis.
 
@@ -36,8 +36,40 @@ def plot_latlon(lat, lon, ax, label='survey', annotate=True, max_points=100000, 
         label (str, optional): Name of the survey. Defaults to 'survey'.
         annotate (bool, optional): Whether to annotate the plot with the survey name. Defaults to True.
         max_points (int, optional): Maximum number of points to plot. Defaults to 100000.
+        coord_format (str, optional): Coordinate display format for axis ticks
+            and annotations. One of ``'DD'`` (decimal degrees),
+            ``'DDM'`` (degrees decimal minutes), or ``'DMS'`` (degrees
+            minutes decimal seconds). ``None`` leaves the default numeric
+            tick labels unchanged. Tick positions are automatically
+            adjusted to fall on nice boundaries (full minutes, seconds,
+            etc.).
+        decimal_places (int, optional): Number of decimal places for the
+            coordinate format. Defaults depend on *coord_format*:
+            4 for DD, 2 for DDM, 1 for DMS.
         **kwargs: Additional keyword arguments to be passed to the plot function.
 
     Returns:
         None
+    """
+
+def set_latlon_axes_labels(ax, src_crs, coord_format='DD', decimal_places=None):
+    """
+    Replace projected axis tick labels with lat/lon values.
+
+    After plotting in a projected CRS (e.g. UTM), call this function to
+    convert the axis tick labels back to latitude/longitude while keeping
+    the spatial scaling of the projection. Tick positions are
+    automatically adjusted to fall on nice coordinate boundaries.
+
+    Parameters:
+        ax (matplotlib.axes.Axes): The axes whose tick labels should be
+            converted.
+        src_crs: The CRS of the data currently shown on the axes.
+            Anything accepted by ``pyproj.CRS`` (e.g. ``'EPSG:32631'``).
+        coord_format (str, optional): Coordinate display format. One of
+            ``'DD'`` (decimal degrees), ``'DDM'`` (degrees decimal
+            minutes), or ``'DMS'`` (degrees minutes decimal seconds).
+            Defaults to ``'DD'``.
+        decimal_places (int, optional): Number of decimal places. Defaults
+            depend on *coord_format*: 4 for DD, 2 for DDM, 1 for DMS.
     """

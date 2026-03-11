@@ -317,6 +317,23 @@ class EchogramBuilder:
     def set_x_axis_date_time(self, min_ping_time=float('nan'), max_ping_time=float('nan'), time_resolution=float('nan'), time_interpolation_limit=float('nan'), max_steps=4096, **kwargs):
         """Set X axis to datetime."""
 
+    def set_x_axis_custom(self, axis_name, per_ping_coordinates, min_value=float('nan'), max_value=float('nan'), resolution=float('nan'), interpolation_limit=float('nan'), max_steps=4096, axis_format=None, **kwargs):
+        """
+        Set X axis to custom per-ping coordinates.
+
+        Args:
+            axis_name: Display name for the axis (e.g. "Distance (m)").
+            per_ping_coordinates: 1-D array of length n_pings, monotonically
+                increasing. May contain timedelta objects.
+            min_value: Minimum coordinate to display (nan = auto).
+            max_value: Maximum coordinate to display (nan = auto).
+            resolution: Grid resolution (nan = auto from data).
+            interpolation_limit: Max gap for interpolation (nan = auto).
+            max_steps: Maximum number of X pixels.
+            axis_format: Optional format hint ("timedelta" for adaptive time
+                formatting). Auto-detected when passing timedelta input.
+        """
+
     def copy_xy_axis(self, other: EchogramBuilder):
         """Copy X/Y axis settings to another EchogramBuilder."""
 

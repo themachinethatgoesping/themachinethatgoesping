@@ -6,12 +6,32 @@ import pg
 import pyqtgraph.graphicsItems.AxisItem
 
 
-__all__: list = ['MatplotlibDateAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout']
+__all__: list = ['MatplotlibDateAxis', 'TimedeltaAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout']
 
 class MatplotlibDateAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
     """AxisItem that formats matplotlib-style ordinal dates."""
 
     def __init__(self, converter: Callable[[float], datetime], orientation: str = 'bottom') -> None: ...
+
+    def tickStrings(self, values: List[float], scale: float, spacing: float) -> List[str]: ...
+
+    staticMetaObject: PySide6.QtCore.QMetaObject = ...
+
+class TimedeltaAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
+    """
+    AxisItem that formats seconds as human-readable time strings.
+
+    The format is chosen once based on *max_seconds* (the overall data range)
+    and stays fixed regardless of zoom level:
+
+    - < 1 s:  "0.123 s"
+    - < 60 s: "12.3 s"
+    - < 1 h:  "05:23"  (mm:ss)
+    - < 24 h: "1:05:23" (h:mm:ss)
+    - >= 24 h: "2d 03:15" (Nd hh:mm)
+    """
+
+    def __init__(self, max_seconds: float = 60.0, orientation: str = 'bottom') -> None: ...
 
     def tickStrings(self, values: List[float], scale: float, spacing: float) -> List[str]: ...
 

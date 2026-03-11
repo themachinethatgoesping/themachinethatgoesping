@@ -54,9 +54,27 @@ class PingOverview:
             Whether to show a progress bar, by default False
         """
 
+    def set_dst_crs(self, dst_crs):
+        """
+        Set a destination CRS and convert lat/lon to projected x/y coordinates.
+
+        Uses pyproj to transform the stored latitude/longitude values into the
+        given coordinate reference system, storing the results in
+        ``self.variables["x"]`` and ``self.variables["y"]``.
+        Subsequent calls to :meth:`plot_navigation` will plot x/y instead of
+        lat/lon.
+
+        Parameters:
+            dst_crs: Destination CRS accepted by ``pyproj.CRS`` (e.g. ``'EPSG:32631'``).
+                     Pass ``None`` to reset and revert to lat/lon plotting.
+        """
+
     def plot_navigation(self, ax, label='survey', annotate=True, max_points=100000, **kwargs):
         """
-        Plot latitude and longitude coordinates on a given axis.
+        Plot navigation coordinates on a given axis.
+
+        When :meth:`set_dst_crs` has been called, the projected x/y
+        coordinates are plotted.  Otherwise latitude/longitude are used.
 
         Parameters:
             ax (matplotlib.axes.Axes): The axis on which to plot the coordinates.

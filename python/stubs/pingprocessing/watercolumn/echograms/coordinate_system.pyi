@@ -85,9 +85,10 @@ class EchogramCoordinateSystem:
 
         Args:
             name: Parameter name (e.g., 'bottom', 'minslant').
-            x_reference: X reference type ('Ping index', 'Ping time', 'Date time').
+            x_reference: X reference type ('Ping index', 'Ping time', 'Date time',
+                or a custom axis name matching the registered custom axis).
             y_reference: Y reference type ('Y indice', 'Sample number', 'Depth (m)', 'Range (m)').
-            vec_x_val: X values (timestamps or indices).
+            vec_x_val: X values (timestamps, indices, or custom coordinates).
             vec_y_val: Y values (depths, ranges, etc.).
         """
 
@@ -191,6 +192,37 @@ class EchogramCoordinateSystem:
             time_resolution: Time resolution (seconds or timedelta, nan = auto).
             time_interpolation_limit: Max time gap (seconds or timedelta, nan = auto).
             max_steps: Maximum number of X pixels.
+        """
+
+    def set_x_axis_custom(self, axis_name: str, per_ping_coordinates: numpy.ndarray, min_value: float = float('nan'), max_value: float = float('nan'), resolution: float = float('nan'), interpolation_limit: float = float('nan'), max_steps: int = 4096, axis_format: Union[str, None] = None, **kwargs):
+        """
+        Set X axis to custom per-ping coordinates.
+
+        The coordinates must be monotonically increasing (one value per ping,
+        sorted in ascending order). This enables efficient nearest-neighbor
+        lookup via the feature mapper.
+
+        When *resolution* or *interpolation_limit* are not given (nan), they
+        are auto-computed from consecutive differences (5th and 95th
+        percentiles respectively), following the same strategy as
+        ``set_x_axis_ping_time``.
+
+        Accepts ``datetime.timedelta`` arrays — they are converted to float
+        seconds automatically and ``axis_format`` defaults to ``"timedelta"``.
+
+        Args:
+            axis_name: Display name for the axis (e.g. "Distance (m)").
+            per_ping_coordinates: 1-D array of length n_pings, monotonically
+                increasing. May contain timedelta objects.
+            min_value: Minimum coordinate to display (nan = auto).
+            max_value: Maximum coordinate to display (nan = auto).
+            resolution: Grid resolution (nan = auto from data).
+            interpolation_limit: Max gap for interpolation (nan = auto).
+            max_steps: Maximum number of X pixels.
+            axis_format: Optional format hint for the viewer axis ticks.
+                ``"timedelta"`` enables adaptive time formatting.
+                ``None`` uses plain numeric formatting (or auto-detects
+                from timedelta input).
         """
 
     def get_y_indices(self, wci_nr: int) -> tuple[numpy.ndarray, numpy.ndarray]:

@@ -25,12 +25,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: towards calibration computation documentation
 - pingprocessing: fixes for layers and new echogrambuilders
 - pingprocessing: additional options for reprojecting navigation plots
+- pingprocessing: Echogrambuilder add option to add custom axis
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
 - tools: made InputFileManager thread-safe via thread_local stream pools (zero synchronization overhead)
 - echosounders: added mp_cores parameter to init_from_file for parallel per-file ping initialization (default: 1)
-- 
+- echosounders: fix perfmance bug when indexing 1000+ file
 
 ## Fixes
 - echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
@@ -38,7 +39,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.13.0
-- updated fast_float 8.1.0 -> 8.2.3
+- updated fast_float 8.1.0 -> 8.2.4
 - updated nanobind 2.10.2 -> 2.12.0
 - moving to experimental xtensor-python nanobind branch
 - updated xtl 0.8.1 -> 0.8.2
