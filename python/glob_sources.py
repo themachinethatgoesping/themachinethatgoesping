@@ -90,7 +90,17 @@ for r,d,f in os.walk('../'):
         else:
             continue
 
+        ignore_files = {
+            'simd_aarch64_neon.cpp',
+            'simd_x86_64_v1.cpp',
+            'simd_x86_64_v2.cpp',
+            'simd_x86_64_v3.cpp',
+            'simd_x86_64_v4.cpp'
+        }
+
         for file in sorted(f_):
+            if file in ignore_files:
+                continue
             file = os.path.join(r_,file)
             file = file.split(r)[1]
             if file.startswith('/'):
