@@ -1,7 +1,10 @@
 """Tools for working with ping objects."""
 
 from collections.abc import Sequence
-from typing import overload
+from typing import Annotated, overload
+
+import numpy
+from numpy.typing import NDArray
 
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 
@@ -208,9 +211,9 @@ class BeamSampleSelection(BeamSelection):
             ReadSampleRange read sample range
         """
 
-    def get_sample_numbers_ensemble_1d(self) -> "xt::xtensor_container_xt_uvector<unsignedint_xsimd_aligned_allocator<unsignedint_16ul >, 1ul, (xt::layout_type)1, xt::xtensor_expression_tag>": ...
+    def get_sample_numbers_ensemble_1d(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
-    def get_sample_numbers_ensemble_2d(self) -> "xt::xtensor_container_xt_uvector<unsignedint_xsimd_aligned_allocator<unsignedint_16ul >, 2ul, (xt::layout_type)1, xt::xtensor_expression_tag>": ...
+    def get_sample_numbers_ensemble_2d(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     def empty(self) -> bool:
         """

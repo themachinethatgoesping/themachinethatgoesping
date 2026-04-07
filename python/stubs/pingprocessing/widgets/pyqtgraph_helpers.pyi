@@ -40,25 +40,20 @@ class TimedeltaAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
 def ensure_qapp() -> None:
     """Ensure a QApplication exists for PyQtGraph widgets."""
 
-def resolve_colormap(cmap: Union[str, pg.ColorMap]) -> pg.ColorMap:
+def resolve_colormap(cmap) -> pg.ColorMap:
     """
-    Return a PyQtGraph ColorMap from either a name or a ColorMap instance.
+    Return a PyQtGraph ColorMap from a name, pg.ColorMap, or matplotlib Colormap.
 
     Parameters
     ----------
-    cmap : str or pg.ColorMap
-        Colormap name (pyqtgraph or matplotlib) or ColorMap instance.
-        Use :func:`list_colormaps` to see all available names.
+    cmap : str, pg.ColorMap, or matplotlib.colors.Colormap
+        Colormap name (pyqtgraph or matplotlib), a PyQtGraph ColorMap
+        instance, or a matplotlib Colormap (e.g. ``colorcet.cm.CET_L20``).
 
     Returns
     -------
     pg.ColorMap
         Resolved colormap. Falls back to 'viridis' if not found.
-
-    Examples
-    --------
-    >>> cmap = resolve_colormap('cubehelix_r')  # matplotlib colormap
-    >>> cmap = resolve_colormap('viridis')      # pyqtgraph colormap
     """
 
 def list_colormaps(source: Optional[str] = None) -> List[str]:

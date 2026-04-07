@@ -12,8 +12,10 @@ Features:
 """
 
 import PySide6.QtCore
+import QtCore
 import QtGui
 import QtWidgets
+import pyqtgraph.graphicsItems.GraphicsObject
 import pyqtgraph.graphicsItems.ROI
 import pyqtgraph.graphicsItems.ScatterPlotItem
 
@@ -36,6 +38,40 @@ class DraggableScatterPlotItem(pyqtgraph.graphicsItems.ScatterPlotItem.ScatterPl
 
     def mouseReleaseEvent(self, ev: QtGui.QMouseEvent) -> None:
         """Handle mouse release - end drag."""
+
+    staticMetaObject: PySide6.QtCore.QMetaObject = ...
+
+class StationOverlayItem(pyqtgraph.graphicsItems.GraphicsObject.GraphicsObject):
+    """
+    Lightweight graphics item that draws station markers in one paint().
+
+    Uses a *draw_mode* to control what is rendered:
+      - ``'background'``: translucent region fills only (behind echogram).
+      - ``'foreground'``: vertical lines and text labels (above echogram).
+
+    Two instances per slot (one per mode) give correct z-ordering while
+    still batching all stations into just two paint() calls.
+    """
+
+    def __init__(self, draw_mode: str = 'foreground', parent=None): ...
+
+    def add_station(self, name: str, start_x: float, end_x: float, pen: QtGui.QPen, brush: QtGui.QBrush, label_color: QtGui.QColor, font: QtGui.QFont, label_position: str) -> None: ...
+
+    def remove_station(self, name: str) -> None: ...
+
+    def clear_stations(self) -> None: ...
+
+    def station_names(self) -> List[str]: ...
+
+    def stations_at_x(self, x: float) -> List[str]:
+        """Return names of all stations whose range contains *x*."""
+
+    def boundingRect(self) -> QtCore.QRectF: ...
+
+    def paint(self, painter: QtGui.QPainter, option, widget=None) -> None: ...
+
+    def viewRangeChanged(self):
+        """Called by pyqtgraph when the view range changes."""
 
     staticMetaObject: PySide6.QtCore.QMetaObject = ...
 
@@ -163,8 +199,9 @@ class EchogramViewerMultiChannel:
         """
         Add station time markers to all visible echograms.
 
-        Draws vertical lines at station start/end times with a semi-transparent
-        region between them and a label showing the station name.
+        Successive calls accumulate markers so you can compare station times
+        from different sources (use different colors per source).  Call
+        ``clear_station_times()`` to remove all markers.
 
         Args:
             stations: Dict mapping station names to (start_time, end_time) tuples.
@@ -184,6 +221,10 @@ class EchogramViewerMultiChannel:
             ...     'Station A': (datetime(2024, 1, 1, 10, 0), datetime(2024, 1, 1, 10, 30)),
             ...     'Station B': (1704110400.0, 1704112200.0),  # unix timestamps
             ... })
+            >>> # Add a second source with a different colour
+            >>> viewer.add_station_times({
+            ...     'Station A (alt)': (datetime(2024, 1, 1, 10, 2), datetime(2024, 1, 1, 10, 28)),
+            ... }, line_color='red')
         """
 
     def clear_station_times(self, station_name: Optional[str] = None) -> None:

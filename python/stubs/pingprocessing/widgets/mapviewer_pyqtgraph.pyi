@@ -276,6 +276,38 @@ class MapViewerPyQtGraph:
     def list_tile_sources(self) -> List[str]:
         """List available tile source names."""
 
+    def add_geotiff(self, path: str, name: Optional[str] = None, band: int = 1, **kwargs) -> 'MapViewerPyQtGraph':
+        """
+        Add a GeoTiff layer to the viewer after construction.
+
+        Creates a MapBuilder internally if one was not provided at init time.
+
+        Args:
+            path: Path to the GeoTiff file.
+            name: Display name (default: inferred from filename).
+            band: Band number to read (1-indexed).
+            **kwargs: Additional arguments forwarded to ``MapBuilder.add_layer``.
+
+        Returns:
+            Self for method chaining.
+        """
+
+    def add_layer(self, backend: Any, name: Optional[str] = None, visible: bool = True, z_order: Optional[int] = None) -> 'MapViewerPyQtGraph':
+        """
+        Add a data layer to the viewer after construction.
+
+        Creates a MapBuilder internally if one was not provided at init time.
+
+        Args:
+            backend: A MapDataBackend instance.
+            name: Display name.
+            visible: Whether layer is initially visible.
+            z_order: Render order.
+
+        Returns:
+            Self for method chaining.
+        """
+
     def zoom_to_fit(self):
         """Zoom to fit all visible layers."""
 
@@ -461,6 +493,7 @@ class MapViewerPyQtGraph:
         This will:
         - Add tracks for each channel (if echogram data is available)
         - Update ping position when the ping changes
+        - Enable click-on-track to select ping
 
         Args:
             wci_viewer: WCIViewerMultiChannel instance.

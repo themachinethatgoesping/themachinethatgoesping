@@ -5,6 +5,7 @@ from typing import overload
 from . import (
     classhelper as classhelper,
     helper as helper,
+    math as math,
     progressbars as progressbars,
     pyhelper as pyhelper,
     timeconv as timeconv,
