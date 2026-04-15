@@ -49,6 +49,13 @@ def mean(stack: numpy.ndarray, axis: int) -> numpy.ndarray:
 def first_valid(stack: numpy.ndarray, axis: int) -> numpy.ndarray:
     """Return first non-NaN value along axis (priority order)."""
 
+def nandiff(stack: numpy.ndarray, axis: int) -> numpy.ndarray:
+    """
+    Difference: first backend minus all others (NaN-aware).
+
+    Computes stack[0] - stack[1] - stack[2] - ... ignoring NaN.
+    """
+
 COMBINE_FUNCTIONS: dict = ...
 
 class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend):
@@ -90,7 +97,7 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
     where stack has shape (n_backends, nx, ny) and the function reduces along axis=0.
     """
 
-    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], combine_func: Union[str, _Callable[[numpy.ndarray, int], numpy.ndarray]] = 'nanmean', name: str = 'combined', x_align: str = 'ping_index', y_align: str = 'sample_index', linear: bool = True):
+    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], combine_func: Union[str, _Callable[[numpy.ndarray, int], numpy.ndarray]] = 'nanmean', name: str = 'combined', x_align: str = 'ping_index', y_align: str = 'sample_index', linear: bool = True, data_transforms: list = None):
         """
         Initialize CombineBackend.
 
@@ -113,6 +120,9 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
                 combining, then convert back to dB. This gives acoustically
                 correct averaging of intensities. Set to False to combine
                 directly in dB domain.
+            data_transforms: Optional list of (factor, offset, transform_func) tuples,
+                one per backend. If provided, applied to each backend's image before
+                combining. None entries or None list means no transforms.
 
         Raises:
             ValueError: If backends list is empty or invalid align mode.

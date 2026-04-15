@@ -260,6 +260,56 @@ class EchogramBuilder:
             value: Offset to add to all echogram values (e.g., calibration correction).
         """
 
+    @property
+    def factor(self) -> float:
+        """
+        Multiplicative factor applied to all data.
+
+        Data is multiplied by this factor before adding the offset.
+        Applied in order: data * factor + offset, then transform.
+
+        Returns:
+            Current factor value (default 1.0).
+        """
+
+    @factor.setter
+    def factor(self, value: float):
+        """
+        Set the multiplicative factor applied to all data.
+
+        Args:
+            value: Factor to multiply all echogram values by (e.g., -1 to invert).
+        """
+
+    @property
+    def transform(self):
+        """
+        Callable transform applied to all data after factor and offset.
+
+        The transform is a function f(data) -> data applied element-wise
+        to the image array. Set to None to disable.
+
+        Applied in order: data * factor + offset, then transform(result).
+
+        Returns:
+            Current transform callable, or None.
+
+        Example:
+            >>> # Convert from dB to linear
+            >>> echogram.transform = lambda d: np.power(10, 0.1 * d)
+            >>> # Reset
+            >>> echogram.transform = None
+        """
+
+    @transform.setter
+    def transform(self, value):
+        """
+        Set the transform function applied to all data.
+
+        Args:
+            value: Callable f(data) -> data, or None to disable.
+        """
+
     def get_track(self, start_ping: Union[int, None] = None, end_ping: Union[int, None] = None) -> Union[tuple[numpy.ndarray, numpy.ndarray], None]:
         """
         Get the navigation track (latitudes, longitudes) for this echogram.
@@ -627,4 +677,62 @@ class EchogramBuilder:
 
         Returns:
             EchogramBuilder with MmapDataBackend.
+        """
+
+    def to_gridded_mmap(self, path: str, x_step: float, y_step: float, averaging: str = 'db_mean', progress: bool = True, chunk_mb: float = 50.0, downsample_ping_params: bool = True) -> str:
+        """
+        Export echogram data to a gridded memory-mapped store.
+
+        Data is averaged onto a regular (x, y) grid.  Empty x-bins are
+        omitted (sparse).  Grid cells are centred on multiples of the step
+        size (0 is always a cell centre), so grids from different time
+        ranges can be combined directly.
+
+        The x-axis unit is inferred from the current axis setting:
+        - "Date time" / "Ping time" → seconds
+        - "Ping index" → ping count
+
+        The y-axis unit is inferred from the current axis setting:
+        - "Depth (m)" → metres  (requires depth extents)
+        - "Range (m)" → metres  (requires range extents)
+        - "Sample number" / "Y indice" → sample indices
+
+        Args:
+            path: Output directory (will be created).
+            x_step: Grid cell width in current x-axis units.
+            y_step: Grid cell height in current y-axis units.
+            averaging: Averaging mode.  One of:
+                - ``"db_mean"``     – mean of dB values
+                - ``"linear_mean"`` – mean in linear domain, result in dB
+                - ``"min"``         – minimum value per cell
+                - ``"max"``         – maximum value per cell
+                - ``"median"``      – median per cell (more memory)
+            progress: Show progress bar.
+            chunk_mb: Approximate chunk size in MB for reading source data.
+            downsample_ping_params: If *True*, ping parameters (e.g. bottom
+                depth) are averaged onto the new x-grid.  If *False*, they
+                are stored at original (per-ping) resolution.
+
+        Returns:
+            Path to the created store directory.
+
+        Examples:
+            >>> builder.set_y_axis_depth()
+            >>> builder.set_x_axis_date_time()
+            >>> builder.to_gridded_mmap("gridded.mmap", x_step=10, y_step=0.5)
+        """
+
+    @classmethod
+    def from_gridded_mmap(cls, path: str) -> EchogramBuilder:
+        """
+        Load an EchogramBuilder from a gridded mmap store.
+
+        The WCI data is memory-mapped and lazy-loaded.  Axis type settings
+        are restored from saved metadata.
+
+        Args:
+            path: Path to the gridded mmap store directory.
+
+        Returns:
+            EchogramBuilder backed by a GriddedMmapBackend.
         """

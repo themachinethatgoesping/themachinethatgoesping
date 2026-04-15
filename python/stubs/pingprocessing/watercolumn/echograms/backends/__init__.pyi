@@ -4,6 +4,7 @@ from . import (
     base as base,
     combine_backend as combine_backend,
     concat_backend as concat_backend,
+    gridded_mmap_backend as gridded_mmap_backend,
     mmap_backend as mmap_backend,
     ping_backend as ping_backend,
     storage_mode as storage_mode,
@@ -12,6 +13,9 @@ from . import (
 from .base import EchogramDataBackend as EchogramDataBackend
 from .combine_backend import CombineBackend as CombineBackend
 from .concat_backend import ConcatBackend as ConcatBackend
+from .gridded_mmap_backend import (
+    GriddedMmapBackend as GriddedMmapBackend
+)
 from .mmap_backend import MmapDataBackend as MmapDataBackend
 from .ping_backend import PingDataBackend as PingDataBackend
 from .storage_mode import (
@@ -24,6 +28,8 @@ from .storage_mode import (
 from .zarr_backend import ZarrDataBackend as ZarrDataBackend
 
 
+AVERAGING_MODES: dict = ...
+
 COMBINE_FUNCTIONS: dict = ...
 
-__all__: list = ['EchogramDataBackend', 'PingDataBackend', 'ZarrDataBackend', 'MmapDataBackend', 'ConcatBackend', 'CombineBackend', 'COMBINE_FUNCTIONS', 'StorageAxisMode', 'XAxisType', 'YAxisType', 'ResolutionStrategy', 'compute_resolution_from_backends']
+__all__: list = ['EchogramDataBackend', 'PingDataBackend', 'ZarrDataBackend', 'MmapDataBackend', 'GriddedMmapBackend', 'AVERAGING_MODES', 'ConcatBackend', 'CombineBackend', 'COMBINE_FUNCTIONS', 'StorageAxisMode', 'XAxisType', 'YAxisType', 'ResolutionStrategy', 'compute_resolution_from_backends']
