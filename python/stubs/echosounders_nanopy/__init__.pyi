@@ -2,7 +2,7 @@
 Python module to read, write and process single- and multibeam echosounder data formats
 """
 
-from typing import overload
+from typing import ClassVar, Final, overload
 
 from . import (
     filetemplates as filetemplates,
@@ -38,7 +38,7 @@ class o_KongsbergAllDatagramIdentifier:
     @value.setter
     def value(self, arg: kongsbergall.t_KongsbergAllDatagramIdentifier, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kongsbergall.t_KongsbergAllDatagramIdentifier = ...
+    __default_value__: ClassVar[Final[kongsbergall.t_KongsbergAllDatagramIdentifier]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -121,7 +121,7 @@ class o_KongsbergAllActiveSensor:
     @value.setter
     def value(self, arg: kongsbergall.t_KongsbergAllActiveSensor, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kongsbergall.t_KongsbergAllActiveSensor = ...
+    __default_value__: ClassVar[Final[kongsbergall.t_KongsbergAllActiveSensor]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -204,7 +204,7 @@ class o_KongsbergAllSystemTransducerConfiguration:
     @value.setter
     def value(self, arg: kongsbergall.t_KongsbergAllSystemTransducerConfiguration, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kongsbergall.t_KongsbergAllSystemTransducerConfiguration = ...
+    __default_value__: ClassVar[Final[kongsbergall.t_KongsbergAllSystemTransducerConfiguration]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

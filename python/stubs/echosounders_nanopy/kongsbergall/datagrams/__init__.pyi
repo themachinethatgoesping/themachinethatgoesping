@@ -3,7 +3,7 @@ import typing
 
 from collections.abc import Sequence
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -3109,7 +3109,7 @@ class o_ExtraParameters_t_ContentIdentifier:
     @value.setter
     def value(self, arg: ExtraParameters_t_ContentIdentifier, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams.ExtraParameters_t_ContentIdentifier = ...
+    __default_value__: ClassVar[Final[ExtraParameters_t_ContentIdentifier]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

@@ -3,7 +3,7 @@ import typing
 
 from collections.abc import Sequence, Set
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -54,7 +54,7 @@ class o_latlon_format:
     @value.setter
     def value(self, arg: t_latlon_format, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.navigation_nanopy.t_latlon_format = ...
+    __default_value__: ClassVar[Final[t_latlon_format]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

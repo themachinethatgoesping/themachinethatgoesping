@@ -26,6 +26,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: fixes for layers and new echogrambuilders
 - pingprocessing: additional options for reprojecting navigation plots
 - pingprocessing: Echogrambuilder add option to add custom axis
+- pingprocessing: gridded echogram backend
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)

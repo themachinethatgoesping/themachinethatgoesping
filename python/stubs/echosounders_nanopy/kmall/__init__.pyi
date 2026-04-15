@@ -2,7 +2,7 @@
 
 from collections.abc import Mapping, Sequence
 import enum
-from typing import overload
+from typing import ClassVar, Final, overload
 
 from . import (
     datagrams as datagrams,
@@ -68,7 +68,7 @@ class o_KMALLDatagramIdentifier:
     @value.setter
     def value(self, arg: t_KMALLDatagramIdentifier, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kmall.t_KMALLDatagramIdentifier = ...
+    __default_value__: ClassVar[Final[t_KMALLDatagramIdentifier]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -176,7 +176,7 @@ class o_KMALLSystemTransducerConfiguration:
     @value.setter
     def value(self, arg: t_KMALLSystemTransducerConfiguration, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kmall.t_KMALLSystemTransducerConfiguration = ...
+    __default_value__: ClassVar[Final[t_KMALLSystemTransducerConfiguration]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

@@ -4,7 +4,7 @@ Kongsberg KongsbergAll datagram substructures. These are substuctures of existin
 
 from collections.abc import Sequence
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -65,7 +65,7 @@ class o_XYZDatagramBeam_t_DetectionType:
     @value.setter
     def value(self, arg: XYZDatagramBeam_t_DetectionType, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams.substructures.XYZDatagramBeam_t_DetectionType = ...
+    __default_value__: ClassVar[Final[XYZDatagramBeam_t_DetectionType]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

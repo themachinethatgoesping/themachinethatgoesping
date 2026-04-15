@@ -1,5 +1,3 @@
-import _nanopy as pingprocessing_nanopy
-
 from . import (
     core as core,
     filter_pings as filter_pings,
@@ -10,3 +8,4 @@ from . import (
     watercolumn as watercolumn,
     widgets as widgets
 )
+import themachinethatgoesping.pingprocessing_nanopy as pingprocessing_nanopy

@@ -2,7 +2,7 @@
 
 from collections.abc import Sequence
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -55,7 +55,7 @@ class o_extr_mode:
     @value.setter
     def value(self, arg: t_extr_mode, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.tools_nanopy.vectorinterpolators.t_extr_mode = ...
+    __default_value__: ClassVar[Final[t_extr_mode]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

@@ -2,7 +2,7 @@
 
 from collections.abc import Iterable, Iterator, Sequence
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -2169,7 +2169,7 @@ class SSoundVelocityProfile_o_sensor_format:
     @value.setter
     def value(self, arg: SSoundVelocityProfile_t_sensor_format, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kmall.datagrams.SSoundVelocityProfile_t_sensor_format = ...
+    __default_value__: ClassVar[Final[SSoundVelocityProfile_t_sensor_format]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -2418,7 +2418,7 @@ class SSoundVelocityTransducer_o_sensor_format:
     @value.setter
     def value(self, arg: SSoundVelocityTransducer_t_sensor_format, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kmall.datagrams.SSoundVelocityTransducer_t_sensor_format = ...
+    __default_value__: ClassVar[Final[SSoundVelocityTransducer_t_sensor_format]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -2685,7 +2685,7 @@ class SKMBinary_o_sensor_format:
     @value.setter
     def value(self, arg: SKMBinary_t_sensor_format, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.kmall.datagrams.SKMBinary_t_sensor_format = ...
+    __default_value__: ClassVar[Final[SKMBinary_t_sensor_format]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

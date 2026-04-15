@@ -3,7 +3,7 @@ Submodule that holds datastructures that hold the signal processing input/result
 """
 
 import enum
-from typing import overload
+from typing import ClassVar, Final, overload
 
 
 class t_TxSignalType(enum.Enum):
@@ -39,7 +39,7 @@ class o_TxSignalType:
     @value.setter
     def value(self, arg: t_TxSignalType, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.t_TxSignalType = ...
+    __default_value__: ClassVar[Final[t_TxSignalType]] = ...
     """default enum value when constructing without arguments"""
 
     @overload

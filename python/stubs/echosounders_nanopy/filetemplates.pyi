@@ -3,7 +3,7 @@ import typing
 
 from collections.abc import Sequence
 import enum
-from typing import Annotated, overload
+from typing import Annotated, ClassVar, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -226,7 +226,7 @@ class o_calibration_type:
     @value.setter
     def value(self, arg: t_calibration_type, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.filetemplates.t_calibration_type = ...
+    __default_value__: ClassVar[Final[t_calibration_type]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
@@ -738,7 +738,7 @@ class o_pingfeature:
     @value.setter
     def value(self, arg: t_pingfeature, /) -> None: ...
 
-    __default_value__: themachinethatgoesping.echosounders_nanopy.filetemplates.t_pingfeature = ...
+    __default_value__: ClassVar[Final[t_pingfeature]] = ...
     """default enum value when constructing without arguments"""
 
     @overload
