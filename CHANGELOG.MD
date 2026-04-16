@@ -37,6 +37,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Fixes
 - echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
 - fixed echogram layers for new echogrambuilder class
+- pingprocessing: fixed echogram get_bottom_z not reacting to beam selection
+
 
 ## Maintanance
 - updated catch2 3.11.0 -> 3.14.0
