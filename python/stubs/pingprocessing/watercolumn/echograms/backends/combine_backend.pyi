@@ -206,9 +206,12 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
         """
         Get combined column data for a ping.
 
-        Fetches data from all backends, aligns by sample index, and combines.
-        Note: This is slower than get_image() due to per-column overhead.
-        For building full images, get_image() is preferred.
+        When y_align is "depth" or "range", each backend's column is
+        resampled onto a common depth/range grid before combining.  This
+        ensures that the same depth maps to the same output sample index
+        regardless of which backend the data comes from.
+
+        In sample-index mode the original pad-and-stack behaviour is used.
         """
 
     def get_raw_column(self, ping_index: int) -> numpy.ndarray:

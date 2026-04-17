@@ -86,6 +86,42 @@ class EchogramBuilder:
         """
 
     @classmethod
+    def from_image(cls, image: numpy.ndarray, ping_times: numpy.ndarray, y_min, y_max, *, y_axis: str = 'range', wci_value: str = 'sv', linear_mean: bool = True, latitudes: Union[numpy.ndarray, None] = None, longitudes: Union[numpy.ndarray, None] = None, ping_params: Union[dict, None] = None) -> EchogramBuilder:
+        """
+        Create an EchogramBuilder from a 2D image array with extent metadata.
+
+        This is the replacement for the old ``EchoData`` helper. Pass any 2D
+        numpy array (in-memory or memory-mapped) together with per-ping
+        y-axis extents and timestamps.
+
+        Args:
+            image: 2D array of shape (n_pings, n_samples).  Accepts both
+                regular ``ndarray`` and ``np.memmap``.
+            ping_times: Unix timestamps per ping, shape (n_pings,).
+            y_min: Per-ping minimum y value (float or array).
+            y_max: Per-ping maximum y value (float or array).
+            y_axis: Coordinate type for the y-axis.  One of
+                ``"range"`` (default), ``"depth"``, or ``"sample_index"``.
+            wci_value: Label for the stored quantity (e.g. ``"sv"``).
+            linear_mean: Whether beam averaging was done in linear domain.
+            latitudes: Optional per-ping latitudes.
+            longitudes: Optional per-ping longitudes.
+            ping_params: Optional dict of pre-computed ping parameters,
+                ``{name: (y_reference, (timestamps, values))}``.
+
+        Returns:
+            EchogramBuilder instance.
+
+        Examples:
+            >>> import numpy as np
+            >>> image = np.random.rand(100, 200).astype(np.float32)
+            >>> times = np.linspace(0, 100, 100)
+            >>> builder = EchogramBuilder.from_image(
+            ...     image, times, y_min=0.5, y_max=50.0, y_axis="depth"
+            ... )
+        """
+
+    @classmethod
     def from_pings_dict(cls, pings_dict: dict, progress: bool = True, **kwargs) -> dict:
         """
         Create multiple EchogramBuilders from a dictionary of ping lists.
@@ -735,4 +771,30 @@ class EchogramBuilder:
 
         Returns:
             EchogramBuilder backed by a GriddedMmapBackend.
+        """
+
+    def to_image(self, path: Union[str, None] = None, progress: bool = True, chunk_mb: float = 50.0) -> EchogramBuilder:
+        """
+        Export the current view to an ImageBackend (in-memory or mmap).
+
+        The current x/y axis settings determine the coordinate system of
+        the output.  Each source ping is stored as one column, the y-axis
+        is resampled onto a regular grid derived from the global y extents.
+
+        Args:
+            path: If *None* (default) the image is kept in memory as a
+                numpy array.  If a file path is given, the image is written
+                as a raw float32 binary and opened as a read-only memmap.
+            progress: Show progress bar.
+            chunk_mb: Approximate chunk size in MB for reading source data.
+
+        Returns:
+            A **new** EchogramBuilder backed by an ``ImageBackend``.
+            Layers from the current builder are **not** transferred
+            (create new layers on the returned builder if needed).
+
+        Examples:
+            >>> builder.set_y_axis_depth()
+            >>> fast = builder.to_image()            # in-memory
+            >>> fast = builder.to_image("cache.bin") # on-disk mmap
         """
