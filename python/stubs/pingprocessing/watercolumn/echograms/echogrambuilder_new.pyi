@@ -438,11 +438,89 @@ class EchogramBuilder:
     def set_sample_nr_extent(self, min_sample_nrs, max_sample_nrs):
         """Set sample number extents."""
 
-    def add_ping_param(self, name, x_reference, y_reference, vec_x_val, vec_y_val):
-        """Add a ping parameter (e.g., bottom depth, layer boundary)."""
+    def add_ping_param(self, name, x_reference, y_reference, vec_x_val, vec_y_val, values=None):
+        """
+        Add a ping parameter (e.g., bottom depth, layer boundary).
+
+        Args:
+            name: Parameter name.
+            x_reference: Reference for ``vec_x_val`` (e.g. ``"Ping time"``,
+                ``"Date time"``, ``"Ping index"``, or the registered custom
+                axis name).
+            y_reference: Reference for ``vec_y_val`` (e.g. ``"Depth (m)"``).
+            vec_x_val: X coordinates of the control points.
+            vec_y_val: Y values at those control points.
+            values: Optional per-control-point value array aligned with
+                ``vec_x_val``/``vec_y_val``. When provided, the values are
+                interpolated onto the builder's ping axis using the same
+                ``x_reference`` and nearest-extrapolation scheme as
+                ``vec_y_val`` and the echogram viewer auto-colors the
+                param-display overlay by them. May also be a dense
+                per-ping array (length == n_pings); in that case it is
+                stored verbatim.
+        """
+
+    def set_param_values(self, name, values, vec_x_val=None, x_reference=None):
+        """
+        Attach a value array to an existing param.
+
+        Two input modes are supported:
+
+        * **Dense** (default): ``values`` already has one entry per ping
+          (length ``== n_pings``), aligned with the builder's ping axis.
+        * **Sparse**: ``values`` is given at the same control points as
+          the param's ``vec_x_val``. Pass ``vec_x_val`` and ``x_reference``
+          to request interpolation onto the ping axis using the same
+          nearest-extrapolation linear interpolation as
+          :meth:`EchogramCoordinateSystem.add_ping_param`.
+        """
+
+    def get_param_values(self, name):
+        """Return the raw per-ping value array for a param, or ``None``."""
+
+    def has_param_values(self, name):
+        """Return ``True`` when ``name`` has an associated per-ping value array."""
 
     def get_ping_param(self, name, use_x_coordinates=False):
         """Get a ping parameter's values in current coordinate system."""
+
+    def get_param_names(self):
+        """Return list of currently registered ping parameter names."""
+
+    def get_param_for_image(self, name, value_name=None, x_range=None, max_points=None):
+        """
+        Get a ping parameter's (x, y[, values]) for overlaying on an echogram image.
+
+        Thin, efficient wrapper around :meth:`get_ping_param` that adds:
+
+        * field-of-view (FOV) filtering via ``x_range`` (numeric, or datetime
+          objects when the current x-axis is ``"Date time"``);
+        * stride-based downsampling to at most ``max_points`` samples;
+        * an optional secondary parameter (``value_name``) whose values are
+          returned aligned with the (x, y) samples so they can be used for
+          colormap-based coloring (e.g. a colorbar).
+
+        The returned x-array has the same type as ``get_ping_param`` returns:
+        numeric for numeric axes, list of ``datetime`` objects for
+        ``"Date time"``. NaN values in y (and in ``values`` when requested)
+        are filtered out.
+
+        Args:
+            name: Parameter name (must be registered via ``add_ping_param``).
+            value_name: Optional name of a second parameter. If given, its
+                values (per ping, after the same FOV/downsampling) are
+                returned as the third element of the tuple.
+            x_range: Optional ``(x0, x1)`` bounds for FOV filtering. For a
+                datetime axis, either numeric POSIX timestamps or
+                ``datetime`` objects are accepted.
+            max_points: Optional maximum number of returned points. Uses
+                simple stride (``[::step]``) decimation which is O(1) memory
+                and preserves spatial distribution.
+
+        Returns:
+            Tuple ``(x, y, values)`` where ``values`` is ``None`` when
+            ``value_name`` is not provided. Arrays are aligned and NaN-free.
+        """
 
     def get_y_indices(self, wci_nr):
         """Get Y indices mapping image coordinates to data indices."""

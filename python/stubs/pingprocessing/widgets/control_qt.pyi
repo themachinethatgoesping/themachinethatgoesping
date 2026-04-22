@@ -23,11 +23,12 @@ from themachinethatgoesping.pingprocessing.widgets.control_spec import (
     IntSliderSpec as IntSliderSpec,
     IntTextSpec as IntTextSpec,
     LabelSpec as LabelSpec,
+    MultiSelectSpec as MultiSelectSpec,
     TextSpec as TextSpec
 )
 
 
-ControlSpecType: TypeAlias = Union[themachinethatgoesping.pingprocessing.widgets.control_spec.FloatSliderSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.IntSliderSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.DropdownSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.CheckboxSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.IntTextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.FloatTextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.ButtonSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.LabelSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.TextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.HTMLSpec]
+ControlSpecType: TypeAlias = Union[themachinethatgoesping.pingprocessing.widgets.control_spec.FloatSliderSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.IntSliderSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.DropdownSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.MultiSelectSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.CheckboxSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.IntTextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.FloatTextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.ButtonSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.LabelSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.TextSpec, themachinethatgoesping.pingprocessing.widgets.control_spec.HTMLSpec]
 
 class QtControlHandle(themachinethatgoesping.pingprocessing.widgets.control_spec.ControlHandle):
     """

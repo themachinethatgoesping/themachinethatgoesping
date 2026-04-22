@@ -61,6 +61,12 @@ class EchogramCoordinateSystem:
         """Number of pings."""
 
     @property
+    def x_coordinates(self) -> numpy.ndarray:
+        """
+        X coordinate values for the current rendered image columns (one per column).
+        """
+
+    @property
     def initialized(self) -> bool:
         """Whether coordinate system is fully initialized."""
 

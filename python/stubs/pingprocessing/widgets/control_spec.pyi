@@ -94,6 +94,32 @@ class DropdownSpec:
 
     __match_args__: tuple = ...
 
+class MultiSelectSpec:
+    """
+    Multi-selection list control.
+
+    ``value`` is a sequence of selected option values (the second element of
+    ``(label, value)`` tuples, or the option itself if a plain entry).
+    """
+
+    width: str = '180px'
+
+    rows: int = 4
+
+    __dataclass_params__: dataclasses._DataclassParams = ...
+
+    __dataclass_fields__: dict = ...
+
+    __hash__: None = None
+
+    def __init__(self, name: str, description: str, options: list = ..., value: Sequence[Any] = ..., width: str = '180px', rows: int = 4) -> None: ...
+
+    def __repr__(self): ...
+
+    def __eq__(self, other): ...
+
+    __match_args__: tuple = ...
+
 class CheckboxSpec:
     r"""
     CheckboxSpec(name: 'str', description: 'str', value: 'bool' = False, tooltip: 'str' = \'\')
@@ -251,7 +277,7 @@ class HTMLSpec:
 
     __match_args__: tuple = ('name', 'value')
 
-ControlSpecType: TypeAlias = Union[FloatSliderSpec, IntSliderSpec, DropdownSpec, CheckboxSpec, IntTextSpec, FloatTextSpec, ButtonSpec, LabelSpec, TextSpec, HTMLSpec]
+ControlSpecType: TypeAlias = Union[FloatSliderSpec, IntSliderSpec, DropdownSpec, MultiSelectSpec, CheckboxSpec, IntTextSpec, FloatTextSpec, ButtonSpec, LabelSpec, TextSpec, HTMLSpec]
 
 class ControlHandle:
     """Base class for a UI-agnostic control handle."""
@@ -347,6 +373,8 @@ ECHO_NAV_SPECS: list = ...
 ECHO_MISC_SPECS: list = ...
 
 ECHO_PARAM_SPECS: list = ...
+
+ECHO_PARAM_DISPLAY_SPECS: list = ...
 
 ECHO_TAB_LAYOUT: dict = ...
 
