@@ -9,6 +9,8 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.navigation_nanopy.datastructures
+
 
 class XYZ_1:
     """
@@ -2319,6 +2321,23 @@ class BeamSampleGeometry:
     def forward_z_flat(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """@copydoc forward_x_flat"""
 
+    @overload
+    def forward_xyz(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
+        """
+        Compute (x, y, z) for (beam_index, sample_number) pairs in a single pass. Returns a tuple (x, y, z) of shape [N]. ~3x faster than three separate calls.
+        """
+
+    @overload
+    def forward_xyz(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], last_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_step: int = 1) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]]:
+        """
+        Compute (x, y, z) for sample ranges per beam in a single pass. Returns a tuple of three 2D arrays [B x max_samples], NaN-padded.
+        """
+
+    def forward_xyz_flat(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
+        """
+        Compute the full flat (x, y, z) arrays for all beams and samples in a single pass.
+        """
+
     def get_bounds(self) -> BeamSampleGeometryBounds:
         """
         Compute the bounding box of all beam/sample coordinates.
@@ -2326,6 +2345,75 @@ class BeamSampleGeometry:
         Evaluates the forward transform at the first and last sample of every
         beam and takes min/max.  Only populates bounds for dimensions that
         have a set affine; others stay NaN.
+        """
+
+    def with_offset(self, dx: float = 0.0, dy: float = 0.0, dz: float = 0.0) -> BeamSampleGeometry:
+        """
+        Bake a translation (dx, dy, dz) into the geometry's affines.
+
+        Only the per-beam offsets of set affines are modified; slopes are
+        untouched. Axes whose affine is unset are ignored silently.
+        """
+
+    def with_rigid_transform(self, yaw_deg: float, pitch_deg: float, roll_deg: float, tx: float = 0.0, ty: float = 0.0, tz: float = 0.0) -> BeamSampleGeometry:
+        """
+        Bake a rigid transform (yaw/pitch/roll rotation + translation) into
+        the geometry's affines.
+
+        Requires that all three (x, y, z) affines are set, since a rotation
+        mixes the axes. After this call, evaluating the geometry at any sample
+        number yields the rotated-then-translated coordinate of that point.
+
+        Args:
+            yaw_deg: yaw in °, 0° == north, 90° == east
+            pitch_deg: pitch in °, positive bow up
+            roll_deg: roll in °, positive port up
+            tx: ,ty,tz     translation applied AFTER rotation
+        """
+
+    @overload
+    def with_geolocation(self, geolocation_utm: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationUTM, ref_northing: float = 0.0, ref_easting: float = 0.0) -> BeamSampleGeometry:
+        """
+        Apply a GeolocationUTM (UTM northing/easting/depth + ypr) to the
+        geometry, subtracting a float64 reference origin to preserve
+        precision.
+
+        Absolute UTM coordinates (~10^6 m) cannot be represented accurately in
+        the float32 affines used internally — float32 only has ~0.5 m
+        precision at that magnitude, which destroys per-sample geometry. This
+        overload subtracts the ``ref_easting`` / ``ref_northing`` reference in
+        double precision before casting to float, so the resulting (x, y, z)
+        are expressed in metres relative to that reference and round-trip
+        cleanly.
+
+        The output convention matches the GeolocationLocal overload:
+          x ↔ northing-relative, y ↔ easting-relative, z ↔ depth.
+
+        Args:
+            g: UTM pose (northing/easting in metres, ypr in deg)
+            ref_northing: reference UTM northing in metres (subtracted from
+                          g.northing)
+            ref_easting: reference UTM easting in metres (subtracted from
+                         g.easting)
+        """
+
+    @overload
+    def with_geolocation(self, geolocation: themachinethatgoesping.navigation_nanopy.datastructures.Geolocation) -> BeamSampleGeometry:
+        """
+        Apply a Geolocation (depth + ypr) to the geometry.
+
+        Equivalent to with_rigid_transform(g.yaw, g.pitch, g.roll, 0, 0, g.z).
+        """
+
+    @overload
+    def with_geolocation(self, geolocation_local: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLocal) -> BeamSampleGeometry:
+        """
+        Apply a GeolocationLocal (northing/easting/depth + ypr) to the
+        geometry.
+
+        The resulting (x, y, z) will be expressed as (northing, easting,
+        depth).
+        Note: x ↔ northing and y ↔ easting (northing-first convention).
         """
 
     def backward_nearest(self, data: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], y_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], supersampling: int = 1, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:

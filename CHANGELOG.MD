@@ -5,10 +5,10 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
 
 # [unreleased]
-- pingprocessing -> 0.12.2
+- pingprocessing -> 0.13.0
 - algorithms -> 0.11.1
 - tools -> 0.31.2
-- echosounders -> 0.46.3
+- echosounders -> 0.47.0
 - navigation -> 0.18.2
 
 ## Improvements
@@ -27,6 +27,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: additional options for reprojecting navigation plots
 - pingprocessing: Echogrambuilder add option to add custom axis
 - pingprocessing: gridded echogram backend
+- echosounders: added container overloads for selected kongsberg datagram substructures
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
