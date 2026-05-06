@@ -2467,3 +2467,92 @@ class BeamSampleGeometry:
 
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
+
+class BeamSampleGeometryPiecewise:
+    """
+    Per-beam piecewise-linear sample geometry with K shared sample-number knots. coord_axis[beam](sample_nr) = offsets[seg, beam] + slopes[seg, beam] * sample_nr, where seg is the segment containing sample_nr.
+    """
+
+    def __init__(self) -> None:
+        """Construct an empty BeamSampleGeometryPiecewise"""
+
+    def __eq__(self, other: BeamSampleGeometryPiecewise) -> bool: ...
+
+    def get_n_beams(self) -> int: ...
+
+    def get_n_segments(self) -> int: ...
+
+    def get_first_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+
+    def get_knot_sample_nrs(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def has_x(self) -> bool: ...
+
+    def has_y(self) -> bool: ...
+
+    def has_z(self) -> bool: ...
+
+    def get_offsets_x(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_slopes_x(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_offsets_y(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_slopes_y(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_offsets_z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_slopes_z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    @staticmethod
+    def from_layer_xyz(first_sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], knot_sample_nrs: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], knot_xyz: Annotated[NDArray[numpy.float32], dict(shape=(None, None, None), order='C')]) -> BeamSampleGeometryPiecewise:
+        """
+        Build from a [K+1, n_beams, 3] tensor of world-frame knot xyz (produced by LayerRaytracer.trace_at_times).
+        """
+
+    def eval_xyz(self, beam: int, sample_nr: float) -> list[float]:
+        """Evaluate (x, y, z) at (beam, sample_nr)."""
+
+    def is_single_affine(self, tol: float = 0.0010000000474974513) -> bool:
+        """Return True if all segments collapse to a single affine per beam."""
+
+    def to_single_affine(self) -> BeamSampleGeometry:
+        """Collapse to a single-segment BeamSampleGeometry (uses segment 0)."""
+
+    def copy(self) -> BeamSampleGeometryPiecewise:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> BeamSampleGeometryPiecewise: ...
+
+    def __deepcopy__(self, arg: dict, /) -> BeamSampleGeometryPiecewise: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamSampleGeometryPiecewise:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""

@@ -28,6 +28,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: Echogrambuilder add option to add custom axis
 - pingprocessing: gridded echogram backend
 - echosounders: added container overloads for selected kongsberg datagram substructures
+- echosounders: get_sound_velocity_profile function for KongsbergAllFileData
+- algorithms: added sound velocity profile interpolation functions
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
@@ -39,6 +41,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: check for active attitude sensor when parsing navigation data from kmall files (fixes wrong navigation for some files)
 - fixed echogram layers for new echogrambuilder class
 - pingprocessing: fixed echogram get_bottom_z not reacting to beam selection
+- navigation: fixed wrong combined transmitter offset 
 
 
 ## Maintanance
