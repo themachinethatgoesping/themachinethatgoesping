@@ -8,6 +8,7 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.navigation_nanopy.datastructures
 
 
@@ -21,7 +22,7 @@ class SoundVelocityProfile:
         """Construct an empty SoundVelocityProfile"""
 
     @overload
-    def __init__(self, z: Annotated[NDArray[numpy.float32], dict(order='C')], c: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+    def __init__(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """Construct from depth (m) and sound speed (m/s) arrays."""
 
     def __eq__(self, other: SoundVelocityProfile) -> bool: ...
@@ -30,19 +31,8 @@ class SoundVelocityProfile:
     def uniform(c: float, z_max: float = 12000.0) -> SoundVelocityProfile:
         """Convenience: constant SVP from surface to z_max."""
 
-    def set(self, z: Annotated[NDArray[numpy.float32], dict(order='C')], c: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+    def set(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """Set depth/sound-speed tables and recompute layer constants."""
-
-    def get_z(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def get_c(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def get_g(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def get_n_layers(self) -> int: ...
-
-    def get_sound_speed(self, z: float) -> float:
-        """Sound speed at depth z (linear interp; clamped at endpoints)."""
 
     def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """All depth knots (m), absolute coordinates."""
@@ -50,13 +40,29 @@ class SoundVelocityProfile:
     def get_sound_speeds_in_meters_per_second(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """All sound speeds (m/s), one per depth knot."""
 
+    def get_sound_speed_gradients_in_per_second(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """Sound-speed gradient dc/dz (s⁻¹) per layer (size = number_of_layers)."""
+
+    def get_inverse_sound_speed_gradients_in_seconds(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """1/gradient (s) per layer; 0 for iso-velocity layers."""
+
+    def get_isovelocity_flags(self) -> Annotated[NDArray[numpy.bool_], dict(order='C')]:
+        """Per-layer iso-velocity flag (true when |gradient| < ISO_EPS)."""
+
+    def get_number_of_layers(self) -> int:
+        """Number of layers (= number of knots - 1)."""
+
+    def get_sound_speed(self, depth_in_meters: float) -> float:
+        """Sound speed at depth z (linear interp; clamped at endpoints)."""
+
     def get_depth_in_meters(self, index: int) -> float:
         """Depth (m) at the given knot index."""
 
     def get_sound_speed_in_meters_per_second(self, index: int) -> float:
         """Sound speed (m/s) at the given knot index."""
 
-    def get_number_of_entries(self) -> int: ...
+    def get_number_of_entries(self) -> int:
+        """Number of (depth, sound speed) entries (= number_of_layers + 1)."""
 
     def get_timestamp(self) -> float | None:
         """Unix timestamp (seconds since epoch, UTC), or None if not set."""
@@ -174,6 +180,31 @@ class LayerRaytracer:
     def trace_at_angles(self, tilt_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], knot_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], poses: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.Geolocation], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Same as trace_at_angles(tx_poses, rx_poses) but with a single per-knot pose.
+        """
+
+    def trace_to_xyz(self, tilt_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], two_way_travel_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_delays: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_mount: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, rx_mount: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, tx_face_depth_m: float, n_knots: int = 2, nav: themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon | None = None, t_tx_ping: float = 0.0, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Trace beams using Kongsberg-native dual-array inputs.
+        Output frame: TX-body axes (forward, starboard, down) at
+        t_tx_ping, origin = TX transducer face at t_tx_ping. Apply
+        BeamSampleGeometry::with_rigid_transform with the world TX-face
+        pose at t_tx_ping to obtain world coordinates.
+
+        tilt_deg:        [N] tilt re TX array, +forward (deg)
+        crosstrack_deg:  [N] beam pointing re RX array, +starboard (deg)
+        two_way_travel_times: [N] (s)
+        tx_delays:       [N] per-beam sector TX delay re t_tx_ping (s)
+        tx_mount, rx_mount: PositionalOffsets of the TX and RX arrays
+        tx_face_depth_m: absolute world depth of TX face at t_tx_ping (m)
+        n_knots:         number of trace knots (>=2). Knot k is at
+                         one-way time twtt[i]*k/(2*(n_knots-1));
+                         k = n_knots-1 is the bottom return.
+        nav:             optional NavigationInterpolatorLatLon for
+                         motion compensation (sampled at t_tx_eff,
+                         t_rx_eff and t_tx_ping). Pass None to skip.
+        t_tx_ping:       wall-clock time of the ping (s).
+        Returns [n_knots, N, 3] xyz in TX-body-at-t_tx_ping; NaN where
+        the ray turned or input was non-finite.
         """
 
     def copy(self) -> LayerRaytracer:
