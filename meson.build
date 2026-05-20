@@ -23,6 +23,7 @@ module_algorithms = subproject('algorithms', default_options: ['cpp_std=' + get_
 module_navigation = subproject('navigation', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_echosounders = subproject('echosounders', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_pingprocessing= subproject('pingprocessing', default_options: ['cpp_std=' + get_option('cpp_std')])
+module_widgets= subproject('widgets', default_options: ['cpp_std=' + get_option('cpp_std')])
 
 # python only projects
 module_gridding = subproject('gridding', default_options: ['cpp_std=' + get_option('cpp_std')])

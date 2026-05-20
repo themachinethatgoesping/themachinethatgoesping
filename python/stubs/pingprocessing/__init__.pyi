@@ -5,7 +5,6 @@ from . import (
     overview as overview,
     split_pings as split_pings,
     testing as testing,
-    watercolumn as watercolumn,
-    widgets as widgets
+    watercolumn as watercolumn
 )
 import themachinethatgoesping.pingprocessing_nanopy as pingprocessing_nanopy

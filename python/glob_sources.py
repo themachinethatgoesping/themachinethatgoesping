@@ -23,6 +23,7 @@ subproject_list = [
     "subprojects/algorithms",
     "subprojects/echosounders",
     "subprojects/pingprocessing",
+    "subprojects/widgets",
     #"subprojects/gridding",
 ]
 
