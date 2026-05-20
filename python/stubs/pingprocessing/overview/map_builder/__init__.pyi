@@ -10,7 +10,7 @@ Similar in design to the echograms module, it uses:
 - Affine transforms for pixel ↔ world coordinate mapping
 
 Example:
-    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.widgets import MapViewerPyQtGraph
     from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder, TileBuilder
 
     # Data layers (numerical, with colorbar)

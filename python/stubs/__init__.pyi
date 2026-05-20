@@ -16,7 +16,8 @@ from . import (
     pingprocessing_nanopy as pingprocessing_nanopy,
     scripts as scripts,
     tools as tools,
-    tools_nanopy as tools_nanopy
+    tools_nanopy as tools_nanopy,
+    widgets as widgets
 )
 
 

@@ -1,0 +1,36 @@
+
+
+def find_closest_index(sorted_array, target):
+    """
+    Find the index of the closest number in a sorted array using NumPy.
+
+    Parameters:
+        sorted_array (np.ndarray): A sorted NumPy array of numbers.
+        target (float): The target number to find the closest to.
+
+    Returns:
+        int: The index of the closest number in the sorted array.
+    """
+
+class InteractiveLineBuilder:
+    def __init__(self, echoviewer, filepath=None, axnr=-1): ...
+
+    def to_file(self, filepath=None): ...
+
+    def __del__(self): ...
+
+    def on_draw(self, event=0): ...
+
+    def update_line(self): ...
+
+    def reinit_xs(self): ...
+
+    def redraw_line(self): ...
+
+    def on_click(self, event): ...
+
+    def on_release(self, event): ...
+
+    def on_motion(self, event): ...
+
+    def on_key_press(self, event): ...

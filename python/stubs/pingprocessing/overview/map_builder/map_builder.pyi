@@ -77,7 +77,7 @@ class MapBuilder:
 
     Example usage:
         from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder
-        from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+        from themachinethatgoesping.widgets import MapViewerPyQtGraph
 
         # Create builder and add layers
         builder = MapBuilder()

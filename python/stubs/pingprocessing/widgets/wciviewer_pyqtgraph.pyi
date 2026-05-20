@@ -5,8 +5,8 @@ import matplotlib.figure
 
 import themachinethatgoesping.echosounders as echosounders
 import themachinethatgoesping.pingprocessing.watercolumn.image as mi
-import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
-from themachinethatgoesping.pingprocessing.widgets.tqdmwidget import (
+import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
+from themachinethatgoesping.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
 )
 

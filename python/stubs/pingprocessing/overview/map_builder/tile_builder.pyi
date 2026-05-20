@@ -9,7 +9,7 @@ This means no colormap/colorbar is needed - the images are displayed directly.
 
 Example:
     from themachinethatgoesping.pingprocessing.overview.map_builder import TileBuilder
-    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.widgets import MapViewerPyQtGraph
 
     # Create tile builder with OSM tiles
     tiles = TileBuilder()

@@ -20,7 +20,7 @@ import pyqtgraph.graphicsItems.ROI
 import pyqtgraph.graphicsItems.ScatterPlotItem
 
 import themachinethatgoesping as theping
-import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
+import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 class DraggableScatterPlotItem(pyqtgraph.graphicsItems.ScatterPlotItem.ScatterPlotItem):

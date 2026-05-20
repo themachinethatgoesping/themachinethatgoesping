@@ -16,11 +16,11 @@ import mi
 
 import themachinethatgoesping.echosounders as echosounders
 import themachinethatgoesping.pingprocessing.watercolumn.image as mi
-import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
-from themachinethatgoesping.pingprocessing.widgets.tqdmwidget import (
+import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
+from themachinethatgoesping.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
 )
-from themachinethatgoesping.pingprocessing.widgets.videoframes import (
+from themachinethatgoesping.widgets.videoframes import (
     VideoFrames as VideoFrames
 )
 

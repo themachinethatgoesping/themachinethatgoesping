@@ -12,7 +12,7 @@ The viewer handles:
 - Ping position markers from connected viewers
 
 Example with data layers:
-    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.widgets import MapViewerPyQtGraph
     from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder
 
     builder = MapBuilder()
@@ -22,7 +22,7 @@ Example with data layers:
     viewer = MapViewerPyQtGraph(builder)
 
 Example with background tiles:
-    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.widgets import MapViewerPyQtGraph
     from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder, TileBuilder
 
     # Data layer
@@ -40,7 +40,7 @@ Example with background tiles:
     viewer.set_tile_visible(False)  # Hide tiles
 
 Example tiles-only (no data layers):
-    from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+    from themachinethatgoesping.widgets import MapViewerPyQtGraph
     from themachinethatgoesping.pingprocessing.overview.map_builder import TileBuilder
 
     tiles = TileBuilder()
@@ -55,7 +55,7 @@ import dataclasses
 import np
 import pg
 
-import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
+import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 HAS_MATPLOTLIB: bool = True
@@ -179,7 +179,7 @@ class MapViewerPyQtGraph:
     The MapBuilder provides data; the viewer controls all rendering properties.
 
     Example:
-        from themachinethatgoesping.pingprocessing.widgets import MapViewerPyQtGraph
+        from themachinethatgoesping.widgets import MapViewerPyQtGraph
         from themachinethatgoesping.pingprocessing.overview.map_builder import MapBuilder
 
         builder = MapBuilder()

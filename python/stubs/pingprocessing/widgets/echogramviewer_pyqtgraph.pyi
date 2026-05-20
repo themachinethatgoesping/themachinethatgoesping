@@ -3,7 +3,7 @@ PyQtGraph-based echogram viewer that streams via pyqtgraph's Jupyter widgets.
 """
 
 import themachinethatgoesping as theping
-import themachinethatgoesping.pingprocessing.widgets.pyqtgraph_helpers as pgh
+import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 class EchogramViewerPyQtGraph:
