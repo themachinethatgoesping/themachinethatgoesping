@@ -10,6 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools -> 0.31.2
 - echosounders -> 0.47.0
 - navigation -> 0.18.2
+- widgets (new library) -> 0.1.1
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
@@ -30,6 +31,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: added container overloads for selected kongsberg datagram substructures
 - echosounders: get_sound_velocity_profile function for KongsbergAllFileData
 - algorithms: added sound velocity profile interpolation functions
+- pingprocessing - make_image: enable usage even if no navigation is available
 
 ## Performance
  - echosounders: improved initializaiton of navigation data interface when adding many files (fixed sorting issues)
