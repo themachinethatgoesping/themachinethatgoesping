@@ -1,5 +1,5 @@
 context:
-  version: 0.33.0.dev2
+  version: 0.33.0.rc1
 
 package:
   name: themachinethatgoesping
