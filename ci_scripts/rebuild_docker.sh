@@ -14,7 +14,7 @@ echo $PAT | docker login ghcr.io --username themachinethatgoesping --password-st
 docker buildx build docker-ubuntu -t ghcr.io/themachinethatgoesping/ubuntu-dep
 docker push ghcr.io/themachinethatgoesping/ubuntu-dep
 
-docker buildx build docker-manylinux_x86_64 -t ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
-docker push ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
+docker buildx build docker-manylinux_x86_64 -t ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep
+docker push ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep
 
 

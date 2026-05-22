@@ -5,17 +5,18 @@
 # SPDX-License-Identifier: CC0-1.0
 
 #FROM quay.io/pypa/manylinux2014_x86_64
-FROM quay.io/pypa/manylinux_2_28_x86_64
+#FROM quay.io/pypa/manylinux_2_28_x86_64
+FROM quay.io/pypa/manylinux_2_34_x86_64
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
 RUN yum makecache --refresh
 
 # manual package versions
-ARG BOOST_VERSION="1.89.0"
-ARG BOOST_VERSION_="1_89_0"
+ARG BOOST_VERSION="1.91.0"
+ARG BOOST_VERSION_="1_91_0"
 ARG BOOST_MODULES="--with-iostreams --with-filesystem"
 
-ARG CCACHE_VERSION="4.8.3"
+ARG CCACHE_VERSION="4.13.6"
 
 # install source build dependencies
 RUN yum update -y
@@ -23,7 +24,7 @@ RUN yum install -y git git-lfs
 RUN yum install -y bzip2 curl zlib
 RUN yum install -y pkgconfig cmake
 #RUN yum install -y proj
-RUN yum install -y gcc-toolset-14
+RUN yum install -y gcc-toolset-15
 # Required for PySide6/pyqtgraph during testing
 RUN yum install -y libxkbcommon libxkbcommon-x11
 
@@ -37,9 +38,9 @@ RUN cd boost_${BOOST_VERSION_} && ./b2 install --variant=release --threading=mul
 
 
 # -- install ccache () --
-RUN curl -O -L https://github.com/ccache/ccache/releases/download/v${CCACHE_VERSION}/ccache-${CCACHE_VERSION}-linux-x86_64.tar.xz
-RUN tar -xf ccache-${CCACHE_VERSION}-linux-x86_64.tar.xz
-RUN mv ccache-${CCACHE_VERSION}-linux-x86_64/ccache /usr/local/bin/ -v
+RUN curl -O -L https://github.com/ccache/ccache/releases/download/v${CCACHE_VERSION}/ccache-${CCACHE_VERSION}-linux-x86_64-glibc.tar.xz
+RUN tar -xf ccache-${CCACHE_VERSION}-linux-x86_64-glibc.tar.xz
+RUN mv ccache-${CCACHE_VERSION}-linux-x86_64-glibc/ccache /usr/local/bin/ -v
 #RUN /usr/bin/rm -r ccache*
 
 # --- for testing the image --

@@ -5,7 +5,7 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-FROM ubuntu:noble
+FROM ubuntu:resolute
 LABEL maintainer="Peter Urban <peter.urban@ugent.be>"
 
 # install perquisites
@@ -20,9 +20,9 @@ RUN apt install -y build-essential ccache pkg-config cmake python3-pip libboost-
 RUN apt install -y libdbus-1-3 libegl1 libxkbcommon0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0
 
 # set g++14 as default compiler
-RUN apt install -y gcc-14 g++-14
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 110 \
-    --slave /usr/bin/g++ g++ /usr/bin/g++-14
+RUN apt install -y gcc-14 g++-16
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-16 110 \
+    --slave /usr/bin/g++ g++ /usr/bin/g++-16
 
 RUN update-alternatives --config gcc
 

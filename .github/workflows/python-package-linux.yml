@@ -44,7 +44,7 @@ jobs:
 
     name: Build linux wheel for python${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    container: ghcr.io/themachinethatgoesping/manylinux_x86_64-dep
+    container: ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep
     strategy:
       fail-fast: false
       matrix:
