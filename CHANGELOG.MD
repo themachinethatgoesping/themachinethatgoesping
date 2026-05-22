@@ -4,6 +4,12 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [0.33.1] - 22-05-2026
+- echosounders -> 0.47.1
+
+## Fixes
+- echosounders: fixed wrong handling of empty padding in kmall svp datagram
+
 # [0.33.0] - 22-05-2026
 - pingprocessing -> 0.13.0
 - algorithms -> 0.11.1
