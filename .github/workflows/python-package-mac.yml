@@ -190,7 +190,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-3-version: ["11", "12", "13"]
+        python-3-version: ["11", "12", "13", "14"]
         os: ["macos-14", "macos-15"]
 
 

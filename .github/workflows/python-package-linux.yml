@@ -114,7 +114,7 @@ jobs:
 
     strategy:
       matrix:
-        python-3-version: ['11','12','13']
+        python-3-version: ["11", "12", "13", "14"]
 
         # include:
         #   - python-version: '3.12'
