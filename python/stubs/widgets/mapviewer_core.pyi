@@ -12,6 +12,7 @@ import dataclasses
 import np
 import pg
 
+import themachinethatgoesping.pingprocessing as pingprocessing
 from themachinethatgoesping.widgets.control_spec import (
     ControlPanel as ControlPanel
 )

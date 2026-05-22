@@ -56,6 +56,9 @@ jobs:
           - { python-version: '3.13', 
               pip-path: '/opt/python/cp313-cp313/bin'}
               #pip-pre: '--pre'}
+          - { python-version: '3.14', 
+              pip-path: '/opt/python/cp314-cp314/bin'}
+              #pip-pre: '--pre'}
   
     steps:
     - name: append github path
@@ -179,7 +182,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13']
+        python-version: ['3.11','3.12','3.13', '3.14']
 
         # include:
         #   - python-version: '3.12'
