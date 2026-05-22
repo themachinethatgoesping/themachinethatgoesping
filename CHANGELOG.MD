@@ -6,9 +6,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1
+- widgets -> 0.1.2
+
+## Improvements
+- echosounders: added unittest for kmall file handler
 
 ## Fixes
 - echosounders: fixed wrong handling of empty padding in kmall svp datagram
+- widgets: fixed wrong import for TILE_SOURCES in mapviewer widgets
 
 # [0.33.0] - 22-05-2026
 - pingprocessing -> 0.13.0
