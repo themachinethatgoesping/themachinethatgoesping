@@ -1,7 +1,41 @@
 .. SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
 ..
 .. SPDX-License-Identifier: MPL-2.0
+.. |logo-DSM| image:: https://www.geomar.de/fileadmin/content/forschen/fb2/mg/deepseamon/DSM-Logo_large_black_trans.gif
+   :target: https://www.geomar.de/deepsea-monitoring
+   :alt: DeepSea Monitoring Group - GEOMAR
+   :height: 30
+   
+.. |logo-GEOMAR| image:: https://www.geomar.de/fileadmin/_processed_/a/0/csm_geomar_logo_kurz_4c-large_e50ee49df0.jpg
+   :target: https://www.geomar.de/
+   :alt: GEOMAR Helholtz-Centre for ocean research Kiel
+   :height: 25
+   
+.. |logo-UGent| image:: https://www.ugent.be/++theme++ugent/static/images/logo_ugent_nl.svg
+   :target: https://www.ugent.be/nl
+   :alt: Ghent University
+   :height: 25
+   
+.. |logo-belspo| image:: https://github.com/themachinethatgoesping/.github/blob/main/profile/BELSPO_logo.jpg
+   :target: https://www.belspo.be
+   :alt: belspo
+   :height: 25
 
+.. |logo-TURBEAMS| image:: https://github.com/themachinethatgoesping/.github/blob/main/profile/turbeams_black.png
+   :target: https://hydrogeo.ugent.be/turbeams-about/
+   :alt: TURBEAMS
+   :height: 15
+
+.. |logo-SSPIRIT| image:: https://github.com/themachinethatgoesping/.github/blob/main/profile/SSPIRIT-transparent.png
+   :target: https://hydrogeo.ugent.be/sspirit-about/
+   :alt: SSPIRIT
+   :height: 25
+
+.. |logo-Urcoustics| image:: https://urcoustics.com/wp-content/uploads/2025/09/urcoustics-1-no-background.svg
+   :target: https://urcoustics.com/
+   :alt: Urcoustics
+   :height: 25
+   
 **********************
 themachinethatgoesping
 **********************
@@ -10,12 +44,12 @@ themachinethatgoesping
 Core components of this library are implemented in C++ (for performance) and then exposed as high level python interfaces (for usability). 
 On top of the core, many libraries, tools and applications are implemented in Python directly, making use of the fast prototyping features of this language.
 
-Ping is still in early stage. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
+Ping currently supports Kongsberg .all/.wcd, .kmall/.kmwcd and Simrad .raw (EK80) formats. More formats will be added in the future.
 
 .. admonition:: Note
    :class: important
    
-   Ping is still in early stage. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
+   Ping is still in development. If you are interested in our plans and time line, contact me: peter.urban@ugent.be
 
 .. _where_to_start:
 
@@ -43,12 +77,23 @@ Python user
         .. code-block:: console
 
            $ pip install themachinethatgoesping
-           
-.. admonition:: Conda / mamba
-   :class: important
 
-   Currently there are no conda packages available. 
-   However, you can install ping with pip in a conda environment. 
+    .. tab-item:: miniforge/mamba
+        :sync: key_mamba
+
+        .. code-block:: console
+
+           # Latest development releases are made available on the themachinethatgoesping channel
+           $ mamba install themachinethatgoesping -c themachinethatgoesping
+
+    .. tab-item:: anaconda/conda
+        :sync: key_mamba
+
+        .. code-block:: console
+
+           # Latest development releases are made available on the themachinethatgoesping channel
+           $ conda install themachinethatgoesping -c themachinethatgoesping
+           
 
 If you need help setting up a python environment, see the :ref:`new_to_python` section.
 For more details on the installation see :ref:`installation_user`. To install from source see :ref:`installation_from_source`.
@@ -61,6 +106,13 @@ Developer / contributor
 If you want to contribute to **Ping** you want to install it from source using `meson <https://mesonbuild.com/>`_ and `ninja <https://ninja-build.org/>`_ (instead of pip). 
 For details see :ref:`installation_from_source`.
 You may also want to check out the :ref:`contribute` section.
+
+Acknowledgements / Funding
+==========================
+
+- The code of this project is partly based on code that was written while working for the DeepSea Monitoring Group |logo-DSM| at GEOMAR, Helmholtz Centre for Ocean Research, Kiel, Germany. |logo-GEOMAR|
+- Current development is happening at Ghent University, Ghent, Belgium |logo-UGent| within the  |logo-TURBEAMS|  project that is financed by the Belgian Science Policy Office |logo-belspo| and further within the |logo-SSPIRIT| project which enabled i.e. the implementation of the new Kongsberg .kmall file format
+- Additional contributions come from |logo-Urcoustics|, a hydroacoustics and software consultancy based in Delft, The Netherlands
 
 .. toctree::
    :caption: First steps

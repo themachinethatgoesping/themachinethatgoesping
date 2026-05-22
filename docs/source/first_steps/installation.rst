@@ -10,7 +10,7 @@ Installation (user)
 ###################
 
 If you did not yet install python, please refer to the section :ref:`New to python <setting_up_python>` first.
-**Ping** is available on PyPi and can be installed with pip. We currently do not provide conda packages. However you can install the package in your conda/mamba environment using pip.
+**Ping** is available on PyPi. Latest developer releases are also available on the themachinethatgoesping channel on anaconda cloud.
 
 .. tab-set::
 
@@ -22,7 +22,7 @@ If you did not yet install python, please refer to the section :ref:`New to pyth
            # Here we assume that the name of the environment is "ping"
            $ mamba activate -n ping
 
-           $ pip install themachinethatgoesping
+           $ mamba install themachinethatgoesping -c themachinethatgoesping
 
     .. tab-item:: conda
         :sync: key_conda
@@ -32,7 +32,7 @@ If you did not yet install python, please refer to the section :ref:`New to pyth
            # Here we assume that the name of the environment is "ping"
            $ conda activate -n ping
 
-           $ pip install themachinethatgoesping
+           $ conda install themachinethatgoesping -c themachinethatgoesping
 
     .. tab-item:: pip
         :sync: key_pip
@@ -51,8 +51,8 @@ If you want to update the package use
    :class: note
 
    While we are building pypi packages for Windows and Mac, support and performance is not guaranteed.
-   On windows and MacOS we currently do not support openMP and therefore no multithreading is available.
-   Furthermore we currently only create builds for MacOS with the new m-chips.
+   On windows multiprocessing support openMP is currently limited.
+   Furthermore wecurrently only create builds for MacOS with the new m-chips.
    If you are experienced with building python packages on windows and mac, please contact us to help us improve the situation.
 
 

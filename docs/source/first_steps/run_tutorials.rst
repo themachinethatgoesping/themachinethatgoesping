@@ -27,25 +27,8 @@ A requirements file is provided in the repository. However, we recommend install
 You can install the tutorial requirements using the following command:
 
 .. tab-set::
-
-    .. tab-item:: miniforge / poetry
-        :sync: key_mamba
-
-        .. code-block:: console
-
-            # first enter the tutorials directory
-            $ cd tutorials
-
-            # Here we assume that you are using miniforge / mamba and created and environment called "ping"
-            $ mamba activate -n ping
-
-            # install poetry
-            $ pip install poetry
-
-            # install the requirements fixed in the pyproject.toml and the poetry.lock file
-            $ poetry install
-
-    .. tab-item:: anaconda / poetry
+            
+    .. tab-item:: anaconda / conda
         :sync: key_conda
 
         .. code-block:: console
@@ -53,32 +36,17 @@ You can install the tutorial requirements using the following command:
             # first enter the tutorials directory
             $ cd tutorials
 
-            # Here we assume that you are using conda and created and environment called "ping"
-            $ conda activate -n ping
-
-            # install poetry
-            $ pip install poetry
-
-            # install the requirements fixed in the pyproject.toml and the poetry.lock file
-            $ poetry install
-            
-    .. tab-item:: anaconda / conda
-        :sync: key_conda_pip
-
-        .. code-block:: console
-
-            # first enter the tutorials directory
-            $ cd tutorials
-
             # Here we assume that the name of the environment is "ping"
             $ conda activate -n ping
+
+            $ conda install themchinethatgoesping -c themachinethatgoesping
 
             # if you want to update the package use
             $ conda install --file requirements.txt
 
             
     .. tab-item:: minforge / mamba
-        :sync: key_mamba_pip
+        :sync: key_mamba
 
         .. code-block:: console
 
@@ -87,6 +55,8 @@ You can install the tutorial requirements using the following command:
 
             # Here we assume that the name of the environment is "ping"
             $ mamba activate -n ping
+
+            $ mamba install themchinethatgoesping -c themachinethatgoesping
 
             # if you want to update the package use
             $ mamba install --file requirements.txt
