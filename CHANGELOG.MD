@@ -2,15 +2,20 @@
 
 Ping is still in the bootstrapping phase, thus changes will be frequent and not always documented. 
 
-Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. I do not create tags for the versions as none of them are stable enough to be considered a release.
+Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [unreleased]
+# [0.33.0] - 22-05-2026
 - pingprocessing -> 0.13.0
 - algorithms -> 0.11.1
 - tools -> 0.31.2
 - echosounders -> 0.47.0
 - navigation -> 0.18.2
 - widgets (new library) -> 0.1.1
+
+## Highlights
+- Handling kongsberg .kmall format is now supported in echosounders
+- Vast speedup of echogram generation and plotting
+- Ability to store echograms as memory-mapped files for faster loading and lower memory usage
 
 ## Improvements
 - pingprocessing/overview/pingoverview: added speed calculation for pingoverview
@@ -45,13 +50,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: fixed echogram get_bottom_z not reacting to beam selection
 - navigation: fixed wrong combined transmitter offset 
 
-
 ## Maintanance
 - updated catch2 3.11.0 -> 3.15.0
 - updated fast_float 8.1.0 -> 8.2.5
 - updated nanobind 2.10.2 -> 2.12.0
 - moving to experimental xtensor-python nanobind branch
 - updated xtl 0.8.1 -> 0.8.2
+
 
 # [0.32.1] - 17-12-2025
 - echosounders -> 0.46.2
