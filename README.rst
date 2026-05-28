@@ -132,7 +132,7 @@
    
 .. |info-python| image:: https://img.shields.io/badge/python-3%2E11 | 3%2E12 | 3%2E13 -informational
    :target: https://pypi.org/project/themachinethatgoesping/
-   :alt: Python versions 3.11 | 3.12 | 3.13
+   :alt: Python versions 3.11 | 3.12 | 3.13 | 3.14
 
 .. |info-conda| image:: https://anaconda.org/themachinethatgoesping/themachinethatgoesping/badges/version.svg
    :target: https://anaconda.org/themachinethatgoesping/themachinethatgoesping
@@ -176,7 +176,7 @@
    :alt: SSPIRIT
    :height: 25
 
-.. |logo-Urcoustics| image:: https://urcoustics.com/wp-content/uploads/2025/09/urcoustics-1-no-background.svg
+.. |logo-Urcoustics| image:: https://github.com/themachinethatgoesping/.github/blob/main/profile/urcoustics_transaprent.png
    :target: https://urcoustics.com/
    :alt: Urcoustics
    :height: 25
