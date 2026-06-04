@@ -4,6 +4,14 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [Unreleased]
+
+- tools -> 0.31.3
+
+## Maintenance
+- tools:
+  - update fast_float 8.2.5 -> 8.2.6
+
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1
 - widgets -> 0.1.2
