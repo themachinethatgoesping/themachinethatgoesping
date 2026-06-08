@@ -10,7 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Maintenance
 - tools:
-  - update fast_float 8.2.5 -> 8.2.6
+  - update fast_float 8.2.5 -> 8.2.7
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1
