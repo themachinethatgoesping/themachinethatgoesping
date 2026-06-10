@@ -7,6 +7,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 # [Unreleased]
 
 - tools -> 0.31.3
+- echosounders -> 0.47.2
+
+## Improvements
+- vectorized sub struct access for kmall SKBinary and .all attitude datagrams
 
 ## Maintenance
 - tools:

@@ -1141,13 +1141,17 @@ class AttitudeDatagram(KongsbergAllDatagram):
 
     def get_sensor_system_descriptor(self) -> int: ...
 
-    def get_attitudes(self) -> list[substructures.AttitudeDatagramAttitude]:
+    def get_attitudes(self) -> substructures.AttitudeDatagramAttitudesContainer:
         """N x Attitude data"""
 
-    def set_attitudes(self, arg: Sequence[substructures.AttitudeDatagramAttitude], /) -> None:
+    @overload
+    def set_attitudes(self, arg: substructures.AttitudeDatagramAttitudesContainer, /) -> None:
         """N x Attitude data"""
 
-    def attitudes(self) -> list[substructures.AttitudeDatagramAttitude]:
+    @overload
+    def set_attitudes(self, arg: Sequence[substructures.AttitudeDatagramAttitude], /) -> None: ...
+
+    def attitudes(self) -> substructures.AttitudeDatagramAttitudesContainer:
         """N x Attitude data"""
 
     def get_attitude_sensor_number(self) -> int:

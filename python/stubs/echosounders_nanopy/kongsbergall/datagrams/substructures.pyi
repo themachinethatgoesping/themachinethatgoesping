@@ -1644,6 +1644,66 @@ class AttitudeDatagramAttitude:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class AttitudeDatagramAttitudesContainer:
+    """Container for AttitudeDatagramAttitude with vectorized tensor access"""
+
+    def __init__(self) -> None: ...
+
+    @property
+    def attitudes(self) -> list[AttitudeDatagramAttitude]: ...
+
+    @attitudes.setter
+    def attitudes(self, arg: Sequence[AttitudeDatagramAttitude], /) -> None: ...
+
+    def get_attitudes(self) -> list[AttitudeDatagramAttitude]: ...
+
+    def set_attitudes(self, attitudes: Sequence[AttitudeDatagramAttitude]) -> None: ...
+
+    def get_time_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_sensor_status_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
+
+    def get_roll_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    def get_pitch_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    def get_heave_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    def get_heading_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
+
+    def get_time_in_seconds_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_roll_in_degrees_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_pitch_in_degrees_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_heave_in_meters_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_heading_in_degrees_tensor(self, indices: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_number_of_attitudes(self) -> int: ...
+
+    def __eq__(self, other: AttitudeDatagramAttitudesContainer) -> bool: ...
+
+    def copy(self) -> AttitudeDatagramAttitudesContainer:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> AttitudeDatagramAttitudesContainer: ...
+
+    def __deepcopy__(self, arg: dict, /) -> AttitudeDatagramAttitudesContainer: ...
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class NetworkAttitudeVelocityDatagramAttitude:
     """
     The beam data are given re the transmit transducer or sonar head depth
