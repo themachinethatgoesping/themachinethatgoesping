@@ -31,9 +31,7 @@ build:
         - set LIB=%PREFIX%\Library\lib;%LIB% # [win]
         - curl -L https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -o ninja.exe # [win]
         - set NINJA=%CD%\ninja.exe # [win]
-        # Keep static Boost by default, but force dynamic Boost only for subprojects
-        # that link the non-header-only iostreams component on Windows.
-        - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=disabled" --config-settings=setup-args="-Dtools:dynamic_boost=enabled" --config-settings=setup-args="-Dechosounders:dynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled" --config-settings=setup-args="-Dcpp_std=c++latest"
+        - ${{ PYTHON }} -m pip install . -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=disabled" --config-settings=setup-args="-Dforce_openmp=enabled" --config-settings=setup-args="-Dcpp_std=c++latest"
 
     - if: osx
       then:
@@ -91,9 +89,6 @@ requirements:
   run:
     - python
     - numba
-    - if: win
-      then:
-        - ${{ pin_compatible('boost-cpp') }}
     - ipywidgets
     - ipympl
     - matplotlib
