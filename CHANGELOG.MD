@@ -10,7 +10,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.47.2
 
 ## Improvements
-- vectorized sub struct access for kmall SKBinary and .all attitude datagrams
+- echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
+- echosounders: fixed reading unsorted attitude datagrams (.kmall and .all)
 
 ## Maintenance
 - tools:
