@@ -7,7 +7,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 # [Unreleased]
 
 - tools -> 0.31.3
-- echosounders -> 0.47.2
+- echosounders -> 0.48.0
+
+## Fixes [ breaking change in Results]
+- echosounders: fixed missing 10x in av pulse length correction
 
 ## Improvements
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
@@ -15,7 +18,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 ## Maintenance
 - tools:
-  - update fast_float 8.2.5 -> 8.2.7
+  - update fast_float 8.2.5 -> 8.2.10
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1
@@ -75,7 +78,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation: fixed wrong combined transmitter offset 
 
 ## Maintanance
-- updated catch2 3.11.0 -> 3.15.0
+- updated catch2 3.11.0 -> 3.15.1
 - updated fast_float 8.1.0 -> 8.2.5
 - updated nanobind 2.10.2 -> 2.12.0
 - moving to experimental xtensor-python nanobind branch
