@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <set>
 #include <iostream>
 #include <magic_enum/magic_enum.hpp>

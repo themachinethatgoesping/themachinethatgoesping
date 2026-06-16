@@ -6,7 +6,7 @@
 #include <catch2/catch_approx.hpp>
 #include <xtensor/containers/xtensor.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <xtensor/generators/xrandom.hpp>
 #include <xtensor/misc/xsort.hpp>
 #include <ctime>

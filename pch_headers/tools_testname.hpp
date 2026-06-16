@@ -18,7 +18,7 @@
 #include <string>
 #include <Eigen/Core>
 #include <unordered_map>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <fstream>
 #include <Eigen/Geometry>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>

@@ -6,7 +6,7 @@
 #include <nanobind/stl/string.h>
 #include <vector>
 #include <magic_enum/magic_enum.hpp>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <nanobind/stl/vector.h>
 #include <unordered_map>
 #include <set>

@@ -8,6 +8,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 - tools -> 0.31.3
 - echosounders -> 0.48.0
+- algorithms -> 0.11.2
+- navigation -> 0.18.3
 
 ## Fixes [ breaking change in Results]
 - echosounders: fixed missing 10x in av pulse length correction
@@ -19,6 +21,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Maintenance
 - tools:
   - update fast_float 8.2.5 -> 8.2.10
+  - update fmt 12.1.0 -> 12.2.0
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1

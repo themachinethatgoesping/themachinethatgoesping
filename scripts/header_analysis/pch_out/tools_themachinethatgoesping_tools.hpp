@@ -15,7 +15,7 @@
 #include <cmath>
 #include <complex>
 #include <concepts>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <fmt/ranges.h>

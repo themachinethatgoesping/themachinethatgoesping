@@ -7,7 +7,7 @@
 #include <pybind11/pybind11.h>
 #include <vector>
 #include <magic_enum/magic_enum.hpp>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <unordered_map>
 #include <xtensor-python/pytensor.hpp>
 #include <set>

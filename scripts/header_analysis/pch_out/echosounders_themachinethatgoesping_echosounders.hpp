@@ -46,7 +46,7 @@
 #include <endian.h>
 #include <exception>
 #include <filesystem>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <fmt/ranges.h>

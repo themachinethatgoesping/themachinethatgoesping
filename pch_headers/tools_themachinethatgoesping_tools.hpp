@@ -31,7 +31,7 @@
 #include <fmt/ranges.h>
 #include <unordered_map>
 #include <indicators/progress_spinner.hpp>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <Eigen/Geometry>
 #include <complex>
 #include <algorithm>

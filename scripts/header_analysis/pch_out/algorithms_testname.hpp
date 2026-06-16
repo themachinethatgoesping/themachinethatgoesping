@@ -39,7 +39,7 @@
 #include <ctime>
 #include <emmintrin.h>
 #include <endian.h>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <frozen/map.h>

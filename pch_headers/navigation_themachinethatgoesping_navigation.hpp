@@ -12,7 +12,7 @@
 #include <xtensor/containers/xcontainer.hpp>
 #include <tuple>
 #include <xtensor/containers/xadapt.hpp>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <charconv>
 #include <cmath>
 #include <GeographicLib/Geocentric.hpp>
