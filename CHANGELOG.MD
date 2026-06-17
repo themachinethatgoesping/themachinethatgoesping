@@ -22,6 +22,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools:
   - update fast_float 8.2.5 -> 8.2.10
   - update fmt 12.1.0 -> 12.2.0
+  - update pugixml 1.15 -> 1.16
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1
