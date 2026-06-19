@@ -1,4 +1,5 @@
 import themachinethatgoesping.algorithms_nanopy.amplitudecorrection as amplitudecorrection
+import themachinethatgoesping.algorithms_nanopy.echogramprocessing as echogramprocessing
 import themachinethatgoesping.algorithms_nanopy.featuremapping as featuremapping
 import themachinethatgoesping.algorithms_nanopy.geoprocessing as geoprocessing
 import themachinethatgoesping.algorithms_nanopy.gridding as gridding

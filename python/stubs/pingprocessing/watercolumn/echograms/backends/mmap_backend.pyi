@@ -127,6 +127,14 @@ class MmapDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
             Dict mapping param name to (y_reference, (timestamps, values)).
         """
 
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """
+        Return per-ping metadata.
+
+        Returns:
+            Dict mapping metadata name to (unit, (timestamps, values)).
+        """
+
     def get_column(self, ping_index: int) -> numpy.ndarray:
         """Get beam-averaged water column data for a single ping."""
 

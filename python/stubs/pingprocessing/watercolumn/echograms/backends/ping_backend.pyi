@@ -1,6 +1,6 @@
 """Backend for reading echogram data from ping objects."""
 
-from typing import List, Tuple, Union
+from typing import List, Union
 
 import numpy
 
@@ -34,7 +34,7 @@ class PingDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
     through the EchogramDataBackend interface.
     """
 
-    def __init__(self, pings: List, beam_sample_selections: List, ping_times: numpy.ndarray, wci_value: str, linear_mean: bool, max_sample_counts: numpy.ndarray, sample_nr_extents: tuple[numpy.ndarray, numpy.ndarray], range_extents: Union[tuple[numpy.ndarray, numpy.ndarray], None], depth_extents: Union[tuple[numpy.ndarray, numpy.ndarray], None], ping_params: dict[str, tuple[str, numpy.ndarray]], latitudes: Union[numpy.ndarray, None] = None, longitudes: Union[numpy.ndarray, None] = None, depth_stack: bool = False, mp_cores: int = 1):
+    def __init__(self, pings: List, beam_sample_selections: List, ping_times: numpy.ndarray, wci_value: str, linear_mean: bool, max_sample_counts: numpy.ndarray, sample_nr_extents: tuple[numpy.ndarray, numpy.ndarray], range_extents: Union[tuple[numpy.ndarray, numpy.ndarray], None], depth_extents: Union[tuple[numpy.ndarray, numpy.ndarray], None], ping_params: dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]], ping_metainfo: Union[dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]], None] = None, latitudes: Union[numpy.ndarray, None] = None, longitudes: Union[numpy.ndarray, None] = None, depth_stack: bool = False, mp_cores: int = 1):
         """
         Initialize PingDataBackend.
 
@@ -50,7 +50,8 @@ class PingDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
             sample_nr_extents: Tuple of (min_sample_nrs, max_sample_nrs) arrays.
             range_extents: Tuple of (min_ranges, max_ranges) arrays, or None.
             depth_extents: Tuple of (min_depths, max_depths) arrays, or None.
-            ping_params: Dictionary of pre-computed ping parameters.
+            ping_params: Dictionary of pre-computed overlay curves (bottom, minslant, echosounder).
+            ping_metainfo: Dictionary of per-ping metadata (frequency, pulse duration, etc.).
             latitudes: Array of latitudes (degrees) per ping, or None.
             longitudes: Array of longitudes (degrees) per ping, or None.
             depth_stack: If True, use depth stacking mode (requires navigation).
@@ -113,12 +114,20 @@ class PingDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
     @property
     def linear_mean(self) -> bool: ...
 
-    def get_ping_params(self) -> dict[str, tuple[str, Tuple]]:
+    def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
         """
-        Return pre-computed ping parameters.
+        Return pre-computed overlay curves (bottom, minslant, echosounder).
 
         Returns:
             Dictionary mapping parameter names to (y_reference, (times, values)) tuples.
+        """
+
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """
+        Return per-ping acquisition metadata (frequency, pulse duration, etc.).
+
+        Returns:
+            Dictionary mapping metadata names to (unit_string, (times, values)) tuples.
         """
 
     def get_column(self, ping_index: int) -> numpy.ndarray:

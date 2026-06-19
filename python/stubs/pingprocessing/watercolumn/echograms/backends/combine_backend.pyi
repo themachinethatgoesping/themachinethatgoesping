@@ -202,6 +202,11 @@ class CombineBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms
 
     def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]: ...
 
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """
+        Return metainfo from first backend (all backends should have same metainfo).
+        """
+
     def get_column(self, ping_index: int) -> numpy.ndarray:
         """
         Get combined column data for a ping.

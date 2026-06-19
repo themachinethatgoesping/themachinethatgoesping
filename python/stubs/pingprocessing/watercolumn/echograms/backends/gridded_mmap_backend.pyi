@@ -127,6 +127,14 @@ class GriddedMmapBackend(themachinethatgoesping.pingprocessing.watercolumn.echog
 
     def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]: ...
 
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """
+        Return per-ping metadata.
+
+        Returns:
+            Dict mapping metadata name to (unit, (timestamps, values)).
+        """
+
     def get_column(self, ping_index: int) -> numpy.ndarray: ...
 
     def get_raw_column(self, ping_index: int) -> numpy.ndarray: ...

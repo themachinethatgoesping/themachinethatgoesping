@@ -29,6 +29,44 @@ from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import
 import themachinethatgoesping.tools as tools
 
 
+def compress_axis_gaps(values: numpy.ndarray, max_gap: float) -> numpy.ndarray:
+    """
+    Clamp gaps between consecutive (sorted) coordinates to ``max_gap``.
+
+    Returns a new array in which every consecutive difference larger than
+    ``max_gap`` is reduced to exactly ``max_gap`` while smaller gaps are kept
+    unchanged. The first value is preserved. Runs in O(n) using vectorized
+    numpy operations, so it scales to millions of pings.
+
+    This is a *display-only* transform: it compresses large gaps (e.g. the
+    idle time between two surveys) so the axis stays readable, while leaving
+    the densely sampled parts untouched.
+
+    Args:
+        values: 1-D array of monotonically non-decreasing coordinates.
+        max_gap: Maximum allowed gap between consecutive values (same unit as
+            ``values``). ``None`` returns a copy of the input unchanged.
+
+    Returns:
+        New float64 array of the same length as ``values``.
+    """
+
+def cumulative_haversine_distance(latitudes, longitudes) -> numpy.ndarray:
+    """
+    Cumulative great-circle travel distance (meters) along a track.
+
+    Vectorized haversine over consecutive latitude/longitude pairs (degrees).
+    Segments with non-finite endpoints contribute zero distance so a few
+    missing fixes do not break the cumulative sum. Runs in O(n).
+
+    Args:
+        latitudes: Per-ping latitudes in degrees.
+        longitudes: Per-ping longitudes in degrees.
+
+    Returns:
+        float64 array of the same length as the input, starting at 0.0.
+    """
+
 class EchogramCoordinateSystem:
     """
     Manages coordinate systems and transformations for echogram display.
@@ -176,7 +214,7 @@ class EchogramCoordinateSystem:
             max_steps: Maximum number of X pixels.
         """
 
-    def set_x_axis_ping_time(self, min_timestamp: float = float('nan'), max_timestamp: float = float('nan'), time_resolution: float = float('nan'), time_interpolation_limit: float = float('nan'), max_steps: int = 4096, **kwargs):
+    def set_x_axis_ping_time(self, min_timestamp: float = float('nan'), max_timestamp: float = float('nan'), time_resolution: float = float('nan'), time_interpolation_limit: float = float('nan'), max_steps: int = 4096, max_gap: Union[float, None] = None, **kwargs):
         """
         Set X axis to ping time (Unix timestamp).
 
@@ -186,9 +224,15 @@ class EchogramCoordinateSystem:
             time_resolution: Time resolution in seconds (nan = auto).
             time_interpolation_limit: Max time gap for interpolation (nan = auto).
             max_steps: Maximum number of X pixels.
+            max_gap: Optional maximum gap in seconds. When set, gaps between
+                consecutive pings longer than ``max_gap`` are compressed to
+                exactly ``max_gap`` on the displayed time axis (e.g. the idle
+                time between two surveys appears as a fixed-width gap). This is
+                a display-only transform; conversion of datetime parameters and
+                per-ping data is unaffected. ``None`` keeps the real timeline.
         """
 
-    def set_x_axis_date_time(self, min_ping_time: float = float('nan'), max_ping_time: float = float('nan'), time_resolution: float = float('nan'), time_interpolation_limit: float = float('nan'), max_steps: int = 4096, **kwargs):
+    def set_x_axis_date_time(self, min_ping_time: float = float('nan'), max_ping_time: float = float('nan'), time_resolution: float = float('nan'), time_interpolation_limit: float = float('nan'), max_steps: int = 4096, max_gap: Union[float, None] = None, **kwargs):
         """
         Set X axis to datetime.
 
@@ -198,6 +242,10 @@ class EchogramCoordinateSystem:
             time_resolution: Time resolution (seconds or timedelta, nan = auto).
             time_interpolation_limit: Max time gap (seconds or timedelta, nan = auto).
             max_steps: Maximum number of X pixels.
+            max_gap: Optional maximum gap in seconds (or timedelta). When set,
+                gaps between consecutive pings longer than ``max_gap`` are
+                compressed to exactly ``max_gap`` on the displayed axis. See
+                :meth:`set_x_axis_ping_time`.
         """
 
     def set_x_axis_custom(self, axis_name: str, per_ping_coordinates: numpy.ndarray, min_value: float = float('nan'), max_value: float = float('nan'), resolution: float = float('nan'), interpolation_limit: float = float('nan'), max_steps: int = 4096, axis_format: Union[str, None] = None, **kwargs):
@@ -229,6 +277,30 @@ class EchogramCoordinateSystem:
                 ``"timedelta"`` enables adaptive time formatting.
                 ``None`` uses plain numeric formatting (or auto-detects
                 from timedelta input).
+        """
+
+    def set_x_axis_ping_distance(self, latitudes: numpy.ndarray, longitudes: numpy.ndarray, max_gap: Union[float, None] = None, min_distance: float = float('nan'), max_distance: float = float('nan'), resolution: float = float('nan'), interpolation_limit: float = float('nan'), max_steps: int = 4096, axis_name: str = 'Distance', **kwargs):
+        """
+        Set X axis to cumulative along-track travel distance (meters).
+
+        The per-ping distance is computed once from the navigation positions
+        using a vectorized haversine (O(n)); subsequent zooms simply re-grid
+        the cached coordinates. The axis is registered as a custom axis with
+        ``axis_format="distance"`` so the viewer can render adaptive m/km ticks.
+
+        Args:
+            latitudes: Per-ping latitudes in degrees (length n_pings).
+            longitudes: Per-ping longitudes in degrees (length n_pings).
+            max_gap: Optional maximum gap in meters. When set, jumps between
+                consecutive pings longer than ``max_gap`` (e.g. transits
+                between survey lines) are compressed to exactly ``max_gap`` on
+                the displayed axis. ``None`` keeps true travel distance.
+            min_distance: Minimum distance to display (nan = auto).
+            max_distance: Maximum distance to display (nan = auto).
+            resolution: Grid resolution in meters (nan = auto from data).
+            interpolation_limit: Max gap for interpolation (nan = auto).
+            max_steps: Maximum number of X pixels.
+            axis_name: Display name for the axis (default ``"Distance"``).
         """
 
     def get_y_indices(self, wci_nr: int) -> tuple[numpy.ndarray, numpy.ndarray]:

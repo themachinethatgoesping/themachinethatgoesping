@@ -24,6 +24,27 @@ import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 GRID_LAYOUTS: list = ...
 
+def timestamp_to_axis_coordinate(cs, x_axis_name, timestamp):
+    """
+    Map a real Unix timestamp to a non-time x-axis coordinate.
+
+    Handles the ping-index/number axis (via a binary search on the per-ping
+    times) and custom axes such as ``"Distance"`` (by interpolating the
+    timestamp against the per-ping custom coordinates). Time axes
+    (``"Date time"`` / ``"Ping time"``) are handled by the caller because they
+    may apply gap-compression.
+
+    Args:
+        cs: An ``EchogramCoordinateSystem`` (must expose ``ping_times``;
+            optionally ``ping_numbers``, ``_custom_x_per_ping`` and
+            ``_custom_x_axis_name``).
+        x_axis_name: The current x-axis name.
+        timestamp: Real Unix timestamp in seconds.
+
+    Returns:
+        The x-axis coordinate (float) or ``None`` when it cannot be resolved.
+    """
+
 def normalise_echograms(echogramdata: Union[Dict[str, Any], Sequence[Any], Any], names: Optional[Sequence[Optional[str]]]) -> Tuple[Dict[str, Any], List[str]]:
     """Normalise echogram input to ``(dict, names_list)``."""
 

@@ -4,6 +4,7 @@ Python module process ping data, e.g. apply absorption, spreading loss, compute 
 
 from . import (
     amplitudecorrection as amplitudecorrection,
+    echogramprocessing as echogramprocessing,
     featuremapping as featuremapping,
     geoprocessing as geoprocessing,
     gridding as gridding,

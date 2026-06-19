@@ -7,6 +7,9 @@ from numpy.typing import NDArray
 
 
 @overload
+def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: float, latitude: float = 0.0, longitude: float = 0.0) -> float: ...
+
+@overload
 def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: float, latitude: float = 0.0, longitude: float = 0.0) -> float:
     """
     Compute the speed of sound in seawater using the TEOS-10 library
@@ -23,7 +26,7 @@ def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: floa
     """
 
 @overload
-def calc_sound_velocity(depth_m: float, temperature_c: float, salinity_psu: float, latitude: float = 0.0, longitude: float = 0.0) -> float: ...
+def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_velocity_m_s: float, temperature_c: float, salinity_psu: float, pH: float = 8) -> float: ...
 
 @overload
 def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_velocity_m_s: float, temperature_c: float, salinity_psu: float, pH: float = 8) -> float:
@@ -47,10 +50,10 @@ def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_
     """
 
 @overload
-def calc_absorption_coefficient_db_m(frequency_hz: float, depth_m: float, sound_velocity_m_s: float, temperature_c: float, salinity_psu: float, pH: float = 8) -> float: ...
+def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
 @overload
-def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Generates a 1D tensor of sample numbers incremented by half. (used for
     range compuation)
@@ -76,7 +79,7 @@ def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step
     """
 
 @overload
-def get_sample_numbers_plus_half(first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float) -> float: ...
 
 @overload
 def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float) -> float:
@@ -100,59 +103,10 @@ def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float
     """
 
 @overload
-def approximate_range_factor(sample_interval_s: float, sound_velocity_m_s: float) -> float: ...
+def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
 @overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
-    """
-    Approximates the ranges based on the provided sample interval and a
-    single sound velocity.
-
-    This function calculates the approximate ranges for a given set of
-    sample numbers by multiplying the sample numbers (plus half) with the
-    approximate range factor.
-
-    Args:
-        sample_interval_s: The sample interval in seconds.
-        sound_velocity_m_s: The sound velocity in meters per second.
-        first_sample_nr: The first sample number.
-        last_sample_nr: The last sample number.
-        step: The step size between sample numbers (default is 1).
-
-    Template Args:
-        t_xtensor_1d: A 1D tensor type that satisfies the c_xtensor_1d
-                      concept.
-        t_int: An integer type for sample numbers.
-
-    Returns:
-        A 1D tensor containing the approximated ranges.
-    """
-
-@overload
-def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, sample_numbers: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
-    """
-    Approximates the ranges based on sample interval, a single sound
-    velocity, and sample numbers.
-
-    This function calculates the approximate ranges by using the provided
-    sample interval, sound velocity, and sample numbers. The calculation
-    is performed by adding 0.5 to each sample number and then multiplying
-    by the approximate range factor.
-
-    Args:
-        sample_interval_s: The interval between samples in seconds.
-        sound_velocity_m_s: The velocity of sound in meters per second.
-        sample_numbers: A 1D tensor containing the sample numbers.
-
-    Template Args:
-        t_xtensor_1d: A 1D tensor type that satisfies the
-                      tools::helper::c_xtensor concept.
-        t_xtensor_1d_int: A 1D tensor type for integers that satisfies the
-                          tools::helper::c_xtensor concept.
-
-    Returns:
-        A 1D tensor containing the approximated ranges.
-    """
+def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, sample_numbers: Annotated[NDArray[numpy.int32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
 @overload
 def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, first_sample_nr: int, last_sample_nr: int, step: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
@@ -207,7 +161,10 @@ def approximate_ranges(sample_interval_s: float, sound_velocity_m_s: float, samp
     """
 
 @overload
-def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+
+@overload
+def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     r"""
     Computes the continuous wave (CW) range correction.
 
@@ -239,10 +196,10 @@ def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict
     """
 
 @overload
-def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
 @overload
-def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
     r"""
     Computes the per-beam continuous wave (CW) range correction for 2D
     water column data.
@@ -280,10 +237,10 @@ def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float
     """
 
 @overload
-def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
 @overload
-def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
     """
     Applies beam and sample corrections to the given 2D tensor.
 
@@ -307,10 +264,10 @@ def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float32], dict(sha
     """
 
 @overload
-def apply_beam_sample_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+def apply_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
 @overload
-def apply_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+def apply_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
     """
     Applies beam, sample, and per-beam absorption corrections to the given
     2D tensor.
@@ -344,9 +301,6 @@ def apply_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.fl
     """
 
 @overload
-def apply_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
-
-@overload
 def apply_beam_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
 @overload
@@ -371,7 +325,10 @@ def inplace_beam_sample_correction(wci: Annotated[NDArray[numpy.float32], dict(s
 def inplace_beam_sample_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
-def inplace_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
+
+@overload
+def inplace_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
     """
     Inplace applies beam, sample, and per-beam absorption corrections to
     the given 2D tensor.
@@ -405,10 +362,10 @@ def inplace_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.
     """
 
 @overload
-def inplace_beam_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
+def inplace_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
-def inplace_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
     """
     Inplace applies sample and per-beam absorption corrections to the
     given 2D tensor.
@@ -440,9 +397,6 @@ def inplace_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float
     """
 
 @overload
-def inplace_sample_correction_with_absorption(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_offset: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
-
-@overload
 def inplace_beam_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
@@ -461,7 +415,10 @@ def inplace_system_offset(wci: Annotated[NDArray[numpy.float32], dict(shape=(Non
 def inplace_system_offset(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], system_offset: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
-def compute_nanmean_across_beams(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+def compute_nanmean_across_beams(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
+
+@overload
+def compute_nanmean_across_beams(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Compute the mean value across all beams for each sample position,
     ignoring NaN.
@@ -492,10 +449,10 @@ def compute_nanmean_across_beams(wci: Annotated[NDArray[numpy.float32], dict(sha
     """
 
 @overload
-def compute_nanmean_across_beams(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def compute_nanmedian_across_beams(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_nanmedian_across_beams(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]:
+def compute_nanmedian_across_beams(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Compute the median value across all beams for each sample position,
     ignoring NaN.
@@ -530,10 +487,10 @@ def compute_nanmedian_across_beams(wci: Annotated[NDArray[numpy.float32], dict(s
     """
 
 @overload
-def compute_nanmedian_across_beams(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def compute_reference_nanmean(wci_region: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> float: ...
 
 @overload
-def compute_reference_nanmean(wci_region: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]) -> float:
+def compute_reference_nanmean(wci_region: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]) -> float:
     """
     Compute a reference level as the NaN-aware mean of all elements in a
     2D WCI region.
@@ -557,10 +514,10 @@ def compute_reference_nanmean(wci_region: Annotated[NDArray[numpy.float32], dict
     """
 
 @overload
-def compute_reference_nanmean(wci_region: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]) -> float: ...
+def compute_reference_nanpercentile(wci_region: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], percentile: float) -> float: ...
 
 @overload
-def compute_reference_nanpercentile(wci_region: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], percentile: float) -> float:
+def compute_reference_nanpercentile(wci_region: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], percentile: float) -> float:
     """
     Compute a reference level as a NaN-aware percentile of all elements in
     a 2D WCI region.
@@ -586,10 +543,10 @@ def compute_reference_nanpercentile(wci_region: Annotated[NDArray[numpy.float32]
     """
 
 @overload
-def compute_reference_nanpercentile(wci_region: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], percentile: float) -> float: ...
+def apply_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], reference_level: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
 @overload
-def apply_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], reference_level: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+def apply_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], reference_level: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
     """
     Apply SRSN sidelobe correction to a WCI tensor.
 
@@ -627,10 +584,10 @@ def apply_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(sh
     """
 
 @overload
-def apply_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], reference_level: float, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+def inplace_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], reference_level: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
-def inplace_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], reference_level: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
+def inplace_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], reference_level: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None:
     """
     Inplace apply SRSN sidelobe correction to a WCI tensor.
 
@@ -657,9 +614,6 @@ def inplace_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float32], dict(
         t_xtensor_2d: Type of the 2D tensor (beams x samples).
         t_xtensor_1d: Type of the 1D tensor (samples).
     """
-
-@overload
-def inplace_wci_sidelobe_correction(wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], per_sample_average: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], reference_level: float, min_beam_index: int | None = None, max_beam_index: int | None = None, mp_cores: int = 1) -> None: ...
 
 @overload
 def apply_beam_sample_correction_loop(wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], per_beam_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], per_sample_offset: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...

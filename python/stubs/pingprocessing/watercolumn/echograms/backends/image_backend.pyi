@@ -149,6 +149,9 @@ class ImageBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.b
 
     def get_ping_params(self) -> Dict[str, Tuple[str, Tuple[np.ndarray, np.ndarray]]]: ...
 
+    def get_ping_metainfo(self) -> Dict[str, Tuple[str, Tuple[np.ndarray, np.ndarray]]]:
+        """Per-ping metadata. ImageBackend does not provide metainfo."""
+
     def get_column(self, ping_index: int) -> np.ndarray: ...
 
     def get_raw_column(self, ping_index: int) -> np.ndarray: ...

@@ -13,25 +13,25 @@ from typing import Any, Union
 class XAxisType(enum.Enum):
     """X-axis storage types."""
 
-    PING_INDEX = ping_index
+    PING_INDEX = 'ping_index'
     """X-axis storage types."""
 
-    PING_TIME = ping_time
+    PING_TIME = 'ping_time'
     """X-axis storage types."""
 
 class YAxisType(enum.Enum):
     """Y-axis storage types."""
 
-    SAMPLE_INDEX = sample_index
+    SAMPLE_INDEX = 'sample_index'
     """Y-axis storage types."""
 
-    SAMPLE_NR = sample_nr
+    SAMPLE_NR = 'sample_nr'
     """Y-axis storage types."""
 
-    DEPTH = depth
+    DEPTH = 'depth'
     """Y-axis storage types."""
 
-    RANGE = range
+    RANGE = 'range'
     """Y-axis storage types."""
 
 class ResolutionStrategy(enum.Enum):
@@ -39,22 +39,22 @@ class ResolutionStrategy(enum.Enum):
     Strategy for resolving resolution mismatches when saving combined echograms.
     """
 
-    FINEST = finest
+    FINEST = 'finest'
     """
     Strategy for resolving resolution mismatches when saving combined echograms.
     """
 
-    COARSEST = coarsest
+    COARSEST = 'coarsest'
     """
     Strategy for resolving resolution mismatches when saving combined echograms.
     """
 
-    SPECIFIED = specified
+    SPECIFIED = 'specified'
     """
     Strategy for resolving resolution mismatches when saving combined echograms.
     """
 
-    AUTO = auto
+    AUTO = 'auto'
     """
     Strategy for resolving resolution mismatches when saving combined echograms.
     """

@@ -24,8 +24,7 @@ class o_KongsbergAllDatagramIdentifier:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -107,8 +106,7 @@ class o_KongsbergAllActiveSensor:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -190,8 +188,7 @@ class o_KongsbergAllSystemTransducerConfiguration:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:

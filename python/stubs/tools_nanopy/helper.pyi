@@ -335,7 +335,10 @@ def get_shared_section_values(containers: Sequence[Annotated[NDArray[numpy.float
     """
 
 @overload
-def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+
+@overload
+def get_index_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
     """
     Compute indices for downsampling a sorted data container
 
@@ -373,10 +376,10 @@ def get_index_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(N
     """
 
 @overload
-def get_index_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]: ...
 
 @overload
-def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+def get_value_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
     """
     Downsample a sorted data container and return the downsampled values
 
@@ -412,6 +415,3 @@ def get_value_downsampling(data: Annotated[NDArray[numpy.float64], dict(shape=(N
     @note The data must be sorted in ascending order. Behavior is
     undefined for unsorted input.
     """
-
-@overload
-def get_value_downsampling(data: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], downsample_interval: float, max_gap: float = float('nan')) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...

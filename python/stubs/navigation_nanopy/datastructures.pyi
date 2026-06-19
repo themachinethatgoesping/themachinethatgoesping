@@ -136,12 +136,10 @@ class Geolocation:
     """
 
     @overload
-    def __init__(self, geolocation_latlon: GeolocationLatLon) -> None:
-        """Construct a new Position object"""
+    def __init__(self, geolocation_latlon: GeolocationLatLon) -> None: ...
 
     @overload
-    def __init__(self, geolocation_local: GeolocationLocal) -> None:
-        """Construct a new Position object"""
+    def __init__(self, geolocation_local: GeolocationLocal) -> None: ...
 
     @overload
     def __init__(self, geolocation_utm: GeolocationUTM) -> None:
@@ -896,12 +894,10 @@ class Sensordata:
     """
 
     @overload
-    def __init__(self, arg: SensordataLatLon, /) -> None:
-        """Construct a new Sensordata object"""
+    def __init__(self, arg: SensordataLatLon, /) -> None: ...
 
     @overload
-    def __init__(self, arg: SensordataLocal, /) -> None:
-        """Construct a new Sensordata object"""
+    def __init__(self, arg: SensordataLocal, /) -> None: ...
 
     @overload
     def __init__(self, arg: SensordataUTM, /) -> None:

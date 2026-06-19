@@ -1984,11 +1984,11 @@ class KMALLDatagramContainer_Variant_SkippedData:
 
 class KMALLPingContainer_stream:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kmall.filetypes.KMALLPing_stream], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kmall.filetypes.KMALLPing_stream], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> KMALLPingContainer_stream:
         """return a copy using the c++ default copy constructor"""
@@ -2055,11 +2055,11 @@ class KMALLPingContainer_stream:
 
 class KMALLPingContainer:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kmall.filetypes.KMALLPing], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kmall.filetypes.KMALLPing], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> KMALLPingContainer:
         """return a copy using the c++ default copy constructor"""

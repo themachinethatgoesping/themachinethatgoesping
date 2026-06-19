@@ -11,7 +11,10 @@ import themachinethatgoesping.navigation_nanopy.datastructures
 
 
 @overload
-def latitude_to_string(latitude: float, format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> str:
+def latitude_to_string(latitude: float, format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> str: ...
+
+@overload
+def latitude_to_string(latitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]:
     r"""
     convert a latitude value to a string
 
@@ -26,10 +29,10 @@ def latitude_to_string(latitude: float, format: themachinethatgoesping.navigatio
     """
 
 @overload
-def latitude_to_string(latitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]: ...
+def longitude_to_string(longitude: float, format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> str: ...
 
 @overload
-def longitude_to_string(longitude: float, format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> str:
+def longitude_to_string(longitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]:
     r"""
     convert a latitude value to a string
 
@@ -42,9 +45,6 @@ def longitude_to_string(longitude: float, format: themachinethatgoesping.navigat
     Returns:
         converted latitude string
     """
-
-@overload
-def longitude_to_string(longitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]: ...
 
 @overload
 def utm_to_latlon(northing: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], easting: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], zone: int, northern_hemisphere: bool, mp_cores: int = 1) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]]:
@@ -68,7 +68,22 @@ def utm_to_latlon(northing: Annotated[NDArray[numpy.float64], dict(shape=(None,)
 def latlon_to_utm(latitude: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], longitude: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], setzone: int = -1, mp_cores: int = 1) -> tuple[Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], int, bool]: ...
 
 @overload
-def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float: ...
+
+@overload
+def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float: ...
+
+@overload
+def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon, geolocation_latlon_2: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon) -> float: ...
+
+@overload
+def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon, geolocation_latlon_2: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon) -> float: ...
+
+@overload
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float: ...
+
+@overload
+def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float:
     """
     Compute the distance in meters between two latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -87,22 +102,22 @@ def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float
     """
 
 @overload
-def compute_latlon_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float: ...
+def compute_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon, geolocation_latlon_2: themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon) -> float: ...
+def compute_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distance_m(geolocation_latlon_1: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon, geolocation_latlon_2: themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon) -> float: ...
+def compute_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float: ...
+def compute_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distance_m(geolocation_latlon_1: tuple[float, float], geolocation_latlon_2: tuple[float, float]) -> float: ...
+def compute_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+def compute_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Compute the distances in meters between consecutive latitude-longitude
     coordinates using the WGS84 ellipsoid.
@@ -121,22 +136,22 @@ def compute_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], dict
     """
 
 @overload
-def compute_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def cumulative_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def cumulative_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def cumulative_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def cumulative_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def compute_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
+def cumulative_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
 
 @overload
-def cumulative_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
+def cumulative_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
     """
     Compute the cumulative distances in meters between consecutive
     latitude-longitude coordinates using the WGS84 ellipsoid.
@@ -154,18 +169,3 @@ def cumulative_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float32], d
         Vector of cumulative distances between consecutive coordinates in
         meters.
     """
-
-@overload
-def cumulative_latlon_distances_m(latitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], longitudes: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
-
-@overload
-def cumulative_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
-
-@overload
-def cumulative_latlon_distances_m(geolocations_latlon: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
-
-@overload
-def cumulative_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...
-
-@overload
-def cumulative_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, float]]) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]: ...

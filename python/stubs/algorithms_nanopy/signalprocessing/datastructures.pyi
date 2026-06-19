@@ -25,8 +25,7 @@ class o_TxSignalType:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -248,11 +247,11 @@ class FMSignalParameters:
     """
 
     @overload
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, up_sweep: bool) -> None:
-        """Default constructor."""
+    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, up_sweep: bool) -> None: ...
 
     @overload
-    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: o_TxSignalType) -> None: ...
+    def __init__(self, center_frequency: float, bandwidth: float, effective_pulse_duration: float, tx_signal_type: o_TxSignalType) -> None:
+        """Default constructor."""
 
     def __eq__(self, other: FMSignalParameters) -> bool:
         """

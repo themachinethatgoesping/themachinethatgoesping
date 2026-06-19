@@ -106,7 +106,10 @@ class I_Backtracer:
     def __eq__(self, other: I_Backtracer) -> bool: ...
 
     @overload
-    def backtrace_points(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1:
+    def backtrace_points(self, x: Annotated[NDArray[numpy.float32], dict(order='C')], y: Annotated[NDArray[numpy.float32], dict(order='C')], z: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1: ...
+
+    @overload
+    def backtrace_points(self, xyz: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1:
         """
         Backtrace the location of a set of points.
 
@@ -119,9 +122,6 @@ class I_Backtracer:
         Returns:
             datastructures::SampleDirectionsRange
         """
-
-    @overload
-    def backtrace_points(self, xyz: themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1, mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1: ...
 
     def backtrace_image(self, y_coordinates: Annotated[NDArray[numpy.float32], dict(order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_2:
         """

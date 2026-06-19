@@ -2912,11 +2912,11 @@ class KongsbergAllDatagramContainer_Variant_SkippedData:
 
 class KongsbergAllPingContainer_stream:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kongsbergall.filetypes.KongsbergAllPing_stream], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kongsbergall.filetypes.KongsbergAllPing_stream], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> KongsbergAllPingContainer_stream:
         """return a copy using the c++ default copy constructor"""
@@ -2983,11 +2983,11 @@ class KongsbergAllPingContainer_stream:
 
 class KongsbergAllPingContainer:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kongsbergall.filetypes.KongsbergAllPing], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.kongsbergall.filetypes.KongsbergAllPing], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> KongsbergAllPingContainer:
         """return a copy using the c++ default copy constructor"""

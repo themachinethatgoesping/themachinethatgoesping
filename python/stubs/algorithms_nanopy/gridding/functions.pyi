@@ -7,7 +7,10 @@ from numpy.typing import NDArray
 
 
 @overload
-def compute_resampled_coordinates(values_min: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_max: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_res: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], grid_min: float = float('nan'), grid_max: float = float('nan'), max_steps: int = 1024) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+def compute_resampled_coordinates(values_min: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_max: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], values_res: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], grid_min: float = float('nan'), grid_max: float = float('nan'), max_steps: int = 1024) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+@overload
+def compute_resampled_coordinates(values_min: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_max: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_res: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], grid_min: float = float('nan'), grid_max: float = float('nan'), max_steps: int = 1024) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
     """
     Compute resampled coordinates for gridding operations using
     statistical heuristics
@@ -31,9 +34,6 @@ def compute_resampled_coordinates(values_min: Annotated[NDArray[numpy.float32], 
     Returns:
         coordinates: xtensor array of uniformly spaced grid coordinates
     """
-
-@overload
-def compute_resampled_coordinates(values_min: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_max: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], values_res: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], grid_min: float = float('nan'), grid_max: float = float('nan'), max_steps: int = 1024) -> Annotated[NDArray[numpy.float64], dict(order='C')]: ...
 
 @overload
 def get_minmax(sb: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], mp_cores: int = 1) -> tuple[float, float]: ...

@@ -94,14 +94,33 @@ class EchogramDataBackend(abc.ABC):
         Override in backends that use different storage coordinates.
         """
 
-    def get_ping_params(self) -> dict[str, tuple[str, numpy.ndarray]]:
+    def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
         """
-        Return pre-computed ping parameters.
+        Return pre-computed ping parameter curves (Y-drawable overlays).
+
+        These are geometric curves that can be overlaid on the echogram
+        (e.g., bottom track, echosounder depth).
 
         Returns:
             Dictionary mapping parameter names (e.g., 'bottom', 'minslant', 'echosounder')
-            to tuples of (y_reference, values) where y_reference is one of
+            to tuples of (y_reference, (timestamps, values)) where y_reference is one of
             'Depth (m)', 'Range (m)', 'Sample number', 'Y indice'.
+        """
+
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """
+        Return per-ping metadata (scalar series, not geometric curves).
+
+        These are per-ping scalar values (frequency, pulse duration, etc.)
+        that describe the acquisition parameters, not overlay geometry.
+
+        Returns:
+            Dictionary mapping metadata names (e.g., 'main_frequency', 'main_pulse_duration')
+            to tuples of (unit_string, (timestamps, values)) where unit_string
+            is a descriptive label (e.g., 'Frequency (Hz)', 'Pulse Duration (s)').
+
+            Default implementation returns an empty dict. Override in backends
+            that provide metadata.
         """
 
     def get_column(self, ping_index: int) -> numpy.ndarray:

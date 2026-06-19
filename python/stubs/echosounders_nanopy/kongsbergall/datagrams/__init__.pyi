@@ -1145,11 +1145,11 @@ class AttitudeDatagram(KongsbergAllDatagram):
         """N x Attitude data"""
 
     @overload
-    def set_attitudes(self, arg: substructures.AttitudeDatagramAttitudesContainer, /) -> None:
-        """N x Attitude data"""
+    def set_attitudes(self, arg: substructures.AttitudeDatagramAttitudesContainer, /) -> None: ...
 
     @overload
-    def set_attitudes(self, arg: Sequence[substructures.AttitudeDatagramAttitude], /) -> None: ...
+    def set_attitudes(self, arg: Sequence[substructures.AttitudeDatagramAttitude], /) -> None:
+        """N x Attitude data"""
 
     def attitudes(self) -> substructures.AttitudeDatagramAttitudesContainer:
         """N x Attitude data"""
@@ -2352,7 +2352,10 @@ class InstallationParameters(KongsbergAllDatagram):
         """
 
     @overload
-    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_nanopy.o_KongsbergAllActiveSensor) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_nanopy.o_KongsbergAllActiveSensor) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets: ...
+
+    @overload
+    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
         """
         Get the attitude sensor offsets of sensor 1 or 2
 
@@ -2362,9 +2365,6 @@ class InstallationParameters(KongsbergAllDatagram):
         Returns:
             navigation::datastructures::PositionalOffsets
         """
-
-    @overload
-    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets: ...
 
     def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
         """
@@ -2936,6 +2936,9 @@ class RuntimeParameters(KongsbergAllDatagram):
         """
 
     @overload
+    def get_sonar_mode_enabled(self) -> bool: ...
+
+    @overload
     def get_sonar_mode_enabled(self) -> bool:
         """
         Retrieves the Sonar mode option (On/Off) encoded in the 'source of
@@ -2944,9 +2947,6 @@ class RuntimeParameters(KongsbergAllDatagram):
         Returns:
             True if the Sonar mode option is enabled, false otherwise
         """
-
-    @overload
-    def get_sonar_mode_enabled(self) -> bool: ...
 
     def get_passive_mode_enabled(self) -> bool:
         """
@@ -3097,8 +3097,7 @@ class o_ExtraParameters_t_ContentIdentifier:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:

@@ -10,6 +10,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.48.0
 - algorithms -> 0.11.2
 - navigation -> 0.18.3
+- pingprocessing -> 0.13.1
+- widgets -> 0.1.3
 
 ## Fixes [ breaking change in Results]
 - echosounders: fixed missing 10x in av pulse length correction
@@ -17,12 +19,18 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
 - echosounders: fixed reading unsorted attitude datagrams (.kmall and .all)
+- algorithms: esp3 port of bottom detection algorithm
+- pingprocessing: additional meta information for pings (main frequency, pulse duration, sample interval)
+- echogrambuilder: max_gap option and new ping_distance axis
+- echogrambuilder: add simple bottom_detection function to echogrambuilder
+- widgets: support new distance axis for echogramviewer
 
 ## Maintenance
 - tools:
   - update fast_float 8.2.5 -> 8.2.10
   - update fmt 12.1.0 -> 12.2.0
   - update pugixml 1.15 -> 1.16
+  - update nanobind 2.12.0 -> 2.13.0
 
 # [0.33.1] - 22-05-2026
 - echosounders -> 0.47.1

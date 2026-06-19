@@ -2269,8 +2269,7 @@ class SSoundVelocityProfile_o_sensor_format:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -2522,8 +2521,7 @@ class SSoundVelocityTransducer_o_sensor_format:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -2789,8 +2787,7 @@ class SKMBinary_o_sensor_format:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:

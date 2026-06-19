@@ -79,13 +79,7 @@ class BeamSelection:
     def __init__(self, beam_sample_selection: BeamSampleSelection) -> None: ...
 
     @overload
-    def __init__(self, number_of_beams: int) -> None:
-        """
-        Initialize a beam sample selection from a whole swath
-
-        Args:
-            number_of_beams: number of beams in the swath
-        """
+    def __init__(self, number_of_beams: int) -> None: ...
 
     @overload
     def __init__(self, beam_numbers: Sequence[int]) -> None:

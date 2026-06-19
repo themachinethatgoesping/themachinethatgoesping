@@ -1288,11 +1288,11 @@ class SimradRawDatagramContainer_Variant_skipped_data:
 
 class SimradRawPingContainer_stream:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.SimradRawPing_stream], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.SimradRawPing_stream], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> SimradRawPingContainer_stream:
         """return a copy using the c++ default copy constructor"""
@@ -1359,11 +1359,11 @@ class SimradRawPingContainer_stream:
 
 class SimradRawPingContainer:
     @overload
-    def __init__(self) -> None:
-        """Construct a new empty PingContainer object"""
+    def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.SimradRawPing], /) -> None: ...
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.SimradRawPing], /) -> None:
+        """Construct a new empty PingContainer object"""
 
     def copy(self) -> SimradRawPingContainer:
         """return a copy using the c++ default copy constructor"""

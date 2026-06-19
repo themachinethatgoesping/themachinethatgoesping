@@ -185,53 +185,53 @@ class KMALLMultiSectorWaterColumnCalibration:
     def inplace_beam_sample_correction_av(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
 
     @overload
-    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply pp calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
     @overload
-    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply pv calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
     @overload
-    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply ap calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
     @overload
-    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply av calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
     @overload
-    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply sp calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
 
     @overload
-    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
+    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
         """Apply sv calibration with per-beam absorption coefficients."""
 
     @overload
-    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
 
     @overload
-    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None:
+    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None:
         """Inplace apply av calibration with per-beam absorption coefficients."""
-
-    @overload
-    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
 
 class FilePackageIndex_kmall_FilePackageIndex:
     def __init__(self) -> None: ...
@@ -366,32 +366,32 @@ class KMALLPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filete
     def __deepcopy__(self, arg: dict, /) -> KMALLPingFileData_stream: ...
 
     @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __str__(self) -> str: ...
 
     @overload
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         """Return object information as string"""
 
     @overload
     def __repr__(self) -> str: ...
 
     @overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def __repr__(self) -> str:
         """Return object information as string"""
 
     @overload
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str: ...
 
     @overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
 
     @overload
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None: ...
+
+    @overload
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
 
     def get_timestamp_first(self) -> float: ...
 
@@ -494,32 +494,32 @@ class KMALLPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates
     def __deepcopy__(self, arg: dict, /) -> KMALLPingFileData: ...
 
     @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __str__(self) -> str: ...
 
     @overload
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         """Return object information as string"""
 
     @overload
     def __repr__(self) -> str: ...
 
     @overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def __repr__(self) -> str:
         """Return object information as string"""
 
     @overload
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str: ...
 
     @overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
 
     @overload
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None: ...
+
+    @overload
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
 
     def get_timestamp_first(self) -> float: ...
 

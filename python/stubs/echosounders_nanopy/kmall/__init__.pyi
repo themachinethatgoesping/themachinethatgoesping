@@ -54,8 +54,7 @@ class o_KMALLDatagramIdentifier:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -162,8 +161,7 @@ class o_KMALLSystemTransducerConfiguration:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:

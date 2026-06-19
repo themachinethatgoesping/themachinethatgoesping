@@ -193,32 +193,32 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_nanopy.fi
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingFileData_stream: ...
 
     @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __str__(self) -> str: ...
 
     @overload
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         """Return object information as string"""
 
     @overload
     def __repr__(self) -> str: ...
 
     @overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def __repr__(self) -> str:
         """Return object information as string"""
 
     @overload
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str: ...
 
     @overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
 
     @overload
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None: ...
+
+    @overload
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
 
     def get_timestamp_first(self) -> float: ...
 
@@ -294,32 +294,32 @@ class SimradRawPingFileData(themachinethatgoesping.echosounders_nanopy.filetempl
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingFileData: ...
 
     @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __str__(self) -> str: ...
 
     @overload
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         """Return object information as string"""
 
     @overload
     def __repr__(self) -> str: ...
 
     @overload
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def __repr__(self) -> str:
         """Return object information as string"""
 
     @overload
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str: ...
 
     @overload
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
 
     @overload
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None: ...
+
+    @overload
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
 
     def get_timestamp_first(self) -> float: ...
 

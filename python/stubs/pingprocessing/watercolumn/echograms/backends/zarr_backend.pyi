@@ -118,6 +118,9 @@ class ZarrDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
 
     def get_ping_params(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]: ...
 
+    def get_ping_metainfo(self) -> dict[str, tuple[str, tuple[numpy.ndarray, numpy.ndarray]]]:
+        """Return per-ping metadata (scalar series)."""
+
     def get_column(self, ping_index: int) -> numpy.ndarray:
         """
         Get column data for a ping.

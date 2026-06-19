@@ -48,7 +48,13 @@ class ObjectPrinter:
         """
 
     @overload
-    def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None:
+    def register_value(self, name: str, value: float, value_info: str = '', pos: int = -1) -> None: ...
+
+    @overload
+    def register_value(self, name: str, value: int, value_info: str = '', pos: int = -1) -> None: ...
+
+    @overload
+    def register_value(self, name: str, value: str, value_info: str = '', pos: int = -1) -> None:
         """
         register a single integer of floating point value for printing
 
@@ -64,13 +70,13 @@ class ObjectPrinter:
         """
 
     @overload
-    def register_value(self, name: str, value: int, value_info: str = '', pos: int = -1) -> None: ...
+    def register_optional_value(self, name: str, value: float | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
 
     @overload
-    def register_value(self, name: str, value: str, value_info: str = '', pos: int = -1) -> None: ...
+    def register_optional_value(self, name: str, value: int | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
 
     @overload
-    def register_optional_value(self, name: str, value: float | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
+    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None:
         """
         Registers an optional value with the given name and additional
         information.
@@ -91,12 +97,6 @@ class ObjectPrinter:
             t_value: The type of the optional value.
         """
 
-    @overload
-    def register_optional_value(self, name: str, value: int | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
-
-    @overload
-    def register_optional_value(self, name: str, value: str | None, value_info: str = '', optional_value: str = 'Not set', pos: int = -1) -> None: ...
-
     def register_value_bytes(self, name: str, value: int, pos: int = -1) -> None:
         """
         register a single integer of floating point value for printing The
@@ -111,7 +111,13 @@ class ObjectPrinter:
         """
 
     @overload
-    def register_container(self, name: str, value: Sequence[float], value_info: str = '', pos: int = -1) -> None:
+    def register_container(self, name: str, value: Sequence[float], value_info: str = '', pos: int = -1) -> None: ...
+
+    @overload
+    def register_container(self, name: str, value: Sequence[int], value_info: str = '', pos: int = -1) -> None: ...
+
+    @overload
+    def register_container(self, name: str, value: Sequence[str], value_info: str = '', pos: int = -1) -> None:
         """
         register a 1D container for printing
 
@@ -125,12 +131,6 @@ class ObjectPrinter:
         Template Args:
             t_value: integer or floating point
         """
-
-    @overload
-    def register_container(self, name: str, value: Sequence[int], value_info: str = '', pos: int = -1) -> None: ...
-
-    @overload
-    def register_container(self, name: str, value: Sequence[str], value_info: str = '', pos: int = -1) -> None: ...
 
     def register_string(self, name: str, value: str, value_info: str = '', pos: int = -1, max_visible_elements: int = 0) -> None:
         """

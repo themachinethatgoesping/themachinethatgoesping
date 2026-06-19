@@ -41,8 +41,7 @@ class o_extr_mode:
         """Construct from enum value"""
 
     @overload
-    def __init__(self, value: str) -> None:
-        """Construct from string"""
+    def __init__(self, value: str) -> None: ...
 
     @overload
     def __init__(self, value: int) -> None:
@@ -2689,7 +2688,10 @@ class SlerpInterpolator:
         """
 
     @overload
-    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None: ...
+
+    @overload
+    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -2705,9 +2707,6 @@ class SlerpInterpolator:
             input_in_degrees: if true, yaw pitch and roll input values are in
                               ° otherwise rad
         """
-
-    @overload
-    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None: ...
 
     def get_data_X(self) -> list[float]:
         """
@@ -2995,7 +2994,10 @@ class SlerpInterpolatorF:
         """
 
     @overload
-    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None: ...
+
+    @overload
+    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3011,9 +3013,6 @@ class SlerpInterpolatorF:
             input_in_degrees: if true, yaw pitch and roll input values are in
                               ° otherwise rad
         """
-
-    @overload
-    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None: ...
 
     def get_data_X(self) -> list[float]:
         """
@@ -3301,7 +3300,10 @@ class SlerpInterpolatorFD:
         """
 
     @overload
-    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None: ...
+
+    @overload
+    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3317,9 +3319,6 @@ class SlerpInterpolatorFD:
             input_in_degrees: if true, yaw pitch and roll input values are in
                               ° otherwise rad
         """
-
-    @overload
-    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None: ...
 
     def get_data_X(self) -> list[float]:
         """
@@ -3607,7 +3606,10 @@ class SlerpInterpolatorDF:
         """
 
     @overload
-    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None:
+    def set_data_XYPR(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True) -> None: ...
+
+    @overload
+    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None:
         """
         change the input data to these X, yaw, pitch, roll vectors (will be
         converted to quaternion)
@@ -3623,9 +3625,6 @@ class SlerpInterpolatorDF:
             input_in_degrees: if true, yaw pitch and roll input values are in
                               ° otherwise rad
         """
-
-    @overload
-    def set_data_XYPR(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True) -> None: ...
 
     def get_data_X(self) -> list[float]:
         """

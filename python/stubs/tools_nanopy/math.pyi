@@ -12,17 +12,17 @@ def fma_dispatch_arch() -> str:
     """
 
 @overload
-def fma_dispatch(x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], slope: float, base: float) -> None:
+def fma_dispatch(x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], slope: float, base: float) -> None: ...
+
+@overload
+def fma_dispatch(x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], slope: float, base: float) -> None:
     """Compute x[:] = x * slope + base in-place using runtime SIMD dispatch"""
 
 @overload
-def fma_dispatch(x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], slope: float, base: float) -> None: ...
+def fma_xtensor(x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], slope: float, base: float) -> None: ...
 
 @overload
-def fma_xtensor(x: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], slope: float, base: float) -> None:
+def fma_xtensor(x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], slope: float, base: float) -> None:
     """
     Compute x[:] = x * slope + base in-place using xt::fma (compile-time SIMD)
     """
-
-@overload
-def fma_xtensor(x: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], slope: float, base: float) -> None: ...

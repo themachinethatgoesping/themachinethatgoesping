@@ -6,7 +6,7 @@ import pg
 import pyqtgraph.graphicsItems.AxisItem
 
 
-__all__: list = ['MatplotlibDateAxis', 'TimedeltaAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout']
+__all__: list = ['MatplotlibDateAxis', 'TimedeltaAxis', 'DistanceAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout']
 
 class MatplotlibDateAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
     """AxisItem that formats matplotlib-style ordinal dates."""
@@ -32,6 +32,32 @@ class TimedeltaAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
     """
 
     def __init__(self, max_seconds: float = 60.0, orientation: str = 'bottom') -> None: ...
+
+    def tickStrings(self, values: List[float], scale: float, spacing: float) -> List[str]: ...
+
+    staticMetaObject: PySide6.QtCore.QMetaObject = ...
+
+class DistanceAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
+    """
+    AxisItem for along-track distance that switches between m and km by zoom.
+
+    When the visible span is below ``km_threshold_m`` meters the ticks and the
+    axis label use meters; otherwise kilometers. The unit therefore adapts to
+    the current zoom level (e.g. it shows meters once zoomed in below 5 km even
+    if the full survey spans tens of kilometers).
+    """
+
+    def __init__(self, km_threshold_m: float = 10000.0, show_unit_label: bool = True, orientation: str = 'bottom') -> None: ...
+
+    def setRange(self, mn: float, mx: float) -> None: ...
+
+    def tickValues(self, minVal: float, maxVal: float, size: int):
+        """
+        Ensure a fixed left-edge anchor tick in mixed mode.
+
+        This guarantees that the absolute km label is always rendered on the
+        left edge, independent of pyqtgraph's automatic tick placement.
+        """
 
     def tickStrings(self, values: List[float], scale: float, spacing: float) -> List[str]: ...
 

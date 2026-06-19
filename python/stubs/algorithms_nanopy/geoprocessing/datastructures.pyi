@@ -1862,16 +1862,16 @@ class BeamSampleParameters:
     """
 
     @overload
-    def __init__(self, number_of_beams: int) -> None:
+    def __init__(self, number_of_beams: int) -> None: ...
+
+    @overload
+    def __init__(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], first_sample_offset: Annotated[NDArray[numpy.float32], dict(order='C')], sample_interval: Annotated[NDArray[numpy.float32], dict(order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(order='C')]) -> None:
         """
         Construct a new BeamSampleParameters object (all values uninitialized)
 
         Args:
             number_of_beams: number of beams
         """
-
-    @overload
-    def __init__(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], crosstrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')], first_sample_offset: Annotated[NDArray[numpy.float32], dict(order='C')], sample_interval: Annotated[NDArray[numpy.float32], dict(order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(order='C')]) -> None: ...
 
     def __eq__(self, other: BeamSampleParameters) -> bool: ...
 

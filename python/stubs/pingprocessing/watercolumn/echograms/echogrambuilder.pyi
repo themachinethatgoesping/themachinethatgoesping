@@ -153,7 +153,7 @@ class EchogramBuilder:
         """
 
     @classmethod
-    def concat(cls, builders_or_backends: list, gap_handling: str = 'preserve') -> EchogramBuilder:
+    def concat(cls, builders_or_backends: list, gap_handling: str = 'preserve', sort_by_time: bool = False) -> EchogramBuilder:
         """
         Concatenate multiple echograms along the time/ping axis.
 
@@ -162,10 +162,12 @@ class EchogramBuilder:
 
         Args:
             builders_or_backends: List of EchogramBuilder or EchogramDataBackend instances.
-                Must be in temporal order.
+                Should be in temporal order unless ``sort_by_time=True``.
             gap_handling: How to handle gaps between echograms:
                 - "preserve": Keep real time gaps (x-axis shows true times)
                 - "continuous": Virtual continuous (ignore gaps between files)
+            sort_by_time: If True, automatically sort inputs by each backend's
+                start time before concatenation.
 
         Returns:
             EchogramBuilder with ConcatBackend.
@@ -397,11 +399,26 @@ class EchogramBuilder:
     def set_x_axis_ping_index(self, min_ping_index=0, max_ping_index=float('nan'), max_steps=4096, **kwargs):
         """Set X axis to ping index."""
 
-    def set_x_axis_ping_time(self, min_timestamp=float('nan'), max_timestamp=float('nan'), time_resolution=float('nan'), time_interpolation_limit=float('nan'), max_steps=4096, **kwargs):
-        """Set X axis to ping time (Unix timestamp)."""
+    def set_x_axis_ping_time(self, min_timestamp=float('nan'), max_timestamp=float('nan'), time_resolution=float('nan'), time_interpolation_limit=float('nan'), max_steps=4096, max_gap=None, **kwargs):
+        """
+        Set X axis to ping time (Unix timestamp).
 
-    def set_x_axis_date_time(self, min_ping_time=float('nan'), max_ping_time=float('nan'), time_resolution=float('nan'), time_interpolation_limit=float('nan'), max_steps=4096, **kwargs):
-        """Set X axis to datetime."""
+        Args:
+            max_gap: Optional maximum gap in seconds. Gaps between consecutive
+                pings longer than this are compressed to exactly ``max_gap`` on
+                the displayed axis (e.g. idle time between surveys). Display
+                only; ``None`` keeps the real timeline.
+        """
+
+    def set_x_axis_date_time(self, min_ping_time=float('nan'), max_ping_time=float('nan'), time_resolution=float('nan'), time_interpolation_limit=float('nan'), max_steps=4096, max_gap=None, **kwargs):
+        """
+        Set X axis to datetime.
+
+        Args:
+            max_gap: Optional maximum gap in seconds (or timedelta). Gaps
+                between consecutive pings longer than this are compressed to
+                exactly ``max_gap`` on the displayed axis. Display only.
+        """
 
     def set_x_axis_custom(self, axis_name, per_ping_coordinates, min_value=float('nan'), max_value=float('nan'), resolution=float('nan'), interpolation_limit=float('nan'), max_steps=4096, axis_format=None, **kwargs):
         """
@@ -418,6 +435,26 @@ class EchogramBuilder:
             max_steps: Maximum number of X pixels.
             axis_format: Optional format hint ("timedelta" for adaptive time
                 formatting). Auto-detected when passing timedelta input.
+        """
+
+    def set_x_axis_ping_distance(self, max_gap=None, min_distance=float('nan'), max_distance=float('nan'), resolution=float('nan'), interpolation_limit=float('nan'), max_steps=4096, **kwargs):
+        """
+        Set X axis to cumulative along-track travel distance (meters).
+
+        Distance is derived from the per-ping navigation positions (latitude/
+        longitude) stored in the backend, using a vectorized haversine. The
+        backend must provide navigation data (``has_latlon``).
+
+        Args:
+            max_gap: Optional maximum gap in meters. Jumps between consecutive
+                pings longer than this (e.g. transits between survey lines) are
+                compressed to exactly ``max_gap`` on the displayed axis.
+                ``None`` keeps true travel distance.
+            min_distance: Minimum distance to display (nan = auto).
+            max_distance: Maximum distance to display (nan = auto).
+            resolution: Grid resolution in meters (nan = auto from data).
+            interpolation_limit: Max gap for interpolation (nan = auto).
+            max_steps: Maximum number of X pixels.
         """
 
     def copy_xy_axis(self, other: EchogramBuilder):
@@ -482,10 +519,30 @@ class EchogramBuilder:
         """Return ``True`` when ``name`` has an associated per-ping value array."""
 
     def get_ping_param(self, name, use_x_coordinates=False):
-        """Get a ping parameter's values in current coordinate system."""
+        """
+        Get a ping parameter's values in current coordinate system.
+
+        Parameters are Y-drawable overlay curves (bottom, echosounder, etc.)
+        """
 
     def get_param_names(self):
-        """Return list of currently registered ping parameter names."""
+        """
+        Return list of currently registered ping parameter names (overlay curves only).
+        """
+
+    def get_metainfo_names(self):
+        """Return list of per-ping metadata names (scalar series)."""
+
+    def get_metainfo(self, name: str) -> Union[tuple[str, tuple[numpy.ndarray, numpy.ndarray]], None]:
+        """
+        Get per-ping metadata by name.
+
+        Args:
+            name: Metadata name (e.g., 'main_frequency', 'main_pulse_duration').
+
+        Returns:
+            (unit_string, (times, values)) or None if not found.
+        """
 
     def get_param_for_image(self, name, value_name=None, x_range=None, max_points=None):
         """
