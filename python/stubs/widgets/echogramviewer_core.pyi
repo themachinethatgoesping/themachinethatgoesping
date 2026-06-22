@@ -206,6 +206,9 @@ class EchogramCore:
 
         Uses the per-ping vec_min_y / vec_max_y from the echogrambuilder's
         coordinate system rather than scanning rendered pixels.
+
+        If an echogram defines a main layer, autoscaling is constrained to that
+        layer's visible Y limits for the current X window.
         """
 
     def set_x_interval_from_panel(self) -> None:

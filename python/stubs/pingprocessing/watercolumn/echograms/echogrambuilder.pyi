@@ -11,6 +11,7 @@ from typing import Union
 
 import numpy
 
+import themachinethatgoesping.algorithms as algorithms
 import themachinethatgoesping.echosounders as echosounders
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
@@ -586,7 +587,7 @@ class EchogramBuilder:
         """Get X indices mapping image coordinates to ping indices."""
 
     def get_column(self, nr):
-        """Get column data for a ping from backend."""
+        """Get column data for a ping from backend, with data transforms applied."""
 
     def set_oversampling(self, x_oversampling=1, y_oversampling=1, mode='linear_mean'):
         """
@@ -933,3 +934,5 @@ class EchogramBuilder:
             >>> fast = builder.to_image()            # in-memory
             >>> fast = builder.to_image("cache.bin") # on-disk mmap
         """
+
+    def detect_bottom(self, bottom_name: str = 'Bottom', thr_bottom: float = -35.0, thr_echo: float = -70.0, remove_outliers: bool = True, mp_cores=None) -> None: ...
