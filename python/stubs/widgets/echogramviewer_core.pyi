@@ -52,17 +52,40 @@ def auto_select_grid(initial_grid: Tuple[int, int], n_items: int) -> Tuple[int, 
     """Choose an appropriate grid size based on the number of items."""
 
 class DraggableScatterPlotItem(pyqtgraph.graphicsItems.ScatterPlotItem.ScatterPlotItem):
-    """ScatterPlotItem that supports dragging individual points."""
+    """
+    ScatterPlotItem whose individual points can be dragged.
+
+    This uses pyqtgraph's ``mouseDragEvent`` abstraction — the same mechanism
+    :class:`pyqtgraph.TargetItem` and the ROI classes use — instead of raw Qt
+    mouse events.  That guarantees correct arbitration with the ViewBox:
+
+    * a drag that *starts on a point* moves only that point, while
+    * a drag that starts on empty space is left unaccepted and falls through to
+      the ViewBox, so normal pan / zoom keeps working.
+
+    Crucially this is **one** scene item for *all* points (pyqtgraph batches
+    scatter rendering into a single item), so editing a curve with hundreds of
+    control points no longer creates hundreds of hover-accepting handle /
+    segment items the way :class:`pyqtgraph.PolyLineROI` does — which was the
+    cause of the whole-viewer slowdown.  Hit-testing uses the vectorised
+    :meth:`ScatterPlotItem.pointsAt`, so only the point under the cursor is
+    grabbed regardless of the total number of points ("only points close to the
+    mouse are selectable").
+
+    The original index of every displayed point is carried in the spot ``data``
+    field, so the emitted index stays correct even when the visible points are
+    a downsampled subset of the full parameter array.
+    """
 
     sigPointDragged: PySide6.QtCore.Signal = ...
 
+    sigPointDragFinished: PySide6.QtCore.Signal = ...
+
     def __init__(self, *args, **kwargs): ...
 
-    def mousePressEvent(self, ev): ...
+    def setMovable(self, movable: bool) -> None: ...
 
-    def mouseMoveEvent(self, ev): ...
-
-    def mouseReleaseEvent(self, ev): ...
+    def mouseDragEvent(self, ev): ...
 
     staticMetaObject: PySide6.QtCore.QMetaObject = ...
 
@@ -236,6 +259,15 @@ class EchogramCore:
     def set_external_crosshair_depth(self, depth: Optional[float]) -> None:
         """
         Set the horizontal crosshair from an external viewer (no callback fired).
+        """
+
+    def set_slot_interactive(self, slot_idx: int, enabled: bool) -> None:
+        """
+        Enable / disable interactive parameter editing for one echogram view.
+
+        When disabled the view still *shows* the parameter (curve + points) but
+        the points are not draggable, so left-drag pans the view as usual.
+        Rebuilds the visualization so the change takes effect immediately.
         """
 
     def connect_pingviewer(self, pingviewer: Any, progress: bool = False) -> None: ...

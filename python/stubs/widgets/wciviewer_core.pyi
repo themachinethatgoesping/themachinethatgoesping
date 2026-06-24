@@ -109,7 +109,16 @@ class WCICore:
 
     def on_slot_change(self, slot_idx: int, new_channel: Optional[str]) -> None: ...
 
-    def on_ping_change(self, slot_idx: int, new_ping: int) -> None: ...
+    def on_ping_change(self, slot_idx: int, new_ping: int) -> None:
+        """
+        Handle a *manual or external* ping change for ``slot_idx``.
+
+        This slot becomes the synchronisation master: its timestamp becomes the
+        reference and all other slots are aligned to it.  Changes that originate
+        from the internal synchronisation itself are flagged by ``_syncing`` and
+        ignored here so they can never become a competing master (which caused
+        the back-and-forth oscillation between channels).
+        """
 
     def on_global_color_change(self) -> None: ...
 

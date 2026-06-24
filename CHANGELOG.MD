@@ -17,6 +17,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: fixed missing 10x in av pulse length correction
 - echosounders: gridded mmap did not correctly store non-gridded axis information
 - widgets: WCIViewer: fix time synchronization loop between different slots
+- algorithms: resamplingfunction: deal with degenerated min/max sample ranges
 
 ## Improvements
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams

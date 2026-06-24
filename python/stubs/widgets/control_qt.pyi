@@ -56,6 +56,18 @@ class QtControlHandle(themachinethatgoesping.widgets.control_spec.ControlHandle)
     @value.setter
     def value(self, v: Any) -> None: ...
 
+    def set_silent(self, v: Any) -> None:
+        """
+        Set the value **without** emitting Qt change signals.
+
+        Blocks signals on the inner widget (and any paired spin box) so a
+        programmatic write performed during time-synchronisation cannot
+        re-enter the ping-change handlers through ``valueChanged``.  Qt
+        re-emits ``valueChanged`` synchronously and the ping-slider adapter
+        buffers those events, so suppressing the emission here is what breaks
+        the synchronisation feedback loop.
+        """
+
     def on_change(self, callback: Callable[[Any], None]) -> None: ...
 
     def on_click(self, callback: Callable) -> None: ...
