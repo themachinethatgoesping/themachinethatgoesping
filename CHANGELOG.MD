@@ -30,6 +30,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - widgets: echogramviewer: remember last used settings for colorbar selector
 - widgets: echogramviewer: AutoY now only scales to main layer (not complete picture)
 - widgets: echogramviewerQt: performance improvement for interactive parameter editing
+- widgets: echogramviewer: interact with wci stacks in echogramviewer
 
 
 ## Maintenance

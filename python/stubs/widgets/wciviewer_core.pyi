@@ -169,6 +169,15 @@ class WCICore:
 
     def unregister_ping_change_callback(self, callback: Any) -> None: ...
 
+    def register_view_change_callback(self, callback: Any) -> None:
+        """
+        Register a callback fired when a display parameter (e.g. the stack
+        size/step) changes.  Connected viewers use this to keep overlays such
+        as the echogram stack region in sync.
+        """
+
+    def unregister_view_change_callback(self, callback: Any) -> None: ...
+
     @property
     def w_index(self):
         """Compatibility: ping slider handle for first visible slot."""
