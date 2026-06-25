@@ -10,7 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders -> 0.48.0
 - algorithms -> 0.11.2
 - navigation -> 0.18.3
-- pingprocessing -> 0.13.1
+- pingprocessing -> 0.14.0
 - widgets -> 0.1.3
 
 ## Fixes [ breaking change in Results]

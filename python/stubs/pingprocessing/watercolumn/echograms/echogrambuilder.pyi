@@ -26,9 +26,15 @@ import themachinethatgoesping.pingprocessing.watercolumn.echograms.coordinate_sy
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.coordinate_system import (
     EchogramCoordinateSystem as EchogramCoordinateSystem
 )
-from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.echolayer import (
-    EchoLayer as EchoLayer,
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.layer import (
+    Layer as Layer
+)
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.pingdata import (
     PingData as PingData
+)
+import themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.store
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.store import (
+    LayerStore as LayerStore
 )
 
 
@@ -52,6 +58,18 @@ class EchogramBuilder:
             backend: Data backend providing access to echogram data.
             ping_numbers: Optional array of ping numbers. If None, uses 0..n_pings-1.
         """
+
+    @property
+    def layers(self) -> themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.store.LayerStore:
+        """Named layer store (excludes the reserved display-mask 'main')."""
+
+    @property
+    def main_layer(self):
+        """Resolved display-mask layer ('main') or ``None`` if not set."""
+
+    @property
+    def ping_times(self) -> numpy.ndarray:
+        """Per-ping timestamps (Unix seconds)."""
 
     @classmethod
     def from_pings(cls, pings, pss=None, wci_value: str = 'sv/av/pv/rv', linear_mean: bool = True, no_navigation: bool = False, apply_pss_to_bottom: bool = False, force_angle: Union[float, None] = None, depth_stack: bool = False, verbose: bool = True, mp_cores: int = 1) -> EchogramBuilder:
@@ -663,31 +681,79 @@ class EchogramBuilder:
     def get_limits_layers(self, nr, axis_name=None):
         """Get limits for each layer at a given ping."""
 
-    __set_layer__ = _set_layer
+    def add_layer(self, name, layer, *, combine=True):
+        """
+        Add a :class:`Layer` spec under ``name``.
 
-    def add_layer(self, name, vec_x_val, vec_min_y, vec_max_y):
-        """Add a layer with explicit boundaries."""
+        Args:
+            name: Layer name. The reserved name ``'main'`` designates the
+                display mask applied to the main echogram image.
+            layer: A :class:`Layer` (or list of layers, intersected).
+            combine: If ``True`` and ``name`` already exists, intersect the new
+                spec with the existing one(s); otherwise replace.
+        """
 
-    def add_layer_from_static_layer(self, name, min_y, max_y):
-        """Add a layer with static boundaries."""
+    def set_layer(self, name, layer):
+        """Replace any existing layer(s) under ``name`` with ``layer``."""
 
-    def add_layer_from_ping_param_offsets_absolute(self, name, ping_param_name, offset_0, offset_1):
-        """Add a layer based on absolute offsets from a ping parameter."""
+    def set_main_layer(self, layer):
+        """Set the display-mask layer applied to the main echogram image."""
 
-    def add_layer_from_ping_param_offsets_relative(self, name, ping_param_name, offset_0, offset_1):
-        """Add a layer based on relative offsets from a ping parameter."""
+    def add_layer_from_static_layer(self, name, min_y, max_y, *, combine=True):
+        """
+        Add a band spanning ``[min_y, max_y]`` in the current y-axis units.
+
+        The band's reference frame is fixed to the y-axis active *now*, so it
+        stays correct even if the display axis later changes.
+        """
+
+    def add_layer_from_ping_param_offsets_absolute(self, name, ping_param_name, offset_0, offset_1, *, combine=True):
+        """
+        Add a band at ``param + offset_0 .. param + offset_1``.
+
+        The band is expressed in the current y-axis reference. ``None`` offsets
+        make that edge open (data extent).
+        """
+
+    def add_layer_from_ping_param_offsets_relative(self, name, ping_param_name, offset_0, offset_1, *, combine=True):
+        """
+        Add a band at ``param * offset_0 .. param * offset_1``.
+
+        The band is expressed in the current y-axis reference. ``None`` scales
+        make that edge open (data extent).
+        """
 
     def remove_layer(self, name):
-        """Remove a layer by name."""
+        """Remove a layer by name (use ``'main'`` for the display mask)."""
 
     def clear_layers(self):
-        """Remove all layers except main."""
+        """Remove all named layers (keeps the 'main' display mask)."""
 
     def clear_main_layer(self):
-        """Remove the main layer."""
+        """Remove the display-mask 'main' layer."""
+
+    def has_layers(self) -> bool:
+        """Whether any named layer or the 'main' mask is set."""
+
+    def layer_names(self):
+        """Names of all named layers (excludes 'main')."""
+
+    def get_layer_sample_indices(self, name):
+        """Per-ping ``(i0, i1)`` sample-index bounds for ``name``."""
+
+    def get_layer_grid_indices(self, name):
+        """Per-ping ``(y0, y1)`` display-grid bounds for ``name``."""
+
+    def get_layer_bounds(self, name, reference='Depth (m)'):
+        """
+        Per-ping ``(lower, upper)`` values for ``name`` in ``reference`` units.
+
+        Useful for transferring a layer to another echogram via a shared
+        physical reference (e.g. depth).
+        """
 
     def iterate_ping_data(self, keep_to_xlimits=True):
-        """Iterate over ping data objects."""
+        """Iterate over lightweight per-ping accessors (:class:`PingData`)."""
 
     def get_raw_layer_data(self, layer_name, ping_indices=None):
         """
@@ -727,7 +793,7 @@ class EchogramBuilder:
             builder.set_y_axis_depth()
             builder.set_oversampling(x_oversampling=2, y_oversampling=2)
             builder.add_ping_param("my_line", "Ping time", "Depth (m)", ts, vals)
-            builder.add_layer_from_static_layer("roi", 10, 50)
+            builder.add_layer("roi", Layer.depth(10, 50))
             builder.update_store()          # writes back to the same store
 
             # …or save to a *different* store's metadata

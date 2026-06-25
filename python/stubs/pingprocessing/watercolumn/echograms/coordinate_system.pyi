@@ -95,6 +95,14 @@ class EchogramCoordinateSystem:
         """
 
     @property
+    def geometry_version(self) -> int:
+        """Counter that increments when per-ping value_-sample geometry changes."""
+
+    @property
+    def display_version(self) -> int:
+        """Counter that increments when the display y-axis grid changes."""
+
+    @property
     def n_pings(self) -> int:
         """Number of pings."""
 
@@ -322,6 +330,45 @@ class EchogramCoordinateSystem:
 
         Returns:
             Tuple of (image_indices, ping_indices) arrays.
+        """
+
+    def affine_sample_to_value(self, reference: str) -> tuple[numpy.ndarray, numpy.ndarray]:
+        """
+        Per-ping (a, b) such that ``value = a + b * sample_index`` for ``reference``.
+        """
+
+    def affine_value_to_sample(self, reference: str) -> tuple[numpy.ndarray, numpy.ndarray]:
+        """
+        Per-ping (a_inv, b_inv) such that ``sample_index = a_inv + b_inv * value``.
+
+        Inverse of :meth:`affine_sample_to_value`. NaN where the mapping is
+        undefined (degenerate pings).
+        """
+
+    def value_to_sample_index(self, reference: str, values: numpy.ndarray) -> numpy.ndarray:
+        """
+        Convert per-ping ``values`` (in ``reference`` units) to sample indices.
+        """
+
+    def sample_index_to_value(self, reference: str, sample_indices: numpy.ndarray) -> numpy.ndarray:
+        """Convert per-ping ``sample_indices`` to values in ``reference`` units."""
+
+    def get_param_values(self, name: str, reference: str) -> numpy.ndarray:
+        """
+        Return a ping parameter as a per-ping array in ``reference`` units.
+
+        Resolves the (possibly sparse, time-referenced) parameter onto every
+        ping, then converts native-reference -> sample index -> ``reference``.
+        This is axis-display independent and used to build param-relative layers.
+        """
+
+    def samples_to_grid(self, i0: numpy.ndarray, i1: numpy.ndarray) -> tuple[numpy.ndarray, numpy.ndarray]:
+        """
+        Project per-ping sample-index bands to current display grid indices.
+
+        Given per-ping sample-index bounds ``i0`` (inclusive) / ``i1`` (exclusive),
+        returns ``(y0, y1)`` grid-index bounds in the current y-axis, clamped to
+        ``[0, n_grid]`` with ``y1 >= y0``. Empty/degenerate pings yield ``y0==y1``.
         """
 
     def copy_xy_axis_to(self, other: EchogramCoordinateSystem):
