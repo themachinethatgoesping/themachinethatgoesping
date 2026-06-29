@@ -17,3 +17,4 @@ scipy
 pyqtgraph
 jupyter-rfb
 pyside6
+pyarrow
