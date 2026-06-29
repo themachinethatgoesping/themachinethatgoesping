@@ -18,12 +18,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: gridded mmap did not correctly store non-gridded axis information
 - widgets: WCIViewer: fix time synchronization loop between different slots
 - algorithms: resamplingfunction: deal with degenerated min/max sample ranges
+- pingprocessing: combined and concatinated backends could not deal with axis changes (e.g swith from depht to range)
 
 ## Improvements
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
 - echosounders: fixed reading unsorted attitude datagrams (.kmall and .all)
 - algorithms: esp3 port of bottom detection algorithm
 - pingprocessing: additional meta information for pings (main frequency, pulse duration, sample interval)
+- pingprocessing: revamping cross-calibraiton and layer processing
 - echogrambuilder: max_gap option and new ping_distance axis
 - echogrambuilder: add simple bottom_detection function to echogrambuilder
 - widgets: support new distance axis for echogramviewer

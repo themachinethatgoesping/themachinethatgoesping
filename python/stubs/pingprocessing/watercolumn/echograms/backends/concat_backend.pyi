@@ -126,9 +126,15 @@ class ConcatBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.
         """
         Build image by delegating to sub-backends.
 
-        Efficiently determines which backends have data in the requested range
-        and only queries those backends. When in depth mode, computes proper
-        affine parameters for each backend.
+        The request already carries the correct per-ping affine (``affine_a`` /
+        ``affine_b``) for the active y-axis, computed by the coordinate system
+        from this concat backend's own (concatenated) per-ping extents. We
+        therefore index those global affines by global ping directly -- the same
+        mapping every other backend uses -- which keeps depth, range, sample
+        number and sample index all correct. (A previous version tried to
+        re-derive a per-backend affine from ``depth_extents`` behind a
+        ``y_coords > 10`` "depth mode" heuristic; that misclassified the range
+        axis as depth and positioned range data at depth offsets.)
         """
 
     def __repr__(self) -> str: ...

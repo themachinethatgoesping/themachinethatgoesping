@@ -752,6 +752,18 @@ class EchogramBuilder:
         physical reference (e.g. depth).
         """
 
+    def pool_layer_values(self, layer_names, block_edges, *, step=1, reduce=..., progress=None):
+        """
+        Pool named layers' samples into time blocks (reduced per block).
+
+        Generic per-ping aggregation shared with the calibration subpackage: for
+        each named layer the samples inside ``[i0:i1]`` are pooled into the time
+        blocks defined by ``block_edges`` and reduced (median by default). The
+        only per-ping work is the column read; band resolution and block
+        assignment are vectorised. Returns ``{name: (values, counts)}`` with both
+        arrays of length ``len(block_edges) - 1`` (NaN / 0 where empty).
+        """
+
     def iterate_ping_data(self, keep_to_xlimits=True):
         """Iterate over lightweight per-ping accessors (:class:`PingData`)."""
 
