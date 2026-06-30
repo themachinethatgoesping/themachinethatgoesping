@@ -46,15 +46,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025]
+        os: [windows-2025-vs2026]
         python-version: ['3.11','3.12','3.13','3.14']
-        boost-version: [1.89.0]
-        boost-version_: [1_89_0]
+        boost-version: [1.91.0]
+        boost-version_: [1_91_0]
         boost-modules: [--with-iostreams]
         #toolset: [msvc-14.32]
         #toolset: [clang-cl]
         include:
-        - toolset: vc143
+        - toolset: vc145
           compiler: clang-cl
           cpp_std: c++23
 
