@@ -57,14 +57,5 @@ class CalibrationPattern:
     def far_field(self, channel: str, far_range: float = 5000.0):
         """``(angles, offset)`` at a large (far-field) range for one channel."""
 
-    def build_calibrations(self, pings) -> dict:
-        """
-        Build ``{channel: WaterColumnCalibration}`` with the offset applied.
-
-        Mirrors the notebook workflow: take each channel's existing Av
-        calibration, set the per-beamangle-and-range offset from this pattern,
-        and store it back as the Sv calibration.
-        """
-
     def apply_to_pings(self, pings, *, show_progress: bool = True) -> dict:
         """Apply the pattern as an Sv calibration onto ``pings`` (in place)."""

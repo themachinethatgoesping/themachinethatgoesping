@@ -23,6 +23,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
 - echosounders: fixed reading unsorted attitude datagrams (.kmall and .all)
+- echosounders: add missing functions to kmallwatercolumn calibration (python interface)
 - algorithms: esp3 port of bottom detection algorithm
 - pingprocessing: additional meta information for pings (main frequency, pulse duration, sample interval)
 - pingprocessing: revamping cross-calibraiton and layer processing
