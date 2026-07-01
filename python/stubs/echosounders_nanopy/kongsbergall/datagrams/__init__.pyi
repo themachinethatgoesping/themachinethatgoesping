@@ -267,14 +267,12 @@ class XYZDatagram(KongsbergAllDatagram):
     def get_scanning_info(self) -> int:
         """only used by em2040. 0 means scanning is not used."""
 
-    def get_beams(self) -> list[substructures.XYZDatagramBeam]:
+    @property
+    def beams(self) -> substructures.XYZDatagramBeamsContainer:
         """beam detection information"""
 
-    def set_beams(self, arg: Sequence[substructures.XYZDatagramBeam], /) -> None:
-        """beam detection information"""
-
-    def beams(self) -> list[substructures.XYZDatagramBeam]:
-        """beam detection information"""
+    @beams.setter
+    def beams(self, arg: substructures.XYZDatagramBeamsContainer, /) -> None: ...
 
     def get_heading_in_degrees(self) -> float:
         """

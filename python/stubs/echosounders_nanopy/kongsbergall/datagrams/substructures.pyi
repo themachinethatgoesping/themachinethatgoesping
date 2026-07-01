@@ -9,6 +9,7 @@ from typing import Annotated, ClassVar, Final, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
 import themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures
 
 
@@ -202,7 +203,7 @@ class XYZDatagramBeam:
         convert reflectivity to backscatter (_reflectivity * 0.1 dB)
 
         Returns:
-            double
+            float
         """
 
     def get_detection_is_valid(self) -> bool:
@@ -241,7 +242,15 @@ class XYZDatagramBeam:
         degree)
 
         Returns:
-            double
+            float
+        """
+
+    def get_beam_incidence_angle_horizontal_plane_in_degrees(self) -> float:
+        """
+        Get the beam incidence angle horizontal plane (BAC) in degrees
+
+        Returns:
+            float
         """
 
     def __eq__(self, other: XYZDatagramBeam) -> bool: ...
@@ -252,6 +261,78 @@ class XYZDatagramBeam:
     def __copy__(self) -> XYZDatagramBeam: ...
 
     def __deepcopy__(self, arg: dict, /) -> XYZDatagramBeam: ...
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class XYZDatagramBeamsContainer:
+    def __init__(self) -> None: ...
+
+    @property
+    def beams(self) -> list[XYZDatagramBeam]: ...
+
+    @beams.setter
+    def beams(self, arg: Sequence[XYZDatagramBeam], /) -> None: ...
+
+    def get_beams(self) -> list[XYZDatagramBeam]: ...
+
+    def set_beams(self, beams: Sequence[XYZDatagramBeam]) -> None: ...
+
+    def get_depth_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_acrosstrack_distance_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_alongtrack_distance_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_detection_window_length_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
+
+    def get_quality_factor_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
+
+    def get_beam_incidence_angle_adjustment_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
+
+    def get_detection_info_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
+
+    def get_realtime_cleaning_information_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
+
+    def get_reflectivity_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    def get_backscatter_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_beam_incidence_angle_adjustment_in_degrees_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_detection_is_valid_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
+
+    def get_detection_type_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
+
+    def get_backscatter_is_compensated_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
+
+    def get_number_of_beams(self) -> int: ...
+
+    @overload
+    def get_xyz(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1: ...
+
+    @overload
+    def get_xyz(self, beam_numbers: Sequence[int]) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1: ...
+
+    def get_beam_incidence_angle_horizontal_plane_in_degrees_tensor(self, beam_numbers: Sequence[int] = []) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def __eq__(self, other: XYZDatagramBeamsContainer) -> bool: ...
+
+    def copy(self) -> XYZDatagramBeamsContainer:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> XYZDatagramBeamsContainer: ...
+
+    def __deepcopy__(self, arg: dict, /) -> XYZDatagramBeamsContainer: ...
 
     def __str__(self) -> str:
         """Return object information as string"""

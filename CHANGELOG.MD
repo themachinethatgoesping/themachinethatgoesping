@@ -4,7 +4,7 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [Unreleased]
+# [0.34.0] - 02-07-2026
 
 - tools -> 0.31.3
 - echosounders -> 0.48.0
@@ -24,6 +24,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: vectorized sub struct access for kmall SKBinary and .all attitude datagrams
 - echosounders: fixed reading unsorted attitude datagrams (.kmall and .all)
 - echosounders: add missing functions to kmallwatercolumn calibration (python interface)
+- echosounders: kongsbergall datagram: implement tensor style access for beams substruture
+- echosounders: kongsberg xyz: compute beam incidence angle horizontal plane (BAC) from x/y/z coordinates and beam incidence angle adjustment
 - algorithms: esp3 port of bottom detection algorithm
 - pingprocessing: additional meta information for pings (main frequency, pulse duration, sample interval)
 - pingprocessing: revamping cross-calibraiton and layer processing
