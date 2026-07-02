@@ -23,10 +23,6 @@ from themachinethatgoesping.widgets.videoframes import (
 )
 
 
-GRID_LAYOUTS: list = ...
-
-WCI_VALUE_CHOICES: list = ...
-
 def normalise_channels(channels: Union[Dict[str, Sequence[Any]], Sequence[Sequence[Any]]], names: Optional[Sequence[Optional[str]]]) -> Tuple[Dict[str, Sequence[Any]], List[str]]:
     """Normalise various channel input formats to ``(dict, names_list)``."""
 
