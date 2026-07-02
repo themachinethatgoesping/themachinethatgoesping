@@ -6,7 +6,7 @@ import pg
 import pyqtgraph.graphicsItems.AxisItem
 
 
-__all__: list = ['MatplotlibDateAxis', 'TimedeltaAxis', 'DistanceAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout']
+__all__: list = ['MatplotlibDateAxis', 'TimedeltaAxis', 'DistanceAxis', 'ensure_qapp', 'resolve_colormap', 'list_colormaps', 'apply_widget_layout', 'responsive_row']
 
 class MatplotlibDateAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
     """AxisItem that formats matplotlib-style ordinal dates."""
@@ -104,4 +104,51 @@ def list_colormaps(source: Optional[str] = None) -> List[str]:
     """
 
 def apply_widget_layout(widget: ipywidgets.Widget, width_px: int, height_px: int) -> None:
-    """Attach a resizable layout to the GraphicsLayoutWidget wrapper."""
+    """
+    Configure a ``jupyter_rfb`` graphics widget to fill its container width
+    and resize like a native Qt widget.
+
+    ``pyqtgraph.jupyter.GraphicsLayoutWidget`` is a subclass of
+    :class:`jupyter_rfb.RemoteFrameBuffer`, which already provides everything we
+    need for Qt-like resizing:
+
+    * a ``resizable`` trait (native drag handle in the bottom-right corner), and
+    * a ``ResizeObserver`` on the canvas that re-renders the Qt scene whenever
+      the canvas size changes — so it adapts to the notebook/window width
+      automatically.
+
+    The previous implementation *fought* this by imposing an ipywidgets
+    ``layout.resize`` handle plus ``overflow='auto'`` and a fixed pixel
+    ``layout.width``.  That produced (a) two competing resize mechanisms,
+    (b) scrollbars, (c) a host element with a fixed height while the inner RFB
+    wrapper shrank — leaving a large empty gap under the plot — and (d) controls
+    that never reflowed.  In addition, when the RFB frontend has no explicit
+    width it clamps itself to ``max-width: 90vmin`` (the "weird maximum width").
+
+    Here we instead cooperate with ``jupyter_rfb``:
+
+    * ``css_width='100%'``  → wrapper fills the available width (removes the
+      ``90vmin`` clamp and makes the plot follow the window/output width),
+    * ``css_height='<px>'`` → a definite starting height that is still
+      drag-resizable via the native handle,
+    * ``resizable=True``    → native RFB resize handle on both axes,
+    * the ipywidgets host ``layout`` only fills the width and gets out of the
+      way (``height='auto'``, ``overflow='visible'``, no resize handle).
+
+    Note
+    ----
+    ``GraphicsView.__init__`` parses ``css_width``/``css_height`` as pixels
+    (``int(css_width[:-2])``), so the widget must be *constructed* with a
+    ``"<n>px"`` string.  This helper is always called *after* construction, so
+    it is safe to switch ``css_width`` to ``"100%"`` here.
+    """
+
+def responsive_row(children, *, align_items: str = 'center', justify_content: Optional[str] = None) -> 'ipywidgets.HBox':
+    """
+    Return an :class:`ipywidgets.HBox` that reflows when space runs out.
+
+    Unlike a plain ``HBox`` (which keeps all children on a single, non-shrinking
+    row), this container fills the available width and wraps its children onto
+    new lines as the viewer/window gets narrower — so control rows behave like
+    the freely re-flowing panels of the native Qt viewers.
+    """

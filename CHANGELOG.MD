@@ -4,6 +4,14 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [0.34.1] - 03-07-2026
+
+- widgets -> 0.1.4
+
+## Fixes
+- widgets: qt: fix crash caused by non ascii symbol characters used as labels
+- widgets: jupyter widgets where not scaling correctly
+
 # [0.34.0] - 02-07-2026
 
 - tools -> 0.31.3
