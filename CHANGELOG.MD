@@ -4,6 +4,13 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [Unreleased]
+
+- tools -> 0.31.4
+
+## Maintenance
+- tools: update catch2 3.15.1 -> 3.15.2
+
 # [0.34.1] - 03-07-2026
 
 - widgets -> 0.1.4
