@@ -7,6 +7,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 # [Unreleased]
 
 - tools -> 0.31.4
+- navigation -> 0.18.4
+
+## Fixes
+- navigation: Geographiclib exceptions now caught before they cause crashes within openmp loops
 
 ## Maintenance
 - tools: update catch2 3.15.1 -> 3.15.2
