@@ -14,25 +14,53 @@ import themachinethatgoesping.navigation_nanopy.datastructures
 
 class SoundVelocityProfile:
     """
-    1-D depth-dependent sound velocity profile with precomputed layer constants.
+    1-D depth-dependent sound velocity profile with layered analytic
+           precomputations for use by the LayerRaytracer.
+
+    Depths are absolute (e.g. metres below the sea surface). Optional
+    metadata (timestamp, latitude, longitude) is stored as
+    ``std::optional_double``.
     """
 
     @overload
     def __init__(self) -> None:
-        """Construct an empty SoundVelocityProfile"""
+        """Construct an empty SoundVelocityProfile."""
 
     @overload
     def __init__(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
-        """Construct from depth (m) and sound speed (m/s) arrays."""
+        """
+        Construct from depth/sound-speed tables.
+        Args:
+            z: monotonically increasing depth knots (m, positive down).
+            c: corresponding sound speeds (m/s, must be positive).
+        """
 
-    def __eq__(self, other: SoundVelocityProfile) -> bool: ...
+    def __eq__(self, other: SoundVelocityProfile) -> bool:
+        """Equality comparison (metadata is ignored)."""
 
     @staticmethod
     def uniform(c: float, z_max: float = 12000.0) -> SoundVelocityProfile:
-        """Convenience: constant SVP from surface to z_max."""
+        """
+        Constant-velocity profile from the surface to z_max.
+        Args:
+            c: sound speed (m/s).
+            z_max: maximum depth (m); default 12 000 m.
+
+        Returns:
+            SoundVelocityProfile with uniform sound speed.
+        """
 
     def set(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
-        """Set depth/sound-speed tables and recompute layer constants."""
+        """
+        Set depth/sound-speed tables and recompute layer constants.
+        Args:
+            z: monotonically increasing depth knots (m, positive down).
+            c: corresponding sound speeds (m/s, must be positive).
+
+        Raises:
+            std::runtime_error: if sizes differ, fewer than 2 entries, or non-
+                monotone depths.
+        """
 
     def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """All depth knots (m), absolute coordinates."""
@@ -44,16 +72,22 @@ class SoundVelocityProfile:
         """Sound-speed gradient dc/dz (s⁻¹) per layer (size = number_of_layers)."""
 
     def get_inverse_sound_speed_gradients_in_seconds(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """1/gradient (s) per layer; 0 for iso-velocity layers."""
+        """
+        1 / gradient (s) per layer; 0 for iso-velocity layers (size =
+        number_of_layers).
+        """
 
     def get_isovelocity_flags(self) -> Annotated[NDArray[numpy.bool_], dict(order='C')]:
-        """Per-layer iso-velocity flag (true when |gradient| < ISO_EPS)."""
+        """
+        Per-layer iso-velocity flag: true when |gradient| < ISO_EPS (size =
+        number_of_layers).
+        """
 
     def get_number_of_layers(self) -> int:
-        """Number of layers (= number of knots - 1)."""
+        """Number of layers (= number of knots − 1)."""
 
     def get_sound_speed(self, depth_in_meters: float) -> float:
-        """Sound speed at depth z (linear interp; clamped at endpoints)."""
+        """Sound speed at depth z (linear interp inside layers, clamped at ends)."""
 
     def get_depth_in_meters(self, index: int) -> float:
         """Depth (m) at the given knot index."""
@@ -62,35 +96,58 @@ class SoundVelocityProfile:
         """Sound speed (m/s) at the given knot index."""
 
     def get_number_of_entries(self) -> int:
-        """Number of (depth, sound speed) entries (= number_of_layers + 1)."""
+        """Number of (depth, sound speed) entries (= number of layers + 1)."""
 
     def get_timestamp(self) -> float | None:
-        """Unix timestamp (seconds since epoch, UTC), or None if not set."""
+        """
+        Unix timestamp (s, UTC) when the profile was measured, or std::nullopt
+        if unset.
+        """
 
     def set_timestamp(self, timestamp: float | None) -> None:
-        """Set the unix timestamp (or None to clear)."""
+        """Set the unix timestamp (s, UTC); pass std::nullopt to clear."""
 
-    def has_timestamp(self) -> bool: ...
+    def has_timestamp(self) -> bool:
+        """True iff a timestamp is set."""
 
     def get_latitude(self) -> float | None:
-        """Latitude (decimal degrees, +N), or None if not set."""
+        """
+        Latitude (decimal degrees, +N) where the profile was measured, or
+        std::nullopt if unset.
+        """
 
     def set_latitude(self, latitude: float | None) -> None:
-        """Set latitude (or None to clear)."""
+        """Set latitude (decimal degrees, +N); pass std::nullopt to clear."""
 
     def get_longitude(self) -> float | None:
-        """Longitude (decimal degrees, +E), or None if not set."""
+        """
+        Longitude (decimal degrees, +E) where the profile was measured, or
+        std::nullopt if unset.
+        """
 
     def set_longitude(self, longitude: float | None) -> None:
-        """Set longitude (or None to clear)."""
+        """Set longitude (decimal degrees, +E); pass std::nullopt to clear."""
 
     def set_location(self, latitude: float | None, longitude: float | None) -> None:
-        """Set both latitude and longitude at once."""
+        """
+        Set both latitude (decimal degrees, +N) and longitude (decimal
+        degrees, +E) at once.
+        """
 
-    def has_location(self) -> bool: ...
+    def has_location(self) -> bool:
+        """True iff both latitude and longitude are set."""
 
     def get_date_string(self, fractionalSecondsDigits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
-        """Format the timestamp as a date string."""
+        """
+        Format ``_timestamp`` as a date string.
+
+        Returns ``"no timestamp"`` if no timestamp is set.
+
+        Args:
+            fractionalSecondsDigits: passed to
+                                     ``timeconv::unixtime_to_datestring``
+            format: passed to ``timeconv::unixtime_to_datestring``
+        """
 
     def copy(self) -> SoundVelocityProfile:
         """return a copy using the c++ default copy constructor"""
@@ -242,3 +299,136 @@ class LayerRaytracer:
 
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
+
+class BeamTrace:
+    """
+    Path of a single traced beam through a layered sound velocity profile.
+
+    The stored points describe the ray polyline in the athwartships y-z
+    plane (forward coordinate x is zero). Point 0 is the launch point.
+    Depth, horizontal offset, two-way travel time and the cosine of the
+    ray angle are stored; incident angle (deg) and cumulative range (m)
+    are derived on access.
+    """
+
+    @overload
+    def __init__(self) -> None:
+        """Construct an empty BeamTrace (no points stored)."""
+
+    @overload
+    def __init__(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], horizontal_offsets_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_times_in_seconds: Annotated[NDArray[numpy.float32], dict(order='C')], cos_incident_angles: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+        """
+        Construct from the four stored per-point tables (all must have the
+        same length).
+        Args:
+            depths: depth z (m, positive down); point 0 is the launch point.
+            horizontal_offsets: signed athwartships offset y (m, positive
+                                starboard).
+            two_way_travel_times: two-way travel time (s).
+            cos_incident_angles: cosine of the ray angle from +z (1=down,
+                                 0=turning, −1=up).
+        """
+
+    def __eq__(self, other: BeamTrace) -> bool:
+        """Equality comparison."""
+
+    def set(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], horizontal_offsets_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_times_in_seconds: Annotated[NDArray[numpy.float32], dict(order='C')], cos_incident_angles: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+        """
+        Set all stored tables at once (all must have the same length).
+        Raises:
+            std::runtime_error: if table sizes differ.
+        """
+
+    def get_number_of_points(self) -> int:
+        """
+        Number of stored points (>= 1 for a valid trace; point 0 is the launch
+        point).
+        """
+
+    def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """Depth z (m, positive down) at each point."""
+
+    def get_horizontal_offsets_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """Signed athwartships offset y (m, positive starboard) at each point."""
+
+    def get_two_way_travel_times_in_seconds(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """Two-way travel time (s) at each point."""
+
+    def get_cos_incident_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Cosine of the ray angle from +z (1 down, 0 turning, -1 up) at each
+        point.
+        """
+
+    def get_incident_angles_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Incident angle (deg) from straight down at each point.
+
+        0 deg points down, +-90 deg is horizontal, +-180 deg points up.
+        Positive angles correspond to the port side (negative y), consistent
+        with a right-handed rotation about +x.
+        """
+
+    def get_ranges_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Cumulative along-ray range (m) from the launch point.
+        Returns:
+            Range array; element 0 is always 0 (launch point).
+        """
+
+    def copy(self) -> BeamTrace:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> BeamTrace: ...
+
+    def __deepcopy__(self, arg: dict, /) -> BeamTrace: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamTrace:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, sound_velocity_profile: SoundVelocityProfile, two_way_travel_time_in_seconds: float) -> BeamTrace:
+    """
+    Trace a single beam through a layered sound velocity profile.
+
+    Emits one point at launch, one at each layer crossing and turning
+    point, and a final point at the requested travel time (or when the ray
+    exits the profile).
+
+    Args:
+        launch_depth_in_meters: launch depth (m, positive down); must be
+                                inside the profile range.
+        launch_angle_in_degrees: angle from straight down (deg); 0 = down,
+                                 positive = port.
+        sound_velocity_profile: profile to trace through.
+        two_way_travel_time_in_seconds: two-way travel time budget (s).
+
+    Returns:
+        BeamTrace with the launch point, layer crossings, turning points
+        and the final point.
+    """
