@@ -412,13 +412,23 @@ class BeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, sound_velocity_profile: SoundVelocityProfile, two_way_travel_time_in_seconds: float) -> BeamTrace:
+def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, sound_velocity_profile: SoundVelocityProfile, two_way_travel_time_in_seconds: float, surface_sound_speed_in_meters_per_second: float = -1.0) -> BeamTrace:
     """
     Trace a single beam through a layered sound velocity profile.
 
     Emits one point at launch, one at each layer crossing and turning
     point, and a final point at the requested travel time (or when the ray
     exits the profile).
+
+    The Snell ray parameter (the invariant that governs refraction) is
+    defined by the launch angle and the sound speed at which the beam was
+    formed. For a multibeam that is the measured surface/transducer sound
+    speed (SSV). Pass it as ``surface_sound_speed_in_meters_per_second``
+    whenever it differs from the profile value at the launch depth (e.g.
+    the real-time SSV differs from the archived cast); otherwise the
+    profile value at the launch depth is used, and both agree exactly when
+    the two speeds are equal. Using the wrong launch sound speed
+    introduces an angle-dependent (outer-beam) depth bias.
 
     Args:
         launch_depth_in_meters: launch depth (m, positive down); must be
@@ -427,6 +437,14 @@ def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, so
                                  positive = port.
         sound_velocity_profile: profile to trace through.
         two_way_travel_time_in_seconds: two-way travel time budget (s).
+        surface_sound_speed_in_meters_per_second: sound speed (m/s) at
+                                                  which the beam was
+                                                  formed; the ray
+                                                  parameter is
+                                                  sin(angle)/this. <= 0
+                                                  (default) falls back to
+                                                  the profile value at the
+                                                  launch depth.
 
     Returns:
         BeamTrace with the launch point, layer crossings, turning points
@@ -475,7 +493,7 @@ class RayToDepth:
         the profile first).
         """
 
-def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_depth_in_meters: float, launch_zenith_angle_in_radians: float, target_depth_in_meters: float) -> RayToDepth:
+def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_depth_in_meters: float, launch_zenith_angle_in_radians: float, target_depth_in_meters: float, surface_sound_speed_in_meters_per_second: float = -1.0) -> RayToDepth:
     """
     Trace one ray leg from a launch depth/angle down to a target depth.
 
@@ -499,6 +517,16 @@ def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_dep
                                         the launch point (0 = nadir).
         target_depth_in_meters: depth (m, positive down) to trace to; must
                                 be > launch depth and within the profile.
+        surface_sound_speed_in_meters_per_second: sound speed (m/s) at
+                                                  which the beam was
+                                                  formed; the ray
+                                                  parameter is
+                                                  sin(zenith)/this. <= 0
+                                                  (default) falls back to
+                                                  the profile value at the
+                                                  launch depth. Must match
+                                                  trace_beam so
+                                                  mono/bistatic agree.
 
     Returns:
         RayToDepth endpoint of the leg.
@@ -885,7 +913,7 @@ class BistaticBeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513) -> BistaticBeamTrace:
+def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float = -1.0, reference_heading_in_degrees: float = 0.0) -> BistaticBeamTrace:
     """
     Solve the true-bistatic seabed trace of a single multibeam beam.
 
@@ -899,9 +927,12 @@ def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], t
     trace_beam so the returned legs are identical to the monostatic model
     when the transmit and receive poses coincide.
 
-    All poses are in the common x=forward, y=starboard, z=down frame; the
-    concentric guess must be in the same frame (compute_beam_directions
-    with reference_heading = 0).
+    All poses are in the common x=forward, y=starboard, z=down frame. The
+    vessel attitudes may carry the full heading in their yaw component;
+    pass that same heading as ``reference_heading_in_degrees`` so it is
+    removed from both arrays (exactly like compute_beam_directions), which
+    puts the solved seabed point in the ship frame. The concentric guess
+    must be in that same (heading-removed) frame.
 
     Args:
         transmit_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
@@ -928,6 +959,21 @@ def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], t
         max_iterations: maximum Newton iterations (default 30).
         tolerance_in_percent: convergence tolerance as a percentage of the
                               nominal slant range (default 0.001).
+        surface_sound_speed_in_meters_per_second: sound speed (m/s) at
+                                                  which the beams were
+                                                  formed (the measured
+                                                  surface/transducer SSV);
+                                                  applied to both legs'
+                                                  ray parameters. <= 0
+                                                  (default) uses the
+                                                  profile value at each
+                                                  array depth.
+        reference_heading_in_degrees: heading (deg) removed from both
+                                      vessel attitudes so the result is in
+                                      the ship frame; use the same value
+                                      passed to compute_beam_directions. 0
+                                      (default) keeps the attitudes as
+                                      given.
 
     Returns:
         BistaticBeamTrace with both legs, azimuths, seabed point and
