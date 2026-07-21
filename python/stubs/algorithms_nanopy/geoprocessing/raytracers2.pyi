@@ -432,3 +432,504 @@ def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, so
         BeamTrace with the launch point, layer crossings, turning points
         and the final point.
     """
+
+class RayToDepth:
+    """
+    Endpoint of one ray leg traced down to a target depth (fast, no
+    polyline).
+
+    Produced by trace_beam_to_depth. The horizontal offset and path length
+    are magnitudes for the single leg between the launch depth and the
+    target depth; the caller carries the horizontal azimuth of the leg
+    separately.
+    """
+
+    def __init__(self) -> None: ...
+
+    @property
+    def horizontal_offset_in_meters(self) -> float:
+        """
+        Horizontal distance (m, >= 0) from the launch point to the target
+        depth.
+        """
+
+    @property
+    def one_way_travel_time_in_seconds(self) -> float:
+        """One-way travel time (s) from the launch point to the target depth."""
+
+    @property
+    def path_length_in_meters(self) -> float:
+        """Along-ray path length (m) from the launch point to the target depth."""
+
+    @property
+    def cos_angle_at_target(self) -> float:
+        """
+        Cosine of the ray angle from straight down at the target depth (after
+        refraction).
+        """
+
+    @property
+    def reached_target(self) -> bool:
+        """
+        True if the ray reached the target depth (false if it turned or left
+        the profile first).
+        """
+
+def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_depth_in_meters: float, launch_zenith_angle_in_radians: float, target_depth_in_meters: float) -> RayToDepth:
+    """
+    Trace one ray leg from a launch depth/angle down to a target depth.
+
+    Uses the identical layered-Snell principle as trace_beam (the same
+    tracebeam_detail closed-form iso/gradient segment kernels), but
+    integrates to a target depth instead of a travel-time budget and only
+    accumulates the endpoint (no polyline). This is the fast inner step of
+    the bistatic solver, which calls it many times per beam while
+    searching for the seabed point; once converged, the full per-layer
+    polyline of each leg is produced with trace_beam.
+
+    The launch is downward (0 = nadir); if the ray turns (becomes
+    horizontal) or leaves the profile before the target depth,
+    reached_target is false.
+
+    Args:
+        sound_velocity_profile: layered profile to trace through.
+        launch_depth_in_meters: depth (m, positive down) of the leg
+                                origin; must be within the profile.
+        launch_zenith_angle_in_radians: ray angle from straight down at
+                                        the launch point (0 = nadir).
+        target_depth_in_meters: depth (m, positive down) to trace to; must
+                                be > launch depth and within the profile.
+
+    Returns:
+        RayToDepth endpoint of the leg.
+    """
+
+class BeamDirections:
+    """
+    Per-beam pointing directions of a multibeam swath.
+
+    Stores one ship-referenced unit pointing vector per beam (x = forward,
+    y = starboard, z = down, reference heading removed). From each
+    direction the class derives, on access:
+      * the signed beam pointing angle (the athwartships launch angle
+        handed to
+        trace_beam: 0 deg = nadir/down, +90 deg = horizontal to port, -90
+                    deg =
+        horizontal to starboard),
+      * the beam azimuth (the fore-aft rotation about the vertical/down
+        axis that lifts a 2-D trace (horizontal_offset, depth) back into
+        ship-frame xyz),
+      * the unsigned beam take-off angle from nadir.
+
+    A traced beam point is lifted back into the ship frame by rotating it
+    about the vertical (down) axis by the beam azimuth:
+      x_forward   = -horizontal_offset * sin(beam_azimuth) y_starboard =
+      horizontal_offset * cos(beam_azimuth) z_down      =  depth
+    i.e. xyz = R_down(beam_azimuth) * (0, horizontal_offset, depth).
+    """
+
+    @overload
+    def __init__(self) -> None:
+        """Construct an empty BeamDirections (no beams stored)."""
+
+    @overload
+    def __init__(self, directions: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+        """
+        Construct from per-beam unit pointing vectors.
+        Args:
+            directions: [n_beams, 3] tensor of (forward, starboard, down)
+                        components.
+
+        Raises:
+            std::runtime_error: if the second dimension is not 3.
+        """
+
+    def __eq__(self, other: BeamDirections) -> bool:
+        """Equality comparison."""
+
+    def set(self, directions: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
+        """
+        Set the per-beam unit pointing vectors.
+        Args:
+            directions: [n_beams, 3] tensor of (forward, starboard, down)
+                        components.
+
+        Raises:
+            std::runtime_error: if the second dimension is not 3.
+        """
+
+    def get_number_of_beams(self) -> int:
+        """Number of beams stored."""
+
+    def get_directions(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Per-beam ship-referenced unit pointing vectors [n_beams, 3] =
+        (forward, starboard, down).
+        """
+
+    def get_beam_direction(self, beam_index: int) -> list[float]:
+        """
+        Ship-referenced unit pointing vector (forward, starboard, down) of a
+        single beam.
+
+        Convenience accessor for feeding one beam's direction as the
+        concentric initial guess into trace_bistatic_beam.
+        Args:
+            beam_index: index of the beam.
+        """
+
+    def get_beam_pointing_angles_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Signed beam pointing angle (deg): the athwartships launch angle for
+        trace_beam.
+
+        0 deg is nadir (straight down), +90 deg is horizontal to port, -90 deg
+        is horizontal to starboard. Its magnitude equals the take-off angle
+        from nadir; its sign follows the port (+) / starboard (-) side of the
+        beam. Combined with get_beam_azimuth_angles_in_degrees() it
+        reconstructs the full 3-D direction:
+          d = R_down(beam_azimuth) * (0, -sin(beam_pointing),
+          cos(beam_pointing)).
+        """
+
+    def get_beam_azimuth_angles_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Beam azimuth (deg): the fore-aft rotation about the vertical (down)
+        axis.
+
+        Principal value in (-90, 90]; 0 deg means the beam lies in the
+        athwartships plane (no fore-aft component). Used to lift a 2-D trace
+        back into 3-D:
+          xyz = R_down(beam_azimuth) * (0, horizontal_offset, depth).
+        """
+
+    def get_beam_takeoff_angles_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Unsigned beam take-off angle (deg) from nadir (straight down), always
+        >= 0.
+
+        0 deg is nadir, 90 deg is horizontal. Equals |beam pointing angle|.
+        """
+
+    def copy(self) -> BeamDirections:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> BeamDirections: ...
+
+    def __deepcopy__(self, arg: dict, /) -> BeamDirections: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BeamDirections:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+def compute_beam_directions(transmit_installation_ypr_in_degrees: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], receive_attitude_ypr_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], transmit_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], reference_heading_in_degrees: float, mp_cores: int = 1) -> BeamDirections:
+    """
+    Compute the ship-referenced pointing direction of every beam.
+
+    Each beam is the downward intersection of the transmit and receive
+    array "fans" (Mills cross). The transmit array long axis (forward) and
+    the receive array long axis (starboard) are placed in the world frame
+    from their installation orientation and the vessel attitude at
+    transmit / receive; the transmit and receive steering angles then fix
+    the beam's projection onto each axis. The intersection is solved
+    directly (no orthogonality assumption), so array non-orthogonality is
+    exact and reverse mounts are handled by the installation quaternion
+    alone (no manual sign flips).
+
+    Args:
+        transmit_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
+                                              orientation of the transmit
+                                              array.
+        receive_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
+                                             orientation of the receive
+                                             array.
+        transmit_attitude_ypr_in_degrees: [n_beams, 3] vessel (yaw, pitch,
+                                          roll) at transmit time.
+        receive_attitude_ypr_in_degrees: [n_beams, 3] vessel (yaw, pitch,
+                                         roll) at receive time.
+        transmit_steering_angles_in_degrees: [n_beams] fore-aft transmit
+                                             tilt (positive forward).
+        receive_steering_angles_in_degrees: [n_beams] across-track receive
+                                            angle (positive to PORT).
+        reference_heading_in_degrees: heading the output is expressed
+                                      relative to.
+        mp_cores: number of OpenMP cores for the per-beam solve (default
+                  1).
+
+    Returns:
+        BeamDirections with one ship-referenced unit pointing vector per
+        beam.
+    """
+
+def beam_direction_to_pointing_and_azimuth_in_degrees(forward: float, starboard: float, down: float) -> list[float]:
+    """
+    Decompose a ship-frame beam direction into a signed pointing angle and
+    azimuth.
+
+    Scalar counterpart of
+    BeamDirections::get_beam_pointing_angles_in_degrees /
+    get_beam_azimuth_angles_in_degrees, using the identical convention:
+    the pointing angle is 0 deg at nadir, +90 deg horizontal to port, -90
+    deg to starboard; the azimuth is the fore-aft rotation about the
+    vertical (down) axis, principal value in (-90, 90]. Together they
+    reconstruct the direction:
+      d = R_down(azimuth) * (0, -sin(pointing), cos(pointing)).
+
+    Args:
+        forward: forward (x) component of the unit direction.
+        starboard: starboard (y) component.
+        down: down (z) component.
+
+    Returns:
+        {pointing_angle_in_degrees, azimuth_in_degrees}.
+    """
+
+def correct_steering_angles_for_surface_sound_speed(steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], surface_sound_speed_used_in_meters_per_second: float, surface_sound_speed_corrected_in_meters_per_second: float) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    """
+    Snell correction of a beam steering angle for a changed surface sound
+    speed.
+
+    Multibeam beamforming forms every steering angle in the near field
+    using the surface sound speed measured at the transducer. If that
+    surface sound speed is wrong, the true beam angle in the water
+    refracts across the transducer face following Snell's law:
+      sin(corrected) = (c_corrected / c_used) * sin(steering).
+    The correction must be applied to the transmit and receive steering
+    angles *before* compute_beam_directions, because the steering angles
+    are defined at the array face, which is where the refraction happens.
+    Angles that would exceed the horizon are clamped to +-90 deg.
+
+    Args:
+        steering_angles_in_degrees: nominal steering angles (deg).
+        surface_sound_speed_used_in_meters_per_second: surface sound speed
+                                                       used when the beams
+                                                       were formed.
+        surface_sound_speed_corrected_in_meters_per_second: true /
+                                                            corrected
+                                                            surface sound
+                                                            speed.
+
+    Returns:
+        corrected steering angles (deg).
+    """
+
+def correct_steering_angle_for_surface_sound_speed(steering_angle_in_degrees: float, surface_sound_speed_used_in_meters_per_second: float, surface_sound_speed_corrected_in_meters_per_second: float) -> float:
+    """
+    Scalar overload of correct_steering_angles_for_surface_sound_speed.
+
+
+    $See also:
+
+    correct_steering_angles_for_surface_sound_speed
+    """
+
+class BistaticBeamTrace:
+    """
+    True-bistatic trace of a single multibeam beam: two refracted legs
+    meeting at the seabed.
+
+    Stores the transmit leg and the receive leg each as a BeamTrace (the
+    per-layer polyline in that leg's own vertical plane, exactly as
+    trace_beam produces them), together with the horizontal azimuth of
+    each leg (used to lift its 2-D polyline into the common ship frame),
+    the solved seabed point (forward, starboard, down) and the final
+    solver residual. Launch angles, the seabed incidence and the modelled
+    two-way travel time are derived from the two legs on access rather
+    than stored.
+
+    The per-layer TRANSMIT ray direction used for backscatter is the
+    transmit leg's incident-angle series
+    (BeamTrace::get_incident_angles_in_degrees / get_cos_incident_angles);
+    its value at the last point is the seabed incidence.
+
+    A 2-D leg point (horizontal_offset, depth) is lifted into the ship
+    frame by the leg azimuth psi and that leg's array position P:
+      x_forward   = P_forward   - horizontal_offset * sin(psi) y_starboard
+      = P_starboard + horizontal_offset * cos(psi) z_down      = depth
+    """
+
+    @overload
+    def __init__(self) -> None: ...
+
+    @overload
+    def __init__(self, transmit_leg: BeamTrace, receive_leg: BeamTrace, transmit_azimuth_in_degrees: float, receive_azimuth_in_degrees: float, bottom_position: Sequence[float], solver_residual_in_meters: float) -> None:
+        """
+        Construct from the two converged legs and the solved seabed point.
+
+        Args:
+            transmit_leg: per-layer transmit polyline (from trace_beam).
+            receive_leg: per-layer receive polyline (from trace_beam).
+            transmit_azimuth_in_degrees: azimuth (deg, forward->starboard) of
+                                         the transmit plane.
+            receive_azimuth_in_degrees: azimuth (deg, forward->starboard) of
+                                        the receive plane.
+            bottom_position: solved seabed point (forward, starboard, down) in
+                             m.
+            solver_residual_in_meters: final solver residual in m.
+        """
+
+    def __eq__(self, other: BistaticBeamTrace) -> bool: ...
+
+    def get_transmit_leg(self) -> BeamTrace:
+        """
+        Transmit leg polyline (per-layer points in the transmit vertical
+        plane).
+        """
+
+    def get_receive_leg(self) -> BeamTrace:
+        """Receive leg polyline (per-layer points in the receive vertical plane)."""
+
+    def get_transmit_azimuth_in_degrees(self) -> float:
+        """
+        Transmit leg azimuth (deg): rotation about the down axis,
+        BeamDirections convention.
+        """
+
+    def get_receive_azimuth_in_degrees(self) -> float:
+        """
+        Receive leg azimuth (deg): rotation about the down axis,
+        BeamDirections convention.
+        """
+
+    def get_bottom_position(self) -> list[float]:
+        """
+        Solved seabed point (forward, starboard, down) in the common input
+        frame [m].
+        """
+
+    def get_solver_residual_in_meters(self) -> float:
+        """
+        Final solver residual [m]; small values indicate a converged bistatic
+        solve.
+        """
+
+    def get_transmit_launch_angle_in_degrees(self) -> float:
+        """
+        Transmit-leg launch angle (deg from nadir, port +) at the transmit
+        array.
+        """
+
+    def get_receive_launch_angle_in_degrees(self) -> float:
+        """
+        Receive-leg launch angle (deg from nadir, port +) at the receive
+        array.
+        """
+
+    def get_bottom_incidence_angle_in_degrees(self) -> float:
+        """
+        Seabed incidence angle (deg from nadir, signed) of the TRANSMIT ray,
+        for backscatter.
+        """
+
+    def get_two_way_travel_time_in_seconds(self) -> float:
+        """Modelled two-way travel time [s] = transmit one-way + receive one-way."""
+
+    def copy(self) -> BistaticBeamTrace:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> BistaticBeamTrace: ...
+
+    def __deepcopy__(self, arg: dict, /) -> BistaticBeamTrace: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> BistaticBeamTrace:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513) -> BistaticBeamTrace:
+    """
+    Solve the true-bistatic seabed trace of a single multibeam beam.
+
+    Traces the transmit ray from the transmit array and the receive ray
+    from the receive array through the layered sound-velocity profile and
+    finds the seabed point where the two legs meet with a combined one-way
+    travel time equal to the measured two-way travel time. The seabed
+    depth and each leg's cone rotation angle (see bistatic_detail::
+    SteeringCone) are found with a damped Newton iteration seeded by the
+    concentric beam direction. Each converged leg is then re-traced with
+    trace_beam so the returned legs are identical to the monostatic model
+    when the transmit and receive poses coincide.
+
+    All poses are in the common x=forward, y=starboard, z=down frame; the
+    concentric guess must be in the same frame (compute_beam_directions
+    with reference_heading = 0).
+
+    Args:
+        transmit_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
+                                              of the transmit array.
+        transmit_attitude_ypr_in_degrees: (yaw, pitch, roll) vessel
+                                          attitude at transmit time.
+        transmit_steering_angle_in_degrees: electronic transmit steering
+                                            (positive forward).
+        transmit_position_xyz: transmit array position (forward,
+                               starboard, down) [m].
+        receive_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
+                                             of the receive array.
+        receive_attitude_ypr_in_degrees: (yaw, pitch, roll) vessel
+                                         attitude at receive time.
+        receive_steering_angle_in_degrees: electronic receive steering
+                                           (positive to port).
+        receive_position_xyz: receive array position (forward, starboard,
+                              down) [m].
+        two_way_travel_time_in_seconds: measured two-way travel time [s].
+        sound_velocity_profile: layered profile to trace through.
+        concentric_beam_direction: ship-frame unit guess (fwd, stbd,
+                                   down), e.g. BeamDirections::get_beam_di
+                                   rection(beam).
+        max_iterations: maximum Newton iterations (default 30).
+        tolerance_in_percent: convergence tolerance as a percentage of the
+                              nominal slant range (default 0.001).
+
+    Returns:
+        BistaticBeamTrace with both legs, azimuths, seabed point and
+        residual.
+    """
