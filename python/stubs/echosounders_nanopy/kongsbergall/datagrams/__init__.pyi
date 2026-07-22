@@ -2452,6 +2452,27 @@ class InstallationParameters(KongsbergAllDatagram):
 
     def get_water_line_vertical_location_in_meters(self) -> float: ...
 
+    def get_transducer_depth_sound_speed_source(self) -> int:
+        """
+        Get the transducer depth sound speed source (SHC field).
+
+        Indicates whether the transducer/surface sound speed (SSV, measured in
+        real time at the transducer) is used as the sound velocity profile
+        value at the transducer depth for beam forming and ray tracing:
+        - 0: the surface sound speed IS used (the profile is effectively
+          extended to the transducer
+             depth with the measured SSV; Kongsberg default).
+        - 1: the surface sound speed is NOT used for ray tracing (the archived
+          profile is used as is).
+
+        The field is optional in the datagram; when it is absent 0 ("used") is
+        returned.
+
+        Returns:
+            int SHC value (0 = use surface sound speed, 1 = do not use for ray
+            tracing)
+        """
+
     def get_system_main_head_serial_number(self) -> int: ...
 
     def get_tx_serial_number(self) -> int: ...

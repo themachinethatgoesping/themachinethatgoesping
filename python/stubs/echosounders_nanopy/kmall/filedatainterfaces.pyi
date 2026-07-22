@@ -953,6 +953,33 @@ class KMALLConfigurationDataInterfacePerFile_stream:
 
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation_nanopy.SensorConfiguration) -> None: ...
 
+    def get_use_surface_sound_speed_in_sound_velocity_profile(self) -> bool:
+        """
+        Whether the measured transducer/surface sound speed is integrated into
+        the sound velocity profile at the transducer depth when ray tracing.
+
+        This is read from the file's installation parameters when the
+        interface is initialized (e.g. from the Kongsberg .all "SHC" field: 0
+        -> true, 1 -> false). Formats that do not specify it default to true.
+        It can be overridden with
+        set_use_surface_sound_speed_in_sound_velocity_profile().
+
+        Returns:
+            true if the surface sound speed should be used, false otherwise.
+        """
+
+    def set_use_surface_sound_speed_in_sound_velocity_profile(self, use_surface_sound_speed: bool) -> None:
+        """
+        Set whether the measured transducer/surface sound speed is integrated
+        into the sound velocity profile at the transducer depth when ray
+        tracing.
+
+        Args:
+            use_surface_sound_speed: true to use the surface sound speed,
+                                     false to raytrace the archived profile as
+                                     is.
+        """
+
     def get_timestamp_first(self) -> float: ...
 
     def get_timestamp_last(self) -> float: ...
@@ -1111,6 +1138,33 @@ class KMALLConfigurationDataInterfacePerFile:
     def get_sensor_configuration(self) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
 
     def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation_nanopy.SensorConfiguration) -> None: ...
+
+    def get_use_surface_sound_speed_in_sound_velocity_profile(self) -> bool:
+        """
+        Whether the measured transducer/surface sound speed is integrated into
+        the sound velocity profile at the transducer depth when ray tracing.
+
+        This is read from the file's installation parameters when the
+        interface is initialized (e.g. from the Kongsberg .all "SHC" field: 0
+        -> true, 1 -> false). Formats that do not specify it default to true.
+        It can be overridden with
+        set_use_surface_sound_speed_in_sound_velocity_profile().
+
+        Returns:
+            true if the surface sound speed should be used, false otherwise.
+        """
+
+    def set_use_surface_sound_speed_in_sound_velocity_profile(self, use_surface_sound_speed: bool) -> None:
+        """
+        Set whether the measured transducer/surface sound speed is integrated
+        into the sound velocity profile at the transducer depth when ray
+        tracing.
+
+        Args:
+            use_surface_sound_speed: true to use the surface sound speed,
+                                     false to raytrace the archived profile as
+                                     is.
+        """
 
     def get_timestamp_first(self) -> float: ...
 

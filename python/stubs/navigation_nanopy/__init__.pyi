@@ -214,6 +214,11 @@ class SensorConfiguration:
                            sensor coordinate system center
         """
 
+    def get_vessel_attitude(self, sensor_data: datastructures.Sensordata) -> list[float]:
+        """
+        Compute the offset-corrected vessel attitude (yaw, pitch, roll in degrees) in the world frame by applying the registered attitude- and heading-source mounting offsets to the raw sensor_data attitude. Uses the same convention as compute_target_position (attitude offset removed via quaternion, heading offset subtracted from heading).
+        """
+
     def has_target(self, target_id: str) -> bool:
         """
         Checks if the sensor configuration has a target with the specified ID.

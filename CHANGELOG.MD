@@ -7,10 +7,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 # [Unreleased]
 
 - algorithms -> 0.11.3
+- navigation -> 0.18.5
+- echosounders -> 0.48.1
 
 ## Improvements
 
-- adding beam trace class and simple 2D beam tracer
+- algorithms: adding beam trace class and simple 2D beam tracer
+- echosounders/navigation: fix motion reading confusion for .all
 
 # [0.34.2] - 03-07-2026
 

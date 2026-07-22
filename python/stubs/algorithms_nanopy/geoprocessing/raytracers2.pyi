@@ -137,6 +137,54 @@ class SoundVelocityProfile:
     def has_location(self) -> bool:
         """True iff both latitude and longitude are set."""
 
+    def get_surface_sound_speed(self) -> float | None:
+        """
+        Measured transducer/surface sound speed (m/s), or std::nullopt if
+        unset.
+        """
+
+    def set_surface_sound_speed(self, surface_sound_speed: float | None) -> None:
+        """
+        Set the measured transducer/surface sound speed (m/s); pass
+        std::nullopt to clear.
+        """
+
+    def has_surface_sound_speed(self) -> bool:
+        """True iff a surface (transducer) sound speed is set."""
+
+    def get_profile_with_surface_sound_speed(self, surface_sound_speed_in_meters_per_second: float, transducer_depth_in_meters: float) -> SoundVelocityProfile:
+        """
+        Return a copy of this profile with a measured surface (transducer)
+        sound speed
+               integrated at the transducer depth (Kongsberg "SHC=0"
+               convention).
+
+        The returned profile replaces every knot at or above
+        ``transducer_depth_in_meters`` with an iso-velocity segment at
+        ``surface_sound_speed_in_meters_per_second`` (from depth 0 down to the
+        transducer depth) and keeps the archived knots strictly below the
+        transducer depth. This makes the sound speed at the transducer equal
+        to the real-time measured surface sound speed (SSV), which is what the
+        echosounder uses when forming the beams; a beam launched at the
+        transducer depth is then self-consistent (the Snell launch/reference
+        speed and the profile value at the launch depth agree, removing the
+        angle-dependent outer-beam depth bias that appears when the archived
+        profile value at the transducer differs from the measured SSV).
+
+        The measured surface sound speed is also stored as metadata on the
+        returned profile (get_surface_sound_speed()).
+
+        Args:
+            surface_sound_speed_in_meters_per_second: measured sound speed at
+                                                      the transducer (m/s,
+                                                      >0).
+            transducer_depth_in_meters: transducer depth below the surface (m,
+                                        >= 0).
+
+        Returns:
+            SoundVelocityProfile extended with the surface sound speed.
+        """
+
     def get_date_string(self, fractionalSecondsDigits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Format ``_timestamp`` as a date string.
@@ -412,7 +460,7 @@ class BeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, sound_velocity_profile: SoundVelocityProfile, two_way_travel_time_in_seconds: float, surface_sound_speed_in_meters_per_second: float = -1.0) -> BeamTrace:
+def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, sound_velocity_profile: SoundVelocityProfile, two_way_travel_time_in_seconds: float, surface_sound_speed_in_meters_per_second: float | None = None) -> BeamTrace:
     """
     Trace a single beam through a layered sound velocity profile.
 
@@ -441,10 +489,12 @@ def trace_beam(launch_depth_in_meters: float, launch_angle_in_degrees: float, so
                                                   which the beam was
                                                   formed; the ray
                                                   parameter is
-                                                  sin(angle)/this. <= 0
-                                                  (default) falls back to
-                                                  the profile value at the
-                                                  launch depth.
+                                                  sin(angle)/this.
+                                                  std::nullopt (default,
+                                                  i.e. not provided) falls
+                                                  back to the profile
+                                                  value at the launch
+                                                  depth.
 
     Returns:
         BeamTrace with the launch point, layer crossings, turning points
@@ -493,7 +543,7 @@ class RayToDepth:
         the profile first).
         """
 
-def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_depth_in_meters: float, launch_zenith_angle_in_radians: float, target_depth_in_meters: float, surface_sound_speed_in_meters_per_second: float = -1.0) -> RayToDepth:
+def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_depth_in_meters: float, launch_zenith_angle_in_radians: float, target_depth_in_meters: float, surface_sound_speed_in_meters_per_second: float | None = None) -> RayToDepth:
     """
     Trace one ray leg from a launch depth/angle down to a target depth.
 
@@ -521,10 +571,12 @@ def trace_beam_to_depth(sound_velocity_profile: SoundVelocityProfile, launch_dep
                                                   which the beam was
                                                   formed; the ray
                                                   parameter is
-                                                  sin(zenith)/this. <= 0
-                                                  (default) falls back to
-                                                  the profile value at the
-                                                  launch depth. Must match
+                                                  sin(zenith)/this.
+                                                  std::nullopt (default,
+                                                  i.e. not provided) falls
+                                                  back to the profile
+                                                  value at the launch
+                                                  depth. Must match
                                                   trace_beam so
                                                   mono/bistatic agree.
 
@@ -913,7 +965,7 @@ class BistaticBeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float = -1.0, reference_heading_in_degrees: float = 0.0) -> BistaticBeamTrace:
+def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None, reference_heading_in_degrees: float = 0.0) -> BistaticBeamTrace:
     """
     Solve the true-bistatic seabed trace of a single multibeam beam.
 
@@ -964,10 +1016,10 @@ def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], t
                                                   formed (the measured
                                                   surface/transducer SSV);
                                                   applied to both legs'
-                                                  ray parameters. <= 0
-                                                  (default) uses the
-                                                  profile value at each
-                                                  array depth.
+                                                  ray parameters.
+                                                  std::nullopt (default)
+                                                  uses the profile value
+                                                  at each array depth.
         reference_heading_in_degrees: heading (deg) removed from both
                                       vessel attitudes so the result is in
                                       the ship frame; use the same value
