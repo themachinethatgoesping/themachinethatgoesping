@@ -13,7 +13,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 
 - algorithms: adding beam trace class and simple 2D beam tracer
+
+## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
+- echosounders/navigation: only apply attitude offsets if not already applied
 
 # [0.34.2] - 03-07-2026
 

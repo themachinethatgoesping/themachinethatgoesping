@@ -12,7 +12,7 @@ class PositionalOffsets:
     the vessel coordinate system
     """
 
-    def __init__(self, name: str = '', x: float = 0.0, y: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0) -> None:
+    def __init__(self, name: str = '', x: float = 0.0, y: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0, ypr_offsets_applied: bool = False) -> None:
         """
         Construct a new PositionalOffsets object
 
@@ -24,6 +24,9 @@ class PositionalOffsets:
             yaw: positive means clockwise rotation
             pitch: in °, positive means bow up
             roll: in °, positive means port up
+            ypr_offsets_applied: if true, the yaw/pitch/roll offsets are
+                                 already applied to the associated sensor data
+                                 (default: false)
         """
 
     @staticmethod
@@ -91,6 +94,15 @@ class PositionalOffsets:
 
     @roll.setter
     def roll(self, arg: float, /) -> None: ...
+
+    @property
+    def ypr_offsets_applied(self) -> bool:
+        """
+        if true, the yaw/pitch/roll offsets are already applied to the associated sensor data (e.g. Kongsberg .all logs the attitude/heading already corrected for the sensor mounting offsets). If so, the SensorConfiguration does not re-apply them.
+        """
+
+    @ypr_offsets_applied.setter
+    def ypr_offsets_applied(self, arg: bool, /) -> None: ...
 
     def copy(self) -> PositionalOffsets:
         """return a copy using the c++ default copy constructor"""
