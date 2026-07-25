@@ -39,7 +39,7 @@ You can install the tutorial requirements using the following command:
             # Here we assume that the name of the environment is "ping"
             $ conda activate -n ping
 
-            $ conda install themchinethatgoesping -c themachinethatgoesping
+            $ conda install themachinethatgoesping -c themachinethatgoesping
 
             # if you want to update the package use
             $ conda install --file requirements.txt
@@ -56,7 +56,7 @@ You can install the tutorial requirements using the following command:
             # Here we assume that the name of the environment is "ping"
             $ mamba activate -n ping
 
-            $ mamba install themchinethatgoesping -c themachinethatgoesping
+            $ mamba install themachinethatgoesping -c themachinethatgoesping
 
             # if you want to update the package use
             $ mamba install --file requirements.txt

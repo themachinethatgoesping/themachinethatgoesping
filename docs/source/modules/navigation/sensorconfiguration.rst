@@ -5,7 +5,7 @@ A simple coordinate system that allows for storing sensor and target offsets.
 
 Supported sensors are: 
 
-* compass: Affects :any:`Sensordata.heading<themachinethatgoesping.navigation.datastructures.Sensordata>` with yaw offset
+* compass: Affects :any:`Sensordata.heading<themachinethatgoesping.navigation_nanopy.datastructures.Sensordata>` with yaw offset
 * position system: Affects Sensordata gps variables with x,y and z offset
 * depth sensor: Affects Sensordata.depth variables with x,y and z offset
 * attitude system: Affects Sensordata imu variables with yaw, pitch and roll offset
@@ -15,8 +15,8 @@ Once targets are registered, the system can be used to compute the georeferenced
 
 Note 1: The returned Geolocation object type depends on the input Sensordata object. 
 
-* A :any:`datastructures.SensordataUTM<themachinethatgoesping.navigation.datastructures.SensordataUTM>` object will cause compute_target_position to return :any:`datastructures.GeolocationUTM<themachinethatgoesping.navigation.datastructures.GeolocationUTM>`
-* A :any:`datastructures.SensordataLatLon<themachinethatgoesping.navigation.datastructures.SensordataLatLon>` will cause compute_target_position to return :any:`datastructures.GeolocationLatLon<themachinethatgoesping.navigation.datastructures.GeolocationLatLon>`
+* A :any:`datastructures.SensordataUTM<themachinethatgoesping.navigation_nanopy.datastructures.SensordataUTM>` object will cause compute_target_position to return :any:`datastructures.GeolocationUTM<themachinethatgoesping.navigation_nanopy.datastructures.GeolocationUTM>`
+* A :any:`datastructures.SensordataLatLon<themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon>` will cause compute_target_position to return :any:`datastructures.GeolocationLatLon<themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon>`
 * ... and so on
 
 Example usage
@@ -78,5 +78,6 @@ Module API
 ==========
    
 .. autoclass:: themachinethatgoesping.navigation.SensorConfiguration
+   :no-index:
    :members:
    :special-members: __init__

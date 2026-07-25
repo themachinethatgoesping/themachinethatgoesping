@@ -149,12 +149,13 @@ Acknowledgements / Funding
    :hidden:
 
    usage/navigation_data_processing
-
-.. toctree::
-   :caption: Module Api
-   :maxdepth: 2
-   :hidden:
-
    modules/tools
    modules/navigation
    modules/gridding
+
+.. toctree::
+   :caption: API reference
+   :maxdepth: 2
+   :hidden:
+
+   api/themachinethatgoesping/index

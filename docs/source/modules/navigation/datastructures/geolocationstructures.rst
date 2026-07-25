@@ -56,17 +56,21 @@ Data structures
 ===============
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationLatLon
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationUTM
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.GeolocationLocal
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.Geolocation
+   :no-index:
    :members:
    :special-members: __init__

@@ -38,31 +38,38 @@ Types
 *****
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.t_extr_mode
+   :no-index:
    :members: 
 
 Class: AkimaInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.AkimaInterpolator
+   :no-index:
    :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
+      :no-index:
 
 Class: LinearInterpolator
 *************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.LinearInterpolator
+   :no-index:
    :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
+      :no-index:
 
 Class: NearestInterpolator
 **************************
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.NearestInterpolator
+   :no-index:
    :members: __call__, set_data_XY, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_Y, copy, to_binary, from_binary, info_string, print
 
    .. automethod:: __init__
+      :no-index:
 
 Class: SlerpInterpolator
 ************************
@@ -96,6 +103,8 @@ Class
 =====
 
 .. autoclass:: themachinethatgoesping.tools.vectorinterpolators.SlerpInterpolator
+   :no-index:
    :members: __call__, set_data_XYPR, append, extend, set_extrapolation_mode, get_extrapolation_mode, get_data_X, get_data_YPR, copy, to_binary, from_binary, info_string, print 
 
    .. automethod:: __init__
+      :no-index:

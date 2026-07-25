@@ -42,5 +42,6 @@ Module API
 ==========
    
 .. automodule:: themachinethatgoesping.navigation.navtools
+   :no-index:
    :members:
    :special-members: __init__

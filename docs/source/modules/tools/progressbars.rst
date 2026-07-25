@@ -2,6 +2,7 @@ progressbars
 ############
 
 .. automodule:: themachinethatgoesping.tools.progressbars
+   :no-index:
     :members:
     :undoc-members:
     :inherited-members:

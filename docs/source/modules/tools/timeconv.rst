@@ -61,6 +61,7 @@ Functions (c++ module)
     from themachinethatgoesping.tools import timeconv
    
 .. automodule:: themachinethatgoesping.tools.timeconv
+   :no-index:
    :members:
 
 Functions (python extendet)

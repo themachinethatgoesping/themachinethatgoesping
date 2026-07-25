@@ -44,8 +44,10 @@ Class: ForwardGridderLegacy
 ***************************
 
 .. autoclass:: themachinethatgoesping.gridding.forwardgridderlegacy.ForwardGridderLegacy
+   :no-index:
    :members:
 
    .. automethod:: __init__
+      :no-index:
    
 

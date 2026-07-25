@@ -38,5 +38,6 @@ Structure api
 =============
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.PositionalOffsets
+   :no-index:
    :members:
    :special-members: __init__

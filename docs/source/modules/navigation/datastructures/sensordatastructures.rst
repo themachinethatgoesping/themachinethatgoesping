@@ -61,17 +61,21 @@ Data structures
 ===============
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataLatLon
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataUTM
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.SensordataLocal
+   :no-index:
    :members:
    :special-members: __init__
 
 .. autoclass:: themachinethatgoesping.navigation.datastructures.Sensordata
+   :no-index:
    :members:
    :special-members: __init__

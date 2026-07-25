@@ -1,12 +1,13 @@
-sphinx == 9.1.0
+sphinx
 readthedocs-sphinx-ext
 sphinx-autoapi
 sphinx-design
-nbsphinx
-furo
 sphinx-book-theme
 pydata_sphinx_theme
-sphinx-hoverxref
-themachinethatgoesping
+nbsphinx
+nbsphinx-link
 ipywidgets
-
+# nanobind provides the stubgen used to (re)generate the API stubs at build time
+nanobind
+# the documented package itself (installed from PyPI on Read the Docs)
+themachinethatgoesping
