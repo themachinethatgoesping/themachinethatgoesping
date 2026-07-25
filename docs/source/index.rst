@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
+.. SPDX-FileCopyrightText: 2022 - 2023 themachinethatgoesping contributors (see AUTHORS.md)
 ..
 .. SPDX-License-Identifier: MPL-2.0
 .. |logo-DSM| image:: https://www.geomar.de/fileadmin/content/forschen/fb2/mg/deepseamon/DSM-Logo_large_black_trans.gif
