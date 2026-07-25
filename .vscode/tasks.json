@@ -1,0 +1,46 @@
+{
+  // Common build/test tasks for local work. These mirror the CI and the AI
+  // instructions so humans and Copilot use the exact same commands.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ping: init submodules (recursive)",
+      "type": "shell",
+      "command": "git submodule update --init --recursive",
+      "problemMatcher": []
+    },
+    {
+      "label": "ping: meson setup (builddir)",
+      "type": "shell",
+      "command": "meson setup builddir -Dunity=on -Dunity_size=9999999 -Dpython.install_env=auto --default-library=static",
+      "problemMatcher": []
+    },
+    {
+      "label": "ping: compile",
+      "type": "shell",
+      "command": "meson compile -C builddir/",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ping: test (C++ / Catch2)",
+      "type": "shell",
+      "command": "meson test -C builddir/ --print-errorlogs",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "ping: install",
+      "type": "shell",
+      "command": "meson install -C builddir/",
+      "problemMatcher": []
+    },
+    {
+      "label": "ping: test (Python / pytest)",
+      "type": "shell",
+      "command": "pytest -v",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
