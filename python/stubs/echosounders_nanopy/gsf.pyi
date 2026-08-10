@@ -2,7 +2,7 @@
 
 from collections.abc import Mapping, Sequence
 import enum
-from typing import ClassVar, Final, overload
+from typing import Final, overload
 
 import themachinethatgoesping.tools_nanopy.progressbars
 
@@ -55,7 +55,7 @@ class o_GSFDatagramIdentifier:
     @value.setter
     def value(self, arg: t_GSFDatagramIdentifier, /) -> None: ...
 
-    __default_value__: ClassVar[Final[t_GSFDatagramIdentifier]] = ...
+    __default_value__: Final[t_GSFDatagramIdentifier] = ...
     """default enum value when constructing without arguments"""
 
     @overload

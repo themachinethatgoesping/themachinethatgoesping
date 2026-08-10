@@ -9,6 +9,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms -> 0.11.3
 - navigation -> 0.18.5
 - echosounders -> 0.48.1
+- tools -> 0.31.5
 
 ## Improvements
 
@@ -17,6 +18,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
 - echosounders/navigation: only apply attitude offsets if not already applied
+
+## Maintanance
+- tools: update catch2 3.15.2 -> 3.15.3
+- tools: update nanobind 2.13.0 -> 2.14.0
 
 # [0.34.2] - 03-07-2026
 

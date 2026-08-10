@@ -2,7 +2,7 @@
 
 from collections.abc import Mapping, Sequence
 import enum
-from typing import ClassVar, Final, overload
+from typing import Final, overload
 
 from . import (
     datagrams as datagrams,
@@ -57,7 +57,7 @@ class o_SimradRawDatagramIdentifier:
     @value.setter
     def value(self, arg: t_SimradRawDatagramIdentifier, /) -> None: ...
 
-    __default_value__: ClassVar[Final[t_SimradRawDatagramIdentifier]] = ...
+    __default_value__: Final[t_SimradRawDatagramIdentifier] = ...
     """default enum value when constructing without arguments"""
 
     @overload
