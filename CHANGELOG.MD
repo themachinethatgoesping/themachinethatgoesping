@@ -10,6 +10,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation -> 0.18.5
 - echosounders -> 0.48.1
 - tools -> 0.31.5
+- pingprocessing -> 0.14.1
 
 ## Improvements
 
@@ -18,6 +19,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
 - echosounders/navigation: only apply attitude offsets if not already applied
+- echosounders: fix race condition in file initialization
+- pingprocessing: fix sorting issues with echogrambuilder combine backends
 
 ## Maintanance
 - tools: update catch2 3.15.2 -> 3.15.3

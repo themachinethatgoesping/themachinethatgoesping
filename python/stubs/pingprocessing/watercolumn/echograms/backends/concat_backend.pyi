@@ -43,7 +43,7 @@ class ConcatBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.
         >>> image, extent = builder.build_image()
     """
 
-    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], gap_handling: str = 'preserve'):
+    def __init__(self, backends: list[themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend], gap_handling: str = 'preserve', sort_by_time: bool = False):
         """
         Initialize ConcatBackend.
 
@@ -53,6 +53,10 @@ class ConcatBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.
             gap_handling: How to handle gaps between backends:
                 - "preserve": Keep real time gaps (x-axis shows true times)
                 - "continuous": Virtual continuous (ignore gaps between files)
+            sort_by_time: If True, reorder all pings into a single strictly
+                increasing timeline. Needed when backends overlap in time
+                (sorting inputs by start time alone leaves the concatenated
+                times non-monotonic, which the coordinate system rejects).
 
         Raises:
             ValueError: If backends list is empty or has incompatible metadata.
