@@ -104,8 +104,8 @@ class NMEA_ZDA(NMEA_Base):
                Note: this function uses to_timestamp()
 
         Args:
-            format: Format string (see https://howardhinnant.github.io/date/da
-                    te.html#to_stream_formatting)
+            format: Format string (see
+                    https://omegaup.com/docs/cpp/en/cpp/chrono/format.html)
 
         Returns:
             date time string
@@ -378,8 +378,8 @@ class NMEA_RMC(NMEA_Base):
                Note: this function uses to_timestamp()
 
         Args:
-            format: Format string (see https://howardhinnant.github.io/date/da
-                    te.html#to_stream_formatting)
+            format: Format string (see
+                    https://omegaup.com/docs/cpp/en/cpp/chrono/format.html)
 
         Returns:
             date time string

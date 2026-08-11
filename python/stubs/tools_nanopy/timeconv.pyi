@@ -35,7 +35,7 @@ def unixtime_to_datestring(unixtime: float, fractionalSecondsDigits: int = 0, fo
         unixtime: UNIX timestamp as double (seconds since
                   1970-01-01T00:00:00Z)
         fractionalSecondsDigits: Number of digits for fractional seconds
-                                 (default: 0)
+                                 (default: 0, max: 6)
         format: Format string (default: "%z__%d-%m-%Y__%H:%M:%S")
 
     Returns:

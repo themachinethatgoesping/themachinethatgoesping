@@ -9,7 +9,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms -> 0.11.3
 - navigation -> 0.18.5
 - echosounders -> 0.48.1
-- tools -> 0.31.5
+- tools -> 0.32.0
 - pingprocessing -> 0.14.1
 
 ## Improvements
@@ -25,6 +25,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Maintanance
 - tools: update catch2 3.15.2 -> 3.15.3
 - tools: update nanobind 2.13.0 -> 2.14.0
+- tools: update robin-map 1.4.0 -> 1.4.1
+- tools: remove dependency on hinnant-date (c++20 features now available)
+
+## Breaking
+- tools: removed ability to parse hinnant_data %numberS format, and switched to standard c++20 chrono formatting. 
 
 # [0.34.2] - 03-07-2026
 
