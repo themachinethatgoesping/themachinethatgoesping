@@ -60,10 +60,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        boost: ["$(brew --prefix boost)"]
-        libomp: ["$(brew --prefix libomp)"]
-        llvm: ["$(brew --prefix llvm)"]
-        os: ["macos-15"] 
+        os: ["macos-26"] 
         
     steps:
     
@@ -88,20 +85,18 @@ jobs:
       with:
         key: super-ci-mac-2  # name for the cache
         
-    - run: brew install libomp boost coreutils llvm
+    - run: brew install libomp boost coreutils gcc
     
     - run: pip install meson meson-python ninja pytest numpy
     
     - name: configure meson
       run: |
-        CXX=${{ matrix.llvm }}/bin/clang++ CC=${{ matrix.llvm }}/bin/clang \
-        LDFLAGS="-L${{ matrix.libomp }}/lib \
-                 -L${{ matrix.boost }}/lib" \
-        LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip"
-        CPPFLAGS="-I${{ matrix.libomp }}/include \
-                  -I${{ matrix.boost }}/include" \
-        BOOST_ROOT=${{ matrix.boost }} \
-                  meson setup builddir -Dunity=on -Dunity_size=9999999 -Dpython.install_env=auto
+        GCC_VER=$(brew info --json gcc | python3 -c "import json,sys; print(json.load(sys.stdin)[0]['versions']['stable'].split('.')[0])")
+        export CC="$(brew --prefix gcc)/bin/gcc-$GCC_VER"
+        export CXX="$(brew --prefix gcc)/bin/g++-$GCC_VER"
+        export BOOST_ROOT="$(brew --prefix boost)"
+        export PKG_CONFIG_PATH="$(brew --prefix boost)/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+        meson setup builddir -Dpython.install_env=auto
 
     - name: compile project
       run: meson compile -C builddir/

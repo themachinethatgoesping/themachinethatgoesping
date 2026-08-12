@@ -79,7 +79,7 @@ class TransceiverInformation:
     data from the file. It does not hold the actual water column samples
 
     Note this is a private substructure and is thus not part of the public
-    API or pybind11 interface.
+    API or nanobind interface.
     """
 
     def __init__(self, ping_transceiver: themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver, ping_transceiver_channel: themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Configuration_Transceiver_Channel) -> None: ...

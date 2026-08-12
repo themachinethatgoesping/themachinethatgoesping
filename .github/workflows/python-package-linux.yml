@@ -84,8 +84,8 @@ jobs:
          
     - name: Build and install wheel
       run: |
-        # enable gcc-14 (requires updated manylinux)
-        scl enable gcc-toolset-14 bash
+        # enable gcc-15 (requires updated manylinux)
+        scl enable gcc-toolset-15 bash
         # build wheel
         python${{ matrix.python-version }} -m build -w -Cbuilddir=pybuild
         # repair with auditwheel

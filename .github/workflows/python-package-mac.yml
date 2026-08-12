@@ -40,51 +40,28 @@ concurrency:
 
 jobs:
   build_wheel:
-    name: ${{ matrix.os }} ${{ matrix.arch }} python${{ matrix.python-version }}
+    name: build macos-14 python${{ matrix.python-version }}
 
-    runs-on: ${{ matrix.os }}
+    # Build on the OLDEST supported runner: the wheel and the GCC runtime
+    # libraries bundled into it inherit the runner's minimum macOS version, and
+    # forward compatibility (14 -> 15 -> 26) works while backward does not.
+    runs-on: macos-14
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13','3.14']
-        llvm: ["$(brew --prefix llvm@18)"]
-        boost: ["$(brew --prefix boost)"]
-        libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-14","macos-15"]
-
-        include:
-          # - os: "macos-15"
-          #   arch: "arch -arm64"
-          #   deployment_target: "14.0"
-          #   FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
-          - os: "macos-14"
-            arch: "arch -arm64"
-            deployment_target: "14.0"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
-          - os: "macos-15"
-            arch: "arch -arm64"
-            deployment_target: "15.0"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
+        python-version: ['3.11', '3.12', '3.13', '3.14']
 
     env:
-      MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
+      MACOSX_DEPLOYMENT_TARGET: '14.0'
 
     steps:
-      - name: Echo MACOSX_DEPLOYMENT_TARGET
-        run: |
-          echo "MACOSX_DEPLOYMENT_TARGET: $MACOSX_DEPLOYMENT_TARGET"
-          
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{matrix.python-version}}
+          python-version: ${{ matrix.python-version }}
 
       - name: Checkout main repository
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           lfs: false
@@ -92,48 +69,57 @@ jobs:
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2
         with:
-          key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }} # name for the cache
+          key: tmtgp-pypi-mac-gcc-${{ matrix.python-version }} # name for the cache
 
-      - name: Install libomp and boost
-        run: ${{matrix.arch}} brew install libomp boost
+      # Apple/LLVM libc++ has not implemented std::chrono::parse yet
+      # (LLVM #166051), so macOS wheels are built with Homebrew GCC (libstdc++).
+      - name: Install build dependencies (brew)
+        run: brew install boost gcc libomp
 
       - name: Install dependencies (pip)
         run: |
-          ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel repairwheel
-          ${{matrix.arch}} pip install -r requirements.txt
+          pip install meson meson-python ninja pytest twine wheel repairwheel
+          pip install -r requirements.txt
 
-      - name: Debug pip
+      - name: Build wheel (GCC / libstdc++)
         run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
+          GCC_VER=$(brew info --json gcc | python3 -c "import json,sys; print(json.load(sys.stdin)[0]['versions']['stable'].split('.')[0])")
+          export CC="$(brew --prefix gcc)/bin/gcc-$GCC_VER"
+          export CXX="$(brew --prefix gcc)/bin/g++-$GCC_VER"
+          export BOOST_ROOT="$(brew --prefix boost)"
+          export PKG_CONFIG_PATH="$(brew --prefix boost)/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+          # resolve Python C-API symbols at load time; strip dead code
+          export LDFLAGS="-Wl,-undefined,dynamic_lookup -Wl,-dead_strip"
+          pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild"
 
-      - name: Build wheel
+      - name: Bundle GCC runtime libs into the wheel (repairwheel/delocate)
+        run: repairwheel -o wheelhouse dist/*.whl
+
+      - name: Add bundled-runtime license texts to the wheel
         run: |
-          # build wheel
-          BOOST_ROOT=${{ matrix.boost }} ${{ matrix.FLAGS}} ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
+          curl -sSL --retry 3 -o COPYING3 https://raw.githubusercontent.com/gcc-mirror/gcc/master/COPYING3
+          curl -sSL --retry 3 -o COPYING.RUNTIME https://raw.githubusercontent.com/gcc-mirror/gcc/master/COPYING.RUNTIME
+          for whl in wheelhouse/*.whl; do
+            python ci_scripts/inject_runtime_licenses.py "$whl" \
+              --license GPL-3.0-or-later.txt=COPYING3 \
+              --license GCC-Runtime-Library-Exception-3.1.txt=COPYING.RUNTIME \
+              --license README-bundled-runtime.md=ci_scripts/runtime-licenses/README-bundled-runtime.md
+          done
 
-      - name: install wheel
-        run: |
-          # delocate wheel
-          # ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
-          # repairwheel
-          ${{matrix.arch}} repairwheel -o wheelhouse dist/*
-          ${{matrix.arch}} pip install wheelhouse/*
-
+      - name: Install the built wheel
+        run: pip install wheelhouse/*.whl
 
       - name: Store the binary wheel
         uses: actions/upload-artifact@v4
         with:
-          name: python-${{ matrix.python-version }}-package-${{ matrix.os }}
+          name: macos-wheel-py${{ matrix.python-version }}
           path: wheelhouse
 
       - name: Test with meson (c++)
-        run: |
-          ${{matrix.arch}} meson test -C pybuild --print-errorlogs
+        run: meson test -C pybuild --print-errorlogs
 
       - name: Test with pytest
-        run: |
-          ${{matrix.arch}} pytest -v
+        run: pytest -v
 
   install_and_test:
     name: Install/test ${{matrix.os}} / python 3.${{ matrix.python-3-version }}
@@ -143,9 +129,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: ["arch -arm64"]
-        python-3-version: ["11", "12", "13"]
-        os: ["macos-14","macos-15"]
+        python-3-version: ["11", "12", "13", "14"]
+        # the single macos-14 wheel must install & pass on macOS 14, 15 and 26
+        os: ["macos-14", "macos-15", "macos-26"]
 
     steps:
       - uses: actions/setup-python@v5
@@ -159,29 +145,23 @@ jobs:
           submodules: recursive
           lfs: false
 
-      - name: Download all the dists
+      - name: Download the macOS wheel
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
+          name: macos-wheel-py3.${{matrix.python-3-version}}
           path: dist/
 
       - name: install pip dependencies
         # missing typing_extensions caused an error with pypi-publish ...
         run: |
-          ${{matrix.arch}} pip install --upgrade pip          
-          ${{matrix.arch}} pip install pytest typing_extensions
+          pip install --upgrade pip
+          pip install pytest typing_extensions
 
-      - name: Debug pip
-        run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
-
-      - name: install wheels
-        run: |
-          ${{matrix.arch}} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+      - name: install wheel
+        run: pip install $(ls dist/*.whl)
 
       - name: test (pytest)
-        run: ${{matrix.arch}} pytest -v
+        run: pytest -v
 
   publish_wheels:
     needs: install_and_test
@@ -191,8 +171,6 @@ jobs:
       fail-fast: false
       matrix:
         python-3-version: ["11", "12", "13", "14"]
-        os: ["macos-14", "macos-15"]
-
 
     steps:
       - uses: actions/setup-python@v5
@@ -201,20 +179,11 @@ jobs:
         # missing typing_extensions caused an error with pypi-publish ...
         run: pip install typing_extensions
 
-      - name: Download all the dists
+      - name: Download the macOS wheel
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
+          name: macos-wheel-py3.${{matrix.python-3-version}}
           path: dist/
-
-      - name: install pip
-        run: |
-          ${{matrix.arch}} pip install --upgrade pip          
-
-      - name: Debug pip
-        run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
 
       - name: Publish package
         # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
@@ -245,7 +214,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ['3.11','3.12','3.13', '3.14']
-        os: ["macos-14", "macos-15"]
+        os: ["macos-14", "macos-15", "macos-26"]
         arch: ["arch -arm64"]
 
     steps:

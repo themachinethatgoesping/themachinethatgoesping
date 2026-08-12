@@ -58,7 +58,7 @@ jobs:
             extra-args: --output-dir=C:/rattler
           # - os: macos-latest
           #   target-platform: osx-64
-          - os: macos-15
+          - os: macos-26
             target-platform: osx-arm64
             extra-args: ""
     steps:
