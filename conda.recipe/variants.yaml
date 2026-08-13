@@ -4,3 +4,10 @@ python:
 - "3.12"
 - "3.13"
 - "3.14"
+
+# Raise the macOS deployment target so it is applied at compiler-activation
+# time (the export in recipe.yaml runs too late to affect -mmacosx-version-min).
+# Required for newer libc++ features such as the floating-point std::to_chars
+# overloads, which are availability-gated to macOS 13.4+.
+MACOSX_DEPLOYMENT_TARGET:
+- "14.0"
