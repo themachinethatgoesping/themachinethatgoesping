@@ -8,18 +8,17 @@ concrete controls and wire up observers.
 """
 
 import PySide6.QtCore
-import QtCore
-import QtWidgets
-import pg
+import pyqtgraph
+import pyqtgraph.Qt.QtCore
+import pyqtgraph.Qt.QtWidgets
 import pyqtgraph.graphicsItems.GraphicsObject
 import pyqtgraph.graphicsItems.ROI
 import pyqtgraph.graphicsItems.ScatterPlotItem
 
-import themachinethatgoesping as theping
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_spec import (
     ControlPanel as ControlPanel
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 GRID_LAYOUTS: list = ...
@@ -167,7 +166,7 @@ class EchogramCore:
 
     MAX_SLOTS: int = 8
 
-    def __init__(self, echograms: Dict[str, Any], echogram_names: List[str], panel: ControlPanel, graphics: pg.GraphicsLayoutWidget, progress: Any, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', initial_grid: Tuple[int, int] = (2, 2), voffsets: Optional[Dict[str, float]] = None, **kwargs: Any) -> None: ...
+    def __init__(self, echograms: Dict[str, Any], echogram_names: List[str], panel: ControlPanel, graphics: pyqtgraph.GraphicsLayoutWidget, progress: Any, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', initial_grid: Tuple[int, int] = (2, 2), voffsets: Optional[Dict[str, float]] = None, **kwargs: Any) -> None: ...
 
     def wire_observers(self, *, layout_callback: Optional[Callable[[], None]] = None) -> None:
         """
@@ -250,7 +249,7 @@ class EchogramCore:
 
     def handle_scene_click(self, event: Any) -> None: ...
 
-    def handle_scene_move(self, pos: QtCore.QPointF) -> None: ...
+    def handle_scene_move(self, pos: pyqtgraph.Qt.QtCore.QPointF) -> None: ...
 
     def register_depth_change_callback(self, callback: Any) -> None: ...
 
@@ -287,7 +286,7 @@ class EchogramCore:
 
     def clear_station_times(self, station_name: Optional[str] = None) -> None: ...
 
-    def get_scene(self) -> QtWidgets.QGraphicsScene: ...
+    def get_scene(self) -> pyqtgraph.Qt.QtWidgets.QGraphicsScene: ...
 
     def save_scene(self, filename: str = 'scene.svg') -> None: ...
 

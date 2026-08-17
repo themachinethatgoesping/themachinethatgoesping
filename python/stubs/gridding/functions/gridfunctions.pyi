@@ -2,7 +2,9 @@
 
 import numba.core.registry
 
-import themachinethatgoesping.gridding.functions.helperfunctions as hlp
+from themachinethatgoesping.gridding.functions import (
+    helperfunctions as hlp
+)
 
 
 get_minmax: numba.core.registry.CPUDispatcher = ...

@@ -7,17 +7,19 @@ Adapters (``wciviewer_jupyter``, ``wciviewer_qt``) create the concrete
 controls and wire up observers.
 """
 
-import QtCore
-import QtWidgets
-import mi
-import pg
+import pyqtgraph
+import pyqtgraph.Qt.QtCore
+import pyqtgraph.Qt.QtWidgets
 
-import themachinethatgoesping.echosounders as echosounders
-import themachinethatgoesping.pingprocessing.watercolumn.image as mi
+from themachinethatgoesping import echosounders as echosounders
+from themachinethatgoesping.pingprocessing.watercolumn import (
+    image as mi
+)
+import themachinethatgoesping.pingprocessing.watercolumn.image
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_spec import (
     ControlPanel as ControlPanel
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.videoframes import (
     VideoFrames as VideoFrames
 )
@@ -81,7 +83,7 @@ class WCICore:
 
     MAX_SLOTS: int = 8
 
-    def __init__(self, channels: Dict[str, Sequence[Any]], channel_names: List[str], panel: ControlPanel, graphics: pg.GraphicsLayoutWidget, progress: Any, cmap: str = 'YlGnBu_r', initial_grid: Tuple[int, int] = (2, 2), time_sync_enabled: bool = True, time_warning_threshold: float = 5.0, **kwargs: Any) -> None: ...
+    def __init__(self, channels: Dict[str, Sequence[Any]], channel_names: List[str], panel: ControlPanel, graphics: pyqtgraph.GraphicsLayoutWidget, progress: Any, cmap: str = 'YlGnBu_r', initial_grid: Tuple[int, int] = (2, 2), time_sync_enabled: bool = True, time_warning_threshold: float = 5.0, **kwargs: Any) -> None: ...
 
     def wire_observers(self, *, play_callback: Optional[Callable[[], Any]] = None, layout_callback: Optional[Callable[[], Any]] = None) -> None:
         """
@@ -150,7 +152,7 @@ class WCICore:
 
     def show_single(self, channel_name: str) -> None: ...
 
-    def handle_scene_move(self, pos: QtCore.QPointF) -> None: ...
+    def handle_scene_move(self, pos: pyqtgraph.Qt.QtCore.QPointF) -> None: ...
 
     def register_depth_change_callback(self, callback: Any) -> None: ...
 
@@ -179,9 +181,9 @@ class WCICore:
         """Compatibility: ping slider handle for first visible slot."""
 
     @property
-    def imagebuilder(self) -> Optional[mi.ImageBuilder]: ...
+    def imagebuilder(self) -> Optional[themachinethatgoesping.pingprocessing.watercolumn.image.ImageBuilder]: ...
 
-    def get_scene(self) -> QtWidgets.QGraphicsScene: ...
+    def get_scene(self) -> pyqtgraph.Qt.QtWidgets.QGraphicsScene: ...
 
     def save_scene(self, filename: str = 'scene.svg') -> None: ...
 

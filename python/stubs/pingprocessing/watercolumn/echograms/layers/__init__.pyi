@@ -13,19 +13,24 @@ For pooling layer samples into time blocks and cross-calibrating echograms, see
 the sibling :mod:`..calibration` subpackage.
 """
 
-from . import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers import (
     layer as layer,
     pingdata as pingdata,
     store as store,
     transfer as transfer
 )
-from .layer import Boundary as Boundary, Layer as Layer
-from .pingdata import PingData as PingData
-from .store import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.layer import (
+    Boundary as Boundary,
+    Layer as Layer
+)
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.pingdata import (
+    PingData as PingData
+)
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.store import (
     LayerStore as LayerStore,
     ResolvedBand as ResolvedBand
 )
-from .transfer import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.layers.transfer import (
     transfer_layer as transfer_layer,
     transfer_layers as transfer_layers
 )

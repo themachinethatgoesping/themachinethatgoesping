@@ -33,13 +33,13 @@ Usage::
 
 import PySide6.QtCore
 import PySide6.QtWidgets
-import QtWidgets
+import pyqtgraph.Qt.QtWidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.combinedviewer_core import (
     CombinedViewerCore as CombinedViewerCore,
     ViewerEntry as ViewerEntry
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 class CombinedViewerQt(PySide6.QtWidgets.QMainWindow):
@@ -51,7 +51,7 @@ class CombinedViewerQt(PySide6.QtWidgets.QMainWindow):
     floated to a secondary screen.
     """
 
-    def __init__(self, title: str = 'Combined Viewer', width: int = 1600, height: int = 900, parent: Optional[QtWidgets.QWidget] = None, settings_key: str = 'CombinedViewerQt') -> None: ...
+    def __init__(self, title: str = 'Combined Viewer', width: int = 1600, height: int = 900, parent: Optional[pyqtgraph.Qt.QtWidgets.QWidget] = None, settings_key: str = 'CombinedViewerQt') -> None: ...
 
     @property
     def core(self) -> CombinedViewerCore: ...

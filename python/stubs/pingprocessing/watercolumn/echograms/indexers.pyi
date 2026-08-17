@@ -7,7 +7,7 @@ the coordinate system and backends for efficient image generation.
 
 import dataclasses
 
-import np
+import numpy
 
 
 class EchogramImageRequest:
@@ -39,7 +39,7 @@ class EchogramImageRequest:
 
     fill_value: float = float('nan')
 
-    def compute_sample_indices(self, ping_idx: int) -> np.ndarray:
+    def compute_sample_indices(self, ping_idx: int) -> numpy.ndarray:
         """
         Compute sample indices for a single ping.
 
@@ -50,7 +50,7 @@ class EchogramImageRequest:
             Array of sample indices, shape (ny,). Invalid values are -1.
         """
 
-    def compute_all_sample_indices(self) -> np.ndarray:
+    def compute_all_sample_indices(self) -> numpy.ndarray:
         """
         Compute sample indices for all pings at once (vectorized).
 
@@ -64,7 +64,7 @@ class EchogramImageRequest:
 
     def __hash__(self): ...
 
-    def __init__(self, nx: int, ny: int, y_coordinates: np.ndarray, ping_indexer: np.ndarray, affine_a: np.ndarray, affine_b: np.ndarray, max_sample_indices: np.ndarray, fill_value: float = float('nan')) -> None: ...
+    def __init__(self, nx: int, ny: int, y_coordinates: numpy.ndarray, ping_indexer: numpy.ndarray, affine_a: numpy.ndarray, affine_b: numpy.ndarray, max_sample_indices: numpy.ndarray, fill_value: float = float('nan')) -> None: ...
 
     def __repr__(self): ...
 

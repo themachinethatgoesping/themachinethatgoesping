@@ -8,7 +8,7 @@ them in :class:`ControlHandle` / :class:`ControlPanel` objects so
 
 from typing import TypeAlias, Union
 
-import QtWidgets
+import pyqtgraph.Qt.QtWidgets
 
 import themachinethatgoesping.widgets.control_spec
 from themachinethatgoesping.widgets.control_spec import (
@@ -48,7 +48,7 @@ class QtControlHandle(themachinethatgoesping.widgets.control_spec.ControlHandle)
         treated as both outer and inner widget.
     """
 
-    def __init__(self, widget: QtWidgets.QWidget, value_getter, value_setter, change_signal=None, *, inner: QtWidgets.QWidget | None = None) -> None: ...
+    def __init__(self, widget: pyqtgraph.Qt.QtWidgets.QWidget, value_getter, value_setter, change_signal=None, *, inner: pyqtgraph.Qt.QtWidgets.QWidget | None = None) -> None: ...
 
     @property
     def value(self) -> Any: ...
@@ -109,7 +109,7 @@ class QtControlHandle(themachinethatgoesping.widgets.control_spec.ControlHandle)
     def options(self, v: Any) -> None: ...
 
     @property
-    def widget(self) -> QtWidgets.QWidget: ...
+    def widget(self) -> pyqtgraph.Qt.QtWidgets.QWidget: ...
 
 def create_qt_control(spec: ControlSpecType) -> QtControlHandle:
     """Create a :class:`QtControlHandle` from a specification."""
@@ -120,12 +120,12 @@ class QtControlPanel(themachinethatgoesping.widgets.control_spec.ControlPanel):
     @classmethod
     def from_specs(cls, *spec_lists: List[ControlSpecType]) -> 'QtControlPanel': ...
 
-    def widget(self, name: str) -> QtWidgets.QWidget: ...
+    def widget(self, name: str) -> pyqtgraph.Qt.QtWidgets.QWidget: ...
 
-    def widgets(self, *names: str) -> List[QtWidgets.QWidget]: ...
+    def widgets(self, *names: str) -> List[pyqtgraph.Qt.QtWidgets.QWidget]: ...
 
-    def hbox_widget(self, *names: str) -> QtWidgets.QWidget:
+    def hbox_widget(self, *names: str) -> pyqtgraph.Qt.QtWidgets.QWidget:
         """Return a QWidget with an HBoxLayout containing the named widgets."""
 
-    def build_tab_widget(self, tab_layouts: Dict[str, List[List[str]]]) -> QtWidgets.QTabWidget:
+    def build_tab_widget(self, tab_layouts: Dict[str, List[List[str]]]) -> pyqtgraph.Qt.QtWidgets.QTabWidget:
         """Build a ``QTabWidget`` with the given layout."""

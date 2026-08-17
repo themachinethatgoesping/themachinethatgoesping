@@ -21,7 +21,7 @@ Two models are provided:
   between a linear near-field trend and a constant/linear far-field trend.
 """
 
-import np
+import numpy
 
 
 class CalibrationModel:
@@ -31,7 +31,7 @@ class CalibrationModel:
 
     def __call__(self, x): ...
 
-    def get_fit(self, x0: float, x1: float, n: int = 200) -> Tuple[np.ndarray, np.ndarray]: ...
+    def get_fit(self, x0: float, x1: float, n: int = 200) -> Tuple[numpy.ndarray, numpy.ndarray]: ...
 
 class PchipBlendChangePoint(CalibrationModel):
     """

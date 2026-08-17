@@ -6,10 +6,12 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import functions as functions
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes
+from themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.calibration import (
+    functions as functions
+)
 
 
 class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration):

@@ -15,8 +15,9 @@ Usage::
 
 import PySide6.QtCore
 import PySide6.QtWidgets
-import QtWidgets
+import pyqtgraph.Qt.QtWidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_qt import (
     QtControlHandle as QtControlHandle,
     QtControlPanel as QtControlPanel,
@@ -30,7 +31,6 @@ from themachinethatgoesping.widgets.echogramviewer_core import (
     auto_select_grid as auto_select_grid,
     normalise_echograms as normalise_echograms
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.wciviewer_qt import (
     _QtProgressBar as _QtProgressBar
 )
@@ -58,11 +58,11 @@ class EchogramViewerQt(PySide6.QtWidgets.QMainWindow):
     so the two viewers are interchangeable at construction time.
     """
 
-    def __init__(self, echogramdata: Union[Dict[str, Any], Sequence[Any], Any], name: str = 'Multi-Echogram Viewer', names: Optional[Sequence[Optional[str]]] = None, progress: Optional[Any] = None, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', show: bool = True, embedded: bool = False, voffsets: Optional[Dict[str, float]] = None, widget_height_px: int = 800, widget_width_px: int = 1200, auto_update: bool = True, auto_update_delay_ms: int = 300, initial_grid: Tuple[int, int] = (2, 2), parent: Optional[QtWidgets.QWidget] = None, **kwargs: Any) -> None: ...
+    def __init__(self, echogramdata: Union[Dict[str, Any], Sequence[Any], Any], name: str = 'Multi-Echogram Viewer', names: Optional[Sequence[Optional[str]]] = None, progress: Optional[Any] = None, cmap: str = 'Greys_r', cmap_layer: str = 'YlGnBu_r', show: bool = True, embedded: bool = False, voffsets: Optional[Dict[str, float]] = None, widget_height_px: int = 800, widget_width_px: int = 1200, auto_update: bool = True, auto_update_delay_ms: int = 300, initial_grid: Tuple[int, int] = (2, 2), parent: Optional[pyqtgraph.Qt.QtWidgets.QWidget] = None, **kwargs: Any) -> None: ...
 
     def eventFilter(self, obj, event): ...
 
-    def build_control_widget(self) -> QtWidgets.QWidget:
+    def build_control_widget(self) -> pyqtgraph.Qt.QtWidgets.QWidget:
         """Return all controls as a single embeddable QWidget."""
 
     def run(self) -> None:

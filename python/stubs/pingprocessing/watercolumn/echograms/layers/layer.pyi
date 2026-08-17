@@ -31,7 +31,6 @@ from collections.abc import Sequence as _Sequence
 import types
 from typing import TypeAlias, Union
 
-import np
 import numpy
 
 
@@ -78,7 +77,7 @@ class Boundary:
         * :class:`Boundary` -> returned unchanged
         """
 
-    def resolve(self, cs, reference: str) -> np.ndarray:
+    def resolve(self, cs, reference: str) -> numpy.ndarray:
         """Resolve to a per-ping array in ``reference`` units (NaN where open)."""
 
     def is_open(self) -> bool: ...
@@ -179,7 +178,7 @@ class Layer:
         with a different number of pings.
         """
 
-    def resolve_bounds(self, cs) -> Tuple[np.ndarray, np.ndarray]:
+    def resolve_bounds(self, cs) -> Tuple[numpy.ndarray, numpy.ndarray]:
         """
         Resolve to per-ping ``(lower_value, upper_value)`` in reference units.
 
@@ -188,7 +187,7 @@ class Layer:
         available band where a boundary is open.
         """
 
-    def resolve_sample_indices(self, cs) -> Tuple[np.ndarray, np.ndarray]:
+    def resolve_sample_indices(self, cs) -> Tuple[numpy.ndarray, numpy.ndarray]:
         """
         Resolve to per-ping ``(i0, i1)`` sample-index bounds (i1 exclusive).
 

@@ -10,6 +10,7 @@ from numpy.typing import NDArray
 
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
 import themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures
+import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.pingtools
 import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.navigation_nanopy.datastructures
@@ -1766,7 +1767,7 @@ class I_Ping(I_PingCommon):
 class FilePackageCache_XML_Parameter_Channel:
     def __init__(self) -> None: ...
 
-    def __eq__(self, other: FilePackageCache_XML_Parameter_Channel) -> bool: ...
+    def __eq__(self, other: themachinethatgoesping.echosounders_nanopy.filetemplates.FilePackageCache_XML_Parameter_Channel) -> bool: ...
 
     def get_package(self, file_pos: int, timestamp: float, sub_package_nr: int = 0) -> typing.Any: ...
 
@@ -1780,18 +1781,18 @@ class FilePackageCache_XML_Parameter_Channel:
 
     def get_package_buffer(self) -> dict[int, list[str]]: ...
 
-    def copy(self) -> FilePackageCache_XML_Parameter_Channel:
+    def copy(self) -> themachinethatgoesping.echosounders_nanopy.filetemplates.FilePackageCache_XML_Parameter_Channel:
         """return a copy using the c++ default copy constructor"""
 
-    def __copy__(self) -> FilePackageCache_XML_Parameter_Channel: ...
+    def __copy__(self) -> themachinethatgoesping.echosounders_nanopy.filetemplates.FilePackageCache_XML_Parameter_Channel: ...
 
-    def __deepcopy__(self, arg: dict, /) -> FilePackageCache_XML_Parameter_Channel: ...
+    def __deepcopy__(self, arg: dict, /) -> themachinethatgoesping.echosounders_nanopy.filetemplates.FilePackageCache_XML_Parameter_Channel: ...
 
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """convert object to bytearray"""
 
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> FilePackageCache_XML_Parameter_Channel:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> themachinethatgoesping.echosounders_nanopy.filetemplates.FilePackageCache_XML_Parameter_Channel:
         """create T_CLASS object from bytearray"""
 
     def __getstate__(self) -> bytes: ...

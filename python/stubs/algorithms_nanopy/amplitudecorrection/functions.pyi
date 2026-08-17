@@ -165,16 +165,16 @@ def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float32], dict
 
 @overload
 def compute_cw_range_correction(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m: float | None, tvg_factor: float | None) -> Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')]:
-    r"""
+    """
     Computes the continuous wave (CW) range correction.
 
     This function calculates the range correction based on the provided
     ranges, absorption coefficient, and time-varying gain (TVG) factor.
     The range correction is computed using the formula:
 
-    \f[ \text{range correction} = 2 \cdot \text{absorption\_db\_m} \cdot
-    \text{ranges\_m} + \text{tvg\_factor} \cdot
-    \log_{10}(\text{ranges\_m}) \f]
+    \\f[ \\text{range correction} = 2 \\cdot \\text{absorption\\_db\\_m} \\cdot
+    \\text{ranges\\_m} + \\text{tvg\\_factor} \\cdot
+    \\log_{10}(\\text{ranges\\_m}) \\f]
 
     If the absorption coefficient is finite and non-zero, it is used in
     the calculation. If the TVG factor is finite and non-zero, it is also
@@ -200,7 +200,7 @@ def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float
 
 @overload
 def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], tvg_factor: float | None, mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
-    r"""
+    """
     Computes the per-beam continuous wave (CW) range correction for 2D
     water column data.
 
@@ -209,10 +209,10 @@ def compute_cw_range_correction_per_beam(ranges_m: Annotated[NDArray[numpy.float
     useful for multi-sector sonars where each transmit sector may have a
     different absorption coefficient.
 
-    The range correction for each beam is computed using the formula: \f[
-    \text{range correction}[beam, sample] = 2 \cdot
-    \text{absorption\_db\_m}[beam] \cdot \text{ranges\_m}[sample] +
-    \text{tvg\_factor} \cdot \log_{10}(\text{ranges\_m}[sample]) \f]
+    The range correction for each beam is computed using the formula: \\f[
+    \\text{range correction}[beam, sample] = 2 \\cdot
+    \\text{absorption\\_db\\_m}[beam] \\cdot \\text{ranges\\_m}[sample] +
+    \\text{tvg\\_factor} \\cdot \\log_{10}(\\text{ranges\\_m}[sample]) \\f]
 
     Args:
         ranges_m: A 1D tensor representing the ranges in meters (size =

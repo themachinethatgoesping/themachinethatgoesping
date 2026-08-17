@@ -6,7 +6,7 @@ from collections.abc import Mapping, Sequence
 import enum
 from typing import overload
 
-from . import (
+from themachinethatgoesping.echosounders_nanopy.kongsbergall import (
     datagrams as datagrams,
     filedatacontainers as filedatacontainers,
     filedatainterfaces as filedatainterfaces,

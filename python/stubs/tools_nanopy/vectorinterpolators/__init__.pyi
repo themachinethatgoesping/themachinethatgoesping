@@ -7,7 +7,9 @@ from typing import Annotated, Final, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import bivectorinterpolators as bivectorinterpolators
+from themachinethatgoesping.tools_nanopy.vectorinterpolators import (
+    bivectorinterpolators as bivectorinterpolators
+)
 
 
 class t_extr_mode(enum.Enum):

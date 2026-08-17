@@ -8,7 +8,7 @@ from typing import Annotated, Final, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import (
+from themachinethatgoesping.navigation_nanopy import (
     datastructures as datastructures,
     navtools as navtools,
     nmea_0183 as nmea_0183
@@ -26,9 +26,7 @@ class t_latlon_format(enum.Enum):
     """lat/lon will be converted to degrees°minutes.minutes'E/S E/W"""
 
     seconds = 2
-    r"""
-    lat/lon will be converted to degrees°minutes'seconds.seconds\'\'E/S E/W
-    """
+    """lat/lon will be converted to degrees°minutes'seconds.seconds''E/S E/W"""
 
 class o_latlon_format:
     """

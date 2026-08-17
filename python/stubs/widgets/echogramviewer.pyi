@@ -1,5 +1,6 @@
-import themachinethatgoesping as theping
-import themachinethatgoesping.pingprocessing.watercolumn.echograms as echograms
+from themachinethatgoesping.pingprocessing.watercolumn import (
+    echograms as echograms
+)
 
 
 class EchogramViewer:

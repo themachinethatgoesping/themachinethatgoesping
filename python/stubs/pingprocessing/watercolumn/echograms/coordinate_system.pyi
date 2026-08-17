@@ -12,7 +12,7 @@ from typing import Union
 
 import numpy
 
-import themachinethatgoesping as theping
+from themachinethatgoesping import tools as tools
 from themachinethatgoesping.algorithms_nanopy.featuremapping import (
     NearestFeatureMapper as NearestFeatureMapper
 )
@@ -26,7 +26,6 @@ import themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import (
     EchogramImageRequest as EchogramImageRequest
 )
-import themachinethatgoesping.tools as tools
 
 
 def compress_axis_gaps(values: numpy.ndarray, max_gap: float) -> numpy.ndarray:

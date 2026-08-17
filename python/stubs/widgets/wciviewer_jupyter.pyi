@@ -9,6 +9,7 @@ Drop-in replacement for ``WCIViewerMultiChannel`` in
 
 import ipywidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_jupyter import (
     JupyterControlPanel as JupyterControlPanel,
     create_jupyter_control as create_jupyter_control
@@ -17,7 +18,6 @@ from themachinethatgoesping.widgets.control_spec import (
     DropdownSpec as DropdownSpec,
     IntSliderSpec as IntSliderSpec
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
 )

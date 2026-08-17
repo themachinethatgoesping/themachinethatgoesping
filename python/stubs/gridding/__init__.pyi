@@ -1,13 +1,15 @@
-from . import (
+from themachinethatgoesping.gridding import (
     echogrid as echogrid,
     forwardgridderlegacy as forwardgridderlegacy,
     forwardgridderlegacynew as forwardgridderlegacynew,
     functions as functions
 )
-from .echogrid import EchoGrid as EchoGrid
-from .forwardgridderlegacy import (
+from themachinethatgoesping.gridding.echogrid import (
+    EchoGrid as EchoGrid
+)
+from themachinethatgoesping.gridding.forwardgridderlegacy import (
     ForwardGridderLegacy as ForwardGridderLegacy
 )
-from .forwardgridderlegacynew import (
+from themachinethatgoesping.gridding.forwardgridderlegacynew import (
     ForwardGridderLegacyNew as ForwardGridderLegacyNew
 )

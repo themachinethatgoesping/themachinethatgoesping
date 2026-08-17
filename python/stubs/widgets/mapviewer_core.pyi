@@ -9,14 +9,14 @@ controls and wire up display / async loading.
 
 import dataclasses
 
-import np
-import pg
+import numpy
+import pyqtgraph
 
-import themachinethatgoesping.pingprocessing as pingprocessing
+from themachinethatgoesping import pingprocessing as pingprocessing
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_spec import (
     ControlPanel as ControlPanel
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 MAP_COLORMAPS: list = ...
@@ -67,7 +67,7 @@ class TrackInfo:
 
     __hash__: None = None
 
-    def __init__(self, name: str, latitudes: np.ndarray, longitudes: np.ndarray, color: str, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None) -> None: ...
+    def __init__(self, name: str, latitudes: numpy.ndarray, longitudes: numpy.ndarray, color: str, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None) -> None: ...
 
     def __repr__(self): ...
 
@@ -108,7 +108,7 @@ class OverviewTrackInfo:
 
     __hash__: None = None
 
-    def __init__(self, name: str, overview: Any, color: str, max_points: int = 50000, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None, show_points: bool = False, point_size: float = 5.0, point_symbol: str = 'o', point_outline: bool = True, latitudes: Optional[np.ndarray] = None, longitudes: Optional[np.ndarray] = None, indices: Optional[np.ndarray] = None) -> None: ...
+    def __init__(self, name: str, overview: Any, color: str, max_points: int = 50000, line_width: float = 2.0, is_active: bool = False, visible: bool = True, slot_idx: Optional[int] = None, show_points: bool = False, point_size: float = 5.0, point_symbol: str = 'o', point_outline: bool = True, latitudes: Optional[numpy.ndarray] = None, longitudes: Optional[numpy.ndarray] = None, indices: Optional[numpy.ndarray] = None) -> None: ...
 
     def __repr__(self): ...
 
@@ -195,7 +195,7 @@ class MapCore:
     def layer_names(self) -> List[str]:
         """Get names of all data layers."""
 
-    def add_track(self, latitudes: np.ndarray, longitudes: np.ndarray, name: str = 'Track', color: Optional[str] = None, line_width: float = 2.0, is_active: bool = False, slot_idx: Optional[int] = None) -> None: ...
+    def add_track(self, latitudes: numpy.ndarray, longitudes: numpy.ndarray, name: str = 'Track', color: Optional[str] = None, line_width: float = 2.0, is_active: bool = False, slot_idx: Optional[int] = None) -> None: ...
 
     def add_overview_track(self, overview, name: str = 'Overview', color: Optional[str] = None, line_width: float = 2.0, max_points: int = 50000, is_active: bool = False, slot_idx: Optional[int] = None, show_points: bool = False, point_size: float = 5.0, point_symbol: str = 'o', point_outline: bool = True) -> None: ...
 
@@ -207,9 +207,9 @@ class MapCore:
 
     def set_track_visibility(self, track_name: str, visible: bool) -> None: ...
 
-    def add_markers(self, latitudes, longitudes, name: str = 'markers', labels: Optional[List[str]] = None, color: str = 'white', edge_color: str = 'black', size: float = 10, symbol: str = 'o', edge_width: float = 1.5, z_value: float = 100, label_color: str = 'black', label_size: str = '9pt') -> pg.ScatterPlotItem: ...
+    def add_markers(self, latitudes, longitudes, name: str = 'markers', labels: Optional[List[str]] = None, color: str = 'white', edge_color: str = 'black', size: float = 10, symbol: str = 'o', edge_width: float = 1.5, z_value: float = 100, label_color: str = 'black', label_size: str = '9pt') -> pyqtgraph.ScatterPlotItem: ...
 
-    def add_markers_tuples(self, positions, name: str = 'markers', **kwargs) -> pg.ScatterPlotItem: ...
+    def add_markers_tuples(self, positions, name: str = 'markers', **kwargs) -> pyqtgraph.ScatterPlotItem: ...
 
     def remove_markers(self, name: str) -> None: ...
 

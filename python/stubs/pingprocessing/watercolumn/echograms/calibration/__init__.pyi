@@ -31,24 +31,28 @@ Quick start
     pattern = CalibrationPattern().fit(data)
 """
 
-from . import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration import (
     builder as builder,
     data as data,
     models as models,
     pattern as pattern,
     plotting as plotting
 )
-from .builder import CalibrationBuilder as CalibrationBuilder
-from .data import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration.builder import (
+    CalibrationBuilder as CalibrationBuilder
+)
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration.data import (
     CalibrationData as CalibrationData,
     CalibrationStore as CalibrationStore
 )
-from .models import (
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration.models import (
     CalibrationModel as CalibrationModel,
     LogisticSTR as LogisticSTR,
     PchipBlendChangePoint as PchipBlendChangePoint
 )
-from .pattern import CalibrationPattern as CalibrationPattern
+from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration.pattern import (
+    CalibrationPattern as CalibrationPattern
+)
 
 
 __all__: list = ['CalibrationBuilder', 'CalibrationData', 'CalibrationStore', 'CalibrationPattern', 'CalibrationModel', 'PchipBlendChangePoint', 'LogisticSTR', 'plotting']

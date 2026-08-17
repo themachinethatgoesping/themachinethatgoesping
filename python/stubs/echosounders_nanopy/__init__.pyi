@@ -4,7 +4,7 @@ Python module to read, write and process single- and multibeam echosounder data 
 
 from typing import Final, overload
 
-from . import (
+from themachinethatgoesping.echosounders_nanopy import (
     filetemplates as filetemplates,
     gsf as gsf,
     kmall as kmall,

@@ -9,7 +9,9 @@ from themachinethatgoesping.gridding.forwardgridderlegacy import (
 from themachinethatgoesping.gridding.forwardgridderlegacynew import (
     ForwardGridderLegacyNew as ForwardGridderLegacyNew
 )
-import themachinethatgoesping.gridding.functions.gridfunctions as gf
+from themachinethatgoesping.gridding.functions import (
+    gridfunctions as gf
+)
 
 
 static_get_target_pos: numba.core.registry.CPUDispatcher = ...

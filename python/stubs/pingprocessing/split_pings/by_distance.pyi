@@ -1,9 +1,11 @@
-import themachinethatgoesping.echosounders_nanopy.filetemplates as filetemplates
+from themachinethatgoesping import navigation as nav
+from themachinethatgoesping.echosounders_nanopy import (
+    filetemplates as filetemplates
+)
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 from themachinethatgoesping.echosounders_nanopy.filetemplates import (
     I_Ping as I_Ping
 )
-import themachinethatgoesping.navigation as nav
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
 )

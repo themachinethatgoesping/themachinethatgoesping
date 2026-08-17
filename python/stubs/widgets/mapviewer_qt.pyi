@@ -15,8 +15,9 @@ Usage::
 
 import PySide6.QtCore
 import PySide6.QtWidgets
-import QtWidgets
+import pyqtgraph.Qt.QtWidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_qt import (
     QtControlHandle as QtControlHandle,
     QtControlPanel as QtControlPanel,
@@ -30,7 +31,6 @@ from themachinethatgoesping.widgets.mapviewer_core import (
     LayerRenderSettings as LayerRenderSettings,
     MapCore as MapCore
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 MAP_NAV_SPECS: list = ...
@@ -53,9 +53,9 @@ class MapViewerQt(PySide6.QtWidgets.QMainWindow):
     interchangeable at construction time.
     """
 
-    def __init__(self, builder: Any = None, tile_builder: Any = None, width: int = 1000, height: int = 700, show_controls: bool = True, max_render_size: Tuple[int, int] = (2000, 2000), auto_update: bool = True, auto_update_delay_ms: int = 300, show: bool = True, embedded: bool = False, parent: Optional[QtWidgets.QWidget] = None) -> None: ...
+    def __init__(self, builder: Any = None, tile_builder: Any = None, width: int = 1000, height: int = 700, show_controls: bool = True, max_render_size: Tuple[int, int] = (2000, 2000), auto_update: bool = True, auto_update_delay_ms: int = 300, show: bool = True, embedded: bool = False, parent: Optional[pyqtgraph.Qt.QtWidgets.QWidget] = None) -> None: ...
 
-    def build_control_widget(self) -> QtWidgets.QWidget:
+    def build_control_widget(self) -> pyqtgraph.Qt.QtWidgets.QWidget:
         """Return all controls as a single embeddable QWidget."""
 
     def run(self) -> None:

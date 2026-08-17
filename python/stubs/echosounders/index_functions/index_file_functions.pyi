@@ -1,4 +1,6 @@
-import themachinethatgoesping.echosounders_nanopy.filetemplates as filetemplates
+from themachinethatgoesping.echosounders_nanopy import (
+    filetemplates as filetemplates
+)
 
 
 def print_index_file_statistics(index_paths: list[str]): ...

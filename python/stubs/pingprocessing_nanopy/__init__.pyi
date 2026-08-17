@@ -1,3 +1,5 @@
 """Python module process pings from echosounders."""
 
-from . import watercolumn as watercolumn
+from themachinethatgoesping.pingprocessing_nanopy import (
+    watercolumn as watercolumn
+)

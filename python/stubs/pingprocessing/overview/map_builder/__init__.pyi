@@ -28,25 +28,27 @@ Example:
     viewer.connect_echogram_viewer(echogram_viewer)
 """
 
-from . import (
+from themachinethatgoesping.pingprocessing.overview.map_builder import (
     backends as backends,
     coordinate_system as coordinate_system,
     map_builder as map_builder,
     tile_builder as tile_builder
 )
-from .backends.base import MapDataBackend as MapDataBackend
-from .backends.geotiff_backend import (
+from themachinethatgoesping.pingprocessing.overview.map_builder.backends.base import (
+    MapDataBackend as MapDataBackend
+)
+from themachinethatgoesping.pingprocessing.overview.map_builder.backends.geotiff_backend import (
     GeoTiffBackend as GeoTiffBackend
 )
-from .coordinate_system import (
+from themachinethatgoesping.pingprocessing.overview.map_builder.coordinate_system import (
     BoundingBox as BoundingBox,
     MapCoordinateSystem as MapCoordinateSystem
 )
-from .map_builder import (
+from themachinethatgoesping.pingprocessing.overview.map_builder.map_builder import (
     MapBuilder as MapBuilder,
     MapLayer as MapLayer
 )
-from .tile_builder import (
+from themachinethatgoesping.pingprocessing.overview.map_builder.tile_builder import (
     TileBuilder as TileBuilder,
     TileSource as TileSource,
     list_available_sources as list_available_sources

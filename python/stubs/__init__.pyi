@@ -4,7 +4,7 @@ themachinethatgoesping
 Enable quantitative processing of multibeam and singlebeam echosounder systems
 """
 
-from . import (
+from themachinethatgoesping import (
     algorithms as algorithms,
     algorithms_nanopy as algorithms_nanopy,
     echosounders as echosounders,

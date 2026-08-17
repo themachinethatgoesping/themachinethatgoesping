@@ -2,4 +2,6 @@
 Submodule for imageprocessing (absorption, tvg, calibration factors, etc.)
 """
 
-from . import functions as functions
+from themachinethatgoesping.algorithms_nanopy.imageprocessing import (
+    functions as functions
+)

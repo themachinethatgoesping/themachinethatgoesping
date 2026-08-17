@@ -4,12 +4,14 @@ import typing
 from collections.abc import Sequence
 from typing import overload
 
-from . import calibration as calibration
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.simradraw
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_nanopy.simradraw.filedatainterfaces
+from themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes import (
+    calibration as calibration
+)
 
 
 class FilePackageIndex_simradraw_FilePackageIndex:

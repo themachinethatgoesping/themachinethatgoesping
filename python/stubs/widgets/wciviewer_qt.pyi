@@ -1,4 +1,4 @@
-r"""
+"""
 Native Qt WCI viewer using pyqtgraph DockArea + extracted WCICore.
 
 This module provides a standalone Qt application for viewing water-column
@@ -7,7 +7,7 @@ user can drag, float, and rearrange panels.
 
 Usage (standalone)::
 
-    python -m themachinethatgoesping.widgets.wciviewer_qt \
+    python -m themachinethatgoesping.widgets.wciviewer_qt \\
         --help
 
 Or programmatically::
@@ -20,8 +20,9 @@ Or programmatically::
 
 import PySide6.QtCore
 import PySide6.QtWidgets
-import QtWidgets
+import pyqtgraph.Qt.QtWidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_qt import (
     QtControlHandle as QtControlHandle,
     QtControlPanel as QtControlPanel,
@@ -31,7 +32,6 @@ from themachinethatgoesping.widgets.control_spec import (
     DropdownSpec as DropdownSpec,
     IntSliderSpec as IntSliderSpec
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.videoframes import (
     VideoFrames as VideoFrames
 )
@@ -66,9 +66,9 @@ class WCIViewerQt(PySide6.QtWidgets.QMainWindow):
     two viewers are interchangeable at construction time.
     """
 
-    def __init__(self, channels: Union[Dict[str, Sequence[Any]], Sequence[Sequence[Any]]], name: str = 'Multi-Channel WCI', names: Optional[Sequence[Optional[str]]] = None, horizontal_pixels: int = 1024, progress: Optional[Any] = None, cmap: str = 'YlGnBu_r', show: bool = True, embedded: bool = False, widget_height_px: int = 800, widget_width_px: int = 1200, initial_grid: Tuple[int, int] = (2, 2), time_sync_enabled: bool = True, time_warning_threshold: float = 5.0, parent: Optional[QtWidgets.QWidget] = None, **kwargs: Any) -> None: ...
+    def __init__(self, channels: Union[Dict[str, Sequence[Any]], Sequence[Sequence[Any]]], name: str = 'Multi-Channel WCI', names: Optional[Sequence[Optional[str]]] = None, horizontal_pixels: int = 1024, progress: Optional[Any] = None, cmap: str = 'YlGnBu_r', show: bool = True, embedded: bool = False, widget_height_px: int = 800, widget_width_px: int = 1200, initial_grid: Tuple[int, int] = (2, 2), time_sync_enabled: bool = True, time_warning_threshold: float = 5.0, parent: Optional[pyqtgraph.Qt.QtWidgets.QWidget] = None, **kwargs: Any) -> None: ...
 
-    def build_control_widget(self) -> QtWidgets.QWidget:
+    def build_control_widget(self) -> pyqtgraph.Qt.QtWidgets.QWidget:
         """
         Return all controls as a single embeddable QWidget.
 

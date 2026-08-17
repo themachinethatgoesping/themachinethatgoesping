@@ -7,7 +7,7 @@ Uses xarray with Dask for efficient chunked access and parallel loading.
 from typing import Union
 
 import numpy
-import xr
+import xarray
 
 import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base import (
@@ -45,7 +45,7 @@ class ZarrDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echogram
     - Attributes: wci_value, linear_mean, has_navigation, format_version, storage_mode
     """
 
-    def __init__(self, ds: xr.Dataset, store_path: Union[str, None] = None, max_chunk_mb: float = 100.0):
+    def __init__(self, ds: xarray.Dataset, store_path: Union[str, None] = None, max_chunk_mb: float = 100.0):
         """
         Initialize ZarrDataBackend from an xarray Dataset.
 

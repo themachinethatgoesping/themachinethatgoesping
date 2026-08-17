@@ -2,7 +2,7 @@
 
 from typing import overload
 
-from . import (
+from themachinethatgoesping.tools_nanopy import (
     classhelper as classhelper,
     helper as helper,
     math as math,

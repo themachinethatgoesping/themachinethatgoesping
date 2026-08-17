@@ -1,5 +1,3 @@
-
-
 __conditional_annotations__: set = ...
 
 close_plots: bool = True

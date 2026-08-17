@@ -15,14 +15,14 @@ def latitude_to_string(latitude: float, format: themachinethatgoesping.navigatio
 
 @overload
 def latitude_to_string(latitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]:
-    r"""
+    """
     convert a latitude value to a string
 
     Args:
         latitude: value to be converted
         precision: number of digits behind the .
         format: latlon format (degrees°N/S, degrees°minutes'N/S or
-                degrees°minutes'seconds\'\'N/S)
+                degrees°minutes'seconds''N/S)
 
     Returns:
         converted latitude string
@@ -33,14 +33,14 @@ def longitude_to_string(longitude: float, format: themachinethatgoesping.navigat
 
 @overload
 def longitude_to_string(longitude: Sequence[float], format: themachinethatgoesping.navigation_nanopy.o_latlon_format = themachinethatgoesping.navigation_nanopy.t_latlon_format.minutes, precision: int = 6) -> list[str]:
-    r"""
+    """
     convert a latitude value to a string
 
     Args:
         latitude: value to be converted
         precision: number of digits behind the .
         format: latlon format (degrees°N/S, degrees°minutes'N/S or
-                degrees°minutes'seconds\'\'N/S)
+                degrees°minutes'seconds''N/S)
 
     Returns:
         converted latitude string

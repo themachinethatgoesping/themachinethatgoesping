@@ -26,8 +26,8 @@ acoustic samples inside the layer; the *counts* are the number of contributing
 samples and drive the fill-based filtering.
 """
 
-import np
-import pd
+import numpy
+import pandas
 
 
 BEAM_COLUMNS: list = ...
@@ -46,17 +46,17 @@ class CalibrationStore:
 
     def read_meta(self) -> dict: ...
 
-    def write_params(self, df: pd.DataFrame) -> None: ...
+    def write_params(self, df: pandas.DataFrame) -> None: ...
 
-    def read_params(self) -> Optional[pd.DataFrame]: ...
+    def read_params(self) -> Optional[pandas.DataFrame]: ...
 
     def read_manifest(self) -> List[dict]: ...
 
-    def write_beam(self, channel: str, angle: float, df: pd.DataFrame) -> None: ...
+    def write_beam(self, channel: str, angle: float, df: pandas.DataFrame) -> None: ...
 
     def has_beam(self, channel: str, angle: float) -> bool: ...
 
-    def read_beam(self, fname: str) -> pd.DataFrame: ...
+    def read_beam(self, fname: str) -> pandas.DataFrame: ...
 
 class CalibrationData:
     """
@@ -69,7 +69,7 @@ class CalibrationData:
     per-temperature calibration is cheap and never copies the heavy data.
     """
 
-    def __init__(self, store: CalibrationStore, meta: dict, params: Optional[pd.DataFrame], beams: Dict[Tuple[str, float], _Beam]): ...
+    def __init__(self, store: CalibrationStore, meta: dict, params: Optional[pandas.DataFrame], beams: Dict[Tuple[str, float], _Beam]): ...
 
     @classmethod
     def open(cls, path) -> 'CalibrationData':
@@ -89,7 +89,7 @@ class CalibrationData:
     @property
     def channels(self) -> List[str]: ...
 
-    def angles(self, channel: str) -> np.ndarray: ...
+    def angles(self, channel: str) -> numpy.ndarray: ...
 
     @property
     def beams(self) -> List[Tuple[str, float]]: ...
@@ -98,14 +98,14 @@ class CalibrationData:
     def layers(self) -> List[str]: ...
 
     @property
-    def params(self) -> pd.DataFrame: ...
+    def params(self) -> pandas.DataFrame: ...
 
     @property
-    def time(self) -> pd.DatetimeIndex: ...
+    def time(self) -> pandas.DatetimeIndex: ...
 
-    def param(self, name: str) -> pd.Series: ...
+    def param(self, name: str) -> pandas.Series: ...
 
-    def beam(self, channel: str, angle: float) -> pd.DataFrame:
+    def beam(self, channel: str, angle: float) -> pandas.DataFrame:
         """Long table for one beam, restricted to the current time mask."""
 
     def find_closest_angle(self, channel: str, angle: float) -> float: ...
@@ -129,7 +129,7 @@ class CalibrationData:
     def exclude_label(self, name: str, label) -> 'CalibrationData':
         """View with all blocks of ``param == label`` removed."""
 
-    def calibration_per_range(self, channel: str, angle: float, *, min_count_fraction: float = 0.66, iqr_filter: bool = True, iqr_k: float = 1.5, bootstrap: int = 100, confidence_level: float = 0.95, random_state: Optional[int] = 42) -> pd.DataFrame:
+    def calibration_per_range(self, channel: str, angle: float, *, min_count_fraction: float = 0.66, iqr_filter: bool = True, iqr_k: float = 1.5, bootstrap: int = 100, confidence_level: float = 0.95, random_state: Optional[int] = 42) -> pandas.DataFrame:
         """
         Per-layer calibration offset ``C = base - beam`` for one beam.
 
@@ -146,7 +146,7 @@ class CalibrationData:
         csv`` (median offset), ``ci_low, ci_high, n``.
         """
 
-    def cross_data(self, channel: str, angle: float, layer: str, *, min_count_fraction: float = 0.66, iqr_filter: bool = True, iqr_k: float = 1.5) -> pd.DataFrame:
+    def cross_data(self, channel: str, angle: float, layer: str, *, min_count_fraction: float = 0.66, iqr_filter: bool = True, iqr_k: float = 1.5) -> pandas.DataFrame:
         """
         Per-block ``base``/``beam`` values for one layer (for cross-plots).
 
@@ -154,7 +154,7 @@ class CalibrationData:
         ``inlier`` marks the 1.5*IQR-accepted points used for the offset).
         """
 
-    def series(self, channel: str, angle: float, layer: str) -> pd.DataFrame:
+    def series(self, channel: str, angle: float, layer: str) -> pandas.DataFrame:
         """Raw per-block time series for one layer (base/beam value+count)."""
 
     def __repr__(self) -> str: ...

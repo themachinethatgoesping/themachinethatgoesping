@@ -8,10 +8,12 @@ from typing import Annotated, Final, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import substructures as substructures
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
 import themachinethatgoesping.echosounders_nanopy
 import themachinethatgoesping.echosounders_nanopy.kongsbergall
+from themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams import (
+    substructures as substructures
+)
 import themachinethatgoesping.navigation_nanopy.datastructures
 
 

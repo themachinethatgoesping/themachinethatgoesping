@@ -5,11 +5,11 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import (
+import themachinethatgoesping.echosounders_nanopy.simradraw
+from themachinethatgoesping.echosounders_nanopy.simradraw.datagrams import (
     XML0_datagrams as XML0_datagrams,
     raw3datatypes as raw3datatypes
 )
-import themachinethatgoesping.echosounders_nanopy.simradraw
 import themachinethatgoesping.navigation_nanopy.nmea_0183
 
 

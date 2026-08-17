@@ -447,16 +447,16 @@ class MRZSectorInfoVector:
         """Remove all items from list."""
 
     def append(self, arg: MRZSectorInfo, /) -> None:
-        """Append `arg` to the end of the list."""
+        """Append ``arg`` to the end of the list."""
 
     def insert(self, arg0: int, arg1: MRZSectorInfo, /) -> None:
-        """Insert object `arg1` before index `arg0`."""
+        """Insert object ``arg1`` before index ``arg0``."""
 
     def pop(self, index: int = -1) -> MRZSectorInfo:
-        """Remove and return item at `index` (default last)."""
+        """Remove and return item at ``index`` (default last)."""
 
     def extend(self, arg: MRZSectorInfoVector, /) -> None:
-        """Extend `self` by appending elements from `arg`."""
+        """Extend ``self`` by appending elements from ``arg``."""
 
     @overload
     def __setitem__(self, arg0: int, arg1: MRZSectorInfo, /) -> None: ...
@@ -481,10 +481,10 @@ class MRZSectorInfoVector:
     def __contains__(self, arg: object, /) -> bool: ...
 
     def count(self, arg: MRZSectorInfo, /) -> int:
-        """Return number of occurrences of `arg`."""
+        """Return number of occurrences of ``arg``."""
 
     def remove(self, arg: MRZSectorInfo, /) -> None:
-        """Remove first occurrence of `arg`."""
+        """Remove first occurrence of ``arg``."""
 
 class MRZExtraDetClassInfo:
     def __init__(self) -> None: ...
@@ -554,16 +554,16 @@ class MRZExtraDetClassInfoVector:
         """Remove all items from list."""
 
     def append(self, arg: MRZExtraDetClassInfo, /) -> None:
-        """Append `arg` to the end of the list."""
+        """Append ``arg`` to the end of the list."""
 
     def insert(self, arg0: int, arg1: MRZExtraDetClassInfo, /) -> None:
-        """Insert object `arg1` before index `arg0`."""
+        """Insert object ``arg1`` before index ``arg0``."""
 
     def pop(self, index: int = -1) -> MRZExtraDetClassInfo:
-        """Remove and return item at `index` (default last)."""
+        """Remove and return item at ``index`` (default last)."""
 
     def extend(self, arg: MRZExtraDetClassInfoVector, /) -> None:
-        """Extend `self` by appending elements from `arg`."""
+        """Extend ``self`` by appending elements from ``arg``."""
 
     @overload
     def __setitem__(self, arg0: int, arg1: MRZExtraDetClassInfo, /) -> None: ...
@@ -588,10 +588,10 @@ class MRZExtraDetClassInfoVector:
     def __contains__(self, arg: object, /) -> bool: ...
 
     def count(self, arg: MRZExtraDetClassInfo, /) -> int:
-        """Return number of occurrences of `arg`."""
+        """Return number of occurrences of ``arg``."""
 
     def remove(self, arg: MRZExtraDetClassInfo, /) -> None:
-        """Remove first occurrence of `arg`."""
+        """Remove first occurrence of ``arg``."""
 
 class MRZExtraDetClassInfoContainer:
     def __init__(self) -> None: ...
@@ -851,16 +851,16 @@ class MRZSoundingsVector:
         """Remove all items from list."""
 
     def append(self, arg: MRZSoundings, /) -> None:
-        """Append `arg` to the end of the list."""
+        """Append ``arg`` to the end of the list."""
 
     def insert(self, arg0: int, arg1: MRZSoundings, /) -> None:
-        """Insert object `arg1` before index `arg0`."""
+        """Insert object ``arg1`` before index ``arg0``."""
 
     def pop(self, index: int = -1) -> MRZSoundings:
-        """Remove and return item at `index` (default last)."""
+        """Remove and return item at ``index`` (default last)."""
 
     def extend(self, arg: MRZSoundingsVector, /) -> None:
-        """Extend `self` by appending elements from `arg`."""
+        """Extend ``self`` by appending elements from ``arg``."""
 
     @overload
     def __setitem__(self, arg0: int, arg1: MRZSoundings, /) -> None: ...
@@ -885,10 +885,10 @@ class MRZSoundingsVector:
     def __contains__(self, arg: object, /) -> bool: ...
 
     def count(self, arg: MRZSoundings, /) -> int:
-        """Return number of occurrences of `arg`."""
+        """Return number of occurrences of ``arg``."""
 
     def remove(self, arg: MRZSoundings, /) -> None:
-        """Remove first occurrence of `arg`."""
+        """Remove first occurrence of ``arg``."""
 
 class MRZSoundingsContainer:
     def __init__(self) -> None: ...
@@ -1337,16 +1337,16 @@ class MWCSectorInfoVector:
         """Remove all items from list."""
 
     def append(self, arg: MWCSectorInfo, /) -> None:
-        """Append `arg` to the end of the list."""
+        """Append ``arg`` to the end of the list."""
 
     def insert(self, arg0: int, arg1: MWCSectorInfo, /) -> None:
-        """Insert object `arg1` before index `arg0`."""
+        """Insert object ``arg1`` before index ``arg0``."""
 
     def pop(self, index: int = -1) -> MWCSectorInfo:
-        """Remove and return item at `index` (default last)."""
+        """Remove and return item at ``index`` (default last)."""
 
     def extend(self, arg: MWCSectorInfoVector, /) -> None:
-        """Extend `self` by appending elements from `arg`."""
+        """Extend ``self`` by appending elements from ``arg``."""
 
     @overload
     def __setitem__(self, arg0: int, arg1: MWCSectorInfo, /) -> None: ...
@@ -1371,10 +1371,10 @@ class MWCSectorInfoVector:
     def __contains__(self, arg: object, /) -> bool: ...
 
     def count(self, arg: MWCSectorInfo, /) -> int:
-        """Return number of occurrences of `arg`."""
+        """Return number of occurrences of ``arg``."""
 
     def remove(self, arg: MWCSectorInfo, /) -> None:
-        """Remove first occurrence of `arg`."""
+        """Remove first occurrence of ``arg``."""
 
 class MWCRxInfo:
     def __init__(self) -> None: ...

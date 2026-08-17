@@ -7,7 +7,9 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
-from . import functions as functions
+from themachinethatgoesping.algorithms_nanopy.gridding import (
+    functions as functions
+)
 
 
 class ForwardGridder1D:

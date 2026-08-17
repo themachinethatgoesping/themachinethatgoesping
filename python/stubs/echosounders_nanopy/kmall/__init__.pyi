@@ -4,7 +4,7 @@ from collections.abc import Mapping, Sequence
 import enum
 from typing import Final, overload
 
-from . import (
+from themachinethatgoesping.echosounders_nanopy.kmall import (
     datagrams as datagrams,
     filedatacontainers as filedatacontainers,
     filedatainterfaces as filedatainterfaces,

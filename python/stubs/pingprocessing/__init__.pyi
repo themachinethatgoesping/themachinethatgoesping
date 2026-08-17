@@ -1,4 +1,7 @@
-from . import (
+from themachinethatgoesping import (
+    pingprocessing_nanopy as pingprocessing_nanopy
+)
+from themachinethatgoesping.pingprocessing import (
     core as core,
     filter_pings as filter_pings,
     group_pings as group_pings,
@@ -7,4 +10,3 @@ from . import (
     testing as testing,
     watercolumn as watercolumn
 )
-import themachinethatgoesping.pingprocessing_nanopy as pingprocessing_nanopy

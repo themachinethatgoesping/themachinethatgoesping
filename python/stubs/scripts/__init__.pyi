@@ -1,4 +1,4 @@
-from . import (
+from themachinethatgoesping.scripts import (
     mbes as mbes,
     nearfield as nearfield,
     oceanographic as oceanographic,

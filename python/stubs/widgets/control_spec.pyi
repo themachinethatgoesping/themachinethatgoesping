@@ -121,8 +121,8 @@ class MultiSelectSpec:
     __match_args__: tuple = ...
 
 class CheckboxSpec:
-    r"""
-    CheckboxSpec(name: 'str', description: 'str', value: 'bool' = False, tooltip: 'str' = \'\')
+    """
+    CheckboxSpec(name: 'str', description: 'str', value: 'bool' = False, tooltip: 'str' = '')
     """
 
     value: bool = False
@@ -190,8 +190,8 @@ class FloatTextSpec:
     __match_args__: tuple = ('name', 'description', 'value', 'width')
 
 class ButtonSpec:
-    r"""
-    ButtonSpec(name: 'str', description: 'str', tooltip: 'str' = \'\', width: 'str' = '80px')
+    """
+    ButtonSpec(name: 'str', description: 'str', tooltip: 'str' = '', width: 'str' = '80px')
     """
 
     tooltip: str = ''
@@ -213,7 +213,7 @@ class ButtonSpec:
     __match_args__: tuple = ('name', 'description', 'tooltip', 'width')
 
 class LabelSpec:
-    r"""LabelSpec(name: 'str', value: 'str' = \'\', width: 'str' = '100px')"""
+    """LabelSpec(name: 'str', value: 'str' = '', width: 'str' = '100px')"""
 
     value: str = ''
 
@@ -234,8 +234,8 @@ class LabelSpec:
     __match_args__: tuple = ('name', 'value', 'width')
 
 class TextSpec:
-    r"""
-    TextSpec(name: 'str', description: 'str', value: 'str' = \'\', disabled: 'bool' = False, width: 'str' = '200px')
+    """
+    TextSpec(name: 'str', description: 'str', value: 'str' = '', disabled: 'bool' = False, width: 'str' = '200px')
     """
 
     value: str = ''

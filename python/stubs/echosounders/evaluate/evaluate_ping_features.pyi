@@ -1,6 +1,3 @@
-import themachinethatgoesping as theping
-
-
 def __eval_all_features_can_be_called__(feature_group, name, verbose, throw_exception): ...
 
 def __eval_get_and_has_functions_are_features__(feature_group, name, throw_exception=True): ...

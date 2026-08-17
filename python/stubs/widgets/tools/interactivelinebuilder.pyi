@@ -1,5 +1,3 @@
-
-
 def find_closest_index(sorted_array, target):
     """
     Find the index of the closest number in a sorted array using NumPy.

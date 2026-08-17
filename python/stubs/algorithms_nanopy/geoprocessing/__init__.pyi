@@ -2,7 +2,7 @@
 Submodule for geoprocessing (raytracers and georefencing) echosounder samples
 """
 
-from . import (
+from themachinethatgoesping.algorithms_nanopy.geoprocessing import (
     backtracers as backtracers,
     datastructures as datastructures,
     functions as functions,

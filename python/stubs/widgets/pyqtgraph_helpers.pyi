@@ -2,7 +2,7 @@
 
 import PySide6.QtCore
 import ipywidgets
-import pg
+import pyqtgraph
 import pyqtgraph.graphicsItems.AxisItem
 
 
@@ -66,7 +66,7 @@ class DistanceAxis(pyqtgraph.graphicsItems.AxisItem.AxisItem):
 def ensure_qapp() -> None:
     """Ensure a QApplication exists for PyQtGraph widgets."""
 
-def resolve_colormap(cmap) -> pg.ColorMap:
+def resolve_colormap(cmap) -> pyqtgraph.ColorMap:
     """
     Return a PyQtGraph ColorMap from a name, pg.ColorMap, or matplotlib Colormap.
 

@@ -2,4 +2,6 @@
 Submodule for amplitudecorrection (absorption, tvg, calibration factors, etc.)
 """
 
-from . import functions as functions
+from themachinethatgoesping.algorithms_nanopy.amplitudecorrection import (
+    functions as functions
+)

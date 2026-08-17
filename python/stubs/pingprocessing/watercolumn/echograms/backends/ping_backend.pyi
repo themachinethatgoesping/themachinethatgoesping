@@ -4,13 +4,13 @@ from typing import List, Union
 
 import numpy
 
+from themachinethatgoesping import echosounders as echosounders
 from themachinethatgoesping.algorithms_nanopy.geoprocessing.functions import (
     to_raypoints as to_raypoints
 )
 from themachinethatgoesping.algorithms_nanopy.gridding import (
     ForwardGridder1D as ForwardGridder1D
 )
-import themachinethatgoesping.echosounders as echosounders
 import themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base import (
     EchogramDataBackend as EchogramDataBackend
@@ -19,7 +19,9 @@ import themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.indexers import (
     EchogramImageRequest as EchogramImageRequest
 )
-import themachinethatgoesping.pingprocessing.watercolumn.helper.make_image_helper as make_image_helper
+from themachinethatgoesping.pingprocessing.watercolumn.helper import (
+    make_image_helper as make_image_helper
+)
 from themachinethatgoesping.pingprocessing.watercolumn.helper.select_get_wci_image import (
     apply_pss as apply_pss,
     select_get_wci_image as select_get_wci_image

@@ -43,7 +43,7 @@ those don't make sense for overview-only data anyway.
 
 import types
 
-import themachinethatgoesping.navigation as nav
+from themachinethatgoesping import navigation as nav
 import themachinethatgoesping.pingprocessing.overview.pingoverview
 from themachinethatgoesping.pingprocessing.overview.pingoverview import (
     PingOverview as PingOverview

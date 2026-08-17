@@ -9,7 +9,9 @@ import numpy
 import numpy._typing._array_like
 import numpy._typing._nested_sequence
 
-import themachinethatgoesping.gridding.functions.gridfunctions as grdf
+from themachinethatgoesping.gridding.functions import (
+    gridfunctions as grdf
+)
 
 
 ArrayLike: TypeAlias = Union[Buffer, numpy._typing._array_like._SupportsArray[numpy.dtype[Any]], numpy._typing._nested_sequence._NestedSequence[numpy._typing._array_like._SupportsArray[numpy.dtype[Any]]], complex, bytes, str, numpy._typing._nested_sequence._NestedSequence[Union[complex, bytes, str]]]

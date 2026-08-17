@@ -1,6 +1,10 @@
-import themachinethatgoesping.echosounders as echosounders
-import themachinethatgoesping.pingprocessing.watercolumn.helper.make_image_helper as mi_hlp
-import themachinethatgoesping.pingprocessing.watercolumn.image as mi
+from themachinethatgoesping import echosounders as echosounders
+from themachinethatgoesping.pingprocessing.watercolumn import (
+    image as mi
+)
+from themachinethatgoesping.pingprocessing.watercolumn.helper import (
+    make_image_helper as mi_hlp
+)
 from themachinethatgoesping.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
 )

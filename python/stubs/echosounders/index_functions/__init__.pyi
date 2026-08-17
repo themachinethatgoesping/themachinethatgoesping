@@ -1,22 +1,26 @@
 from typing import Union
 
-from . import index_file_functions as index_file_functions
-from .find_files import (
+from themachinethatgoesping.echosounders.index_functions import (
+    index_file_functions as index_file_functions
+)
+from themachinethatgoesping.echosounders.index_functions.find_files import (
     find_files as find_files,
     find_folders_with_files as find_folders_with_files,
     get_hash as get_hash,
     group_by_hash as group_by_hash,
     remove_duplicates as remove_duplicates
 )
-from .get_index_paths import (
+from themachinethatgoesping.echosounders.index_functions.get_index_paths import (
     get_index_path as get_index_path,
     get_index_paths as get_index_paths
 )
-from .index_file_functions import (
+from themachinethatgoesping.echosounders.index_functions.index_file_functions import (
     print_index_file_statistics as print_index_file_statistics,
     remove_name_from_index as remove_name_from_index
 )
-import themachinethatgoesping.echosounders_nanopy.filetemplates as filetemplates
+from themachinethatgoesping.echosounders_nanopy import (
+    filetemplates as filetemplates
+)
 
 
 def find_files_and_index(folders: Union[str, list[str]], endings: Union[str, list[str]], followlinks: bool = False, remove_duplicated_files: bool = True, hash_fraction: float = 0.1, verbose: bool = True, index_file_ending: str = '.tmtgp.index', index_root: str = 'index', create_dir: bool = True) -> tuple[list[str], dict[str, str]]:

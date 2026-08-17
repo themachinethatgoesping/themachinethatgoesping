@@ -9,6 +9,7 @@ Drop-in replacement for ``EchogramViewerMultiChannel`` in
 
 import ipywidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_jupyter import (
     JupyterControlHandle as JupyterControlHandle,
     JupyterControlPanel as JupyterControlPanel,
@@ -22,7 +23,6 @@ from themachinethatgoesping.widgets.echogramviewer_core import (
     auto_select_grid as auto_select_grid,
     normalise_echograms as normalise_echograms
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.tqdmwidget import (
     TqdmWidget as TqdmWidget
 )

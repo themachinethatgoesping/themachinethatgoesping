@@ -1,5 +1,3 @@
-
-
 def nearfield_range_sbes(beam_width_degrees, frequency_khz, sound_speed_ms=1470, model=2):
     """
     Calculate the nearfield range for a single beam echo sounder. (Circular piston transducer)

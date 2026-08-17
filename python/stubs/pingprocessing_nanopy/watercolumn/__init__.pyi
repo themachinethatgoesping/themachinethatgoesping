@@ -1,3 +1,5 @@
 """Functions for processing watercolumn data."""
 
-from . import image as image
+from themachinethatgoesping.pingprocessing_nanopy.watercolumn import (
+    image as image
+)

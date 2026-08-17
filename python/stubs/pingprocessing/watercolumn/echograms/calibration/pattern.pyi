@@ -9,7 +9,7 @@ result can be evaluated anywhere, plotted as a far-field pattern, and applied
 back onto multibeam pings as an Sv calibration offset.
 """
 
-import np
+import numpy
 
 from themachinethatgoesping.pingprocessing.watercolumn.echograms.calibration.data import (
     CalibrationData as CalibrationData
@@ -49,9 +49,9 @@ class CalibrationPattern:
     def interpolator(self, channel: str):
         """The bivariate ``offset(angle, range)`` interpolator for a channel."""
 
-    def angles(self, channel: str) -> np.ndarray: ...
+    def angles(self, channel: str) -> numpy.ndarray: ...
 
-    def evaluate(self, channel: str, angles, ranges) -> np.ndarray:
+    def evaluate(self, channel: str, angles, ranges) -> numpy.ndarray:
         """Offset surface for ``angles`` x ``ranges`` (2-D)."""
 
     def far_field(self, channel: str, far_range: float = 5000.0):

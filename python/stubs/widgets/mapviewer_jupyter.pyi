@@ -8,6 +8,7 @@ same public API — but built on top of :class:`mapviewer_core.MapCore` and
 
 import ipywidgets
 
+from themachinethatgoesping.widgets import pyqtgraph_helpers as pgh
 from themachinethatgoesping.widgets.control_jupyter import (
     JupyterControlHandle as JupyterControlHandle,
     JupyterControlPanel as JupyterControlPanel,
@@ -22,7 +23,6 @@ from themachinethatgoesping.widgets.mapviewer_core import (
     LayerRenderSettings as LayerRenderSettings,
     MapCore as MapCore
 )
-import themachinethatgoesping.widgets.pyqtgraph_helpers as pgh
 
 
 MAP_NAV_SPECS: list = ...

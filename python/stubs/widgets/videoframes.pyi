@@ -2,7 +2,7 @@
 VideoFrames – container for captured viewer frames with export helpers.
 """
 
-import np
+import numpy
 
 
 class VideoFrames:
@@ -25,15 +25,15 @@ class VideoFrames:
     def clear(self) -> None:
         """Remove all stored frames."""
 
-    def append(self, frame: np.ndarray, timestamp: Optional[float] = None) -> None:
+    def append(self, frame: numpy.ndarray, timestamp: Optional[float] = None) -> None:
         """Append a single RGB frame with optional ping timestamp."""
 
     def __len__(self) -> int: ...
 
-    def __getitem__(self, idx: int) -> np.ndarray: ...
+    def __getitem__(self, idx: int) -> numpy.ndarray: ...
 
     @property
-    def frames(self) -> List[np.ndarray]:
+    def frames(self) -> List[numpy.ndarray]:
         """All stored RGB frames."""
 
     @property

@@ -6,7 +6,9 @@ from themachinethatgoesping.navigation_nanopy.navtools import (
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
 )
-import themachinethatgoesping.pingprocessing.overview.nav_plot as nav_plot
+from themachinethatgoesping.pingprocessing.overview import (
+    nav_plot as nav_plot
+)
 
 
 class PingOverview:

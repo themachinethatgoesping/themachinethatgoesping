@@ -1,3 +1,5 @@
 """Submodule for signalprocessing (volume scattering, etc.)"""
 
-from . import datastructures as datastructures
+from themachinethatgoesping.algorithms_nanopy.signalprocessing import (
+    datastructures as datastructures
+)

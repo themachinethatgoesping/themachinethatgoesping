@@ -7,10 +7,10 @@ delegates to the echogram, so it can never go out of sync with the echogram's
 current axes or layers.
 """
 
+import datetime
 import types
 
-import dt
-import np
+import numpy
 
 
 class PingData:
@@ -20,10 +20,10 @@ class PingData:
 
     def __init__(self, echogram, nr: int): ...
 
-    def get_wci(self) -> np.ndarray:
+    def get_wci(self) -> numpy.ndarray:
         """Full processed water-column column for this ping."""
 
-    def get_wci_layers(self) -> Dict[str, np.ndarray]:
+    def get_wci_layers(self) -> Dict[str, numpy.ndarray]:
         """Water-column data split by named layer."""
 
     def get_extent_layers(self, axis_name: Optional[str] = None) -> Dict[str, Tuple[float, float]]:
@@ -35,7 +35,7 @@ class PingData:
     def get_ping_time(self) -> float:
         """Ping timestamp (Unix seconds)."""
 
-    def get_datetime(self) -> dt.datetime:
+    def get_datetime(self) -> datetime.datetime:
         """Ping time as a timezone-aware datetime."""
 
     echogram: types.MemberDescriptorType = ...

@@ -1,11 +1,15 @@
 import numpy
 
-import themachinethatgoesping.algorithms_nanopy.geoprocessing as geoprocessing
+from themachinethatgoesping import (
+    echosounders as echosounders,
+    navigation as navigation
+)
+from themachinethatgoesping.algorithms_nanopy import (
+    geoprocessing as geoprocessing
+)
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
-import themachinethatgoesping.echosounders as echosounders
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.pingtools
-import themachinethatgoesping.navigation as navigation
 
 
 def get_bottom_directions_wci(ping: themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping, selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection = None) -> (themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1, themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.SampleDirectionsRange_1, numpy.ndarray):
