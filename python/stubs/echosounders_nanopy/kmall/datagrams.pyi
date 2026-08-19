@@ -421,7 +421,7 @@ class MRZSectorInfoVector:
         """Default constructor"""
 
     @overload
-    def __init__(self, arg: MRZSectorInfoVector) -> None:
+    def __init__(self, arg: MRZSectorInfoVector, /) -> None:
         """Copy constructor"""
 
     @overload
@@ -528,7 +528,7 @@ class MRZExtraDetClassInfoVector:
         """Default constructor"""
 
     @overload
-    def __init__(self, arg: MRZExtraDetClassInfoVector) -> None:
+    def __init__(self, arg: MRZExtraDetClassInfoVector, /) -> None:
         """Copy constructor"""
 
     @overload
@@ -825,7 +825,7 @@ class MRZSoundingsVector:
         """Default constructor"""
 
     @overload
-    def __init__(self, arg: MRZSoundingsVector) -> None:
+    def __init__(self, arg: MRZSoundingsVector, /) -> None:
         """Copy constructor"""
 
     @overload
@@ -1311,7 +1311,7 @@ class MWCSectorInfoVector:
         """Default constructor"""
 
     @overload
-    def __init__(self, arg: MWCSectorInfoVector) -> None:
+    def __init__(self, arg: MWCSectorInfoVector, /) -> None:
         """Copy constructor"""
 
     @overload
