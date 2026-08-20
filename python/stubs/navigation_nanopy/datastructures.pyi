@@ -8,7 +8,7 @@ from typing import overload
 import themachinethatgoesping.tools_nanopy.rotationfunctions
 
 
-class PositionalOffsets:
+class SensorPose:
     """
     A structure to store positional offsets (e.g. of a sensor) relative to
     the vessel coordinate system
@@ -17,7 +17,7 @@ class PositionalOffsets:
     @overload
     def __init__(self, name: str = '', x: float = 0.0, y: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0, ypr_offsets_applied: bool = False) -> None:
         """
-        Construct a new PositionalOffsets object
+        Construct a new SensorPose object
 
         Args:
             name: The name of the sensor
@@ -35,7 +35,7 @@ class PositionalOffsets:
     @overload
     def __init__(self, name: str, x: float, y: float, z: float, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, ypr_offsets_applied: bool = False) -> None:
         """
-        Construct a new PositionalOffsets object from a Rotation
+        Construct a new SensorPose object from a Rotation
 
         Args:
             name: The name of the sensor
@@ -48,10 +48,9 @@ class PositionalOffsets:
         """
 
     @staticmethod
-    def from_txrx(tx: PositionalOffsets, rx: PositionalOffsets, name: str) -> PositionalOffsets:
+    def from_txrx(tx: SensorPose, rx: SensorPose, name: str) -> SensorPose:
         """
-        Construct a new PositionalOffsets object from a transmitter and
-        receiver unit
+        Construct a new SensorPose object from a transmitter and receiver unit
 
         Args:
             tx: Multibeam transmitter offsets
@@ -59,10 +58,10 @@ class PositionalOffsets:
             name: Name of the newly constructed transceiver offsets
 
         Returns:
-            Transceiver PositionalOffsets
+            Transceiver SensorPose
         """
 
-    def __eq__(self, other: PositionalOffsets) -> bool: ...
+    def __eq__(self, other: SensorPose) -> bool: ...
 
     @property
     def name(self) -> str:
@@ -132,18 +131,18 @@ class PositionalOffsets:
     @ypr_offsets_applied.setter
     def ypr_offsets_applied(self, arg: bool, /) -> None: ...
 
-    def copy(self) -> PositionalOffsets:
+    def copy(self) -> SensorPose:
         """return a copy using the c++ default copy constructor"""
 
-    def __copy__(self) -> PositionalOffsets: ...
+    def __copy__(self) -> SensorPose: ...
 
-    def __deepcopy__(self, arg: dict, /) -> PositionalOffsets: ...
+    def __deepcopy__(self, arg: dict, /) -> SensorPose: ...
 
     def to_binary(self, resize_buffer: bool = True) -> bytes:
         """convert object to bytearray"""
 
     @staticmethod
-    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> PositionalOffsets:
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SensorPose:
         """create T_CLASS object from bytearray"""
 
     def __getstate__(self) -> bytes: ...

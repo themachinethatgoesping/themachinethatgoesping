@@ -212,7 +212,7 @@ class SensorConfiguration:
                            sensor coordinate system center
         """
 
-    def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, level_lever_arm: bool = False) -> datastructures.PositionalOffsets:
+    def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, level_lever_arm: bool = False) -> datastructures.SensorPose:
         """
         Compute the ready-to-trace pose (position + ship-frame orientation) of
         a target.
@@ -275,7 +275,7 @@ class SensorConfiguration:
         """
 
     @overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None:
+    def add_target(self, target_id: str, target_offsets: datastructures.SensorPose) -> None:
         """
         add a target (e.g. MBES) with offsets to the sensor position system
 
@@ -293,7 +293,7 @@ class SensorConfiguration:
             targets: map_target_id_target_offsets of target offsets
         """
 
-    def get_target(self, target_id: str) -> datastructures.PositionalOffsets:
+    def get_target(self, target_id: str) -> datastructures.SensorPose:
         """
         Get stored target offsets of a specified target
 
@@ -301,7 +301,7 @@ class SensorConfiguration:
             target_id: name of the registered target
 
         Returns:
-            const datastructures::PositionalOffsets& offsets of the target
+            const datastructures::SensorPose& offsets of the target
         """
 
     def get_targets(self) -> typing.Any:
@@ -309,8 +309,7 @@ class SensorConfiguration:
         Get the map of stored target offsets objects
 
         Returns:
-            const std::unordered_map_std_string_
-datastructures_PositionalOffsets&
+            const std::unordered_map_std_string_datastructures_SensorPose&
         """
 
     def remove_target(self, target_id: str) -> None:
@@ -343,7 +342,7 @@ datastructures_PositionalOffsets&
         """
 
     @overload
-    def set_attitude_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None:
+    def set_attitude_source(self, sensor_offsets: datastructures.SensorPose) -> None:
         """
         Set the attitude sensor offsets
 
@@ -356,13 +355,12 @@ datastructures_PositionalOffsets&
                   x-axis) (in degrees, positive = port up)
         """
 
-    def get_attitude_source(self) -> datastructures.PositionalOffsets:
+    def get_attitude_source(self) -> datastructures.SensorPose:
         """
         Get the attitude sensor offsets
 
         Returns:
-            const datastructures::PositionalOffsets& offsets of the attitude
-            sensor
+            const datastructures::SensorPose& offsets of the attitude sensor
         """
 
     @overload
@@ -376,7 +374,7 @@ datastructures_PositionalOffsets&
         """
 
     @overload
-    def set_heading_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None:
+    def set_heading_source(self, sensor_offsets: datastructures.SensorPose) -> None:
         """
         Set the compass offsets
 
@@ -384,12 +382,12 @@ datastructures_PositionalOffsets&
             sensor_offsets: offsets structure (only yaw is used)
         """
 
-    def get_heading_source(self) -> datastructures.PositionalOffsets:
+    def get_heading_source(self) -> datastructures.SensorPose:
         """
         Get the registered compass offsets
 
         Returns:
-            const datastructures::PositionalOffsets& offsets of the compass
+            const datastructures::SensorPose& offsets of the compass
         """
 
     def set_waterline_offset(self, z: float) -> None:
@@ -422,7 +420,7 @@ datastructures_PositionalOffsets&
         """
 
     @overload
-    def set_depth_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None:
+    def set_depth_source(self, sensor_offsets: datastructures.SensorPose) -> None:
         """
         Set the depth sensor offsets
 
@@ -430,13 +428,12 @@ datastructures_PositionalOffsets&
             sensor_offsets: offsets structure (only x, y and z are used)
         """
 
-    def get_depth_source(self) -> datastructures.PositionalOffsets:
+    def get_depth_source(self) -> datastructures.SensorPose:
         """
         Get the registered depth sensor offsets
 
         Returns:
-            const datastructures::PositionalOffsets& offsets of the depth
-            sensor
+            const datastructures::SensorPose& offsets of the depth sensor
         """
 
     @overload
@@ -451,7 +448,7 @@ datastructures_PositionalOffsets&
         """
 
     @overload
-    def set_position_source(self, sensor_offsets: datastructures.PositionalOffsets) -> None:
+    def set_position_source(self, sensor_offsets: datastructures.SensorPose) -> None:
         """
         Set the position system offsets
 
@@ -459,13 +456,12 @@ datastructures_PositionalOffsets&
             sensor_offsets: offsets structure (only x, y and z are used)
         """
 
-    def get_position_source(self) -> datastructures.PositionalOffsets:
+    def get_position_source(self) -> datastructures.SensorPose:
         """
         Get the registered position system offsets
 
         Returns:
-            const datastructures::PositionalOffsets& offsets of the position
-            system
+            const datastructures::SensorPose& offsets of the position system
         """
 
     def __eq__(self, other: SensorConfiguration) -> bool:
@@ -679,7 +675,7 @@ class NavigationInterpolatorLocal:
         """
 
     @overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None:
+    def add_target(self, target_id: str, target_offsets: datastructures.SensorPose) -> None:
         """
         add a target sensor with positional offsets
 
@@ -988,7 +984,7 @@ class NavigationInterpolatorLatLon:
         """
 
     @overload
-    def add_target(self, target_id: str, target_offsets: datastructures.PositionalOffsets) -> None:
+    def add_target(self, target_id: str, target_offsets: datastructures.SensorPose) -> None:
         """
         add a target sensor with positional offsets
 

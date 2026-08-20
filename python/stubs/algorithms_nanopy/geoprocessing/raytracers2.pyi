@@ -288,7 +288,7 @@ class LayerRaytracer:
         Same as trace_at_angles(tx_poses, rx_poses) but with a single per-knot pose.
         """
 
-    def trace_to_xyz(self, tilt_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], two_way_travel_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_delays: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_mount: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, rx_mount: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, tx_face_depth_m: float, n_knots: int = 2, nav: themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon | None = None, t_tx_ping: float = 0.0, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def trace_to_xyz(self, tilt_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], crosstrack_deg: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], two_way_travel_times: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_delays: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], tx_mount: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose, rx_mount: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose, tx_face_depth_m: float, n_knots: int = 2, nav: themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon | None = None, t_tx_ping: float = 0.0, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Trace beams using Kongsberg-native dual-array inputs.
         Output frame: TX-body axes (forward, starboard, down) at
@@ -300,7 +300,7 @@ class LayerRaytracer:
         crosstrack_deg:  [N] beam pointing re RX array, +starboard (deg)
         two_way_travel_times: [N] (s)
         tx_delays:       [N] per-beam sector TX delay re t_tx_ping (s)
-        tx_mount, rx_mount: PositionalOffsets of the TX and RX arrays
+        tx_mount, rx_mount: SensorPose of the TX and RX arrays
         tx_face_depth_m: absolute world depth of TX face at t_tx_ping (m)
         n_knots:         number of trace knots (>=2). Knot k is at
                          one-way time twtt[i]*k/(2*(n_knots-1));
@@ -959,7 +959,7 @@ class BistaticBeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_bistatic_beam(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, transmit_steering_angle_in_degrees: float, receive_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, receive_steering_angle_in_degrees: float, two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None) -> BistaticBeamTrace:
+def trace_bistatic_beam(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose, transmit_steering_angle_in_degrees: float, receive_pose: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose, receive_steering_angle_in_degrees: float, two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None) -> BistaticBeamTrace:
     """
     Solve the true-bistatic seabed trace of a single multibeam beam from
     ready-made poses.
@@ -1001,7 +1001,7 @@ def trace_bistatic_beam(transmit_pose: themachinethatgoesping.navigation_nanopy.
         residual.
     """
 
-def trace_bistatic_beams(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, transmit_steering_angle_in_degrees: float, receive_poses: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_times_in_seconds: Annotated[NDArray[numpy.float32], dict(order='C')], sound_velocity_profile: SoundVelocityProfile, concentric_beam_directions: BeamDirections, max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None, mp_cores: int = 1) -> list[BistaticBeamTrace]:
+def trace_bistatic_beams(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose, transmit_steering_angle_in_degrees: float, receive_poses: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensorPose], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_times_in_seconds: Annotated[NDArray[numpy.float32], dict(order='C')], sound_velocity_profile: SoundVelocityProfile, concentric_beam_directions: BeamDirections, max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None, mp_cores: int = 1) -> list[BistaticBeamTrace]:
     """
     Batched true-bistatic trace of a sector: one shared transmit pose, N
     receive poses.

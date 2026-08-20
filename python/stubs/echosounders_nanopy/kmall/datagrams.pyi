@@ -1655,12 +1655,12 @@ class IInstallationParam(KMALLDatagram):
         """
 
     @overload
-    def get_transducer_offsets(self, transducer_key: str) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets: ...
+    def get_transducer_offsets(self, transducer_key: str) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose: ...
 
     @overload
-    def get_transducer_offsets(self) -> dict[str, themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets]: ...
+    def get_transducer_offsets(self) -> dict[str, themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]: ...
 
-    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the position system offsets for a given position system number
 
@@ -1670,10 +1670,10 @@ class IInstallationParam(KMALLDatagram):
             position_system_number: Position system number (1-4)
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
-    def get_attitude_sensor_offsets(self, sensor_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_attitude_sensor_offsets(self, sensor_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the attitude sensor offsets for a given sensor number
 
@@ -1683,17 +1683,17 @@ class IInstallationParam(KMALLDatagram):
             sensor_number: Sensor number (1-4)
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
-    def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the depth sensor offsets
 
         Parses DPHI entry
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
     def get_water_line_vertical_location_in_meters(self) -> float:

@@ -2334,28 +2334,28 @@ class InstallationParameters(KongsbergAllDatagram):
             InstallationParameters
         """
 
-    def get_compass_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_compass_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the compass sensor offsets (Gyrocompass) Includes heading offset
         only
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
-    def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_depth_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the depth sensor offsets
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
     @overload
-    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_nanopy.o_KongsbergAllActiveSensor) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets: ...
+    def get_attitude_sensor_offsets(self, sensor_number: themachinethatgoesping.echosounders_nanopy.o_KongsbergAllActiveSensor) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose: ...
 
     @overload
-    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_attitude_sensor_offsets(self, sensor: int) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the attitude sensor offsets of sensor 1 or 2
 
@@ -2363,10 +2363,10 @@ class InstallationParameters(KongsbergAllDatagram):
             sensor_number: o_KongsbergAllActiveSensor (enum)
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
-    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the position system offsets of system 1, 2 or 3
 
@@ -2374,10 +2374,10 @@ class InstallationParameters(KongsbergAllDatagram):
             position_system_number: must be 1, 2 or 3
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
-    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_transducer_offsets(self, transducer_number: int, transducer_name: str = '') -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Get the transducer offsets of transducer 0, 1, 2 or 3
 
@@ -2385,7 +2385,7 @@ class InstallationParameters(KongsbergAllDatagram):
             position_system_number: must be 0, 1, 2 or 3
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
     def get_active_pitch_roll_sensor(self) -> themachinethatgoesping.echosounders_nanopy.o_KongsbergAllActiveSensor:
@@ -2433,7 +2433,7 @@ class InstallationParameters(KongsbergAllDatagram):
             o_KongsbergAllActiveSensor
         """
 
-    def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Internal function to get the sensor offsets from the installation
         parameters. Possible sensor prefixes are:
@@ -2449,7 +2449,7 @@ class InstallationParameters(KongsbergAllDatagram):
             has_ypr: sensor has yaw pitch roll offsets
 
         Returns:
-            PositionalOffsets
+            SensorPose
         """
 
     def get_water_line_vertical_location_in_meters(self) -> float: ...

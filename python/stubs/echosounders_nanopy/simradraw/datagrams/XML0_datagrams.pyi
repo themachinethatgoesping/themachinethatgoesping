@@ -910,13 +910,13 @@ class XML_Configuration_Sensor:
 
     def __init__(self) -> None: ...
 
-    def get_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
-        Return the sensor offsets as
-        navigation::datastructures::PositionalOffsets structure
+        Return the sensor offsets as navigation::datastructures::SensorPose
+        structure
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
     @property
@@ -1052,13 +1052,12 @@ class XML_Configuration_Transducer:
 
     def __init__(self) -> None: ...
 
-    def get_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets:
+    def get_sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
-        Return the offsets as navigation::datastructures::PositionalOffsets
-        structure
+        Return the offsets as navigation::datastructures::SensorPose structure
 
         Returns:
-            navigation::datastructures::PositionalOffsets
+            navigation::datastructures::SensorPose
         """
 
     @property
@@ -1780,7 +1779,7 @@ class ChannelConfiguration:
     def ChannelID(self) -> str: ...
 
     @property
-    def sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets: ...
+    def sensor_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose: ...
 
     @property
     def Channel(self) -> XML_Configuration_Transceiver_Channel: ...
