@@ -212,6 +212,34 @@ class SensorConfiguration:
                            sensor coordinate system center
         """
 
+    def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, level_lever_arm: bool = False) -> datastructures.PositionalOffsets:
+        """
+        Compute the ready-to-trace pose (position + ship-frame orientation) of
+        a target.
+
+        Unlike compute_target_position (which returns a geolocation), this
+        bakes the target installation, the vessel attitude and the removal of
+        a common reference heading into a single pose, so a raytracer can
+        consume it without re-composing installation/attitude/heading. The
+        orientation is Rz(-reference_heading) · vessel_rotation ·
+        target_installation; the position is the target lever arm (raw body
+        frame, or roll/pitch-leveled when ``level_lever_arm`` is true) with z
+        the depth below the waterline. Pass the SAME reference_heading (the
+        heading at transmit time) for every target of a ping so all poses
+        share one ship frame.
+
+        Args:
+            target_id: name of the target (e.g. "MBES")
+            sensor_data: Sensordata (heading/pitch/roll + depth/heave)
+            reference_heading_in_degrees: heading (deg) removed from the
+                                          orientation (transmit heading)
+            level_lever_arm: if true, level the horizontal lever arm by vessel
+                             roll/pitch
+
+        Returns:
+            target pose (position + ship-frame Rotation)
+        """
+
     def get_vessel_attitude(self, sensor_data: datastructures.Sensordata) -> list[float]:
         """
         Compute the offset-corrected vessel attitude (yaw, pitch, roll in degrees) in the world frame by applying the registered attitude- and heading-source mounting offsets to the raw sensor_data attitude. Uses the same convention as compute_target_position (attitude offset removed via quaternion, heading offset subtracted from heading).

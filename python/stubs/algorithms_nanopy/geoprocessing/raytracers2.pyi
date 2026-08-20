@@ -10,6 +10,7 @@ from numpy.typing import NDArray
 
 import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.navigation_nanopy.datastructures
+import themachinethatgoesping.tools_nanopy.rotationfunctions
 
 
 class SoundVelocityProfile:
@@ -727,7 +728,7 @@ class BeamDirections:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def compute_beam_directions(transmit_installation_ypr_in_degrees: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], receive_attitude_ypr_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], transmit_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], reference_heading_in_degrees: float, mp_cores: int = 1) -> BeamDirections:
+def compute_beam_directions(transmit_rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, transmit_steering_angle_in_degrees: float, receive_rotations: Sequence[themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], mp_cores: int = 1) -> BeamDirections:
     """
     Compute the ship-referenced pointing direction of every beam.
 
@@ -742,22 +743,15 @@ def compute_beam_directions(transmit_installation_ypr_in_degrees: Sequence[float
     alone (no manual sign flips).
 
     Args:
-        transmit_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
-                                              orientation of the transmit
-                                              array.
-        receive_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
-                                             orientation of the receive
-                                             array.
-        transmit_attitude_ypr_in_degrees: [n_beams, 3] vessel (yaw, pitch,
-                                          roll) at transmit time.
-        receive_attitude_ypr_in_degrees: [n_beams, 3] vessel (yaw, pitch,
-                                         roll) at receive time.
-        transmit_steering_angles_in_degrees: [n_beams] fore-aft transmit
-                                             tilt (positive forward).
+        transmit_rotation: world/ship-frame orientation (Rotation) of the
+                           transmit array (heading removed).
+        transmit_steering_angle_in_degrees: fore-aft transmit tilt
+                                            (positive forward), shared by
+                                            all beams.
+        receive_rotations: per-beam world/ship-frame orientation
+                           (Rotation) of the receive array (size n_beams).
         receive_steering_angles_in_degrees: [n_beams] across-track receive
                                             angle (positive to PORT).
-        reference_heading_in_degrees: heading the output is expressed
-                                      relative to.
         mp_cores: number of OpenMP cores for the per-beam solve (default
                   1).
 
@@ -965,44 +959,29 @@ class BistaticBeamTrace:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], transmit_attitude_ypr_in_degrees: Sequence[float], transmit_steering_angle_in_degrees: float, transmit_position_xyz: Sequence[float], receive_installation_ypr_in_degrees: Sequence[float], receive_attitude_ypr_in_degrees: Sequence[float], receive_steering_angle_in_degrees: float, receive_position_xyz: Sequence[float], two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None, reference_heading_in_degrees: float = 0.0) -> BistaticBeamTrace:
+def trace_bistatic_beam(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, transmit_steering_angle_in_degrees: float, receive_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, receive_steering_angle_in_degrees: float, two_way_travel_time_in_seconds: float, sound_velocity_profile: SoundVelocityProfile, concentric_beam_direction: Sequence[float], max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None) -> BistaticBeamTrace:
     """
-    Solve the true-bistatic seabed trace of a single multibeam beam.
+    Solve the true-bistatic seabed trace of a single multibeam beam from
+    ready-made poses.
 
-    Traces the transmit ray from the transmit array and the receive ray
-    from the receive array through the layered sound-velocity profile and
-    finds the seabed point where the two legs meet with a combined one-way
-    travel time equal to the measured two-way travel time. The seabed
-    depth and each leg's cone rotation angle (see bistatic_detail::
-    SteeringCone) are found with a damped Newton iteration seeded by the
-    concentric beam direction. Each converged leg is then re-traced with
-    trace_beam so the returned legs are identical to the monostatic model
-    when the transmit and receive poses coincide.
-
-    All poses are in the common x=forward, y=starboard, z=down frame. The
-    vessel attitudes may carry the full heading in their yaw component;
-    pass that same heading as ``reference_heading_in_degrees`` so it is
-    removed from both arrays (exactly like compute_beam_directions), which
-    puts the solved seabed point in the ship frame. The concentric guess
-    must be in that same (heading-removed) frame.
+    The transmit and receive poses already carry the array installation,
+    the vessel attitude and the removal of a common reference heading
+    (e.g. from SensorConfiguration::compute_target_pose), so this only
+    places each array's long axis (transmit = forward, receive =
+    starboard), applies the electronic steering and runs the shared
+    bistatic solve. All quantities are in the common x=forward,
+    y=starboard, z=down ship frame; the concentric guess must be in that
+    same frame.
 
     Args:
-        transmit_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
-                                              of the transmit array.
-        transmit_attitude_ypr_in_degrees: (yaw, pitch, roll) vessel
-                                          attitude at transmit time.
+        transmit_pose: transmit array pose (position + ship-frame
+                       orientation).
         transmit_steering_angle_in_degrees: electronic transmit steering
                                             (positive forward).
-        transmit_position_xyz: transmit array position (forward,
-                               starboard, down) [m].
-        receive_installation_ypr_in_degrees: (yaw, pitch, roll) mounting
-                                             of the receive array.
-        receive_attitude_ypr_in_degrees: (yaw, pitch, roll) vessel
-                                         attitude at receive time.
+        receive_pose: receive array pose (position + ship-frame
+                      orientation).
         receive_steering_angle_in_degrees: electronic receive steering
                                            (positive to port).
-        receive_position_xyz: receive array position (forward, starboard,
-                              down) [m].
         two_way_travel_time_in_seconds: measured two-way travel time [s].
         sound_velocity_profile: layered profile to trace through.
         concentric_beam_direction: ship-frame unit guess (fwd, stbd,
@@ -1010,24 +989,51 @@ def trace_bistatic_beam(transmit_installation_ypr_in_degrees: Sequence[float], t
                                    rection(beam).
         max_iterations: maximum Newton iterations (default 30).
         tolerance_in_percent: convergence tolerance as a percentage of the
-                              nominal slant range (default 0.001).
-        surface_sound_speed_in_meters_per_second: sound speed (m/s) at
-                                                  which the beams were
-                                                  formed (the measured
-                                                  surface/transducer SSV);
-                                                  applied to both legs'
-                                                  ray parameters.
+                              nominal slant range.
+        surface_sound_speed_in_meters_per_second: sound speed (m/s) the
+                                                  beams were formed at;
                                                   std::nullopt (default)
                                                   uses the profile value
                                                   at each array depth.
-        reference_heading_in_degrees: heading (deg) removed from both
-                                      vessel attitudes so the result is in
-                                      the ship frame; use the same value
-                                      passed to compute_beam_directions. 0
-                                      (default) keeps the attitudes as
-                                      given.
 
     Returns:
         BistaticBeamTrace with both legs, azimuths, seabed point and
         residual.
+    """
+
+def trace_bistatic_beams(transmit_pose: themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets, transmit_steering_angle_in_degrees: float, receive_poses: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.PositionalOffsets], receive_steering_angles_in_degrees: Annotated[NDArray[numpy.float32], dict(order='C')], two_way_travel_times_in_seconds: Annotated[NDArray[numpy.float32], dict(order='C')], sound_velocity_profile: SoundVelocityProfile, concentric_beam_directions: BeamDirections, max_iterations: int = 30, tolerance_in_percent: float = 0.0010000000474974513, surface_sound_speed_in_meters_per_second: float | None = None, mp_cores: int = 1) -> list[BistaticBeamTrace]:
+    """
+    Batched true-bistatic trace of a sector: one shared transmit pose, N
+    receive poses.
+
+    Equivalent to calling trace_bistatic_beam once per beam, but the
+    transmit side is placed once and the per-beam solves run in a single
+    C++ loop (parallelisable via ``mp_cores),`` avoiding the per-beam
+    Python round-trips. The concentric guesses come from
+    ``concentric_beam_directions`` (e.g. the output of
+    compute_beam_directions).
+
+    Args:
+        transmit_pose: shared transmit array pose (position + ship-frame
+                       orientation).
+        transmit_steering_angle_in_degrees: shared electronic transmit
+                                            steering (positive forward).
+        receive_poses: per-beam receive array poses (size n_beams).
+        receive_steering_angles_in_degrees: [n_beams] electronic receive
+                                            steering (positive to port).
+        two_way_travel_times_in_seconds: [n_beams] measured two-way travel
+                                         times [s].
+        sound_velocity_profile: layered profile to trace through.
+        concentric_beam_directions: [n_beams] ship-frame concentric
+                                    guesses.
+        max_iterations: maximum Newton iterations (default 30).
+        tolerance_in_percent: convergence tolerance (% of nominal slant
+                              range).
+        surface_sound_speed_in_meters_per_second: sound speed (m/s) the
+                                                  beams were formed at.
+        mp_cores: number of OpenMP cores for the per-beam solve (default
+                  1).
+
+    Returns:
+        vector of BistaticBeamTrace, one per beam.
     """

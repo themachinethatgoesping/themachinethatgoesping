@@ -5,6 +5,8 @@ Submodule that contains datastructures that store navigation data or navigation 
 from collections.abc import Sequence
 from typing import overload
 
+import themachinethatgoesping.tools_nanopy.rotationfunctions
+
 
 class PositionalOffsets:
     """
@@ -12,6 +14,7 @@ class PositionalOffsets:
     the vessel coordinate system
     """
 
+    @overload
     def __init__(self, name: str = '', x: float = 0.0, y: float = 0.0, z: float = 0.0, yaw: float = 0.0, pitch: float = 0.0, roll: float = 0.0, ypr_offsets_applied: bool = False) -> None:
         """
         Construct a new PositionalOffsets object
@@ -26,6 +29,21 @@ class PositionalOffsets:
             roll: in °, positive means port up
             ypr_offsets_applied: if true, the yaw/pitch/roll offsets are
                                  already applied to the associated sensor data
+                                 (default: false)
+        """
+
+    @overload
+    def __init__(self, name: str, x: float, y: float, z: float, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, ypr_offsets_applied: bool = False) -> None:
+        """
+        Construct a new PositionalOffsets object from a Rotation
+
+        Args:
+            name: The name of the sensor
+            x: in m, positive forward
+            y: in m, positive starboard
+            z: in m, positive downwards
+            rotation: yaw/pitch/roll offset orientation
+            ypr_offsets_applied: if true, the offsets are already applied
                                  (default: false)
         """
 
@@ -75,25 +93,35 @@ class PositionalOffsets:
     def z(self, arg: float, /) -> None: ...
 
     @property
+    def rotation(self) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """yaw/pitch/roll offsets (°); exposed via yaw()/pitch()/roll()"""
+
+    @rotation.setter
+    def rotation(self, arg: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, /) -> None: ...
+
+    @property
     def yaw(self) -> float:
-        """in °, positive means clockwise rotation"""
+        """yaw in °, positive means clockwise rotation"""
 
     @yaw.setter
     def yaw(self, arg: float, /) -> None: ...
 
     @property
     def pitch(self) -> float:
-        """in °, positive means bow up"""
+        """pitch in °, positive means bow up"""
 
     @pitch.setter
     def pitch(self, arg: float, /) -> None: ...
 
     @property
     def roll(self) -> float:
-        """in °, positive means port up"""
+        """roll in °, positive means port up"""
 
     @roll.setter
     def roll(self, arg: float, /) -> None: ...
+
+    def set_ypr(self, yaw: float, pitch: float, roll: float) -> None:
+        """set yaw, pitch and roll (°) at once"""
 
     @property
     def ypr_offsets_applied(self) -> bool:
@@ -169,6 +197,15 @@ class Geolocation:
             roll: in °, positive means port up
         """
 
+    @overload
+    def __init__(self, z: float, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation) -> None:
+        """
+        Construct a new Geolocation object from a Rotation
+        Args:
+            z: in m, positive downwards
+            rotation: orientation of the location
+        """
+
     def __eq__(self, other: Geolocation) -> bool:
         """
         Check if two Geolocation objects are equal
@@ -188,25 +225,38 @@ class Geolocation:
     def z(self, arg: float, /) -> None: ...
 
     @property
+    def rotation(self) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """
+        orientation of the location; yaw/pitch/roll (°) are exposed via
+        yaw()/pitch()/roll()
+        """
+
+    @rotation.setter
+    def rotation(self, arg: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, /) -> None: ...
+
+    @property
     def yaw(self) -> float:
-        """in °, 0° is north, 90° is east"""
+        """yaw in °, 0° is north, 90° is east"""
 
     @yaw.setter
     def yaw(self, arg: float, /) -> None: ...
 
     @property
     def pitch(self) -> float:
-        """in °, positive means bow up"""
+        """pitch in °, positive means bow up"""
 
     @pitch.setter
     def pitch(self, arg: float, /) -> None: ...
 
     @property
     def roll(self) -> float:
-        """in °, positive means port up"""
+        """roll in °, positive means port up"""
 
     @roll.setter
     def roll(self, arg: float, /) -> None: ...
+
+    def set_ypr(self, yaw: float, pitch: float, roll: float) -> None:
+        """set yaw, pitch and roll (°) at once"""
 
     def copy(self) -> Geolocation:
         """return a copy using the c++ default copy constructor"""
@@ -929,6 +979,17 @@ class Sensordata:
             roll: from attitude source, in °, positive means port up
         """
 
+    @overload
+    def __init__(self, depth: float, heave: float, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation) -> None:
+        """
+        Construct a new Sensordata object from depth, heave and a Rotation
+
+        Args:
+            depth: in m, positive downwards
+            heave: from heave sensor, added to depth in m, positive upwards
+            rotation: combined heading/pitch/roll orientation
+        """
+
     def __eq__(self, other: Sensordata) -> bool:
         """
         Check if two Sensordata objects are equal
@@ -955,25 +1016,35 @@ class Sensordata:
     def heave(self, arg: float, /) -> None: ...
 
     @property
+    def rotation(self) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """combined heading/pitch/roll; exposed via heading()/pitch()/roll()"""
+
+    @rotation.setter
+    def rotation(self, arg: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation, /) -> None: ...
+
+    @property
     def heading(self) -> float:
-        """from heading source in °, 0° is north, 90° is east"""
+        """heading from heading source in °, 0° is north, 90° is east"""
 
     @heading.setter
     def heading(self, arg: float, /) -> None: ...
 
     @property
     def pitch(self) -> float:
-        """from attitude source, in °, positive means bow up"""
+        """pitch from attitude source in °, positive means bow up"""
 
     @pitch.setter
     def pitch(self, arg: float, /) -> None: ...
 
     @property
     def roll(self) -> float:
-        """from attitude source, in °, positive means port up"""
+        """roll from attitude source in °, positive means port up"""
 
     @roll.setter
     def roll(self, arg: float, /) -> None: ...
+
+    def set_ypr(self, heading: float, pitch: float, roll: float) -> None:
+        """set heading, pitch and roll (°) at once"""
 
     def copy(self) -> Sensordata:
         """return a copy using the c++ default copy constructor"""

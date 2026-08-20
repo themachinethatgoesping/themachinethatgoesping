@@ -9,5 +9,6 @@ from themachinethatgoesping.tools_nanopy import (
     ostream_redirect as ostream_redirect,
     progressbars as progressbars,
     pyhelper as pyhelper,
+    rotationfunctions as rotationfunctions,
     vectorinterpolators as vectorinterpolators
 )

@@ -8,6 +8,7 @@ from themachinethatgoesping.tools_nanopy import (
     math as math,
     progressbars as progressbars,
     pyhelper as pyhelper,
+    rotationfunctions as rotationfunctions,
     timeconv as timeconv,
     vectorinterpolators as vectorinterpolators
 )

@@ -7,6 +7,7 @@ from typing import Annotated, Final, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.tools_nanopy.rotationfunctions
 from themachinethatgoesping.tools_nanopy.vectorinterpolators import (
     bivectorinterpolators as bivectorinterpolators
 )
@@ -2670,6 +2671,32 @@ class SlerpInterpolator:
             corresponding y value
         """
 
+    @overload
+    def rotation(self, target_x: float) -> themachinethatgoesping.tools_nanopy.rotationfunctions.RotationD:
+        """
+        get the interpolated orientation as a Rotation for the given x target
+
+        Args:
+            target_x: find the corresponding Rotation for this x value
+
+        Returns:
+            interpolated Rotation
+        """
+
+    @overload
+    def rotation(self, targets_x: Sequence[float]) -> list[themachinethatgoesping.tools_nanopy.rotationfunctions.RotationD]:
+        """
+        get the interpolated orientation as Rotations for the given x targets
+        (vectorized)
+
+        Args:
+            targets_x: vector of x values; for each find the corresponding
+                       Rotation
+
+        Returns:
+            vector of interpolated Rotations
+        """
+
     def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
@@ -2974,6 +3001,32 @@ class SlerpInterpolatorF:
 
         Returns:
             corresponding y value
+        """
+
+    @overload
+    def rotation(self, target_x: float) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """
+        get the interpolated orientation as a Rotation for the given x target
+
+        Args:
+            target_x: find the corresponding Rotation for this x value
+
+        Returns:
+            interpolated Rotation
+        """
+
+    @overload
+    def rotation(self, targets_x: Sequence[float]) -> list[themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation]:
+        """
+        get the interpolated orientation as Rotations for the given x targets
+        (vectorized)
+
+        Args:
+            targets_x: vector of x values; for each find the corresponding
+                       Rotation
+
+        Returns:
+            vector of interpolated Rotations
         """
 
     def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
@@ -3282,6 +3335,32 @@ class SlerpInterpolatorFD:
             corresponding y value
         """
 
+    @overload
+    def rotation(self, target_x: float) -> themachinethatgoesping.tools_nanopy.rotationfunctions.RotationD:
+        """
+        get the interpolated orientation as a Rotation for the given x target
+
+        Args:
+            target_x: find the corresponding Rotation for this x value
+
+        Returns:
+            interpolated Rotation
+        """
+
+    @overload
+    def rotation(self, targets_x: Sequence[float]) -> list[themachinethatgoesping.tools_nanopy.rotationfunctions.RotationD]:
+        """
+        get the interpolated orientation as Rotations for the given x targets
+        (vectorized)
+
+        Args:
+            targets_x: vector of x values; for each find the corresponding
+                       Rotation
+
+        Returns:
+            vector of interpolated Rotations
+        """
+
     def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:
         """
         Set the extrapolation mode
@@ -3586,6 +3665,32 @@ class SlerpInterpolatorDF:
 
         Returns:
             corresponding y value
+        """
+
+    @overload
+    def rotation(self, target_x: float) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """
+        get the interpolated orientation as a Rotation for the given x target
+
+        Args:
+            target_x: find the corresponding Rotation for this x value
+
+        Returns:
+            interpolated Rotation
+        """
+
+    @overload
+    def rotation(self, targets_x: Sequence[float]) -> list[themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation]:
+        """
+        get the interpolated orientation as Rotations for the given x targets
+        (vectorized)
+
+        Args:
+            targets_x: vector of x values; for each find the corresponding
+                       Rotation
+
+        Returns:
+            vector of interpolated Rotations
         """
 
     def set_extrapolation_mode(self, extrapolation_mode: o_extr_mode) -> None:

@@ -10,6 +10,7 @@ import numpy
 from numpy.typing import NDArray
 
 import themachinethatgoesping.navigation_nanopy.datastructures
+import themachinethatgoesping.tools_nanopy.rotationfunctions
 
 
 class XYZ_1:
@@ -64,6 +65,17 @@ class XYZ_1:
 
         Returns:
             XYZ_1
+        """
+
+    @overload
+    def rotate(self, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation) -> None:
+        """
+        Rotate the XYZ object using a Rotation
+
+        The rotation matrix is computed once and applied to every sample.
+
+        Args:
+            rotation: orientation to apply
         """
 
     @overload
@@ -208,6 +220,17 @@ class XYZ_2:
         """
 
     @overload
+    def rotate(self, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation) -> None:
+        """
+        Rotate the XYZ object using a Rotation
+
+        The rotation matrix is computed once and applied to every sample.
+
+        Args:
+            rotation: orientation to apply
+        """
+
+    @overload
     def rotate(self, quat: "Eigen::Quaternion_float_0") -> None:
         """
         Rotate the XYZ object using a quaternion
@@ -346,6 +369,17 @@ class XYZ_3:
 
         Returns:
             XYZ_1
+        """
+
+    @overload
+    def rotate(self, rotation: themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation) -> None:
+        """
+        Rotate the XYZ object using a Rotation
+
+        The rotation matrix is computed once and applied to every sample.
+
+        Args:
+            rotation: orientation to apply
         """
 
     @overload
@@ -2402,7 +2436,8 @@ class BeamSampleGeometry:
         """
         Apply a Geolocation (depth + ypr) to the geometry.
 
-        Equivalent to with_rigid_transform(g.yaw, g.pitch, g.roll, 0, 0, g.z).
+        Equivalent to with_rigid_transform(g.yaw(), g.pitch(), g.roll(), 0, 0,
+        g.z).
         """
 
     @overload
