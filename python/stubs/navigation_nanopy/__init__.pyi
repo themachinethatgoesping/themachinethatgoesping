@@ -1,7 +1,6 @@
 """Python module to store, interpolate and transform navigation data"""
-import typing
 
-from collections.abc import Sequence, Set
+from collections.abc import Mapping, Sequence, Set
 import enum
 from typing import Annotated, Final, overload
 
@@ -13,6 +12,7 @@ from themachinethatgoesping.navigation_nanopy import (
     navtools as navtools,
     nmea_0183 as nmea_0183
 )
+import themachinethatgoesping.tools_nanopy.rotationfunctions
 import themachinethatgoesping.tools_nanopy.vectorinterpolators
 
 
@@ -212,7 +212,7 @@ class SensorConfiguration:
                            sensor coordinate system center
         """
 
-    def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, level_lever_arm: bool = False) -> datastructures.SensorPose:
+    def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, subarray_id: str = '', subarray_pose: datastructures.SensorPose | None = None) -> datastructures.SensorPose:
         """
         Compute the ready-to-trace pose (position + ship-frame orientation) of
         a target.
@@ -221,28 +221,87 @@ class SensorConfiguration:
         bakes the target installation, the vessel attitude and the removal of
         a common reference heading into a single pose, so a raytracer can
         consume it without re-composing installation/attitude/heading. The
-        orientation is Rz(-reference_heading) · vessel_rotation ·
-        target_installation; the position is the target lever arm (raw body
-        frame, or roll/pitch-leveled when ``level_lever_arm`` is true) with z
-        the depth below the waterline. Pass the SAME reference_heading (the
+        orientation is vessel_rotation(reference_heading) ·
+        target_installation and the position is that SAME reference-relative
+        vessel_rotation applied to the body-frame lever arm (z reduced to the
+        depth below the waterline). Pass the SAME reference_heading (the
         heading at transmit time) for every target of a ping so all poses
-        share one ship frame.
+        share one surface frame.
 
         Args:
             target_id: name of the target (e.g. "MBES")
             sensor_data: Sensordata (heading/pitch/roll + depth/heave)
             reference_heading_in_degrees: heading (deg) removed from the
                                           orientation (transmit heading)
-            level_lever_arm: if true, level the horizontal lever arm by vessel
-                             roll/pitch
+            subarray_id: optional name of a registered subarray offset of the
+                         target to add to the pose (e.g. "0"/"1"/"2" for a
+                         transmit subarray, "RX" for the receive phase
+                         center); "" = none
+            subarray_pose: optional explicit subarray offset (target frame)
+                           that overrides ``subarray_id;`` handy for debugging
+                           or one-off corrections
 
         Returns:
             target pose (position + ship-frame Rotation)
         """
 
-    def get_vessel_attitude(self, sensor_data: datastructures.Sensordata) -> list[float]:
+    def compute_position_system_offset(self, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float = 0.0, at_waterline: bool = False) -> list[float]:
         """
-        Compute the offset-corrected vessel attitude (yaw, pitch, roll in degrees) in the world frame by applying the registered attitude- and heading-source mounting offsets to the raw sensor_data attitude. Uses the same convention as compute_target_position (attitude offset removed via quaternion, heading offset subtracted from heading).
+        Compute the location of the active position-system reference point
+        relative to the vessel reference point, in the surface (reference-
+        heading) frame.
+
+        This is the heading-referenced translation between the position system
+        and the vessel reference point: vessel_rotation(reference_heading) ·
+        position_source_lever_arm. It carries the full horizontal antenna
+        lever arm (not only its vertical component), so it can be used to
+        convert beam positions referenced to the positioning system (e.g.
+        Kongsberg .all XYZ88) into the vessel-reference-point convention (e.g.
+        Kongsberg .kmall).
+
+        Args:
+            sensor_data: Sensordata (heading/pitch/roll are used)
+            reference_heading_in_degrees: heading (deg) removed from the
+                                          orientation (transmit heading); 0 =
+                                          keep the absolute world heading
+            at_waterline: if true, replace the antenna height by the waterline
+                          offset, i.e. project the position-system point onto
+                          the water surface (the horizontal reference of the
+                          .all XYZ88 beam positions); if false, use the true
+                          antenna height (position_source.z)
+
+        Returns:
+            {x, y, z} of the position-system reference point in the surface
+            frame (metres)
+        """
+
+    def get_vessel_rotation(self, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float = 0.0) -> themachinethatgoesping.tools_nanopy.rotationfunctions.Rotation:
+        """
+        Compute the offset-corrected vessel orientation as a Rotation.
+
+        Applies the registered sensor mounting offsets to the raw sensor_data
+        attitude: the attitude source (IMU) mounting offset is removed with a
+        rotation operation (raw ⊗ offset⁻¹, i.e. yaw/pitch/roll are NOT simply
+        added) and the heading source offset is subtracted from the heading --
+        both only when they are not already applied to the logged data
+        (SensorPose::ypr_offsets_applied). The heading is then expressed
+        relative to reference_heading_in_degrees. Use rotation.ypr() to obtain
+        the {yaw, pitch, roll} angles.
+
+        Args:
+            sensor_data: Sensordata (only heading, pitch and roll are used)
+            reference_heading_in_degrees: heading (deg) removed from the
+                                          orientation so the result is
+                                          expressed in the surface frame of
+                                          that heading (0 = keep the absolute
+                                          world heading); for a receive pose
+                                          sampled after transmit this keeps
+                                          the residual yaw (vessel turn since
+                                          transmit)
+
+        Returns:
+            vessel orientation (Rotation), heading measured relative to
+            reference_heading
         """
 
     def has_target(self, target_id: str) -> bool:
@@ -284,7 +343,7 @@ class SensorConfiguration:
             target_offsets: mounting offsets of the target
         """
 
-    def add_targets(self, targets: typing.Any) -> None:
+    def add_targets(self, targets: Mapping[str, datastructures.SensorPose]) -> None:
         """
         add targets (e.g. MBES) with given target_ids and offsets to the
         sensor position system
@@ -293,6 +352,7 @@ class SensorConfiguration:
             targets: map_target_id_target_offsets of target offsets
         """
 
+    @overload
     def get_target(self, target_id: str) -> datastructures.SensorPose:
         """
         Get stored target offsets of a specified target
@@ -304,7 +364,13 @@ class SensorConfiguration:
             const datastructures::SensorPose& offsets of the target
         """
 
-    def get_targets(self) -> typing.Any:
+    @overload
+    def get_target(self, target_id: str, subarray_id: str, subarray_pose: datastructures.SensorPose | None = None) -> datastructures.SensorPose:
+        """
+        Get a target's static pose, optionally combined with a subarray phase center (vessel-static frame).
+        """
+
+    def get_targets(self) -> dict[str, datastructures.SensorPose]:
         """
         Get the map of stored target offsets objects
 
@@ -330,6 +396,129 @@ class SensorConfiguration:
         Returns:
             std::vector_std_string_view
         """
+
+    def add_target_subarray(self, target_id: str, subarray_id: str, subarray_offsets: datastructures.SensorPose) -> None:
+        """
+        Register (or overwrite) a single named subarray offset for a target.
+
+        A subarray offset is a small SensorPose in the target (transducer)
+        frame that compute_target_pose can add to the target pose to obtain
+        the pose of a specific transmit subarray or the receive-array phase
+        center. The position is always applied; the rotation is only composed
+        when it is not the identity (see SensorPose::has_zero_rotation).
+
+        Args:
+            target_id: parent target
+            subarray_id: name of the subarray (e.g. "0"/"1"/"2" for tx
+                         port/center/starboard, "RX")
+            subarray_offsets: offset pose in the target frame
+        """
+
+    def set_target_subarrays(self, target_id: str, subarrays: Mapping[str, datastructures.SensorPose]) -> None:
+        """
+        Replace all subarray offsets of a target with the given map.
+        Args:
+            target_id: parent target
+            subarrays: map_subarray_id_offsetposeinthetargetframe
+        """
+
+    def set_target_subarrays_from_model(self, target_id: str, model_name: str) -> None:
+        """
+        Set the subarray offsets of a target from the hardcoded per-model
+        preset.
+
+        Looks the model up with get_model_subarray_offsets and stores the
+        result on ``target_id.`` Does nothing if the model is unknown
+        (get_model_subarray_offsets returns an empty map).
+
+        Args:
+            target_id: parent target
+            model_name: echosounder model (e.g. "EM2040", "EM2040P", "2042");
+                        case-insensitive, an optional leading "EM" is ignored
+        """
+
+    def has_target_subarrays(self, target_id: str) -> bool:
+        """true if the target has any registered subarray offsets."""
+
+    def has_target_subarray(self, target_id: str, subarray_id: str) -> bool:
+        """true if the target has a subarray offset with the given id."""
+
+    def get_target_subarray(self, target_id: str, subarray_id: str) -> datastructures.SensorPose:
+        """
+        Get a single registered subarray offset.
+        Args:
+            target_id: parent target
+            subarray_id: name of the subarray
+
+        Returns:
+            the subarray offset pose (throws std::out_of_range if not
+            registered)
+        """
+
+    def get_target_subarrays(self, target_id: str) -> dict[str, datastructures.SensorPose]:
+        """
+        Get all subarray offsets of a target.
+        Args:
+            target_id: parent target
+
+        Returns:
+            map_subarray_id_offsetpose (throws std::out_of_range if the
+            target has none)
+        """
+
+    def get_target_subarray_ids(self, target_id: str) -> list[str]:
+        """Ids of the subarray offsets registered for a target (empty if none)."""
+
+    def remove_target_subarrays(self, target_id: str) -> None:
+        """Remove all subarray offsets of a target."""
+
+    @staticmethod
+    def get_model_subarray_offsets(model_name: str) -> dict[str, datastructures.SensorPose]:
+        """
+        Hardcoded transmit/receive subarray phase-center offsets for a known
+        echosounder model.
+
+        Returns a flat map with the transmit subarrays keyed "0" (port), "1"
+        (center), "2" (starboard) — or just "0" for single-array systems —
+        plus the receive-array phase center keyed "RX". All offsets are
+        SensorPoses in the transducer frame (x forward, y starboard, z down,
+        metres). The map is empty for an unknown model. Source: QPS dm-0423 /
+        Kongsberg.
+
+        Args:
+            model_name: echosounder model (case-insensitive, optional leading
+                        "EM" ignored)
+        """
+
+    @staticmethod
+    def get_model_subarray_offset(model_name: str, subarray_id: str) -> datastructures.SensorPose:
+        """
+        A single hardcoded subarray offset for a model (convenience for
+        building a manual
+               subarray_pose, e.g. for compute_target_pose debugging).
+        Args:
+            model_name: echosounder model
+            subarray_id: "0"/"1"/"2"/"RX"
+
+        Returns:
+            the offset pose (throws std::out_of_range if the model or subarray
+            is unknown)
+        """
+
+    def set_model_name(self, name: str) -> None:
+        """Set the echosounder model name (e.g. "EM2040", "EM710")."""
+
+    def get_model_name(self) -> str:
+        """Echosounder model name, or empty string if not set."""
+
+    def set_transducer_configuration(self, cfg: str) -> None:
+        """
+        Set the transducer configuration string (e.g. "DualRx",
+        "SingleTxSingleRx", "STC0").
+        """
+
+    def get_transducer_configuration(self) -> str:
+        """Transducer configuration string, or empty string if not set."""
 
     @overload
     def set_attitude_source(self, name: str, yaw: float, pitch: float, roll: float) -> None:
@@ -406,6 +595,33 @@ class SensorConfiguration:
 
         Returns:
             waterline_offset
+        """
+
+    def set_position_source_motion_compensated(self, motion_compensated: bool) -> None:
+        """
+        Set whether the position source is motion compensated.
+
+        When true, the logged position is already referenced to the vessel
+        reference point (the PU applied the antenna-to-reference-point lever
+        arm, e.g. Kongsberg .all P{n}M=1 or .kmall POSI C=On). In that case
+        compute_position_system_offset returns {0,0,0} instead of the
+        geometric antenna lever arm, so beam positions referenced to the
+        positioning system are not double-corrected.
+
+        Args:
+            motion_compensated: true if the position is already re the vessel
+                                reference point
+        """
+
+    def get_position_source_motion_compensated(self) -> bool:
+        """
+        Get whether the position source is motion compensated.
+
+        See set_position_source_motion_compensated.
+
+        Returns:
+            true if the logged position is already re the vessel reference
+            point
         """
 
     @overload
@@ -499,17 +715,24 @@ class SensorConfiguration:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    def __str__(self) -> str:
-        """Return object information as string"""
+    def set_printer_style(self, row_per_target: bool) -> None:
+        """
+        Select the print()/info_string() table layout: True = one row per target (default), False = transposed (fields x/y/z/... as rows, records as columns, explanation column).
+        """
 
     def __repr__(self) -> str:
         """Return object information as string"""
 
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+    def __str__(self) -> str:
         """Return object information as string"""
 
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True, optionA: bool | None = None) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True, optionA: bool | None = None) -> None:
+        """
+        Print object information (optionA: True = one row per target, False = transposed table)
+        """
 
 class NavigationInterpolatorLocal:
     """

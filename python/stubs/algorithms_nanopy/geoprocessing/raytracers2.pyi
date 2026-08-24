@@ -186,6 +186,18 @@ class SoundVelocityProfile:
             SoundVelocityProfile extended with the surface sound speed.
         """
 
+    def get_resampled(self, max_sound_speed_error_in_meters_per_second: float | None = None, max_raytrace_error_in_meters: float | None = None, number_of_entries: int | None = None, launch_depth_in_meters: float = 0.0, max_depth_in_meters: float = -1.0, max_launch_angle_in_degrees: float = 75.0, number_of_test_angles: int = 8) -> SoundVelocityProfile:
+        """
+        Return a copy of the profile with fewer depth/sound-speed knots so the raytracer traverses fewer layers (a direct speed-up) while keeping the raytracing error bounded.
+
+        Set exactly ONE target:
+        - max_sound_speed_error_in_meters_per_second: Douglas-Peucker on c(z); keeps the interpolated sound speed within this tolerance (self-contained, fastest).
+        - max_raytrace_error_in_meters: ray-error greedy; guarantees the seabed position error (horizontal and depth) stays within this budget for launch angles up to max_launch_angle_in_degrees down to max_depth_in_meters (fewest layers for a given accuracy).
+        - number_of_entries: simplify until about this many knots remain (ray-error ranking).
+
+        max_depth_in_meters <= 0 uses the profile bottom. Metadata is preserved.
+        """
+
     def get_date_string(self, fractionalSecondsDigits: int = 2, format: str = '%z__%d-%m-%Y__%H:%M:%S') -> str:
         """
         Format ``_timestamp`` as a date string.

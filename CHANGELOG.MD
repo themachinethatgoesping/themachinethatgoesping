@@ -18,6 +18,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms/tools/navigation: rework ypr around quaternions (breaks API)
 - navigation: rename positionaloffsets to sensorpose to reuse structure
 - SensorConfiguration: compute_target_pose function to compute target pose from sensor data and reference heading
+- Navigation: support for subposes for transducers etc.
+- algorithm: towards raytracing
+- tools: add register_table to objectprinter
+- Navigation: reworking sensor configuration
+- Echosounders: read more navigation configurations from .all and .kmall files
 
 ## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
@@ -29,7 +34,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: update catch2 3.15.2 -> 3.15.3
 - tools: update nanobind 2.13.0 -> 2.14.0
 - tools: update robin-map 1.4.0 -> 1.4.1
-- tools: update nanobind 2.14.0 -> 3.0.0.dev3
+- tools: update nanobind 2.14.0 -> 3.0.0
 - tools: remove dependency on hinnant-date (c++20 features now available)
 - removed pybind11 dependency (completed switch to nanobind)
 - fixed minor warnings suhc as comparing signed and unsigned integers, and unused variables

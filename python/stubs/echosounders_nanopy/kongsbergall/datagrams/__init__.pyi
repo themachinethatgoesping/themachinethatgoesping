@@ -578,6 +578,25 @@ class RawRangeAndAngle(KongsbergAllDatagram):
             xt::xtensor_float_1
         """
 
+    def get_beam_tx_array_index(self, beam_numbers: Sequence[int] = []) -> "xt::xtensor_container_xt_uvector<unsignedchar_xsimd_aligned_allocator<unsignedchar_16ul >, 1ul, (xt::layout_type)1, xt::xtensor_expression_tag>":
+        """
+        Per-beam physical TX array index (looked up via each beam's transmit
+        sector).
+
+        For EM 2040 this identifies which of the three transmit arrays (0 =
+        port, 1 = centre, 2 = starboard) formed each beam — the .all
+        equivalent of the kmall per-sounding tx_sub_array. The sector-to-array
+        mapping can be reversed (e.g. sectors 0,1,2 -> arrays 2,1,0) for a
+        180°-mounted TX, so this must be read per beam rather than assumed
+        from the sector number.
+
+        Args:
+            beam_numbers: optional beam selection (empty = all beams)
+
+        Returns:
+            xt::xtensor_uint8_t_1 TX array index per beam
+        """
+
     def set_ping_counter(self, arg: int, /) -> None:
         """sequential number"""
 
@@ -2402,6 +2421,41 @@ class InstallationParameters(KongsbergAllDatagram):
         Get the active position system number (APS + 1)
         Returns:
             uint8_t
+        """
+
+    def get_position_system_motion_compensation(self, position_system_number: int) -> bool:
+        """
+        Check whether the positions of the specified position system are
+        motion compensated.
+
+        This corresponds to the "P{n}M" installation parameter ("Position
+        system n motion compensation"). When enabled (P{n}M = 1), the logged
+        position has been adjusted by the PU for the offset between the
+        antenna and the vessel reference point (i.e. the roll/pitch induced
+        lever arm is compensated). When disabled (P{n}M = 0), the logged
+        position is the raw antenna position and the antenna lever arm must be
+        applied to reference it to the vessel reference point.
+
+        Args:
+            position_system_number: must be 1, 2 or 3
+
+        Returns:
+            true if the positions are motion compensated (P{n}M = 1), false
+            otherwise (also false if the parameter is not present)
+        """
+
+    def get_active_position_system_motion_compensation(self) -> bool:
+        """
+        Check whether the positions of the active position system are motion
+        compensated.
+
+        Convenience wrapper that resolves the active position system (APS) and
+        returns its "P{n}M" motion compensation flag. See
+        get_position_system_motion_compensation.
+
+        Returns:
+            true if the active position system's positions are motion
+            compensated
         """
 
     def get_active_attitude_velocity_sensor(self) -> int:

@@ -1714,6 +1714,36 @@ class IInstallationParam(KMALLDatagram):
             uint8_t Position system number (1-4), or 0 if none active
         """
 
+    def get_position_system_motion_compensation(self, position_system_number: int) -> bool:
+        """
+        Check whether the positions of the specified position system are
+        motion compensated.
+
+        Reads the "C" field (C=On/Off, "compensation for motion") from the
+        POSI_n entry. When On, the position has been adjusted for the offset
+        between the antenna and the vessel reference point (equivalent to the
+        .all P{n}M=1 flag).
+
+        Args:
+            position_system_number: Position system number (1-4)
+
+        Returns:
+            true if C=On, false otherwise (also false if POSI_n or C is
+            absent)
+        """
+
+    def get_active_position_system_motion_compensation(self) -> bool:
+        """
+        Check whether the positions of the active position system are motion
+        compensated.
+
+        Resolves the active position system (U=ACTIVE) and returns its
+        C=On/Off flag.
+
+        Returns:
+            true if the active position system has C=On
+        """
+
     def get_active_attitude_sensor_number(self) -> int:
         """
         Get the active attitude sensor number (1-4)
