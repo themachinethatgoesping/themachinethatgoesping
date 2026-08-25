@@ -23,6 +23,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: add register_table to objectprinter
 - Navigation: reworking sensor configuration
 - Echosounders: read more navigation configurations from .all and .kmall files
+- Echosounders: convenience container for NetworkVelocityDatagram Attitudes
 
 ## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
