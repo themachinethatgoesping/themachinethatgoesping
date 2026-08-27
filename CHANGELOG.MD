@@ -24,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - Navigation: reworking sensor configuration
 - Echosounders: read more navigation configurations from .all and .kmall files
 - Echosounders: convenience container for NetworkVelocityDatagram Attitudes
+- echosiybders: convenience container for MWC tx sectors
 
 ## Fixes
 - echosounders/navigation: fix motion reading confusion for .all
@@ -32,7 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing: fix sorting issues with echogrambuilder combine backends
 
 ## Maintanance
-- tools: update catch2 3.15.2 -> 3.15.3
+- tools: update catch2 3.15.2 -> 3.16.0
 - tools: update nanobind 2.13.0 -> 2.14.0
 - tools: update robin-map 1.4.0 -> 1.4.1
 - tools: update nanobind 2.14.0 -> 3.0.0
