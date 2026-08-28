@@ -36,7 +36,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: update catch2 3.15.2 -> 3.16.0
 - tools: update nanobind 2.13.0 -> 2.14.0
 - tools: update robin-map 1.4.0 -> 1.4.1
-- tools: update nanobind 2.14.0 -> 3.0.0
+- tools: update nanobind 2.14.0 -> 3.0.1
 - tools: remove dependency on hinnant-date (c++20 features now available)
 - removed pybind11 dependency (completed switch to nanobind)
 - fixed minor warnings suhc as comparing signed and unsigned integers, and unused variables
