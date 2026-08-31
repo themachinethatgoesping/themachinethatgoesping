@@ -4,6 +4,16 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [0.35.1] - 31-08-2026
+
+- echosounders -> 0.48.2
+
+## Improvements
+- echosounders: kongsbergall xyz datagram: improved printing beam content
+- echosounders: kongsbergall rawrangeandangle datagram: improved printing beam content
+- echosounders: kongsbergall runtimeparameters datagram: added get_frequency_mode_in_hertz to guess frequency mode for em systems
+- echosounders: kongsbergall runtimeparameters datagram: improved printing of frequency mode in hertz
+
 # [0.35.0] - 31-08-2026
 
 - algorithms -> 0.12.0
