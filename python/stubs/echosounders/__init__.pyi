@@ -23,5 +23,6 @@ from themachinethatgoesping.echosounders_nanopy import (
     o_KongsbergAllDatagramIdentifier as o_KongsbergAllDatagramIdentifier,
     o_KongsbergAllSystemTransducerConfiguration as o_KongsbergAllSystemTransducerConfiguration,
     pingtools as pingtools,
+    s7k as s7k,
     simradraw as simradraw
 )
