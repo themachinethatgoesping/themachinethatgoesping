@@ -120,9 +120,11 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy
 
     def get_filter_stage_2_decimation_factor(self) -> int: ...
 
-    def get_filter_stage_1_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(order='C')]: ...
+    def get_filter_stage_1_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(order='C')]:
+        """filter coefficients of stage 1 filter"""
 
-    def get_filter_stage_2_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(order='C')]: ...
+    def get_filter_stage_2_coefficients(self) -> Annotated[NDArray[numpy.complex64], dict(order='C')]:
+        """filter coefficients of stage 2 filter"""
 
     def get_computed_internal_sampling_interval_hz(self) -> float: ...
 

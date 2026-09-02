@@ -4,6 +4,13 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [Unreleased]
+
+-echosounders -> 0.48.3
+
+## Improvements
+-echosounders: initial implementaiton for s7k
+
 # [0.35.1] - 31-08-2026
 
 - echosounders -> 0.48.2

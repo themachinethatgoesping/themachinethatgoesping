@@ -31,10 +31,29 @@ Match the surrounding file; the notes below are the defaults.
 - Section separators inside classes: `// ----- section name -----`.
 - Suppress a generated docstring with a line `// IGNORE_DOC:mkd_doc_...` before the entity.
 - Keep comments to what code cannot show; do not restate the next line.
+- **Trivial passthrough `get_x`/`set_x` have an empty generated doc** (mkdoc emits `R"doc()doc"` for
+  an undocumented one-line accessor) while the *variable it returns* is documented — so in the `.def`
+  point the docstring at that variable's doc (for **both** getter and setter), not the empty accessor:
+    - direct member `_x` (body `return _x;` / `_x = v;`) → `DOC(<pfx>, <Class>, x)` — mkdoc **strips the
+      leading `_`** (e.g. `DOC_S7KDatagram(device_identifier)`, *not* `(get_device_identifier)`).
+    - packed `Content`-struct field `_content.x` → `DOC(<pfx>, <Class>, Content, x)`; make the per-file
+      shortcut **variadic** so it can carry the path:
+      `#define DOC_C(CLASS, ...) DOC(<pfx>, CLASS, __VA_ARGS__)` → `DOC_C(ReferencePoint, Content, offset_x)`.
+- **If `get_x`/`set_x` processes the value** (cast, scale, flag/bit decode, unit conversion, compute)
+  it needs its *own* doc: put a `///`/`/** @brief ... */` comment on the C++ accessor (mkdoc extracts
+  it — keep `DOC(...,get_x)`) or pass an inline string literal to `.def`. Never leave a processing
+  accessor pointing at an empty doc.
 
 ## Datagram / value classes (pattern)
-- `using t_DatagramIdentifier = ...;` and `static constexpr size_t __size = <header bytes>;`
+- `using t_DatagramIdentifier = ...;` **and `using o_DatagramIdentifier = o_<Fmt>DatagramIdentifier;`**
+  (the `OptionFrozen` wrapper); `static constexpr size_t __size = <header bytes>;`
   (note: real `sizeof` is larger because of the vtable).
+- Store the record-type member and take identifier params as **`o_DatagramIdentifier`**, not the raw
+  enum (member `_..._identifier`, `get/set_datagram_identifier`, `from_stream(is, o_DatagramIdentifier)`,
+  `__check_datagram_identifier__(o_..., o_...)`). `OptionFrozen` is a thin single-`value` wrapper (no
+  vtable, same size/layout as the enum) so the member stays inside the one-shot
+  `is.read(&_first_member, __size)` header read, and it converts implicitly to/from the enum, the
+  underlying int and the name/alt-name string.
 - `virtual double get_timestamp() const` (NaN if none); `skip(std::istream&)`; `from_stream(...)`.
 - `bool operator==(const T&) const = default;`.
 - Printing: implement `tools::classhelper::ObjectPrinter __printer__(unsigned int float_precision,
@@ -53,6 +72,11 @@ Match the surrounding file; the notes below are the defaults.
   and an `extern template struct OptionFrozen<...>;` in the header with the matching
   `template struct OptionFrozen<...>;` instantiation in the `.cpp`. `o_X.name()` throws on unknown
   values → guard with `enum_contains()` or keep the raw enum for graceful "unknown" handling.
+- **Prefer `o_X` (not the raw enum) as the working identifier type** — datagram members,
+  `from_stream`/check params, and the Python `datagrams(...)` argument — so str↔number↔enum conversion
+  is automatic. `name()` (descriptive) / `alt_name()` (short code / record number) throw on unknown, so
+  keep the identifier enum exhaustive; the `I_DatagramInterface` map key + virtual `datagram_identifier_*`
+  signature stay the **plain enum** so unrecognised records still index.
 
 ## Libraries / performance
 - `fmt` for formatting, `magic_enum`, `frozen` (constexpr maps), `boost::endian` (byte-swap for
@@ -71,6 +95,13 @@ Match the surrounding file; the notes below are the defaults.
 - Register the file in `src/tests/meson.build` `sources`.
 
 ## Exposing to Python (nanobind)
+- **Module layout (mirror `py_kmall`)**: split a format's bindings into submodules, each with its own
+  `module.{hpp,cpp}` that `def_submodule(...)`s and calls per-class `init_c_*`: `py_<fmt>/` (top: enum
+  + `make_option_class` + filehandler) → `py_datagrams/` (**one `c_<datagram>.cpp` per datagram**,
+  `substructs/` if any → Python `<fmt>.datagrams.<Class>`), `py_filedatacontainers/`,
+  `py_filedatainterfaces/` (interface template in a `c_<fmt>datagraminterface.hpp`, class + `init_c_*`
+  in the `.cpp`), later `py_filedatatypes/`. Don't lump many classes in one file. Include C++ headers
+  as `<themachinethatgoesping/echosounders/<fmt>/…>` (angle brackets).
 - One template function `py_create_class_<x><T_FileStream>(module&, name)`; register for both stream
   types with names `"<Class>"` (MappedFileStream) and `"<Class>_stream"` (`std::ifstream`).
 - Reuse helpers: `py_filetemplates::py_i_inputfilehandler::add_default_constructors /
@@ -80,6 +111,10 @@ Match the surrounding file; the notes below are the defaults.
   (define a `#define DOC_<Class>(ARG) DOC(..., <Class>, ARG)` shortcut). Trailing macros
   `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)`.
 - Enums exposed with `nb::enum_<t_X>(subm,"t_X",DOC(...)).value("NAME", t_X::NAME, "doc")...`; option
-  wrappers with `tools::nanobind_helper::make_option_class<o_X>(subm, "o_X")`.
+  wrappers with `tools::nanobind_helper::make_option_class<o_X>(subm, "o_X")` — this registers the
+  implicit `str`/`int`/enum→`o_X` constructors (a plain `nb::enum_` argument only accepts int + enum
+  member, **never a string**). Python methods that take an identifier (e.g. `datagrams(type)`) should
+  take **`o_X` and `switch (type.value)`**, so callers pass the enum, the record number, the name or the
+  alt-name string interchangeably; pass `type` straight to the C++ `datagrams<T>(id)` (implicit convert).
 - Docstrings are generated by `python make_pybind_doc.py` (walks the tree, writes
   `.docstrings/*.doc.hpp`); every public method gets an (empty) doc var so `DOC(...)` always resolves.

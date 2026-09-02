@@ -22,11 +22,14 @@ class ReadSampleRange:
             uint32_t
         """
 
-    def get_number_of_samples_to_read(self) -> int: ...
+    def get_number_of_samples_to_read(self) -> int:
+        """number of samples to read (local to beam sample offset)"""
 
-    def get_first_read_sample_offset(self) -> int: ...
+    def get_first_read_sample_offset(self) -> int:
+        """offset of the first read sample (compared to global sample number)"""
 
-    def get_last_read_sample_offset(self) -> int: ...
+    def get_last_read_sample_offset(self) -> int:
+        """offset of the last read sample (compared to global"""
 
     def __eq__(self, other: ReadSampleRange) -> bool: ...
 
@@ -367,13 +370,17 @@ class PingSampleSelector:
     def get_sample_step(self) -> int:
         """step size for sample numbers"""
 
-    def get_min_minslant_range_percent(self) -> float | None: ...
+    def get_min_minslant_range_percent(self) -> float | None:
+        """min samples after minslant to consider (%)"""
 
-    def get_max_minslant_range_percent(self) -> float | None: ...
+    def get_max_minslant_range_percent(self) -> float | None:
+        """max samples before minslant to consider (%)"""
 
-    def get_min_bottom_range_percent(self) -> float | None: ...
+    def get_min_bottom_range_percent(self) -> float | None:
+        """max samples before bottom detection to consider (%)"""
 
-    def get_max_bottom_range_percent(self) -> float | None: ...
+    def get_max_bottom_range_percent(self) -> float | None:
+        """max samples before bottom detection to consider (%)"""
 
     def clear_beam_number_range(self) -> None: ...
 
@@ -421,9 +428,11 @@ class PingSampleSelector:
 
     def select_bottom_range_percent(self, min_bottom_range_percent: float | None = None, max_bottom_range_percent: float | None = None) -> None: ...
 
-    def set_sample_step(self, sample_step: int) -> None: ...
+    def set_sample_step(self, sample_step: int) -> None:
+        """step size for sample numbers"""
 
-    def set_beam_step(self, beam_step: int) -> None: ...
+    def set_beam_step(self, beam_step: int) -> None:
+        """step size for beam numbers"""
 
     def __eq__(self, arg: PingSampleSelector, /) -> bool: ...
 

@@ -1481,33 +1481,53 @@ class MWCRxInfo:
 class KMALLDatagram:
     def __init__(self) -> None: ...
 
-    def get_bytes_datagram(self) -> int: ...
+    def get_bytes_datagram(self) -> int:
+        """Number of bytes in datagram including this field"""
 
-    def set_bytes_datagram(self, bytes_datagram: int) -> None: ...
+    def set_bytes_datagram(self, bytes_datagram: int) -> None:
+        """Number of bytes in datagram including this field"""
 
-    def get_datagram_version(self) -> int: ...
+    def get_datagram_version(self) -> int:
+        """Datagram version"""
 
-    def set_datagram_version(self, datagram_version: int) -> None: ...
+    def set_datagram_version(self, datagram_version: int) -> None:
+        """Datagram version"""
 
-    def get_system_id(self) -> int: ...
+    def get_system_id(self) -> int:
+        """Echosounder system id (serial number)"""
 
-    def set_system_id(self, system_id: int) -> None: ...
+    def set_system_id(self, system_id: int) -> None:
+        """Echosounder system id (serial number)"""
 
-    def get_echo_sounder_id(self) -> int: ...
+    def get_echo_sounder_id(self) -> int:
+        """
+        Echosounder sounder identity (e.g. 124, 304, 712, 2040, 2045 (EM
+        2040C) )
+        """
 
-    def set_echo_sounder_id(self, echo_sounder_id: int) -> None: ...
+    def set_echo_sounder_id(self, echo_sounder_id: int) -> None:
+        """
+        Echosounder sounder identity (e.g. 124, 304, 712, 2040, 2045 (EM
+        2040C) )
+        """
 
-    def get_time_sec(self) -> int: ...
+    def get_time_sec(self) -> int:
+        """unixtime (seconds since 1970-01-01 00:00:00 UTC)"""
 
-    def set_time_sec(self, time_sec: int) -> None: ...
+    def set_time_sec(self, time_sec: int) -> None:
+        """unixtime (seconds since 1970-01-01 00:00:00 UTC)"""
 
-    def get_time_nanosec(self) -> int: ...
+    def get_time_nanosec(self) -> int:
+        """nanoseconds since time_sec"""
 
-    def set_time_nanosec(self, time_nanosec: int) -> None: ...
+    def set_time_nanosec(self, time_nanosec: int) -> None:
+        """nanoseconds since time_sec"""
 
-    def set_datagram_identifier(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.kmall.o_KMALLDatagramIdentifier) -> None: ...
+    def set_datagram_identifier(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.kmall.o_KMALLDatagramIdentifier) -> None:
+        """Datagram type identifier"""
 
-    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders_nanopy.kmall.o_KMALLDatagramIdentifier: ...
+    def get_datagram_identifier(self) -> themachinethatgoesping.echosounders_nanopy.kmall.o_KMALLDatagramIdentifier:
+        """Datagram type identifier"""
 
     def compute_size_content(self) -> int: ...
 
@@ -1573,7 +1593,8 @@ class KMALLUnknown(KMALLDatagram):
 
     def set_raw_content(self, arg: str, /) -> None: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def __eq__(self, other: KMALLUnknown) -> bool: ...
 
@@ -1618,7 +1639,8 @@ class IInstallationParam(KMALLDatagram):
 
     def __init__(self) -> None: ...
 
-    def get_bytes_content(self) -> int: ...
+    def get_bytes_content(self) -> int:
+        """bytes of the datagram body"""
 
     def get_info(self) -> int: ...
 
@@ -1632,7 +1654,8 @@ class IInstallationParam(KMALLDatagram):
 
     def set_install_txt(self, install_txt: str) -> None: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_install_txt_decoded(self) -> dict[str, str]:
         """
@@ -1887,7 +1910,8 @@ class IOpRuntime(KMALLDatagram):
 
     def __init__(self) -> None: ...
 
-    def get_bytes_content(self) -> int: ...
+    def get_bytes_content(self) -> int:
+        """bytes of the datagram body"""
 
     def get_info(self) -> int: ...
 
@@ -1901,7 +1925,8 @@ class IOpRuntime(KMALLDatagram):
 
     def set_runtime_txt(self, runtime_txt: str) -> None: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_runtime_txt_decoded(self) -> dict[str, str]:
         """
@@ -2088,7 +2113,8 @@ class SPosition(KMALLSensorDatagram):
 
     def get_pos_data_from_sensor_str(self) -> str: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def set_time_from_sensor_sec(self, val: int) -> None: ...
 
@@ -2108,7 +2134,8 @@ class SPosition(KMALLSensorDatagram):
 
     def set_pos_data_from_sensor(self, pos_data: str) -> None: ...
 
-    def set_bytes_datagram_check(self, val: int) -> None: ...
+    def set_bytes_datagram_check(self, val: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_sensor_timestamp(self) -> float: ...
 
@@ -2192,7 +2219,8 @@ class SPositionError(KMALLSensorDatagram):
 
     def get_pos_error_data_from_sensor_str(self) -> str: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def set_time_from_sensor_sec(self, val: int) -> None: ...
 
@@ -2214,7 +2242,8 @@ class SPositionError(KMALLSensorDatagram):
 
     def set_pos_error_data_from_sensor(self, pos_error_data: str) -> None: ...
 
-    def set_bytes_datagram_check(self, val: int) -> None: ...
+    def set_bytes_datagram_check(self, val: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_sensor_timestamp(self) -> float: ...
 
@@ -2284,7 +2313,8 @@ class SClock(KMALLSensorDatagram):
 
     def get_clock_data_from_sensor_str(self) -> str: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def set_offset_sec(self, offset_sec: float) -> None: ...
 
@@ -2292,7 +2322,8 @@ class SClock(KMALLSensorDatagram):
 
     def set_clock_data_from_sensor(self, pos_data: str) -> None: ...
 
-    def set_bytes_datagram_check(self, val: int) -> None: ...
+    def set_bytes_datagram_check(self, val: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def __eq__(self, other: SClock) -> bool: ...
 
@@ -2506,13 +2537,25 @@ class SSoundVelocityProfile(KMALLDatagram):
 
     def set_sensor_data(self, data: Sequence[SVPPoint]) -> None: ...
 
-    def set_padding(self, padding: str) -> None: ...
+    def set_padding(self, padding: str) -> None:
+        """
+        this package seems to contain unreported bytes, we store the in string
+        for reading/writing, performance does not matter for this datagram
+        since it is not written often
+        """
 
-    def get_padding(self) -> str: ...
+    def get_padding(self) -> str:
+        """
+        this package seems to contain unreported bytes, we store the in string
+        for reading/writing, performance does not matter for this datagram
+        since it is not written often
+        """
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
-    def set_bytes_datagram_check(self, value: int) -> None: ...
+    def set_bytes_datagram_check(self, value: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_svp_depths(self) -> list[float]: ...
 
@@ -2772,9 +2815,11 @@ class SSoundVelocityTransducer(KMALLDatagram):
 
     def set_sensor_data(self, data: Sequence[SVTSample]) -> None: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
-    def set_bytes_datagram_check(self, value: int) -> None: ...
+    def set_bytes_datagram_check(self, value: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_sound_velocity_active(self) -> bool: ...
 
@@ -3446,7 +3491,8 @@ class SKMBinary(KMALLDatagram):
     @sensor_data.setter
     def sensor_data(self, arg: SKMSamplesContainer, /) -> None: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def set_bytes_content(self, value: int) -> None: ...
 
@@ -3468,7 +3514,8 @@ class SKMBinary(KMALLDatagram):
     @overload
     def set_sensor_data(self, data: SKMSamplesContainer) -> None: ...
 
-    def set_bytes_datagram_check(self, value: int) -> None: ...
+    def set_bytes_datagram_check(self, value: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_horizontal_position_and_velocity_active(self) -> bool: ...
 
@@ -3561,7 +3608,8 @@ class CPosition(KMALLSensorDatagram):
 
     def get_pos_data_from_sensor_str(self) -> str: ...
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def set_time_from_sensor_sec(self, val: int) -> None: ...
 
@@ -3581,7 +3629,8 @@ class CPosition(KMALLSensorDatagram):
 
     def set_pos_data_from_sensor(self, pos_data: str) -> None: ...
 
-    def set_bytes_datagram_check(self, val: int) -> None: ...
+    def set_bytes_datagram_check(self, val: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def get_sensor_timestamp(self) -> float: ...
 
@@ -3651,13 +3700,17 @@ class CHeave(KMALLMultibeamDatagram):
 
     def __init__(self) -> None: ...
 
-    def get_heave_m(self) -> float: ...
+    def get_heave_m(self) -> float:
+        """in meters"""
 
-    def get_bytes_datagram_check(self) -> int: ...
+    def get_bytes_datagram_check(self) -> int:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
-    def set_heave_m(self, heave_m: float) -> None: ...
+    def set_heave_m(self, heave_m: float) -> None:
+        """in meters"""
 
-    def set_bytes_datagram_check(self, val: int) -> None: ...
+    def set_bytes_datagram_check(self, val: int) -> None:
+        """Each datagram ends with the size of the datagram for integrity check"""
 
     def __eq__(self, other: CHeave) -> bool: ...
 

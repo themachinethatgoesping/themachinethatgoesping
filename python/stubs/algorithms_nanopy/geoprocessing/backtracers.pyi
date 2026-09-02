@@ -40,7 +40,8 @@ class BacktracedWCI:
 
     def shape(self) -> list[int]: ...
 
-    def get_wci(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_wci(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """water column image"""
 
     def get_angle_beamnumber_interpolator(self) -> "themachinethatgoesping::tools::vectorinterpolators::NearestInterpolator_float_unsignedshort": ...
 
@@ -146,7 +147,8 @@ class I_Backtracer:
 
     def get_sensor_y(self) -> float: ...
 
-    def get_sensor_location(self) -> themachinethatgoesping.navigation_nanopy.datastructures.Geolocation: ...
+    def get_sensor_location(self) -> themachinethatgoesping.navigation_nanopy.datastructures.Geolocation:
+        """Location/Orientation of the senor"""
 
     def get_sensor_orientation_quat_ypr(self) -> list[float]: ...
 

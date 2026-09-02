@@ -130,7 +130,8 @@ class I_Raytracer:
 
     def set_sensor_location(self, sensor_location: themachinethatgoesping.navigation_nanopy.datastructures.Geolocation) -> None: ...
 
-    def get_sensor_location(self) -> themachinethatgoesping.navigation_nanopy.datastructures.Geolocation: ...
+    def get_sensor_location(self) -> themachinethatgoesping.navigation_nanopy.datastructures.Geolocation:
+        """Location/Orientation of the senor"""
 
     def get_sensor_orientation_quat_ypr(self) -> list[float]: ...
 

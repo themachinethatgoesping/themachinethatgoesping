@@ -10,9 +10,11 @@ Study **kongsbergall** and **kmall** (most complete) and **gsf** (minimal). All 
 templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams::MappedFileStream`.
 
 ## Layers (bottom → top)
-1. **`types.hpp`** — `t_<FMT>DatagramIdentifier` enum (record/datagram type). Small contiguous →
-   plain enum + magic_enum; large/sparse (record numbers, 4-char codes) → `OptionFrozen` with
-   `_values/_names/_alt_names`. Free helpers `datagram_type_to_string` / `_from_string` and
+1. **`types.hpp`** — `t_<FMT>DatagramIdentifier` enum (record/datagram type) + the
+   `o_<FMT>DatagramIdentifier` `OptionFrozen` wrapper (`_values/_names/_alt_names`). Small contiguous →
+   plain enum + magic_enum; large/sparse (record numbers, 4-char codes) → `OptionFrozen`. The `o_`
+   wrapper is the working identifier type (auto str↔number↔enum); the plain enum stays the interface map
+   key so unknown records still index. Free helpers `datagram_type_to_string` / `_from_string` and
    `datagram_identifier_to_string` / `_info` (used by the generic interface).
 2. **`datagrams/<fmt>datagram.{hpp,cpp}`** — the **datagram header** (the fixed record header). Must
    provide `from_stream`, `skip`, `get_timestamp`, `get_datagram_identifier`, `__printer__`.
@@ -22,8 +24,10 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
    types + a `from_stream` dispatch (`<FMT>DatagramVariant`).
 5. **`filedatainterfaces/<fmt>datagraminterface.hpp`** — extends
    `filetemplates::datainterfaces::I_DatagramInterface<t_identifier, t_ifstream>`; implements the
-   virtual `datagram_identifier_to_string` / `_info`; holds the datagram index and offers
-   `datagrams<T>()`, `per_file()`. This is the object reached via `file_handler.datagram_interface`.
+   virtual `datagram_identifier_to_string` (`o_...(id).alt_name()`) / `_info` (`o_...(id).name()`);
+   holds the datagram index and offers `datagrams<T>()`, `per_file()`. Reached via
+   `file_handler.datagram_interface`; its Python `datagrams(...)` takes the `o_` wrapper so it accepts
+   enum / number / name / alt-name.
 6. **`<fmt>filehandler.{hpp,cpp}`** — extends
    `filetemplates::I_InputFileHandler<<Fmt>Datagram, <Fmt>DatagramInterface<t_ifstream>>`. The base
    **scans** each file (`scan_for_datagrams` loops `header = <Fmt>Datagram::from_stream(ifs);
@@ -44,13 +48,23 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
 
 ## Python entry points (already generic — no per-format wiring needed)
 - `index_functions.find_files_and_index(folder, ['.<ext>'])` → `(files, index)`.
-- `theping.echosounders.<format>.<Fmt>FileHandler(files, index)`; `print(fh)`;
-  `fh.datagram_interface.datagrams_raw()` / `.datagram_headers()`.
+- `theping.echosounders.<format>.<Fmt>FileHandler(files, index)` (filehandler stays at the format
+  top level); `print(fh)`; `fh.datagram_interface.datagrams_raw()` / `.datagram_headers()` /
+  `.datagrams()` (whole-file variant) / `.datagrams(type[, skip_data])`.
+- Datagram classes live at `<format>.datagrams.<Class>`; containers at
+  `<format>.filedatacontainers.*`; the interface at `<format>.filedatainterfaces.<Fmt>DatagramInterface`.
+
+## Binding module layout (`src/nanomodule/py_<fmt>/`, mirror py_kmall)
+Split into submodules, each with `module.{hpp,cpp}` (`def_submodule` + per-class `init_c_*`):
+`py_<fmt>/` (enum + option + `c_<fmt>filehandler.cpp`) → `py_datagrams/` (one `c_<datagram>.cpp` each,
+`substructs/` if any) → `py_filedatacontainers/` → `py_filedatainterfaces/` (interface template in a
+`.hpp` + class/init in the `.cpp`) → later `py_filedatatypes/`. See tmtgp-echosounders-format-step1 §2.
 
 ## Registration checklist (for every new file)
 - Sources + headers + `.docstrings/*.doc.hpp` → `src/themachinethatgoesping/echosounders/meson.build`.
-- Binding `c_*.cpp` / `module.cpp` → `src/nanomodule/meson.build`, and
-  `#include "py_<fmt>/module.hpp"` + `py_<fmt>::init_m_<fmt>(m);` in `src/nanomodule/module.cpp`.
+- Binding `c_*.cpp` / `module.cpp` (each under its `py_<fmt>/py_*/` submodule dir) →
+  `src/nanomodule/meson.build`, and `#include "py_<fmt>/module.hpp"` + `py_<fmt>::init_m_<fmt>(m);`
+  in `src/nanomodule/module.cpp`.
 - Tests → `src/tests/meson.build`.
 
 Build/test/install with the **tmtgp-build-and-test** skill; follow **tmtgp-cpp-nanobind-style**.

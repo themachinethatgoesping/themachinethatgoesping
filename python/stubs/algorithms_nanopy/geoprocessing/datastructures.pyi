@@ -1909,15 +1909,20 @@ class BeamSampleParameters:
 
     def __eq__(self, other: BeamSampleParameters) -> bool: ...
 
-    def get_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """in °, positive bow up, 0 == downwards"""
 
-    def get_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """in °, positive portside up, 0 == downwards"""
 
-    def get_first_sample_offset(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_first_sample_offset(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """in s, time offset of the first sample (sample number 0)"""
 
-    def get_sample_interval(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_sample_interval(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """in s, time interval between samples"""
 
-    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+        """number of samples per beam"""
 
     def set_alongtrack_angles(self, alongtrack_angles: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
 
@@ -2171,9 +2176,11 @@ class BeamSampleGeometry:
 
     def get_n_beams(self) -> int: ...
 
-    def get_first_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_first_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """[n_beams] first valid sample nr"""
 
-    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+    def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+        """[n_beams] number of samples"""
 
     def get_last_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 

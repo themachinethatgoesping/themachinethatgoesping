@@ -300,7 +300,8 @@ class XML0(SimradRawDatagram):
 
     def set_xml_content(self, xml_content: str) -> None: ...
 
-    def get_xml_content(self) -> str: ...
+    def get_xml_content(self) -> str:
+        """raw xml string"""
 
     @overload
     def get_xml_datagram_type(self) -> str: ...
@@ -314,7 +315,8 @@ class XML0(SimradRawDatagram):
 
     def test_xml(self) -> None: ...
 
-    def get_raw_xml_content(self) -> str: ...
+    def get_raw_xml_content(self) -> str:
+        """raw xml string"""
 
     def set_raw_xml_content(self, arg: str, /) -> None: ...
 

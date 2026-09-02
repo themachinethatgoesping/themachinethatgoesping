@@ -122,7 +122,8 @@ class GenericSignalParameters:
     def get_effective_pulse_duration(self) -> float:
         """Effective pulse duration of the signal in seconds."""
 
-    def get_tx_signal_type(self) -> o_TxSignalType: ...
+    def get_tx_signal_type(self) -> o_TxSignalType:
+        """Signal type"""
 
     def set_center_frequency(self, center_frequency: float) -> None:
         """Center frequency of the signal in Hz."""
