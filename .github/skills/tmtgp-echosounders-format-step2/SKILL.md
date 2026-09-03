@@ -63,19 +63,28 @@ container's out-of-line tensor accessors).
   **plus** `get_<field>_tensor()` built on demand via a private `build_tensor<ValueType>(getter)`
   template (`xt::xtensor<V,1>::from_shape({n})` + `unchecked` loop). The datagram holds the container
   and exposes it via `def_prop_rw` — no flat arrays on the datagram.
-- **Bulk read** (in the datagram `__read__`): `vec.resize(n); is.read(reinterpret_cast<char*>(
-  vec.data()), n*sizeof(Row));`. Variable per-record stride (e.g. s7k 7027 `data_field_size`): read
-  the whole `stride*n` block in one `is.read`, then `memcpy(&row, buf+i*stride, min(stride,sizeof(Row)))`.
-- **SoA on disk** (arrays already contiguous, e.g. s7k 7004): the container **stores the arrays**
-  (bulk block reads, already optimal) and *assembles* a per-row struct on access (`get_beam(i)`).
-  Inverse of the AoS case, same public shape.
-- **Variable-length samples / water column**: read the whole sample region in **one** `is.read` into
-  a flat buffer, parse per-beam offsets in memory, and **decode on access** (not at read). Two styles:
+- **Bulk read** (in the datagram `__read__`): read straight into the final storage, no intermediate
+  buffer/`memcpy`. Full-width AoS: `vec.resize(n); is.read(reinterpret_cast<char*>(vec.data()),
+  n*sizeof(Row));`. Variable per-record stride (e.g. s7k 7027 `data_field_size`, made `const` before
+  the loop): if `dfs == sizeof(Row)` do the single bulk read above; **else** loop and read each beam
+  directly into `&vec[i]` (`is.read(&vec[i], min(dfs,sizeof(Row)))`, seek the extra bytes if
+  `dfs>sizeof(Row)`, set version-dependent missing fields to NaN). Never read the whole block into a
+  scratch `std::vector<char>` and `memcpy` it out.
+- **SoA on disk** (per-field arrays already contiguous, e.g. s7k 7004 BeamGeometry): the data is
+  *already* in the array form we want, so keep the `xt::xtensor<..,1>` members **directly on the
+  datagram** and bulk-read each array (`arr.resize({n}); is.read(arr.data(), n*sizeof(T))`). Do NOT
+  wrap SoA arrays in a container/substruct — it adds indirection and zero read-speed benefit.
+- **Variable-length samples / water column**: **read directly into the final per-beam storage** —
+  do NOT read the whole record into a scratch buffer and `substr`/`memcpy` it out. Two styles:
   (a) samples contiguous with a fixed datagram-wide dtype (s7k 7028): store a flat
-  `std::variant<xt::xtensor<u16,1>, xt::xtensor<u32,1>>` + `xt::xtensor<uint64_t,1>` beam offsets;
-  per-beam / list / dB conversions computed on demand (like simradraw RAW3's variant). (b) interleaved
-  per-beam blocks with flag-driven dtype (s7k 7042): a self-contained per-beam class holding the raw
-  sample bytes + decode params (mag bytes, has_phase, ...) that decodes magnitude/phase on access.
+  `std::variant<xt::xtensor<u16,1>, xt::xtensor<u32,1>>` + `xt::xtensor<uint64_t,1>` beam offsets,
+  read the header block and the sample block each in one `is.read`; per-beam / list / dB conversions
+  computed on demand (like simradraw RAW3's variant). (b) interleaved per-beam blocks with
+  flag-driven dtype (s7k 7042): loop over beams and let **each beam read itself** from the stream
+  (`beam.read(is, has_segment, stride)` reads its header fields + `is.read` of its raw sample block
+  straight into `beam._raw_samples`). Store the record-wide sample **encoding once on the container**
+  (`set_magnitude_bytes/has_phase/...`), NOT on every beam — the beam should reflect only the binary
+  (beam number, count, raw bytes); the container decodes magnitude/phase from the raw bytes on demand.
 - **skip_data = store file position + lazy re-read** (kmall `MWCRxBeamData` style): on skip, record
   `is.tellg()` in the container (`set_skipped(pos)`), seek past the samples, leave the sample arrays
   empty; expose `get_samples_are_skipped()/get_sample_position()` and a `read_samples(std::istream&)`

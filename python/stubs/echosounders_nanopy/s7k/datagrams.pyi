@@ -919,106 +919,6 @@ class FileHeaderDeviceInfoContainer:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-class BeamGeometryBeam:
-    def __init__(self) -> None: ...
-
-    def get_beam_vertical_angle(self) -> float: ...
-
-    def set_beam_vertical_angle(self, val: float) -> None: ...
-
-    def get_beam_horizontal_angle(self) -> float: ...
-
-    def set_beam_horizontal_angle(self, val: float) -> None: ...
-
-    def get_beamwidth_vertical(self) -> float: ...
-
-    def set_beamwidth_vertical(self, val: float) -> None: ...
-
-    def get_beamwidth_horizontal(self) -> float: ...
-
-    def set_beamwidth_horizontal(self, val: float) -> None: ...
-
-    def get_tx_delay(self) -> float: ...
-
-    def set_tx_delay(self, val: float) -> None: ...
-
-    def get_has_tx_delay(self) -> bool: ...
-
-    def set_has_tx_delay(self, val: bool) -> None: ...
-
-    def __eq__(self, other: BeamGeometryBeam) -> bool: ...
-
-    def copy(self) -> BeamGeometryBeam:
-        """return a copy using the c++ default copy constructor"""
-
-    def __copy__(self) -> BeamGeometryBeam: ...
-
-    def __deepcopy__(self, arg: dict, /) -> BeamGeometryBeam: ...
-
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    def __repr__(self) -> str:
-        """Return object information as string"""
-
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
-        """Return object information as string"""
-
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
-
-class BeamGeometryBeamContainer:
-    def __init__(self) -> None: ...
-
-    def get_beam_vertical_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def set_beam_vertical_angle(self, val: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
-
-    def get_beam_horizontal_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def set_beam_horizontal_angle(self, val: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
-
-    def get_beamwidth_vertical(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def set_beamwidth_vertical(self, val: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
-
-    def get_beamwidth_horizontal(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def set_beamwidth_horizontal(self, val: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
-
-    def get_tx_delay(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
-
-    def set_tx_delay(self, val: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
-
-    def get_has_tx_delay(self) -> bool: ...
-
-    def set_has_tx_delay(self, val: bool) -> None: ...
-
-    def get_beam(self, beam_index: int) -> BeamGeometryBeam: ...
-
-    def get_number_of_beams(self) -> int: ...
-
-    def __eq__(self, other: BeamGeometryBeamContainer) -> bool: ...
-
-    def copy(self) -> BeamGeometryBeamContainer:
-        """return a copy using the c++ default copy constructor"""
-
-    def __copy__(self) -> BeamGeometryBeamContainer: ...
-
-    def __deepcopy__(self, arg: dict, /) -> BeamGeometryBeamContainer: ...
-
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    def __repr__(self) -> str:
-        """Return object information as string"""
-
-    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
-        """Return object information as string"""
-
-    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
-        """Print object information"""
-
 class CompressedWaterColumnBeam:
     def __init__(self) -> None: ...
 
@@ -1034,33 +934,9 @@ class CompressedWaterColumnBeam:
 
     def set_sample_count(self, val: int) -> None: ...
 
-    def get_magnitude_bytes(self) -> int: ...
+    def get_raw_samples(self) -> bytes: ...
 
-    def get_has_phase(self) -> bool: ...
-
-    def get_phase_8bit(self) -> bool: ...
-
-    def get_magnitude_is_db(self) -> bool: ...
-
-    def get_magnitude_is_32bit_float(self) -> bool: ...
-
-    def get_sample_stride(self) -> int:
-        """number of on-disk bytes per sample (magnitude + optional phase)"""
-
-    def get_magnitude(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """magnitude of this beam (raw value, or dB if get_magnitude_is_db())"""
-
-    def get_phase(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """phase of this beam in radians (empty if there is no phase)"""
-
-    def get_magnitude_in_db(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """
-        magnitude of this beam in dB (see
-        CompressedWaterColumn::get_beam_magnitude_in_db)
-        """
-
-    def get_phase_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """phase of this beam in degrees (empty if there is no phase)"""
+    def set_raw_samples(self, raw_samples: bytes) -> None: ...
 
     def __eq__(self, other: CompressedWaterColumnBeam) -> bool: ...
 
@@ -1163,24 +1039,42 @@ class CompressedWaterColumnBeamContainer:
     @beams.setter
     def beams(self, arg: Sequence[CompressedWaterColumnBeam], /) -> None: ...
 
+    def get_magnitude_bytes(self) -> int: ...
+
+    def get_has_phase(self) -> bool: ...
+
+    def get_phase_8bit(self) -> bool: ...
+
+    def get_magnitude_is_db(self) -> bool: ...
+
+    def get_magnitude_is_32bit_float(self) -> bool: ...
+
+    def get_sample_stride(self) -> int:
+        """number of on-disk bytes per sample (magnitude + optional phase)"""
+
     def get_beam_number_tensor(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
 
     def get_segment_number_tensor(self) -> Annotated[NDArray[numpy.uint8], dict(order='C')]: ...
 
     def get_sample_count_tensor(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
-    def get_magnitude(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_magnitude(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """magnitude of a beam (raw value, or dB if get_magnitude_is_db())"""
 
-    def get_phase(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_phase(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """phase of a beam in radians (empty if there is no phase)"""
 
-    def get_magnitude_in_db(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_magnitude_in_db(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        magnitude of a beam in dB (already-dB values pass through, else
+        20*log10(mag/full_scale))
+        """
 
-    def get_phase_in_degrees(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_phase_in_degrees(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """phase of a beam in degrees (empty if there is no phase)"""
 
     def get_magnitudes(self) -> list[Annotated[NDArray[numpy.float32], dict(order='C')]]:
-        """
-        magnitude arrays, one per beam (dB if the beam's magnitude_is_db, else raw)
-        """
+        """magnitude arrays, one per beam (dB if get_magnitude_is_db(), else raw)"""
 
     def get_phases(self) -> list[Annotated[NDArray[numpy.float32], dict(order='C')]]:
         """
@@ -1188,9 +1082,7 @@ class CompressedWaterColumnBeamContainer:
         """
 
     def get_magnitudes_in_db(self) -> list[Annotated[NDArray[numpy.float32], dict(order='C')]]:
-        """
-        magnitude in dB, one array per beam (see CompressedWaterColumnBeam.get_magnitude_in_db)
-        """
+        """magnitude in dB, one array per beam (see get_magnitude_in_db)"""
 
     def get_number_of_beams(self) -> int: ...
 
@@ -2478,12 +2370,17 @@ class BeamGeometry(S7KDatagram):
     def set_number_beams(self, val: int) -> None:
         """number of beams"""
 
-    @property
-    def beams(self) -> BeamGeometryBeamContainer:
-        """per-beam geometry"""
+    def get_beam_vertical_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    @beams.setter
-    def beams(self, arg: BeamGeometryBeamContainer, /) -> None: ...
+    def get_beam_horizontal_angle(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_beamwidth_vertical(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_beamwidth_horizontal(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_has_tx_delay(self) -> bool: ...
+
+    def get_tx_delay(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def __eq__(self, other: BeamGeometry) -> bool: ...
 
