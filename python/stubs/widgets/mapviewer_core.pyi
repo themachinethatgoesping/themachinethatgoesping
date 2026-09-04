@@ -26,7 +26,7 @@ HAS_MATPLOTLIB: bool = True
 class LayerRenderSettings:
     """Viewer-side rendering settings for a layer."""
 
-    colormap: str = 'viridis'
+    colormap: str = 'gray'
 
     opacity: float = 1.0
 
@@ -42,7 +42,7 @@ class LayerRenderSettings:
 
     __hash__: None = None
 
-    def __init__(self, colormap: str = 'viridis', opacity: float = 1.0, vmin: Optional[float] = None, vmax: Optional[float] = None, blend_mode: str = 'alpha') -> None: ...
+    def __init__(self, colormap: str = 'gray', opacity: float = 1.0, vmin: Optional[float] = None, vmax: Optional[float] = None, blend_mode: str = 'alpha') -> None: ...
 
     def __repr__(self): ...
 
@@ -150,6 +150,9 @@ class MapCore:
 
     def set_layer_range(self, layer_name: str, vmin: float, vmax: float) -> None: ...
 
+    def set_layer_levels(self, layer_name: str, vmin: float, vmax: float) -> None:
+        """Set a fixed display range for a layer (no auto-rescale on zoom)."""
+
     def set_layer_blend_mode(self, layer_name: str, blend_mode: str) -> None: ...
 
     @property
@@ -187,9 +190,9 @@ class MapCore:
     def set_layer_colormap_image(self, layer_name: str, colormap: str) -> None:
         """Set colormap and re-render a layer."""
 
-    def add_geotiff(self, path: str, name: Optional[str] = None, band: int = 1, **kwargs) -> None: ...
+    def add_geotiff(self, path: str, name: Optional[str] = None, band: int = 1, cmap: Optional[str] = None, vmin: Optional[float] = None, vmax: Optional[float] = None, **kwargs) -> None: ...
 
-    def add_layer(self, backend: Any, name: Optional[str] = None, visible: bool = True, z_order: Optional[int] = None) -> None: ...
+    def add_layer(self, backend: Any, name: Optional[str] = None, visible: bool = True, z_order: Optional[int] = None, cmap: Optional[str] = None, vmin: Optional[float] = None, vmax: Optional[float] = None) -> None: ...
 
     @property
     def layer_names(self) -> List[str]:

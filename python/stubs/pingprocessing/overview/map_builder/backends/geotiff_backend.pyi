@@ -34,7 +34,7 @@ class GeoTiffBackend(themachinethatgoesping.pingprocessing.overview.map_builder.
     Requires: rasterio (pip install rasterio)
     """
 
-    def __init__(self, path: str, feature_name: Union[str, None] = None, band: int = 1, preload_stats: bool = True):
+    def __init__(self, path: str, feature_name: Union[str, None] = None, band: int = 1, preload_stats: bool = True, reproject_to_latlon: bool = True, target_crs: str = 'EPSG:4326'):
         """
         Open a GeoTiff file.
 
@@ -44,6 +44,11 @@ class GeoTiffBackend(themachinethatgoesping.pingprocessing.overview.map_builder.
                          filename or defaults to 'raster'.
             band: Band number to read (1-indexed). Default is 1.
             preload_stats: If True, compute min/max from overviews or sampling.
+            reproject_to_latlon: If True (default), a raster stored in a
+                         projected CRS (e.g. UTM) is reprojected on the fly to
+                         ``target_crs`` so it aligns with the lat/lon map view.
+            target_crs: CRS to reproject into when the source is not already
+                         in it (default EPSG:4326 / WGS84 lat/lon).
         """
 
     @property
@@ -117,7 +122,7 @@ class GeoTiffBackend(themachinethatgoesping.pingprocessing.overview.map_builder.
         """
 
     def close(self) -> None:
-        """Close the rasterio dataset."""
+        """Close the rasterio dataset (and any reprojection VRT)."""
 
     def __del__(self):
         """Ensure dataset is closed on garbage collection."""

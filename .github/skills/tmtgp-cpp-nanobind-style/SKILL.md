@@ -19,6 +19,11 @@ Match the surrounding file; the notes below are the defaults.
 
 ## Naming
 - Types/classes `PascalCase`; functions & variables `snake_case`; **members `_snake_case`** (leading underscore).
+  This leading-underscore rule is **ping-wide**: it applies to **every** private/protected data member,
+  **including the fields of a packed `#pragma pack` `Content` / record-type-header struct** (e.g.
+  `struct Content { uint32_t _ping_number; ... } _content;`, accessed as `_content._ping_number`). The
+  public `get_x`/`set_x` keep the clean name (`get_ping_number`). mkdoc strips the leading `_`, so a field
+  `_ping_number` still resolves via `DOC(...,Content,ping_number)`.
 - `t_` prefix = enum / template type params (`t_KMALLDatagramIdentifier`, `t_ifstream`).
 - `o_` prefix = `OptionFrozen`/`Option` wrapper around an enum (`o_KMALLDatagramIdentifier`).
 - Getters/setters: `get_x()` / `set_x(v)`. Static factory: `from_stream`, `from_binary`.
@@ -77,6 +82,27 @@ Match the surrounding file; the notes below are the defaults.
   is automatic. `name()` (descriptive) / `alt_name()` (short code / record number) throw on unknown, so
   keep the identifier enum exhaustive; the `I_DatagramInterface` map key + virtual `datagram_identifier_*`
   signature stay the **plain enum** so unrecognised records still index.
+
+## Processed values & flag decoding (record classes)
+- Keep each raw on-disk field (`_content._x`) with a plain `get_x`/`set_x`; then add **derived** getters
+  in a `// ----- processed data access -----` section that convert to physical/engineering units:
+  `get_x_in_db()`, `get_x_in_degrees()` (radians→degrees via `std::numbers::pi`, `#include <numbers>`),
+  timestamps, etc. Give each its own `/** @brief ... */` doc, bind it, and print derived values in a
+  `printer.register_section("processed")` block.
+- **Coded / flag fields** (a field whose spec defines a small set of named values) → model as an
+  `OptionFrozen` `o_x` stored **directly in the packed struct**. It is byte-compatible only if the enum's
+  underlying type matches the on-disk field width — `enum class t_x : uint8_t` for a `u8` field,
+  `: uint32_t` for a `u32` field. Getter returns `o_x`, setter takes `o_x`. Print with
+  `register_string("x", _content._x.name(), _content._x.alt_name())`. The `_names` (snake_case) and
+  `_alt_names` (Capitalised / spec text) arrays **must all be byte-distinct** (they become frozen-map
+  keys; a duplicate is a compile error). Bind: `nb::enum_<t_x>(m,"Class_t_x","desc").value("n",t_x::n,"doc")`
+  … then `tools::nanobind_helper::make_option_class<o_x>(m,"Class_o_x")` (needs `enumhelper.hpp`); plain
+  string docs on the enum avoid a mkdoc dependency.
+- **Bit-field** flags (many independent bits) stay a raw `u32`; expose the useful bits as `bool
+  get_<flag>()` helpers and print the raw value as `fmt::format("0b{:032b}", _content._flags)`.
+- Debug-only integrity fields (e.g. a trailing checksum) → provide `static` helpers that take the
+  serialized buffer (`std::string_view`) — compute / read / compare — and **never (re)compute them
+  during normal read or write** (round-trip the stored value instead).
 
 ## Libraries / performance
 - `fmt` for formatting, `magic_enum`, `frozen` (constexpr maps), `boost::endian` (byte-swap for

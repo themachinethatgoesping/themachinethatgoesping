@@ -1,7 +1,8 @@
 """Teledyne RESON .s7k (7k) datagram (record) classes"""
 
 from collections.abc import Iterable, Iterator, Sequence
-from typing import Annotated, overload
+import enum
+from typing import Annotated, Final, overload
 
 import numpy
 from numpy.typing import NDArray
@@ -1119,28 +1120,32 @@ class ReferencePoint(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_offset_x(self) -> float:
-        """vehicle reference X offset to center of gravity"""
+        """vehicle reference X offset to center of gravity (meters)"""
 
     def set_offset_x(self, val: float) -> None:
-        """vehicle reference X offset to center of gravity"""
+        """vehicle reference X offset to center of gravity (meters)"""
 
     def get_offset_y(self) -> float:
-        """vehicle reference Y offset to center of gravity"""
+        """vehicle reference Y offset to center of gravity (meters)"""
 
     def set_offset_y(self, val: float) -> None:
-        """vehicle reference Y offset to center of gravity"""
+        """vehicle reference Y offset to center of gravity (meters)"""
 
     def get_offset_z(self) -> float:
-        """vehicle reference Z offset to center of gravity"""
+        """vehicle reference Z offset to center of gravity (meters)"""
 
     def set_offset_z(self, val: float) -> None:
-        """vehicle reference Z offset to center of gravity"""
+        """vehicle reference Z offset to center of gravity (meters)"""
 
     def get_water_z(self) -> float:
-        """water level Z offset to center of gravity"""
+        """water level Z offset to center of gravity (meters)"""
 
     def set_water_z(self, val: float) -> None:
-        """water level Z offset to center of gravity"""
+        """water level Z offset to center of gravity (meters)"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
 
     def __eq__(self, other: ReferencePoint) -> bool: ...
 
@@ -1180,64 +1185,409 @@ class ReferencePoint(S7KDatagram):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class Position_t_position_type_flag(enum.Enum):
+    """position type flag (7k DFD Table 15)"""
+
+    geographic = 0
+    """geographical coordinates (latitude/longitude in radians)"""
+
+    grid = 1
+    """grid coordinates (northing/easting in meters)"""
+
+class Position_o_position_type_flag:
+    """
+    Helper class to convert between strings and enum values of type 't_position_type_flag'
+    """
+
+    @overload
+    def __init__(self, value: Position_t_position_type_flag = Position_t_position_type_flag.geographic) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> Position_t_position_type_flag:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: Position_t_position_type_flag, /) -> None: ...
+
+    __default_value__: Final[Position_t_position_type_flag] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: Position_o_position_type_flag, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: Position_t_position_type_flag, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> Position_o_position_type_flag:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> Position_o_position_type_flag: ...
+
+    def __deepcopy__(self, arg: dict, /) -> Position_o_position_type_flag: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Position_o_position_type_flag:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class Position_t_quality_flag(enum.Enum):
+    """position quality flag (7k DFD Table 15)"""
+
+    navigation = 0
+    """navigation data"""
+
+    dead_reckoning = 1
+    """dead-reckoning"""
+
+class Position_o_quality_flag:
+    """
+    Helper class to convert between strings and enum values of type 't_quality_flag'
+    """
+
+    @overload
+    def __init__(self, value: Position_t_quality_flag = Position_t_quality_flag.navigation) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> Position_t_quality_flag:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: Position_t_quality_flag, /) -> None: ...
+
+    __default_value__: Final[Position_t_quality_flag] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: Position_o_quality_flag, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: Position_t_quality_flag, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> Position_o_quality_flag:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> Position_o_quality_flag: ...
+
+    def __deepcopy__(self, arg: dict, /) -> Position_o_quality_flag: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Position_o_quality_flag:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class Position_t_position_method(enum.Enum):
+    """positioning method (7k DFD Table 15)"""
+
+    gps = 0
+    """GPS"""
+
+    dgps = 1
+    """DGPS"""
+
+    inertial_start_from_gps = 2
+    """start of inertial positioning system from GPS"""
+
+    inertial_start_from_dgps = 3
+    """start of inertial positioning system from DGPS"""
+
+    inertial_start_from_bottom_correlation = 4
+    """start of inertial positioning system from bottom correlation"""
+
+    inertial_start_from_bottom_object = 5
+    """start of inertial positioning from bottom object"""
+
+    inertial_start_from_inertial = 6
+    """start of inertial positioning from inertial positioning"""
+
+    inertial_start_from_optional_data = 7
+    """start of inertial positioning from optional data"""
+
+    inertial_stop_to_gps = 8
+    """stop of inertial positioning system to GPS"""
+
+    inertial_stop_to_dgps = 9
+    """stop of inertial positioning system to DGPS"""
+
+    inertial_stop_to_bottom_correlation = 10
+    """stop of inertial positioning system to bottom correlation"""
+
+    inertial_stop_to_bottom_object = 11
+    """stop of inertial positioning to bottom object"""
+
+    inertial_start_to_inertial = 12
+    """start of inertial positioning to inertial positioning"""
+
+    inertial_start_to_optional_data = 13
+    """start of inertial positioning to optional data"""
+
+    user_defined = 14
+    """user defined"""
+
+    rtk_fixed = 15
+    """RTK fixed"""
+
+    rtk_float = 16
+    """RTK float"""
+
+class Position_o_position_method:
+    """
+    Helper class to convert between strings and enum values of type 't_position_method'
+    """
+
+    @overload
+    def __init__(self, value: Position_t_position_method = Position_t_position_method.gps) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> Position_t_position_method:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: Position_t_position_method, /) -> None: ...
+
+    __default_value__: Final[Position_t_position_method] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: Position_o_position_method, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: Position_t_position_method, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> Position_o_position_method:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> Position_o_position_method: ...
+
+    def __deepcopy__(self, arg: dict, /) -> Position_o_position_method: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Position_o_position_method:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class Position(S7KDatagram):
-    """7k record Position"""
+    """
+    7k Position Record (1003) used in conjunction with Record Type 1011
+    (Geodesy).
+    """
 
     def __init__(self) -> None: ...
 
-    def get_datum(self) -> int:
-        """datum identifier (0 = WGS84)"""
+    def get_datum_identifier(self) -> int:
+        """datum identifier (0 = WGS84, >0 = reserved)"""
 
-    def set_datum(self, val: int) -> None:
-        """datum identifier (0 = WGS84)"""
+    def set_datum_identifier(self, val: int) -> None:
+        """datum identifier (0 = WGS84, >0 = reserved)"""
 
     def get_latency(self) -> float:
-        """position latency"""
+        """positioning latency in seconds (0 for 7k sonar / PDS)"""
 
     def set_latency(self, val: float) -> None:
-        """position latency"""
+        """positioning latency in seconds (0 for 7k sonar / PDS)"""
 
-    def get_latitude_northing(self) -> float:
-        """latitude (rad) if geographic, else northing (m)"""
+    def get_latitude_or_northing(self) -> float: ...
 
-    def set_latitude_northing(self, val: float) -> None:
-        """latitude (rad) if geographic, else northing (m)"""
+    def set_latitude_or_northing(self, val: float) -> None: ...
 
-    def get_longitude_easting(self) -> float:
-        """longitude (rad) if geographic, else easting (m)"""
+    def get_longitude_or_easting(self) -> float: ...
 
-    def set_longitude_easting(self, val: float) -> None:
-        """longitude (rad) if geographic, else easting (m)"""
+    def set_longitude_or_easting(self, val: float) -> None: ...
 
     def get_height(self) -> float:
-        """height relative to datum"""
+        """height relative to datum in meters"""
 
     def set_height(self, val: float) -> None:
-        """height relative to datum"""
+        """height relative to datum in meters"""
 
-    def get_position_type(self) -> int:
-        """0 = geographic, 1 = grid coordinates"""
+    def get_position_type_flag(self) -> Position_o_position_type_flag:
+        """0 = geographical, 1 = grid coordinates"""
 
-    def set_position_type(self, val: int) -> None:
-        """0 = geographic, 1 = grid coordinates"""
+    def set_position_type_flag(self, val: Position_o_position_type_flag) -> None:
+        """0 = geographical, 1 = grid coordinates"""
 
     def get_utm_zone(self) -> int:
-        """UTM zone (if grid)"""
+        """UTM zone (if grid coordinates)"""
 
     def set_utm_zone(self, val: int) -> None:
-        """UTM zone (if grid)"""
+        """UTM zone (if grid coordinates)"""
 
-    def get_quality(self) -> int:
-        """0 = navigation, 1 = dead reckoning"""
+    def get_quality_flag(self) -> Position_o_quality_flag:
+        """0 = navigation data, 1 = dead-reckoning"""
 
-    def set_quality(self, val: int) -> None:
-        """0 = navigation, 1 = dead reckoning"""
+    def set_quality_flag(self, val: Position_o_quality_flag) -> None:
+        """0 = navigation data, 1 = dead-reckoning"""
 
-    def get_position_method(self) -> int:
-        """positioning method (GPS/DGPS/RTK/... 0-16)"""
+    def get_position_method(self) -> Position_o_position_method:
+        """positioning method (GPS/DGPS/RTK/inertial)"""
 
-    def set_position_method(self, val: int) -> None:
-        """positioning method (GPS/DGPS/RTK/... 0-16)"""
+    def set_position_method(self, val: Position_o_position_method) -> None:
+        """positioning method (GPS/DGPS/RTK/inertial)"""
+
+    def get_number_of_satellites(self) -> int:
+        """number of satellites (optional)"""
+
+    def set_number_of_satellites(self, val: int) -> None:
+        """number of satellites (optional)"""
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def get_latitude_in_degrees(self) -> float:
+        """
+        Get the latitude in degrees (only meaningful for geographical
+        coordinates).
+        Returns:
+            latitude_or_northing converted from radians to degrees.
+        """
+
+    def get_longitude_in_degrees(self) -> float:
+        """
+        Get the longitude in degrees (only meaningful for geographical
+        coordinates).
+        Returns:
+            longitude_or_easting converted from radians to degrees.
+        """
 
     def __eq__(self, other: Position) -> bool: ...
 
@@ -1283,22 +1633,32 @@ class RollPitchHeave(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_roll(self) -> float:
-        """vessel roll"""
+        """vessel roll in radians"""
 
     def set_roll(self, val: float) -> None:
-        """vessel roll"""
+        """vessel roll in radians"""
 
     def get_pitch(self) -> float:
-        """vessel pitch"""
+        """vessel pitch in radians"""
 
     def set_pitch(self, val: float) -> None:
-        """vessel pitch"""
+        """vessel pitch in radians"""
 
     def get_heave(self) -> float:
-        """vessel heave"""
+        """vessel heave in meters"""
 
     def set_heave(self, val: float) -> None:
-        """vessel heave"""
+        """vessel heave in meters"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
+
+    def get_roll_in_degrees(self) -> float:
+        """Get the vessel roll in degrees (converted from radians)."""
+
+    def get_pitch_in_degrees(self) -> float:
+        """Get the vessel pitch in degrees (converted from radians)."""
 
     def __eq__(self, other: RollPitchHeave) -> bool: ...
 
@@ -1344,10 +1704,17 @@ class Heading(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_heading(self) -> float:
-        """vessel heading"""
+        """vessel heading in radians"""
 
     def set_heading(self, val: float) -> None:
-        """vessel heading"""
+        """vessel heading in radians"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
+
+    def get_heading_in_degrees(self) -> float:
+        """Get the vessel heading in degrees (converted from radians)."""
 
     def __eq__(self, other: Heading) -> bool: ...
 
@@ -1387,64 +1754,176 @@ class Heading(S7KDatagram):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class Navigation_t_vertical_reference(enum.Enum):
+    """vertical reference (7k DFD 1015)"""
+
+    ellipsoid = 1
+    """ellipsoid"""
+
+    geoid = 2
+    """geoid"""
+
+    chart_datum = 3
+    """chart datum"""
+
+class Navigation_o_vertical_reference:
+    """
+    Helper class to convert between strings and enum values of type 't_vertical_reference'
+    """
+
+    @overload
+    def __init__(self, value: Navigation_t_vertical_reference = Navigation_t_vertical_reference.ellipsoid) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> Navigation_t_vertical_reference:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: Navigation_t_vertical_reference, /) -> None: ...
+
+    __default_value__: Final[Navigation_t_vertical_reference] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: Navigation_o_vertical_reference, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: Navigation_t_vertical_reference, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> Navigation_o_vertical_reference:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> Navigation_o_vertical_reference: ...
+
+    def __deepcopy__(self, arg: dict, /) -> Navigation_o_vertical_reference: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> Navigation_o_vertical_reference:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class Navigation(S7KDatagram):
     """7k record Navigation"""
 
     def __init__(self) -> None: ...
 
-    def get_vertical_reference(self) -> int:
+    def get_vertical_reference(self) -> Navigation_o_vertical_reference:
         """1 = ellipsoid, 2 = geoid, 3 = chart datum"""
 
-    def set_vertical_reference(self, val: int) -> None:
+    def set_vertical_reference(self, val: Navigation_o_vertical_reference) -> None:
         """1 = ellipsoid, 2 = geoid, 3 = chart datum"""
 
     def get_latitude(self) -> float:
-        """latitude (-pi/2 .. +pi/2)"""
+        """latitude in radians (-pi/2 .. +pi/2)"""
 
     def set_latitude(self, val: float) -> None:
-        """latitude (-pi/2 .. +pi/2)"""
+        """latitude in radians (-pi/2 .. +pi/2)"""
 
     def get_longitude(self) -> float:
-        """longitude (-pi .. +pi)"""
+        """longitude in radians (-pi .. +pi)"""
 
     def set_longitude(self, val: float) -> None:
-        """longitude (-pi .. +pi)"""
+        """longitude in radians (-pi .. +pi)"""
 
     def get_position_accuracy(self) -> float:
-        """horizontal position accuracy"""
+        """horizontal position accuracy in meters"""
 
     def set_position_accuracy(self, val: float) -> None:
-        """horizontal position accuracy"""
+        """horizontal position accuracy in meters"""
 
     def get_height(self) -> float:
-        """height of vessel reference point above vertical reference"""
+        """height of vessel reference point above vertical reference (meters)"""
 
     def set_height(self, val: float) -> None:
-        """height of vessel reference point above vertical reference"""
+        """height of vessel reference point above vertical reference (meters)"""
 
     def get_height_accuracy(self) -> float:
-        """height accuracy"""
+        """height accuracy in meters"""
 
     def set_height_accuracy(self, val: float) -> None:
-        """height accuracy"""
+        """height accuracy in meters"""
 
     def get_speed(self) -> float:
-        """speed over ground"""
+        """speed over ground in meters per second"""
 
     def set_speed(self, val: float) -> None:
-        """speed over ground"""
+        """speed over ground in meters per second"""
 
     def get_course(self) -> float:
-        """course over ground"""
+        """course over ground in radians"""
 
     def set_course(self, val: float) -> None:
-        """course over ground"""
+        """course over ground in radians"""
 
     def get_heading(self) -> float:
-        """heading"""
+        """heading in radians"""
 
     def set_heading(self, val: float) -> None:
-        """heading"""
+        """heading in radians"""
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def get_latitude_in_degrees(self) -> float:
+        """Get the latitude in degrees (converted from radians)."""
+
+    def get_longitude_in_degrees(self) -> float:
+        """Get the longitude in degrees (converted from radians)."""
+
+    def get_course_in_degrees(self) -> float:
+        """Get the course over ground in degrees (converted from radians)."""
+
+    def get_heading_in_degrees(self) -> float:
+        """Get the heading in degrees (converted from radians)."""
 
     def __eq__(self, other: Navigation) -> bool: ...
 
@@ -1484,6 +1963,479 @@ class Navigation(S7KDatagram):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class SonarSettings_t_tx_pulse_type(enum.Enum):
+    """transmit pulse type"""
+
+    cw = 0
+    """CW"""
+
+    chirp = 1
+    """linear chirp (FM)"""
+
+class SonarSettings_o_tx_pulse_type:
+    """
+    Helper class to convert between strings and enum values of type 't_tx_pulse_type'
+    """
+
+    @overload
+    def __init__(self, value: SonarSettings_t_tx_pulse_type = SonarSettings_t_tx_pulse_type.cw) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> SonarSettings_t_tx_pulse_type:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: SonarSettings_t_tx_pulse_type, /) -> None: ...
+
+    __default_value__: Final[SonarSettings_t_tx_pulse_type] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: SonarSettings_o_tx_pulse_type, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: SonarSettings_t_tx_pulse_type, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> SonarSettings_o_tx_pulse_type:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> SonarSettings_o_tx_pulse_type: ...
+
+    def __deepcopy__(self, arg: dict, /) -> SonarSettings_o_tx_pulse_type: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SonarSettings_o_tx_pulse_type:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class SonarSettings_t_tx_pulse_envelope(enum.Enum):
+    """transmit pulse envelope"""
+
+    tapered_rectangular = 0
+    """tapered rectangular"""
+
+    tukey = 1
+    """Tukey"""
+
+    hamming = 2
+    """Hamming"""
+
+    han = 3
+    """Han"""
+
+    rectangular = 4
+    """rectangular"""
+
+class SonarSettings_o_tx_pulse_envelope:
+    """
+    Helper class to convert between strings and enum values of type 't_tx_pulse_envelope'
+    """
+
+    @overload
+    def __init__(self, value: SonarSettings_t_tx_pulse_envelope = SonarSettings_t_tx_pulse_envelope.tapered_rectangular) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> SonarSettings_t_tx_pulse_envelope:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: SonarSettings_t_tx_pulse_envelope, /) -> None: ...
+
+    __default_value__: Final[SonarSettings_t_tx_pulse_envelope] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: SonarSettings_o_tx_pulse_envelope, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: SonarSettings_t_tx_pulse_envelope, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> SonarSettings_o_tx_pulse_envelope:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> SonarSettings_o_tx_pulse_envelope: ...
+
+    def __deepcopy__(self, arg: dict, /) -> SonarSettings_o_tx_pulse_envelope: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SonarSettings_o_tx_pulse_envelope:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class SonarSettings_t_tx_pulse_mode(enum.Enum):
+    """transmit pulse mode"""
+
+    single_ping = 1
+    """single ping"""
+
+    multi_ping_2 = 2
+    """multi-ping 2"""
+
+    multi_ping_3 = 3
+    """multi-ping 3"""
+
+    multi_ping_4 = 4
+    """multi-ping 4"""
+
+class SonarSettings_o_tx_pulse_mode:
+    """
+    Helper class to convert between strings and enum values of type 't_tx_pulse_mode'
+    """
+
+    @overload
+    def __init__(self, value: SonarSettings_t_tx_pulse_mode = SonarSettings_t_tx_pulse_mode.single_ping) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> SonarSettings_t_tx_pulse_mode:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: SonarSettings_t_tx_pulse_mode, /) -> None: ...
+
+    __default_value__: Final[SonarSettings_t_tx_pulse_mode] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: SonarSettings_o_tx_pulse_mode, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: SonarSettings_t_tx_pulse_mode, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> SonarSettings_o_tx_pulse_mode:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> SonarSettings_o_tx_pulse_mode: ...
+
+    def __deepcopy__(self, arg: dict, /) -> SonarSettings_o_tx_pulse_mode: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SonarSettings_o_tx_pulse_mode:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class SonarSettings_t_projector_weighting(enum.Enum):
+    """projector beam weighting window type"""
+
+    rectangular = 0
+    """rectangular"""
+
+    chebychev = 1
+    """Chebychev"""
+
+    gauss = 2
+    """Gauss"""
+
+class SonarSettings_o_projector_weighting:
+    """
+    Helper class to convert between strings and enum values of type 't_projector_weighting'
+    """
+
+    @overload
+    def __init__(self, value: SonarSettings_t_projector_weighting = SonarSettings_t_projector_weighting.rectangular) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> SonarSettings_t_projector_weighting:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: SonarSettings_t_projector_weighting, /) -> None: ...
+
+    __default_value__: Final[SonarSettings_t_projector_weighting] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: SonarSettings_o_projector_weighting, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: SonarSettings_t_projector_weighting, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> SonarSettings_o_projector_weighting:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> SonarSettings_o_projector_weighting: ...
+
+    def __deepcopy__(self, arg: dict, /) -> SonarSettings_o_projector_weighting: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SonarSettings_o_projector_weighting:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class SonarSettings_t_rx_weighting(enum.Enum):
+    """receive beam weighting window"""
+
+    chebychev = 0
+    """Chebychev"""
+
+    kaiser = 1
+    """Kaiser"""
+
+class SonarSettings_o_rx_weighting:
+    """
+    Helper class to convert between strings and enum values of type 't_rx_weighting'
+    """
+
+    @overload
+    def __init__(self, value: SonarSettings_t_rx_weighting = SonarSettings_t_rx_weighting.chebychev) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> SonarSettings_t_rx_weighting:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: SonarSettings_t_rx_weighting, /) -> None: ...
+
+    __default_value__: Final[SonarSettings_t_rx_weighting] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: SonarSettings_o_rx_weighting, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: SonarSettings_t_rx_weighting, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> SonarSettings_o_rx_weighting:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> SonarSettings_o_rx_weighting: ...
+
+    def __deepcopy__(self, arg: dict, /) -> SonarSettings_o_rx_weighting: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> SonarSettings_o_rx_weighting:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class SonarSettings(S7KDatagram):
     """7k record SonarSettings"""
 
@@ -1502,45 +2454,45 @@ class SonarSettings(S7KDatagram):
         """sequential ping number"""
 
     def get_multi_ping(self) -> int:
-        """0 = single ping, else multi-ping sequence number"""
+        """0 = single ping, else multi-ping seq"""
 
     def set_multi_ping(self, val: int) -> None:
-        """0 = single ping, else multi-ping sequence number"""
+        """0 = single ping, else multi-ping seq"""
 
     def get_frequency(self) -> float:
-        """transmit frequency"""
+        """transmit frequency in Hz"""
 
     def set_frequency(self, val: float) -> None:
-        """transmit frequency"""
+        """transmit frequency in Hz"""
 
     def get_sample_rate(self) -> float:
-        """sample rate"""
+        """sample rate in Hz"""
 
     def set_sample_rate(self, val: float) -> None:
-        """sample rate"""
+        """sample rate in Hz"""
 
     def get_receiver_bandwidth(self) -> float:
-        """receiver bandwidth"""
+        """receiver bandwidth in Hz"""
 
     def set_receiver_bandwidth(self, val: float) -> None:
-        """receiver bandwidth"""
+        """receiver bandwidth in Hz"""
 
     def get_tx_pulse_width(self) -> float:
-        """transmit pulse length"""
+        """transmit pulse length in seconds"""
 
     def set_tx_pulse_width(self, val: float) -> None:
-        """transmit pulse length"""
+        """transmit pulse length in seconds"""
 
-    def get_tx_pulse_type(self) -> int:
+    def get_tx_pulse_type(self) -> SonarSettings_o_tx_pulse_type:
         """0 = CW, 1 = chirp"""
 
-    def set_tx_pulse_type(self, val: int) -> None:
+    def set_tx_pulse_type(self, val: SonarSettings_o_tx_pulse_type) -> None:
         """0 = CW, 1 = chirp"""
 
-    def get_tx_pulse_envelope(self) -> int:
+    def get_tx_pulse_envelope(self) -> SonarSettings_o_tx_pulse_envelope:
         """envelope/window type (0-4)"""
 
-    def set_tx_pulse_envelope(self, val: int) -> None:
+    def set_tx_pulse_envelope(self, val: SonarSettings_o_tx_pulse_envelope) -> None:
         """envelope/window type (0-4)"""
 
     def get_tx_pulse_envelope_parameter(self) -> float:
@@ -1549,47 +2501,47 @@ class SonarSettings(S7KDatagram):
     def set_tx_pulse_envelope_parameter(self, val: float) -> None:
         """envelope parameter"""
 
-    def get_tx_pulse_mode(self) -> int:
+    def get_tx_pulse_mode(self) -> SonarSettings_o_tx_pulse_mode:
         """1-4 (single/multi-ping mode)"""
 
-    def set_tx_pulse_mode(self, val: int) -> None:
+    def set_tx_pulse_mode(self, val: SonarSettings_o_tx_pulse_mode) -> None:
         """1-4 (single/multi-ping mode)"""
 
     def get_max_ping_rate(self) -> float:
-        """maximum ping rate"""
+        """maximum ping rate in pings per second"""
 
     def set_max_ping_rate(self, val: float) -> None:
-        """maximum ping rate"""
+        """maximum ping rate in pings per second"""
 
     def get_ping_period(self) -> float:
-        """time since previous ping"""
+        """seconds since previous ping"""
 
     def set_ping_period(self, val: float) -> None:
-        """time since previous ping"""
+        """seconds since previous ping"""
 
     def get_range_selection(self) -> float:
-        """range selection"""
+        """range selection in meters"""
 
     def set_range_selection(self, val: float) -> None:
-        """range selection"""
+        """range selection in meters"""
 
     def get_power_selection(self) -> float:
-        """power selection (dB re 1 uPa)"""
+        """power selection in dB re 1 uPa"""
 
     def set_power_selection(self, val: float) -> None:
-        """power selection (dB re 1 uPa)"""
+        """power selection in dB re 1 uPa"""
 
     def get_gain_selection(self) -> float:
-        """gain selection"""
+        """gain selection in dB"""
 
     def set_gain_selection(self, val: float) -> None:
-        """gain selection"""
+        """gain selection in dB"""
 
     def get_control_flags(self) -> int:
-        """control flags bit field"""
+        """control flags bit field (7k DFD Tbl 42)"""
 
     def set_control_flags(self, val: int) -> None:
-        """control flags bit field"""
+        """control flags bit field (7k DFD Tbl 42)"""
 
     def get_projector_id(self) -> int:
         """transmit projector identifier"""
@@ -1598,39 +2550,39 @@ class SonarSettings(S7KDatagram):
         """transmit projector identifier"""
 
     def get_steering_vertical(self) -> float:
-        """transmit steering angle vertical"""
+        """transmit steering angle vertical (rad)"""
 
     def set_steering_vertical(self, val: float) -> None:
-        """transmit steering angle vertical"""
+        """transmit steering angle vertical (rad)"""
 
     def get_steering_horizontal(self) -> float:
-        """transmit steering angle horizontal"""
+        """transmit steering angle horizontal (rad)"""
 
     def set_steering_horizontal(self, val: float) -> None:
-        """transmit steering angle horizontal"""
+        """transmit steering angle horizontal (rad)"""
 
     def get_beamwidth_vertical(self) -> float:
-        """transmit -3dB beam width vertical"""
+        """transmit -3dB beam width vertical (rad)"""
 
     def set_beamwidth_vertical(self, val: float) -> None:
-        """transmit -3dB beam width vertical"""
+        """transmit -3dB beam width vertical (rad)"""
 
     def get_beamwidth_horizontal(self) -> float:
-        """transmit -3dB beam width horizontal"""
+        """transmit -3dB beam width horizontal (rad)"""
 
     def set_beamwidth_horizontal(self, val: float) -> None:
-        """transmit -3dB beam width horizontal"""
+        """transmit -3dB beam width horizontal (rad)"""
 
     def get_focal_point(self) -> float:
-        """transmit focal point"""
+        """transmit focal point in meters"""
 
     def set_focal_point(self, val: float) -> None:
-        """transmit focal point"""
+        """transmit focal point in meters"""
 
-    def get_projector_weighting(self) -> int:
+    def get_projector_weighting(self) -> SonarSettings_o_projector_weighting:
         """projector weighting window type (0-2)"""
 
-    def set_projector_weighting(self, val: int) -> None:
+    def set_projector_weighting(self, val: SonarSettings_o_projector_weighting) -> None:
         """projector weighting window type (0-2)"""
 
     def get_projector_weighting_parameter(self) -> float:
@@ -1640,10 +2592,10 @@ class SonarSettings(S7KDatagram):
         """projector weighting parameter"""
 
     def get_transmit_flags(self) -> int:
-        """transmit flags bit field"""
+        """transmit flags bit field (7k DFD Tbl 42)"""
 
     def set_transmit_flags(self, val: int) -> None:
-        """transmit flags bit field"""
+        """transmit flags bit field (7k DFD Tbl 42)"""
 
     def get_hydrophone_id(self) -> int:
         """receiver hydrophone identifier"""
@@ -1651,10 +2603,10 @@ class SonarSettings(S7KDatagram):
     def set_hydrophone_id(self, val: int) -> None:
         """receiver hydrophone identifier"""
 
-    def get_rx_weighting(self) -> int:
+    def get_rx_weighting(self) -> SonarSettings_o_rx_weighting:
         """receiver weighting window type (0-1)"""
 
-    def set_rx_weighting(self, val: int) -> None:
+    def set_rx_weighting(self, val: SonarSettings_o_rx_weighting) -> None:
         """receiver weighting window type (0-1)"""
 
     def get_rx_weighting_parameter(self) -> float:
@@ -1664,40 +2616,40 @@ class SonarSettings(S7KDatagram):
         """receiver weighting parameter"""
 
     def get_rx_flags(self) -> int:
-        """receiver flags bit field"""
+        """receiver flags bit field (7k DFD Tbl 42)"""
 
     def set_rx_flags(self, val: int) -> None:
-        """receiver flags bit field"""
+        """receiver flags bit field (7k DFD Tbl 42)"""
 
     def get_rx_width(self) -> float:
-        """receiver beam width"""
+        """receiver beam width in radians"""
 
     def set_rx_width(self, val: float) -> None:
-        """receiver beam width"""
+        """receiver beam width in radians"""
 
     def get_range_minimum(self) -> float:
-        """bottom detection minimum range"""
+        """bottom detection minimum range (m)"""
 
     def set_range_minimum(self, val: float) -> None:
-        """bottom detection minimum range"""
+        """bottom detection minimum range (m)"""
 
     def get_range_maximum(self) -> float:
-        """bottom detection maximum range"""
+        """bottom detection maximum range (m)"""
 
     def set_range_maximum(self, val: float) -> None:
-        """bottom detection maximum range"""
+        """bottom detection maximum range (m)"""
 
     def get_depth_minimum(self) -> float:
-        """bottom detection minimum depth"""
+        """bottom detection minimum depth (m)"""
 
     def set_depth_minimum(self, val: float) -> None:
-        """bottom detection minimum depth"""
+        """bottom detection minimum depth (m)"""
 
     def get_depth_maximum(self) -> float:
-        """bottom detection maximum depth"""
+        """bottom detection maximum depth (m)"""
 
     def set_depth_maximum(self, val: float) -> None:
-        """bottom detection maximum depth"""
+        """bottom detection maximum depth (m)"""
 
     def get_absorption(self) -> float:
         """absorption"""
@@ -1716,6 +2668,36 @@ class SonarSettings(S7KDatagram):
 
     def set_spreading(self, val: float) -> None:
         """spreading loss"""
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def get_steering_vertical_in_degrees(self) -> float:
+        """
+        Get the transmit steering angle vertical in degrees (converted from
+        radians).
+        """
+
+    def get_steering_horizontal_in_degrees(self) -> float:
+        """
+        Get the transmit steering angle horizontal in degrees (converted from
+        radians).
+        """
+
+    def get_beamwidth_vertical_in_degrees(self) -> float:
+        """
+        Get the transmit -3dB beam width vertical in degrees (converted from
+        radians).
+        """
+
+    def get_beamwidth_horizontal_in_degrees(self) -> float:
+        """
+        Get the transmit -3dB beam width horizontal in degrees (converted from
+        radians).
+        """
 
     def __eq__(self, other: SonarSettings) -> bool: ...
 
@@ -1755,6 +2737,200 @@ class SonarSettings(S7KDatagram):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class MatchFilter_t_operation(enum.Enum):
+    """match filter operation (7k DFD Table 43)"""
+
+    off = 0
+    """off"""
+
+    on = 1
+    """on"""
+
+class MatchFilter_o_operation:
+    """
+    Helper class to convert between strings and enum values of type 't_operation'
+    """
+
+    @overload
+    def __init__(self, value: MatchFilter_t_operation = MatchFilter_t_operation.off) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> MatchFilter_t_operation:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: MatchFilter_t_operation, /) -> None: ...
+
+    __default_value__: Final[MatchFilter_t_operation] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: MatchFilter_o_operation, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: MatchFilter_t_operation, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> MatchFilter_o_operation:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> MatchFilter_o_operation: ...
+
+    def __deepcopy__(self, arg: dict, /) -> MatchFilter_o_operation: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MatchFilter_o_operation:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class MatchFilter_t_window_type(enum.Enum):
+    """match filter window type (7k DFD Table 43)"""
+
+    rectangular = 0
+    """rectangular"""
+
+    kaiser = 1
+    """Kaiser"""
+
+    hamming = 2
+    """Hamming"""
+
+    blackmann = 3
+    """Blackmann"""
+
+    triangular = 4
+    """triangular"""
+
+    taylor = 5
+    """X (Taylor)"""
+
+class MatchFilter_o_window_type:
+    """
+    Helper class to convert between strings and enum values of type 't_window_type'
+    """
+
+    @overload
+    def __init__(self, value: MatchFilter_t_window_type = MatchFilter_t_window_type.rectangular) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> MatchFilter_t_window_type:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: MatchFilter_t_window_type, /) -> None: ...
+
+    __default_value__: Final[MatchFilter_t_window_type] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __str__(self) -> str: ...
+
+    @overload
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __eq__(self, arg: MatchFilter_o_window_type, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: MatchFilter_t_window_type, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> MatchFilter_o_window_type:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> MatchFilter_o_window_type: ...
+
+    def __deepcopy__(self, arg: dict, /) -> MatchFilter_o_window_type: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MatchFilter_o_window_type:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    @overload
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    @overload
+    def __repr__(self) -> None: ...
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class MatchFilter(S7KDatagram):
     """7k record MatchFilter"""
 
@@ -1772,29 +2948,29 @@ class MatchFilter(S7KDatagram):
     def set_ping_number(self, val: int) -> None:
         """sequential ping number"""
 
-    def get_operation(self) -> int:
+    def get_operation(self) -> MatchFilter_o_operation:
         """0 = off, 1 = on"""
 
-    def set_operation(self, val: int) -> None:
+    def set_operation(self, val: MatchFilter_o_operation) -> None:
         """0 = off, 1 = on"""
 
     def get_start_frequency(self) -> float:
-        """start frequency"""
+        """start frequency in Hz"""
 
     def set_start_frequency(self, val: float) -> None:
-        """start frequency"""
+        """start frequency in Hz"""
 
     def get_end_frequency(self) -> float:
-        """end frequency"""
+        """stop frequency in Hz"""
 
     def set_end_frequency(self, val: float) -> None:
-        """end frequency"""
+        """stop frequency in Hz"""
 
-    def get_window_type(self) -> int:
-        """window type (0-5)"""
+    def get_window_type(self) -> MatchFilter_o_window_type:
+        """match filter window type (0-5)"""
 
-    def set_window_type(self, val: int) -> None:
-        """window type (0-5)"""
+    def set_window_type(self, val: MatchFilter_o_window_type) -> None:
+        """match filter window type (0-5)"""
 
     def get_shading(self) -> float:
         """shading value"""
@@ -1803,10 +2979,16 @@ class MatchFilter(S7KDatagram):
         """shading value"""
 
     def get_effective_pulse_width(self) -> float:
-        """post-compression effective pulse width"""
+        """effective pulse width after FM compression (s)"""
 
     def set_effective_pulse_width(self, val: float) -> None:
-        """post-compression effective pulse width"""
+        """effective pulse width after FM compression (s)"""
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
 
     def __eq__(self, other: MatchFilter) -> bool: ...
 
@@ -1852,10 +3034,14 @@ class SoundVelocity(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_sound_velocity(self) -> float:
-        """water sound velocity"""
+        """water sound velocity in meters per second"""
 
     def set_sound_velocity(self, val: float) -> None:
-        """water sound velocity"""
+        """water sound velocity in meters per second"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
 
     def __eq__(self, other: SoundVelocity) -> bool: ...
 
@@ -1901,10 +3087,14 @@ class AbsorptionLoss(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_absorption_loss(self) -> float:
-        """absorption loss"""
+        """absorption loss in dB/km"""
 
     def set_absorption_loss(self, val: float) -> None:
-        """absorption loss"""
+        """absorption loss in dB/km"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
 
     def __eq__(self, other: AbsorptionLoss) -> bool: ...
 
@@ -1950,10 +3140,14 @@ class SpreadingLoss(S7KDatagram):
     def __init__(self) -> None: ...
 
     def get_spreading_loss(self) -> float:
-        """spreading loss (0-60)"""
+        """spreading loss in dB (0-60)"""
 
     def set_spreading_loss(self, val: float) -> None:
-        """spreading loss (0-60)"""
+        """spreading loss in dB (0-60)"""
+
+    def get_checksum(self) -> int: ...
+
+    def set_checksum(self, val: int) -> None: ...
 
     def __eq__(self, other: SpreadingLoss) -> bool: ...
 
@@ -2042,10 +3236,10 @@ class RawDetection(S7KDatagram):
         """detection algorithm (0-7: G1/G2/G3/IF1/PS1/HS1/HS2)"""
 
     def get_flags(self) -> int:
-        """flags bit field (uncertainty method, multi-detect, ...)"""
+        """flags bit field (uncertainty method, multi-detect)"""
 
     def set_flags(self, val: int) -> None:
-        """flags bit field (uncertainty method, multi-detect, ...)"""
+        """flags bit field (uncertainty method, multi-detect)"""
 
     def get_sampling_rate(self) -> float:
         """sample rate (Hz)"""
@@ -2071,6 +3265,12 @@ class RawDetection(S7KDatagram):
 
     @beams.setter
     def beams(self, arg: RawDetectionBeamContainer, /) -> None: ...
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
 
     def __eq__(self, other: RawDetection) -> bool: ...
 
@@ -2186,6 +3386,12 @@ class SnippetData(S7KDatagram):
 
     @amplitudes.setter
     def amplitudes(self, arg: SnippetDataAmplitudes, /) -> None: ...
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
 
     def __eq__(self, other: SnippetData) -> bool: ...
 
@@ -2312,6 +3518,12 @@ class CompressedWaterColumn(S7KDatagram):
     @beams.setter
     def beams(self, arg: CompressedWaterColumnBeamContainer, /) -> None: ...
 
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
     def __eq__(self, other: CompressedWaterColumn) -> bool: ...
 
     def copy(self) -> CompressedWaterColumn:
@@ -2382,6 +3594,12 @@ class BeamGeometry(S7KDatagram):
 
     def get_tx_delay(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
     def __eq__(self, other: BeamGeometry) -> bool: ...
 
     def copy(self) -> BeamGeometry:
@@ -2437,6 +3655,12 @@ class Attitude(S7KDatagram):
 
     @samples.setter
     def samples(self, arg: AttitudeSampleContainer, /) -> None: ...
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
 
     def __eq__(self, other: Attitude) -> bool: ...
 
@@ -2508,6 +3732,12 @@ class FileHeader(S7KDatagram):
 
     @devices.setter
     def devices(self, arg: FileHeaderDeviceInfoContainer, /) -> None: ...
+
+    def get_checksum(self) -> int:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
+
+    def set_checksum(self, val: int) -> None:
+        """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""
 
     def __eq__(self, other: FileHeader) -> bool: ...
 

@@ -45,6 +45,31 @@ class <Rec> : public <Fmt>Datagram {
 - **Generate the repetitive fixed-RTH classes** from a compact field spec (see the s7k throwaway
   generator `/tmp/gen_s7k_records.py`): emits hpp+cpp+binding consistently for many records at once.
 
+## Fields: naming, processed values, flags, checksum (see tmtgp-cpp-nanobind-style)
+- **`_` prefix is ping-wide**: every `Content`/RTH struct field is `_snake_case`
+  (`_content._ping_number`); the public `get_x`/`set_x` keep the clean name. mkdoc strips the `_`
+  (`DOC(...,Content,ping_number)` still resolves). Always value-init in the ctor (`: _content{}`) so an
+  unset packed float never round-trips a NaN bit-pattern — a defaulted `operator==` makes `NaN != NaN`
+  and the binary round-trip test fails **intermittently**.
+- **Coded fields** (spec lists named values) → store an `OptionFrozen` `o_x` **in the packed struct**,
+  with the enum's underlying type matching the on-disk width (`enum class t_x : uint32_t` for a `u32`
+  field, `: uint8_t` for a `u8`). Print `register_string("x", _content._x.name(), _content._x.alt_name())`;
+  `_names` (snake) and `_alt_names` (Capitalised/spec text) must be byte-distinct. **Bit-field** flags
+  stay a raw `u32` (+ `bool get_<flag>()` helpers, print `fmt::format("0b{:032b}", _content._flags)`).
+  Bind enums with `nb::enum_<t_x>` + `make_option_class<o_x>` (`enumhelper.hpp`).
+- **Processed getters** live in a `// ----- processed data access -----` section: `get_x_in_db()`,
+  `get_x_in_degrees()` (`std::numbers::pi`, `<numbers>`), timestamps — each with its own `/** */` doc,
+  printed under `printer.register_section("processed")`.
+- **Trailing checksum**: many formats end every record with an integrity word — store it so
+  `len(to_binary()) == size`: as the **last `Content` field** for a fixed record, or as a member
+  read/written **after the arrays** for a variable-length one (in a lazy/skip reader, read it after the
+  seek/`__read_beams__` in both branches; add `+4` to any optional-array size test and to the test's
+  `set_size`). Put **debug-only** `static` compute/read/compare helpers on the base datagram; never
+  (re)compute during normal read/write (round-trip the stored value). **Verify** `len(to_binary()) ==
+  get_size()` against real files as an offset histogram per record type to surface missing/extra fields
+  (a constant per-type offset that equals a spec-optional field is acceptable — don't special-case it).
+
+
 ## Fast per-beam / per-sample records: substruct + container (PREFERRED over parallel arrays)
 For records with per-beam or per-sample data, do **NOT** resort the on-disk records into several
 parallel `xt::xtensor` members with an element-by-element loop (slow: it reads/copies field by
