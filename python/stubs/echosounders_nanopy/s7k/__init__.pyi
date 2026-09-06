@@ -7,7 +7,8 @@ from typing import Final, overload
 from themachinethatgoesping.echosounders_nanopy.s7k import (
     datagrams as datagrams,
     filedatacontainers as filedatacontainers,
-    filedatainterfaces as filedatainterfaces
+    filedatainterfaces as filedatainterfaces,
+    filedatatypes as filedatatypes
 )
 import themachinethatgoesping.tools_nanopy.progressbars
 
@@ -360,8 +361,19 @@ class S7KFileHandler_stream:
     """
     File handler for Teledyne RESON .s7k (7k) data files.
 
-    Indexes all datagrams (Data Record Frames) in the given file(s) and
-    provides access to the raw datagrams via the datagram_interface().
+    Indexes all datagrams (Data Record Frames) in the given file(s), sorts
+    them into the specialized file-data interfaces (configuration,
+    navigation, environment, ping, other) and provides access to the raw
+    datagrams via the datagram_interface().
+
+
+
+    $.. note::
+
+    The specialized interfaces are structurally present and the datagrams
+    are already sorted into them, but their read_* processing functions
+    are not implemented yet. Initializing them (and therefore get_pings())
+    is deferred to a later step.
     """
 
     @overload
@@ -387,6 +399,28 @@ class S7KFileHandler_stream:
     @property
     def datagram_interface(self) -> filedatainterfaces.S7KDatagramInterface_stream: ...
 
+    @property
+    def datagramdata_interface(self) -> filedatainterfaces.S7KDatagramDataInterface_stream: ...
+
+    @property
+    def configuration_interface(self) -> filedatainterfaces.S7KConfigurationDataInterface_stream: ...
+
+    @property
+    def navigation_interface(self) -> filedatainterfaces.S7KNavigationDataInterface_stream: ...
+
+    @property
+    def environment_interface(self) -> filedatainterfaces.S7KEnvironmentDataInterface_stream: ...
+
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.S7KOtherFileDataInterface_stream: ...
+
+    @property
+    def ping_interface(self) -> filedatainterfaces.S7KPingDataInterface_stream: ...
+
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.S7KPingContainer_stream: ...
+
+    def get_channel_ids(self) -> list[str]: ...
+
     def __str__(self) -> str:
         """Return object information as string"""
 
@@ -403,8 +437,19 @@ class S7KFileHandler:
     """
     File handler for Teledyne RESON .s7k (7k) data files.
 
-    Indexes all datagrams (Data Record Frames) in the given file(s) and
-    provides access to the raw datagrams via the datagram_interface().
+    Indexes all datagrams (Data Record Frames) in the given file(s), sorts
+    them into the specialized file-data interfaces (configuration,
+    navigation, environment, ping, other) and provides access to the raw
+    datagrams via the datagram_interface().
+
+
+
+    $.. note::
+
+    The specialized interfaces are structurally present and the datagrams
+    are already sorted into them, but their read_* processing functions
+    are not implemented yet. Initializing them (and therefore get_pings())
+    is deferred to a later step.
     """
 
     @overload
@@ -429,6 +474,28 @@ class S7KFileHandler:
 
     @property
     def datagram_interface(self) -> filedatainterfaces.S7KDatagramInterface: ...
+
+    @property
+    def datagramdata_interface(self) -> filedatainterfaces.S7KDatagramDataInterface: ...
+
+    @property
+    def configuration_interface(self) -> filedatainterfaces.S7KConfigurationDataInterface: ...
+
+    @property
+    def navigation_interface(self) -> filedatainterfaces.S7KNavigationDataInterface: ...
+
+    @property
+    def environment_interface(self) -> filedatainterfaces.S7KEnvironmentDataInterface: ...
+
+    @property
+    def otherfiledata_interface(self) -> filedatainterfaces.S7KOtherFileDataInterface: ...
+
+    @property
+    def ping_interface(self) -> filedatainterfaces.S7KPingDataInterface: ...
+
+    def get_pings(self, sorted_by_time: bool = True) -> filedatacontainers.S7KPingContainer: ...
+
+    def get_channel_ids(self) -> list[str]: ...
 
     def __str__(self) -> str:
         """Return object information as string"""

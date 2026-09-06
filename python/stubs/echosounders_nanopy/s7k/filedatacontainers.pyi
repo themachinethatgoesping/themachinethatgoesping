@@ -5,6 +5,8 @@ from typing import overload
 
 import themachinethatgoesping.echosounders_nanopy.s7k
 import themachinethatgoesping.echosounders_nanopy.s7k.datagrams
+import themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes
+import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.tools_nanopy.pyhelper
 
 
@@ -2559,3 +2561,145 @@ class S7KDatagramContainer_Variant_SkippedData:
     def __getitem__(self, slice: themachinethatgoesping.tools_nanopy.pyhelper.PyIndexerSlice) -> S7KDatagramContainer_Variant_SkippedData: ...
 
     def __reversed__(self) -> S7KDatagramContainer_Variant_SkippedData: ...
+
+class S7KPingContainer_stream:
+    @overload
+    def __init__(self) -> None: ...
+
+    @overload
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing_stream], /) -> None:
+        """Construct a new empty PingContainer object"""
+
+    def copy(self) -> S7KPingContainer_stream:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> S7KPingContainer_stream: ...
+
+    def __deepcopy__(self, arg: dict, /) -> S7KPingContainer_stream: ...
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+    def max_number_of_samples(self) -> int: ...
+
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[S7KPingContainer_stream]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Args:
+            max_time_diff_seconds:: maximum time difference between two
+                                  subsequent datagrams in seconds
+
+        Returns:
+            std::vector_PingContainer<type_Ping>
+        """
+
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation_nanopy.SensorConfiguration, S7KPingContainer_stream]: ...
+
+    def get_sorted_by_time(self) -> S7KPingContainer_stream: ...
+
+    def count_pings_per_channel_id(self) -> dict[str, int]: ...
+
+    def find_channel_ids(self) -> list[str]: ...
+
+    @overload
+    def __call__(self, channel_id: str) -> S7KPingContainer_stream: ...
+
+    @overload
+    def __call__(self, channel_ids: Sequence[str]) -> S7KPingContainer_stream: ...
+
+    def size(self) -> int: ...
+
+    def __len__(self) -> int: ...
+
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing_stream]: ...
+
+    @overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing_stream: ...
+
+    @overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_nanopy.pyhelper.PyIndexerSlice) -> S7KPingContainer_stream: ...
+
+    def __reversed__(self) -> S7KPingContainer_stream: ...
+
+class S7KPingContainer:
+    @overload
+    def __init__(self) -> None: ...
+
+    @overload
+    def __init__(self, arg: Sequence[themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing], /) -> None:
+        """Construct a new empty PingContainer object"""
+
+    def copy(self) -> S7KPingContainer:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> S7KPingContainer: ...
+
+    def __deepcopy__(self, arg: dict, /) -> S7KPingContainer: ...
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+    def max_number_of_samples(self) -> int: ...
+
+    def split_by_time_diff(self, max_time_diff_seconds: float) -> list[S7KPingContainer]:
+        """
+        Split the data if the time difference between two subsequent datagrams
+        is larger than arg Note: for this function to make sense the data
+        should be sorted_in_time
+
+        Args:
+            max_time_diff_seconds:: maximum time difference between two
+                                  subsequent datagrams in seconds
+
+        Returns:
+            std::vector_PingContainer<type_Ping>
+        """
+
+    def split_by_sensor_configuration(self) -> dict[themachinethatgoesping.navigation_nanopy.SensorConfiguration, S7KPingContainer]: ...
+
+    def get_sorted_by_time(self) -> S7KPingContainer: ...
+
+    def count_pings_per_channel_id(self) -> dict[str, int]: ...
+
+    def find_channel_ids(self) -> list[str]: ...
+
+    @overload
+    def __call__(self, channel_id: str) -> S7KPingContainer: ...
+
+    @overload
+    def __call__(self, channel_ids: Sequence[str]) -> S7KPingContainer: ...
+
+    def size(self) -> int: ...
+
+    def __len__(self) -> int: ...
+
+    def get_pings(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing]: ...
+
+    @overload
+    def __getitem__(self, index: int) -> themachinethatgoesping.echosounders_nanopy.s7k.filedatatypes.S7KPing: ...
+
+    @overload
+    def __getitem__(self, slice: themachinethatgoesping.tools_nanopy.pyhelper.PyIndexerSlice) -> S7KPingContainer: ...
+
+    def __reversed__(self) -> S7KPingContainer: ...
