@@ -74,6 +74,15 @@ class S7KDatagram:
     def get_flags(self) -> int:
         """offset 48: bit field (bit 0: checksum valid, bit 15: recorded data)"""
 
+    def get_flag_checksum_is_valued(self) -> bool:
+        """Test if the flags field indicates a valid checksum (bit 0)."""
+
+    def get_flag_data_live_or_recorded(self) -> bool:
+        """Test if the flags field indicates live or recorded data (bit 15)."""
+
+    def drf_sync_pattern_is_valid(self) -> bool:
+        """Test if the DRF sync pattern is valid."""
+
     def get_datagram_identifier(self) -> themachinethatgoesping.echosounders_nanopy.s7k.o_S7KDatagramIdentifier: ...
 
     def compute_size_content(self) -> int:
@@ -81,12 +90,6 @@ class S7KDatagram:
         Number of bytes of the record following the DRF header (RTH + data +
         checksum).
         """
-
-    def is_valid(self) -> bool:
-        """Test if the DRF sync pattern is valid."""
-
-    def get_checksum_valid(self) -> bool:
-        """Test if the flags field indicates a valid checksum (bit 0)."""
 
     def get_timestamp(self) -> float:
         """
@@ -108,6 +111,66 @@ class S7KDatagram:
 
         Returns:
             Formatted date string.
+        """
+
+    @staticmethod
+    def compute_checksum_static(arg: bytes, /) -> int:
+        """
+        Compute the 7k record checksum of a serialized datagram (debugging
+        aid).
+
+        Pass the full serialized record (e.g. the result of to_binary()). The
+        last four bytes are treated as the stored checksum and are excluded
+        from the sum.
+
+        Args:
+            buffer: Serialized record bytes (DRF + RTH + data + checksum).
+
+        Returns:
+            Computed 32-bit checksum (sum of all bytes except the trailing
+            four).
+        """
+
+    def compute_checksum(self) -> int:
+        """
+        Compute the 7k record checksum of a serialized datagram (debugging
+        aid).
+
+        Pass the full serialized record (e.g. the result of to_binary()). The
+        last four bytes are treated as the stored checksum and are excluded
+        from the sum.
+
+        Args:
+            buffer: Serialized record bytes (DRF + RTH + data + checksum).
+
+        Returns:
+            Computed 32-bit checksum (sum of all bytes except the trailing
+            four).
+        """
+
+    @staticmethod
+    def checksum_is_correct_static(arg: bytes, /) -> bool:
+        """
+        Check whether the stored checksum of a serialized record matches its
+        computed checksum (debugging aid).
+
+        Args:
+            buffer: Serialized record bytes (DRF + RTH + data + checksum).
+
+        Returns:
+            true if compute_checksum(buffer) == read_checksum(buffer).
+        """
+
+    def test_checksum_is_correct(self) -> bool:
+        """
+        Check whether the stored checksum of a serialized record matches its
+        computed checksum (debugging aid).
+
+        Args:
+            buffer: Serialized record bytes (DRF + RTH + data + checksum).
+
+        Returns:
+            true if compute_checksum(buffer) == read_checksum(buffer).
         """
 
     def __eq__(self, other: S7KDatagram) -> bool: ...
@@ -601,6 +664,12 @@ class RawDetectionBeamContainer:
 
     def get_max_limit_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
+    def get_rx_angle_in_degrees_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        receive steering angle of all beams in degrees (converted from
+        radians)
+        """
+
     def get_number_of_beams(self) -> int: ...
 
     def __eq__(self, other: RawDetectionBeamContainer) -> bool: ...
@@ -743,10 +812,10 @@ class AttitudeSampleContainer:
     def __init__(self) -> None: ...
 
     @property
-    def samples(self) -> list[AttitudeSample]: ...
+    def attitudes(self) -> list[AttitudeSample]: ...
 
-    @samples.setter
-    def samples(self, arg: Sequence[AttitudeSample], /) -> None: ...
+    @attitudes.setter
+    def attitudes(self, arg: Sequence[AttitudeSample], /) -> None: ...
 
     def get_delta_time_tensor(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
 
@@ -758,7 +827,15 @@ class AttitudeSampleContainer:
 
     def get_heading_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_number_of_samples(self) -> int: ...
+    def get_number_of_attitudes(self) -> int: ...
+
+    def get_delta_time_in_seconds_tensor(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]: ...
+
+    def get_heading_in_degrees_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_roll_in_degrees_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def get_pitch_in_degrees_tensor(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def __eq__(self, other: AttitudeSampleContainer) -> bool: ...
 
@@ -2157,6 +2234,9 @@ class SonarSettings_o_tx_pulse_envelope:
 class SonarSettings_t_tx_pulse_mode(enum.Enum):
     """transmit pulse mode"""
 
+    undefined = 0
+    """undefined"""
+
     single_ping = 1
     """single ping"""
 
@@ -2175,7 +2255,7 @@ class SonarSettings_o_tx_pulse_mode:
     """
 
     @overload
-    def __init__(self, value: SonarSettings_t_tx_pulse_mode = SonarSettings_t_tx_pulse_mode.single_ping) -> None:
+    def __init__(self, value: SonarSettings_t_tx_pulse_mode = SonarSettings_t_tx_pulse_mode.undefined) -> None:
         """Construct from enum value"""
 
     @overload
@@ -2698,6 +2778,9 @@ class SonarSettings(S7KDatagram):
         Get the transmit -3dB beam width horizontal in degrees (converted from
         radians).
         """
+
+    def get_rx_width_in_degrees(self) -> float:
+        """Get the receiver beam width in degrees (converted from radians)."""
 
     def __eq__(self, other: SonarSettings) -> bool: ...
 
@@ -3259,6 +3342,12 @@ class RawDetection(S7KDatagram):
     def set_applied_roll(self, val: float) -> None:
         """roll applied to the data (rad)"""
 
+    def get_tx_angle_in_degrees(self) -> float:
+        """Get the transmit steering angle in degrees (converted from radians)."""
+
+    def get_applied_roll_in_degrees(self) -> float:
+        """Get the roll applied to the data in degrees (converted from radians)."""
+
     @property
     def beams(self) -> RawDetectionBeamContainer:
         """per-beam raw detections"""
@@ -3590,6 +3679,30 @@ class BeamGeometry(S7KDatagram):
 
     def get_beamwidth_horizontal(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
+    def get_beam_vertical_angle_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Get the along-track (vertical) beam angles in degrees (converted from
+        radians).
+        """
+
+    def get_beam_horizontal_angle_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Get the across-track (horizontal) beam angles in degrees (converted
+        from radians).
+        """
+
+    def get_beamwidth_vertical_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Get the along-track (vertical) -3dB beam widths in degrees (converted
+        from radians).
+        """
+
+    def get_beamwidth_horizontal_in_degrees(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Get the across-track (horizontal) -3dB beam widths in degrees (from
+        radians).
+        """
+
     def get_has_tx_delay(self) -> bool: ...
 
     def get_tx_delay(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
@@ -3640,21 +3753,20 @@ class BeamGeometry(S7KDatagram):
 
 class Attitude(S7KDatagram):
     """
-    7k record Attitude: a set of attitude samples (roll, pitch, heave,
-    heading) with a time offset relative to the record timestamp. Used by
-    modern systems (e.g. R2Sonic) instead of separate 1012/1013 records.
+    7k record Attitude: This record will be output at the input motion
+    sensor rate.
     """
 
     def __init__(self) -> None: ...
 
-    def get_number_of_samples(self) -> int: ...
+    def get_number_of_attitudes(self) -> int: ...
 
     @property
-    def samples(self) -> AttitudeSampleContainer:
-        """attitude samples"""
+    def attitudes(self) -> AttitudeSampleContainer:
+        """attitude attitudes"""
 
-    @samples.setter
-    def samples(self, arg: AttitudeSampleContainer, /) -> None: ...
+    @attitudes.setter
+    def attitudes(self, arg: AttitudeSampleContainer, /) -> None: ...
 
     def get_checksum(self) -> int:
         """record checksum (last 4 bytes; see S7KDatagram, debugging only)"""

@@ -1,13 +1,14 @@
 ---
-name: tmtgp-echosounders-format-step1
-description: 'Concrete recipe for the FIRST implementation step of a new echosounder file format in themachinethatgoesping/echosounders: read/parse the datagram (record) header, index all datagrams, display them via print(file_handler), and iterate raw datagrams from Python. Produces a working vertical slice (C++ core + catch2 tests + nanobind bindings) before any per-record parsing. Worked example: the s7k format (src/.../echosounders/s7k). USE this to bootstrap a new format; then add per-record datagram classes. See also tmtgp-echosounders-add-format, tmtgp-cpp-nanobind-style, tmtgp-build-and-test.'
+name: tmtgp-echosounders-datagram-indexing
+description: 'Concrete recipe for the FIRST implementation step (bootstrap) of a new echosounder file format in themachinethatgoesping/echosounders: read/parse the datagram (record) header, index all datagrams, display them via print(file_handler), and iterate raw datagrams from Python. Produces a working vertical slice (C++ core + catch2 tests + nanobind bindings) before any per-record parsing. Worked example: the s7k format (src/.../echosounders/s7k). USE this to bootstrap a new format; then add per-record datagram classes with tmtgp-echosounders-record-parsers. See also tmtgp-echosounders-add-format, tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style, tmtgp-build-and-test.'
 ---
 
-# Step 1: datagram headers + display + raw iteration
+# Datagram header + indexing + display + raw iteration (format bootstrap, step 1 of 2)
 
 Goal: `fh = theping.echosounders.<fmt>.<Fmt>FileHandler(files, index); print(fh)` shows every
 datagram type + count, and `fh.datagram_interface.datagrams_raw()` iterates raw datagrams.
-Reference implementation: **s7k** (mirror gsf, the minimal complete format).
+Reference implementation: **s7k** (mirror gsf, the minimal complete format). Next, add per-record
+parsers with **tmtgp-echosounders-record-parsers**.
 
 ## 0. Research the header first
 Get the **datagram/record header** byte layout (offsets, types, endianness), the **record-type id**

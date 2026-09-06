@@ -1,9 +1,9 @@
 ---
-name: tmtgp-echosounders-format-step2
-description: 'Recipe for the SECOND implementation step of an echosounder file format in themachinethatgoesping/echosounders: implement the individual per-record (datagram) classes that parse each record type into typed fields, with nanobind bindings, per-type containers and typed datagram_interface.datagrams(type) access (kmall parity). Follows step1 (header + indexing). Worked example: the s7k records (src/.../echosounders/s7k/datagrams). Covers fixed-header records (pragma-pack block read) and, for fast reading, per-beam/per-sample records via packed substruct + container classes (bulk read, arrays converted on access) and variant sample containers (simradraw RAW3 parity), with skip=store-file-position+lazy re-read. USE when adding record parsers to a bootstrapped format. See tmtgp-echosounders-format-step1, tmtgp-cpp-nanobind-style, tmtgp-build-and-test.'
+name: tmtgp-echosounders-record-parsers
+description: 'Recipe for the SECOND implementation step of an echosounder file format in themachinethatgoesping/echosounders: implement the individual per-record (datagram) classes that parse each record type into typed fields, with nanobind bindings, per-type containers and typed datagram_interface.datagrams(type) access (kmall parity). Follows tmtgp-echosounders-datagram-indexing (header + indexing). Worked example: the s7k records (src/.../echosounders/s7k/datagrams). Covers fixed-header records (pragma-pack block read) and, for fast reading, per-beam/per-sample records via packed substruct + container classes (bulk read, arrays converted on access) and variant sample containers (simradraw RAW3 parity), with skip=store-file-position+lazy re-read. USE when adding record parsers to a bootstrapped format. See tmtgp-echosounders-datagram-indexing, tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style, tmtgp-build-and-test.'
 ---
 
-# Step 2: per-record datagram classes
+# Per-record datagram classes (step 2 of 2)
 
 Each record type becomes a class deriving `<Fmt>Datagram` (the header). Reference: s7k `datagrams/`
 (SonarSettings = fixed; RawDetection/Snippet/CompressedWaterColumn = per-beam arrays). Mirror kmall
@@ -45,7 +45,7 @@ class <Rec> : public <Fmt>Datagram {
 - **Generate the repetitive fixed-RTH classes** from a compact field spec (see the s7k throwaway
   generator `/tmp/gen_s7k_records.py`): emits hpp+cpp+binding consistently for many records at once.
 
-## Fields: naming, processed values, flags, checksum (see tmtgp-cpp-nanobind-style)
+## Fields: naming, processed values, flags, checksum (see tmtgp-cpp-class-style)
 - **`_` prefix is ping-wide**: every `Content`/RTH struct field is `_snake_case`
   (`_content._ping_number`); the public `get_x`/`set_x` keep the clean name. mkdoc strips the `_`
   (`DOC(...,Content,ping_number)` still resolves). Always value-init in the ctor (`: _content{}`) so an
@@ -58,8 +58,11 @@ class <Rec> : public <Fmt>Datagram {
   stay a raw `u32` (+ `bool get_<flag>()` helpers, print `fmt::format("0b{:032b}", _content._flags)`).
   Bind enums with `nb::enum_<t_x>` + `make_option_class<o_x>` (`enumhelper.hpp`).
 - **Processed getters** live in a `// ----- processed data access -----` section: `get_x_in_db()`,
-  `get_x_in_degrees()` (`std::numbers::pi`, `<numbers>`), timestamps — each with its own `/** */` doc,
-  printed under `printer.register_section("processed")`.
+  `get_x_in_degrees()` (`std::numbers::pi`, `<numbers>`), `get_x_in_seconds()`, timestamps — each with
+  its own `/** */` doc, printed under `printer.register_section("processed")`. **Every physical value
+  must be exposed in its canonical unit** (angle→deg, distance→m, time→s, amplitude→dB, lat/lon→deg;
+  see the unit table in tmtgp-cpp-class-style) and **each printed name must equal its getter name minus
+  `get_`** (so a processed value never shares the raw field's printed name).
 - **Trailing checksum**: many formats end every record with an integrity word — store it so
   `len(to_binary()) == size`: as the **last `Content` field** for a fixed record, or as a member
   read/written **after the arrays** for a variable-length one (in a lazy/skip reader, read it after the
@@ -131,8 +134,11 @@ container's out-of-line tensor accessors).
   Single `xt::xtensor<..>` returns are fine.
 - **NaN-filled version-dependent fields break `operator==` round-trip** (`NaN != NaN`). Test the
   round trip at the byte level (`to_binary()` bytes equal) or construct with the full field size.
-- Keep container/substruct `__printer__` to `register_value` summaries (counts, flags); don't dump
-  every array with `register_container` there.
+- **A container `__printer__` SHOULD print all its tensors** (`register_container` per
+  `get_<field>_tensor()`), opened by a `register_section("<Plural> (.<accessor>)")` + a
+  `"<accessor> (vector)": size=N` line, so a reader sees the data and the accessor (see the container
+  pattern in tmtgp-cpp-class-style). Only fall back to a `register_value` summary for variable-length
+  payloads that are not a simple tensor (e.g. water-column amplitudes).
 
 ## Critical correctness rules (learned the hard way)
 1. **Per-beam stride = the on-disk *_field_size / data_field_size field, NOT the MB-System struct

@@ -1,6 +1,6 @@
 ---
 name: tmtgp-echosounders-add-format
-description: 'Architecture of a file-format reader in themachinethatgoesping/echosounders and how to add a new one (e.g. s7k, gsf, kmall, kongsbergall, simradraw). Explains the layering: datagrams (headers/records), types (identifier enum), datagram interface, file handler (indexing via I_InputFileHandler), file-data interfaces (configuration/navigation/environment/ping), ping data types, and the nanobind bindings. USE when planning or extending an echosounder format reader. For the concrete first coding step use the tmtgp-echosounders-format-step1 skill; for exposing to Python and building use the style and build-and-test skills.'
+description: 'Architecture of a file-format reader in themachinethatgoesping/echosounders and how to add a new one (e.g. s7k, gsf, kmall, kongsbergall, simradraw). Explains the layering: datagrams (headers/records), types (identifier enum), datagram interface, file handler (indexing via I_InputFileHandler), file-data interfaces (configuration/navigation/environment/ping), ping data types, and the nanobind bindings. USE when planning or extending an echosounder format reader. For the concrete first coding step use the tmtgp-echosounders-datagram-indexing skill, then tmtgp-echosounders-record-parsers for the per-record parsers; for class style / exposing to Python / building use the tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style and tmtgp-build-and-test skills.'
 ---
 
 # echosounders format architecture
@@ -58,7 +58,7 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
 Split into submodules, each with `module.{hpp,cpp}` (`def_submodule` + per-class `init_c_*`):
 `py_<fmt>/` (enum + option + `c_<fmt>filehandler.cpp`) → `py_datagrams/` (one `c_<datagram>.cpp` each,
 `substructs/` if any) → `py_filedatacontainers/` → `py_filedatainterfaces/` (interface template in a
-`.hpp` + class/init in the `.cpp`) → later `py_filedatatypes/`. See tmtgp-echosounders-format-step1 §2.
+`.hpp` + class/init in the `.cpp`) → later `py_filedatatypes/`. See tmtgp-echosounders-datagram-indexing §2.
 
 ## Registration checklist (for every new file)
 - Sources + headers + `.docstrings/*.doc.hpp` → `src/themachinethatgoesping/echosounders/meson.build`.
@@ -67,4 +67,4 @@ Split into submodules, each with `module.{hpp,cpp}` (`def_submodule` + per-class
   in `src/nanomodule/module.cpp`.
 - Tests → `src/tests/meson.build`.
 
-Build/test/install with the **tmtgp-build-and-test** skill; follow **tmtgp-cpp-nanobind-style**.
+Build/test/install with the **tmtgp-build-and-test** skill; follow **tmtgp-cpp-class-style** and **tmtgp-cpp-nanobind-style**.

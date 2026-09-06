@@ -9,10 +9,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 -echosounders -> 0.48.3
 -pingprocessing -> 0.15.1
 -widgets -> 0.1.5
+-tools -> 0.33.1
 
 ## Improvements
--echosounders: initial implementaiton for s7k
+-echosounders: initial implementation for s7k
 -pingprocessing/widgets: fixed reading geotif
+
+## Fixes
+- tools: fix printing nan/inf statistics
 
 # [0.35.1] - 31-08-2026
 

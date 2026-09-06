@@ -1,146 +1,73 @@
 ---
 name: tmtgp-cpp-nanobind-style
-description: 'Coding style & conventions for themachinethatgoesping (C++20 + nanobind monorepo): file headers, naming, comments/docstrings, ObjectPrinter, stream/binary helpers, enums (OptionFrozen), libraries, performance idioms, catch2 tests, and how classes are exposed to Python with nanobind. USE when writing or reviewing C++ or nanobind code anywhere in themachinethatgoesping (echosounders, tools, navigation, gridding, pingprocessing, widgets, algorithms). Reference implementations: kongsbergall and kmall (most complete).'
+description: 'How themachinethatgoesping classes are exposed to Python with nanobind: per-format submodule layout (module.{hpp,cpp} + one c_<class>.cpp per class), template bind functions for both stream types, DOC(...) docstring macros and the passthrough-doc repoint trick, enum + OptionFrozen (make_option_class) binding, and the reusable filehandler / datagram-interface / container helpers. USE when writing or reviewing nanobind binding code (src/nanomodule/py_<fmt>/...) anywhere in themachinethatgoesping. For the underlying C++ class style (naming, printing, processed members, docstrings, enums) see tmtgp-cpp-class-style; to build/test see tmtgp-build-and-test. Reference bindings: py_kmall and py_s7k.'
 ---
 
-# themachinethatgoesping C++ / nanobind style
+# themachinethatgoesping nanobind binding style
 
-Study `subprojects/echosounders/.../kongsbergall` and `.../kmall` as canonical examples.
-Match the surrounding file; the notes below are the defaults.
+The **nanobind-specific** conventions. For the underlying C++ class (file layout, naming, comments &
+mkdoc docstrings, ObjectPrinter printing, processed-member/unit rules, enums, tests) see
+**tmtgp-cpp-class-style**; build/test/install with **tmtgp-build-and-test**. Study `py_kmall` and
+`py_s7k` as canonical examples; match the surrounding file.
 
-## File layout
-- **SPDX header** on every file. Code = `MPL-2.0`; tests / meson.build / generated = `CC0-1.0`.
-  Copyright line: `// SPDX-FileCopyrightText: 2022 - 2025 Peter Urban, Ghent University`.
-- Header: `#pragma once`, then `/* generated doc strings */ #include ".docstrings/<name>.doc.hpp"`.
-- Include order: docstrings → `std` → external (`fmt`, `magic_enum`, `frozen`, `boost`, `nanobind`)
-  → `themachinethatgoesping/...` → local `"..."`.
-- Namespaces (no indent inside): `themachinethatgoesping::echosounders::<format>[::datagrams|::filedatainterfaces]`.
-  Close with `// namespace x` comments.
+## Binding file naming
+- `c_<class>.cpp` binds exactly **one** class (an `init_c_<class>(module&)`); `module.{hpp,cpp}` per
+  submodule (`def_submodule(...)` + calls the per-class `init_c_*`); `init_m_<format>` at the top.
+- Namespaces `themachinethatgoesping::echosounders::pymodule::py_<format>[::py_datagrams[::substructs]|
+  ::py_filedatacontainers|::py_filedatainterfaces]`.
+- Include the C++ headers as `<themachinethatgoesping/echosounders/<fmt>/…>` (angle brackets).
 
-## Naming
-- Types/classes `PascalCase`; functions & variables `snake_case`; **members `_snake_case`** (leading underscore).
-  This leading-underscore rule is **ping-wide**: it applies to **every** private/protected data member,
-  **including the fields of a packed `#pragma pack` `Content` / record-type-header struct** (e.g.
-  `struct Content { uint32_t _ping_number; ... } _content;`, accessed as `_content._ping_number`). The
-  public `get_x`/`set_x` keep the clean name (`get_ping_number`). mkdoc strips the leading `_`, so a field
-  `_ping_number` still resolves via `DOC(...,Content,ping_number)`.
-- `t_` prefix = enum / template type params (`t_KMALLDatagramIdentifier`, `t_ifstream`).
-- `o_` prefix = `OptionFrozen`/`Option` wrapper around an enum (`o_KMALLDatagramIdentifier`).
-- Getters/setters: `get_x()` / `set_x(v)`. Static factory: `from_stream`, `from_binary`.
-- nanobind files: `c_<class>.cpp` (bind one class), `module.cpp`/`module.hpp` per submodule,
-  namespaces `pymodule::py_<format>`, init fns `init_c_<class>` / `init_m_<format>`.
+## Module layout (mirror `py_kmall` / `py_s7k`)
+Split a format's bindings into submodules, each with its own `module.{hpp,cpp}` that `def_submodule`s
+and calls the per-class `init_c_*`:
+- `py_<fmt>/` (top) — `def_submodule("<fmt>")`, register the enum `.value(...)` + `make_option_class<o_...>`
+  + the free `datagram_type_to_string`/`_from_string`, then call the submodule inits and
+  `init_c_<fmt>filehandler` (**stays top-level**).
+- `py_<fmt>/py_datagrams/` — **one `c_<datagram>.cpp` per datagram** (+ `substructs/` for per-beam
+  substructs & containers, registered into the same `datagrams` submodule). Classes land at
+  `<fmt>.datagrams.<Class>`. Register each substruct/container `init_c_*` **before** the datagrams that
+  expose them.
+- `py_<fmt>/py_filedatacontainers/` — `create_DatagramContainerTypes<...>` for the header, unknown, and
+  whole-file variant iterator return types.
+- `py_<fmt>/py_filedatainterfaces/` — **split header + cpp**: the interface template
+  `<Fmt>DatagramInterface_add_interface_functions<T_BaseClass>(cls)` in a `.hpp`; the
+  `py_create_class_<Fmt>DatagramInterface<T_FileStream>` (both stream types) + `init_c_*` in the `.cpp`.
 
-## Comments & docstrings (feed pybind11_mkdoc)
-- Members: trailing `///< short description`.
-- Classes/functions: `/** @brief ... @param ... @return ... */` (extracted into Python docstrings).
-- Section separators inside classes: `// ----- section name -----`.
-- Suppress a generated docstring with a line `// IGNORE_DOC:mkd_doc_...` before the entity.
-- Keep comments to what code cannot show; do not restate the next line.
-- **Trivial passthrough `get_x`/`set_x` have an empty generated doc** (mkdoc emits `R"doc()doc"` for
-  an undocumented one-line accessor) while the *variable it returns* is documented — so in the `.def`
-  point the docstring at that variable's doc (for **both** getter and setter), not the empty accessor:
-    - direct member `_x` (body `return _x;` / `_x = v;`) → `DOC(<pfx>, <Class>, x)` — mkdoc **strips the
-      leading `_`** (e.g. `DOC_S7KDatagram(device_identifier)`, *not* `(get_device_identifier)`).
-    - packed `Content`-struct field `_content.x` → `DOC(<pfx>, <Class>, Content, x)`; make the per-file
-      shortcut **variadic** so it can carry the path:
-      `#define DOC_C(CLASS, ...) DOC(<pfx>, CLASS, __VA_ARGS__)` → `DOC_C(ReferencePoint, Content, offset_x)`.
-- **If `get_x`/`set_x` processes the value** (cast, scale, flag/bit decode, unit conversion, compute)
-  it needs its *own* doc: put a `///`/`/** @brief ... */` comment on the C++ accessor (mkdoc extracts
-  it — keep `DOC(...,get_x)`) or pass an inline string literal to `.def`. Never leave a processing
-  accessor pointing at an empty doc.
+## Both stream types
+One template function `py_create_class_<x><T_FileStream>(module&, name)`; register for both stream types
+with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` (`std::ifstream`).
 
-## Datagram / value classes (pattern)
-- `using t_DatagramIdentifier = ...;` **and `using o_DatagramIdentifier = o_<Fmt>DatagramIdentifier;`**
-  (the `OptionFrozen` wrapper); `static constexpr size_t __size = <header bytes>;`
-  (note: real `sizeof` is larger because of the vtable).
-- Store the record-type member and take identifier params as **`o_DatagramIdentifier`**, not the raw
-  enum (member `_..._identifier`, `get/set_datagram_identifier`, `from_stream(is, o_DatagramIdentifier)`,
-  `__check_datagram_identifier__(o_..., o_...)`). `OptionFrozen` is a thin single-`value` wrapper (no
-  vtable, same size/layout as the enum) so the member stays inside the one-shot
-  `is.read(&_first_member, __size)` header read, and it converts implicitly to/from the enum, the
-  underlying int and the name/alt-name string.
-- `virtual double get_timestamp() const` (NaN if none); `skip(std::istream&)`; `from_stream(...)`.
-- `bool operator==(const T&) const = default;`.
-- Printing: implement `tools::classhelper::ObjectPrinter __printer__(unsigned int float_precision,
-  bool superscript_exponents) const` using `register_value / register_string / register_section /
-  append`; then add macro `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__` (gives `info_string()`,
-  `print()`, `__repr__`).
-- Stream/binary: `void to_stream(std::ostream&) const;` `static T from_stream(std::istream&);`
-  plus macro `__STREAM_DEFAULT_TOFROM_BINARY_FUNCTIONS__(T)` (or `..._NOT_CONST__(T)` if
-  `to_stream` is non-const).
+## Docstrings (DOC macros) & the passthrough repoint
+- Bind with `DOC(themachinethatgoesping, echosounders, <fmt>, <Class>, <member>)`; define a per-file
+  `#define DOC_<Class>(ARG) DOC(..., <Class>, ARG)` shortcut, and a **variadic**
+  `#define DOC_C(CLASS, ...) DOC(..., CLASS, __VA_ARGS__)` when you need a `Content` path.
+- **Trivial passthrough `get_x`/`set_x` have an empty generated doc** → point the `.def` at the backing
+  *variable's* doc for **both** getter and setter: direct member `_x` → `DOC_<Class>(x)` (mkdoc strips
+  the `_`); packed field `_content.x` → `DOC_C(<Class>, Content, x)`. **A getter that processes the
+  value (cast/scale/flag/unit) keeps its own `DOC_<Class>(get_x)`** (it has a real `/** @brief */` doc).
+- Docstrings are generated by `python make_pybind_doc.py` (walks the tree → `.docstrings/*.doc.hpp`);
+  every public method gets an (empty) doc var so `DOC(...)` always resolves. **mkdoc cannot parse a
+  `std::vector<xt::xtensor<...>>`-returning getter** → give that `.def` a plain string-literal
+  docstring (single `xt::xtensor<..>` returns are fine).
 
-## Enums
-- Small, contiguous values → plain `enum class : uintN_t` + `magic_enum` for name<->value.
-- Large/sparse values (record numbers, 4-char codes) → **`OptionFrozen`**: declare the enum plus
-  three `inline constexpr std::array`s `_values` / `_names` / `_alt_names`, then
-  `using o_X = tools::classhelper::OptionFrozen<t_X, _values.size(), _values, _names, _alt_names>;`
-  and an `extern template struct OptionFrozen<...>;` in the header with the matching
-  `template struct OptionFrozen<...>;` instantiation in the `.cpp`. `o_X.name()` throws on unknown
-  values → guard with `enum_contains()` or keep the raw enum for graceful "unknown" handling.
-- **Prefer `o_X` (not the raw enum) as the working identifier type** — datagram members,
-  `from_stream`/check params, and the Python `datagrams(...)` argument — so str↔number↔enum conversion
-  is automatic. `name()` (descriptive) / `alt_name()` (short code / record number) throw on unknown, so
-  keep the identifier enum exhaustive; the `I_DatagramInterface` map key + virtual `datagram_identifier_*`
-  signature stay the **plain enum** so unrecognised records still index.
+## Enums & OptionFrozen
+- `nb::enum_<t_X>(subm, "<Class>_t_X", "desc").value("name", t_X::name, "doc")...` then
+  `tools::nanobind_helper::make_option_class<o_X>(subm, "<Class>_o_X")` (needs `enumhelper.hpp`).
+  `make_option_class` registers the implicit `str`/`int`/enum→`o_X` constructors; a plain `nb::enum_`
+  argument only accepts an int or an enum member, **never a string**.
+- A Python method that takes an identifier (e.g. `datagrams(type)`) should take **`o_X` and
+  `switch (type.value)`**, so callers pass the enum, the record number, the name or the alt-name string
+  interchangeably; pass `type` straight to the C++ `datagrams<T>(id)` (implicit convert).
 
-## Processed values & flag decoding (record classes)
-- Keep each raw on-disk field (`_content._x`) with a plain `get_x`/`set_x`; then add **derived** getters
-  in a `// ----- processed data access -----` section that convert to physical/engineering units:
-  `get_x_in_db()`, `get_x_in_degrees()` (radians→degrees via `std::numbers::pi`, `#include <numbers>`),
-  timestamps, etc. Give each its own `/** @brief ... */` doc, bind it, and print derived values in a
-  `printer.register_section("processed")` block.
-- **Coded / flag fields** (a field whose spec defines a small set of named values) → model as an
-  `OptionFrozen` `o_x` stored **directly in the packed struct**. It is byte-compatible only if the enum's
-  underlying type matches the on-disk field width — `enum class t_x : uint8_t` for a `u8` field,
-  `: uint32_t` for a `u32` field. Getter returns `o_x`, setter takes `o_x`. Print with
-  `register_string("x", _content._x.name(), _content._x.alt_name())`. The `_names` (snake_case) and
-  `_alt_names` (Capitalised / spec text) arrays **must all be byte-distinct** (they become frozen-map
-  keys; a duplicate is a compile error). Bind: `nb::enum_<t_x>(m,"Class_t_x","desc").value("n",t_x::n,"doc")`
-  … then `tools::nanobind_helper::make_option_class<o_x>(m,"Class_o_x")` (needs `enumhelper.hpp`); plain
-  string docs on the enum avoid a mkdoc dependency.
-- **Bit-field** flags (many independent bits) stay a raw `u32`; expose the useful bits as `bool
-  get_<flag>()` helpers and print the raw value as `fmt::format("0b{:032b}", _content._flags)`.
-- Debug-only integrity fields (e.g. a trailing checksum) → provide `static` helpers that take the
-  serialized buffer (`std::string_view`) — compute / read / compare — and **never (re)compute them
-  during normal read or write** (round-trip the stored value instead).
-
-## Libraries / performance
-- `fmt` for formatting, `magic_enum`, `frozen` (constexpr maps), `boost::endian` (byte-swap for
-  big-endian formats like gsf), `nanobind`, `xtensor`/`xsimd` for numerics, `catch2` for tests.
-- Read a fixed header in **one** `is.read(reinterpret_cast<char*>(&_first_member), __size)` — lay
-  members out to match the on-disk byte order with natural alignment (no padding). Verify offsets.
-- Datagrams are indexed first (position + timestamp + type), then read **lazily** through
-  `DatagramContainer`. Everything is templated on `t_ifstream` and instantiated for both
-  `std::ifstream` and `datastreams::MappedFileStream`.
-
-## C++ tests (catch2)
-- File `src/tests/<format>/.../<name>.test.cpp`; `#define TESTTAG "[<format>]"`.
-- `TEST_CASE("...", TESTTAG)`; use `REQUIRE` / `CHECK`, `Catch::Approx` for floats.
-- Standard checks: copy `x == T(x)`, binary `x == T(x.from_binary(x.to_binary()))`, stream round
-  trip, `x.info_string().size() != 0`. For parsers, build a byte buffer and assert decoded fields.
-- Register the file in `src/tests/meson.build` `sources`.
-
-## Exposing to Python (nanobind)
-- **Module layout (mirror `py_kmall`)**: split a format's bindings into submodules, each with its own
-  `module.{hpp,cpp}` that `def_submodule(...)`s and calls per-class `init_c_*`: `py_<fmt>/` (top: enum
-  + `make_option_class` + filehandler) → `py_datagrams/` (**one `c_<datagram>.cpp` per datagram**,
-  `substructs/` if any → Python `<fmt>.datagrams.<Class>`), `py_filedatacontainers/`,
-  `py_filedatainterfaces/` (interface template in a `c_<fmt>datagraminterface.hpp`, class + `init_c_*`
-  in the `.cpp`), later `py_filedatatypes/`. Don't lump many classes in one file. Include C++ headers
-  as `<themachinethatgoesping/echosounders/<fmt>/…>` (angle brackets).
-- One template function `py_create_class_<x><T_FileStream>(module&, name)`; register for both stream
-  types with names `"<Class>"` (MappedFileStream) and `"<Class>_stream"` (`std::ifstream`).
-- Reuse helpers: `py_filetemplates::py_i_inputfilehandler::add_default_constructors /
-  add_open_file_interface / add_default_containers` (adds the `datagram_interface` property);
-  `py_i_datagraminterface::add_InterfaceFunctions`; `py_datagramcontainer::create_DatagramContainerTypes`.
-- Docstrings via `DOC(themachinethatgoesping, echosounders, <format>, <Class>, <member>)`
-  (define a `#define DOC_<Class>(ARG) DOC(..., <Class>, ARG)` shortcut). Trailing macros
-  `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)`.
-- Enums exposed with `nb::enum_<t_X>(subm,"t_X",DOC(...)).value("NAME", t_X::NAME, "doc")...`; option
-  wrappers with `tools::nanobind_helper::make_option_class<o_X>(subm, "o_X")` — this registers the
-  implicit `str`/`int`/enum→`o_X` constructors (a plain `nb::enum_` argument only accepts int + enum
-  member, **never a string**). Python methods that take an identifier (e.g. `datagrams(type)`) should
-  take **`o_X` and `switch (type.value)`**, so callers pass the enum, the record number, the name or the
-  alt-name string interchangeably; pass `type` straight to the C++ `datagrams<T>(id)` (implicit convert).
-- Docstrings are generated by `python make_pybind_doc.py` (walks the tree, writes
-  `.docstrings/*.doc.hpp`); every public method gets an (empty) doc var so `DOC(...)` always resolves.
+## Reusable helpers & trailing macros
+- Filehandler: `py_filetemplates::py_i_inputfilehandler::add_default_constructors /
+  add_open_file_interface / add_default_containers` (the last adds the `datagram_interface` property).
+- Interface: `py_i_datagraminterface::add_InterfaceFunctions`; containers:
+  `py_datagramcontainer::create_DatagramContainerTypes`.
+- Substruct vectors: `NB_MAKE_OPAQUE(std::vector<Row>)` + bind `get_/set_` + end with
+  `nb::bind_vector<std::vector<Row>>(m, "<Row>s_vector")`; container: `def_prop_rw` for the raw vector
+  (`nb::rv_policy::reference_internal`) + one `.def` per `get_<field>_tensor` (needs
+  `<xtensor-python/nanobind/pytensor.hpp>`; variant returns need `<nanobind/stl/variant.h>`).
+- End every class with `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)` as applicable.
+- **When you add a processed getter to the C++ class, add its `.def` here too** (and re-run
+  make_pybind_doc so `DOC(...,get_x_in_<unit>)` resolves).
