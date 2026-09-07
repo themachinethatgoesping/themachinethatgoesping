@@ -44,10 +44,13 @@ MB-System). Store a research doc + spec next to the format (see `s7k/../docs/s7k
   `<Fmt>DatagramVariant::from_stream(is, type, skip)` that `default:`-returns `<Fmt>Unknown`.
 - **`filedatainterfaces/<fmt>datagraminterface.hpp`** — extend
   `I_DatagramInterface<t_<Fmt>DatagramIdentifier, t_ifstream>` (the virtual `datagram_identifier_*` still
-  take the **plain enum**); implement `datagram_identifier_to_string` via
-  `o_<Fmt>DatagramIdentifier(id).alt_name()` (short code / record number) + `datagram_identifier_info`
-  via `.name()` (descriptive; guard with `enum_contains()` → `"unknown"` if unnamed records are expected)
-  + `per_file()`.
+  take the **plain enum**); implement `datagram_identifier_to_string` (the **short identifier**: a
+  numeric-id format → `std::to_string(uint32_t(id))`; a 4-char-code format → `int_as_string(id)`) and
+  `datagram_identifier_info` (descriptive name → `<fmt>::datagram_type_to_string(id)`), then
+  `per_file()`. **Both must be graceful for unknown record types — do NOT use `o_...(id).alt_name()` /
+  `.name()` here** (those throw via the frozen-map `.at()` on any value not in the enum, and a real
+  file WILL contain proprietary/unnamed records). `std::to_string` never throws; `datagram_type_to_string`
+  returns `"unknown"`.
 - **`<fmt>filehandler.{hpp,cpp}`** — extend
   `I_InputFileHandler<datagrams::<Fmt>Datagram, filedatainterfaces::<Fmt>DatagramInterface<t_ifstream>>`;
   4 constructors (single/multi × bool/progressbar), empty `setup_interfaces()` + `init_interfaces()`,
@@ -104,5 +107,14 @@ headers as `<themachinethatgoesping/echosounders/<fmt>/…>` (angle brackets, li
   `from_stream` params, the Python `datagrams(...)` argument, `.name()`/`.alt_name()` lookups);
   `name()`/`alt_name()` **throw on unknown values** → keep the identifier enum exhaustive, or guard with
   `enum_contains()`.
+- **The identifier→string conversions must emit valid UTF-8 and never throw** — they run over EVERY
+  datagram, including record types not named in the enum. TWO code paths exist: the *interface*
+  printer uses the virtual member `datagram_identifier_to_string`/`_info`; the *container* printer
+  (`fh.datagram_interface.datagrams().print()`) uses the free `echosounders::datagram_identifier_to_string(<fmt>::t_...)`
+  in `types.hpp`. **Fix BOTH — a passing interface print does NOT prove the container print works.**
+  For a **numeric-id** format return the DECIMAL string (`std::to_string(uint32_t(id))`); `int_as_string`
+  (correct only for 4-char-code formats like kmall/kongsbergall) reinterprets the number's raw bytes →
+  **invalid UTF-8** → Python `print()`/`info_string()` raise `UnicodeDecodeError` /
+  `nanobind::str(): conversion error!`. Never `o_...(id).name()/.alt_name()` in these (throws on unknown).
 - `skip()`/raw-content length must use the header's total-size field, consistently, so the scan lands
   exactly on the next datagram (a wrong offset shows up as a "read incompletely" warning).

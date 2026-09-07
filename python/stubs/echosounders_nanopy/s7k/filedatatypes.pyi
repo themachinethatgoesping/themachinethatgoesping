@@ -1,9 +1,13 @@
 """Teledyne RESON .s7k (7k) file data types"""
 import typing
 
-from typing import overload
+from typing import Annotated, overload
+
+import numpy
+from numpy.typing import NDArray
 
 import themachinethatgoesping.echosounders_nanopy.filetemplates
+import themachinethatgoesping.echosounders_nanopy.pingtools
 import themachinethatgoesping.echosounders_nanopy.s7k
 import themachinethatgoesping.echosounders_nanopy.s7k.filedatainterfaces
 
@@ -214,14 +218,10 @@ class S7KPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetempla
     """
     Bottom detection (bathymetry) accessor of an s7k ping.
 
-
-
-    $.. note::
-
-    The bottom-detection processing functions are not implemented yet;
-    they inherit the base I_PingBottom "not implemented" behavior. This
-    class currently only provides the structure so it can be filled in in
-    a later step.
+    The bottom detections come from the 7027 RawDetection record. s7k raw
+    detections do not carry a ready-made XYZ position (has_xyz() is
+    false); the per-beam receive angles and two-way travel times are
+    provided as best guesses so the bottom can be raytraced later.
 
     Template Args:
         t_ifstream:
@@ -238,14 +238,10 @@ class S7KPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_P
     """
     Bottom detection (bathymetry) accessor of an s7k ping.
 
-
-
-    $.. note::
-
-    The bottom-detection processing functions are not implemented yet;
-    they inherit the base I_PingBottom "not implemented" behavior. This
-    class currently only provides the structure so it can be filled in in
-    a later step.
+    The bottom detections come from the 7027 RawDetection record. s7k raw
+    detections do not carry a ready-made XYZ position (has_xyz() is
+    false); the per-beam receive angles and two-way travel times are
+    provided as best guesses so the bottom can be raytraced later.
 
     Template Args:
         t_ifstream:
@@ -262,18 +258,52 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filet
     """
     Water column accessor of an s7k ping.
 
-
-
-    $.. note::
-
-    The water-column processing functions are not implemented yet; they
-    inherit the base I_PingWatercolumn "not implemented" behavior. This
-    class currently only provides the structure so it can be filled in in
-    a later step.
+    The water-column amplitudes come from the 7042 CompressedWaterColumn
+    record; the per-beam receive angles and the detected bottom sample
+    come from the 7027 RawDetection record; the sample interval and sound
+    velocity come from the 7000 SonarSettings record. This first version
+    assumes a single transmit sector and a contiguous beam numbering
+    (water-column beam i == detection beam i).
 
     Template Args:
         t_ifstream:
     """
+
+    @overload
+    def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+
+    @overload
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+        """
+        Water column amplitudes (magnitude) in their raw, unconverted values
+        (uint32).
+
+        The values are returned as stored on disk (widened to uint32; 16 bit
+        records keep their 0..65535 range). No dB conversion is applied - see
+        get_amplitudes for dB. Missing beams/samples are 0.
+        """
+
+    @overload
+    def get_raw_phase(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    @overload
+    def get_raw_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
+        """
+        Water column phase in its raw, unconverted int16 values (radians =
+        value / 10430).
+
+        All-zero if the record contains no phase. Missing beams/samples are 0.
+        """
+
+    @overload
+    def get_phase(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    @overload
+    def get_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Water column phase in degrees (NaN for missing beams/samples, all-NaN
+        if the record contains no phase).
+        """
 
     def copy(self) -> S7KPingWatercolumn_stream:
         """return a copy using the c++ default copy constructor"""
@@ -286,18 +316,52 @@ class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplate
     """
     Water column accessor of an s7k ping.
 
-
-
-    $.. note::
-
-    The water-column processing functions are not implemented yet; they
-    inherit the base I_PingWatercolumn "not implemented" behavior. This
-    class currently only provides the structure so it can be filled in in
-    a later step.
+    The water-column amplitudes come from the 7042 CompressedWaterColumn
+    record; the per-beam receive angles and the detected bottom sample
+    come from the 7027 RawDetection record; the sample interval and sound
+    velocity come from the 7000 SonarSettings record. This first version
+    assumes a single transmit sector and a contiguous beam numbering
+    (water-column beam i == detection beam i).
 
     Template Args:
         t_ifstream:
     """
+
+    @overload
+    def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+
+    @overload
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+        """
+        Water column amplitudes (magnitude) in their raw, unconverted values
+        (uint32).
+
+        The values are returned as stored on disk (widened to uint32; 16 bit
+        records keep their 0..65535 range). No dB conversion is applied - see
+        get_amplitudes for dB. Missing beams/samples are 0.
+        """
+
+    @overload
+    def get_raw_phase(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
+
+    @overload
+    def get_raw_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
+        """
+        Water column phase in its raw, unconverted int16 values (radians =
+        value / 10430).
+
+        All-zero if the record contains no phase. Missing beams/samples are 0.
+        """
+
+    @overload
+    def get_phase(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    @overload
+    def get_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Water column phase in degrees (NaN for missing beams/samples, all-NaN
+        if the record contains no phase).
+        """
 
     def copy(self) -> S7KPingWatercolumn:
         """return a copy using the c++ default copy constructor"""

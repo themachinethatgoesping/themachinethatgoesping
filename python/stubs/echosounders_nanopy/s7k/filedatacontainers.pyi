@@ -46,9 +46,27 @@ class S7KDatagramContainer_Header_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Header_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Header_stream: ...
@@ -104,9 +122,27 @@ class S7KDatagramContainer_Header:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Header: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Header: ...
@@ -162,9 +198,27 @@ class S7KDatagramContainer_Unknown_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Unknown_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Unknown_stream: ...
@@ -220,9 +274,27 @@ class S7KDatagramContainer_Unknown:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Unknown: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Unknown: ...
@@ -278,9 +350,27 @@ class S7KDatagramContainer_ReferencePoint_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_ReferencePoint_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_ReferencePoint_stream: ...
@@ -336,9 +426,27 @@ class S7KDatagramContainer_ReferencePoint:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_ReferencePoint: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_ReferencePoint: ...
@@ -394,9 +502,27 @@ class S7KDatagramContainer_Position_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Position_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Position_stream: ...
@@ -452,9 +578,27 @@ class S7KDatagramContainer_Position:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Position: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Position: ...
@@ -510,9 +654,27 @@ class S7KDatagramContainer_RollPitchHeave_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_RollPitchHeave_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_RollPitchHeave_stream: ...
@@ -568,9 +730,27 @@ class S7KDatagramContainer_RollPitchHeave:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_RollPitchHeave: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_RollPitchHeave: ...
@@ -626,9 +806,27 @@ class S7KDatagramContainer_Heading_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Heading_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Heading_stream: ...
@@ -684,9 +882,27 @@ class S7KDatagramContainer_Heading:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Heading: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Heading: ...
@@ -742,9 +958,27 @@ class S7KDatagramContainer_Navigation_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Navigation_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Navigation_stream: ...
@@ -800,9 +1034,27 @@ class S7KDatagramContainer_Navigation:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Navigation: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Navigation: ...
@@ -858,9 +1110,27 @@ class S7KDatagramContainer_SonarSettings_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SonarSettings_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SonarSettings_stream: ...
@@ -916,9 +1186,27 @@ class S7KDatagramContainer_SonarSettings:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SonarSettings: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SonarSettings: ...
@@ -974,9 +1262,27 @@ class S7KDatagramContainer_MatchFilter_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_MatchFilter_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_MatchFilter_stream: ...
@@ -1032,9 +1338,27 @@ class S7KDatagramContainer_MatchFilter:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_MatchFilter: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_MatchFilter: ...
@@ -1090,9 +1414,27 @@ class S7KDatagramContainer_SoundVelocity_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SoundVelocity_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SoundVelocity_stream: ...
@@ -1148,9 +1490,27 @@ class S7KDatagramContainer_SoundVelocity:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SoundVelocity: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SoundVelocity: ...
@@ -1206,9 +1566,27 @@ class S7KDatagramContainer_AbsorptionLoss_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_AbsorptionLoss_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_AbsorptionLoss_stream: ...
@@ -1264,9 +1642,27 @@ class S7KDatagramContainer_AbsorptionLoss:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_AbsorptionLoss: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_AbsorptionLoss: ...
@@ -1322,9 +1718,27 @@ class S7KDatagramContainer_SpreadingLoss_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SpreadingLoss_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SpreadingLoss_stream: ...
@@ -1380,9 +1794,27 @@ class S7KDatagramContainer_SpreadingLoss:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_SpreadingLoss: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_SpreadingLoss: ...
@@ -1438,9 +1870,27 @@ class S7KDatagramContainer_RawDetection_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_RawDetection_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_RawDetection_stream: ...
@@ -1496,9 +1946,27 @@ class S7KDatagramContainer_RawDetection:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_RawDetection: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_RawDetection: ...
@@ -1554,9 +2022,27 @@ class S7KDatagramContainer_Snippet_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Snippet_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Snippet_stream: ...
@@ -1612,9 +2098,27 @@ class S7KDatagramContainer_Snippet:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Snippet: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Snippet: ...
@@ -1670,9 +2174,27 @@ class S7KDatagramContainer_CompressedWaterColumn_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_CompressedWaterColumn_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_CompressedWaterColumn_stream: ...
@@ -1728,9 +2250,27 @@ class S7KDatagramContainer_CompressedWaterColumn:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_CompressedWaterColumn: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_CompressedWaterColumn: ...
@@ -1786,9 +2326,27 @@ class S7KDatagramContainer_BeamGeometry_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_BeamGeometry_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_BeamGeometry_stream: ...
@@ -1844,9 +2402,27 @@ class S7KDatagramContainer_BeamGeometry:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_BeamGeometry: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_BeamGeometry: ...
@@ -1902,9 +2478,27 @@ class S7KDatagramContainer_Attitude_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Attitude_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Attitude_stream: ...
@@ -1960,9 +2554,27 @@ class S7KDatagramContainer_Attitude:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Attitude: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Attitude: ...
@@ -2018,9 +2630,27 @@ class S7KDatagramContainer_FileHeader_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_FileHeader_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_FileHeader_stream: ...
@@ -2076,9 +2706,27 @@ class S7KDatagramContainer_FileHeader:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_FileHeader: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_FileHeader: ...
@@ -2134,9 +2782,27 @@ class S7KDatagramContainer_Snippet_SkippedData_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Snippet_SkippedData_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Snippet_SkippedData_stream: ...
@@ -2192,9 +2858,27 @@ class S7KDatagramContainer_Snippet_SkippedData:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Snippet_SkippedData: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Snippet_SkippedData: ...
@@ -2250,9 +2934,27 @@ class S7KDatagramContainer_CompressedWaterColumn_SkippedData_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_CompressedWaterColumn_SkippedData_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_CompressedWaterColumn_SkippedData_stream: ...
@@ -2308,9 +3010,27 @@ class S7KDatagramContainer_CompressedWaterColumn_SkippedData:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_CompressedWaterColumn_SkippedData: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_CompressedWaterColumn_SkippedData: ...
@@ -2366,9 +3086,27 @@ class S7KDatagramContainer_Variant_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Variant_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Variant_stream: ...
@@ -2424,9 +3162,27 @@ class S7KDatagramContainer_Variant:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Variant: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Variant: ...
@@ -2482,9 +3238,27 @@ class S7KDatagramContainer_Variant_SkippedData_stream:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Variant_SkippedData_stream: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Variant_SkippedData_stream: ...
@@ -2540,9 +3314,27 @@ class S7KDatagramContainer_Variant_SkippedData:
 
     def get_sorted_by_time(self) -> S7KDatagramContainer_Variant_SkippedData: ...
 
-    def count_datagrams_per_type(self) -> dict[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier, int]: ...
+    def count_datagrams_per_type(self) -> dict[str, int]:
+        """
+        Like count_datagrams_per_type, but the keys are the datagram-
+        identifier strings (4-char code or decimal record number). Robust
+        against record types that are not named enum members (which cannot be
+        represented as a Python enum), so it never fails when a file contains
+        an unknown/proprietary record type.
 
-    def find_datagram_types(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier]: ...
+        Returns:
+            std::map_std_string_size_t
+        """
+
+    def find_datagram_types(self) -> list[str]:
+        """
+        Like find_datagram_types, but returns the datagram-identifier strings.
+        Robust against unknown/proprietary record types (see
+        count_datagrams_per_type_as_string).
+
+        Returns:
+            std::vector_std_string
+        """
 
     @overload
     def __call__(self, datagram_identifier: themachinethatgoesping.echosounders_nanopy.s7k.t_S7KDatagramIdentifier) -> S7KDatagramContainer_Variant_SkippedData: ...

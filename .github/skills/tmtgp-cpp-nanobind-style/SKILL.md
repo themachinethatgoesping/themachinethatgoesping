@@ -58,6 +58,15 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
 - A Python method that takes an identifier (e.g. `datagrams(type)`) should take **`o_X` and
   `switch (type.value)`**, so callers pass the enum, the record number, the name or the alt-name string
   interchangeably; pass `type` straight to the C++ `datagrams<T>(id)` (implicit convert).
+- **`nb::enum_<t_X>` cannot cast an UNKNOWN value back to Python** — only a *named* enumerator casts
+  out; an unnamed value (a real file's proprietary datagram id, e.g. kmall `#CHE`) makes the caster
+  raise `ValueError: <n> is not a valid t_X` (only `nb::is_flag` enums allow arbitrary values, which is
+  wrong semantics for an id). So **never return the raw identifier enum — nor a `std::map`/`std::vector`
+  keyed by it — across the binding when the value can be outside the named set.** Return a **string**
+  (via `datagram_identifier_to_string`, unique per type and never-throwing) or the `o_X` wrapper. The
+  generic `DatagramContainer` binds `count_datagrams_per_type` / `find_datagram_types` to the C++
+  `count_datagrams_per_type_as_string` / `find_datagram_types_as_string` helpers for exactly this
+  reason (string keys survive unknown record types; the raw-enum versions crash on them).
 
 ## Reusable helpers & trailing macros
 - Filehandler: `py_filetemplates::py_i_inputfilehandler::add_default_constructors /

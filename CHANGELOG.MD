@@ -14,9 +14,11 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Improvements
 -echosounders: initial implementation for s7k
 -pingprocessing/widgets: fixed reading geotif
+- ai refractor tile builder
 
 ## Fixes
 - tools: fix printing nan/inf statistics
+- echosounders: datagram container: fixed count_datagrams_per_type and find_datagram_types functions to return strings
 
 # [0.35.1] - 31-08-2026
 

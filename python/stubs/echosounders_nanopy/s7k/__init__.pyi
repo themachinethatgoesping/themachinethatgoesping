@@ -349,9 +349,10 @@ def datagram_type_to_string(datagram_type: t_S7KDatagramIdentifier) -> str:
 
 def S7KDatagram_type_from_string(value: str) -> t_S7KDatagramIdentifier:
     """
-    Parse a record type identifier from its numeric string representation.
+    Parse a record type identifier from its string representation.
     Args:
-        value: String containing the decimal record number (e.g. "7027").
+        value: String containing either the decimal record number (e.g.
+               "7027") or the record name (e.g. "RawDetectionData").
 
     Returns:
         Parsed record type identifier.

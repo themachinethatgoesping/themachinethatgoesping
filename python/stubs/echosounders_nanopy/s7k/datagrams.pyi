@@ -1012,9 +1012,17 @@ class CompressedWaterColumnBeam:
 
     def set_sample_count(self, val: int) -> None: ...
 
-    def get_raw_samples(self) -> bytes: ...
+    def has_phase(self) -> bool:
+        """whether this beam holds phase data"""
 
-    def set_raw_samples(self, raw_samples: bytes) -> None: ...
+    def get_raw_magnitude(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+        """magnitude samples in their raw (unconverted) values, widened to uint32"""
+
+    def get_raw_phase(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
+        """
+        phase samples in their raw (unconverted) int16 values (empty if there
+        is no phase)
+        """
 
     def __eq__(self, other: CompressedWaterColumnBeam) -> bool: ...
 
@@ -1121,14 +1129,9 @@ class CompressedWaterColumnBeamContainer:
 
     def get_has_phase(self) -> bool: ...
 
-    def get_phase_8bit(self) -> bool: ...
-
     def get_magnitude_is_db(self) -> bool: ...
 
-    def get_magnitude_is_32bit_float(self) -> bool: ...
-
-    def get_sample_stride(self) -> int:
-        """number of on-disk bytes per sample (magnitude + optional phase)"""
+    def get_magnitude_is_32bit(self) -> bool: ...
 
     def get_beam_number_tensor(self) -> Annotated[NDArray[numpy.uint16], dict(order='C')]: ...
 
@@ -1137,7 +1140,7 @@ class CompressedWaterColumnBeamContainer:
     def get_sample_count_tensor(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     def get_magnitude(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """magnitude of a beam (raw value, or dB if get_magnitude_is_db())"""
+        """magnitude of a beam (raw values as float, not dB)"""
 
     def get_phase(self, beam_index: int) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """phase of a beam in radians (empty if there is no phase)"""
@@ -3593,12 +3596,53 @@ class CompressedWaterColumn(S7KDatagram):
     def set_compression_factor(self, val: float) -> None:
         """magnitude compression factor"""
 
-    def get_has_phase(self) -> bool: ...
+    def get_has_phase(self) -> bool:
+        """whether the record contains phase data (derived from bit 1)"""
 
-    def get_magnitude_is_db(self) -> bool: ...
+    def get_magnitude_is_db(self) -> bool:
+        """
+        whether the magnitude is stored as 8-bit dB values (derived from bit
+        2)
+        """
 
     def get_magnitude_bytes(self) -> int:
         """number of bytes per magnitude sample as stored on disk (1, 2 or 4)"""
+
+    def get_flag_use_maximum_bottom_detection(self) -> bool:
+        """
+        Bit 0: water column data is limited to the bottom detection point
+        (+10%).
+        """
+
+    def get_flag_intensity_only(self) -> bool:
+        """Bit 1: only intensity (magnitude) data is included, phase is stripped."""
+
+    def get_flag_magnitude_to_db(self) -> bool:
+        """
+        Bit 2: magnitude is converted to dB and stored as an 8-bit value
+        (phase as 8-bit).
+        """
+
+    def get_flag_32bit_data(self) -> bool:
+        """Bit 12: magnitude is stored as 32-bit values."""
+
+    def get_flag_compression_factor_available(self) -> bool:
+        """
+        Bit 13: a custom compression factor is available (else a factor of 40
+        is used).
+        """
+
+    def get_flag_segment_numbers_available(self) -> bool:
+        """Bit 14: per-beam segment numbers are available."""
+
+    def get_flag_first_sample_is_rxdelay(self) -> bool:
+        """Bit 15: the first sample contains the RxDelay value."""
+
+    def get_downsampling_divisor(self) -> int:
+        """Bits 4-7: downsampling divisor (1 means no downsampling)."""
+
+    def get_downsampling_type(self) -> int:
+        """Bits 8-11: downsampling type (0 none, 1 middle, 2 peak, 3 average)."""
 
     @property
     def beams(self) -> CompressedWaterColumnBeamContainer:

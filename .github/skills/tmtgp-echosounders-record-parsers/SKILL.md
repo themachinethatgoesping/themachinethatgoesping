@@ -107,12 +107,29 @@ container's out-of-line tensor accessors).
   (a) samples contiguous with a fixed datagram-wide dtype (s7k 7028): store a flat
   `std::variant<xt::xtensor<u16,1>, xt::xtensor<u32,1>>` + `xt::xtensor<uint64_t,1>` beam offsets,
   read the header block and the sample block each in one `is.read`; per-beam / list / dB conversions
-  computed on demand (like simradraw RAW3's variant). (b) interleaved per-beam blocks with
-  flag-driven dtype (s7k 7042): loop over beams and let **each beam read itself** from the stream
-  (`beam.read(is, has_segment, stride)` reads its header fields + `is.read` of its raw sample block
-  straight into `beam._raw_samples`). Store the record-wide sample **encoding once on the container**
-  (`set_magnitude_bytes/has_phase/...`), NOT on every beam — the beam should reflect only the binary
-  (beam number, count, raw bytes); the container decodes magnitude/phase from the raw bytes on demand.
+  computed on demand (like simradraw RAW3's variant). (b) interleaved per-beam blocks with flag-driven
+  dtype (s7k 7042): keep each beam's samples in their **native on-disk integer type** as xtensors,
+  **one class per sample encoding** in a `std::variant` (mirror simradraw `raw3datatypes/`): an
+  `I_<Rec>Data` interface + a concrete type per encoding (e.g. `Magnitude16` = `xt::xtensor<uint16_t,1>`,
+  `Magnitude16Phase16` = interleaved `xt::xtensor<uint16_t,2>` `[n,2]`, `Magnitude32` = `uint32` per
+  Appendix I DWORD, …) + a `Skipped` default alternative, plus a `<Rec>DataVariant`. Each beam holds one
+  variant; `beam.read(is, has_segment, type)` reads its header then constructs the matching alternative
+  via a `<rec>_data_from_stream(is, type, n)` factory (bulk `is.read` into the tensor; only the rare
+  mixed-size encoding — e.g. 32-bit mag + 8-bit phase — de-interleaves per sample). Store the
+  record-wide encoding once on the container (`set_magnitude_bytes/has_phase/...`) and expose
+  `get_data_type()` (flags → enum). Do the **bit-preserving signedness fixes with `xt::cast`**
+  (uint16→int16 is a well-defined bit reinterpret in C++20; 8-bit phase → int16 via `*256`), NOT memcpy
+  loops. Raw native access (`get_raw_magnitude()` widened to the widest lossless int, `get_raw_phase()`
+  → int16) dispatches via `std::visit`.
+- **NO float / dB / radian conversion at read or at raw access** — keep the integers. Convert only in
+  the ping accessor (`get_amplitudes`/`get_phase`) on the *selected* beams/samples, as a single
+  vectorized xtensor expression (xsimd), via a `convert_magnitude_to_db(Tensor)` helper on the container
+  (it holds the encoding flags: 8-bit already-dB pass through, 16/32-bit `20*log10(mag/full_scale)`).
+  This converts only used data and is xsimd-friendly (see tmtgp-echosounders-watercolumn-bottom).
+- **Decoded flag getters** belong in the datagram's `// ----- processed (decoded flags) -----` section:
+  `bool get_flag_<name>()` (single-bit test) + multi-bit fields as `get_<name>()` (e.g.
+  `get_downsampling_divisor/type`), printed under `register_section("Processed (decoded flags)")`; keep
+  the raw `_flags` printed as `0b{:0Nb}` in the content section.
 - **skip_data = store file position + lazy re-read** (kmall `MWCRxBeamData` style): on skip, record
   `is.tellg()` in the container (`set_skipped(pos)`), seek past the samples, leave the sample arrays
   empty; expose `get_samples_are_skipped()/get_sample_position()` and a `read_samples(std::istream&)`

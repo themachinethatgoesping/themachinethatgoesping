@@ -271,9 +271,6 @@ class TileBuilder:
     def add_esri_ocean(self) -> TileBuilder:
         """Add ESRI Ocean Basemap."""
 
-    def add_esri_natgeo(self) -> TileBuilder:
-        """Add ESRI National Geographic."""
-
     def add_cartodb_positron(self) -> TileBuilder:
         """Add CartoDB Positron (light theme)."""
 
@@ -316,6 +313,10 @@ class TileBuilder:
         Args:
             preset_name: Name from TILE_SOURCES (e.g., 'osm', 'esri_worldimagery').
         """
+
+    @staticmethod
+    def xyz_to_quadkey(z: int, x: int, y: int) -> str:
+        """XYZ tile coords -> Bing/Virtual Earth quadkey."""
 
     def get_image(self, bounds: themachinethatgoesping.pingprocessing.overview.map_builder.coordinate_system.BoundingBox, target_size: tuple[int, int] = (800, 600), source_name: Union[str, None] = None) -> tuple[Union[numpy.ndarray, None], themachinethatgoesping.pingprocessing.overview.map_builder.coordinate_system.BoundingBox]:
         """

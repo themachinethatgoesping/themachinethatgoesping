@@ -53,5 +53,9 @@ C++ test names are the dotted target names, e.g.
   (`src/themachinethatgoesping/echosounders/meson.build`, `src/nanomodule/meson.build`,
   `src/tests/meson.build`).
 - After a successful build **+ install**, restart any running notebook kernel so it picks up the
-  rebuilt module. Notebook-only edits do not need a build.
+  rebuilt module (notebook-only edits do not need a build). **Agent-driven kernel restart is a no-op
+  here**: `run_vscode_command jupyter.restartkernel` / `notebook.restartKernel` report success but do
+  NOT reload the module. Verify a module change in a FRESH `mamba run python` terminal process (it
+  dlopens the freshly installed module) and ask the user to restart the kernel manually. See the
+  **tmtgp-ping-jupyter** skill.
 - The prefix `/ssd/local` is the install prefix (`-Dprefix='/ssd/local'`).
