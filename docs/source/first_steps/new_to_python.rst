@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2023 Peter Urban, Ghent University
+.. SPDX-FileCopyrightText: 2023 themachinethatgoesping contributors (see AUTHORS.md)
 ..
 .. SPDX-License-Identifier: MPL-2.0
 
