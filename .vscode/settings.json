@@ -1,0 +1,58 @@
+{
+  // Shared VS Code settings for local work on themachinethatgoesping.
+  // Mirrors the repository .clang-format / coding style and keeps Copilot's
+  // context focused (excluding build output) to reduce noise and AI cost.
+
+  // --- C / C++ ---
+  "C_Cpp.formatting": "clangFormat",
+  "C_Cpp.clang_format_style": "file",
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "[c]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  // clangd works best against a compile_commands.json produced by meson in builddir/
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/builddir",
+    "--header-insertion=never",
+    "--background-index"
+  ],
+
+  // --- Python ---
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.analysis.typeCheckingMode": "basic",
+
+  // --- Editor defaults matching .clang-format / .editorconfig ---
+  "editor.rulers": [100],
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // --- Keep search / file watching / Copilot context lean (less noise, lower cost) ---
+  "files.watcherExclude": {
+    "**/builddir/**": true,
+    "**/build/**": true,
+    "**/.docstrings/**": true,
+    "**/__pycache__/**": true
+  },
+  "search.exclude": {
+    "**/builddir": true,
+    "**/build": true,
+    "**/.docstrings": true,
+    "**/stubs": true,
+    "**/*.pyi": true,
+    "**/__pycache__": true
+  },
+
+  // --- GitHub Copilot: point at the shared instruction files ---
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true
+}
