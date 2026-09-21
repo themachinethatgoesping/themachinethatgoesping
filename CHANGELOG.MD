@@ -10,15 +10,28 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 -pingprocessing -> 0.15.1
 -widgets -> 0.1.5
 -tools -> 0.33.1
+-navigation -> 0.19.1
 
 ## Improvements
 -echosounders: initial implementation for s7k
 -pingprocessing/widgets: fixed reading geotif
-- ai refractor tile builder
+-ai refractor tile builder
+-navigation: convinient epgs functions in navtools
+-echosounders: experimental support for kmall configurations: dual head, dual rx, dual tx dual rx
+-echosoudners: kmall: accept unsorted navigations with a warning
 
 ## Fixes
 - tools: fix printing nan/inf statistics
 - echosounders: datagram container: fixed count_datagrams_per_type and find_datagram_types functions to return strings
+- KMALL: deal with missing SYSTEM parameter in installation by allowing em710 etc to default to SingleTxSingleRx
+
+## Maintanance
+- update frozen 1.1.1 -> git-master
+- update fast_float 8.2.10 -> 8.3.0
+- update nanobind 3.0.1 -> 3.1.0
+- activate c++26 standard
+- geographiclib wrap: stop injecting c++20 compile arguments into the dependency
+- invalidated old kmall filepackage cache
 
 # [0.35.1] - 31-08-2026
 

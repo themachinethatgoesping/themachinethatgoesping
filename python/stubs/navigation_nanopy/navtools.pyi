@@ -169,3 +169,30 @@ def cumulative_latlon_distances_m(geolocations_latlon: Sequence[tuple[float, flo
         Vector of cumulative distances between consecutive coordinates in
         meters.
     """
+
+def epsg_from_utmups(zone: int, northp: bool) -> str:
+    """
+    Get the EPSG code for a given UTM/UPS zone and hemisphere.
+
+    Args:
+        zone: UTM Zone number
+        northp: 1 for norhtern hemisphere, 0 for southern hemisphere
+
+    Returns:
+        std::string
+    """
+
+def epsg_from_latlon(latitude: float, longitude: float) -> str:
+    """
+    Get the EPSG code (UTMUPS) for a given latitude and longitude. This
+    function determines the appropriate UTM/UPS zone and hemisphere for
+    the given latitude and longitude, and returns the corresponding EPSG
+    code.
+
+    Args:
+        lat: latitude in decimal degrees
+        lon: longitude in decimal degrees
+
+    Returns:
+        std::string
+    """

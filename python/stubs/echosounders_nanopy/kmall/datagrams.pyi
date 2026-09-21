@@ -1723,11 +1723,18 @@ class IInstallationParam(KMALLDatagram):
                 values
         """
 
-    @overload
-    def get_transducer_offsets(self, transducer_key: str) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose: ...
+    def get_transducer_offsets(self, transducer_key: str) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Get the transducer offsets for a given transducer
 
-    @overload
-    def get_transducer_offsets(self) -> dict[str, themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]: ...
+        Parses TRAI_TX1, TRAI_TX2, TRAI_RX1, TRAI_RX2, or TRAI_HD1 entries
+
+        Args:
+            transducer_key: Key like "TRAI_HD1", "TRAI_TX1", etc.
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
 
     def get_position_system_offsets(self, position_system_number: int) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """

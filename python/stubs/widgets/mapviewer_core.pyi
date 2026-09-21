@@ -168,9 +168,30 @@ class MapCore:
     def tile_builder(self, builder) -> None: ...
 
     def change_tile_source(self, source_name: str) -> None:
-        """Change the tile source by name."""
+        """Set the base tile source by name ('None' hides tiles)."""
+
+    def change_tile_overlay(self, source_name: str) -> None:
+        """Set the optional overlay (second) layer by name ('None' = no overlay)."""
+
+    def set_tile_time(self, date) -> None:
+        """
+        Set the acquisition date for time-dependent tile layers (None = latest).
+        """
+
+    def set_tile_time_from_data(self, enabled: bool) -> None:
+        """When enabled, drive the tile date from the displayed ping/survey time."""
+
+    def is_tile_time_dependent(self) -> bool:
+        """Whether any active tile layer depends on an acquisition date."""
+
+    def export_tiles(self, path: str, scale: float = 2.0, max_pixels: int = 8000) -> Optional[str]:
+        """
+        Save the current tile view as a georeferenced GeoTIFF (higher-res re-fetch).
+        """
 
     def list_tile_sources(self) -> List[str]: ...
+
+    def list_tile_overlays(self) -> List[str]: ...
 
     def update_view(self) -> None:
         """Update the displayed layers based on current view bounds."""

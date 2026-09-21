@@ -19,6 +19,37 @@ build/test/install see **tmtgp-build-and-test**. Canonical examples: `subproject
 - Namespaces (no indent inside), closed with `// namespace x` comments, e.g.
   `themachinethatgoesping::echosounders::<format>[::datagrams[::substructs]|::filedatainterfaces]`.
 
+## Header vs `.cpp` split (compile time)
+Headers are pulled into many translation units, so **every non-template function body in a header is
+re-parsed/re-instantiated everywhere and slows the whole build**. Keep headers to declarations.
+Canonical reference: `kongsbergall` (e.g. `clockdatagram.hpp`/`.cpp`) — NOT the older inline-getter
+style still visible in some `kmall` headers.
+
+- **Declarations + docstrings stay in the header; definitions go to the `.cpp`.** This applies to
+  **every** ordinary member/function of a non-template class: constructors, **trivial one-line
+  getters/setters**, processed accessors, `from_stream`/`to_stream`, `__printer__`, free helper
+  functions. Do **not** leave a body in the header just because it is one line.
+- The `.doc.hpp` docstring lives with the **declaration** in the header (that is what mkdoc reads);
+  never move a `/** @brief */` block to the `.cpp`.
+- **Do NOT introduce helper constructs to "enable" moving code** — no extra file-scope function
+  definitions, no forward-declared local helpers at the top of the header, no macro tricks. Just
+  declare in the header and define in the `.cpp`. Prefer the plain, boring split.
+- **Only exception = templates.** A template body must be visible where it is instantiated, so it
+  stays in the header. To keep templates from re-instantiating in every TU, use **explicit
+  instantiation**: `extern template <struct|class> X<Args...>;` in the header and the matching
+  `template <struct|class> X<Args...>;` in the `.cpp`, for each type actually used.
+  - This is mandatory for every `OptionFrozen<...>` alias (`o_X`) declared in a class/header: add the
+    `extern template struct themachinethatgoesping::tools::classhelper::OptionFrozen<t_X,
+    _values.size(), _values, _names, _alt_names>;` in the header and the matching `template struct
+    ...;` in the `.cpp` (see `s7k/types.hpp` + `s7k/types.cpp`).
+  - It is **acceptable that a build breaks when a template is later used with a new, un-instantiated
+    type** — that is the signal to add one more explicit-instantiation line to the `.cpp`. Prefer this
+    over header-only bodies; fast compilation wins.
+  - A class template that is genuinely instantiated only through a small fixed set of stream types
+    elsewhere (e.g. the stream-templated `filedatainterfaces` / file handler / ping types, which are
+    instantiated in the nanobind `c_*.cpp`) MAY stay header-only, matching `kmall`/`kongsbergall`.
+    Do not restructure those unless asked.
+
 ## Naming
 - Types/classes `PascalCase`; functions & variables `snake_case`; **data members `_snake_case`**
   (leading underscore). This is **ping-wide** and applies to **every** private/protected member,
