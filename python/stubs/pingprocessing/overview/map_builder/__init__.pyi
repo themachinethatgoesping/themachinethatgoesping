@@ -51,13 +51,10 @@ from themachinethatgoesping.pingprocessing.overview.map_builder.map_builder impo
 from themachinethatgoesping.pingprocessing.overview.map_builder.tile_builder import (
     TileBuilder as TileBuilder,
     TileSource as TileSource,
-    list_available_sources as list_available_sources,
-    list_overlay_sources as list_overlay_sources
+    list_available_sources as list_available_sources
 )
 
 
 TILE_SOURCES: dict = ...
 
-OVERLAY_SOURCES: dict = ...
-
-__all__: list = ['MapCoordinateSystem', 'BoundingBox', 'MapBuilder', 'MapLayer', 'MapDataBackend', 'GeoTiffBackend', 'TileBuilder', 'TileSource', 'TILE_SOURCES', 'OVERLAY_SOURCES', 'list_available_sources', 'list_overlay_sources']
+__all__: list = ['MapCoordinateSystem', 'BoundingBox', 'MapBuilder', 'MapLayer', 'MapDataBackend', 'GeoTiffBackend', 'TileBuilder', 'TileSource', 'TILE_SOURCES', 'list_available_sources']

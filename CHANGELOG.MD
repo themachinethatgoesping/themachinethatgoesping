@@ -24,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: fix printing nan/inf statistics
 - echosounders: datagram container: fixed count_datagrams_per_type and find_datagram_types functions to return strings
 - KMALL: deal with missing SYSTEM parameter in installation by allowing em710 etc to default to SingleTxSingleRx
+- KMALL: more meaningfull error message for unknown datagram types
 
 ## Maintanance
 - update frozen 1.1.1 -> git-master

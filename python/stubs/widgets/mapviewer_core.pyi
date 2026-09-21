@@ -26,7 +26,7 @@ HAS_MATPLOTLIB: bool = True
 class LayerRenderSettings:
     """Viewer-side rendering settings for a layer."""
 
-    colormap: str = 'gray'
+    colormap: str = 'viridis'
 
     opacity: float = 1.0
 
@@ -42,7 +42,7 @@ class LayerRenderSettings:
 
     __hash__: None = None
 
-    def __init__(self, colormap: str = 'gray', opacity: float = 1.0, vmin: Optional[float] = None, vmax: Optional[float] = None, blend_mode: str = 'alpha') -> None: ...
+    def __init__(self, colormap: str = 'viridis', opacity: float = 1.0, vmin: Optional[float] = None, vmax: Optional[float] = None, blend_mode: str = 'alpha') -> None: ...
 
     def __repr__(self): ...
 
@@ -150,9 +150,6 @@ class MapCore:
 
     def set_layer_range(self, layer_name: str, vmin: float, vmax: float) -> None: ...
 
-    def set_layer_levels(self, layer_name: str, vmin: float, vmax: float) -> None:
-        """Set a fixed display range for a layer (no auto-rescale on zoom)."""
-
     def set_layer_blend_mode(self, layer_name: str, blend_mode: str) -> None: ...
 
     @property
@@ -168,30 +165,9 @@ class MapCore:
     def tile_builder(self, builder) -> None: ...
 
     def change_tile_source(self, source_name: str) -> None:
-        """Set the base tile source by name ('None' hides tiles)."""
-
-    def change_tile_overlay(self, source_name: str) -> None:
-        """Set the optional overlay (second) layer by name ('None' = no overlay)."""
-
-    def set_tile_time(self, date) -> None:
-        """
-        Set the acquisition date for time-dependent tile layers (None = latest).
-        """
-
-    def set_tile_time_from_data(self, enabled: bool) -> None:
-        """When enabled, drive the tile date from the displayed ping/survey time."""
-
-    def is_tile_time_dependent(self) -> bool:
-        """Whether any active tile layer depends on an acquisition date."""
-
-    def export_tiles(self, path: str, scale: float = 2.0, max_pixels: int = 8000) -> Optional[str]:
-        """
-        Save the current tile view as a georeferenced GeoTIFF (higher-res re-fetch).
-        """
+        """Change the tile source by name."""
 
     def list_tile_sources(self) -> List[str]: ...
-
-    def list_tile_overlays(self) -> List[str]: ...
 
     def update_view(self) -> None:
         """Update the displayed layers based on current view bounds."""
@@ -211,9 +187,9 @@ class MapCore:
     def set_layer_colormap_image(self, layer_name: str, colormap: str) -> None:
         """Set colormap and re-render a layer."""
 
-    def add_geotiff(self, path: str, name: Optional[str] = None, band: int = 1, cmap: Optional[str] = None, vmin: Optional[float] = None, vmax: Optional[float] = None, **kwargs) -> None: ...
+    def add_geotiff(self, path: str, name: Optional[str] = None, band: int = 1, **kwargs) -> None: ...
 
-    def add_layer(self, backend: Any, name: Optional[str] = None, visible: bool = True, z_order: Optional[int] = None, cmap: Optional[str] = None, vmin: Optional[float] = None, vmax: Optional[float] = None) -> None: ...
+    def add_layer(self, backend: Any, name: Optional[str] = None, visible: bool = True, z_order: Optional[int] = None) -> None: ...
 
     @property
     def layer_names(self) -> List[str]:
