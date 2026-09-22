@@ -1,94 +1,71 @@
-# SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
-#
-# SPDX-License-Identifier: CC0-1.0
-
-# Build configuration for themachinethatgoesping
-
 [build-system]
 requires = [
-    'meson-python >= 0.15.0',
-    'meson >= 1.2.3',
-    'pyproject-metadata',
-    'ninja >= 1.10', #1.12 fixes longpath issue on windows 
-    'numpy >= 2.0',
-    #'oldest-supported-numpy'
+    "meson-python>=0.15.0",
+    "meson>=1.2.3",
+    "pyproject-metadata",
+    "ninja>=1.10",
+    "numpy>=2.0",
 ]
-build-backend = 'mesonpy'
-#backend-path = ['./subprojects/meson-python']
+build-backend = "mesonpy"
+
 
 [project]
-name = 'themachinethatgoesping'
-dynamic = [
-  'version',
-]
-#version = '0.0.1'
-description = 'Enable advanced processing for multibeam and singlebeam echosounder data.THIS PROJECT IS IN DEVELOPMENT.'
-readme = 'README-project.md'
-license = { file = 'LICENSE' }
-keyword = ['mbes', 'sbes', 'watercolumn','echosounder','quantification']
+name = "themachinethatgoesping"
+dynamic = ["version"]
+
+description = "Enable advanced processing for multibeam and singlebeam echosounder data.THIS PROJECT IS IN DEVELOPMENT."
+readme = "README-project.md"
+license = { file = "LICENSE" }
+
 authors = [
-    {name = 'Peter Urban', email = 'peter.urban@ugent.be'}]
+    { name = "Peter Urban", email = "peter.urban@ugent.be" },
+    { name = "Peter Urban", email = "peter.urban@urcoustics.com" },
+]
+
+keywords = [
+    "mbes",
+    "sbes",
+    "watercolumn",
+    "echosounder",
+    "quantification",
+]
 
 classifiers = [
-  'Development Status :: 1 - Planning',
-  'Programming Language :: Python',
+    "Development Status :: 1 - Planning",
+    "Programming Language :: Python",
 ]
 
-requires-python = '>=3.11, <3.15'
+requires-python = ">=3.11,<3.15"
+
 dependencies = [
-  'numba',
-  #'ipympl',
-  'matplotlib',
-  'numpy >= 1.26.0',
-  'tqdm',
-  'rasterio >= 1.3.10',
-  'ipywidgets',
-  'pytimeparse2 >= 1.7.1',
-  'pandas >= 2.1.0',
-  'pyarrow',
-  'scipy',
-  'pyqtgraph',
-  'jupyter-rfb',
-  'pyside6',
+    "numba",
+    "matplotlib",
+    "numpy>=1.26.0",
+    "tqdm",
+    "rasterio>=1.3.10",
+    "ipywidgets",
+    "pytimeparse2>=1.7.1",
+    "pandas>=2.1.0",
+    "pyarrow",
+    "scipy",
+    "pyqtgraph",
+    "jupyter-rfb",
+    "pyside6",
 ]
 
 
 [project.optional-dependencies]
 test = [
-  'jupyter'
+    "jupyter",
 ]
 
 
 [project.urls]
-homepage      = 'https://github.com/themachinethatgoesping'
-repository    = 'https://github.com/themachinethatgoesping'
-documentation = 'https://themachinethatgoesping.readthedocs.io/en/latest/'
-#changelog = 'https://constellations.example.com/orion/docs/changelog.html'
+homepage = "https://github.com/themachinethatgoesping"
+repository = "https://github.com/themachinethatgoesping"
+documentation = "https://themachinethatgoesping.readthedocs.io/en/latest/"
 
 
-# -- cibuildwheel options ---
-[tool.cibuildwheel]
-#FUTURE: build against musllinux (there is currently no documentation on this image)
-#FUTURE: build for pypy (is not yet supported by mesonpy)
-# Skip pypy[pp*] and musllinux (for now)
-skip = 'pp* *musllinux*'
-
-# Run at least pytests
-test-requires = 'pytest'
-test-command  = 'cd {project} && pytest'
-
-[tool.cibuildwheel.linux]
-# Install build dependencies
-#before-all = './ci_scripts/docker-manylinux_x86_64/manylinux2014-install.sh'
-manylinux-x86_64-image = 'ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep'
-
-[tool.cibuildwheel.macos]
-before-all = 'brew install boost libomp llvm@18'
-
-#FUTURE: add windows build here as well
-
-
-# pyproject.toml
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
@@ -101,53 +78,13 @@ testpaths = [
     "subprojects/pingprocessing/python/tests/",
 ]
 
+
 [tool.meson-python.args]
-#dist = []
-setup = ["--default-library=static", "-Doptimization=3"]
+setup = [
+    "--default-library=static",
+    "-Doptimization=3",
+]
 compile = []
-install = ['--tags=runtime,python-runtime'] 
-
-[tool.poetry]
-package-mode = false
-
-[tool.poetry.dependencies]
-python = ">=3.11, <4"
-matplotlib = "3.9.3"
-jupyterlab = "4.2.6"
-ipympl = "^0.9.4"
-nbmake = "^1.5.4"
-ipyleaflet = "^0.19.2"
-numba = "^0.60" #setting this here makes sure that e.g. numpy version is set compatible by poetry
-numpy = "^2"
-pytimeparse2 = "^1.7.1"
-gsw = "^3.6.19"
-ipywidgets = "^8.1.5"
-tqdm = "^4.67.1"
-ninja = "^1.11.1.2"
-meson = "^1.2.3"
-meson-python = "^0.17.1"
-pytest = "^8.3.4"
-pybind11-stubgen = "^2.5.1"
-clang = "^17.0.6"
-rasterio = "^1.3"
-pandas = "^2.2.3"
-tabulate = "^0.9.0"
-openpyxl = "^3.1.5"
-pybind11-mkdoc = "^2.6.2"
-scipy = "^1.14.1"
-
-[tool.pixi.project]
-channels = ["conda-forge"]
-platforms = ["linux-64"]
-
-[tool.pixi.pypi-dependencies]
-themachinethatgoesping = { path = ".", editable = true }
-
-[tool.pixi.environments]
-default = { solve-group = "default" }
-test = { features = ["test"], solve-group = "default" }
-
-[tool.pixi.tasks]
-
-[tool.pixi.dependencies]
-conda-recipe-manager = "*"
+install = [
+    "--tags=runtime,python-runtime",
+]

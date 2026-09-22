@@ -1,0 +1,64 @@
+[workspace]
+name = "themachinethatgoesping"
+channels = ["conda-forge", "themachinethatgoesping"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = ">=3.11,<3.15"
+
+# Python runtime dependencies from Conda
+numba = "*"
+matplotlib = "*"
+numpy = ">=1.26"
+tqdm = "*"
+rasterio = ">=1.3.10"
+ipywidgets = "*"
+pytimeparse2 = ">=1.7.1"
+pandas = ">=2.1.0"
+pyarrow = "*"
+scipy = "*"
+pyqtgraph = "*"
+jupyter-rfb = "*"
+pyside6 = "*"
+
+# Build dependencies
+meson = ">=1.2.3"
+meson-python = ">=0.15.0"
+ninja = ">=1.10"
+pybind11-stubgen = "*"
+clang = "*"
+
+# Testing / development
+pytest = "*"
+jupyter = "*"
+jupyterlab = "*"
+nbmake = "*"
+ipympl = "*"
+ipyleaflet = "*"
+gsw = "*"
+tabulate = "*"
+openpyxl = "*"
+
+
+[tasks]
+test = "pytest -v"
+build = "python -m build"
+
+
+[feature.build.dependencies]
+python-build = ">=1.6.0,<2"
+twine = ">=7.0.0,<8"
+anaconda-client = ">=1.14.1,<2"
+rattler-build = ">=0.75.0,<0.76"
+conda-recipe-manager = "*"
+
+
+[feature.build.tasks]
+build-conda = "rattler-build build --recipe recipe/recipe.yaml --output output"
+build-pypi = "python -m build"
+upload-pypi = { cmd = "twine upload dist/*", depends-on = ["build-pypi"] }
+
+
+[environments]
+default = { solve-group = "default" }
+build = { features = ["build"], solve-group = "default" }
