@@ -50,7 +50,6 @@ dependencies = [
   'pyqtgraph',
   'jupyter-rfb',
   'pyside6',
-  'pyarrow'
 ]
 
 
