@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2024-2026 Peter Urban, Ghent University
+.. SPDX-FileCopyrightText: 2024-2026 themachinethatgoesping contributors (see AUTHORS.md)
 ..
 .. SPDX-License-Identifier: MPL-2.0
 
@@ -256,7 +256,12 @@ Ping consists of a number of repositories that represent individual modules. It 
 
 license
 #######
-Most of ping is distributed under the Mozilla Public License Version 2.0 (MPL-2.0)
+Most of ping is distributed under the Mozilla Public License Version 2.0 (MPL-2.0).
+
+Copyright is held collectively by the *themachinethatgoesping contributors*. Individual
+contributors and the affiliation(s) under which they contributed are listed in
+`AUTHORS.md <https://github.com/themachinethatgoesping/themachinethatgoesping/blob/main/AUTHORS.md>`_.
+The same collective copyright scheme is used across the ping subprojects.
 
 
 Contributing / Further development / Use

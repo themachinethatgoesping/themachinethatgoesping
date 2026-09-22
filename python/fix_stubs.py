@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2022 - 2026 Peter Urban, Ghent University
+# SPDX-FileCopyrightText: 2022 - 2026 themachinethatgoesping contributors (see AUTHORS.md)
 #
 # SPDX-License-Identifier: CC0-1.0
 
