@@ -12,6 +12,10 @@
 */build/*
 */builddir/*
 *.vscode/*
+# ...but share a few recommended VS Code settings with contributors
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
 conanbuild/*
 */output/*
 rattler.recipe/output/*
