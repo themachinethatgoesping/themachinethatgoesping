@@ -38,6 +38,7 @@ ipyleaflet = "*"
 gsw = "*"
 tabulate = "*"
 openpyxl = "*"
+trame-pyvista = ">=0.1.7,<0.2"
 
 
 [tasks]

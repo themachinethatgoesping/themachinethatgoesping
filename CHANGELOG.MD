@@ -33,6 +33,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - activate c++26 standard
 - geographiclib wrap: stop injecting c++20 compile arguments into the dependency
 - invalidated old kmall filepackage cache
+- invalidated old navigation filepackage cache
 
 # [0.35.1] - 31-08-2026
 
