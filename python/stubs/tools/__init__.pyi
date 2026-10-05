@@ -1,4 +1,5 @@
 from themachinethatgoesping.tools import (
+    diff as diff,
     timeconv as timeconv,
     timeconv as timeconv_ext
 )

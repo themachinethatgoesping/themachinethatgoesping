@@ -1401,6 +1401,14 @@ class I_PingWatercolumn(I_PingCommon):
     @overload
     def get_beam_crosstrack_angles(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
+    def has_beam_crosstrack_angles_in_world_frame(self) -> bool:
+        """
+        Returns true if get_beam_crosstrack_angles() produces gravity-
+        referenced (world-frame) angles. When false (default), angles are in
+        the vessel/transducer frame and the raytracer must apply the sensor
+        orientation (roll/pitch) to convert to world-frame.
+        """
+
     @overload
     def get_beam_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
