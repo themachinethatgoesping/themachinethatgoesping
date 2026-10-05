@@ -31,6 +31,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders/pingsampleselector: support first simaple offset
 - s7k: reverse beam anghle direction to fit Ping conventions
 - mapviewer: fixes
+- echosounders: datagram_interface.keys() return type o_DatagramIdentifier
+- tools: improve safety of option printing of invalid enum types
 
 ## Maintanance
 - update frozen 1.1.1 -> git-master

@@ -1301,13 +1301,6 @@ class Position_o_position_type_flag:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: Position_o_position_type_flag, /) -> bool: ...
 
     @overload
@@ -1343,12 +1336,11 @@ class Position_o_position_type_flag:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -1392,13 +1384,6 @@ class Position_o_quality_flag:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: Position_o_quality_flag, /) -> bool: ...
 
     @overload
@@ -1434,12 +1419,11 @@ class Position_o_quality_flag:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -1528,13 +1512,6 @@ class Position_o_position_method:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: Position_o_position_method, /) -> bool: ...
 
     @overload
@@ -1570,12 +1547,11 @@ class Position_o_position_method:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -1873,13 +1849,6 @@ class Navigation_o_vertical_reference:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: Navigation_o_vertical_reference, /) -> bool: ...
 
     @overload
@@ -1915,12 +1884,11 @@ class Navigation_o_vertical_reference:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2079,13 +2047,6 @@ class SonarSettings_o_tx_pulse_type:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: SonarSettings_o_tx_pulse_type, /) -> bool: ...
 
     @overload
@@ -2121,12 +2082,11 @@ class SonarSettings_o_tx_pulse_type:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2179,13 +2139,6 @@ class SonarSettings_o_tx_pulse_envelope:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: SonarSettings_o_tx_pulse_envelope, /) -> bool: ...
 
     @overload
@@ -2221,12 +2174,11 @@ class SonarSettings_o_tx_pulse_envelope:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2279,13 +2231,6 @@ class SonarSettings_o_tx_pulse_mode:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: SonarSettings_o_tx_pulse_mode, /) -> bool: ...
 
     @overload
@@ -2321,12 +2266,11 @@ class SonarSettings_o_tx_pulse_mode:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2373,13 +2317,6 @@ class SonarSettings_o_projector_weighting:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: SonarSettings_o_projector_weighting, /) -> bool: ...
 
     @overload
@@ -2415,12 +2352,11 @@ class SonarSettings_o_projector_weighting:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2464,13 +2400,6 @@ class SonarSettings_o_rx_weighting:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: SonarSettings_o_rx_weighting, /) -> bool: ...
 
     @overload
@@ -2506,12 +2435,11 @@ class SonarSettings_o_rx_weighting:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2859,13 +2787,6 @@ class MatchFilter_o_operation:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: MatchFilter_o_operation, /) -> bool: ...
 
     @overload
@@ -2901,12 +2822,11 @@ class MatchFilter_o_operation:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -2962,13 +2882,6 @@ class MatchFilter_o_window_type:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: MatchFilter_o_window_type, /) -> bool: ...
 
     @overload
@@ -3004,12 +2917,11 @@ class MatchFilter_o_window_type:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""

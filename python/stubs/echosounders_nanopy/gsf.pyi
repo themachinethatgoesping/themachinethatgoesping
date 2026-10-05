@@ -59,13 +59,6 @@ class o_GSFDatagramIdentifier:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: o_GSFDatagramIdentifier, /) -> bool: ...
 
     @overload
@@ -101,12 +94,11 @@ class o_GSFDatagramIdentifier:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""

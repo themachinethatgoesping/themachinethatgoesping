@@ -42,13 +42,6 @@ class o_KongsbergAllDatagramIdentifier:
     """default enum value when constructing without arguments"""
 
     @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
-
-    @overload
     def __eq__(self, arg: o_KongsbergAllDatagramIdentifier, /) -> bool: ...
 
     @overload
@@ -84,12 +77,11 @@ class o_KongsbergAllDatagramIdentifier:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -122,13 +114,6 @@ class o_KongsbergAllActiveSensor:
 
     __default_value__: Final[kongsbergall.t_KongsbergAllActiveSensor] = ...
     """default enum value when constructing without arguments"""
-
-    @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
 
     @overload
     def __eq__(self, arg: o_KongsbergAllActiveSensor, /) -> bool: ...
@@ -166,12 +151,11 @@ class o_KongsbergAllActiveSensor:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
@@ -204,13 +188,6 @@ class o_KongsbergAllSystemTransducerConfiguration:
 
     __default_value__: Final[kongsbergall.t_KongsbergAllSystemTransducerConfiguration] = ...
     """default enum value when constructing without arguments"""
-
-    @overload
-    def __str__(self) -> str: ...
-
-    @overload
-    def __str__(self) -> str:
-        """Return object information as string"""
 
     @overload
     def __eq__(self, arg: o_KongsbergAllSystemTransducerConfiguration, /) -> bool: ...
@@ -248,12 +225,11 @@ class o_KongsbergAllSystemTransducerConfiguration:
     def hash(self) -> int:
         """hash function implemented using binary_hash"""
 
-    @overload
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
     def __repr__(self) -> str:
         """Return object information as string"""
-
-    @overload
-    def __repr__(self) -> None: ...
 
     def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
         """Return object information as string"""
