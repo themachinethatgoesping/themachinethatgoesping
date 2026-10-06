@@ -62,10 +62,17 @@ style still visible in some `kmall` headers.
 - Prefer `o_X` (not the raw enum) as the working identifier type everywhere (auto str↔number↔enum).
 
 ## Class structure (value / datagram / record class)
-- Members in a private/protected block; a fixed on-disk header/record goes in a `#pragma pack(push,1)`
-  `struct Content { ... } _content;` (packed so `sizeof` == on-disk size). Value-init in the ctor
-  (`: _content{}`) so an unset packed float never round-trips a NaN bit pattern.
-- Public: clean `get_x()/set_x(v)` per field; `bool operator==(const T&) const = default;`;
+- Members in a private/protected block; a fixed on-disk header/record goes in a
+  `struct Content { ... } _content;`. Add `#pragma pack(push,1)` around it **only when the natural
+  C++ layout would differ from the on-disk byte layout** (padding), and always pin the size with
+  `static_assert(sizeof(Content) == <N>, "...")`. A struct whose fields are already naturally aligned
+  to the packed layout (all-4-byte records, or a carefully ordered header with every reserved field
+  present — like the DRF) needs **no** pragma; packing it needlessly yields odd `sizeof`s that break
+  MSVC SIMD on Windows (see tmtgp-echosounders-record-parsers). Value-init in the ctor (`: _content{}`)
+  so an unset packed float never round-trips a NaN bit pattern.
+- Public: clean `get_x()/set_x(v)` per field; `bool operator==(const T&) const = default;`
+  (but a *user-provided* `operator==` for an all-integer, packed, `bind_vector`-bound row of size ∉
+  {1,2,4,8} — see the Windows SIMD rule in tmtgp-echosounders-record-parsers);
   `from_stream(...)` / `to_stream(std::ostream&) const`; an `__printer__` (below); the macros
   `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__` and `__STREAM_DEFAULT_TOFROM_BINARY_FUNCTIONS__(T)`
   (`..._NOT_CONST__(T)` if `to_stream` is non-const).

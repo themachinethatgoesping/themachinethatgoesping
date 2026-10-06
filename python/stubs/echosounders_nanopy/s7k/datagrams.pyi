@@ -3037,9 +3037,23 @@ class SoundVelocity(S7KDatagram):
     def set_sound_velocity(self, val: float) -> None:
         """water sound velocity in meters per second"""
 
+    def get_temperature(self) -> float: ...
+
+    def set_temperature(self, val: float) -> None: ...
+
+    def get_pressure(self) -> float: ...
+
+    def set_pressure(self, val: float) -> None: ...
+
     def get_checksum(self) -> int: ...
 
     def set_checksum(self, val: int) -> None: ...
+
+    def has_temperature_and_pressure(self) -> bool:
+        """
+        whether the optional temperature + pressure fields are present (not
+        NaN)
+        """
 
     def __eq__(self, other: SoundVelocity) -> bool: ...
 

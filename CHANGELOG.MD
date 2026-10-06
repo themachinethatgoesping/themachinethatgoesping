@@ -20,6 +20,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 -echosounders: experimental support for kmall configurations: dual head, dual rx, dual tx dual rx
 -echosoudners: kmall: accept unsorted navigations with a warning
 -pingprocessing: support pinggroups in overview processing
+- s7k review struct alignment packing
 
 ## Fixes
 - tools: fix printing nan/inf statistics

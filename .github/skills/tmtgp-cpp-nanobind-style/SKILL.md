@@ -77,6 +77,9 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
   `nb::bind_vector<std::vector<Row>>(m, "<Row>s_vector")`; container: `def_prop_rw` for the raw vector
   (`nb::rv_policy::reference_internal`) + one `.def` per `get_<field>_tensor` (needs
   `<xtensor-python/nanobind/pytensor.hpp>`; variant returns need `<nanobind/stl/variant.h>`).
+  ⚠️ `bind_vector` emits `std::find/count/remove`; on clang-cl/MSVC these fail to compile for a
+  packed, all-integer `Row` whose `sizeof` ∉ {1,2,4,8}. Fix it on the C++ `Row` (user-provided
+  `operator==`), NOT here — see the Windows SIMD rule in tmtgp-echosounders-record-parsers.
 - End every class with `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)` as applicable.
 - **When you add a processed getter to the C++ class, add its `.def` here too** (and re-run
   make_pybind_doc so `DOC(...,get_x_in_<unit>)` resolves).

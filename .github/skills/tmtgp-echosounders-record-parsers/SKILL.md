@@ -15,10 +15,11 @@ class <Rec> : public <Fmt>Datagram {
   public:
     static constexpr auto DatagramIdentifier = t_<Fmt>DatagramIdentifier::<ENUM>;
   protected:
-#pragma pack(push, 1)                 // records are PACKED (fields often mis-aligned)
+#pragma pack(push, 1)   // ONLY if the natural C++ layout != on-disk layout (see rule 4); else omit
     struct Content { <RTH fields in on-disk order>; bool operator==(const Content&) const = default; } _content;
 #pragma pack(pop)
     static constexpr size_t __content_size = sizeof(Content);
+    static_assert(__content_size == <on-disk bytes>, "<Rec>: Content must match the packed on-disk size");
     // per-beam / per-sample data: hold a substructs::<Rec>...Container member (bulk read, arrays
     // converted on access) -- see "Fast per-beam / per-sample records" below. Do NOT keep parallel
     // xt::xtensor arrays filled with an element-by-element loop.
@@ -83,10 +84,13 @@ arrays only on access. Reference: kmall `datagrams/substructs/` (`MRZSoundings` 
 `datagrams/substructs/`; each substruct **and** each container gets its own `.hpp` (+ `.cpp` for the
 container's out-of-line tensor accessors).
 
-- **Row substruct** (AoS on disk): `#pragma pack(push,1)` class, private members in on-disk order,
-  `get_/set_` accessors, inline `__printer__`, `operator==(...) = default`,
-  `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__`. `static_assert`/comment its `sizeof` == on-disk
-  stride so the bulk read is correct.
+- **Row substruct** (AoS on disk): `#pragma pack(push,1)` class **only if its natural C++ layout
+  differs from the on-disk stride** (see rule 4), private members in on-disk order, `get_/set_`
+  accessors, inline `__printer__`, `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__`, and a
+  `static_assert(sizeof(Row) == <stride>)` so the bulk read is correct. Use
+  `operator==(...) = default` **unless** the row is all-integer AND packed to a size ∉ {1,2,4,8}
+  AND bound via `bind_vector` — then give it a *user-provided* `operator==` (see the Windows SIMD
+  rule below). Rows with any float/double member are always fine with `= default`.
 - **Container**: holds `std::vector<Row>`; `get_<rows>()/rows()/set_<rows>()` for raw struct access
   **plus** `get_<field>_tensor()` built on demand via a private `build_tensor<ValueType>(getter)`
   template (`xt::xtensor<V,1>::from_shape({n})` + `unchecked` loop). The datagram holds the container
@@ -168,8 +172,24 @@ container's out-of-line tensor accessors).
    concatenated per-beam samples. s7k 7042: per-beam interleaved (header then that beam's samples),
    with the sample dtype (mag/phase bit depth) selected by the flags bit field. Always confirm the
    on-disk layout against the spec, not just a C struct.
-4. Records are **packed** — use `#pragma pack(push,1)` on the `Content` struct so `sizeof` == on-disk
-   size (unlike the naturally-aligned DRF header).
+4. Records are **packed on disk — but only pack the struct when it needs it.** Add
+   `#pragma pack(push,1)` to a `Content`/row struct **only when its natural C++ layout ≠ the on-disk
+   layout** (i.e. the compiler would insert padding), and always pin the result with
+   `static_assert(sizeof(X) == <N>, "...")`. Structs whose fields are already naturally aligned to
+   the packed layout (e.g. all-4-byte records like s7k 7610/7611/7612/1000/1012/1013) need **no**
+   pragma — packing them needlessly yields odd `sizeof`s that break SIMD on Windows (rule 5). The
+   DRF header is naturally aligned by design (all reserved fields present) and is never packed.
+   Prefer natural alignment: if a record looks oddly sized, check the spec for a missing **reserved**
+   field — s7k RTHs are complete only with every reserved u8/u16/u32 present.
+5. **Windows / MSVC-STL SIMD on `bind_vector` rows.** clang-cl & MSVC route `std::find/count/remove`
+   (emitted by `nb::bind_vector` for `__contains__`/`count`/`remove`) through a vectorized path that
+   only supports element sizes 1/2/4/8 bytes and `static_assert`-fails otherwise — but **only** for
+   "trivially equality comparable" types: all-integer, no padding, and a *defaulted* `operator==`.
+   So a packed all-integer row of size ∉ {1,2,4,8} (e.g. s7k 6-byte `FileHeaderDeviceInfo`, 14-byte
+   `SnippetDataBeam`) fails to compile on Windows. Fix = give **just those rows** a *user-provided*
+   `operator==` (memberwise, not `= default`); this flips `__is_trivially_equality_comparable` to
+   false → scalar path, keeps the exact on-disk layout, and does **not** disable SIMD elsewhere.
+   Rows containing any float/double are never affected (floats aren't memcmp-comparable).
 
 ## Wiring each record (checklist)
 - `datagrams.hpp`: `#include "datagrams/<rec>.hpp"` + add `<Rec>` to `t_<Fmt>DatagramVariant`.
