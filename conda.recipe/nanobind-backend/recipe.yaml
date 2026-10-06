@@ -80,8 +80,9 @@ requirements:
     # frontends (see subprojects/nanobind.wrap).
     - nanobind >=3.1.0
     # nanobind's CMake links tsl::robin_map; provide it in case the conda-forge
-    # nanobind package does not bundle ext/robin_map.
-    - tsl-robin-map
+    # nanobind package does not bundle ext/robin_map. The conda-forge package is
+    # named tsl_robin_map (underscores) and ships the tsl-robin-map CMake config.
+    - tsl_robin_map
     - if: osx
       then:
         - libcxx =19

@@ -65,11 +65,16 @@ controlled by the meson feature option **`split_mode`** (default **enabled**), d
   minimum Python (3.12)** to get `cp312-abi3`.
 - **Classic (linked) build**: `meson setup … -Dsplit_mode=disabled` → modules are version-specific
   `…cpython-3XX-….so`, no backend needed. Both paths must keep compiling.
-- **Standalone subproject builds are always classic.** Split mode is gated on
-  `meson.is_subproject()`, so a subproject built on its own (e.g. the `tools`/`echosounders`/… repo
-  CI, `ci-linux/mac/windows.yml`) uses the classic linked build and needs **no** backend — only the
-  top-level `themachinethatgoesping` package produces abi3 + split-mode modules. (This also avoids the
-  Windows `python3.lib` limited-API link issue in standalone subproject CIs.)
+- **Standalone subproject builds are always classic.** The `split_mode` option defaults to
+  **enabled** only in the top-level `themachinethatgoesping` `meson_options.txt`; every **subproject**
+  `meson_options.txt` defaults it to **disabled** with `yield: true`. So the main-package build
+  propagates `enabled` down to all subprojects (even nested ones, via `yield`), while a subproject
+  built on its own (e.g. the `tools`/`echosounders`/… repo CI) uses the classic linked build and
+  needs **no** backend. (Do **not** gate on `meson.is_subproject()` — a subproject of a subproject,
+  e.g. `tools` under a standalone `algorithms` build, is still a subproject and would wrongly enter
+  split mode, injecting `-DNB_BACKEND_MODULE` without `Py_LIMITED_API`.) Force either mode explicitly
+  with `-Dsplit_mode=enabled|disabled`. This also avoids the Windows `python3.lib` limited-API link
+  issue in standalone subproject CIs.
 - ⚠️ **Switching modes leaves stale modules**: `meson install` does not delete the previously
   installed `*_nanopy.*.so`. Because Python prefers the version-specific `…cpython-3XX….so` over
   `…abi3.so`, stale classic modules **shadow** the abi3 ones (and vice-versa). After switching
@@ -79,8 +84,8 @@ controlled by the meson feature option **`split_mode`** (default **enabled**), d
 - The split-mode frontend dep is provided by the nanobind wrap packagefile
   (`subprojects/tools/subprojects/packagefiles/nanobind/meson.build`, exposing `nanobind_frontend_dep`
   + `nanobind_stable_abi`); each subproject picks it with
-  `get_option('split_mode').allowed() and meson.is_subproject()` and passes
-  `limited_api: nanobind_limited_api` to `extension_module(...)`.
+  `get_option('split_mode').allowed()` and passes `limited_api: nanobind_limited_api` to
+  `extension_module(...)`.
 - abi3 means **no non-limited CPython C-API**. The only project dependency that needed a fix was the
   xtensor-python nanobind caster (`PySequence_Fast_GET_SIZE/_ITEMS` → `PySequence_Size/GetItem`),
   patched via a wrap `diff_files` patch
