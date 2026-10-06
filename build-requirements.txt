@@ -5,6 +5,9 @@ pytest
 numpy >= 2.0.0
 numba
 pybind11-stubgen
+# nanobind split-mode backend (compiled libnanobind), needed at runtime/import.
+# No upper bound / pin (newer backends always serve older extensions).
+nanobind-backend >= 1.0
 
 #not strictly build requirements, but needet to run the package and tests
 rasterio >= 1.3.10 #numpy 2.0 compatability

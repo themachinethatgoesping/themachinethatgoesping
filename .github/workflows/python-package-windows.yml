@@ -2,13 +2,26 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# Builds a single abi3 wheel for Windows (x64) using nanobind split mode and
+# tests it across all supported Python versions.
+#
+# The wheel is built with the MINIMUM supported Python (3.11) using clang-cl
+# (/MD runtime), producing a 'cp311-abi3-win_amd64' wheel that installs on every
+# Python >= 3.11. The compiled libnanobind backend ships separately as the PyPI
+# package 'nanobind-backend' (a runtime dependency pulled in automatically on
+# install).
+#
+# NOTE (Windows split-mode ABI): the official 'nanobind-backend' wheel targets
+# the MSVC /MD runtime. clang-cl also targets the MSVC ABI (/MD), so the two are
+# expected to be compatible. If a platform-ABI mismatch ever shows up at import
+# time, ship a custom Windows backend (built with clang-cl) instead — see
+# conda.recipe/nanobind-backend for the equivalent recipe.
 
 name: Build Python Package Windows
 
 on:
   push:
-    branches: [ main ]    
+    branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-linux*'
@@ -37,29 +50,47 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
-  
+
 jobs:
+  # Resolve the single-source version (from meson.build) and whether this is a
+  # .dev release. PyPI only receives non-dev releases.
+  version:
+    name: Resolve version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get.outputs.version }}
+      is_dev: ${{ steps.get.outputs.is_dev }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          lfs: false
+      - id: get
+        run: |
+          VERSION=$(python3 ci_scripts/get_version.py)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if python3 ci_scripts/get_version.py --is-dev; then
+            echo "is_dev=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a .dev release -> built and tested but NOT published to PyPI."
+          else
+            echo "is_dev=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a release -> will be published to PyPI (if on main)."
+          fi
+
   build_wheel:
-    name: ${{matrix.os}} python ${{ matrix.python-version }}
-    runs-on: ${{matrix.os}}
+    name: Build windows abi3 wheel (python 3.11 -> cp311-abi3)
+    runs-on: windows-2025-vs2026
 
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025-vs2026]
-        python-version: ['3.11','3.12','3.13','3.14']
         boost-version: [1.91.0]
         boost-version_: [1_91_0]
         boost-modules: [--with-iostreams]
-        #toolset: [msvc-14.32]
-        #toolset: [clang-cl]
         include:
         - toolset: vc145
           compiler: clang-cl
           cpp_std: c++26
-
-        # - python-version: '3.12'
-        #   pip-pre: '--pre'
 
     env:
       CC: ${{matrix.compiler}}
@@ -69,7 +100,7 @@ jobs:
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: ${{matrix.python-version}}
+        python-version: "3.11"
 
     - name: checkout main repository
       uses: actions/checkout@v4
@@ -80,8 +111,8 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-pypi-windows-${{ matrix.python-version }}  # name for the cache
-            
+        key: tmtgp-pypi-windows-abi3  # name for the cache
+
     # make sure meson can find msvc
     - name: Prepare MSVC
       uses: bus1/cabuild/action/msdevshell@v1
@@ -104,22 +135,13 @@ jobs:
           .\bootstrap.bat ${{matrix.toolset}}
           .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
           cd ..
-          #rm -rv boost*
 
-
-    #same as on linux
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
-    
     - name: Install dependencies (pip)
       run: |
         pip install --upgrade pip
         pip install meson meson-python pytest twine wheel pyproject-metadata repairwheel
-        pip install -r requirements.txt ${{ matrix.pip-pre }}
-        
+        pip install -r requirements.txt
+
     - name: download ninja long path
       run : |
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile c:\ninja.exe
@@ -128,25 +150,21 @@ jobs:
       run: |
         $env:NINJA
         c:\ninja.exe --version
-         
-    - name: Build
+
+    - name: Build abi3 wheel
       run: |
-        # Create dist directory and build wheel without cache
+        # build the abi3 wheel (cp311-abi3, works on all Python >= 3.11)
         New-Item -ItemType Directory -Force -Path dist
         pip wheel -w dist . --config-settings="builddir=b" --config-settings="setup-args=-Dcpp_std=c++latest" --no-deps -v --no-build-isolation --no-cache-dir
 
-    - name: Install wheel
+    - name: Repair and install wheel
       run: |
-        # Create wheelhouse directory
         New-Item -ItemType Directory -Force -Path wheelhouse
-    
-        # Use PowerShell syntax for repairwheel - get all .whl files explicitly
         $wheelFiles = Get-ChildItem dist/*.whl
         foreach ($wheel in $wheelFiles) {
           repairwheel -o wheelhouse $wheel.FullName
         }
-    
-        # Install from wheelhouse/ using correct PowerShell syntax
+        # installs the abi3 wheel + pulls the nanobind-backend runtime dep from PyPI
         $repairedWheelFile = Get-ChildItem wheelhouse/*.whl | Select-Object -First 1
         if ($repairedWheelFile) {
           pip install $repairedWheelFile.FullName
@@ -158,89 +176,75 @@ jobs:
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
       with:
-        name: python-${{ matrix.python-version }}-package-windows
+        name: python-package-windows
         path: wheelhouse
-         
+
     - name: Test with meson (c++)
       run: |
         c:\ninja.exe test -C b --verbose
-        
+
     - name: Test with pytest
       run: |
         pytest -v
-        
-        
-  install_and_test:
-    name: Install and test windows wheel for python 3.${{ matrix.python-3-version }}
+
+  # Validate the single abi3 wheel across all supported Python versions.
+  test_wheel:
+    name: Test abi3 wheel on python 3.${{ matrix.python-3-version }}
     needs: build_wheel
     runs-on: windows-2022
-
     strategy:
       fail-fast: false
       matrix:
         python-3-version: ["11", "12", "13", "14"]
-
-        # include:
-        #   - python-version: '3.12'
-        #     pip-pre: '--pre'
     steps:
-
     - uses: actions/setup-python@v5
       with:
         python-version: 3.${{matrix.python-3-version}}
 
-    #necessary only for pytest
     - name: checkout main repository
       uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false
 
-    - name: Download all the dists
+    - name: Download the abi3 wheel
       uses: actions/download-artifact@v4
       with:
-        name: python-3.${{ matrix.python-3-version }}-package-windows
+        name: python-package-windows
         path: dist/
 
     - name: install pip dependencies
-      # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install pytest typing_extensions 
+      run: pip install pytest typing_extensions
 
-    - name: install wheels
+    - name: install wheel
+      # the single cp311-abi3 wheel installs on every Python >= 3.11 and pulls
+      # the nanobind-backend runtime dependency from PyPI
       run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
-        
+        $wheel = Get-ChildItem dist/*.whl | Select-Object -First 1
+        pip install $wheel.FullName
+
     - name: test (pytest)
       run: pytest
-    
 
-  publish_wheel:
-    needs: install_and_test
+  # Publish the abi3 wheel to PyPI, ONLY for non-dev releases.
+  publish:
+    name: Publish abi3 wheel to PyPI
+    needs: [version, test_wheel]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.version.outputs.is_dev == 'false'
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.11','3.12','3.13','3.14']
-        
     steps:
-    - uses: actions/setup-python@v5
-
     - name: install pip dependencies
-      # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install typing_extensions 
-    
-    - name: Download all the dists
+      run: pip install typing_extensions
+
+    - name: Download the abi3 wheel
       uses: actions/download-artifact@v4
       with:
-        name: python-${{ matrix.python-version }}-package-windows
+        name: python-package-windows
         path: dist/
-        
+
     - name: Publish package
-      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
-      # Note 3: In the future this should better build against test.pypi repository!
-      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      # Packages are only updated when the meson.build version number changes
+      # (existing files are skipped, not overwritten).
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         skip-existing: true
@@ -248,9 +252,9 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages-dir: ./dist/
 
-  # delay for one minute before attempting to download the packages from pypi
+  # delay before attempting to download the packages from pypi
   delay_after_publish:
-    needs: publish_wheel
+    needs: publish
     runs-on: ubuntu-latest
     steps:
     - name: Sleep for 10s
@@ -259,16 +263,12 @@ jobs:
 
   test_pypi:
     needs: delay_after_publish
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
 
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.11','3.12','3.13','3.14']
-
-        # include:
-        #   - python-version: '3.12'
-        #     pip-pre: '--pre'
 
     steps:
     - name: checkout main repository
@@ -281,13 +281,8 @@ jobs:
       with:
         python-version: ${{matrix.python-version}}
 
-    - name: Install system dependencies for PySide6/pyqtgraph
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libegl1 libxkbcommon0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0
-
     - name: install via pip
-      run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+      run: pip install themachinethatgoesping pytest
 
     - name: pytest from git repo
       run: pytest -v

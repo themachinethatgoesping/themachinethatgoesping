@@ -2,7 +2,14 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# Builds a single abi3 wheel for macOS (arm64) using nanobind split mode and
+# tests it across all supported Python versions and macOS releases.
+#
+# The wheel is built with the MINIMUM supported Python (3.11) and the oldest
+# supported deployment target (14.0), producing a 'cp311-abi3-macosx_14_0_arm64'
+# wheel that installs on every Python >= 3.11 and macOS >= 14. The compiled
+# libnanobind backend ships separately as the PyPI package 'nanobind-backend'
+# (a runtime dependency, pulled in automatically on install).
 
 name: Build Python Package macOS
 
@@ -39,41 +46,39 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_wheel:
-    name: ${{ matrix.os }} ${{ matrix.arch }} python${{ matrix.python-version }}
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.11','3.12','3.13','3.14']
-        llvm: ["$(brew --prefix llvm@18)"]
-        boost: ["$(brew --prefix boost)"]
-        libomp: ["$(brew --prefix libomp)"]
-        os: ["macos-14","macos-15"]
-
-        include:
-          # - os: "macos-15"
-          #   arch: "arch -arm64"
-          #   deployment_target: "14.0"
-          #   FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl,-no_fixup_chains -Wl,-dead_strip"
-          - os: "macos-14"
-            arch: "arch -arm64"
-            deployment_target: "14.0"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
-          - os: "macos-15"
-            arch: "arch -arm64"
-            deployment_target: "15.0"
-            FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip" #,-no_fixup_chains"
-
-    env:
-      MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target }}
-
+  # Resolve the single-source version (from meson.build) and whether this is a
+  # .dev release. PyPI only receives non-dev releases.
+  version:
+    name: Resolve version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get.outputs.version }}
+      is_dev: ${{ steps.get.outputs.is_dev }}
     steps:
-      - name: Echo MACOSX_DEPLOYMENT_TARGET
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          lfs: false
+      - id: get
         run: |
-          echo "MACOSX_DEPLOYMENT_TARGET: $MACOSX_DEPLOYMENT_TARGET"
-          
+          VERSION=$(python3 ci_scripts/get_version.py)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if python3 ci_scripts/get_version.py --is-dev; then
+            echo "is_dev=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a .dev release -> built and tested but NOT published to PyPI."
+          else
+            echo "is_dev=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a release -> will be published to PyPI (if on main)."
+          fi
+
+  build_wheel:
+    name: Build macOS arm64 abi3 wheel (python 3.11 -> cp311-abi3)
+    runs-on: macos-14
+    env:
+      MACOSX_DEPLOYMENT_TARGET: "14.0"
+      ARCH: "arch -arm64"
+      FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip"
+    steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
@@ -81,10 +86,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{matrix.python-version}}
+          python-version: "3.11"
 
       - name: Checkout main repository
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           lfs: false
@@ -92,135 +97,96 @@ jobs:
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2
         with:
-          key: tmtgp-pypi-mac-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }} # name for the cache
+          key: tmtgp-pypi-mac-abi3-arm64
 
       - name: Install libomp and boost
-        run: ${{matrix.arch}} brew install libomp boost
+        run: ${{ env.ARCH }} brew install libomp boost
 
       - name: Install dependencies (pip)
         run: |
-          ${{matrix.arch}} pip install meson meson-python ninja pytest twine wheel repairwheel
-          ${{matrix.arch}} pip install -r requirements.txt
+          ${{ env.ARCH }} pip install meson meson-python ninja pytest twine wheel repairwheel
+          ${{ env.ARCH }} pip install -r requirements.txt
 
-      - name: Debug pip
+      - name: Build abi3 wheel
         run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
+          # build the abi3 wheel (cp311-abi3, works on all Python >= 3.11)
+          BOOST_ROOT=$(brew --prefix boost) ${{ env.FLAGS }} ${{ env.ARCH }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild"
 
-      - name: Build wheel
+      - name: Repair and install wheel
         run: |
-          # build wheel
-          BOOST_ROOT=${{ matrix.boost }} ${{ matrix.FLAGS}} ${{matrix.arch}} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild" #--no-build-isolation
-
-      - name: install wheel
-        run: |
-          # delocate wheel
-          # ${{matrix.arch}} delocate-wheel -w wheelhouse dist/* -v
-          # repairwheel
-          ${{matrix.arch}} repairwheel -o wheelhouse dist/*
-          ${{matrix.arch}} pip install wheelhouse/*
-
+          ${{ env.ARCH }} repairwheel -o wheelhouse dist/*
+          # installs the abi3 wheel + pulls the nanobind-backend runtime dep from PyPI
+          ${{ env.ARCH }} pip install wheelhouse/*
 
       - name: Store the binary wheel
         uses: actions/upload-artifact@v4
         with:
-          name: python-${{ matrix.python-version }}-package-${{ matrix.os }}
+          name: python-package-macos
           path: wheelhouse
 
       - name: Test with meson (c++)
-        run: |
-          ${{matrix.arch}} meson test -C pybuild --print-errorlogs
+        run: ${{ env.ARCH }} meson test -C pybuild --print-errorlogs
 
       - name: Test with pytest
-        run: |
-          ${{matrix.arch}} pytest -v
+        run: ${{ env.ARCH }} pytest -v
 
-  install_and_test:
-    name: Install/test ${{matrix.os}} / python 3.${{ matrix.python-3-version }}
+  # Validate the single abi3 wheel across supported Python versions and macOS releases.
+  test_wheel:
+    name: Test abi3 wheel ${{ matrix.os }} / python 3.${{ matrix.python-3-version }}
     needs: build_wheel
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: false
       matrix:
         arch: ["arch -arm64"]
-        python-3-version: ["11", "12", "13"]
-        os: ["macos-14","macos-15"]
-
+        python-3-version: ["11", "12", "13", "14"]
+        os: ["macos-14", "macos-15"]
     steps:
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.${{matrix.python-3-version}}
+          python-version: 3.${{ matrix.python-3-version }}
 
-      #necessary only for pytest
       - name: checkout main repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
           lfs: false
 
-      - name: Download all the dists
+      - name: Download the abi3 wheel
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
+          name: python-package-macos
           path: dist/
 
       - name: install pip dependencies
-        # missing typing_extensions caused an error with pypi-publish ...
         run: |
-          ${{matrix.arch}} pip install --upgrade pip          
-          ${{matrix.arch}} pip install pytest typing_extensions
+          ${{ matrix.arch }} pip install --upgrade pip
+          ${{ matrix.arch }} pip install pytest typing_extensions
 
-      - name: Debug pip
-        run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
-
-      - name: install wheels
-        run: |
-          ${{matrix.arch}} pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+      - name: install wheel
+        # the single cp311-abi3 wheel installs on every Python >= 3.11 and pulls
+        # the nanobind-backend runtime dependency from PyPI
+        run: ${{ matrix.arch }} pip install dist/*.whl
 
       - name: test (pytest)
-        run: ${{matrix.arch}} pytest -v
+        run: ${{ matrix.arch }} pytest -v
 
-  publish_wheels:
-    needs: install_and_test
+  # Publish the abi3 wheel to PyPI, ONLY for non-dev releases.
+  publish:
+    name: Publish abi3 wheel to PyPI
+    needs: [version, test_wheel]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.version.outputs.is_dev == 'false'
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python-3-version: ["11", "12", "13", "14"]
-        os: ["macos-14", "macos-15"]
-
-
     steps:
-      - uses: actions/setup-python@v5
-
-      - name: install pip dependencies
-        # missing typing_extensions caused an error with pypi-publish ...
-        run: pip install typing_extensions
-
-      - name: Download all the dists
+      - name: Download the abi3 wheel
         uses: actions/download-artifact@v4
         with:
-          name: python-3.${{matrix.python-3-version}}-package-${{ matrix.os }}
+          name: python-package-macos
           path: dist/
 
-      - name: install pip
-        run: |
-          ${{matrix.arch}} pip install --upgrade pip          
-
-      - name: Debug pip
-        run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
-
       - name: Publish package
-        # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-        # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
-        # Note 3: In the future this should better build against test.pypi repository!
-        #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+        # Packages are only updated when the meson.build version number changes
+        # (existing files are skipped, not overwritten).
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip_existing: true
@@ -228,9 +194,9 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages_dir: ./dist/
 
-  # delay for one minute before attempting to download the packages from pypi
+  # delay before attempting to download the packages from pypi
   delay_after_publish:
-    needs: publish_wheels
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Sleep for 10s
@@ -240,14 +206,12 @@ jobs:
   test_pypi:
     needs: delay_after_publish
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.11','3.12','3.13', '3.14']
-        os: ["macos-14", "macos-15", "macos-26"]
+        os: ["macos-14", "macos-15"]
         arch: ["arch -arm64"]
-
     steps:
       - name: checkout main repository
         uses: actions/checkout@v4
@@ -257,19 +221,10 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{matrix.python-version}}
-
-      - name: install pip
-        run: |
-          ${{matrix.arch}} pip install --upgrade pip          
-
-      - name: Debug pip
-        run: |
-          ${{matrix.arch}} pip --version
-          ${{matrix.arch}} pip debug -v
+          python-version: ${{ matrix.python-version }}
 
       - name: install via pip
-        run: ${{matrix.arch}} pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+        run: ${{ matrix.arch }} pip install themachinethatgoesping pytest
 
       - name: pytest from git repo
-        run: ${{matrix.arch}} pytest -v
+        run: ${{ matrix.arch }} pytest -v

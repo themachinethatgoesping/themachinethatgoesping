@@ -1,0 +1,108 @@
+# SPDX-FileCopyrightText: 2022 - 2023 Peter Urban, Ghent University
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# Conda recipe for the `nanobind-backend` package (the compiled libnanobind
+# backend used by nanobind split-mode extensions). It mirrors the PyPI package
+# of the same name, which is NOT available on conda-forge, and is published to
+# the `themachinethatgoesping` anaconda channel.
+#
+# The main `themachinethatgoesping` package depends on this at runtime
+# (requirements.run: nanobind-backend >=1.0).
+#
+# IMPORTANT – ABI compatibility: the backend and the frontend extensions must
+# agree on the platform ABI (compiler family, C++ standard library, CRT flavor
+# on Windows). Therefore the toolchain selected below intentionally mirrors
+# conda.recipe/recipe.yaml (clang-cl on Windows, pinned clang 19 / libc++ on
+# macOS, the conda-forge default gcc/libstdc++ on Linux). Keep them in sync.
+#
+# See https://nanobind.readthedocs.io/en/latest/split_mode.html
+
+context:
+  # nanobind backend ABI version (NB_BACKEND_ABI_MAJOR.MINOR.REVISION), kept in
+  # sync with the nanobind release used to build the frontends
+  # (`python subprojects/nanobind-3.x/src/version.py` prints it). Frontends
+  # require `nanobind-backend >=1.0`.
+  version: "1.0.0"
+
+package:
+  name: nanobind-backend
+  version: ${{ version }}
+
+source:
+  # The recipe directory itself (it only contains CMakeLists.txt); nanobind's
+  # own sources come from the `nanobind` host dependency.
+  path: .
+
+build:
+  number: 0
+  script:
+    - if: unix
+      then:
+        - export NB_CMAKE_DIR=$(${{ PYTHON }} -c "import nanobind; print(nanobind.cmake_dir())")
+        - if: osx
+          then:
+            - export MACOSX_DEPLOYMENT_TARGET=14.0
+            - export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"
+        - cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE=${{ PYTHON }} -Dnanobind_DIR=$NB_CMAKE_DIR -DCMAKE_INSTALL_PREFIX=$SP_DIR
+        - cmake --build build --config Release
+        - cmake --install build
+    - if: win
+      then:
+        - set CC=clang-cl
+        - set CXX=clang-cl
+        - set AR=llvm-lib
+        - for /f %%i in ('${{ PYTHON }} -c "import nanobind; print(nanobind.cmake_dir())"') do set NB_CMAKE_DIR=%%i
+        - cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE=%PYTHON% -Dnanobind_DIR=%NB_CMAKE_DIR% -DCMAKE_INSTALL_PREFIX=%SP_DIR%
+        - cmake --build build --config Release
+        - cmake --install build
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - if: win
+      then:
+        - clang       # clang-cl, to match the frontend toolchain
+        - lld
+        - llvm-tools  # llvm-lib
+    - if: osx
+      then:
+        - clang_osx-arm64 =19   # match the frontend (avoid clang 20 availability bug)
+        - clangxx_osx-arm64 =19
+  host:
+    - python
+    - pip
+    # nanobind ships the CMake helpers (nanobind_add_backend) and the backend
+    # source (nb_backend.cpp). Must match the version used to build the
+    # frontends (see subprojects/nanobind.wrap).
+    - nanobind >=3.1.0
+    # nanobind's CMake links tsl::robin_map; provide it in case the conda-forge
+    # nanobind package does not bundle ext/robin_map.
+    - tsl-robin-map
+    - if: osx
+      then:
+        - libcxx =19
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - nanobind_backend
+      # the backend has no Python dependencies to validate with pip
+      pip_check: false
+
+about:
+  homepage: https://github.com/wjakob/nanobind
+  summary: Compiled nanobind backend for extensions built in split mode (conda build for the themachinethatgoesping channel).
+  description: |
+    The compiled backend part of the nanobind C++ binding library. It serves
+    extension modules built in nanobind "split mode", in which the extension
+    delegates to this externally hosted backend instead of shipping its own.
+    End users receive it as a transitive dependency and do not use it directly.
+  license: BSD-3-Clause
+  repository: https://github.com/wjakob/nanobind
+  documentation: https://nanobind.readthedocs.io/en/latest/split_mode.html

@@ -2,12 +2,31 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
+# Builds and publishes the conda packages to the themachinethatgoesping channel.
+#
+# Two packages are produced per platform:
+#   * nanobind-backend  -> the compiled libnanobind backend used by split mode
+#                          (not on conda-forge, so we ship our own). Always
+#                          published to the default 'main' label.
+#   * themachinethatgoesping -> the main package (split-mode abi3 extensions)
+#                          which depends on nanobind-backend at runtime.
+#
+# Version handling (single source = meson.build):
+#   * The main package version comes from PKG_VERSION (= ci_scripts/get_version.py),
+#     consumed by conda.recipe/recipe.yaml via env.get("PKG_VERSION").
+#
+# Dev vs. release routing (so conda users can opt in to dev builds):
+#   * .dev versions  -> uploaded to the 'dev' anaconda label (overwriting the
+#                       previous build of the same version with --force).
+#                       Install with: conda install -c themachinethatgoesping/label/dev ...
+#   * release versions -> uploaded to the default 'main' label.
+#                       Install with: conda install -c themachinethatgoesping ...
+
 name: rattler packages
 
 on:
   push:
     branches: [main]
-
     paths-ignore:
       - ".github/workflows/python-package*"
       - ".github/workflows/cibuildwheels*"
@@ -17,14 +36,8 @@ on:
       - ".github/workflows/ci-windows*"
       - "*.md"
       - "doc/*"
-    #paths:
-    #  - "**meson.build"
-    #  - "**.cpp"
-    #  - "**.c"
-    #  - "**.h"
   pull_request:
     branches: [main]
-
     paths-ignore:
       - ".github/workflows/python-package*"
       - ".github/workflows/cibuildwheels*"
@@ -34,36 +47,56 @@ on:
       - ".github/workflows/ci-windows*"
       - "*.md"
       - "doc/*"
-    #paths:
-    #  - "**meson.build"
-    #  - "**.cpp"
-    #  - "**.c"
-    #  - "**.h"
 
 jobs:
+  # Resolve the single-source version (meson.build) and whether it is a .dev
+  # release. Both are consumed by the build job below.
+  version:
+    name: Resolve version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get.outputs.version }}
+      is_dev: ${{ steps.get.outputs.is_dev }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          lfs: false
+      - id: get
+        run: |
+          VERSION=$(python3 ci_scripts/get_version.py)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if python3 ci_scripts/get_version.py --is-dev; then
+            echo "is_dev=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a .dev release -> uploaded to the 'dev' conda label."
+          else
+            echo "is_dev=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a release -> uploaded to the 'main' conda label."
+          fi
+
   build:
     name: Build package
+    needs: version
     runs-on: ${{ matrix.os }}
+    env:
+      # Single-source version consumed by conda.recipe/recipe.yaml
+      PKG_VERSION: ${{ needs.version.outputs.version }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
             target-platform: linux-64
-            extra-args: ""
-          #- os: ubuntu-latest
-          #  target-platform: linux-aarch64
+            output-dir: output
           - os: windows-latest
             target-platform: win-64
-            extra-args: --output-dir=C:/rattler
-          # - os: macos-latest
-          #   target-platform: osx-64
+            output-dir: C:/rattler
           - os: macos-15
             target-platform: osx-arm64
-            extra-args: ""
+            output-dir: output
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Configure Git to skip LFS
         run: |
           git config --global filter.lfs.clean cat
@@ -71,39 +104,52 @@ jobs:
           git config --global filter.lfs.process ''
           git config --global filter.lfs.required false
         shell: bash
-      
-      - name: Build conda package
+
+      # 1) Build the nanobind-backend package first so the main package can
+      #    resolve it from the local output directory (avoids an anaconda.org
+      #    indexing race). Published later to the 'main' label.
+      - name: Build nanobind-backend conda package
         uses: prefix-dev/rattler-build-action@v0.2.34
         with:
-          # needs to be unique for each matrix entry
+          recipe-path: conda.recipe/nanobind-backend/recipe.yaml
+          artifact-name: nanobind-backend-${{ matrix.target-platform }}
+          build-args: --output-dir=${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}
+
+      # 2) Build the main package. The freshly built backend is picked up from
+      #    the local output directory channel.
+      - name: Build themachinethatgoesping conda package
+        uses: prefix-dev/rattler-build-action@v0.2.34
+        with:
+          recipe-path: conda.recipe/recipe.yaml
           artifact-name: package-${{ matrix.target-platform }}
-          build-args: ${{matrix.extra-args}} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
-          
+          build-args: --output-dir=${{ matrix.output-dir }} --channel ${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
 
       - name: Upload to Anaconda
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           # Install anaconda-client
           pip install anaconda-client
-          
-          # Find and upload packages
-          if [ "${{ matrix.target-platform }}" == "win-64" ]; then
-            PACKAGE_DIR="C:/rattler"
-          else
-            PACKAGE_DIR="output"
-          fi
-          
-          # Upload all .conda and .tar.bz2 files
-          find $PACKAGE_DIR -name "*.conda" -o -name "*.tar.bz2" | while read package; do
-            echo "Uploading $package to anaconda.org"
-            anaconda -t ${{ secrets.ANACONDA_API_TOKEN }} upload "$package" --user themachinethatgoesping --force
-            echo "Uploading ${package} to prefix channel"
-            
-            #for now skip prefix upload
-            #rattler-build upload prefix -a ${{ secrets.PREFIX_API_TOKEN }} -c themachinethatgoesping "${package}"
+
+          PACKAGE_DIR="${{ matrix.output-dir }}"
+          IS_DEV="${{ needs.version.outputs.is_dev }}"
+
+          # Upload all built packages. The nanobind-backend package always goes
+          # to the 'main' label; the main package goes to 'dev' for .dev
+          # versions (opt-in) and 'main' for releases. --force overwrites a
+          # previous build of the same version (e.g. re-pushing .dev6).
+          find "$PACKAGE_DIR" \( -name "*.conda" -o -name "*.tar.bz2" \) | while read package; do
+            name=$(basename "$package")
+            if [[ "$name" == nanobind-backend-* ]]; then
+              label="main"
+            elif [ "$IS_DEV" == "true" ]; then
+              label="dev"
+            else
+              label="main"
+            fi
+            echo "Uploading $name to anaconda.org (label: $label)"
+            anaconda -t ${{ secrets.ANACONDA_API_TOKEN }} upload "$package" --user themachinethatgoesping --label "$label" --force
           done
         shell: bash
         env:
           ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.PREFIX_API_TOKEN }}
-

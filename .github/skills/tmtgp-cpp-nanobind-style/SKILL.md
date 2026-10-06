@@ -10,6 +10,15 @@ mkdoc docstrings, ObjectPrinter printing, processed-member/unit rules, enums, te
 **tmtgp-cpp-class-style**; build/test/install with **tmtgp-build-and-test**. Study `py_kmall` and
 `py_s7k` as canonical examples; match the surrounding file.
 
+## Split mode / abi3 (keep bindings limited-API-safe)
+Extensions build in **split mode** by default (meson `split_mode`, abi3 frontend + shared
+`nanobind_backend`; see **tmtgp-build-and-test**). Practical rule for binding code: **use only the
+nanobind API** — it is limited-API (abi3) safe. Do **not** call non-limited CPython C-API
+(`PySequence_Fast_GET_SIZE/_ITEMS`, `PyList_GET_ITEM`, `->ob_*`, `->tp_*`, direct numpy C-API, …);
+such calls fail to compile under `Py_LIMITED_API`. `nb::ndarray` and the xtensor-python **nanobind**
+caster (`<xtensor-python/nanobind/pytensor.hpp>`) are abi3-safe; the pybind11 variant and the numpy
+C-API are not. New `.def`s, enums, containers and `bind_vector`s need no split-mode-specific changes.
+
 ## Binding file naming
 - `c_<class>.cpp` binds exactly **one** class (an `init_c_<class>(module&)`); `module.{hpp,cpp}` per
   submodule (`def_submodule(...)` + calls the per-class `init_c_*`); `init_m_<format>` at the top.

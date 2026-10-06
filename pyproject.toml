@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "meson-python>=0.15.0",
-    "meson>=1.2.3",
+    "meson-python>=0.16.0",
+    "meson>=1.3.0",
     "pyproject-metadata",
     "ninja>=1.10",
     "numpy>=2.0",
@@ -38,6 +38,12 @@ classifiers = [
 requires-python = ">=3.11,<3.15"
 
 dependencies = [
+    # nanobind split mode: the compiled libnanobind backend ships as a separate
+    # module. Do NOT add an upper bound or pin a version — newer backends always
+    # serve older extensions, and pinning would prevent co-installation with
+    # other split-mode projects. See
+    # https://nanobind.readthedocs.io/en/latest/split_mode.html
+    "nanobind-backend>=1.0",
     "numba",
     "matplotlib",
     "numpy>=1.26.0",
@@ -78,6 +84,15 @@ testpaths = [
     "subprojects/pingprocessing/python/tests/",
 ]
 
+
+[tool.meson-python]
+# Produce abi3 (Python stable ABI) wheels. In split mode every nanobind
+# extension is built with limited_api (see the subproject meson.build files),
+# so a single wheel per platform works on all supported Python versions
+# (>= 3.11). With split mode disabled this has no effect (the extensions are
+# then version-specific and meson-python tags the wheel accordingly).
+# See https://mesonbuild.com/meson-python/how-to-guides/limited-api.html
+limited-api = true
 
 [tool.meson-python.args]
 setup = [

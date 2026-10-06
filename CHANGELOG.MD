@@ -6,11 +6,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 
 # [Unreleased]
 
--echosounders -> 0.48.3
--pingprocessing -> 0.15.1
+-echosounders -> 0.49.0
+-pingprocessing -> 0.16.0
 -widgets -> 0.1.5
--tools -> 0.33.1
--navigation -> 0.19.1
+-tools -> 0.34.0
+-navigation -> 0.20.0
+-algorithms -> 0.13.0
 
 ## Improvements
 -echosounders: initial implementation for s7k
@@ -43,6 +44,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - geographiclib wrap: stop injecting c++20 compile arguments into the dependency
 - invalidated old kmall filepackage cache
 - invalidated old navigation filepackage cache
+- switching to nanobind split mode to avoid rebuilding for every python version
 
 # [0.35.1] - 31-08-2026
 

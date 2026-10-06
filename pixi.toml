@@ -21,6 +21,13 @@ pyqtgraph = "*"
 jupyter-rfb = "*"
 pyside6 = "*"
 
+[pypi-dependencies]
+# nanobind split-mode backend (compiled libnanobind). Not yet on conda-forge,
+# so pull the manylinux wheel from PyPI (works inside the conda env). Once the
+# 'nanobind-backend' package is published to the themachinethatgoesping conda
+# channel, this can move to [dependencies]. No upper bound / pin.
+nanobind-backend = ">=1.0"
+
 # Build dependencies
 meson = ">=1.2.3"
 meson-python = ">=0.15.0"
@@ -55,7 +62,12 @@ conda-recipe-manager = "*"
 
 
 [feature.build.tasks]
-build-conda = "rattler-build build --recipe recipe/recipe.yaml --output output"
+# Build the nanobind-backend conda package first (the main package depends on it
+# and resolves it from the local ./output channel).
+build-conda-backend = "rattler-build build --recipe conda.recipe/nanobind-backend/recipe.yaml --output-dir output --channel themachinethatgoesping --channel conda-forge"
+# Build the main package. PKG_VERSION is single-sourced from meson.build
+# (see ci_scripts/get_version.py) and consumed by the recipe via env.get.
+build-conda = { cmd = "PKG_VERSION=$(python ci_scripts/get_version.py) rattler-build build --recipe conda.recipe/recipe.yaml --output-dir output --channel ./output --channel themachinethatgoesping --channel conda-forge", depends-on = ["build-conda-backend"] }
 build-pypi = "python -m build"
 upload-pypi = { cmd = "twine upload dist/*", depends-on = ["build-pypi"] }
 

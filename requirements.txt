@@ -15,3 +15,5 @@ pyqtgraph
 jupyter-rfb
 pyside6
 pyarrow
+# nanobind split-mode backend (compiled libnanobind). No upper bound / pin.
+nanobind-backend >= 1.0

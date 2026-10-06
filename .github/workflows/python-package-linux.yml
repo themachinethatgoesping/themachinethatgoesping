@@ -2,13 +2,21 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# This workflow builds a single abi3 wheel per platform (nanobind split mode)
+# and tests it across all supported Python versions.
+#
+# Split mode: every nanobind extension is built against the Python stable ABI
+# (abi3). meson-python tags the wheel with the *build* interpreter as the floor,
+# so we build with the MINIMUM supported Python (3.11) to produce a
+# 'cp311-abi3' wheel that installs on every Python >= 3.11. The compiled
+# libnanobind backend ships separately as the PyPI package 'nanobind-backend'
+# (a runtime dependency pulled in automatically on install).
 
 name: Build Python Package Linux
 
 on:
   push:
-    branches: [ main ]    
+    branches: [ main ]
     paths-ignore:
       - '.github/workflows/ci*'
       - '.github/workflows/python-package-windows*'
@@ -40,30 +48,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_wheel:
+  # Resolve the single-source version (from the top-level meson.build) and
+  # decide whether this is a .dev release. PyPI only receives non-dev releases.
+  version:
+    name: Resolve version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get.outputs.version }}
+      is_dev: ${{ steps.get.outputs.is_dev }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          lfs: false
+      - id: get
+        run: |
+          VERSION=$(python3 ci_scripts/get_version.py)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if python3 ci_scripts/get_version.py --is-dev; then
+            echo "is_dev=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a .dev release -> will be built and tested but NOT published to PyPI."
+          else
+            echo "is_dev=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Version $VERSION is a release -> will be published to PyPI (if on main)."
+          fi
 
-    name: Build linux wheel for python${{ matrix.python-version }}
+  build_wheel:
+    name: Build linux abi3 wheel (python 3.11 -> cp311-abi3)
     runs-on: ubuntu-latest
     container: ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - { python-version: '3.11', 
-              pip-path: '/opt/python/cp311-cp311/bin'}
-          - { python-version: '3.12', 
-              pip-path: '/opt/python/cp312-cp312/bin'}
-          - { python-version: '3.13', 
-              pip-path: '/opt/python/cp313-cp313/bin'}
-              #pip-pre: '--pre'}
-          - { python-version: '3.14', 
-              pip-path: '/opt/python/cp314-cp314/bin'}
-              #pip-pre: '--pre'}
-  
+
     steps:
     - name: append github path
-      run: echo ${{ matrix.pip-path }} >> $GITHUB_PATH
-    
+      run: echo /opt/python/cp311-cp311/bin >> $GITHUB_PATH
+
     - name: checkout main repository
       uses: actions/checkout@v4
       with:
@@ -73,102 +91,109 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: tmtgp-pypi-linux-${{ matrix.python-version }}  # name for the cache
-    
+        key: tmtgp-pypi-linux-abi3  # name for the cache
+
     - name: Install dependencies (pip)
       run: |
-        python${{ matrix.python-version }} -m pip install --upgrade pip
-        python${{ matrix.python-version }} -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
-        pip install -r requirements.txt ${{ matrix.pip-pre }}
-        
-         
-    - name: Build and install wheel
+        python3.11 -m pip install --upgrade pip
+        python3.11 -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
+        pip install -r requirements.txt
+
+    - name: Build and repair abi3 wheel
       run: |
         # enable gcc-15 (requires updated manylinux)
         scl enable gcc-toolset-15 bash
-        # build wheel
-        python${{ matrix.python-version }} -m build -w -Cbuilddir=pybuild
-        # repair with auditwheel
+        # build the abi3 wheel (cp311-abi3, works on all Python >= 3.11)
+        python3.11 -m build -w -Cbuilddir=pybuild
+        # repair with auditwheel (keeps the abi3 tag, adds the manylinux tag)
         auditwheel repair ./dist/*
-        # install wheel
-        python${{ matrix.python-version }} -m pip install ./wheelhouse/*
-        
+
     - name: Test with meson (c++)
       run: |
         meson test -C pybuild --print-errorlogs
 
-    - name: Test with pytest
+    - name: Install wheel and test with pytest
       run: |
+        # installs the abi3 wheel + pulls the nanobind-backend runtime dep from PyPI
+        python3.11 -m pip install ./wheelhouse/*
         pytest
 
     - name: Store the binary wheel
       uses: actions/upload-artifact@v4
       with:
-        name: python-${{ matrix.python-version }}-package-linux
+        name: python-package-linux
         path: wheelhouse
-        
-  install_test_and_publish:
-    name: Test,install and publish linux wheel for python 3.${{ matrix.python-3-version }}
+
+  # Validate the single abi3 wheel across all supported Python versions.
+  test_wheel:
+    name: Test abi3 wheel on python 3.${{ matrix.python-3-version }}
     needs: build_wheel
     runs-on: ubuntu-latest
-
     strategy:
+      fail-fast: false
       matrix:
         python-3-version: ["11", "12", "13", "14"]
-
-        # include:
-        #   - python-version: '3.12'
-        #     pip-pre: '--pre'
     steps:
-
     - uses: actions/setup-python@v5
       with:
-        python-version: 3.${{matrix.python-3-version}}
+        python-version: 3.${{ matrix.python-3-version }}
 
     - name: Install system dependencies for PySide6/pyqtgraph
       run: |
         sudo apt-get update
         sudo apt-get install -y libegl1 libxkbcommon0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0
 
-    #necessary only for pytest
     - name: checkout main repository
       uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: false
 
-    - name: Download all the dists
+    - name: Download the abi3 wheel
       uses: actions/download-artifact@v4
       with:
-        name: python-3.${{ matrix.python-3-version }}-package-linux
+        name: python-package-linux
         path: dist/
 
     - name: install pip dependencies
-      # missing typing_extensions caused an error with pypi-publish ...
-      run: pip install pytest typing_extensions 
+      run: pip install pytest typing_extensions
 
-    - name: install wheels
-      run: |
-        pip install $(ls dist/*-cp3${{matrix.python-3-version}}-*.whl) ${{matrix.pip-pre}}
+    - name: install wheel
+      # the single cp311-abi3 wheel installs on every Python >= 3.11 and pulls
+      # the nanobind-backend runtime dependency from PyPI
+      run: pip install dist/*.whl
 
     - name: test (pytest)
       run: pytest
 
+  # Publish the single abi3 wheel to PyPI, but ONLY for non-dev releases.
+  # .dev versions are built and tested above but intentionally not published to
+  # PyPI (they are released on the conda / rattler channel instead).
+  publish:
+    name: Publish abi3 wheel to PyPI
+    needs: [version, test_wheel]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.version.outputs.is_dev == 'false'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download the abi3 wheel
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-linux
+        path: dist/
+
     - name: Publish package
-      # Note 1: In the future the skip existing option should be removed and replaced with the only publish on tags option (if)
-      # Note 2: Packages will only be updated when the meson.build version number is changed! (existing will be skipped not updated)
-      # Note 3: In the future this should better build against test.pypi repository!
-      #if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      # Note: packages are only updated when the meson.build version number is
+      # changed (existing files are skipped, not overwritten).
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         skip_existing: true
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: ./dist/
-  
-  # delay for one minute before attempting to download the packages from pypi
+
+  # delay for a few seconds before attempting to download the packages from pypi
   delay_after_publish:
-    needs: install_test_and_publish
+    needs: publish
     runs-on: ubuntu-latest
     steps:
     - name: Sleep for 10s
@@ -183,10 +208,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ['3.11','3.12','3.13', '3.14']
-
-        # include:
-        #   - python-version: '3.12'
-        #     pip-pre: '--pre'
 
     steps:
     - name: checkout main repository
@@ -205,9 +226,7 @@ jobs:
         sudo apt-get install -y libegl1 libxkbcommon0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0
 
     - name: install via pip
-      run: pip install themachinethatgoesping pytest ${{matrix.pip-pre}}
+      run: pip install themachinethatgoesping pytest
 
     - name: pytest from git repo
       run: pytest -v
-      
-  
