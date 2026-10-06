@@ -7,8 +7,8 @@
 #
 # Split mode: every nanobind extension is built against the Python stable ABI
 # (abi3). meson-python tags the wheel with the *build* interpreter as the floor,
-# so we build with the MINIMUM supported Python (3.11) to produce a
-# 'cp311-abi3' wheel that installs on every Python >= 3.11. The compiled
+# so we build with the MINIMUM supported Python (3.12) to produce a
+# 'cp312-abi3' wheel that installs on every Python >= 3.12. The compiled
 # libnanobind backend ships separately as the PyPI package 'nanobind-backend'
 # (a runtime dependency pulled in automatically on install).
 
@@ -74,13 +74,13 @@ jobs:
           fi
 
   build_wheel:
-    name: Build linux abi3 wheel (python 3.11 -> cp311-abi3)
+    name: Build linux abi3 wheel (python 3.12 -> cp312-abi3)
     runs-on: ubuntu-latest
     container: ghcr.io/themachinethatgoesping/manylinux_2_34_x86_64-dep
 
     steps:
     - name: append github path
-      run: echo /opt/python/cp311-cp311/bin >> $GITHUB_PATH
+      run: echo /opt/python/cp312-cp312/bin >> $GITHUB_PATH
 
     - name: checkout main repository
       uses: actions/checkout@v4
@@ -95,16 +95,16 @@ jobs:
 
     - name: Install dependencies (pip)
       run: |
-        python3.11 -m pip install --upgrade pip
-        python3.11 -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
+        python3.12 -m pip install --upgrade pip
+        python3.12 -m pip install meson meson-python ninja pytest twine auditwheel pyproject-metadata
         pip install -r requirements.txt
 
     - name: Build and repair abi3 wheel
       run: |
         # enable gcc-15 (requires updated manylinux)
         scl enable gcc-toolset-15 bash
-        # build the abi3 wheel (cp311-abi3, works on all Python >= 3.11)
-        python3.11 -m build -w -Cbuilddir=pybuild
+        # build the abi3 wheel (cp312-abi3, works on all Python >= 3.12)
+        python3.12 -m build -w -Cbuilddir=pybuild
         # repair with auditwheel (keeps the abi3 tag, adds the manylinux tag)
         auditwheel repair ./dist/*
 
@@ -115,7 +115,7 @@ jobs:
     - name: Install wheel and test with pytest
       run: |
         # installs the abi3 wheel + pulls the nanobind-backend runtime dep from PyPI
-        python3.11 -m pip install ./wheelhouse/*
+        python3.12 -m pip install ./wheelhouse/*
         pytest
 
     - name: Store the binary wheel
@@ -132,7 +132,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-3-version: ["11", "12", "13", "14"]
+        python-3-version: ["12", "13", "14"]
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -159,7 +159,7 @@ jobs:
       run: pip install pytest typing_extensions
 
     - name: install wheel
-      # the single cp311-abi3 wheel installs on every Python >= 3.11 and pulls
+      # the single cp312-abi3 wheel installs on every Python >= 3.12 and pulls
       # the nanobind-backend runtime dependency from PyPI
       run: pip install dist/*.whl
 
@@ -207,7 +207,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13', '3.14']
+        python-version: ['3.12','3.13', '3.14']
 
     steps:
     - name: checkout main repository

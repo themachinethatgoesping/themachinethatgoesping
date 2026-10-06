@@ -130,9 +130,9 @@
    :target: https://github.com/themachinethatgoesping/gridding/actions/workflows/ci-mac.yml
    :alt: gridding-mac
    
-.. |info-python| image:: https://img.shields.io/badge/python-3%2E11 | 3%2E12 | 3%2E13 | 3%2E14 -informational
+.. |info-python| image:: https://img.shields.io/badge/python-3%2E12 | 3%2E13 | 3%2E14 -informational
    :target: https://pypi.org/project/themachinethatgoesping/
-   :alt: Python versions 3.11 | 3.12 | 3.13 | 3.14
+   :alt: Python versions 3.12 | 3.13 | 3.14
 
 .. |info-conda| image:: https://anaconda.org/themachinethatgoesping/themachinethatgoesping/badges/version.svg
    :target: https://anaconda.org/themachinethatgoesping/themachinethatgoesping

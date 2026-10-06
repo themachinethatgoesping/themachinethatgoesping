@@ -5,9 +5,9 @@
 # Builds a single abi3 wheel for macOS (arm64) using nanobind split mode and
 # tests it across all supported Python versions and macOS releases.
 #
-# The wheel is built with the MINIMUM supported Python (3.11) and the oldest
-# supported deployment target (14.0), producing a 'cp311-abi3-macosx_14_0_arm64'
-# wheel that installs on every Python >= 3.11 and macOS >= 14. The compiled
+# The wheel is built with the MINIMUM supported Python (3.12) and the oldest
+# supported deployment target (14.0), producing a 'cp312-abi3-macosx_14_0_arm64'
+# wheel that installs on every Python >= 3.12 and macOS >= 14. The compiled
 # libnanobind backend ships separately as the PyPI package 'nanobind-backend'
 # (a runtime dependency, pulled in automatically on install).
 
@@ -72,7 +72,7 @@ jobs:
           fi
 
   build_wheel:
-    name: Build macOS arm64 abi3 wheel (python 3.11 -> cp311-abi3)
+    name: Build macOS arm64 abi3 wheel (python 3.12 -> cp312-abi3)
     runs-on: macos-14
     env:
       MACOSX_DEPLOYMENT_TARGET: "14.0"
@@ -86,7 +86,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Checkout main repository
         uses: actions/checkout@v4
@@ -109,7 +109,7 @@ jobs:
 
       - name: Build abi3 wheel
         run: |
-          # build the abi3 wheel (cp311-abi3, works on all Python >= 3.11)
+          # build the abi3 wheel (cp312-abi3, works on all Python >= 3.12)
           BOOST_ROOT=$(brew --prefix boost) ${{ env.FLAGS }} ${{ env.ARCH }} pip wheel -w dist . --no-deps -v --config-settings="builddir=pybuild"
 
       - name: Repair and install wheel
@@ -139,7 +139,7 @@ jobs:
       fail-fast: false
       matrix:
         arch: ["arch -arm64"]
-        python-3-version: ["11", "12", "13", "14"]
+        python-3-version: ["12", "13", "14"]
         os: ["macos-14", "macos-15"]
     steps:
       - uses: actions/setup-python@v5
@@ -164,7 +164,7 @@ jobs:
           ${{ matrix.arch }} pip install pytest typing_extensions
 
       - name: install wheel
-        # the single cp311-abi3 wheel installs on every Python >= 3.11 and pulls
+        # the single cp312-abi3 wheel installs on every Python >= 3.12 and pulls
         # the nanobind-backend runtime dependency from PyPI
         run: ${{ matrix.arch }} pip install dist/*.whl
 
@@ -209,7 +209,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11','3.12','3.13', '3.14']
+        python-version: ['3.12','3.13', '3.14']
         os: ["macos-14", "macos-15"]
         arch: ["arch -arm64"]
     steps:

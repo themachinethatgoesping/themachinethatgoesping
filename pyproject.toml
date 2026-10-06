@@ -35,7 +35,7 @@ classifiers = [
     "Programming Language :: Python",
 ]
 
-requires-python = ">=3.11,<3.15"
+requires-python = ">=3.12,<3.15"
 
 dependencies = [
     # nanobind split mode: the compiled libnanobind backend ships as a separate
@@ -89,7 +89,7 @@ testpaths = [
 # Produce abi3 (Python stable ABI) wheels. In split mode every nanobind
 # extension is built with limited_api (see the subproject meson.build files),
 # so a single wheel per platform works on all supported Python versions
-# (>= 3.11). With split mode disabled this has no effect (the extensions are
+# (>= 3.12). With split mode disabled this has no effect (the extensions are
 # then version-specific and meson-python tags the wheel accordingly).
 # See https://mesonbuild.com/meson-python/how-to-guides/limited-api.html
 limited-api = true

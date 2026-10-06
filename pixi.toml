@@ -4,7 +4,7 @@ channels = ["conda-forge", "themachinethatgoesping"]
 platforms = ["linux-64"]
 
 [dependencies]
-python = ">=3.11,<3.15"
+python = ">=3.12,<3.15"
 
 # Python runtime dependencies from Conda
 numba = "*"
