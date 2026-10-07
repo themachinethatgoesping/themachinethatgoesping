@@ -88,7 +88,13 @@ jobs:
           - os: ubuntu-latest
             target-platform: linux-64
             output-dir: output
-          - os: windows-latest
+          # Pin windows-2022 (not windows-latest). The newer VS2026 runner image
+          # has a much longer base PATH; the conda vs2022 compiler activation
+          # (vcvars) then prepends the VS toolchain paths and overflows cmd.exe's
+          # 8191-char command-line limit ("The input line is too long"). The
+          # older windows-2022 image has a shorter PATH and still provides VS2022
+          # + the clang-cl toolchain the recipe uses.
+          - os: windows-2022
             target-platform: win-64
             output-dir: C:/rattler
           - os: macos-15

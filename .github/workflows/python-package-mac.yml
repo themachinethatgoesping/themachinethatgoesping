@@ -3,11 +3,13 @@
 # SPDX-License-Identifier: CC0-1.0
 
 # Builds a single abi3 wheel for macOS (arm64) using nanobind split mode and
-# tests it across all supported Python versions and macOS releases.
+# tests it across all supported Python versions.
 #
-# The wheel is built with the MINIMUM supported Python (3.12) and the oldest
-# supported deployment target (14.0), producing a 'cp312-abi3-macosx_14_0_arm64'
-# wheel that installs on every Python >= 3.12 and macOS >= 14. The compiled
+# The wheel is built with the MINIMUM supported Python (3.12) and a macOS 15.0
+# deployment target, producing a 'cp312-abi3-macosx_15_0_arm64' wheel that
+# installs on every Python >= 3.12 and macOS >= 15. (macOS 14 is no longer
+# targeted: rasterio, a runtime dependency, ships macOS-15-only wheels from
+# 1.5.2 on, so the toolchain and runners track macOS 15.) The compiled
 # libnanobind backend ships separately as the PyPI package 'nanobind-backend'
 # (a runtime dependency, pulled in automatically on install).
 
@@ -73,9 +75,9 @@ jobs:
 
   build_wheel:
     name: Build macOS arm64 abi3 wheel (python 3.12 -> cp312-abi3)
-    runs-on: macos-14
+    runs-on: macos-15
     env:
-      MACOSX_DEPLOYMENT_TARGET: "14.0"
+      MACOSX_DEPLOYMENT_TARGET: "15.0"
       ARCH: "arch -arm64"
       FLAGS: LDFLAGS="-undefined dynamic_lookup -Wl -Wl,-dead_strip"
     steps:
@@ -99,11 +101,12 @@ jobs:
         with:
           key: tmtgp-pypi-mac-abi3-arm64
 
-      - name: Install libomp, boost and gdal
-        # gdal provides gdal-config so that rasterio (a runtime dependency) can
-        # build from source when no matching wheel is published for the build
-        # Python on macOS arm64.
-        run: ${{ env.ARCH }} brew install libomp boost gdal
+      - name: Install libomp and boost
+        # rasterio (a runtime dependency) installs as a wheel on macOS 15, so no
+        # system gdal is needed. (Do NOT install gdal via Homebrew: it pulls
+        # apache-arrow, whose libarrow clashes with pip's pyarrow at import ->
+        # "scheme 'file' already registered".)
+        run: ${{ env.ARCH }} brew install libomp boost
 
       - name: Install dependencies (pip)
         run: |
@@ -143,7 +146,7 @@ jobs:
       matrix:
         arch: ["arch -arm64"]
         python-3-version: ["12", "13", "14"]
-        os: ["macos-14", "macos-15"]
+        os: ["macos-15"]
     steps:
       - uses: actions/setup-python@v5
         with:
@@ -213,7 +216,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ['3.12','3.13', '3.14']
-        os: ["macos-14", "macos-15"]
+        os: ["macos-15"]
         arch: ["arch -arm64"]
     steps:
       - name: checkout main repository

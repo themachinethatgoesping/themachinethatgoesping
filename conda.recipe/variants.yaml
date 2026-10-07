@@ -9,6 +9,8 @@ python:
 # Raise the macOS deployment target so it is applied at compiler-activation
 # time (the export in recipe.yaml runs too late to affect -mmacosx-version-min).
 # Required for newer libc++ features such as the floating-point std::to_chars
-# overloads, which are availability-gated to macOS 13.4+.
+# overloads, which are availability-gated to macOS 13.4+. Set to 15.0 to track
+# the macOS 15 toolchain/runners (rasterio ships macOS-15-only wheels from
+# 1.5.2 on, so macOS 14 is no longer targeted).
 MACOSX_DEPLOYMENT_TARGET:
-- "14.0"
+- "15.0"
