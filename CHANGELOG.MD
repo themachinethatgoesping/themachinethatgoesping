@@ -4,7 +4,7 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [Unreleased]
+# [0.36.0] - 07-10-2026
 
 -echosounders -> 0.49.0
 -pingprocessing -> 0.16.0
@@ -45,6 +45,8 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - invalidated old kmall filepackage cache
 - invalidated old navigation filepackage cache
 - switching to nanobind split mode to avoid rebuilding for every python version
+- minimum supported macos version: 15
+- minimum support python version: 3.12
 
 # [0.35.1] - 31-08-2026
 
