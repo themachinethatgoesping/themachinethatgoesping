@@ -88,13 +88,7 @@ jobs:
           - os: ubuntu-latest
             target-platform: linux-64
             output-dir: output
-          # Pin windows-2022 (not windows-latest). The newer VS2026 runner image
-          # has a much longer base PATH; the conda vs2022 compiler activation
-          # (vcvars) then prepends the VS toolchain paths and overflows cmd.exe's
-          # 8191-char command-line limit ("The input line is too long"). The
-          # older windows-2022 image has a shorter PATH and still provides VS2022
-          # + the clang-cl toolchain the recipe uses.
-          - os: windows-2022
+          - os: windows-2025-vs2026
             target-platform: win-64
             output-dir: C:/rattler
           - os: macos-15
@@ -110,6 +104,16 @@ jobs:
           git config --global filter.lfs.process ''
           git config --global filter.lfs.required false
         shell: bash
+
+      # Set up the runner's native MSVC toolchain for clang-cl (Windows only).
+      # Exports INCLUDE/LIB/PATH via GITHUB_ENV, inherited by the rattler-build
+      # step below. This replaces conda's vs2022_win-64 activation (see the
+      # recipe's win build requirements and the matrix comment above).
+      - name: Prepare MSVC (Windows)
+        if: runner.os == 'Windows'
+        uses: bus1/cabuild/action/msdevshell@v1
+        with:
+          architecture: x64
 
       # Build the main package. The split-mode backend (nanobind-backend) is
       # resolved from the themachinethatgoesping channel (published by the

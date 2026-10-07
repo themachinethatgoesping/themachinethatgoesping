@@ -64,17 +64,26 @@ requirements:
   build:
     - meson>=1.9.0
     - ninja
-    - ${{ compiler('c') }}
-    - ${{ compiler('cxx') }}
     - cmake
     - pkgconfig
     - boost-cpp >=1.84.0
     - if: win
       then:
-        - clang # Use clang toolchain consistently
-        - lld # Use LLD linker (not lib.exe)
-        - llvm-tools # Add LLVM tools including llvm-lib
+        # Windows uses clang-cl + the runner's NATIVE MSVC (set up in CI via
+        # bus1/cabuild/action/msdevshell, which exports the MSVC environment via
+        # GITHUB_ENV). We intentionally do NOT depend on vs2022_win-64, nor on
+        # ${{ compiler('c') }}/${{ compiler('cxx') }} (which resolve to vs2022 on
+        # Windows): their conda activation runs vcvars, whose internal
+        # `set "PATH=..."` overflows cmd.exe's 8191-char command-line limit on
+        # GitHub's runners ("The input line is too long"). This mirrors the
+        # working PyPI Windows build (python-package-windows.yml).
+        - clang # provides clang-cl
+        - lld # LLD linker (not lib.exe)
+        - llvm-tools # llvm-lib etc.
         - llvm-openmp # [win]
+      else:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
     - if: osx
       then:
         - clang_osx-arm64 =19 # [osx] - Pin to 19 to avoid clang 20 availability macro bug
@@ -92,7 +101,8 @@ requirements:
     - pandas >=2.0
     - if: win
       then:
-        - vs2022_win-64 # [win]
+        # No vs2022_win-64 here (see the build requirements above): MSVC comes
+        # from the runner's native install, activated in CI.
         - llvm-openmp # [win] - Keep LLVM OpenMP
     - if: osx
       then:
