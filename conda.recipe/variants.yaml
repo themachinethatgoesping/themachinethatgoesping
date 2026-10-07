@@ -1,8 +1,10 @@
 python:
-# Note that versions are _strings_ (not numbers)
+# Build ONCE on the minimum supported Python. The extensions are abi3
+# (split-mode / limited API), so a single build works on all newer Python
+# versions; combined with `build.python.version_independent: true` in
+# recipe.yaml this produces one package per OS that installs on 3.12-3.14.
+# (Note: versions are _strings_, not numbers.)
 - "3.12"
-- "3.13"
-- "3.14"
 
 # Raise the macOS deployment target so it is applied at compiler-activation
 # time (the export in recipe.yaml runs too late to affect -mmacosx-version-min).

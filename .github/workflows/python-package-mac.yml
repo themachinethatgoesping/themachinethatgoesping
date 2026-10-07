@@ -99,8 +99,11 @@ jobs:
         with:
           key: tmtgp-pypi-mac-abi3-arm64
 
-      - name: Install libomp and boost
-        run: ${{ env.ARCH }} brew install libomp boost
+      - name: Install libomp, boost and gdal
+        # gdal provides gdal-config so that rasterio (a runtime dependency) can
+        # build from source when no matching wheel is published for the build
+        # Python on macOS arm64.
+        run: ${{ env.ARCH }} brew install libomp boost gdal
 
       - name: Install dependencies (pip)
         run: |

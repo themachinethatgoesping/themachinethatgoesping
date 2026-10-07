@@ -55,11 +55,27 @@ controlled by the meson feature option **`split_mode`** (default **enabled**), d
 
 - Installed modules are named **`<fmt>_nanopy.abi3.so`** (not `…cpython-3XX-….so`). One wheel per
   platform then works on every Python ≥ 3.12 (`cp312-abi3`).
+- **Conda is also build-once-per-OS (abi3).** The conda recipe
+  (`conda.recipe/recipe.yaml`) sets `build.python.version_independent: true` (CEP 20) and
+  `variants.yaml` pins a single Python (3.12), so rattler-build produces one package per OS
+  (`subdir: <platform>` + `noarch: python`, run dep `python >=3.12`) that installs on 3.12-3.14. The
+  recipe's `tests.python.python_version: [3.12, 3.13, 3.14]` imports the package **and each
+  `*_nanopy` module** on all three versions (each test env pulls the matching per-version
+  `nanobind-backend`). rattler-build relocates meson-python's `lib/pythonX.Y/site-packages` files
+  into the noarch `site-packages` automatically.
 - **The dev env MUST have the backend**: `pip install nanobind-backend` (already a build/runtime
   requirement). Without it, `import themachinethatgoesping` fails with
   *"the nanobind backend module 'nanobind_backend' is not installed"*. The backend is a plain
-  (non-limited-API) module, one per Python version; conda gets it from the themachinethatgoesping
-  channel (recipe in `conda.recipe/nanobind-backend/`), pip from PyPI.
+  (non-limited-API) module, one per Python version. **pip** gets it from PyPI (`nanobind-backend`);
+  **conda** gets it from the `themachinethatgoesping` channel, where it is published by the **nanobind
+  fork** `peter-urban/nanobind` (branch `meson-v3.1.0`), which builds it with **Meson**
+  (`-Dnb_build_backend=true`, see that repo's `meson.build` + `conda.recipe/` + `rattler.yml`). The
+  fork's `meson.build` mirrors the frontend packagefile and also builds the backend at `-O3` with full
+  assertions; it deliberately does **not** pass `-mtls-dialect=gnu2`, so the backend has no
+  `GLIBC_ABI_GNU2_TLS` requirement (portable). The fork builds each Python variant's package into an
+  output dir **outside** the checkout (its recipe uses `source: path: ..`, so an in-repo output dir
+  recurses into `ENAMETOOLONG`). The fork and the version pinned by the wrap must stay on the **same
+  nanobind version** (currently 3.1.0) so backend and frontend ABIs match.
 - **abi3 floor = 3.12** (matches `requires-python`; **Python 3.11 is no longer supported**).
   meson-python tags the wheel with the *build* interpreter's version, so **build wheels with the
   minimum Python (3.12)** to get `cp312-abi3`.
@@ -86,6 +102,14 @@ controlled by the meson feature option **`split_mode`** (default **enabled**), d
   + `nanobind_stable_abi`); each subproject picks it with
   `get_option('split_mode').allowed()` and passes `limited_api: nanobind_limited_api` to
   `extension_module(...)`.
+- ⚠️ **Windows abi3 / nested python deps**: Meson's `limited_api` only swaps the *top-level* python
+  dependency of an `extension_module` to the stable `python3.lib`; a python dep **nested** inside an
+  `InternalDependency` is NOT swapped and leaks the version-specific `python3XX.lib`, making the abi3
+  `.pyd` depend on `python3XX.dll` → *"DLL load failed"* on any other Python. So any dependency that
+  bundles a python dep (`nanobind_frontend_dep`, `tools_nanobind_dep`) takes it as
+  `py_dep.partial_dependency(compile_args: true, includes: true)` (headers only, no link lib); the
+  module's own top-level python dep does the (limited) linking. Keep the full python dep only in the
+  classic `nanobind_dep`.
 - abi3 means **no non-limited CPython C-API**. The only project dependency that needed a fix was the
   xtensor-python nanobind caster (`PySequence_Fast_GET_SIZE/_ITEMS` → `PySequence_Size/GetItem`),
   patched via a wrap `diff_files` patch

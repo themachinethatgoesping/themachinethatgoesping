@@ -2,8 +2,9 @@ context:
   # Single source of truth for the version is the top-level meson.build.
   # CI and the pixi 'build-conda' task export PKG_VERSION
   # (= python ci_scripts/get_version.py). The "0.0.0" fallback only applies to
-  # ad-hoc local builds that forget to set it.
-  version: ${{ env.get("PKG_VERSION", "0.0.0") }}
+  # ad-hoc local builds that forget to set it. (rattler-build's env.get takes
+  # the default as a keyword argument.)
+  version: ${{ env.get("PKG_VERSION", default="0.0.0") }}
 
 package:
   name: themachinethatgoesping
@@ -14,6 +15,13 @@ source:
   git: https://github.com/themachinethatgoesping/themachinethatgoesping.git
 
 build:
+  # abi3 / split-mode extensions are not Python-version specific, so build ONCE
+  # (on the minimum Python, see variants.yaml) and mark the package as
+  # version-independent (CEP 20). rattler-build then produces one package per OS
+  # (subdir: <platform>, noarch: python) that installs on all supported Python
+  # versions; the import tests below verify 3.12-3.14.
+  python:
+    version_independent: true
   script:
     - if: unix
       then:
@@ -92,12 +100,14 @@ requirements:
         - llvm-openmp # [osx]
 
   run:
-    - python
+    # abi3 floor: the single build targets the Python 3.12 stable ABI, so it
+    # runs on any Python >= 3.12 (version_independent package).
+    - python >=3.12
     - numba
     # nanobind split-mode backend (compiled libnanobind), imported at runtime.
-    # Published to the themachinethatgoesping conda channel by the
-    # 'nanobind-backend' recipe (conda.recipe/nanobind-backend). No upper
-    # bound / pin: newer backends always serve older extensions.
+    # Published to the themachinethatgoesping conda channel by the nanobind fork
+    # (peter-urban/nanobind, meson-v3.1.0 branch, conda.recipe). No upper bound
+    # / pin: newer backends always serve older extensions.
     - nanobind-backend >=1.0
     #- ${{ pin_compatible('boost-cpp') }}
     - boost-cpp >=1.84.0
@@ -127,7 +137,28 @@ tests:
   - python:
       imports:
         - themachinethatgoesping
-      pip_check: true
+        # Explicitly import each native abi3 module so the multi-version test
+        # below actually loads the compiled extensions (against the matching
+        # per-version nanobind-backend), not just the pure-python top package.
+        - themachinethatgoesping.tools_nanopy
+        - themachinethatgoesping.algorithms_nanopy
+        - themachinethatgoesping.navigation_nanopy
+        - themachinethatgoesping.echosounders_nanopy
+        - themachinethatgoesping.pingprocessing_nanopy
+      # The single abi3 build must import on every supported Python version.
+      # rattler-build creates a fresh test env per version (installing the
+      # matching per-version nanobind-backend), proving the build-once package
+      # works on 3.12-3.14.
+      python_version:
+        - "3.12"
+        - "3.13"
+        - "3.14"
+      # pip_check is disabled because the split-mode backend 'nanobind-backend'
+      # is provided as a conda package (from the themachinethatgoesping channel)
+      # without pip .dist-info metadata, so `pip check` cannot see it as
+      # satisfying the wheel's `Requires-Dist: nanobind-backend`. The import test
+      # above still verifies that the package (and its backend) actually load.
+      pip_check: false
 
 about:
   #home: https://github.com/themachinethatgoesping

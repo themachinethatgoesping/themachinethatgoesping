@@ -2,17 +2,17 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# Builds and publishes the conda packages to the themachinethatgoesping channel.
+# Builds and publishes the themachinethatgoesping conda package to the
+# themachinethatgoesping channel.
 #
-# Two packages are produced per platform:
-#   * nanobind-backend  -> the compiled libnanobind backend used by split mode
-#                          (not on conda-forge, so we ship our own). Always
-#                          published to the default 'main' label.
-#   * themachinethatgoesping -> the main package (split-mode abi3 extensions)
-#                          which depends on nanobind-backend at runtime.
+# The compiled nanobind split-mode backend ('nanobind-backend') is NOT built
+# here -- it is published separately to the same channel by the nanobind fork
+# (peter-urban/nanobind, meson-v3.1.0 branch). This recipe depends on it at
+# runtime (requirements.run: nanobind-backend >=1.0) and resolves it from the
+# themachinethatgoesping channel at test/install time.
 #
 # Version handling (single source = meson.build):
-#   * The main package version comes from PKG_VERSION (= ci_scripts/get_version.py),
+#   * The package version comes from PKG_VERSION (= ci_scripts/get_version.py),
 #     consumed by conda.recipe/recipe.yaml via env.get("PKG_VERSION").
 #
 # Dev vs. release routing (so conda users can opt in to dev builds):
@@ -105,24 +105,15 @@ jobs:
           git config --global filter.lfs.required false
         shell: bash
 
-      # 1) Build the nanobind-backend package first so the main package can
-      #    resolve it from the local output directory (avoids an anaconda.org
-      #    indexing race). Published later to the 'main' label.
-      - name: Build nanobind-backend conda package
-        uses: prefix-dev/rattler-build-action@v0.2.34
-        with:
-          recipe-path: conda.recipe/nanobind-backend/recipe.yaml
-          artifact-name: nanobind-backend-${{ matrix.target-platform }}
-          build-args: --output-dir=${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}
-
-      # 2) Build the main package. The freshly built backend is picked up from
-      #    the local output directory channel.
+      # Build the main package. The split-mode backend (nanobind-backend) is
+      # resolved from the themachinethatgoesping channel (published by the
+      # nanobind fork) at test time.
       - name: Build themachinethatgoesping conda package
         uses: prefix-dev/rattler-build-action@v0.2.34
         with:
           recipe-path: conda.recipe/recipe.yaml
           artifact-name: package-${{ matrix.target-platform }}
-          build-args: --output-dir=${{ matrix.output-dir }} --channel ${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
+          build-args: --output-dir=${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
 
       - name: Upload to Anaconda
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -131,23 +122,17 @@ jobs:
           pip install anaconda-client
 
           PACKAGE_DIR="${{ matrix.output-dir }}"
-          IS_DEV="${{ needs.version.outputs.is_dev }}"
-
-          # Upload all built packages. The nanobind-backend package always goes
-          # to the 'main' label; the main package goes to 'dev' for .dev
-          # versions (opt-in) and 'main' for releases. --force overwrites a
-          # previous build of the same version (e.g. re-pushing .dev6).
+          # .dev versions go to the opt-in 'dev' label; releases to 'main'.
+          # --force overwrites a previous build of the same version (e.g.
+          # re-pushing .dev6).
+          if [ "${{ needs.version.outputs.is_dev }}" == "true" ]; then
+            LABEL="dev"
+          else
+            LABEL="main"
+          fi
           find "$PACKAGE_DIR" \( -name "*.conda" -o -name "*.tar.bz2" \) | while read package; do
-            name=$(basename "$package")
-            if [[ "$name" == nanobind-backend-* ]]; then
-              label="main"
-            elif [ "$IS_DEV" == "true" ]; then
-              label="dev"
-            else
-              label="main"
-            fi
-            echo "Uploading $name to anaconda.org (label: $label)"
-            anaconda -t ${{ secrets.ANACONDA_API_TOKEN }} upload "$package" --user themachinethatgoesping --label "$label" --force
+            echo "Uploading $(basename "$package") to anaconda.org (label: $LABEL)"
+            anaconda -t "$ANACONDA_API_TOKEN" upload "$package" --user themachinethatgoesping --label "$LABEL" --force
           done
         shell: bash
         env:
