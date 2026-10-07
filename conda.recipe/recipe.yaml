@@ -150,9 +150,9 @@ tests:
       # matching per-version nanobind-backend), proving the build-once package
       # works on 3.12-3.14.
       python_version:
-        - "3.12"
-        - "3.13"
-        - "3.14"
+        - "3.12.*"
+        - "3.13.*"
+        - "3.14.*"
       # pip_check is disabled because the split-mode backend 'nanobind-backend'
       # is provided as a conda package (from the themachinethatgoesping channel)
       # without pip .dist-info metadata, so `pip check` cannot see it as

@@ -109,8 +109,13 @@ jobs:
       # resolved from the themachinethatgoesping channel (published by the
       # nanobind fork) at test time.
       - name: Build themachinethatgoesping conda package
-        uses: prefix-dev/rattler-build-action@v0.2.34
+        uses: prefix-dev/rattler-build-action@v0.2.39
         with:
+          # Pin a rattler-build that supports abi3 / CEP 20
+          # build.python.version_independent and the tests.python.python_version
+          # matchspec list. The action's default (v0.44.0) is too old and fails
+          # to parse these.
+          #rattler-build-version: v0.62.0
           recipe-path: conda.recipe/recipe.yaml
           artifact-name: package-${{ matrix.target-platform }}
           build-args: --output-dir=${{ matrix.output-dir }} --channel themachinethatgoesping --channel https://prefix.dev/conda-forge --target-platform ${{ matrix.target-platform }}${{ matrix.target-platform == 'linux-aarch64' && ' --no-test' || '' }}
