@@ -136,7 +136,14 @@ jobs:
           # Install anaconda-client
           pip install anaconda-client
 
-          PACKAGE_DIR="${{ matrix.output-dir }}"
+          # Only the package output subdirs hold the built conda packages; do
+          # NOT scan the whole --output-dir (it also contains rattler-build's
+          # working tree and caches: <output-dir>/bld/.../packagecache/*.tar.bz2
+          # meson source caches like eigen-*.tar.bz2, and <output-dir>/pkg_cache
+          # dependency .conda files). `anaconda upload` of a source tarball fails
+          # with "Trouble reading metadata ... valid installer". version_independent
+          # abi3 packages land in <output-dir>/<platform>/ (subdir=<platform> per
+          # CEP 20); noarch is covered too for safety.
           # .dev versions go to the opt-in 'dev' label; releases to 'main'.
           # --force overwrites a previous build of the same version (e.g.
           # re-pushing .dev6).
@@ -145,9 +152,12 @@ jobs:
           else
             LABEL="main"
           fi
-          find "$PACKAGE_DIR" \( -name "*.conda" -o -name "*.tar.bz2" \) | while read package; do
-            echo "Uploading $(basename "$package") to anaconda.org (label: $LABEL)"
-            anaconda -t "$ANACONDA_API_TOKEN" upload "$package" --user themachinethatgoesping --label "$LABEL" --force
+          for d in "${{ matrix.output-dir }}/${{ matrix.target-platform }}" "${{ matrix.output-dir }}/noarch"; do
+            [ -d "$d" ] || continue
+            find "$d" -maxdepth 1 \( -name "*.conda" -o -name "*.tar.bz2" \) | while read package; do
+              echo "Uploading $(basename "$package") to anaconda.org (label: $LABEL)"
+              anaconda -t "$ANACONDA_API_TOKEN" upload "$package" --user themachinethatgoesping --label "$LABEL" --force
+            done
           done
         shell: bash
         env:
