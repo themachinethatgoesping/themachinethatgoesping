@@ -866,7 +866,7 @@ class KMALLConfigurationDataInterfacePerFile_stream:
 
         Returns:
             boost::flyweight_datagrams_IOpRuntime The runtime parameters for
-                  the ping
+            the ping
         """
 
     def get_transducer_id(self, arg: int, /) -> str: ...
@@ -1052,7 +1052,7 @@ class KMALLConfigurationDataInterfacePerFile:
 
         Returns:
             boost::flyweight_datagrams_IOpRuntime The runtime parameters for
-                  the ping
+            the ping
         """
 
     def get_transducer_id(self, arg: int, /) -> str: ...
@@ -1278,8 +1278,6 @@ class KMALLConfigurationDataInterface_stream:
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
 
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
-
 class KMALLConfigurationDataInterface:
     @staticmethod
     def sort_by_time(fileinterfaces: Sequence[KMALLConfigurationDataInterfacePerFile]) -> list[KMALLConfigurationDataInterfacePerFile]: ...
@@ -1351,8 +1349,6 @@ class KMALLConfigurationDataInterface:
         """Print object information"""
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
-
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
 
 class KMALLEnvironmentDataInterfacePerFile_stream:
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...

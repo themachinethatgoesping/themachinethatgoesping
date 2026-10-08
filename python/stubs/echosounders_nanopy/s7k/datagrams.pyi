@@ -3037,13 +3037,17 @@ class SoundVelocity(S7KDatagram):
     def set_sound_velocity(self, val: float) -> None:
         """water sound velocity in meters per second"""
 
-    def get_temperature(self) -> float: ...
+    def get_temperature(self) -> float:
+        """temperature in Kelvin (optional; 0 when absent / not valid)"""
 
-    def set_temperature(self, val: float) -> None: ...
+    def set_temperature(self, val: float) -> None:
+        """temperature in Kelvin (optional; 0 when absent / not valid)"""
 
-    def get_pressure(self) -> float: ...
+    def get_pressure(self) -> float:
+        """pressure in Pascal (optional; 0 when absent / not valid)"""
 
-    def set_pressure(self, val: float) -> None: ...
+    def set_pressure(self, val: float) -> None:
+        """pressure in Pascal (optional; 0 when absent / not valid)"""
 
     def get_checksum(self) -> int: ...
 

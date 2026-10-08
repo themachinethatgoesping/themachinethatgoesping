@@ -537,8 +537,6 @@ class KongsbergAllConfigurationDataInterface_stream:
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
 
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
-
 class KongsbergAllConfigurationDataInterface:
     @staticmethod
     def sort_by_time(fileinterfaces: Sequence[KongsbergAllConfigurationDataInterfacePerFile]) -> list[KongsbergAllConfigurationDataInterfacePerFile]: ...
@@ -610,8 +608,6 @@ class KongsbergAllConfigurationDataInterface:
         """Print object information"""
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
-
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
 
 class KongsbergAllConfigurationDataInterfacePerFile_stream:
     def read_installation_parameters(self) -> themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams.InstallationParameters:

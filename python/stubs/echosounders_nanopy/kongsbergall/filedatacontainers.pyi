@@ -3847,7 +3847,7 @@ class KongsbergAllPingContainer_stream:
 
         Args:
             max_time_diff_seconds:: maximum time difference between two
-                                  subsequent datagrams in seconds
+                                    subsequent datagrams in seconds
 
         Returns:
             std::vector_PingContainer<type_Ping>
@@ -3918,7 +3918,7 @@ class KongsbergAllPingContainer:
 
         Args:
             max_time_diff_seconds:: maximum time difference between two
-                                  subsequent datagrams in seconds
+                                    subsequent datagrams in seconds
 
         Returns:
             std::vector_PingContainer<type_Ping>

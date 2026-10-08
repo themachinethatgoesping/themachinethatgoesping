@@ -1724,9 +1724,10 @@ class I_Ping(I_PingCommon):
 
     def get_sensor_configuration_base_hash(self) -> int:
         """
-        Returns the hash of the base sensor configuraiton.  This hash can be
-        used to get the correct navigation interpolator from the
-        navigation_data_interface Note: This function is for testing and
+        Returns the hash of the base sensor configuraiton.
+
+        This hash can be used to get the correct navigation interpolator from
+        the navigation_data_interface Note: This function is for testing and
         finding errors. It is rather slow.
 
         Returns:
@@ -1743,7 +1744,7 @@ class I_Ping(I_PingCommon):
 
     def has_geolocation(self) -> bool: ...
 
-    def get_geolocation(self, target_id: str = 'Transducer') -> themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon: ...
+    def get_geolocation(self, target_id: str | None = None) -> themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon: ...
 
     @property
     def bottom(self) -> I_PingBottom: ...

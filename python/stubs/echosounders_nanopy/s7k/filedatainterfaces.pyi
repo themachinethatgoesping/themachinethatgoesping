@@ -850,17 +850,15 @@ class S7KConfigurationDataInterfacePerFile_stream:
     Interface that reads the sensor/sonar configuration (installation
     offsets, transducer setup) of a single .s7k file.
 
-
-
-    $.. note::
-
-    The datagram-processing functions (read_sensor_configuration) are not
-    implemented yet. The class currently only provides the structure so
-    the configuration can be filled in in a later step; until then the
-    inherited base behavior (empty configuration fallback) is used.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions (read_sensor_configuration) are
+        not implemented yet. The class currently only provides the
+        structure so the configuration can be filled in in a later step;
+        until then the inherited base behavior (empty configuration
+        fallback) is used.
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...
@@ -991,17 +989,15 @@ class S7KConfigurationDataInterfacePerFile:
     Interface that reads the sensor/sonar configuration (installation
     offsets, transducer setup) of a single .s7k file.
 
-
-
-    $.. note::
-
-    The datagram-processing functions (read_sensor_configuration) are not
-    implemented yet. The class currently only provides the structure so
-    the configuration can be filled in in a later step; until then the
-    inherited base behavior (empty configuration fallback) is used.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions (read_sensor_configuration) are
+        not implemented yet. The class currently only provides the
+        structure so the configuration can be filled in in a later step;
+        until then the inherited base behavior (empty configuration
+        fallback) is used.
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...
@@ -1199,8 +1195,6 @@ class S7KConfigurationDataInterface_stream:
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
 
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
-
 class S7KConfigurationDataInterface:
     @staticmethod
     def sort_by_time(fileinterfaces: Sequence[S7KConfigurationDataInterfacePerFile]) -> list[S7KConfigurationDataInterfacePerFile]: ...
@@ -1272,8 +1266,6 @@ class S7KConfigurationDataInterface:
         """Print object information"""
 
     def get_sensor_configuration(self, index: int) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
-
-    def get_trx_sensor_configuration_per_target_id(self, index: int) -> dict: ...
 
 class S7KNavigationDataInterfacePerFile_stream:
     """
@@ -2166,16 +2158,13 @@ class S7KPingDataInterfacePerFile_stream:
     Interface that reads the pings (bathymetry, water column) of a single
     .s7k file.
 
-
-
-    $.. note::
-
-    The datagram-processing function (read_pings) is not implemented yet.
-    The class currently only provides the structure so the pings can be
-    filled in in a later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing function (read_pings) is not implemented
+        yet. The class currently only provides the structure so the pings
+        can be filled in in a later step.
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...
@@ -2283,16 +2272,13 @@ class S7KPingDataInterfacePerFile:
     Interface that reads the pings (bathymetry, water column) of a single
     .s7k file.
 
-
-
-    $.. note::
-
-    The datagram-processing function (read_pings) is not implemented yet.
-    The class currently only provides the structure so the pings can be
-    filled in in a later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing function (read_pings) is not implemented
+        yet. The class currently only provides the structure so the pings
+        can be filled in in a later step.
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...

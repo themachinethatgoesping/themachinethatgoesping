@@ -148,7 +148,7 @@ class SensorConfiguration:
 
         Returns:
             datastructures::GeolocationLatLon  / this structure includes
-                           latitude and longitude information
+            latitude and longitude information
         """
 
     @overload
@@ -165,8 +165,7 @@ class SensorConfiguration:
 
         Returns:
             datastructures::GeolocationUTM  / this structure includes
-                           northing/easting and utm zone or hemisphere
-                           information
+            northing/easting and utm zone or hemisphere information
         """
 
     @overload
@@ -183,8 +182,7 @@ class SensorConfiguration:
 
         Returns:
             datastructures::GeolocationLocal  / this structure includes
-                           northing/easting but no zone or hemisphere
-                           information
+            northing/easting but no zone or hemisphere information
         """
 
     @overload
@@ -200,8 +198,8 @@ class SensorConfiguration:
 
         Returns:
             datastructures::GeolocationLocal  / this structure includes
-                           northing and east, which are set relative to the
-                           sensor coordinate system center
+            northing and east, which are set relative to the sensor coordinate
+            system center
         """
 
     def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, subarray_id: str = '', subarray_pose: datastructures.SensorPose | None = None) -> datastructures.SensorPose:
@@ -308,25 +306,83 @@ class SensorConfiguration:
         """
 
     def has_transducer_channel(self, channel_id: str) -> bool:
-        """Check if a transducer channel is registered."""
+        """
+        Check if a transducer channel with the specified ID is registered.
 
-    def register_transducer_channel(self, channel_id: str, tx_id: str, rx_id: str, trx_id: str) -> None:
-        """Register channel -> transmit/receive/transmit-receive transducer IDs."""
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            True if the transducer channel is registered, false otherwise.
+        """
+
+    def register_transducer_channel(self, channel_id: str, tx_id: str, tx_default_sub: str, rx_id: str, rx_default_sub: str, trx_id: str, trx_default_sub: str) -> None:
+        """
+        Register a transducer channel with its corresponding transducer IDs
+        (tx, rx, trx) and their default subarrays.
+
+        Args:
+            channel_id: The ID of the transducer channel.
+            tx_id: The ID of the transmit transducer.
+            tx_default_sub: The default subarray of the transmit transducer
+                            (empty for none).
+            rx_id: The ID of the receive transducer.
+            rx_default_sub: The default subarray of the receive transducer
+                            (empty for none).
+            trx_id: The ID of the combined transmit-receive transducer.
+            trx_default_sub: The default subarray of the transmit-receive
+                             transducer (empty for none).
+        """
 
     def unregister_transducer_channel(self, channel_id: str) -> None:
-        """Unregister one transducer channel."""
+        """
+        Unregister a transducer channel with the specified ID.
+
+        Args:
+            channel_id: The ID of the transducer channel to unregister.
+        """
 
     def unregister_all_transducer_channels(self) -> None:
-        """Unregister all transducer channels."""
+        """
+        Unregister all transducer channels.
 
-    def get_transducer_transmit_id(self, channel_id: str) -> str:
-        """Get the transmit transducer ID registered for a channel."""
+        Note:
+            This will remove all registered transducer channels.
+        """
 
-    def get_transducer_receive_id(self, channel_id: str) -> str:
-        """Get the receive transducer ID registered for a channel."""
+    def get_transducer_transmit_id(self, channel_id: str) -> tuple[str, str]:
+        """
+        Get the transmit transducer registered for a transducer channel.
 
-    def get_transducer_transmit_receive_id(self, channel_id: str) -> str:
-        """Get the transmit-receive transducer ID registered for a channel."""
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            The transmit transducer as a (target_id, default_subarray) pair.
+        """
+
+    def get_transducer_receive_id(self, channel_id: str) -> tuple[str, str]:
+        """
+        Get the receive transducer registered for a transducer channel.
+
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            The receive transducer as a (target_id, default_subarray) pair.
+        """
+
+    def get_transducer_transmit_receive_id(self, channel_id: str) -> tuple[str, str]:
+        """
+        Get the combined transmit-receive transducer for a transducer channel.
+
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            The combined transmit-receive transducer as a (target_id,
+            default_subarray) pair.
+        """
 
     @overload
     def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None:
@@ -430,24 +486,10 @@ class SensorConfiguration:
     def set_target_subarrays(self, target_id: str, subarrays: Mapping[str, datastructures.SensorPose]) -> None:
         """
         Replace all subarray offsets of a target with the given map.
+
         Args:
             target_id: parent target
             subarrays: map_subarray_id_offsetposeinthetargetframe
-        """
-
-    def set_target_subarrays_from_model(self, target_id: str, model_name: str) -> None:
-        """
-        Set the subarray offsets of a target from the hardcoded per-model
-        preset.
-
-        Looks the model up with get_model_subarray_offsets and stores the
-        result on ``target_id.`` Does nothing if the model is unknown
-        (get_model_subarray_offsets returns an empty map).
-
-        Args:
-            target_id: parent target
-            model_name: echosounder model (e.g. "EM2040", "EM2040P", "2042");
-                        case-insensitive, an optional leading "EM" is ignored
         """
 
     def has_target_subarrays(self, target_id: str) -> bool:
@@ -459,6 +501,7 @@ class SensorConfiguration:
     def get_target_subarray(self, target_id: str, subarray_id: str) -> datastructures.SensorPose:
         """
         Get a single registered subarray offset.
+
         Args:
             target_id: parent target
             subarray_id: name of the subarray
@@ -471,6 +514,7 @@ class SensorConfiguration:
     def get_target_subarrays(self, target_id: str) -> dict[str, datastructures.SensorPose]:
         """
         Get all subarray offsets of a target.
+
         Args:
             target_id: parent target
 
@@ -486,7 +530,7 @@ class SensorConfiguration:
         """Remove all subarray offsets of a target."""
 
     @staticmethod
-    def get_model_subarray_offsets(model_name: str) -> dict[str, datastructures.SensorPose]:
+    def get_model_subarray_offsets(model_name: str) -> tuple[dict[str, datastructures.SensorPose], dict[str, datastructures.SensorPose]]:
         """
         Hardcoded transmit/receive subarray phase-center offsets for a known
         echosounder model.
@@ -501,21 +545,6 @@ class SensorConfiguration:
         Args:
             model_name: echosounder model (case-insensitive, optional leading
                         "EM" ignored)
-        """
-
-    @staticmethod
-    def get_model_subarray_offset(model_name: str, subarray_id: str) -> datastructures.SensorPose:
-        """
-        A single hardcoded subarray offset for a model (convenience for
-        building a manual
-               subarray_pose, e.g. for compute_target_pose debugging).
-        Args:
-            model_name: echosounder model
-            subarray_id: "0"/"1"/"2"/"RX"
-
-        Returns:
-            the offset pose (throws std::out_of_range if the model or subarray
-            is unknown)
         """
 
     def set_model_name(self, name: str) -> None:
