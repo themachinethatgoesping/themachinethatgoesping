@@ -5,9 +5,18 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
 # [Unreleased]
+- navigation -> 0.21.0
+- echosounders -> 0.50.0
+- pingprocessing -> 0.17.0
+
+## Improvements
+- navigation: reworking sensor configuration handling
+- echosounders: adapt to navigation 0.21.0 (changes in sensor configuration handling)
+- pingprocessing: adapt to navigation 0.21.0 (changes in sensor configuration handling)
 
 ## Maintanance
 - remove upper bound for Python version (now supports Python abi3 >= 3.12)
+- dependence on pybind11_mkdoc+libclang2 for mkdoc generation
 
 # [0.36.0] - 07-10-2026
 
