@@ -1,54 +1,77 @@
-#!/bin/env python3
+#!/usr/bin/env python3
+"""Regenerate pybind11 docstrings for the themachinethatgoesping C++ modules.
 
-import os
-import sys
-import subprocess
+Delegates to :mod:`pybind11_mkdoc.meson_mkdoc`, which reads the compiler include
+flags from the Meson build's ``compile_commands.json`` and pins libclang to the
+active Python environment (so it works with both the fork and upstream
+pybind11_mkdoc).
+
+Examples
+--------
+    # all modules (needs a configured build dir for the include flags)
+    python python/make_pybind_doc.py --build-root builddir
+    # one module, force regeneration
+    python python/make_pybind_doc.py --module navigation --regenerate --build-root builddir
+    # debug a single header with full clang diagnostics
+    python python/make_pybind_doc.py --module pingprocessing --only echogrambase --verbose --build-root builddir
+
+The equivalent Meson targets supply the build dir automatically:
+    meson compile -C builddir mkdoc              # all modules
+    meson compile -C builddir mkdoc-navigation   # one module
+"""
 
 import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("--regenerate", help="Regenerate all docstrings", action="store_true")
-parser.add_argument("--renew", help="Delete all docstring folders first", action="store_true")
-args = parser.parse_args()
+import os
+import sys
 
-FORCE_REGENERATE = args.regenerate
-FORCE_RENEW = args.renew
+from pybind11_mkdoc.meson_mkdoc import main as driver_main
 
-# FORCE_RENEW = False
-# FORCE_REGENERATE = False
-
-more_args = []
-if FORCE_REGENERATE: more_args.append("--regenerate")
-if FORCE_RENEW: more_args.append("--renew")
-
-path_mkdoc = []
-for r,d,f in os.walk('../'):
-
-    # skip subprojects of subprojects
-    if r.count('subprojects') == 2:
-        continue
-    
-    if 'output' in r:
-        continue
-    if 'build' in r:
-        continue
-    
-    for file in f:
-        if file == "mkdoc.py":
-            path_mkdoc.append((os.path.abspath(r),file))
-path_mkdoc.sort()
-
-pwd = os.path.abspath(os.curdir) + '/'
-
-with open("log.txt", "w") as log_out:
-    for r,f in path_mkdoc:
-        print (f"executing {r} {f} {[arg for arg in more_args]}")
-
-        command = [sys.executable, f]
-        if more_args:
-            command.extend(more_args)
-        print(command)
-        
-        os.chdir(r)
-        subprocess.call(command)
+MODULES = ["tools", "navigation", "algorithms", "echosounders", "pingprocessing"]
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("--module", choices=MODULES, help="Only this module (default: all).")
+    parser.add_argument("--regenerate", action="store_true", help="Ignore the source hash.")
+    parser.add_argument("--renew", action="store_true", help="Delete all .docstrings folders.")
+    parser.add_argument("--build-root", default=None, help="Build dir with compile_commands.json.")
+    parser.add_argument("--only", default=None, metavar="SUBSTR", help="Only headers containing SUBSTR.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Echo clang diagnostics to the console.")
+    args = parser.parse_args()
+
+    forwarded = []
+    if args.regenerate:
+        forwarded.append("--regenerate")
+    if args.renew:
+        forwarded.append("--renew")
+    if args.only:
+        forwarded += ["--only", args.only]
+    if args.verbose:
+        forwarded.append("--verbose")
+    if args.build_root:
+        forwarded += ["--build-root", os.path.abspath(args.build_root)]
+
+    exit_code = 0
+    for mod in [args.module] if args.module else MODULES:
+        sub = os.path.join(ROOT, "subprojects", mod)
+        doc_header = os.path.join(sub, "src", "nanomodule", "new_doc_header.hpp")
+        if not os.path.isfile(doc_header):
+            print(f"skipping {mod}: {doc_header} not found", file=sys.stderr)
+            continue
+        print(f"=== {mod} ===")
+        sys.argv = [
+            sys.argv[0],
+            "--module-root", os.path.join(sub, "src", "themachinethatgoesping"),
+            "--doc-header", doc_header,
+            *forwarded,
+        ]
+        exit_code |= driver_main()
+    return exit_code
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

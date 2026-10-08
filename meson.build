@@ -55,6 +55,31 @@ if get_option('build_pythonmodule').enabled()
         meson.current_source_dir() / 'python' / 'stubs',
         install_tag: 'python-runtime',
     )
+
+    # --- docstring generation (pybind11_mkdoc, driven by Meson) ---
+    # Regenerate the per-header .doc.hpp side-car files on demand. Each C++
+    # module gets its own target, plus a 'mkdoc' alias that runs them all:
+    #   meson compile -C builddir mkdoc-navigation
+    #   meson compile -C builddir mkdoc
+    # The driver reads the -I/-isystem/-D/-std flags from compile_commands.json
+    # and pins libclang to the build's Python environment, so it works with both
+    # the fork and upstream pybind11_mkdoc. For verbose output or a single header
+    # use the CLI (python/make_pybind_doc.py --help).
+    mkdoc_modules = ['tools', 'navigation', 'algorithms', 'echosounders', 'pingprocessing']
+    mkdoc_targets = []
+    foreach mod : mkdoc_modules
+        mkdoc_targets += run_target(
+            'mkdoc-' + mod,
+            command: [
+                pymod, '-m', 'pybind11_mkdoc.meson_mkdoc',
+                '--module-root', meson.current_source_dir() / 'subprojects' / mod / 'src' / 'themachinethatgoesping',
+                '--doc-header', meson.current_source_dir() / 'subprojects' / mod / 'src' / 'nanomodule' / 'new_doc_header.hpp',
+                '--build-root', meson.global_build_root(),
+            ],
+        )
+    endforeach
+
+    alias_target('mkdoc', mkdoc_targets)
 endif
 
  
