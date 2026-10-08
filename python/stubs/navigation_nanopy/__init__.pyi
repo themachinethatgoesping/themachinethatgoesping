@@ -307,6 +307,27 @@ class SensorConfiguration:
             True if the sensor configuration has the target, false otherwise.
         """
 
+    def has_transducer_channel(self, channel_id: str) -> bool:
+        """Check if a transducer channel is registered."""
+
+    def register_transducer_channel(self, channel_id: str, tx_id: str, rx_id: str, trx_id: str) -> None:
+        """Register channel -> transmit/receive/transmit-receive transducer IDs."""
+
+    def unregister_transducer_channel(self, channel_id: str) -> None:
+        """Unregister one transducer channel."""
+
+    def unregister_all_transducer_channels(self) -> None:
+        """Unregister all transducer channels."""
+
+    def get_transducer_transmit_id(self, channel_id: str) -> str:
+        """Get the transmit transducer ID registered for a channel."""
+
+    def get_transducer_receive_id(self, channel_id: str) -> str:
+        """Get the receive transducer ID registered for a channel."""
+
+    def get_transducer_transmit_receive_id(self, channel_id: str) -> str:
+        """Get the transmit-receive transducer ID registered for a channel."""
+
     @overload
     def add_target(self, target_id: str, x: float, y: float, z: float, yaw: float, pitch: float, roll: float) -> None:
         """

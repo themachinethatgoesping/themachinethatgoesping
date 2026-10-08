@@ -4,6 +4,11 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [Unreleased]
+
+## Maintanance
+- remove upper bound for Python version (now supports Python abi3 >= 3.12)
+
 # [0.36.0] - 07-10-2026
 
 -echosounders -> 0.49.0

@@ -4,7 +4,7 @@ channels = ["conda-forge", "themachinethatgoesping"]
 platforms = ["linux-64"]
 
 [dependencies]
-python = ">=3.12,<3.15"
+python = ">=3.12"
 
 # Python runtime dependencies from Conda
 numba = "*"
@@ -57,7 +57,7 @@ build = "python -m build"
 python-build = ">=1.6.0,<2"
 twine = ">=7.0.0,<8"
 anaconda-client = ">=1.14.1,<2"
-rattler-build = ">=0.75.0,<0.76"
+rattler-build = ">=0.75.0"
 conda-recipe-manager = "*"
 
 
