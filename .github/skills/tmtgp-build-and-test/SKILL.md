@@ -23,6 +23,36 @@ Invoke it with the run-task tool: `id="shell: Ping: Build and Test python (j8)"`
 `workspaceFolder="/home/ssd/src/themachinethatgoesping/themachinethatgoesping"`.
 Other useful tasks: **`Ping: Build and Test cpp`** (C++ only), **`Ping: Test python`** (pytest only).
 
+## mkdoc needs compilable headers → two-phase build when you ADDED/CHANGED headers
+`meson compile mkdoc` (step 1 of the `(j8)` task) runs pybind11-mkdoc, which **parses every changed
+header with libclang using the main `builddir` `compile_commands.json`**. mkdoc therefore **fails
+whenever a changed header does not compile** (a real C++ syntax/type error, a missing include, a bad
+signature) — the failure is reported as a confusing clang/`mkdoc_log.log` traceback, NOT as the
+underlying compiler error, and the stale `.doc.hpp` is kept (so `DOC(...)` for any **new** method is
+still missing). Do **not** try to fix mkdoc from that traceback.
+
+When you added new classes/methods or changed signatures, build in **two phases**:
+1. **First** run **`Ping: Build and Test python (j8, no doc)`** (`meson compile -j8` **without**
+   mkdoc). This shows the *real* compiler errors directly. Fix every error **except** the expected
+   `DOC(...)` / `__doc_..._<newmethod>` "was not declared" errors — those cannot be resolved until the
+   docstrings are regenerated, because the `.def(... DOC(...))` for a brand-new method references a
+   doc var that does not exist yet.
+2. **Then**, once the only remaining errors are those `DOC(...)` ones (i.e. all genuine header/code
+   errors are gone), run the full **`Ping: Build and Test python (j8)`**. Its `meson compile mkdoc`
+   step now parses the clean headers successfully, regenerates `.docstrings/*.doc.hpp` (creating the
+   new `__doc_..._<newmethod>` vars), and the subsequent compile picks up the DOC strings for the
+   nanobind module.
+
+(If `(j8)` fails at the mkdoc step, that is the signal a header still does not compile → go back to
+phase 1.) A convenient way to iterate phase 1 on just the affected subproject's C++ test is
+`meson compile <full.test.target.name>` (see below) — it builds the catch2 test without the nanobind
+DOC dependency, so you get test results even while new DOC vars are still missing.
+
+Note: `make_pybind_doc.py` run **manually without `--build-root builddir`** falls back to each
+*subproject* `builddir`, whose `compile_commands.json` may lack sibling-subproject include paths
+(e.g. navigation → `tools/.../rotation.hpp` "file not found"). Always regenerate docs via the meson
+target (`meson compile mkdoc`, i.e. the `(j8)` task) or pass `--build-root builddir`.
+
 ## Manual equivalent (fast iteration in a terminal)
 Prefix every terminal command with the dev environment:
 ```bash

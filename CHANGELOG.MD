@@ -8,11 +8,16 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - navigation -> 0.21.0
 - echosounders -> 0.50.0
 - pingprocessing -> 0.17.0
+- tools -> 0.34.1
+- algorithms -> 0.13.1
 
 ## Improvements
 - navigation: reworking sensor configuration handling
 - echosounders: adapt to navigation 0.21.0 (changes in sensor configuration handling)
 - pingprocessing: adapt to navigation 0.21.0 (changes in sensor configuration handling)
+- tools: object printer table printing (multi lines)
+- algorithms: fix failure for negative transducer depths
+- echosounders: fix reading attitudes in some cases
 
 ## Maintanance
 - remove upper bound for Python version (now supports Python abi3 >= 3.12)

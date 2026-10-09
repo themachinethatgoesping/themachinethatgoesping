@@ -202,6 +202,66 @@ class SensorConfiguration:
             system center
         """
 
+    @overload
+    def compute_target_position(self, target: datastructures.SensorPose, sensor_data: datastructures.SensordataLatLon) -> datastructures.GeolocationLatLon:
+        """
+        Compute the position of a target from its mounting offsets and the
+        sensor data.
+
+        Args:
+            target: target mounting offsets (e.g. from get_target)
+            sensor_data: SensordataLatLon (latitude/longitude)
+
+        Returns:
+            datastructures::GeolocationLatLon
+        """
+
+    @overload
+    def compute_target_position(self, target: datastructures.SensorPose, sensor_data: datastructures.SensordataUTM) -> datastructures.GeolocationUTM:
+        """
+        Compute the position of a target from its mounting offsets and the
+        sensor data.
+
+        Args:
+            target: target mounting offsets (e.g. from get_target)
+            sensor_data: SensordataUTM (northing/easting + utm
+                         zone/hemisphere)
+
+        Returns:
+            datastructures::GeolocationUTM
+        """
+
+    @overload
+    def compute_target_position(self, target: datastructures.SensorPose, sensor_data: datastructures.SensordataLocal) -> datastructures.GeolocationLocal:
+        """
+        Compute the position of a target from its mounting offsets and the
+        sensor data.
+
+        Args:
+            target: target mounting offsets (e.g. from get_target)
+            sensor_data: SensordataLocal (northing/easting, no
+                         zone/hemisphere)
+
+        Returns:
+            datastructures::GeolocationLocal
+        """
+
+    @overload
+    def compute_target_position(self, target: datastructures.SensorPose, sensor_data: datastructures.Sensordata) -> datastructures.GeolocationLocal:
+        """
+        Compute the position of a target from its mounting offsets and the
+        sensor data.
+
+        Args:
+            target: target mounting offsets (e.g. from get_target)
+            sensor_data: Sensordata (no coordinate information)
+
+        Returns:
+            datastructures::GeolocationLocal (relative to the position system
+            center)
+        """
+
+    @overload
     def compute_target_pose(self, target_id: str, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float, subarray_id: str = '', subarray_pose: datastructures.SensorPose | None = None) -> datastructures.SensorPose:
         """
         Compute the ready-to-trace pose (position + ship-frame orientation) of
@@ -230,6 +290,27 @@ class SensorConfiguration:
             subarray_pose: optional explicit subarray offset (target frame)
                            that overrides ``subarray_id;`` handy for debugging
                            or one-off corrections
+
+        Returns:
+            target pose (position + ship-frame Rotation)
+        """
+
+    @overload
+    def compute_target_pose(self, target: datastructures.SensorPose, sensor_data: datastructures.Sensordata, reference_heading_in_degrees: float) -> datastructures.SensorPose:
+        """
+        Compute the ready-to-trace pose of a target from its (already
+        resolved) offsets.
+
+        Same as compute_target_pose(target_id, ...) but takes the target
+        mounting offsets directly (e.g. from get_target(target_id,
+        subarray_id)); the string_view overload builds on this one.
+
+        Args:
+            target: target mounting offsets (optionally already combined with
+                    a subarray offset)
+            sensor_data: Sensordata (heading/pitch/roll + depth/heave)
+            reference_heading_in_degrees: heading (deg) removed from the
+                                          orientation (transmit heading)
 
         Returns:
             target pose (position + ship-frame Rotation)
@@ -316,22 +397,28 @@ class SensorConfiguration:
             True if the transducer channel is registered, false otherwise.
         """
 
-    def register_transducer_channel(self, channel_id: str, tx_id: str, tx_default_sub: str, rx_id: str, rx_default_sub: str, trx_id: str, trx_default_sub: str) -> None:
+    def register_transducer_channel(self, channel_id: str, tx_id: str, rx_id: str, trx_id: str, tx_default_sub: str = '', rx_default_sub: str = '', trx_default_sub: str = '', tx_sector_subarrays: Sequence[str] = []) -> None:
         """
         Register a transducer channel with its corresponding transducer IDs
-        (tx, rx, trx) and their default subarrays.
+        (tx, rx, trx), their default subarrays and optional per-transmit-
+        sector subarrays.
 
         Args:
             channel_id: The ID of the transducer channel.
             tx_id: The ID of the transmit transducer.
+            rx_id: The ID of the receive transducer.
+            trx_id: The ID of the combined transmit-receive transducer.
             tx_default_sub: The default subarray of the transmit transducer
                             (empty for none).
-            rx_id: The ID of the receive transducer.
             rx_default_sub: The default subarray of the receive transducer
                             (empty for none).
-            trx_id: The ID of the combined transmit-receive transducer.
             trx_default_sub: The default subarray of the transmit-receive
                              transducer (empty for none).
+            tx_sector_subarrays: Optional subarray id per transmit sector.
+                                 When non-empty,
+                                 get_transducer_transmit_id(channel_id,
+                                 sector) returns the subarray for that sector;
+                                 when empty it always returns tx_default_sub.
         """
 
     def unregister_transducer_channel(self, channel_id: str) -> None:
@@ -350,15 +437,20 @@ class SensorConfiguration:
             This will remove all registered transducer channels.
         """
 
-    def get_transducer_transmit_id(self, channel_id: str) -> tuple[str, str]:
+    def get_transducer_transmit_id(self, channel_id: str, sector: int | None = None) -> tuple[str, str]:
         """
         Get the transmit transducer registered for a transducer channel.
 
         Args:
             channel_id: The ID of the transducer channel.
+            sector: Optional transmit sector number. If set and per-sector
+                    subarrays are registered for the channel, the returned
+                    subarray is the one registered for that sector; otherwise
+                    (no sector given, or no per-sector subarrays registered)
+                    the default subarray is returned.
 
         Returns:
-            The transmit transducer as a (target_id, default_subarray) pair.
+            The transmit transducer as a (target_id, subarray) pair.
         """
 
     def get_transducer_receive_id(self, channel_id: str) -> tuple[str, str]:
@@ -382,6 +474,57 @@ class SensorConfiguration:
         Returns:
             The combined transmit-receive transducer as a (target_id,
             default_subarray) pair.
+        """
+
+    def get_transducer_transmit_target(self, channel_id: str, sector: int | None = None) -> datastructures.SensorPose:
+        """
+        Get the transmit target (mounting offsets) registered for a transducer
+        channel.
+
+        Convenience wrapper that resolves
+        get_transducer_transmit_id(channel_id, sector) and returns the
+        matching target pose (get_target(target_id, subarray)).
+
+        Args:
+            channel_id: The ID of the transducer channel.
+            sector: Optional transmit sector number (see
+                    get_transducer_transmit_id).
+
+        Returns:
+            The transmit target offsets in the vessel-static frame.
+        """
+
+    def get_transducer_receive_target(self, channel_id: str) -> datastructures.SensorPose:
+        """
+        Get the receive target (mounting offsets) registered for a transducer
+        channel.
+
+        Convenience wrapper that resolves
+        get_transducer_receive_id(channel_id) and returns the matching target
+        pose (get_target(target_id, subarray)).
+
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            The receive target offsets in the vessel-static frame.
+        """
+
+    def get_transducer_transmit_receive_target(self, channel_id: str) -> datastructures.SensorPose:
+        """
+        Get the combined transmit-receive target (mounting offsets) for a
+        transducer channel.
+
+        Convenience wrapper that resolves
+        get_transducer_transmit_receive_id(channel_id) and returns the
+        matching target pose (get_target(target_id, subarray)).
+
+        Args:
+            channel_id: The ID of the transducer channel.
+
+        Returns:
+            The combined transmit-receive target offsets in the vessel-static
+            frame.
         """
 
     @overload
