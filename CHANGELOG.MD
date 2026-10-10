@@ -22,6 +22,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Maintanance
 - remove upper bound for Python version (now supports Python abi3 >= 3.12)
 - dependence on pybind11_mkdoc+libclang2 for mkdoc generation
+- remove archlinux ci
 
 # [0.36.0] - 07-10-2026
 
