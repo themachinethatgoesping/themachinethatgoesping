@@ -16,7 +16,7 @@ import themachinethatgoesping.tools_nanopy.rotationfunctions
 class SoundVelocityProfile:
     """
     1-D depth-dependent sound velocity profile with layered analytic
-           precomputations for use by the LayerRaytracer.
+    precomputations for use by the LayerRaytracer.
 
     Depths are absolute (e.g. metres below the sea surface). Optional
     metadata (timestamp, latitude, longitude) is stored as
@@ -31,6 +31,7 @@ class SoundVelocityProfile:
     def __init__(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Construct from depth/sound-speed tables.
+
         Args:
             z: monotonically increasing depth knots (m, positive down).
             c: corresponding sound speeds (m/s, must be positive).
@@ -43,6 +44,7 @@ class SoundVelocityProfile:
     def uniform(c: float, z_max: float = 12000.0) -> SoundVelocityProfile:
         """
         Constant-velocity profile from the surface to z_max.
+
         Args:
             c: sound speed (m/s).
             z_max: maximum depth (m); default 12 000 m.
@@ -54,13 +56,14 @@ class SoundVelocityProfile:
     def set(self, depths_in_meters: Annotated[NDArray[numpy.float32], dict(order='C')], sound_speeds_in_meters_per_second: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None:
         """
         Set depth/sound-speed tables and recompute layer constants.
+
         Args:
             z: monotonically increasing depth knots (m, positive down).
             c: corresponding sound speeds (m/s, must be positive).
 
         Raises:
             std::runtime_error: if sizes differ, fewer than 2 entries, or non-
-                monotone depths.
+                                monotone depths.
         """
 
     def get_depths_in_meters(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
@@ -156,21 +159,21 @@ class SoundVelocityProfile:
     def get_profile_with_surface_sound_speed(self, surface_sound_speed_in_meters_per_second: float, transducer_depth_in_meters: float) -> SoundVelocityProfile:
         """
         Return a copy of this profile with a measured surface (transducer)
-        sound speed
-               integrated at the transducer depth (Kongsberg "SHC=0"
-               convention).
+        sound speed integrated at the transducer depth (Kongsberg "SHC=0"
+        convention).
 
         The returned profile replaces every knot at or above
         ``transducer_depth_in_meters`` with an iso-velocity segment at
-        ``surface_sound_speed_in_meters_per_second`` (from depth 0 down to the
-        transducer depth) and keeps the archived knots strictly below the
-        transducer depth. This makes the sound speed at the transducer equal
-        to the real-time measured surface sound speed (SSV), which is what the
-        echosounder uses when forming the beams; a beam launched at the
-        transducer depth is then self-consistent (the Snell launch/reference
-        speed and the profile value at the launch depth agree, removing the
-        angle-dependent outer-beam depth bias that appears when the archived
-        profile value at the transducer differs from the measured SSV).
+        ``surface_sound_speed_in_meters_per_second`` (from the top of the
+        profile down to the transducer depth) and keeps the archived knots
+        strictly below the transducer depth. This makes the sound speed at the
+        transducer equal to the real-time measured surface sound speed (SSV),
+        which is what the echosounder uses when forming the beams; a beam
+        launched at the transducer depth is then self-consistent (the Snell
+        launch/reference speed and the profile value at the launch depth
+        agree, removing the angle-dependent outer-beam depth bias that appears
+        when the archived profile value at the transducer differs from the
+        measured SSV).
 
         The measured surface sound speed is also stored as metadata on the
         returned profile (get_surface_sound_speed()).
@@ -179,8 +182,9 @@ class SoundVelocityProfile:
             surface_sound_speed_in_meters_per_second: measured sound speed at
                                                       the transducer (m/s,
                                                       >0).
-            transducer_depth_in_meters: transducer depth below the surface (m,
-                                        >= 0).
+            transducer_depth_in_meters: transducer depth (m, positive down);
+                                        may be negative when heave lifts the
+                                        transducer above the waterline.
 
         Returns:
             SoundVelocityProfile extended with the surface sound speed.
