@@ -1,0 +1,13 @@
+{
+  // Recommended extensions for working on themachinethatgoesping in VS Code.
+  "recommendations": [
+    "llvm-vs-code-extensions.vscode-clangd", // C/C++ IntelliSense + clang-format via clangd
+    "ms-vscode.cpptools", // debugging (optional; use clangd for IntelliSense)
+    "mesonbuild.mesonbuild", // Meson build integration
+    "ms-python.python", // Python language support
+    "ms-python.black-formatter", // Python formatting (black)
+    "GitHub.copilot", // Copilot code completion
+    "GitHub.copilot-chat", // Copilot Chat (reads .github/*.instructions.md)
+    "ms-toolsai.jupyter" // notebooks / tutorials
+  ]
+}
