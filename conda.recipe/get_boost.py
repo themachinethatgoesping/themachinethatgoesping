@@ -160,10 +160,19 @@ def toolchain() -> tuple[str, str, list[str]]:
 
 
 def already_built(prefix: Path) -> bool:
-    """True if a previous run already installed the requested libraries."""
-    inc = prefix / "include" / "boost" / "version.hpp"
+    """True if a previous run already installed the requested libraries.
+
+    Handles both b2 install layouts: the 'system' layout (headers in
+    include/boost/, libs libboost_<lib>.*) used by default on unix, and the
+    'versioned' layout (headers in include/boost-X_Y/boost/, libs
+    libboost_<lib>-<toolset>-mt-...) used by default on Windows.
+    """
+    incdir = prefix / "include"
     libdir = prefix / "lib"
-    if not inc.exists() or not libdir.is_dir():
+    header_ok = (incdir / "boost" / "version.hpp").exists() or any(
+        (d / "boost" / "version.hpp").exists() for d in incdir.glob("boost-*")
+    )
+    if not header_ok or not libdir.is_dir():
         return False
     for lib in BOOST_LIBRARIES:
         if not list(libdir.glob(f"*boost_{lib}*")):
@@ -237,6 +246,9 @@ def main() -> int:
 
     if not already_built(prefix):
         log("ERROR: build finished but expected libraries are missing under the prefix")
+        incdir, libdir = prefix / "include", prefix / "lib"
+        log(f"  include/* : {sorted(p.name for p in incdir.glob('boost*'))[:10] if incdir.is_dir() else 'NO include dir'}")
+        log(f"  lib/*boost*: {sorted(p.name for p in libdir.glob('*boost*')) if libdir.is_dir() else 'NO lib dir'}")
         return 1
     log(f"done. Set BOOST_ROOT={prefix} and build meson with -Ddynamic_boost=disabled")
     return 0
