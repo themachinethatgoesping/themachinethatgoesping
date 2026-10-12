@@ -95,6 +95,21 @@ def extract(archive: Path, dest_dir: Path) -> Path:
     return src
 
 
+def which_jam(name: str) -> str:
+    """Resolve a tool name to an absolute, jam-friendly (forward-slash) path.
+
+    Boost.Build's clang-win toolset probes only a few hardcoded LLVM directories
+    (not PATH), so bare tool names like "clang-cl" are not found in a conda
+    environment. Resolve via PATH and hand b2 the absolute path. Falls back to the
+    bare name (with a warning) if the tool is not on PATH.
+    """
+    found = shutil.which(name)
+    if not found:
+        log(f"WARNING: '{name}' not found on PATH; passing it to b2 verbatim")
+        return name
+    return found.replace("\\", "/")
+
+
 def toolchain() -> tuple[str, str, list[str]]:
     """Return (b2_toolset, user_config_jam_text, extra_b2_args) for this OS,
     using the compiler from the environment so Boost matches the project ABI."""
@@ -106,11 +121,15 @@ def toolchain() -> tuple[str, str, list[str]]:
 
     if system == "Windows":
         # Match the project: clang-cl (MSVC-compatible) + the LLVM archiver.
-        compiler = cxx or "clang-cl"
-        opts = []
-        archiver = ar or "llvm-lib"
-        opts.append(f'<archiver>"{archiver}"')
-        opts.append('<ranlib>"llvm-ranlib"')
+        # Boost's clang-win toolset does NOT search PATH for the tools - it only
+        # probes a few hardcoded LLVM install dirs - so we must hand it ABSOLUTE,
+        # forward-slash paths resolved from the environment (the conda clang-cl is
+        # on PATH but not in those default dirs).
+        compiler = which_jam(cxx or "clang-cl")
+        opts = [
+            f'<archiver>"{which_jam(ar or "llvm-lib")}"',
+            f'<ranlib>"{which_jam("llvm-ranlib")}"',
+        ]
         jam = f'using clang-win : : "{compiler}" : {" ".join(opts)} ;\n'
         return "clang-win", jam, extra
 
