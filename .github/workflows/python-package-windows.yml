@@ -84,8 +84,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        boost-version: [1.91.0]
-        boost-version_: [1_91_0]
+        boost-version: [1.92.0]
+        boost-version_: [1_92_0]
         boost-modules: [--with-iostreams]
         include:
         - toolset: vc145

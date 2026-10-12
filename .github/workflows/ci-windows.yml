@@ -62,8 +62,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-2025-vs2026]
-        boost-version: [1.91.0]
-        boost-version_: [1_91_0]
+        boost-version: [1.92.0]
+        boost-version_: [1_92_0]
         boost-modules: [--with-iostreams]
         include:
           - toolset: vc145

@@ -66,7 +66,7 @@ requirements:
     - ninja
     - cmake
     - pkgconfig
-    - boost-cpp >=1.84.0
+    - boost-cpp >=1.92.0
     - if: win
       then:
         # Windows uses clang-cl + the runner's NATIVE MSVC (set up in CI via
@@ -96,7 +96,7 @@ requirements:
     - pybind11>=2.13.2,<2.14.0
     - numpy>=2.0.0,<2.5
     - pip
-    - boost-cpp >=1.84.0
+    - boost-cpp >=1.92.0
     - pyarrow
     - pandas >=2.0
     - if: win
@@ -120,7 +120,7 @@ requirements:
     # / pin: newer backends always serve older extensions.
     - nanobind-backend >=1.0
     #- ${{ pin_compatible('boost-cpp') }}
-    - boost-cpp >=1.84.0
+    - boost-cpp >=1.92.0
     - ipywidgets
     - ipympl
     - matplotlib
