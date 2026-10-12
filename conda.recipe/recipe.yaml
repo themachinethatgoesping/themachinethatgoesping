@@ -28,23 +28,31 @@ build:
         - export CPPFLAGS="-I$PREFIX/include $CPPFLAGS" # [unix]
         - export LDFLAGS="-L$PREFIX/lib $LDFLAGS" # [unix]
         - export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH" # [unix]
-        - export BOOST_ROOT="$PREFIX" # [unix]
+        # Build Boost statically (only the libraries we need) with the same conda
+        # compiler as the project, so the extensions carry NO runtime libboost
+        # dependency. Config (version + libraries) lives at the top of get_boost.py.
+        - ${{ PYTHON }} conda.recipe/get_boost.py --prefix "$SRC_DIR/boost_static" # [unix]
+        - export BOOST_ROOT="$SRC_DIR/boost_static" # [unix]
         
         # --no-deps: build only from conda host/run deps, never pull runtime deps from PyPI
-        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
+        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=disabled" --config-settings=setup-args="-Dforce_openmp=enabled"
     - if: win
       then:
         - set CC=clang-cl
         - set CXX=clang-cl
         - set CXXFLAGS=%CXXFLAGS% /EHsc #split in two lines to avoid issues with the conda build system
         - set AR=llvm-lib # Add this line - use LLVM archiver instead of lib.exe
-        - set BOOST_ROOT=%PREFIX%\Library # [win]
         - set PATH=%PREFIX%\Library\bin;%PATH% # [win]
         - set INCLUDE=%PREFIX%\Library\include;%INCLUDE% # [win]
         - set LIB=%PREFIX%\Library\lib;%LIB% # [win]
+        # Build Boost statically with clang-cl + llvm-lib (matches the project ABI,
+        # see get_boost.py). CC/CXX/AR above select the toolchain; PATH exposes
+        # clang-cl/llvm-lib. No runtime libboost dependency results.
+        - ${{ PYTHON }} conda.recipe\get_boost.py --prefix %SRC_DIR%\boost_static # [win]
+        - set BOOST_ROOT=%SRC_DIR%\boost_static # [win]
         - curl -L https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -o ninja.exe # [win]
         - set NINJA=%CD%\ninja.exe # [win]
-        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled" --config-settings=setup-args="-Dcpp_std=c++latest"
+        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=disabled" --config-settings=setup-args="-Dforce_openmp=enabled" --config-settings=setup-args="-Dcpp_std=c++latest"
 
     - if: osx
       then:
@@ -55,7 +63,7 @@ build:
 
     - if: osx
       then:
-        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=enabled" --config-settings=setup-args="-Dforce_openmp=enabled"
+        - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -v --config-settings=setup-args="-Dunity=on" --config-settings=setup-args="-Dunity_size=999999999" --config-settings=setup-args="-Ddynamic_boost=disabled" --config-settings=setup-args="-Dforce_openmp=enabled"
     
 
   number: 0
@@ -66,7 +74,6 @@ requirements:
     - ninja
     - cmake
     - pkgconfig
-    - libboost >=1.92.0
     - if: win
       then:
         # Windows uses clang-cl + the runner's NATIVE MSVC (set up in CI via
@@ -96,7 +103,6 @@ requirements:
     - pybind11>=2.13.2,<2.14.0
     - numpy>=2.0.0,<2.5
     - pip
-    - libboost >=1.92.0
     - pyarrow
     - pandas >=2.0
     - if: win
@@ -119,8 +125,8 @@ requirements:
     # (peter-urban/nanobind, meson-v3.1.0 branch, conda.recipe). No upper bound
     # / pin: newer backends always serve older extensions.
     - nanobind-backend >=1.0
-    #- ${{ pin_compatible('libboost') }}
-    - libboost >=1.92.0
+    # Boost is statically linked into the extensions (see get_boost.py in the
+    # build script), so there is NO runtime libboost dependency.
     - ipywidgets
     - ipympl
     - matplotlib

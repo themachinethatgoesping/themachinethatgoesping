@@ -92,3 +92,41 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
 - End every class with `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)` as applicable.
 - **When you add a processed getter to the C++ class, add its `.def` here too** (and re-run
   make_pybind_doc so `DOC(...,get_x_in_<unit>)` resolves).
+
+## Debugging import/bind-time failures (`bad cast`, abort, "type already registered")
+A `from themachinethatgoesping.<fmt>_nanopy import *` that dies with **`ImportError: bad cast`**, a
+**`Fatal Python error: Aborted`**, or a flurry of **`nanobind: type '<X>' was already registered!`** /
+apparent "module re-exec" warnings is almost always a **missing nanobind STL caster header in a
+binding TU** — a real C++ bug, *not* nanobind doing something weird. The usual root cause:
+- A `.def(...)` casts a value **eagerly at bind time** (module init). This happens for every
+  **default argument** `nb::arg("x") = <value>` and for any init-time `m.attr(...) = <value>` /
+  `cls.attr(...) = <value>`. nanobind converts that C++ value to Python *right there*, so if the
+  caster is missing the failure happens **during import**, not on first call.
+- If the file does **not** `#include` the matching `<nanobind/stl/<type>.h>`, that TU instantiates the
+  **generic** `type_caster<T>` while sibling TUs (which do include it) instantiate the **specialized**
+  one → an **ODR violation**. gcc/Linux usually folds to the working specialized caster (imports fine,
+  so you **cannot reproduce it locally**); clang-cl/Windows may fold to the generic one, whose runtime
+  cast throws `std::bad_cast` → **Windows-only failure**.
+
+**Why it looks cryptic (error masking):** nanobind's `NB_MODULE` exec wrapper catches the C++
+exception and rethrows it as `PyErr_SetString(ImportError, e.what())` — so `std::bad_cast` becomes the
+bare string **`bad cast`** with no file/type. The meta `__init__.py` then wraps the import in
+`try/except pass` (swallows it), and CPython's **import-retry** re-runs the half-finished module body,
+producing the misleading "already registered" / "re-exec" warnings. So those warnings are a *symptom*
+of the first init dying partway, not the cause.
+
+**How to localize it fast:** the **last** `type '<X>' was already registered!` line is the last binding
+that registered *before* the crash — the failing `.def` is right after it (same or next `init_c_*`).
+Inspect that binding's default args / init-time casts and check the file's includes. A module-level
+`try/catch` around each `init_m_*`/`init_c_*` that prints `e.what()` + which init ran will pin it on CI
+when inspection isn't enough.
+
+**The rule (prevention):** **every binding TU that names an STL type in a `.def` signature or a
+default-argument value must `#include` the matching caster header in *that file*** — never rely on a
+transitive or unity-build include. Common ones: `<nanobind/stl/optional.h>` (`std::optional`,
+`std::nullopt` — e.g. `nb::arg("target_id") = std::nullopt`), `vector.h` (`std::vector<...>{}`),
+`map.h`/`unordered_map.h`, `pair.h`, `tuple.h`, `variant.h` (variant returns), `shared_ptr.h`,
+`string.h`/`string_view.h`. Reference fix: adding `<nanobind/stl/optional.h>` to
+`py_filetemplates/py_datatypes/i_ping.hpp` for `get_geolocation(..., = std::nullopt)` (it was the only
+`std::optional` binding missing the header → Windows `bad cast` at `I_Ping` init). To audit, grep for
+`std::<type>` / `= std::nullopt` in `src/nanomodule` and confirm each such file includes its caster.
