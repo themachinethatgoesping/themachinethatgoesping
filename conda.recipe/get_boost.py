@@ -107,6 +107,13 @@ def which_jam(name: str) -> str:
     if not found:
         log(f"WARNING: '{name}' not found on PATH; passing it to b2 verbatim")
         return name
+    # On Windows, rattler-build/conda leave unexpanded %BUILD_PREFIX% / %PREFIX%
+    # placeholders in PATH entries. cmd expands them when it uses PATH (so
+    # bootstrap finds clang-cl), but shutil.which returns the raw entry and b2/jam
+    # cannot resolve %VAR% - expand them to a real absolute path here.
+    found = os.path.expandvars(found)
+    if "%" in found:
+        log(f"WARNING: unresolved environment variable in tool path: {found}")
     return found.replace("\\", "/")
 
 
@@ -171,6 +178,11 @@ def main() -> int:
     ap.add_argument("--build-dir", default=None, help="scratch dir for download/extract (default: <prefix>/../boost_build)")
     ap.add_argument("--force", action="store_true", help="rebuild even if already installed")
     args = ap.parse_args()
+
+    # On Windows, rattler-build/conda may leave unexpanded %VAR% placeholders in
+    # PATH; expand them so the b2/bootstrap subprocesses resolve their tools.
+    if platform.system() == "Windows":
+        os.environ["PATH"] = os.path.expandvars(os.environ.get("PATH", ""))
 
     prefix = Path(args.prefix).resolve()
     build_dir = Path(args.build_dir).resolve() if args.build_dir else prefix.parent / "boost_build"
