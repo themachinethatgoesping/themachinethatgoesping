@@ -196,3 +196,51 @@ take the serialized buffer (`std::string_view`).
   with `REQUIRE`/`CHECK` (`Catch::Approx` for floats). Standard checks: copy `x == T(x)`, binary
   `x == T::from_binary(x.to_binary())`, stream round-trip, `x.info_string().size() != 0`; for parsers
   build a byte buffer and assert decoded fields. Register the file in `src/tests/meson.build`.
+
+## Beam-selection getter pattern (interfaces like I_MBESRawDetectionInfos / I_PingBottom)
+For a per-beam/per-sounding quantity expose **two** overloads with the **same name**:
+- the **`const pingtools::BeamSelection&` overload is the `virtual`** one (throws not_implemented by
+  default; concrete formats override it to read/return exactly the selected beams — same as
+  `KMALLPingBottom`);
+- the **no-arg overload is non-virtual** and delegates: `get_X() { return get_X(BeamSelection(get_number_of_soundings())); }`.
+Derived quantities (number_of_sectors, sector_tx_times, rx_times, beam_numbers_per_tx_sector) are
+non-virtual and computed from the virtual getters. Do **not** add a generic `select_from_full_array`
+helper to the interface — the bs-overload does the work.
+- **File-reading getters are non-`const`** (lazy stream reads mutate), so the abstract interface
+  getters are non-`const` too (to be override-compatible) and the `const __printer__` can only call
+  the **`has_*()`** (const) feature queries, not the getters — print a feature-availability summary,
+  not the data.
+
+## Overload hiding → `using` in the overriding child
+Overriding **one** overload (`get_X(const BeamSelection&)`) **hides** the inherited no-arg `get_X()`
+(C++ name hiding). Any child that overrides the bs-overload must re-expose the base no-arg overloads:
+`using I_MBESRawDetectionInfos::get_soundings_two_way_travel_times;` (worked example:
+`MBESRawDetectionData`). Without it, `obj.get_X()` and the dynamic feature evaluator (`get_<name>()`)
+fail to compile / resolve.
+
+## Multiple inheritance of two printer/`class_name` bases
+A class may inherit two bases that each carry `__printer__`, the printing macro and a protected
+`virtual class_name()` (e.g. `I_PingCommon` + `I_MBESRawDetectionInfos`). This compiles **iff** the
+derived declares its **own** `__printer__` + `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__` (hides both)
+and **overrides** `class_name()` (one override covers both final overriders). **Avoid duplicate member
+names** across the two bases: do **not** reuse `I_PingCommon`'s protected `struct not_implemented`
+type name in the second base — it becomes ambiguous in the derived. Use a uniquely named
+`[[noreturn]] void throw_not_implemented(std::string_view)` helper instead.
+
+## Feature registration macro (cut the boilerplate)
+Register a ping feature in one line with `__PING_REGISTER_FEATURE__(features, name)` (defined in
+`i_pingcommon.hpp`): it binds `t_pingfeature::name` → `this->has_##name()`. Keep **feature enum name
+== `has_<name>()` == `get_<name>()`** in sync — the dynamic `evaluate_ping_features` tool calls
+`get_<name>()`/`has_<name>()` by string. So when you rename a getter you must rename the enum entry,
+its `.value("<name>", …)` binding and the registration together.
+
+## Owning "data" snapshot class (set_/get_ + to/from stream)
+A concrete owning implementation of an interface (e.g. `MBESRawDetectionData : I_MBESRawDetectionInfos`)
+stores each field as **`std::optional<…>`**: `set_X(v){_X=v;}`, `get_X(){ if(!_X)
+throw_not_implemented(__func__); return *_X; }`, `has_X() const { return _X.has_value(); }`. Serialize
+with manual `to_stream`/`from_stream` helpers (bool-present + value) for each optional (xtensor →
+size+raw bytes; `SensorPose` → its own `to_stream`); then `__STREAM_DEFAULT_TOFROM_BINARY_FUNCTIONS__`.
+`operator==` can't be `= default` with xtensor members (xtensor `==` is element-wise, not bool) —
+write it by hand (`xt::all(xt::equal(a,b))` + size check per optional xtensor). A "snapshot" factory
+(`get_mbesrawdetectiondata()`) fills every field from the getters and therefore **throws a clear
+exception if any source field is not implemented**.

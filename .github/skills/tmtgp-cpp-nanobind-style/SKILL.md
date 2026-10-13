@@ -77,6 +77,35 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
   `count_datagrams_per_type_as_string` / `find_datagram_types_as_string` helpers for exactly this
   reason (string keys survive unknown record types; the raw-enum versions crash on them).
 
+## Option-by-string args → helpful "did you mean" errors
+- `make_option_class<o_X>` registers `nb::init_implicit<std::string_view>()`. When a Python **str**
+  argument is implicitly converted to `o_X` and the name is invalid, nanobind **swallows** the helpful
+  `std::invalid_argument("Invalid enum name: '...'. Valid names are: [...]")` thrown by `Option::set`
+  and reports only a generic `TypeError: incompatible function arguments` — the caller never sees the
+  valid names. (Hit with `ping.bottom.has_feature("two_way_travel_times")` after that feature was
+  renamed to `..._legacy`: the opaque TypeError looked like a "broken feature macro" but was just the
+  swallowed invalid-name error.)
+- Fix: give the method an **explicit `std::string_view` overload** (registered *in addition* to the
+  existing `o_X` overload) that calls
+  `tools::nanobind_helper::option_from_string_verbose<o_X>(name, "<what>")`. That helper (in
+  `tools_nanobind/enumhelper.hpp`) `magic_enum::enum_cast`s the string and, on failure, throws
+  `nb::value_error` with a did-you-mean list (substring matches first, else the 3 closest by
+  `levenshtein_distance`) **plus** the full valid-name list — the same helper also powers a
+  `std::vector<std::string>` overload for `vector<o_X>` methods.
+- Overload resolution makes this safe to add without changing behaviour: for a Python **str** the
+  `string_view` overload wins in nanobind's no-convert pass; for a bound **`o_X` object** the `o_X`
+  overload still wins (the str overload would need a conversion). So add the string overload everywhere
+  a str is the ergonomic input (`has_feature` + the `has_any_of/has_all_of_features` vector methods)
+  without disturbing enum-object calls. Worked example: `I_PingCommon_add_interface` in
+  `py_filetemplates/py_datatypes/i_pingcommon.hpp` (define a `feature_from_string` lambda once, reuse
+  it in all three overloads).
+- Two complementary error layers for `has_feature`: (1) an **invalid name** (not a `t_pingfeature`
+  enumerator) → the binding-level did-you-mean `ValueError` above; (2) a **valid name that this ping
+  class does not register** (e.g. `bottom.has_feature("av")`, a watercolumn feature) → a *library*-side
+  `std::runtime_error` from `I_PingCommon::has_feature(o_pingfeature)` that names the class and lists
+  the features actually registered for it (do **not** phrase it as an internal "please report" bug — it
+  is a usage error).
+
 ## Reusable helpers & trailing macros
 - Filehandler: `py_filetemplates::py_i_inputfilehandler::add_default_constructors /
   add_open_file_interface / add_default_containers` (the last adds the `datagram_interface` property).
@@ -130,3 +159,33 @@ transitive or unity-build include. Common ones: `<nanobind/stl/optional.h>` (`st
 `py_filetemplates/py_datatypes/i_ping.hpp` for `get_geolocation(..., = std::nullopt)` (it was the only
 `std::optional` binding missing the header → Windows `bad cast` at `I_Ping` init). To audit, grep for
 `std::<type>` / `= std::nullopt` in `src/nanomodule` and confirm each such file includes its caster.
+
+## No C++ multiple inheritance → "add-interface" helper for a second base
+nanobind binds **exactly one** C++ base (`nb::class_<Derived, Base>`); binding two C++ bases is
+**unsupported** (nanobind 3.x porting docs). When a class multiply-inherits in C++ (e.g.
+`I_PingBottom : public I_PingCommon, public raytracers2::I_MBESRawDetectionInfos`), register it with
+the **primary** base only (`nb::class_<I_PingBottom, I_PingCommon>`, and keep that base **first** in
+the C++ base list so the pointer offset is 0) and expose the *second* base's methods with a reusable
+**`add_interface<T_BaseClass>(cls)`** template helper (same pattern as `I_PingBottom_add_interface`).
+- Also register the second base as its **own** standalone `nb::class_<I_MBESRawDetectionInfos>` (no
+  base) so functions can **return a reference** to it: `cls.def("get_mbesrawdetectioninfos",
+  &T::get_mbesrawdetectioninfos, nb::rv_policy::reference_internal, …)` — a zero-copy down-cast whose
+  virtual getters still dispatch to the concrete ping. Concrete owning subclasses that have a *single*
+  base (e.g. `MBESRawDetectionData : I_MBESRawDetectionInfos`) bind normally with that base and
+  **inherit** the interface `.def`s (only add their `set_`/macros).
+- **Cross-subproject DOC + helper duplication:** the helper lives in the nanomodule, and a subproject
+  (echosounders) cannot include another subproject's *nanomodule* header, so the add-interface helper
+  is **duplicated** once per nanomodule (algorithms `py_i_mbesrawdetectioninfos.hpp` +
+  echosounders `py_filetemplates/py_datatypes/i_i_mbesrawdetectioninfos.hpp`). Both reference the **same**
+  `DOC(themachinethatgoesping, algorithms, …, I_MBESRawDetectionInfos, …)` macros (the docstrings come
+  from the *library* header, reachable via `algorithms_dep`), so the docstrings transition to the ping
+  classes automatically — re-document nothing in the child.
+- **Overload DOC suffixes:** a no-arg + `BeamSelection&` overload pair → mkdoc names them `name` and
+  `name_2`; bind both with `nb::overload_cast<>` / `nb::overload_cast<const pingtools::BeamSelection&>`.
+
+## mkdoc doc-var redefinition from a forward-declared return type
+If header A forward-declares `class B;` and returns `B` by value, mkdoc emits a **stub**
+`mkd_doc_…_B` into **A's** `.doc.hpp`; when a TU includes both A's and B's doc files you get
+`redefinition of 'mkd_doc_…_B'`. Fix: add `// IGNORE_DOC:mkd_doc_…_B` immediately above the forward
+declaration and re-run mkdoc (worked example: `MBESRawDetectionData` forward-declared in
+`i_mbesrawdetectioninfos.hpp`).

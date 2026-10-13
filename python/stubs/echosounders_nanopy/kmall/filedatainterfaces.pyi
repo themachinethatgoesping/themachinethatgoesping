@@ -2048,8 +2048,8 @@ class KMALLNavigationDataInterface_stream:
         Returns:
             std::unordered_map_std_string_
 navigation_datastructures_GeolocationLatLonVector Map from
-                channel_id to GeolocationLatLonVector containing timestamps
-                and positions
+            channel_id to GeolocationLatLonVector containing timestamps and
+            positions
         """
 
 class KMALLNavigationDataInterface:
@@ -2162,8 +2162,8 @@ class KMALLNavigationDataInterface:
         Returns:
             std::unordered_map_std_string_
 navigation_datastructures_GeolocationLatLonVector Map from
-                channel_id to GeolocationLatLonVector containing timestamps
-                and positions
+            channel_id to GeolocationLatLonVector containing timestamps and
+            positions
         """
 
 class KMALLPingDataInterfacePerFile_stream:

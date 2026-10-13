@@ -9,7 +9,7 @@ project(
   'cpp',
   license: 'MPL-2.0',
 
-  version: '0.37.0.dev1',
+  version: '0.37.0.dev2',
   default_options: ['warning_level=0', 'buildtype=release', 'cpp_std=c++26'],
   meson_version: '>=1.8.1' #there is a problem with meson 1.8.0 so just use a higher version
 )
@@ -65,6 +65,13 @@ if get_option('build_pythonmodule').enabled()
     # and pins libclang to the build's Python environment, so it works with both
     # the fork and upstream pybind11_mkdoc. For verbose output or a single header
     # use the CLI (python/make_pybind_doc.py --help).
+    #
+    # --target-filter is deliberately broader than --module-root: the headers to
+    # document live under src/themachinethatgoesping, but some of them (notably
+    # tools_nanobind/*.hpp) #include <nanobind/...>. The nanobind -I/-isystem
+    # flags only appear on the nanomodule TUs under src/nanomodule, so we must
+    # read the compile flags from the whole src/ tree (library + nanomodule),
+    # otherwise libclang fails with "'nanobind/nanobind.h' file not found".
     mkdoc_modules = ['tools', 'navigation', 'algorithms', 'echosounders', 'pingprocessing']
     mkdoc_targets = []
     foreach mod : mkdoc_modules
@@ -75,6 +82,7 @@ if get_option('build_pythonmodule').enabled()
                 '--module-root', meson.current_source_dir() / 'subprojects' / mod / 'src' / 'themachinethatgoesping',
                 '--doc-header', meson.current_source_dir() / 'subprojects' / mod / 'src' / 'nanomodule' / 'new_doc_header.hpp',
                 '--build-root', meson.global_build_root(),
+                '--target-filter', meson.current_source_dir() / 'subprojects' / mod / 'src',
             ],
         )
     endforeach

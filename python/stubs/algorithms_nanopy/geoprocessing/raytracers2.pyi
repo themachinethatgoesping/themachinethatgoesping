@@ -8,6 +8,7 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.algorithms_nanopy.pingtools
 import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.navigation_nanopy.datastructures
 import themachinethatgoesping.tools_nanopy.rotationfunctions
@@ -1053,3 +1054,355 @@ def trace_bistatic_beams(transmit_pose: themachinethatgoesping.navigation_nanopy
     Returns:
         vector of BistaticBeamTrace, one per beam.
     """
+
+class I_MBESRawDetectionInfos:
+    """
+    Common interface that provides the raw MBES detection information (per
+    transmission / per sector / per sounding) required by raytracers.
+
+    The getters that take a pingtools::BeamSelection are virtual and throw
+    not_implemented by default. Concrete classes (e.g. the ping
+    bottom/watercolumn interfaces or MBESRawDetectionData) override the
+    subset they can provide. The getters without a BeamSelection are
+    implemented in terms of the virtual ones.
+    """
+
+    def get_ref_pingtime(self) -> float:
+        """
+        Reference ping time of the transmission (unix timestamp in seconds).
+
+        Equal to the tx time for a single sector transmission.
+
+        Returns:
+            double
+        """
+
+    def get_ref_pose(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Reference pose that soundings generated from this transmission are
+        referenced to.
+
+        Rotating/translating the soundings by this pose converts them into the
+        world coordinate system.
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_surface_sound_speed(self) -> float:
+        """
+        Sound speed at the transducer face (m/s), used to convert steering
+        angles to directions.
+
+        Returns:
+            float
+        """
+
+    def get_sector_beam_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Reference beam number for each transmit sector (length: number of
+        sectors).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    def get_sector_tx_time_delays(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit time delay of each sector relative to the reference ping time
+        (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit steering angle of each sector (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_offsets(self) -> list[themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]:
+        """
+        Transmit transducer offset/pose for each sector.
+
+        Returns:
+            std::vector_navigation_datastructures_SensorPose
+        """
+
+    def get_rx_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Receive transducer offset/pose (common to all soundings of this
+        transmission).
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_number_of_sectors(self) -> int:
+        """
+        Number of transmit sectors in this transmission (derived from
+        get_sector_beam_numbers).
+
+        Returns:
+            size_t
+        """
+
+    def get_sector_tx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute transmit time of each sector (derived: ref ping time + tx
+        time delay).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    def get_number_of_soundings(self) -> int:
+        """
+        Number of soundings (beams) in this transmission.
+
+        Returns:
+            size_t
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of all soundings (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of the selected soundings (s).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of all soundings (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of the selected soundings (degrees).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of all soundings (index into the per-sector
+        arrays).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of the selected soundings (index into the per-
+        sector arrays).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of all soundings (derived: sector tx time + two
+        way travel time).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of the selected soundings (derived).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        """
+        Beam (sounding) indices grouped by their transmit sector number.
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> list[list[int]]:
+        """
+        Beam (sounding) indices of the selection grouped by their transmit
+        sector number.
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    def has_ref_pingtime(self) -> bool: ...
+
+    def has_ref_pose(self) -> bool: ...
+
+    def has_surface_sound_speed(self) -> bool: ...
+
+    def has_sector_beam_numbers(self) -> bool: ...
+
+    def has_sector_tx_time_delays(self) -> bool: ...
+
+    def has_sector_tx_steering_angles(self) -> bool: ...
+
+    def has_sector_tx_offsets(self) -> bool: ...
+
+    def has_rx_offsets(self) -> bool: ...
+
+    def has_number_of_soundings(self) -> bool: ...
+
+    def has_soundings_two_way_travel_times(self) -> bool: ...
+
+    def has_soundings_rx_steering_angles(self) -> bool: ...
+
+    def has_soundings_sector_numbers(self) -> bool: ...
+
+    def get_mbesrawdetectioninfos(self) -> I_MBESRawDetectionInfos:
+        """
+        Return a reference to this object as the abstract
+        I_MBESRawDetectionInfos interface.
+
+        No data is copied; the (virtual) getters stay connected to the
+        concrete class.
+
+        Returns:
+            I_MBESRawDetectionInfos&
+        """
+
+    def get_mbesrawdetectiondata(self) -> MBESRawDetectionData:
+        """
+        Copy the raw detection information into an owning MBESRawDetectionData
+        object.
+
+        Throws (clear exception) if any required getter is not implemented.
+
+        Returns:
+            MBESRawDetectionData
+        """
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class MBESRawDetectionData(I_MBESRawDetectionInfos):
+    """
+    Concrete, owning implementation of I_MBESRawDetectionInfos.
+
+    Stores the raw detection information and returns it from the interface
+    getters. Getters throw if the corresponding data has not been set.
+    """
+
+    def __init__(self) -> None: ...
+
+    def __eq__(self, other: MBESRawDetectionData) -> bool: ...
+
+    def set_ref_pingtime(self, value: float) -> None: ...
+
+    def set_ref_pose(self, value: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose) -> None: ...
+
+    def set_surface_sound_speed(self, value: float) -> None: ...
+
+    def set_sector_beam_numbers(self, value: Annotated[NDArray[numpy.uint64], dict(order='C')]) -> None: ...
+
+    def set_sector_tx_time_delays(self, value: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
+
+    def set_sector_tx_steering_angles(self, value: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
+
+    def set_sector_tx_offsets(self, value: Sequence[themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]) -> None: ...
+
+    def set_rx_offsets(self, value: themachinethatgoesping.navigation_nanopy.datastructures.SensorPose) -> None: ...
+
+    def set_number_of_soundings(self, value: int) -> None: ...
+
+    def set_soundings_two_way_travel_times(self, value: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
+
+    def set_soundings_rx_steering_angles(self, value: Annotated[NDArray[numpy.float32], dict(order='C')]) -> None: ...
+
+    def set_soundings_sector_numbers(self, value: Annotated[NDArray[numpy.uint64], dict(order='C')]) -> None: ...
+
+    def copy(self) -> MBESRawDetectionData:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> MBESRawDetectionData: ...
+
+    def __deepcopy__(self, arg: dict, /) -> MBESRawDetectionData: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> MBESRawDetectionData:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""

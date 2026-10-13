@@ -2431,6 +2431,7 @@ class InstallationParameters(KongsbergAllDatagram):
     def get_active_position_system_number(self) -> int:
         """
         Get the active position system number (APS + 1)
+
         Returns:
             uint8_t
         """
@@ -2502,7 +2503,9 @@ class InstallationParameters(KongsbergAllDatagram):
     def get_sensor_offsets(self, sensor_name: str, sensor_prefix: str, has_xyz: bool = True, has_ypr: bool = True) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
         Internal function to get the sensor offsets from the installation
-        parameters. Possible sensor prefixes are:
+        parameters.
+
+        Possible sensor prefixes are:
         - MS for attitude sensor 1 - NS for attitude sensor 2 - P1 for
           position system 1 - P2 for position system 2 - P3 for position
           system 3 - S1 for transducer 1 - S2 for transducer 2 - S3 for

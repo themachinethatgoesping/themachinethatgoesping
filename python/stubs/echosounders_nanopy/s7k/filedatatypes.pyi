@@ -6,8 +6,8 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
+import themachinethatgoesping.algorithms_nanopy.pingtools
 import themachinethatgoesping.echosounders_nanopy.filetemplates
-import themachinethatgoesping.echosounders_nanopy.pingtools
 import themachinethatgoesping.echosounders_nanopy.s7k
 import themachinethatgoesping.echosounders_nanopy.s7k.filedatainterfaces
 
@@ -273,7 +273,7 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filet
     def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
         """
         Water column amplitudes (magnitude) in their raw, unconverted values
         (uint32).
@@ -287,7 +287,7 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filet
     def get_raw_phase(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
 
     @overload
-    def get_raw_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
+    def get_raw_phase(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
         """
         Water column phase in its raw, unconverted int16 values (radians =
         value / 10430).
@@ -299,7 +299,7 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filet
     def get_phase(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def get_phase(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Water column phase in degrees (NaN for missing beams/samples, all-NaN
         if the record contains no phase).
@@ -331,7 +331,7 @@ class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplate
     def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
         """
         Water column amplitudes (magnitude) in their raw, unconverted values
         (uint32).
@@ -345,7 +345,7 @@ class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplate
     def get_raw_phase(self) -> Annotated[NDArray[numpy.int16], dict(order='C')]: ...
 
     @overload
-    def get_raw_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
+    def get_raw_phase(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int16], dict(order='C')]:
         """
         Water column phase in its raw, unconverted int16 values (radians =
         value / 10430).
@@ -357,7 +357,7 @@ class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplate
     def get_phase(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_phase(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+    def get_phase(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
         Water column phase in degrees (NaN for missing beams/samples, all-NaN
         if the record contains no phase).

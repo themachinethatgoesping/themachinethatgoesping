@@ -152,3 +152,28 @@ Fill each ping's data: set the sensor configuration + navigation interpolator on
 `get_geolocation()` works, mirror kmall), then implement the real `<Fmt>PingBottom` /
 `<Fmt>PingWatercolumn` accessors (`read_pings` reading bottom detections / water-column images from
 the grouped datagrams).
+
+## The I_MBESRawDetectionInfos interface + the `_legacy` getters (raytracer-facing API)
+`I_PingBottom` and `I_PingWatercolumn` **publicly multiple-inherit**
+`algorithms::geoprocessing::raytracers2::I_MBESRawDetectionInfos` (I_PingCommon first in the base
+list), which is the format-independent raw-detection view a raytracer consumes: per transmission
+(`get_ref_pingtime/ref_pose/surface_sound_speed`), per sector (`get_sector_beam_numbers`,
+`get_sector_tx_time_delays/steering_angles/offsets`, `get_rx_offsets`, derived `get_number_of_sectors`
+/`get_sector_tx_times`) and per sounding (`get_number_of_soundings`,
+`get_soundings_two_way_travel_times/rx_steering_angles/sector_numbers(+bs)`, derived
+`get_soundings_rx_times`, `get_beam_numbers_per_tx_sector`). Each getter has a matching `has_*()` and
+is registered as a `t_pingfeature` with `__PING_REGISTER_FEATURE__`.
+- These getters throw not_implemented by default — **implement them per format in
+  `<Fmt>PingBottom`/`<Fmt>PingWatercolumn`** (override the `const BeamSelection&` virtual; add
+  `using I_MBESRawDetectionInfos::get_soundings_…;` to un-hide the no-arg overload).
+- The **old** per-ping getters that these supersede were renamed to **`…_legacy`** (e.g.
+  `get_two_way_travel_times_legacy`, `get_number_of_beams_legacy`, `get_beam_crosstrack_angles_legacy`,
+  `get_number_of_tx_sectors_legacy`, `get_tx_sector_per_beam_legacy`,
+  `get_beam_numbers_per_tx_sector_legacy`, `get_tx_signal_parameters_legacy`,
+  `get_sound_speed_at_transducer_legacy`) — their enum entries/bindings are `…_legacy` too. The
+  MBES-backed non-legacy implementations are to be added later.
+- `ping.bottom.get_mbesrawdetectioninfos()` returns a zero-copy `I_MBESRawDetectionInfos&` reference
+  (virtual, stays connected to the ping); `ping.bottom.get_mbesrawdetectiondata()` returns an owning
+  `MBESRawDetectionData` snapshot (throws if any field is unimplemented). Expose both + the interface
+  on the ping python classes with `py_i_mbesrawdetectioninfos::add_interface<T>(cls)` (nanobind has no
+  multiple inheritance — see tmtgp-cpp-nanobind-style).

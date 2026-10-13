@@ -9,6 +9,7 @@ from themachinethatgoesping.algorithms_nanopy import (
     geoprocessing as geoprocessing,
     gridding as gridding,
     imageprocessing as imageprocessing,
+    pingtools as pingtools,
     pointprocessing as pointprocessing,
     signalprocessing as signalprocessing
 )

@@ -9,9 +9,10 @@ import numpy
 from numpy.typing import NDArray
 
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
+import themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2
+import themachinethatgoesping.algorithms_nanopy.pingtools
 import themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures
 import themachinethatgoesping.echosounders_nanopy.filetemplates
-import themachinethatgoesping.echosounders_nanopy.pingtools
 import themachinethatgoesping.navigation_nanopy
 import themachinethatgoesping.navigation_nanopy.datastructures
 import themachinethatgoesping.tools_nanopy.vectorinterpolators
@@ -662,49 +663,73 @@ class t_pingfeature(enum.Enum):
 
     watercolumn = 9
 
-    tx_signal_parameters = 10
+    tx_signal_parameters_legacy = 10
 
-    beam_numbers_per_tx_sector = 12
+    beam_numbers_per_tx_sector_legacy = 12
 
     beam_selection_all = 13
 
-    number_of_beams = 14
+    number_of_beams_legacy = 14
 
-    tx_sector_per_beam = 15
+    tx_sector_per_beam_legacy = 15
 
-    number_of_tx_sectors = 11
+    number_of_tx_sectors_legacy = 11
 
-    beam_crosstrack_angles = 16
+    beam_crosstrack_angles_legacy = 16
 
-    two_way_travel_times = 17
+    two_way_travel_times_legacy = 17
 
     xyz = 18
 
-    bottom_range_samples = 19
+    ref_pingtime = 19
 
-    amplitudes = 20
+    ref_pose = 20
 
-    ap = 25
+    surface_sound_speed = 21
 
-    av = 26
+    sector_beam_numbers = 22
 
-    power = 27
+    sector_tx_time_delays = 23
 
-    rp = 21
+    sector_tx_steering_angles = 24
 
-    rv = 22
+    sector_tx_offsets = 25
 
-    pp = 23
+    rx_offsets = 26
 
-    pv = 24
+    number_of_soundings = 27
 
-    sp = 28
+    soundings_two_way_travel_times = 28
 
-    sv = 29
+    soundings_rx_steering_angles = 29
 
-    watercolumn_calibration = 30
+    soundings_sector_numbers = 30
 
-    multisectorwatercolumn_calibration = 31
+    bottom_range_samples = 31
+
+    amplitudes = 32
+
+    ap = 37
+
+    av = 38
+
+    power = 39
+
+    rp = 33
+
+    rv = 34
+
+    pp = 35
+
+    pv = 36
+
+    sp = 40
+
+    sv = 41
+
+    watercolumn_calibration = 42
+
+    multisectorwatercolumn_calibration = 43
 
 class o_pingfeature:
     """
@@ -807,7 +832,11 @@ class I_PingCommon:
             std::string
         """
 
-    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if any of the specified features is available
 
@@ -815,7 +844,11 @@ class I_PingCommon:
             true false
         """
 
-    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if all of the specified features are available
 
@@ -855,7 +888,11 @@ class I_PingCommon:
             std::string
         """
 
-    def has_feature(self, feature_name: o_pingfeature) -> bool:
+    @overload
+    def has_feature(self, feature_name: o_pingfeature) -> bool: ...
+
+    @overload
+    def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
 
@@ -943,6 +980,7 @@ class I_PingFileData:
     def get_file_numbers(self) -> list[int]:
         """
         Get the file numbers of the contained datagrams.
+
         Returns:
             std::vector_size_t The file numbers.
 
@@ -953,6 +991,7 @@ class I_PingFileData:
     def get_primary_file_path(self) -> str:
         """
         Get the primary file path of this ping.
+
         Returns:
             std::string The primary file path of this ping.
 
@@ -963,9 +1002,10 @@ class I_PingFileData:
     def get_file_paths(self) -> list[str]:
         """
         Get the file paths.
+
         Returns:
             std::vector_std_string The file paths associated with the
-                contained datagrams.
+            contained datagrams.
 
         Raises:
             not_implemented: Exception if not implemented.
@@ -974,6 +1014,7 @@ class I_PingFileData:
     def get_primary_file_nr(self) -> int:
         """
         Get the primary file number of this ping.
+
         Returns:
             size_t The primary file number.
         """
@@ -981,6 +1022,7 @@ class I_PingFileData:
     def set_primary_file_nr(self, file_nr: int) -> None:
         """
         Set the primary file number for this ping.
+
         Args:
             primary_file_nr: The primary file number to set.
         """
@@ -988,6 +1030,7 @@ class I_PingFileData:
     def get_file_ping_counter(self) -> int:
         """
         Get the file ping counter.
+
         Returns:
             size_t The file ping counter.
         """
@@ -995,6 +1038,7 @@ class I_PingFileData:
     def set_file_ping_counter(self, file_ping_counter: int) -> None:
         """
         Set the file ping counter.
+
         Args:
             file_ping_counter: The file ping counter to set.
         """
@@ -1047,7 +1091,11 @@ class I_PingBottom(I_PingCommon):
             std::string
         """
 
-    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if any of the specified features is available
 
@@ -1055,7 +1103,11 @@ class I_PingBottom(I_PingCommon):
             true false
         """
 
-    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if all of the specified features are available
 
@@ -1095,7 +1147,11 @@ class I_PingBottom(I_PingCommon):
             std::string
         """
 
-    def has_feature(self, feature_name: o_pingfeature) -> bool:
+    @overload
+    def has_feature(self, feature_name: o_pingfeature) -> bool: ...
+
+    @overload
+    def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
 
@@ -1148,72 +1204,327 @@ class I_PingBottom(I_PingCommon):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-    def has_tx_signal_parameters(self) -> bool: ...
+    def get_ref_pingtime(self) -> float:
+        """
+        Reference ping time of the transmission (unix timestamp in seconds).
 
-    def has_number_of_tx_sectors(self) -> bool: ...
+        Equal to the tx time for a single sector transmission.
 
-    def has_beam_numbers_per_tx_sector(self) -> bool: ...
+        Returns:
+            double
+        """
+
+    def get_ref_pose(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Reference pose that soundings generated from this transmission are
+        referenced to.
+
+        Rotating/translating the soundings by this pose converts them into the
+        world coordinate system.
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_surface_sound_speed(self) -> float:
+        """
+        Sound speed at the transducer face (m/s), used to convert steering
+        angles to directions.
+
+        Returns:
+            float
+        """
+
+    def get_sector_beam_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Reference beam number for each transmit sector (length: number of
+        sectors).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    def get_sector_tx_time_delays(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit time delay of each sector relative to the reference ping time
+        (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit steering angle of each sector (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_offsets(self) -> list[themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]:
+        """
+        Transmit transducer offset/pose for each sector.
+
+        Returns:
+            std::vector_navigation_datastructures_SensorPose
+        """
+
+    def get_rx_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Receive transducer offset/pose (common to all soundings of this
+        transmission).
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_number_of_sectors(self) -> int:
+        """
+        Number of transmit sectors in this transmission (derived from
+        get_sector_beam_numbers).
+
+        Returns:
+            size_t
+        """
+
+    def get_sector_tx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute transmit time of each sector (derived: ref ping time + tx
+        time delay).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    def get_number_of_soundings(self) -> int:
+        """
+        Number of soundings (beams) in this transmission.
+
+        Returns:
+            size_t
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of all soundings (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of the selected soundings (s).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of all soundings (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of the selected soundings (degrees).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of all soundings (index into the per-sector
+        arrays).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of the selected soundings (index into the per-
+        sector arrays).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of all soundings (derived: sector tx time + two
+        way travel time).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of the selected soundings (derived).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        """
+        Beam (sounding) indices grouped by their transmit sector number.
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> list[list[int]]:
+        """
+        Beam (sounding) indices of the selection grouped by their transmit
+        sector number.
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    def has_ref_pingtime(self) -> bool: ...
+
+    def has_ref_pose(self) -> bool: ...
+
+    def has_surface_sound_speed(self) -> bool: ...
+
+    def has_sector_beam_numbers(self) -> bool: ...
+
+    def has_sector_tx_time_delays(self) -> bool: ...
+
+    def has_sector_tx_steering_angles(self) -> bool: ...
+
+    def has_sector_tx_offsets(self) -> bool: ...
+
+    def has_rx_offsets(self) -> bool: ...
+
+    def has_number_of_soundings(self) -> bool: ...
+
+    def has_soundings_two_way_travel_times(self) -> bool: ...
+
+    def has_soundings_rx_steering_angles(self) -> bool: ...
+
+    def has_soundings_sector_numbers(self) -> bool: ...
+
+    def get_mbesrawdetectioninfos(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2.I_MBESRawDetectionInfos:
+        """
+        Return a reference to this object as the abstract
+        I_MBESRawDetectionInfos interface.
+
+        No data is copied; the (virtual) getters stay connected to the
+        concrete class.
+
+        Returns:
+            I_MBESRawDetectionInfos&
+        """
+
+    def get_mbesrawdetectiondata(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2.MBESRawDetectionData:
+        """
+        Copy the raw detection information into an owning MBESRawDetectionData
+        object.
+
+        Throws (clear exception) if any required getter is not implemented.
+
+        Returns:
+            MBESRawDetectionData
+        """
+
+    def has_tx_signal_parameters_legacy(self) -> bool: ...
+
+    def has_number_of_tx_sectors_legacy(self) -> bool: ...
+
+    def has_beam_numbers_per_tx_sector_legacy(self) -> bool: ...
 
     def has_beam_selection_all(self) -> bool: ...
 
-    def has_number_of_beams(self) -> bool: ...
+    def has_number_of_beams_legacy(self) -> bool: ...
 
-    def has_tx_sector_per_beam(self) -> bool: ...
+    def has_tx_sector_per_beam_legacy(self) -> bool: ...
 
-    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.GenericSignalParameters]: ...
+    def get_tx_signal_parameters_legacy(self) -> list[themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.GenericSignalParameters]: ...
 
-    def get_number_of_tx_sectors(self) -> int: ...
-
-    @overload
-    def get_tx_sector_per_beam(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+    def get_number_of_tx_sectors_legacy(self) -> int: ...
 
     @overload
-    def get_tx_sector_per_beam(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+    def get_tx_sector_per_beam_legacy(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
 
     @overload
-    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]: ...
+    def get_tx_sector_per_beam_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
 
     @overload
-    def get_beam_numbers_per_tx_sector(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> list[list[int]]: ...
-
-    def get_beam_selection_all(self) -> themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection: ...
-
-    def get_number_of_beams(self) -> int: ...
+    def get_beam_numbers_per_tx_sector_legacy(self) -> list[list[int]]: ...
 
     @overload
-    def get_beam_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_beam_numbers_per_tx_sector_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> list[list[int]]: ...
+
+    def get_beam_selection_all(self) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection: ...
+
+    def get_number_of_beams_legacy(self) -> int: ...
 
     @overload
-    def get_beam_crosstrack_angles(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_beam_crosstrack_angles_legacy(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def has_beam_crosstrack_angles(self) -> bool: ...
+    @overload
+    def get_beam_crosstrack_angles_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    def has_beam_crosstrack_angles_legacy(self) -> bool: ...
 
     def has_xyz(self) -> bool: ...
 
-    def has_two_way_travel_times(self) -> bool: ...
+    def has_two_way_travel_times_legacy(self) -> bool: ...
 
     @overload
     def get_xyz(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1: ...
 
     @overload
-    def get_xyz(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1: ...
+    def get_xyz(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1: ...
 
     @overload
     def get_bottom_z(self) -> float: ...
 
     @overload
-    def get_bottom_z(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> float: ...
+    def get_bottom_z(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> float: ...
 
     @overload
-    def get_two_way_travel_times(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_two_way_travel_times_legacy(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_two_way_travel_times(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_two_way_travel_times_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
 class I_PingWatercolumn(I_PingCommon):
     """
     Interface for all ping watercolumn functions
-
 
 
 
@@ -1250,7 +1561,11 @@ class I_PingWatercolumn(I_PingCommon):
             std::string
         """
 
-    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if any of the specified features is available
 
@@ -1258,7 +1573,11 @@ class I_PingWatercolumn(I_PingCommon):
             true false
         """
 
-    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if all of the specified features are available
 
@@ -1298,7 +1617,11 @@ class I_PingWatercolumn(I_PingCommon):
             std::string
         """
 
-    def has_feature(self, feature_name: o_pingfeature) -> bool:
+    @overload
+    def has_feature(self, feature_name: o_pingfeature) -> bool: ...
+
+    @overload
+    def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
 
@@ -1351,21 +1674,277 @@ class I_PingWatercolumn(I_PingCommon):
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-    def has_tx_signal_parameters(self) -> bool: ...
+    def get_ref_pingtime(self) -> float:
+        """
+        Reference ping time of the transmission (unix timestamp in seconds).
 
-    def has_number_of_tx_sectors(self) -> bool: ...
+        Equal to the tx time for a single sector transmission.
 
-    def has_beam_numbers_per_tx_sector(self) -> bool: ...
+        Returns:
+            double
+        """
+
+    def get_ref_pose(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Reference pose that soundings generated from this transmission are
+        referenced to.
+
+        Rotating/translating the soundings by this pose converts them into the
+        world coordinate system.
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_surface_sound_speed(self) -> float:
+        """
+        Sound speed at the transducer face (m/s), used to convert steering
+        angles to directions.
+
+        Returns:
+            float
+        """
+
+    def get_sector_beam_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Reference beam number for each transmit sector (length: number of
+        sectors).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    def get_sector_tx_time_delays(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit time delay of each sector relative to the reference ping time
+        (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Transmit steering angle of each sector (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    def get_sector_tx_offsets(self) -> list[themachinethatgoesping.navigation_nanopy.datastructures.SensorPose]:
+        """
+        Transmit transducer offset/pose for each sector.
+
+        Returns:
+            std::vector_navigation_datastructures_SensorPose
+        """
+
+    def get_rx_offsets(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
+        """
+        Receive transducer offset/pose (common to all soundings of this
+        transmission).
+
+        Returns:
+            navigation::datastructures::SensorPose
+        """
+
+    def get_number_of_sectors(self) -> int:
+        """
+        Number of transmit sectors in this transmission (derived from
+        get_sector_beam_numbers).
+
+        Returns:
+            size_t
+        """
+
+    def get_sector_tx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute transmit time of each sector (derived: ref ping time + tx
+        time delay).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    def get_number_of_soundings(self) -> int:
+        """
+        Number of soundings (beams) in this transmission.
+
+        Returns:
+            size_t
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of all soundings (s).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_two_way_travel_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Two way travel time of the selected soundings (s).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of all soundings (degrees).
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_rx_steering_angles(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Receive steering angle of the selected soundings (degrees).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_float_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of all soundings (index into the per-sector
+        arrays).
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_sector_numbers(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]:
+        """
+        Transmit sector number of the selected soundings (index into the per-
+        sector arrays).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_size_t_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of all soundings (derived: sector tx time + two
+        way travel time).
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_soundings_rx_times(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float64], dict(order='C')]:
+        """
+        Absolute receive time of the selected soundings (derived).
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            xt::xtensor_double_1
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]:
+        """
+        Beam (sounding) indices grouped by their transmit sector number.
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    @overload
+    def get_beam_numbers_per_tx_sector(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> list[list[int]]:
+        """
+        Beam (sounding) indices of the selection grouped by their transmit
+        sector number.
+
+        Args:
+            bs: beam selection
+
+        Returns:
+            std::vector_std_vector<size_t> (outer index: sector number)
+        """
+
+    def has_ref_pingtime(self) -> bool: ...
+
+    def has_ref_pose(self) -> bool: ...
+
+    def has_surface_sound_speed(self) -> bool: ...
+
+    def has_sector_beam_numbers(self) -> bool: ...
+
+    def has_sector_tx_time_delays(self) -> bool: ...
+
+    def has_sector_tx_steering_angles(self) -> bool: ...
+
+    def has_sector_tx_offsets(self) -> bool: ...
+
+    def has_rx_offsets(self) -> bool: ...
+
+    def has_number_of_soundings(self) -> bool: ...
+
+    def has_soundings_two_way_travel_times(self) -> bool: ...
+
+    def has_soundings_rx_steering_angles(self) -> bool: ...
+
+    def has_soundings_sector_numbers(self) -> bool: ...
+
+    def get_mbesrawdetectioninfos(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2.I_MBESRawDetectionInfos:
+        """
+        Return a reference to this object as the abstract
+        I_MBESRawDetectionInfos interface.
+
+        No data is copied; the (virtual) getters stay connected to the
+        concrete class.
+
+        Returns:
+            I_MBESRawDetectionInfos&
+        """
+
+    def get_mbesrawdetectiondata(self) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2.MBESRawDetectionData:
+        """
+        Copy the raw detection information into an owning MBESRawDetectionData
+        object.
+
+        Throws (clear exception) if any required getter is not implemented.
+
+        Returns:
+            MBESRawDetectionData
+        """
+
+    def has_tx_signal_parameters_legacy(self) -> bool: ...
+
+    def has_number_of_tx_sectors_legacy(self) -> bool: ...
+
+    def has_beam_numbers_per_tx_sector_legacy(self) -> bool: ...
 
     def has_beam_selection_all(self) -> bool: ...
 
-    def has_number_of_beams(self) -> bool: ...
+    def has_number_of_beams_legacy(self) -> bool: ...
 
-    def has_tx_sector_per_beam(self) -> bool: ...
+    def has_tx_sector_per_beam_legacy(self) -> bool: ...
 
-    def get_tx_signal_parameters(self) -> list[themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.GenericSignalParameters]: ...
+    def get_tx_signal_parameters_legacy(self) -> list[themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.CWSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.FMSignalParameters | themachinethatgoesping.algorithms_nanopy.signalprocessing.datastructures.GenericSignalParameters]: ...
 
-    def get_number_of_tx_sectors(self) -> int: ...
+    def get_number_of_tx_sectors_legacy(self) -> int: ...
 
     @overload
     def get_watercolumn_calibration(self) -> WaterColumnCalibration: ...
@@ -1375,19 +1954,19 @@ class I_PingWatercolumn(I_PingCommon):
 
     def get_multisectorwatercolumn_calibration(self) -> "themachinethatgoesping::echosounders::filetemplates::datatypes::calibration::I_MultiSectorCalibration": ...
 
-    def get_beam_selection_all(self) -> themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection: ...
+    def get_beam_selection_all(self) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection: ...
 
-    def get_number_of_beams(self) -> int: ...
-
-    @overload
-    def get_beam_crosstrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_number_of_beams_legacy(self) -> int: ...
 
     @overload
-    def get_beam_crosstrack_angles(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_beam_crosstrack_angles_legacy(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+
+    @overload
+    def get_beam_crosstrack_angles_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def has_beam_crosstrack_angles_in_world_frame(self) -> bool:
         """
-        Returns true if get_beam_crosstrack_angles() produces gravity-
+        Returns true if get_beam_crosstrack_angles_legacy() produces gravity-
         referenced (world-frame) angles. When false (default), angles are in
         the vessel/transducer frame and the raytracer must apply the sensor
         orientation (roll/pitch) to convert to world-frame.
@@ -1397,9 +1976,9 @@ class I_PingWatercolumn(I_PingCommon):
     def get_beam_alongtrack_angles(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_beam_alongtrack_angles(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_beam_alongtrack_angles(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_beam_sample_selection_all(self) -> themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection: ...
+    def get_beam_sample_selection_all(self) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection: ...
 
     def get_first_sample_offset_per_beam(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
@@ -1407,27 +1986,27 @@ class I_PingWatercolumn(I_PingCommon):
     def get_number_of_samples_per_beam(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
-    def get_number_of_samples_per_beam(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+    def get_number_of_samples_per_beam(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
-    def get_tx_sector_per_beam(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+    def get_tx_sector_per_beam_legacy(self) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
 
     @overload
-    def get_tx_sector_per_beam(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
+    def get_tx_sector_per_beam_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint64], dict(order='C')]: ...
 
     @overload
-    def get_beam_numbers_per_tx_sector(self) -> list[list[int]]: ...
+    def get_beam_numbers_per_tx_sector_legacy(self) -> list[list[int]]: ...
 
     @overload
-    def get_beam_numbers_per_tx_sector(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> list[list[int]]: ...
+    def get_beam_numbers_per_tx_sector_legacy(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> list[list[int]]: ...
 
     @overload
     def get_approximate_ranges(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_approximate_ranges(self, beam_sample_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_approximate_ranges(self, beam_sample_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
-    def get_sound_speed_at_transducer(self) -> float: ...
+    def get_sound_speed_at_transducer_legacy(self) -> float: ...
 
     def get_sample_interval(self) -> float: ...
 
@@ -1459,61 +2038,61 @@ class I_PingWatercolumn(I_PingCommon):
     def get_amplitudes(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_amplitudes(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_rp(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_rp(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_rp(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_rv(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_rv(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_rv(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_pp(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_pp(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_pp(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_pv(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_pv(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_pv(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_ap(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_ap(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_ap(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_av(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_av(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_av(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_power(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_power(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_power(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_sp(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_sp(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_sp(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_sv(self, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_sv(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_sv(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def has_bottom_range_samples(self) -> bool: ...
 
@@ -1521,25 +2100,25 @@ class I_PingWatercolumn(I_PingCommon):
     def get_bottom_range_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
-    def get_bottom_range_samples(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
+    def get_bottom_range_samples(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> Annotated[NDArray[numpy.uint32], dict(order='C')]: ...
 
     @overload
     def get_minslant_sample_nr(self) -> int: ...
 
     @overload
-    def get_minslant_sample_nr(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> int: ...
+    def get_minslant_sample_nr(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> int: ...
 
     @overload
     def get_wci_correction(self, calibration_type: o_calibration_type, calibration_base: o_calibration_type = t_calibration_type.power, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_wci_correction(self, beam_sample_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, calibration_type: o_calibration_type, calibration_base: o_calibration_type = t_calibration_type.power, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_wci_correction(self, beam_sample_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, calibration_type: o_calibration_type, calibration_base: o_calibration_type = t_calibration_type.power, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
     def get_wci(self, calibration_type: o_calibration_type, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_wci(self, beam_sample_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection, calibration_type: o_calibration_type, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_wci(self, beam_sample_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, calibration_type: o_calibration_type, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
 class I_Ping(I_PingCommon):
     def __init__(self) -> None: ...
@@ -1570,7 +2149,11 @@ class I_Ping(I_PingCommon):
             std::string
         """
 
-    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_any_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if any of the specified features is available
 
@@ -1578,7 +2161,11 @@ class I_Ping(I_PingCommon):
             true false
         """
 
-    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool:
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[o_pingfeature]) -> bool: ...
+
+    @overload
+    def has_all_of_features(self, feature_names: Sequence[str]) -> bool:
         """
         Check if all of the specified features are available
 
@@ -1618,7 +2205,11 @@ class I_Ping(I_PingCommon):
             std::string
         """
 
-    def has_feature(self, feature_name: o_pingfeature) -> bool:
+    @overload
+    def has_feature(self, feature_name: o_pingfeature) -> bool: ...
+
+    @overload
+    def has_feature(self, feature_name: str) -> bool:
         """
         Check if any of the registered features is available
 

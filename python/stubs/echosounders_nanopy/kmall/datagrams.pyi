@@ -1667,7 +1667,7 @@ class IInstallationParam(KMALLDatagram):
 
         Returns:
             std::map_std_string_std_string Map of parameter names to
-                values
+            values
         """
 
     def get_install_txt_decoded_cached(self) -> dict[str, str]: ...
@@ -1682,7 +1682,7 @@ class IInstallationParam(KMALLDatagram):
 
         Returns:
             std::map_std_string_std_string Map of parameter names to
-                values
+            values
         """
 
     @staticmethod
@@ -1695,7 +1695,7 @@ class IInstallationParam(KMALLDatagram):
 
         Returns:
             std::string Human-readable explanation, or "Unknown key" if not
-                found
+            found
         """
 
     @staticmethod
@@ -1720,7 +1720,7 @@ class IInstallationParam(KMALLDatagram):
 
         Returns:
             std::map_std_string_std_string Map of parameter names to
-                values
+            values
         """
 
     def get_transducer_offsets(self, transducer_key: str) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:

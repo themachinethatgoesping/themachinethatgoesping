@@ -23,6 +23,25 @@ Invoke it with the run-task tool: `id="shell: Ping: Build and Test python (j8)"`
 `workspaceFolder="/home/ssd/src/themachinethatgoesping/themachinethatgoesping"`.
 Other useful tasks: **`Ping: Build and Test cpp`** (C++ only), **`Ping: Test python`** (pytest only).
 
+### ⚠️ ALWAYS finish with the full `(j8)` command (the one that runs `meson compile mkdoc`)
+Fast-iteration shortcuts (`meson compile`, `meson compile -j8`, the `(no doc)` / `(j8, no doc)` tasks,
+`meson test`, `pytest`) **skip `meson compile mkdoc`** and therefore will **not** catch docstring
+(mkdoc/libclang) parse failures. mkdoc is **hash-incremental** — it only re-parses a header whose
+content changed — so a header you did not touch can carry a **latent** mkdoc failure that stays
+dormant until the day you edit it. The authoritative final check is the full pipeline, run exactly as
+the task does, from `builddir`:
+```bash
+source ~/.bash_aliases && use_dev_miniforge && \
+mamba run meson compile mkdoc && \
+mamba run meson compile -j8 && \
+mamba run meson test --print-errorlogs && \
+mamba run meson install --no-rebuild && \
+cd .. && mamba run pytest
+```
+Never report a C++/nanobind/header change as "done/green" until this exact command (or the
+`Ping: Build and Test python (j8)` task) has passed end-to-end. `meson compile` + `meson test` + `pytest`
+passing is **not** sufficient — they do not run mkdoc.
+
 ## mkdoc needs compilable headers → two-phase build when you ADDED/CHANGED headers
 `meson compile mkdoc` (step 1 of the `(j8)` task) runs pybind11-mkdoc, which **parses every changed
 header with libclang using the main `builddir` `compile_commands.json`**. mkdoc therefore **fails
@@ -52,6 +71,22 @@ Note: `make_pybind_doc.py` run **manually without `--build-root builddir`** fall
 *subproject* `builddir`, whose `compile_commands.json` may lack sibling-subproject include paths
 (e.g. navigation → `tools/.../rotation.hpp` "file not found"). Always regenerate docs via the meson
 target (`meson compile mkdoc`, i.e. the `(j8)` task) or pass `--build-root builddir`.
+
+### mkdoc of a nanobind-dependent *library* header (`'nanobind/nanobind.h' file not found`)
+mkdoc reads its clang `-I`/`-isystem` flags from `compile_commands.json`, keeping only entries whose
+source file sits under `--target-filter` (which defaults to `--module-root`,
+`subprojects/<mod>/src/themachinethatgoesping`). Most library headers there do **not** include
+nanobind, so that worked — but a few *library* headers do (notably `tools_nanobind/*.hpp`:
+`enumhelper.hpp`, `classhelper.hpp`, …). Their only nanobind `-I` flags live on the **nanomodule**
+TUs under `subprojects/<mod>/src/nanomodule`, which the default filter **excludes**, so libclang
+fails with `fatal error: 'nanobind/nanobind.h' file not found` and the header "fails to parse". The
+fix (in the top-level [meson.build](../../../meson.build) `mkdoc-<mod>` `run_target`) is to pass an
+explicit **`--target-filter subprojects/<mod>/src`** — broader than `--module-root`, so flags are
+collected from the whole `src/` tree (library **+** nanomodule) while only the
+`src/themachinethatgoesping` headers are documented. Collected flags are unioned (first-seen order
+kept), so the extra include dirs are harmless for the modules that don't need nanobind.
+Because mkdoc is hash-incremental, this latent failure only surfaces the moment you edit such a header
+— another reason to **always finish with the full `(j8)` command** (see the rule above).
 
 ## Manual equivalent (fast iteration in a terminal)
 Prefix every terminal command with the dev environment:
@@ -158,3 +193,50 @@ controlled by the meson feature option **`split_mode`** (default **enabled**), d
   dlopens the freshly installed module) and ask the user to restart the kernel manually. See the
   **tmtgp-ping-jupyter** skill.
 - The prefix `/ssd/local` is the install prefix (`-Dprefix='/ssd/local'`).
+
+## Large semantic renames across the ping hierarchy (compiler-driven auto-fix)
+A method name may exist on **both** a ping interface **and** many datagram/substruct classes (e.g.
+`get_number_of_beams` is also on `BeamSelection` and on dozens of `*BeamsContainer`), so a global
+text rename is **unsafe**. `clang-rename` is not installed; drive the rename with the **compiler**:
+1. Blanket-rename the method (and its paired `has_`) **only inside the ping-class/binding files**
+   (interfaces + `*/filedatatypes/*ping*.hpp` + the `py_*` ping bindings). This makes ping objects
+   carry the new name while datagrams keep the old one.
+2. Loop: `meson compile`, parse every **`error: '…' has no member named 'OLD'; did you mean 'NEW'?`**
+   and apply `OLD→NEW` at that site; recompile. It **converges**: under-renamed ping call sites get
+   `_legacy`, over-renamed datagram/selection calls get reverted — both via the compiler's suggestion.
+   - **GCC diagnostics go to STDOUT** (not stderr) under meson/ninja, and use **Unicode curly quotes**
+     `'…'` (U+2018/U+2019) — your regex must match those, not ASCII `'`.
+   - **Beware closer-edit-distance wrong neighbours:** after you add a new sibling method, the
+     compiler may suggest it instead of `_legacy` (e.g. `get_number_of_beams`→`get_number_of_sectors`,
+     `get_beam_crosstrack_angles`→`get_beam_alongtrack_angles`). After convergence, grep the diff for
+     any ping-object call rewritten to a *different* method (not `…_legacy`) and fix by hand.
+3. Then regenerate docstrings (mkdoc) for the `_legacy` names and fix the `_2` overload DOC suffixes
+   (`DOC_...(get_x_2)` → `DOC_...(get_x_legacy_2)`).
+4. Python has no compiler: grep the test/py dirs for the renamed calls and fix ping-object ones
+   (keep `selection.get_number_of_beams()` on `BeamSelection`); `pytest` is the oracle. Also rename
+   the `t_pingfeature` enum entry + its `.value(...)` binding so the dynamic feature evaluator works.
+   - Grep the **whole repo**, not just `tests/`, and **exclude build-artifact copies** that otherwise
+     flood results: `grep -rn … --include=*.py | grep -v conda.recipe/output | grep -v /builddir/ |
+     grep -v site-packages`. Rename **both** `get_<x>` and `has_<x>` at call sites (a stale
+     `ping.bottom.has_<x>()` only blows up at runtime).
+   - `pytest` is necessary but **not sufficient**: a stale caller inside a rarely-taken branch (e.g.
+     `apply_pss(..., apply_pss_to_bottom=True)` in `select_get_wci_image.py`) passes all tests yet
+     `AttributeError`s in real use — so the grep sweep is the primary oracle for Python, pytest the
+     secondary. `pingprocessing`/`echosounders` Python loads **directly from source** (editable), so a
+     `.py` edit is live without reinstall (only `meson install` is needed for C++/binding changes).
+
+## Bootstrapping a brand-new header's `.doc.hpp` (before mkdoc has run)
+A new header `#include ".docstrings/<name>.doc.hpp"` won't compile until the file exists. Create a
+**placeholder** = the boilerplate of an existing `.doc.hpp` (`head -42 other.doc.hpp` — the
+`#pragma once` + `__DOCSTRINGS_HPP__`-guarded macro block + the `#if defined(__GNUG__)` push) followed
+by the matching `#pragma GCC diagnostic pop` / `#endif`, with **no** class-specific `mkd_doc_*` vars.
+mkdoc then populates it. List the new `.cpp`, `.hpp` **and** `.docstrings/<name>.doc.hpp` in the
+subproject `meson.build`.
+
+## pingtools was split (navigation of the include/namespace)
+`BeamSelection` / `BeamSampleSelection` / `ReadSampleRange` moved to **`algorithms::pingtools`**
+(`algorithms/pingtools/…`, python `algorithms.pingtools`), while **`PingSampleSelector` stays in
+`echosounders::pingtools`** (it depends on `I_PingBottom`/`I_PingWatercolumn` → can't move without a
+cycle). Inside the algorithms library, include a sibling header **relatively**
+(`"../../pingtools/beamselection.hpp"`), not as `<themachinethatgoesping/algorithms/…>` (the lib's own
+include root is `…/algorithms`, not `…/src`).

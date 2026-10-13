@@ -8,11 +8,11 @@ import numpy
 from numpy.typing import NDArray
 
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
+import themachinethatgoesping.algorithms_nanopy.pingtools
 import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.kmall
 import themachinethatgoesping.echosounders_nanopy.kmall.datagrams
 import themachinethatgoesping.echosounders_nanopy.kmall.filedatainterfaces
-import themachinethatgoesping.echosounders_nanopy.pingtools
 
 
 class KMALLWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration):
@@ -347,7 +347,7 @@ class KMALLPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filete
         """
 
     @overload
-    def read_xyz(self, selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1:
+    def read_xyz(self, selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1:
         """
         read XYZ for the specified beams from the bottom detection datagram
         Note: if the beam numbers from the beam selection exceed the number of
@@ -475,7 +475,7 @@ class KMALLPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates
         """
 
     @overload
-    def read_xyz(self, selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1:
+    def read_xyz(self, selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection) -> themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures.XYZ_1:
         """
         read XYZ for the specified beams from the bottom detection datagram
         Note: if the beam numbers from the beam selection exceed the number of
@@ -623,13 +623,13 @@ class KMALLPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.fil
     def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
     @overload
     def get_raw_amplitudes_float(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def copy(self) -> KMALLPingWatercolumn_stream:
         """return a copy using the c++ default copy constructor"""
@@ -655,13 +655,13 @@ class KMALLPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetempla
     def get_raw_amplitudes(self) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
+    def get_raw_amplitudes(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.int8], dict(order='C')]: ...
 
     @overload
     def get_raw_amplitudes_float(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     @overload
-    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.echosounders_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_raw_amplitudes_float(self, beam_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
     def copy(self) -> KMALLPingWatercolumn:
         """return a copy using the c++ default copy constructor"""
