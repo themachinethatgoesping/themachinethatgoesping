@@ -125,8 +125,10 @@ class SensorPose:
     def has_zero_rotation(self) -> bool:
         """
         true if the rotation is (numerically) the identity, i.e. yaw = pitch =
-        roll = 0. Cheap check so callers can skip composing an identity
-        rotation (e.g. a subarray offset that only shifts the position).
+        roll = 0.
+
+        Cheap check so callers can skip composing an identity rotation (e.g. a
+        subarray offset that only shifts the position).
         """
 
     @property

@@ -23,6 +23,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - remove upper bound for Python version (now supports Python abi3 >= 3.12)
 - dependence on pybind11_mkdoc+libclang2 for mkdoc generation
 - remove archlinux ci
+- renamed positionaloffsets files to sensorpose
 - update catch2 to 3.16.1
 - update fast_float to 8.3.2
 
