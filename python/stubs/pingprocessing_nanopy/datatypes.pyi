@@ -642,6 +642,115 @@ class MultiSectorWaterColumnCalibration:
     def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None:
         """Inplace apply av calibration with per-beam absorption coefficients."""
 
+class PingInfo:
+    """
+    Per-ping meta information shared between a ping and its
+    bottom/watercolumn sub-objects.
+
+    PingInfo stores the information that is identical for a ping and its
+    I_PingBottom / I_PingWatercolumn (channel id, timestamp, sensor
+    configuration and navigation interpolator). An I_Ping creates one
+    PingInfo and hands the same shared pointer to its bottom and
+    watercolumn (done by the echosounder ping implementations) so that the
+    sub-objects can access the sensor configuration / navigation /
+    geolocation without going back through the owning ping.
+
+    Memory layout: a single flyweight for the (deduplicated) string
+    metadata plus the (already deduplicated) sensor configuration and
+    navigation interpolator flyweights and the per-ping timestamp.
+    """
+
+    def __init__(self) -> None: ...
+
+    def has_timestamp(self) -> bool: ...
+
+    def get_timestamp(self) -> float: ...
+
+    def set_timestamp(self, timestamp: float) -> None: ...
+
+    def has_datetime(self) -> bool:
+        """
+        Return true if the timestamp is available that can be converted to a datetime
+        """
+
+    def get_datetime(self, timezone_offset_hours: float = 0.0) -> object:
+        """Return the timestamp as datetime object"""
+
+    def set_datetime(self, datetime: object) -> None:
+        """Set the timestamp using a datetime object"""
+
+    def has_channel_id(self) -> bool: ...
+
+    def get_channel_id(self) -> str: ...
+
+    def set_channel_id(self, channel_id: str) -> None: ...
+
+    def set_data(self, channel_id: str, sensor_configuration: themachinethatgoesping.navigation_nanopy.SensorConfiguration, navigation_interpolator_latlon: themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon) -> None:
+        """
+        Set channel id, sensor configuration and navigation interpolator at
+        once.
+
+        This is the setter that should be used during initialization. The
+        sensor configuration and the navigation interpolator are passed as
+        flyweights so that no hashes have to be recomputed.
+
+        Args:
+            channel_id: channel id of the transducer
+            sensor_configuration: sensor configuration flyweight
+            navigation_interpolator_latlon: navigation interpolator flyweight
+        """
+
+    def has_sensor_configuration(self) -> bool: ...
+
+    def get_sensor_configuration(self) -> themachinethatgoesping.navigation_nanopy.SensorConfiguration: ...
+
+    def get_sensor_configuration_base_hash(self) -> int:
+        """
+        Returns the hash of the base sensor configuration.
+
+        This hash can be used to get the correct navigation interpolator from
+        the navigation_data_interface. Note: This function is for testing and
+        finding errors. It is rather slow.
+
+        Returns:
+            uint64_t
+        """
+
+    def set_sensor_configuration(self, sensor_configuration: themachinethatgoesping.navigation_nanopy.SensorConfiguration) -> None: ...
+
+    def has_navigation_interpolator_latlon(self) -> bool: ...
+
+    def get_navigation_interpolator_latlon(self) -> themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon: ...
+
+    def set_navigation_interpolator_latlon(self, navigation_interpolator_latlon: themachinethatgoesping.navigation_nanopy.NavigationInterpolatorLatLon) -> None: ...
+
+    def has_sensor_data_latlon(self) -> bool: ...
+
+    def get_sensor_data_latlon(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensordataLatLon: ...
+
+    def has_geolocation(self) -> bool: ...
+
+    def get_geolocation(self, target_id: str | None = None) -> themachinethatgoesping.navigation_nanopy.datastructures.GeolocationLatLon: ...
+
+    def copy(self) -> PingInfo:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> PingInfo: ...
+
+    def __deepcopy__(self, arg: dict, /) -> PingInfo: ...
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class t_pingfeature(enum.Enum):
     timestamp = 0
 
@@ -657,77 +766,79 @@ class t_pingfeature(enum.Enum):
 
     geolocation = 6
 
-    bottom = 8
+    ping_info = 7
 
-    watercolumn = 9
+    bottom = 9
 
-    tx_signal_parameters_legacy = 10
+    watercolumn = 10
 
-    beam_numbers_per_tx_sector_legacy = 12
+    tx_signal_parameters_legacy = 11
 
-    beam_selection_all = 13
+    beam_numbers_per_tx_sector_legacy = 13
 
-    number_of_beams_legacy = 14
+    beam_selection_all = 14
 
-    tx_sector_per_beam_legacy = 15
+    number_of_beams_legacy = 15
 
-    number_of_tx_sectors_legacy = 11
+    tx_sector_per_beam_legacy = 16
 
-    beam_crosstrack_angles_legacy = 16
+    number_of_tx_sectors_legacy = 12
 
-    two_way_travel_times_legacy = 17
+    beam_crosstrack_angles_legacy = 17
 
-    xyz = 18
+    two_way_travel_times_legacy = 18
 
-    ref_pingtime = 19
+    xyz = 19
 
-    ref_pose = 20
+    ref_pingtime = 20
 
-    surface_sound_speed = 21
+    ref_pose = 21
 
-    sector_beam_numbers = 22
+    surface_sound_speed = 22
 
-    sector_tx_time_delays = 23
+    sector_beam_numbers = 23
 
-    sector_tx_steering_angles = 24
+    sector_tx_time_delays = 24
 
-    sector_tx_offsets = 25
+    sector_tx_steering_angles = 25
 
-    rx_offsets = 26
+    sector_tx_offsets = 26
 
-    number_of_soundings = 27
+    rx_offsets = 27
 
-    soundings_two_way_travel_times = 28
+    number_of_soundings = 28
 
-    soundings_rx_steering_angles = 29
+    soundings_two_way_travel_times = 29
 
-    soundings_sector_numbers = 30
+    soundings_rx_steering_angles = 30
 
-    bottom_range_samples = 31
+    soundings_sector_numbers = 31
 
-    amplitudes = 32
+    bottom_range_samples = 32
 
-    ap = 37
+    amplitudes = 33
 
-    av = 38
+    ap = 38
 
-    power = 39
+    av = 39
 
-    rp = 33
+    power = 40
 
-    rv = 34
+    rp = 34
 
-    pp = 35
+    rv = 35
 
-    pv = 36
+    pp = 36
 
-    sp = 40
+    pv = 37
 
-    sv = 41
+    sp = 41
 
-    watercolumn_calibration = 42
+    sv = 42
 
-    multisectorwatercolumn_calibration = 43
+    watercolumn_calibration = 43
+
+    multisectorwatercolumn_calibration = 44
 
 class o_pingfeature:
     """
@@ -911,6 +1022,33 @@ class I_PingCommon:
     def release(self) -> None: ...
 
     def loaded(self) -> bool: ...
+
+    def has_ping_info(self) -> bool:
+        """
+        Check if a PingInfo object is attached to this ping object.
+
+        Returns:
+            true if a PingInfo is attached, false otherwise
+        """
+
+    def get_ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
+    @property
+    def ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
 
     @overload
     def copy(self) -> I_PingCommon: ...
@@ -1171,6 +1309,33 @@ class I_PingBottom(I_PingCommon):
 
     def loaded(self) -> bool: ...
 
+    def has_ping_info(self) -> bool:
+        """
+        Check if a PingInfo object is attached to this ping object.
+
+        Returns:
+            true if a PingInfo is attached, false otherwise
+        """
+
+    def get_ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
+    @property
+    def ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
     @overload
     def copy(self) -> I_PingBottom: ...
 
@@ -1211,6 +1376,14 @@ class I_PingBottom(I_PingCommon):
         Returns:
             double
         """
+
+    def has_datetime(self) -> bool:
+        """
+        Return true if the reference timestamp is available that can be converted to a datetime
+        """
+
+    def get_ref_datetime(self, timezone_offset_hours: float = 0.0) -> object:
+        """Return the timestamp as datetime object"""
 
     def get_ref_pose(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
@@ -1641,6 +1814,33 @@ class I_PingWatercolumn(I_PingCommon):
 
     def loaded(self) -> bool: ...
 
+    def has_ping_info(self) -> bool:
+        """
+        Check if a PingInfo object is attached to this ping object.
+
+        Returns:
+            true if a PingInfo is attached, false otherwise
+        """
+
+    def get_ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
+    @property
+    def ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
     @overload
     def copy(self) -> I_PingWatercolumn: ...
 
@@ -1681,6 +1881,14 @@ class I_PingWatercolumn(I_PingCommon):
         Returns:
             double
         """
+
+    def has_datetime(self) -> bool:
+        """
+        Return true if the reference timestamp is available that can be converted to a datetime
+        """
+
+    def get_ref_datetime(self, timezone_offset_hours: float = 0.0) -> object:
+        """Return the timestamp as datetime object"""
 
     def get_ref_pose(self) -> themachinethatgoesping.navigation_nanopy.datastructures.SensorPose:
         """
@@ -2119,6 +2327,18 @@ class I_PingWatercolumn(I_PingCommon):
     def get_wci(self, beam_sample_selection: themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection, calibration_type: o_calibration_type, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
 
 class I_Ping(I_PingCommon):
+    """
+    Interface for all ping objects.
+
+    The channel id, timestamp, sensor configuration and navigation
+    interpolator are stored in a shared PingInfo object
+    (I_PingCommon::_ping_info). The accessors below are thin native
+    wrappers that delegate to that PingInfo. The same PingInfo pointer is
+    shared with the bottom() and watercolumn() sub-objects (done by the
+    echosounder ping implementations), so they can access the same sensor
+    configuration / navigation / geolocation.
+    """
+
     def __init__(self) -> None: ...
 
     def feature_string(self, available: bool = True, prefix: str = '') -> str:
@@ -2229,6 +2449,33 @@ class I_Ping(I_PingCommon):
 
     def loaded(self) -> bool: ...
 
+    def has_ping_info(self) -> bool:
+        """
+        Check if a PingInfo object is attached to this ping object.
+
+        Returns:
+            true if a PingInfo is attached, false otherwise
+        """
+
+    def get_ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
+    @property
+    def ping_info(self) -> PingInfo:
+        """
+        Get the shared PingInfo object (channel id, timestamp, sensor
+        configuration, navigation).
+
+        Returns:
+            const std::shared_ptr_PingInfo&
+        """
+
     @overload
     def copy(self) -> I_Ping: ...
 
@@ -2278,11 +2525,9 @@ class I_Ping(I_PingCommon):
 
     def has_timestamp(self) -> bool: ...
 
-    def get_timestamp(self) -> float:
-        """Unix timestamp in seconds (saved in UTC0)"""
+    def get_timestamp(self) -> float: ...
 
-    def set_timestamp(self, timestamp: float) -> None:
-        """Unix timestamp in seconds (saved in UTC0)"""
+    def set_timestamp(self, timestamp: float) -> None: ...
 
     def has_datetime(self) -> bool:
         """
@@ -2297,11 +2542,9 @@ class I_Ping(I_PingCommon):
 
     def has_channel_id(self) -> bool: ...
 
-    def get_channel_id(self) -> str:
-        """channel id of the transducer"""
+    def get_channel_id(self) -> str: ...
 
-    def set_channel_id(self, channel_id: str) -> None:
-        """channel id of the transducer"""
+    def set_channel_id(self, channel_id: str) -> None: ...
 
     def has_sensor_configuration(self) -> bool: ...
 

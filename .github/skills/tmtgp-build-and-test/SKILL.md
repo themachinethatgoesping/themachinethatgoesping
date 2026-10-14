@@ -248,11 +248,30 @@ include root is `…/algorithms`, not `…/src`).
 ## Project structure: pingprocessing ↔ echosounders (dependency inversion)
 The format-independent **ping value interfaces** now live in **`pingprocessing::datatypes`**
 (`subprojects/pingprocessing/src/.../pingprocessing/datatypes/`), **not** in echosounders:
-`I_Ping`, `I_PingCommon`, `I_PingBottom`, `I_PingWatercolumn`, `I_PingFileData`, the calibration base
-classes (`calibration::WaterColumnCalibration`, `MultiSectorWaterColumnCalibration`,
+`I_Ping`, `I_PingCommon`, `I_PingBottom`, `I_PingWatercolumn`, `I_PingFileData`, `PingInfo`, the
+calibration base classes (`calibration::WaterColumnCalibration`, `MultiSectorWaterColumnCalibration`,
 `AmplitudeCalibration`) and `PingContainer`. Python: `pingprocessing.datatypes.*` /
 `pingprocessing_nanopy.datatypes.*`; their nanobind bindings live in the pingprocessing nanomodule
 `src/nanomodule/py_datatypes/`.
+
+### Shared `PingInfo` (channel id / timestamp / sensor configuration / navigation)
+The per-ping meta info (channel id, timestamp, sensor configuration, navigation interpolator) lives in
+a small **`PingInfo`** value class, **not** directly on `I_Ping` anymore. `I_PingCommon` holds it as a
+`protected std::shared_ptr<PingInfo> _ping_info` (+ `has_ping_info()`/`get_ping_info()`/`set_ping_info()`
+and a `ping_info` entry in `t_pingfeature`), so an `I_Ping` **and its `bottom()`/`watercolumn()`
+sub-objects share the exact same `PingInfo` instance.
+- `I_Ping` creates the `PingInfo` in its ctor and keeps the native thin wrappers
+  (`has_/get_/set_timestamp`, `…_channel_id`, `…_sensor_configuration`, `…_navigation_interpolator_latlon`,
+  `get_geolocation`, …) that simply delegate to `_ping_info`. Its **copy ctor / copy-assign deep-copy**
+  the `PingInfo` so each ping (incl. every echosounder `deep_copy()`) stays independent.
+- `PingInfo` stores the channel id (plus future string metadata) in a single
+  `boost::flyweight<PingInfoData>` struct (so adding more strings costs **no** extra pointer), and the
+  sensor configuration + navigation interpolator as their own flyweights. The `has_*` getters check the
+  flyweight content (default-constructed ⇒ "not set") — there are **no** `_..._set` bool members.
+- The echosounder ping implementations hand the ping's `PingInfo` pointer to the bottom/watercolumn (see
+  the `tmtgp-echosounders-interfaces` skill). Nanobind exposes `ping_info` as a **read-only property**
+  (`reference_internal`) + `get_ping_info()`; `bottom.ping_info` / `watercolumn.ping_info` return the
+  same object as `ping.ping_info`.
 
 Dependency direction (reversed from before): **`pingprocessing` depends on `algorithms` + `navigation`
 + `tools`** (NOT echosounders); **`echosounders` depends on `pingprocessing`** and implements the
@@ -299,6 +318,11 @@ allocation throw.
   cheap copy/compare/hash by handle); replacing it with a plain `T` member silently regresses memory
   and performance and is **out of scope** — changing a chosen data structure is not an acceptable
   "fix". Preserve the design and fix the real cause (here: the per-`.so` factory → `intermodule_holder`).
-- Flyweights that are **set from the echosounders derived class and only read in the base** (I_Ping's
-  `_channel_id`/`_sensor_configuration`/`_navigation_interpolator`) are **safe** — they intern+destroy
-  entirely inside `echosounders_nanopy.so`.
+- Flyweights that are **set from the echosounders derived class and only read in the base** are
+  **safe** — they intern+destroy entirely inside `echosounders_nanopy.so`. This now applies to the
+  `PingInfo` flyweights (channel-id `flyweight<PingInfoData>` struct, `_sensor_configuration`,
+  `_navigation_interpolator_latlon`): they are set during `read_pings` (echosounders) and the `PingInfo`
+  is destroyed together with the owning ping in `echosounders_nanopy.so`. Keep the `ping_info` nanobind
+  property on **`reference_internal`** (never return the `shared_ptr<PingInfo>` by value) so Python can
+  never independently outlive-and-destroy a `PingInfo` in `pingprocessing_nanopy.so` — that would
+  reintroduce the cross-module intern/destroy mismatch.

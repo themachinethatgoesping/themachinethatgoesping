@@ -50,10 +50,20 @@ ping type must exist. Create **stubs** under `filedatatypes/` (mirror kmall, dro
   `class_name()`, `__printer__` appends both base printers, `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__`.
 - `<Fmt>PingBottom<t_ifstream>` / `<Fmt>PingWatercolumn<t_ifstream>` — derive
   `I_PingBottom`/`I_PingWatercolumn` + `<Fmt>PingCommon`; **ctor + `class_name()` + a MINIMAL
-  `__printer__` only** (no getter overrides — they inherit the base "not implemented" throwers).
+  `__printer__` only** (no getter overrides — they inherit the base "not implemented" throwers). The
+  ctor takes `(shared_ptr<<Fmt>PingFileData> file_data, shared_ptr<pingprocessing::datatypes::PingInfo>
+  ping_info = nullptr)` and forwards `ping_info` to the `I_PingBottom`/`I_PingWatercolumn` base
+  (`t_base1(std::move(ping_info))`).
 - `<Fmt>Ping<t_ifstream>` — derives `I_Ping` + `<Fmt>PingCommon`; holds `_bottom`/`_watercolumn`
   members; `deep_copy()`, `add_datagram_info()`, `bottom()`/`watercolumn()` overrides, `__printer__`
   (append `I_Ping::__printer__` only). `type_DatagramInfo_ptr = <Fmt>PingFileData::type_DatagramInfo_ptr`.
+  **Shared PingInfo:** construct the sub-objects with the ping's PingInfo
+  (`_bottom(_file_data, this->get_ping_info())`, same for `_watercolumn`), and make the `bottom()` /
+  `watercolumn()` overrides re-sync it (`if (_bottom.get_ping_info() != this->get_ping_info())
+  _bottom.set_ping_info(this->get_ping_info());`) so copies / `deep_copy()` stay linked (the `I_Ping`
+  copy ctor gives the copy its own PingInfo). `add_datagram_info` updates the time via
+  `get_timestamp()`/`set_timestamp()` — there is **no** `_timestamp` member anymore (it lives in
+  `PingInfo`). See the `tmtgp-build-and-test` "Shared PingInfo" note.
 - `filedatacontainers/<Fmt>pingcontainer.hpp` — `using <Fmt>PingContainer = PingContainer<<Fmt>Ping<t_ifstream>>;`.
 
 ## File handler wiring (mirror kmall `<Fmt>filehandler.hpp`)
