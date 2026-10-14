@@ -1,4 +1,7 @@
-from themachinethatgoesping import echosounders as echosounders
+from themachinethatgoesping import (
+    echosounders as echosounders,
+    pingprocessing as pingprocessing
+)
 from themachinethatgoesping.pingprocessing.watercolumn import (
     echograms as echograms,
     image as mi

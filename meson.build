@@ -9,7 +9,7 @@ project(
   'cpp',
   license: 'MPL-2.0',
 
-  version: '0.37.0.dev2',
+  version: '0.37.0.dev3',
   default_options: ['warning_level=0', 'buildtype=release', 'cpp_std=c++26'],
   meson_version: '>=1.8.1' #there is a problem with meson 1.8.0 so just use a higher version
 )
@@ -21,8 +21,8 @@ module_meta  = subproject('meta', default_options: ['main_project_version=' + me
 module_tools = subproject('tools', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_algorithms = subproject('algorithms', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_navigation = subproject('navigation', default_options: ['cpp_std=' + get_option('cpp_std')])
-module_echosounders = subproject('echosounders', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_pingprocessing= subproject('pingprocessing', default_options: ['cpp_std=' + get_option('cpp_std')])
+module_echosounders = subproject('echosounders', default_options: ['cpp_std=' + get_option('cpp_std')])
 module_widgets= subproject('widgets', default_options: ['cpp_std=' + get_option('cpp_std')])
 
 # python only projects
@@ -72,7 +72,7 @@ if get_option('build_pythonmodule').enabled()
     # flags only appear on the nanomodule TUs under src/nanomodule, so we must
     # read the compile flags from the whole src/ tree (library + nanomodule),
     # otherwise libclang fails with "'nanobind/nanobind.h' file not found".
-    mkdoc_modules = ['tools', 'navigation', 'algorithms', 'echosounders', 'pingprocessing']
+    mkdoc_modules = ['tools', 'navigation', 'algorithms', 'pingprocessing', 'echosounders']
     mkdoc_targets = []
     foreach mod : mkdoc_modules
         mkdoc_targets += run_target(

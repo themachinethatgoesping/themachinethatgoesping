@@ -11,12 +11,12 @@ import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.raytracers2
 import themachinethatgoesping.algorithms_nanopy.pingtools
 import themachinethatgoesping.echosounders_nanopy
-import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams
 import themachinethatgoesping.echosounders_nanopy.kongsbergall.filedatainterfaces
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
-class KongsbergAllWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration):
+class KongsbergAllWaterColumnCalibration(themachinethatgoesping.pingprocessing_nanopy.datatypes.WaterColumnCalibration):
     def __init__(self, sound_velocity: float, effective_pulse_duration: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None: ...
 
     def modify_kongsberg_em_calibrations(self, sound_velocity: float | None = None, effective_pulse_duration: float | None = None, system_gain_offset: float | None = None, tvg_absorption_db_m: float | None = None, tvg_factor: float | None = None) -> None: ...
@@ -315,7 +315,7 @@ class FilePackageIndex_kongsbergall_FilePackageIndex:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class KongsbergAllPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def set_runtime_parameters(self, runtime_parameters: "boost::flyweights::flyweight_themachinethatgoesping_echosounders_kongsbergall_datagrams_RuntimeParameters_boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void_") -> None: ...
 
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams.RuntimeParameters: ...
@@ -461,7 +461,7 @@ class KongsbergAllPingFileData_stream(themachinethatgoesping.echosounders_nanopy
 
     def per_file(self) -> list[themachinethatgoesping.echosounders_nanopy.kongsbergall.filedatainterfaces.KongsbergAllDatagramInterface_stream]: ...
 
-class KongsbergAllPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class KongsbergAllPingFileData(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def set_runtime_parameters(self, runtime_parameters: "boost::flyweights::flyweight_themachinethatgoesping_echosounders_kongsbergall_datagrams_RuntimeParameters_boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void_") -> None: ...
 
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_nanopy.kongsbergall.datagrams.RuntimeParameters: ...
@@ -629,7 +629,7 @@ class KongsbergAllPingCommon:
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPingCommon: ...
 
-class KongsbergAllPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class KongsbergAllPingBottom_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> KongsbergAllPingBottom_stream:
         """return a copy using the c++ default copy constructor"""
 
@@ -637,7 +637,7 @@ class KongsbergAllPingBottom_stream(themachinethatgoesping.echosounders_nanopy.f
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPingBottom_stream: ...
 
-class KongsbergAllPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class KongsbergAllPingBottom(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> KongsbergAllPingBottom:
         """return a copy using the c++ default copy constructor"""
 
@@ -645,7 +645,7 @@ class KongsbergAllPingBottom(themachinethatgoesping.echosounders_nanopy.filetemp
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPingBottom: ...
 
-class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration: ...
 
     def get_multisectorwatercolumn_calibration(self) -> KongsbergAllMultiSectorWaterColumnCalibration: ...
@@ -677,7 +677,7 @@ class KongsbergAllPingWatercolumn_stream(themachinethatgoesping.echosounders_nan
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPingWatercolumn_stream: ...
 
-class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class KongsbergAllPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> KongsbergAllWaterColumnCalibration: ...
 
     def get_multisectorwatercolumn_calibration(self) -> KongsbergAllMultiSectorWaterColumnCalibration: ...
@@ -709,7 +709,7 @@ class KongsbergAllPingWatercolumn(themachinethatgoesping.echosounders_nanopy.fil
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPingWatercolumn: ...
 
-class KongsbergAllPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class KongsbergAllPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     @property
     def file_data(self) -> KongsbergAllPingFileData_stream: ...
 
@@ -720,7 +720,7 @@ class KongsbergAllPing_stream(themachinethatgoesping.echosounders_nanopy.filetem
 
     def __deepcopy__(self, arg: dict, /) -> KongsbergAllPing_stream: ...
 
-class KongsbergAllPing(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class KongsbergAllPing(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     @property
     def file_data(self) -> KongsbergAllPingFileData: ...
 

@@ -97,8 +97,8 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
   overload still wins (the str overload would need a conversion). So add the string overload everywhere
   a str is the ergonomic input (`has_feature` + the `has_any_of/has_all_of_features` vector methods)
   without disturbing enum-object calls. Worked example: `I_PingCommon_add_interface` in
-  `py_filetemplates/py_datatypes/i_pingcommon.hpp` (define a `feature_from_string` lambda once, reuse
-  it in all three overloads).
+  `pingprocessing`'s `src/nanomodule/py_datatypes/i_pingcommon.hpp` (define a `feature_from_string`
+  lambda once, reuse it in all three overloads).
 - Two complementary error layers for `has_feature`: (1) an **invalid name** (not a `t_pingfeature`
   enumerator) → the binding-level did-you-mean `ValueError` above; (2) a **valid name that this ping
   class does not register** (e.g. `bottom.has_feature("av")`, a watercolumn feature) → a *library*-side
@@ -155,8 +155,8 @@ default-argument value must `#include` the matching caster header in *that file*
 transitive or unity-build include. Common ones: `<nanobind/stl/optional.h>` (`std::optional`,
 `std::nullopt` — e.g. `nb::arg("target_id") = std::nullopt`), `vector.h` (`std::vector<...>{}`),
 `map.h`/`unordered_map.h`, `pair.h`, `tuple.h`, `variant.h` (variant returns), `shared_ptr.h`,
-`string.h`/`string_view.h`. Reference fix: adding `<nanobind/stl/optional.h>` to
-`py_filetemplates/py_datatypes/i_ping.hpp` for `get_geolocation(..., = std::nullopt)` (it was the only
+`string.h`/`string_view.h`. Reference fix: adding `<nanobind/stl/optional.h>` to `pingprocessing`'s
+`src/nanomodule/py_datatypes/i_ping.hpp` for `get_geolocation(..., = std::nullopt)` (it was the only
 `std::optional` binding missing the header → Windows `bad cast` at `I_Ping` init). To audit, grep for
 `std::<type>` / `= std::nullopt` in `src/nanomodule` and confirm each such file includes its caster.
 
@@ -174,9 +174,9 @@ the C++ base list so the pointer offset is 0) and expose the *second* base's met
   base (e.g. `MBESRawDetectionData : I_MBESRawDetectionInfos`) bind normally with that base and
   **inherit** the interface `.def`s (only add their `set_`/macros).
 - **Cross-subproject DOC + helper duplication:** the helper lives in the nanomodule, and a subproject
-  (echosounders) cannot include another subproject's *nanomodule* header, so the add-interface helper
+  cannot include another subproject's *nanomodule* header, so the add-interface helper
   is **duplicated** once per nanomodule (algorithms `py_i_mbesrawdetectioninfos.hpp` +
-  echosounders `py_filetemplates/py_datatypes/i_i_mbesrawdetectioninfos.hpp`). Both reference the **same**
+  pingprocessing `src/nanomodule/py_datatypes/i_mbesrawdetectioninfos.hpp`). Both reference the **same**
   `DOC(themachinethatgoesping, algorithms, …, I_MBESRawDetectionInfos, …)` macros (the docstrings come
   from the *library* header, reachable via `algorithms_dep`), so the docstrings transition to the ping
   classes automatically — re-document nothing in the child.

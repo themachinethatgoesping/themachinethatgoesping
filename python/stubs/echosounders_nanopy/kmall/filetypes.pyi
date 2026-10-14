@@ -9,13 +9,13 @@ from numpy.typing import NDArray
 
 import themachinethatgoesping.algorithms_nanopy.geoprocessing.datastructures
 import themachinethatgoesping.algorithms_nanopy.pingtools
-import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.kmall
 import themachinethatgoesping.echosounders_nanopy.kmall.datagrams
 import themachinethatgoesping.echosounders_nanopy.kmall.filedatainterfaces
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
-class KMALLWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration):
+class KMALLWaterColumnCalibration(themachinethatgoesping.pingprocessing_nanopy.datatypes.WaterColumnCalibration):
     def __init__(self, sound_velocity: float, effective_pulse_duration: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float) -> None: ...
 
     def modify_kongsberg_em_calibrations(self, sound_velocity: float | None = None, effective_pulse_duration: float | None = None, system_gain_offset: float | None = None, tvg_absorption_db_m: float | None = None, tvg_factor: float | None = None) -> None: ...
@@ -312,7 +312,7 @@ class FilePackageIndex_kmall_FilePackageIndex:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-class KMALLPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class KMALLPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def set_runtime_parameters(self, runtime_parameters: "boost::flyweights::flyweight_themachinethatgoesping_echosounders_kmall_datagrams_IOpRuntime_boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void_") -> None: ...
 
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_nanopy.kmall.datagrams.IOpRuntime: ...
@@ -440,7 +440,7 @@ class KMALLPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filete
 
     def per_file(self) -> list[themachinethatgoesping.echosounders_nanopy.kmall.filedatainterfaces.KMALLDatagramInterface_stream]: ...
 
-class KMALLPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class KMALLPingFileData(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def set_runtime_parameters(self, runtime_parameters: "boost::flyweights::flyweight_themachinethatgoesping_echosounders_kmall_datagrams_IOpRuntime_boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void__boost_parameter_void_") -> None: ...
 
     def get_runtime_parameters(self) -> themachinethatgoesping.echosounders_nanopy.kmall.datagrams.IOpRuntime: ...
@@ -590,7 +590,7 @@ class KMALLPingCommon:
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPingCommon: ...
 
-class KMALLPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class KMALLPingBottom_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> KMALLPingBottom_stream:
         """return a copy using the c++ default copy constructor"""
 
@@ -598,7 +598,7 @@ class KMALLPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetemp
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPingBottom_stream: ...
 
-class KMALLPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class KMALLPingBottom(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> KMALLPingBottom:
         """return a copy using the c++ default copy constructor"""
 
@@ -606,7 +606,7 @@ class KMALLPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPingBottom: ...
 
-class KMALLPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class KMALLPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> KMALLWaterColumnCalibration: ...
 
     def get_multisectorwatercolumn_calibration(self) -> KMALLMultiSectorWaterColumnCalibration: ...
@@ -638,7 +638,7 @@ class KMALLPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.fil
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPingWatercolumn_stream: ...
 
-class KMALLPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class KMALLPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> KMALLWaterColumnCalibration: ...
 
     def get_multisectorwatercolumn_calibration(self) -> KMALLMultiSectorWaterColumnCalibration: ...
@@ -670,7 +670,7 @@ class KMALLPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetempla
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPingWatercolumn: ...
 
-class KMALLPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class KMALLPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     @property
     def file_data(self) -> KMALLPingFileData_stream: ...
 
@@ -681,7 +681,7 @@ class KMALLPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.
 
     def __deepcopy__(self, arg: dict, /) -> KMALLPing_stream: ...
 
-class KMALLPing(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class KMALLPing(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     @property
     def file_data(self) -> KMALLPingFileData: ...
 

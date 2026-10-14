@@ -10,6 +10,14 @@ the notes below are the defaults. For the nanobind bindings see **tmtgp-cpp-nano
 build/test/install see **tmtgp-build-and-test**. Canonical examples: `subprojects/echosounders/.../s7k`,
 `.../kmall`, `.../kongsbergall`.
 
+## 🚫 Do not change a chosen data structure to work around a bug
+A member's declared type is a deliberate design decision. In particular **`boost::flyweight<T>`** is
+chosen for structural de-duplication + cheap copy/compare/hash by handle; **never** "simplify" it to a
+plain `T` (or swap any chosen container/representation) just to make a crash go away — that silently
+regresses memory/performance and is **out of scope**. Preserve the type and fix the actual root cause.
+(E.g. a flyweight corrupting across two extension `.so`s is fixed with
+`boost::flyweights::intermodule_holder`, **not** by dropping the flyweight — see tmtgp-build-and-test.)
+
 ## File layout
 - **SPDX header** on every file. Code = `MPL-2.0`; tests / meson.build / generated = `CC0-1.0`.
   Copyright line: `// SPDX-FileCopyrightText: 2022 - 2025 Peter Urban, Ghent University`.

@@ -1,17 +1,17 @@
 from themachinethatgoesping import navigation as nav
-from themachinethatgoesping.echosounders_nanopy import (
-    filetemplates as filetemplates
-)
-import themachinethatgoesping.echosounders_nanopy.filetemplates
-from themachinethatgoesping.echosounders_nanopy.filetemplates import (
-    I_Ping as I_Ping
-)
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
 )
+from themachinethatgoesping.pingprocessing_nanopy import (
+    datatypes as datatypes
+)
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
+from themachinethatgoesping.pingprocessing_nanopy.datatypes import (
+    I_Ping as I_Ping
+)
 
 
-def by_distance_difference(pings: list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping], meters: float, progress: bool = False) -> dict[int, list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping]]:
+def by_distance_difference(pings: list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping], meters: float, progress: bool = False) -> dict[int, list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping]]:
     """
     Split pings into groups based on the distance between consecutive pings.
 

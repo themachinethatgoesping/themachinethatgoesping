@@ -7,27 +7,24 @@ import numpy
 from numpy.typing import NDArray
 
 import themachinethatgoesping.algorithms_nanopy.pingtools
-import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.s7k
 import themachinethatgoesping.echosounders_nanopy.s7k.filedatainterfaces
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
-class S7KPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class S7KPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     """
     Raw file data of a single s7k ping. Holds the datagram index of the
     ping (via the S7KDatagramInterface base) and provides raw access to
     the ping's datagrams.
 
-
-
-    $.. note::
-
-    The datagram-processing functions are not implemented yet. This class
-    currently only provides the structure so it can be filled in in a
-    later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions are not implemented yet. This
+        class currently only provides the structure so it can be filled in
+        in a later step.
     """
 
     def copy(self) -> S7KPingFileData_stream:
@@ -93,22 +90,19 @@ class S7KPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filetemp
 
     def per_file(self) -> list[themachinethatgoesping.echosounders_nanopy.s7k.filedatainterfaces.S7KDatagramInterface_stream]: ...
 
-class S7KPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class S7KPingFileData(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     """
     Raw file data of a single s7k ping. Holds the datagram index of the
     ping (via the S7KDatagramInterface base) and provides raw access to
     the ping's datagrams.
 
-
-
-    $.. note::
-
-    The datagram-processing functions are not implemented yet. This class
-    currently only provides the structure so it can be filled in in a
-    later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions are not implemented yet. This
+        class currently only provides the structure so it can be filled in
+        in a later step.
     """
 
     def copy(self) -> S7KPingFileData:
@@ -214,7 +208,7 @@ class S7KPingCommon:
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingCommon: ...
 
-class S7KPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class S7KPingBottom_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     """
     Bottom detection (bathymetry) accessor of an s7k ping.
 
@@ -234,7 +228,7 @@ class S7KPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetempla
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingBottom_stream: ...
 
-class S7KPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class S7KPingBottom(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     """
     Bottom detection (bathymetry) accessor of an s7k ping.
 
@@ -254,7 +248,7 @@ class S7KPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_P
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingBottom: ...
 
-class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class S7KPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     """
     Water column accessor of an s7k ping.
 
@@ -312,7 +306,7 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filet
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingWatercolumn_stream: ...
 
-class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class S7KPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     """
     Water column accessor of an s7k ping.
 
@@ -370,22 +364,19 @@ class S7KPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplate
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingWatercolumn: ...
 
-class S7KPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class S7KPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     """
     A single ping of an s7k file. Groups all datagrams (sonar settings,
     bathymetry, water column) that belong to the same ping and exposes
     them via the bottom() and watercolumn() sub-objects.
 
-
-
-    $.. note::
-
-    The datagram-processing functions are not implemented yet. This class
-    currently only provides the structure so the ping can be filled in in
-    a later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions are not implemented yet. This
+        class currently only provides the structure so the ping can be
+        filled in in a later step.
     """
 
     @property
@@ -398,22 +389,19 @@ class S7KPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_
 
     def __deepcopy__(self, arg: dict, /) -> S7KPing_stream: ...
 
-class S7KPing(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class S7KPing(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     """
     A single ping of an s7k file. Groups all datagrams (sonar settings,
     bathymetry, water column) that belong to the same ping and exposes
     them via the bottom() and watercolumn() sub-objects.
 
-
-
-    $.. note::
-
-    The datagram-processing functions are not implemented yet. This class
-    currently only provides the structure so the ping can be filled in in
-    a later step.
-
     Template Args:
-        t_ifstream:
+        t_ifstream: 
+
+    Note:
+        The datagram-processing functions are not implemented yet. This
+        class currently only provides the structure so the ping can be
+        filled in in a later step.
     """
 
     @property

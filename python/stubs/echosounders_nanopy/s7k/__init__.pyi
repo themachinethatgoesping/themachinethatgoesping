@@ -359,14 +359,11 @@ class S7KFileHandler_stream:
     navigation, environment, ping, other) and provides access to the raw
     datagrams via the datagram_interface().
 
-
-
-    $.. note::
-
-    The specialized interfaces are structurally present and the datagrams
-    are already sorted into them, but their read_* processing functions
-    are not implemented yet. Initializing them (and therefore get_pings())
-    is deferred to a later step.
+    Note:
+        The specialized interfaces are structurally present and the
+        datagrams are already sorted into them, but their read_*
+        processing functions are not implemented yet. Initializing them
+        (and therefore get_pings()) is deferred to a later step.
     """
 
     @overload
@@ -435,14 +432,11 @@ class S7KFileHandler:
     navigation, environment, ping, other) and provides access to the raw
     datagrams via the datagram_interface().
 
-
-
-    $.. note::
-
-    The specialized interfaces are structurally present and the datagrams
-    are already sorted into them, but their read_* processing functions
-    are not implemented yet. Initializing them (and therefore get_pings())
-    is deferred to a later step.
+    Note:
+        The specialized interfaces are structurally present and the
+        datagrams are already sorted into them, but their read_*
+        processing functions are not implemented yet. Initializing them
+        (and therefore get_pings()) is deferred to a later step.
     """
 
     @overload

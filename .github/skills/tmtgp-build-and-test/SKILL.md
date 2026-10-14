@@ -21,6 +21,10 @@ It runs, from `builddir`:
 
 Invoke it with the run-task tool: `id="shell: Ping: Build and Test python (j8)"`,
 `workspaceFolder="/home/ssd/src/themachinethatgoesping/themachinethatgoesping"`.
+**If the run-task tool returns `Task not found`** (it often cannot resolve this folder-scoped task in
+the multi-root `.code-workspace` — tried bare label and `shell:` prefix, both folder paths), fall back
+to running the task's **exact** command yourself in a terminal (the full block in the "ALWAYS finish"
+section below), `cwd = builddir`. That is functionally identical and is what the task runs.
 Other useful tasks: **`Ping: Build and Test cpp`** (C++ only), **`Ping: Test python`** (pytest only).
 
 ### ⚠️ ALWAYS finish with the full `(j8)` command (the one that runs `meson compile mkdoc`)
@@ -236,7 +240,65 @@ subproject `meson.build`.
 ## pingtools was split (navigation of the include/namespace)
 `BeamSelection` / `BeamSampleSelection` / `ReadSampleRange` moved to **`algorithms::pingtools`**
 (`algorithms/pingtools/…`, python `algorithms.pingtools`), while **`PingSampleSelector` stays in
-`echosounders::pingtools`** (it depends on `I_PingBottom`/`I_PingWatercolumn` → can't move without a
-cycle). Inside the algorithms library, include a sibling header **relatively**
+`echosounders::pingtools`** (historically it was tied to `I_PingBottom`/`I_PingWatercolumn`). Inside
+the algorithms library, include a sibling header **relatively**
 (`"../../pingtools/beamselection.hpp"`), not as `<themachinethatgoesping/algorithms/…>` (the lib's own
 include root is `…/algorithms`, not `…/src`).
+
+## Project structure: pingprocessing ↔ echosounders (dependency inversion)
+The format-independent **ping value interfaces** now live in **`pingprocessing::datatypes`**
+(`subprojects/pingprocessing/src/.../pingprocessing/datatypes/`), **not** in echosounders:
+`I_Ping`, `I_PingCommon`, `I_PingBottom`, `I_PingWatercolumn`, `I_PingFileData`, the calibration base
+classes (`calibration::WaterColumnCalibration`, `MultiSectorWaterColumnCalibration`,
+`AmplitudeCalibration`) and `PingContainer`. Python: `pingprocessing.datatypes.*` /
+`pingprocessing_nanopy.datatypes.*`; their nanobind bindings live in the pingprocessing nanomodule
+`src/nanomodule/py_datatypes/`.
+
+Dependency direction (reversed from before): **`pingprocessing` depends on `algorithms` + `navigation`
++ `tools`** (NOT echosounders); **`echosounders` depends on `pingprocessing`** and implements the
+format-specific derived classes (`KMALLPingBottom : pingprocessing::datatypes::I_PingBottom`, etc.).
+Only the `datatypes` sub-namespace moved — the **file-reading interfaces stay in echosounders**
+(`filetemplates::datainterfaces::{I_DatagramInterface,I_InputFileHandler,I_NavigationDataInterface,…}`,
+`filetemplates::datastreams/…`, `filetemplates::cache_structures/…`, `filecache`).
+
+Python gotchas from the move:
+- pingprocessing `__init__.py` must **not** do `from ...pingprocessing_nanopy import *` — that shadows
+  the **python** `pingprocessing.watercolumn` subpackage (which has `helper`/`image`/`echograms`) with
+  the C++ `pingprocessing_nanopy.watercolumn` submodule → `ImportError: cannot import name 'helper'`.
+  Expose the C++ interfaces explicitly: `from themachinethatgoesping.pingprocessing_nanopy import
+  datatypes`.
+- pingprocessing python annotates ping params as `datatypes.I_Ping` via `from
+  themachinethatgoesping.pingprocessing_nanopy import datatypes` — **never** `echosounders.datatypes.*`
+  (that attribute no longer exists; a stale annotation makes **`meson install`/stubgen fail**, because
+  Python-3.14 deferred annotations are evaluated by nanobind's `stubgen.py`).
+- meta/top-level `__init__` import order already lists pingprocessing **before** echosounders.
+
+## ⚠️ `boost::flyweight` member across two extension `.so`s → `bad_array_new_length`
+A `boost::flyweight<T>` member of a class in a **static lib linked into two Python extension `.so`s**
+(any `pingprocessing::datatypes` interface now qualifies — the pingprocessing static lib is linked into
+**both** `pingprocessing_nanopy.so` and `echosounders_nanopy.so`) gets a **per-`.so` factory**
+(hidden-visibility static). If that flyweight is **lazily interned from shared code and later
+destroyed**, the intern (in one `.so`'s factory) and destroy (in the other's) mismatch and **corrupt
+the heap** → a later unrelated allocation throws **`std::bad_array_new_length`** (Python:
+`MemoryError: std::bad_array_new_length`). It looks like it "accumulates" across objects and only bites
+**after** the interning getter was called **and** the holding object was destroyed, then the next
+allocation runs. It is layout-sensitive UB, so **gdb/valgrind mask it**; bisect in **fresh processes**
+(the corruption is process-global) by which getter, called before destruction, makes the next
+allocation throw.
+- Real case: `I_PingWatercolumn::get_beam_sample_selection_all()` interned
+  `boost::flyweight<BeamSampleSelection> _beam_sample_selection_all`; every amplitude getter
+  (`get_amplitudes`/`ap`/`rp`/`rv`/`pp`/`pv`/`power`) routes through it → crash on next file-handler
+  construction.
+- **Fix = keep the flyweight, give it a cross-module factory**: add
+  `#include <boost/flyweight/intermodule_holder.hpp>` and declare
+  `boost::flyweight<BeamSampleSelection, boost::flyweights::intermodule_holder> _beam_sample_selection_all;`.
+  `intermodule_holder` "guarantees a unique instance across all dynamic modules", so interning in one
+  `.so` and destroying in another use the **same** factory. No getter/`.cpp` changes needed.
+- **🚫 NEVER downgrade a flyweight to a plain value member to work around this (or any) bug.**
+  `boost::flyweight` is a deliberate memory + performance choice (structural dedup of identical values,
+  cheap copy/compare/hash by handle); replacing it with a plain `T` member silently regresses memory
+  and performance and is **out of scope** — changing a chosen data structure is not an acceptable
+  "fix". Preserve the design and fix the real cause (here: the per-`.so` factory → `intermodule_holder`).
+- Flyweights that are **set from the echosounders derived class and only read in the base** (I_Ping's
+  `_channel_id`/`_sensor_configuration`/`_navigation_interpolator`) are **safe** — they intern+destroy
+  entirely inside `echosounders_nanopy.so`.

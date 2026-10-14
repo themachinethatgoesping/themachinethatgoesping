@@ -6,15 +6,15 @@ from typing import Annotated, overload
 import numpy
 from numpy.typing import NDArray
 
-import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams
 import themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes
 from themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.calibration import (
     functions as functions
 )
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
-class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration):
+class SimradRawWaterColumnCalibration(themachinethatgoesping.pingprocessing_nanopy.datatypes.WaterColumnCalibration):
     """
     TODO: check effective pulse length
     - for power/angle data, do I only use the nominal pulse length?
@@ -24,7 +24,7 @@ class SimradRawWaterColumnCalibration(themachinethatgoesping.echosounders_nanopy
     def __init__(self) -> None: ...
 
     @overload
-    def __init__(self, other: themachinethatgoesping.echosounders_nanopy.filetemplates.WaterColumnCalibration) -> None: ...
+    def __init__(self, other: themachinethatgoesping.pingprocessing_nanopy.datatypes.WaterColumnCalibration) -> None: ...
 
     @overload
     def __init__(self, environment: themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Environment, parameters: themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel, transceiver_information: themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes.TransceiverInformation, filter_stages: typing.Any, n_complex_samples: int) -> None: ...

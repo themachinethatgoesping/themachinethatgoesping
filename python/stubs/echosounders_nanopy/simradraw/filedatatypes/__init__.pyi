@@ -4,7 +4,6 @@ import typing
 from collections.abc import Sequence
 from typing import overload
 
-import themachinethatgoesping.echosounders_nanopy.filetemplates
 import themachinethatgoesping.echosounders_nanopy.simradraw
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams
 import themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams
@@ -12,6 +11,7 @@ import themachinethatgoesping.echosounders_nanopy.simradraw.filedatainterfaces
 from themachinethatgoesping.echosounders_nanopy.simradraw.filedatatypes import (
     calibration as calibration
 )
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
 class FilePackageIndex_simradraw_FilePackageIndex:
@@ -149,7 +149,7 @@ class TransceiverInformation:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
-class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class SimradRawPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def get_ping_data(self) -> themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.RAW3: ...
 
     def get_parameter(self) -> themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
@@ -250,7 +250,7 @@ class SimradRawPingFileData_stream(themachinethatgoesping.echosounders_nanopy.fi
 
     def per_file(self) -> list[themachinethatgoesping.echosounders_nanopy.simradraw.filedatainterfaces.SimradRawDatagramInterface_stream]: ...
 
-class SimradRawPingFileData(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingFileData):
+class SimradRawPingFileData(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     def get_ping_data(self) -> themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.RAW3: ...
 
     def get_parameter(self) -> themachinethatgoesping.echosounders_nanopy.simradraw.datagrams.XML0_datagrams.XML_Parameter_Channel: ...
@@ -373,7 +373,7 @@ class SimradRawPingCommon:
     @property
     def file_data(self) -> SimradRawPingFileData: ...
 
-class SimradRawPingBottom_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class SimradRawPingBottom_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> SimradRawPingBottom_stream:
         """return a copy using the c++ default copy constructor"""
 
@@ -381,7 +381,7 @@ class SimradRawPingBottom_stream(themachinethatgoesping.echosounders_nanopy.file
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingBottom_stream: ...
 
-class SimradRawPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom):
+class SimradRawPingBottom(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom):
     def copy(self) -> SimradRawPingBottom:
         """return a copy using the c++ default copy constructor"""
 
@@ -389,7 +389,7 @@ class SimradRawPingBottom(themachinethatgoesping.echosounders_nanopy.filetemplat
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingBottom: ...
 
-class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class SimradRawPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration: ...
 
     def copy(self) -> SimradRawPingWatercolumn_stream:
@@ -399,7 +399,7 @@ class SimradRawPingWatercolumn_stream(themachinethatgoesping.echosounders_nanopy
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingWatercolumn_stream: ...
 
-class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn):
+class SimradRawPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration: ...
 
     def copy(self) -> SimradRawPingWatercolumn:
@@ -409,7 +409,7 @@ class SimradRawPingWatercolumn(themachinethatgoesping.echosounders_nanopy.filete
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingWatercolumn: ...
 
-class SimradRawPing_stream(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class SimradRawPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     def copy(self) -> SimradRawPing_stream:
         """return a copy using the c++ default copy constructor"""
 
@@ -420,7 +420,7 @@ class SimradRawPing_stream(themachinethatgoesping.echosounders_nanopy.filetempla
     @property
     def file_data(self) -> SimradRawPingFileData_stream: ...
 
-class SimradRawPing(themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping):
+class SimradRawPing(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     def copy(self) -> SimradRawPing:
         """return a copy using the c++ default copy constructor"""
 

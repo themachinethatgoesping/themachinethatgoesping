@@ -38,7 +38,11 @@ Six interfaces, each a **top-level** (`<Fmt>XDataInterface`, over multiple files
 
 ## Minimal ping TYPE infrastructure (needed only so the ping interface compiles)
 The ping interface PerFile is templated on `<Fmt>PingContainer` = `PingContainer<<Fmt>Ping>`, so a
-ping type must exist. Create **stubs** under `filedatatypes/` (mirror kmall, drop all data logic):
+ping type must exist. Create **stubs** under `filedatatypes/` (mirror kmall, drop all data logic).
+**Namespace:** the `I_Ping*` interfaces + `PingContainer` + calibration bases now live in
+**`pingprocessing::datatypes`** (echosounders depends on pingprocessing) — fully qualify them as
+`pingprocessing::datatypes::I_PingBottom` etc. (as kmall does); only the `filedatainterfaces` /
+`datastreams` / `cache_structures` stay in `echosounders::filetemplates`.
 - `<Fmt>PingCommon<t_ifstream>` — holds `shared_ptr<<Fmt>PingFileData> _file_data`; `file_data()`
   get/set; `t_rawdata` alias. (copy kmallpingcommon verbatim, rename.)
 - `<Fmt>PingFileData<t_ifstream>` — derives `I_PingFileData` **and**
@@ -81,9 +85,10 @@ ping type must exist. Create **stubs** under `filedatatypes/` (mirror kmall, dro
   `py_i_configurationdatainterface::ConfigurationDataInterfacePerFile_add_interface`. Register every
   `init_c_*` in `py_filedatainterfaces/module.cpp` (PerFile before top-level).
 - `py_filedatatypes/` (NEW) — `module.{hpp,cpp}` + `c_<fmt>ping{common,filedata,bottom,watercolumn}.cpp`
-  + `c_<fmt>ping.cpp`. `nb::class_<t_X, datatypes::I_PingBottom>` (etc.) for the sub-types;
-  filedata gets `<Fmt>DatagramInterface_add_interface_functions`; ping/common expose `file_data`
-  via `def_prop_ro(..., nb::rv_policy::reference_internal)`; end each with `__PYCLASS_DEFAULT_COPY__`.
+  + `c_<fmt>ping.cpp`. `nb::class_<t_X, pingprocessing::datatypes::I_PingBottom>` (etc.) for the
+  sub-types; filedata gets `<Fmt>DatagramInterface_add_interface_functions`; ping/common expose
+  `file_data` via `def_prop_ro(..., nb::rv_policy::reference_internal)`; end each with
+  `__PYCLASS_DEFAULT_COPY__`.
 - `py_filedatacontainers/` — add `c_<fmt>pingcontainer.cpp`:
   `py_pingcontainer::create_PingContainerType<<Fmt>Ping<Stream>>(m, name)`.
 - filehandler `c_<fmt>filehandler.cpp` — add `def_prop_ro` for the six interfaces + `get_pings`

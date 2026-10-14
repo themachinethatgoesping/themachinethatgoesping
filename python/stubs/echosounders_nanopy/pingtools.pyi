@@ -4,17 +4,17 @@ from collections.abc import Sequence
 from typing import overload
 
 import themachinethatgoesping.algorithms_nanopy.pingtools
-import themachinethatgoesping.echosounders_nanopy.filetemplates
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
 
 class PingSampleSelector:
     def __init__(self) -> None: ...
 
     @overload
-    def apply_selection(self, ping_watercolumn: themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingWatercolumn) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection: ...
+    def apply_selection(self, ping_watercolumn: themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSampleSelection: ...
 
     @overload
-    def apply_selection(self, ping_bottom: themachinethatgoesping.echosounders_nanopy.filetemplates.I_PingBottom) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection: ...
+    def apply_selection(self, ping_bottom: themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingBottom) -> themachinethatgoesping.algorithms_nanopy.pingtools.BeamSelection: ...
 
     def get_min_beam_number(self) -> int | None:
         """min beam number to select"""

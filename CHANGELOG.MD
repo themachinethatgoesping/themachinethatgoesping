@@ -10,9 +10,13 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - pingprocessing -> 0.17.0
 - tools -> 0.34.1
 - algorithms -> 0.14.0
+- widgets -> 0.2.0
+- meta -> 0.5.0
 
 ## Breaking
 - algorithms/echosounders: refractoring pings to depend on mbestransmissioninfos 
+- switched order of echosounders/pingprocessing: pinginterface no accessed from pingprocessing, echosoudner classes build on it
+- widgets/meta/ping: adopt new interface
 
 ## Improvements
 - navigation: reworking sensor configuration handling

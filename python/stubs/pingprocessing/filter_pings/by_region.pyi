@@ -1,19 +1,19 @@
-from themachinethatgoesping.echosounders_nanopy import (
-    filetemplates as filetemplates
-)
-import themachinethatgoesping.echosounders_nanopy.filetemplates
-from themachinethatgoesping.echosounders_nanopy.filetemplates import (
-    I_Ping as I_Ping
-)
 from themachinethatgoesping.navigation_nanopy.navtools import (
     compute_latlon_distance_m as compute_latlon_distance_m
 )
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
 )
+from themachinethatgoesping.pingprocessing_nanopy import (
+    datatypes as datatypes
+)
+import themachinethatgoesping.pingprocessing_nanopy.datatypes
+from themachinethatgoesping.pingprocessing_nanopy.datatypes import (
+    I_Ping as I_Ping
+)
 
 
-def by_latlon(pings: list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping], min_lat: float = float('nan'), max_lat: float = float('nan'), min_lon: float = float('nan'), max_lon: float = float('nan'), progress: bool = False) -> list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping]:
+def by_latlon(pings: list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping], min_lat: float = float('nan'), max_lat: float = float('nan'), min_lon: float = float('nan'), max_lon: float = float('nan'), progress: bool = False) -> list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping]:
     """
     Filter pings by latitude and longitude region.
 
@@ -38,7 +38,7 @@ def by_latlon(pings: list[themachinethatgoesping.echosounders_nanopy.filetemplat
         List of filtered pings.
     """
 
-def by_distance(pings: list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping], center_lat: float, center_lon: float, max_distance_m: float, progress: bool = False) -> list[themachinethatgoesping.echosounders_nanopy.filetemplates.I_Ping]:
+def by_distance(pings: list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping], center_lat: float, center_lon: float, max_distance_m: float, progress: bool = False) -> list[themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping]:
     """
     Filter pings by distance from a center coordinate.
 

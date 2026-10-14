@@ -53,7 +53,7 @@ from step 3 inherits them and dispatches to your C++).
   detections carry no ready-made XYZ — provide angles + travel times as best guesses; raytracing later).
 
 ## Calibration: raw + converted amplitudes (av = uncalibrated Sv)
-Build `<Fmt>WaterColumnCalibration : filetemplates::datatypes::calibration::WaterColumnCalibration`
+Build `<Fmt>WaterColumnCalibration : pingprocessing::datatypes::calibration::WaterColumnCalibration`
 (mirror `KMALLWaterColumnCalibration`) + `using <Fmt>MultiSectorWaterColumnCalibration =
 T_MultiSectorCalibration<<Fmt>WaterColumnCalibration>;`. `setup_<fmt>_calibrations()` builds
 `_power_calibration`/`_ap_calibration`/`_av_calibration` as `AmplitudeCalibration(-system_gain_offset)`
@@ -102,7 +102,7 @@ the ping's first record of a type.
    selection overload otherwise **hides** the base no-arg convenience overload and code that calls
    `watercolumn().get_number_of_samples_per_beam()` (0-arg, e.g. pingcontainer) fails to compile.
 2. **Fully qualify base calibration return types in overrides**:
-   `const filetemplates::datatypes::calibration::WaterColumnCalibration&` /
+   `const pingprocessing::datatypes::calibration::WaterColumnCalibration&` /
    `...::I_MultiSectorCalibration&` — inside `<fmt>::filedatatypes` an unqualified `calibration::` binds
    to *your* `<fmt>::filedatatypes::calibration` namespace.
 3. **Multi-detect records**: a bottom-detection record may hold **several detections per beam** (s7k
