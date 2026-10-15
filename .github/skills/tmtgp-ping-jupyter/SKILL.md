@@ -92,3 +92,20 @@ Higher-level: `theping.pingprocessing.*` (filter_pings, overview, watercolumn.ec
   has a record type not named in the enum and a binding returned the raw enum to Python; the container
   now returns **string** keys to avoid this (see tmtgp-cpp-nanobind-style).
 - Qt viewers need `%gui qt6` in the first cell; matplotlib-widget plots need `%matplotlib widget`.
+- **"The WCIViewerQt / combined viewer stops updating the image (the ping number keeps advancing, the
+  load bar stays partly filled)" is almost always a per-ping `make_wci` build crash that the viewer
+  swallowed — NOT a pyqtgraph/paint/Wayland bug.** Reproduce the build directly in a fresh
+  `mamba run python`: `make_wci_dual_head(ping, ping_sample_selector=pss, stack=..., mp_cores=...)` per
+  ping, catching exceptions — only the pings that crash fail to display (so it looks "chaotic, some work
+  some don't"). The classic cause is a `PingSampleSelector` (`select_max_bottom_range_percent` +
+  `select_beam_range_by_angles` over the full swath) that includes outer beams with no bottom → range 0
+  → the backtracer's `{0, range}` interpolator throws `_check_XY` "X list contains XType x values" (=
+  duplicate X). See **tmtgp-echosounders-watercolumn-bottom** gotcha #8. Confirm by commenting out the
+  `ping_sample_selector=` argument — if it then works, it's this. The viewers now surface such errors
+  (progress label + a `warnings.warn`) instead of freezing silently.
+- **Bisecting a theping regression the user hit via pixi/conda:** the user pins exact package builds
+  (e.g. `0.35.1` works, `0.35.2.dev` broken) → map each to its superproject commit, then
+  `git ls-tree <commit> subprojects/<name>` to get the submodule pointer and
+  `git diff <good_ptr> <bad_ptr>` inside that submodule to see the actual source change. The installed
+  C++ in the `dev` env may be newer than the user's pinned build, so a repro there confirms the
+  mechanism but not necessarily the exact commit.

@@ -80,6 +80,18 @@ class WCIViewerQt(PySide6.QtWidgets.QMainWindow):
     def run(self) -> None:
         """Enter the Qt event loop (blocking).  Call after ``.show()``."""
 
+    def cleanup(self) -> None:
+        """
+        Stop all background activity owned by this viewer.
+
+        Invoked on window close (and by the combined viewer) so that an active
+        playback / capture does not keep running after the GUI is gone.
+        """
+
+    def closeEvent(self, event) -> None: ...
+
+    def __del__(self) -> None: ...
+
     def register_ping_change_callback(self, callback: Any) -> None: ...
 
     def unregister_ping_change_callback(self, callback: Any) -> None: ...

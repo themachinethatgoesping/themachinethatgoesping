@@ -56,8 +56,9 @@ class BacktracedWCI:
     def get_wci_first_sample_number_internal(self) -> int:
         """
         Get the internally saved wci first sample number.
-               Internally: the first_sample_number of the image is divided by
-                           sample_number_step
+
+        Internally: the first_sample_number of the image is divided by
+                    sample_number_step
 
         Returns:
             uint16_t

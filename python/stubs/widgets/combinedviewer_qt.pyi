@@ -82,7 +82,7 @@ class CombinedViewerQt(PySide6.QtWidgets.QMainWindow):
         """Show the window and restore saved dock arrangement."""
 
     def closeEvent(self, event) -> None:
-        """Auto-save window geometry and dock arrangement on close."""
+        """Stop hosted viewers' background activity and save state on close."""
 
     def save_state(self) -> None:
         """Explicitly save window geometry and dock arrangement."""

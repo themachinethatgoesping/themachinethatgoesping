@@ -124,6 +124,34 @@ the ping's first record of a type.
 7. **Lazy-init the calibration in the `get_[multisector]watercolumn_calibration()` overrides**
    (`_file_data->init_watercolumn_calibration()`), because the builder calls `has_av`/`get_wci` without
    calling `ping.load()` first.
+8. **A beam with NO bottom detection (reference range 0) crashes `make_wci` — same `_check_XY`
+   throw as #4 but a *different* interpolator.** Besides the angle interpolator (#4), the backtracer
+   builds a per-beam **range->sample** interpolator from `{0, range}`
+   (`algorithms/.../backtracers/backtracedwci.hpp` ctor). A beam whose reference range is `0` (or
+   non-finite) makes that `{0, 0}` (duplicate X) and aborts the **ENTIRE** water-column image. This
+   bites the moment a `PingSampleSelector` limits the column to the bottom over the full swath
+   (`pss.select_max_bottom_range_percent(102)` + `pss.select_beam_range_by_angles(-90, 90, step)`):
+   the outer beams have no bottom → range 0. Guard it in **both** places — clamp non-positive/non-finite
+   ranges to a tiny positive value in `make_image_helper.get_bottom_directions_wci` /
+   `get_bottom_directions_bottom` (Python, live without a rebuild) **and** in the `BacktracedWCI` ctor
+   (C++, covers every caller) — so a no-bottom beam yields out-of-range (NaN) samples instead of crashing.
+   Reproduce per-ping: `for p in pings: try: make_wci_dual_head(p, ping_sample_selector=pss, stack=10,
+   mp_cores=8) except Exception: ...` — only *some* pings (those with ≥1 zero-range beam) throw, so it
+   looks "chaotic".
+
+**Debugging "the WCI/Echogram viewer stops updating" (it usually is NOT a pyqtgraph/paint bug):** the
+viewers wrap `imagebuilder.build()` in `except Exception`; the fast/autoplay path used to swallow it
+**silently**, so a per-ping build crash (e.g. #8) looked like a frozen GUI that keeps advancing the ping
+index with the progress bar stuck "loading". `WCICore._report_build_error` now surfaces it (progress
+label + one deduped `warnings.warn`). So: **reproduce `make_wci_dual_head(ping, ...)` directly** (with
+the user's exact `PingSampleSelector`, `stack`, `mp_cores`) and catch the exception, instead of chasing
+the GUI/paint/Wayland layer. Bisect regressions by conda/pixi package version and diff the **submodule
+pointers** between the working vs broken superproject commits
+(`git diff <good> <bad> -- subprojects/<name>` after `git ls-tree`). Also: closing a Qt viewer must stop
+its background work — `WCIViewerQt.cleanup()` (playback timer / autoplay / capture) is called from
+`closeEvent`/`__del__`, and `CombinedViewerQt.closeEvent` calls `cleanup()` on every hosted viewer
+(embedded viewers never get their own `closeEvent`).
+
 
 ## Validate on real data (fresh process, NOT the notebook kernel)
 ```python

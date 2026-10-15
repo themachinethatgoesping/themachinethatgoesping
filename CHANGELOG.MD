@@ -27,6 +27,10 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - echosounders: fix reading attitudes in some cases
 - tools: enum helper for improved error messgages
 
+## Fixes
+- widgets: cleanup not stopping all background processes
+- pingprocessing: fixed regression: wciviewer sielently discarded pings with with invalid bottom detection beams
+
 ## Maintanance
 - remove upper bound for Python version (now supports Python abi3 >= 3.12)
 - dependence on pybind11_mkdoc+libclang2 for mkdoc generation
