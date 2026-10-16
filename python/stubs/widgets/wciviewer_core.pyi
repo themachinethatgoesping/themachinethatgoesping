@@ -11,7 +11,7 @@ import pyqtgraph
 import pyqtgraph.Qt.QtCore
 import pyqtgraph.Qt.QtWidgets
 
-from themachinethatgoesping import echosounders as echosounders
+from themachinethatgoesping import pingprocessing as pingprocessing
 from themachinethatgoesping.pingprocessing.watercolumn import (
     image as mi
 )
