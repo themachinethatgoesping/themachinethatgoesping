@@ -3,7 +3,7 @@ Backend for pre-built echogram images with extent metadata.
 
 Wraps a 2D numpy array (in-memory or memory-mapped) together with
 matplotlib-style extent metadata so it can be used as an EchogramBuilder
-backend.  This replaces the old ``EchoData`` helper.
+backend.
 
 Typical usage::
 

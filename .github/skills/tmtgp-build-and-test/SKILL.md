@@ -239,8 +239,8 @@ subproject `meson.build`.
 
 ## pingtools was split (navigation of the include/namespace)
 `BeamSelection` / `BeamSampleSelection` / `ReadSampleRange` moved to **`algorithms::pingtools`**
-(`algorithms/pingtools/…`, python `algorithms.pingtools`), while **`PingSampleSelector` stays in
-`echosounders::pingtools`** (historically it was tied to `I_PingBottom`/`I_PingWatercolumn`). Inside
+(`algorithms/pingtools/…`, python `algorithms.pingtools`), while **`PingSampleSelector` moved to
+`pingprocessing::pingtools`** (historically it was tied to `I_PingBottom`/`I_PingWatercolumn`). Inside
 the algorithms library, include a sibling header **relatively**
 (`"../../pingtools/beamselection.hpp"`), not as `<themachinethatgoesping/algorithms/…>` (the lib's own
 include root is `…/algorithms`, not `…/src`).

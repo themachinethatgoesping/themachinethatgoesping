@@ -9,7 +9,6 @@ from themachinethatgoesping.echosounders_nanopy import (
     gsf as gsf,
     kmall as kmall,
     kongsbergall as kongsbergall,
-    pingtools as pingtools,
     s7k as s7k,
     simradraw as simradraw
 )

@@ -17,6 +17,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms/echosounders: refractoring pings to depend on mbestransmissioninfos 
 - switched order of echosounders/pingprocessing: pinginterface no accessed from pingprocessing, echosoudner classes build on it
 - widgets/meta/ping: adopt new interface
+- moved pingtools/pingsampleselctor from echosounders to pingprocessing
 
 ## Improvements
 - navigation: reworking sensor configuration handling
@@ -38,6 +39,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - renamed positionaloffsets files to sensorpose
 - update catch2 to 3.16.1
 - update fast_float to 8.3.2
+- remove old echodata class from pingprocessing
 
 # [0.36.0] - 07-10-2026
 

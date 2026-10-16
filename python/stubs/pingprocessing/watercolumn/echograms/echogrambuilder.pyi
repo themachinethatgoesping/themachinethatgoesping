@@ -111,13 +111,12 @@ class EchogramBuilder:
         """
         Create an EchogramBuilder from a 2D image array with extent metadata.
 
-        This is the replacement for the old ``EchoData`` helper. Pass any 2D
+        Pass any 2D
         numpy array (in-memory or memory-mapped) together with per-ping
         y-axis extents and timestamps.
 
         Args:
-            image: 2D array of shape (n_pings, n_samples).  Accepts both
-                regular ``ndarray`` and ``np.memmap``.
+            Accepts both regular ``ndarray`` and ``np.memmap``.
             ping_times: Unix timestamps per ping, shape (n_pings,).
             y_min: Per-ping minimum y value (float or array).
             y_max: Per-ping maximum y value (float or array).

@@ -8,5 +8,6 @@ from themachinethatgoesping.pingprocessing import (
     watercolumn as watercolumn
 )
 from themachinethatgoesping.pingprocessing_nanopy import (
-    datatypes as datatypes
+    datatypes as datatypes,
+    pingtools as pingtools
 )
