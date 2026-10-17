@@ -11,10 +11,7 @@ from typing import Union
 
 import numpy
 
-from themachinethatgoesping import (
-    algorithms as algorithms,
-    echosounders as echosounders
-)
+from themachinethatgoesping import algorithms as algorithms
 from themachinethatgoesping.pingprocessing.core.progress import (
     get_progress_iterator as get_progress_iterator
 )

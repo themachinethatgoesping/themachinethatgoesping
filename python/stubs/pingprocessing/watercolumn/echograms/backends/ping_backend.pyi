@@ -4,7 +4,6 @@ from typing import List, Union
 
 import numpy
 
-from themachinethatgoesping import echosounders as echosounders
 from themachinethatgoesping.algorithms_nanopy.geoprocessing.functions import (
     to_raypoints as to_raypoints
 )
@@ -30,7 +29,7 @@ from themachinethatgoesping.pingprocessing.watercolumn.helper.select_get_wci_ima
 
 class PingDataBackend(themachinethatgoesping.pingprocessing.watercolumn.echograms.backends.base.EchogramDataBackend):
     """
-    Backend that reads data from echosounders ping objects.
+    Backend that reads data from pingprocessing ping objects.
 
     This backend wraps ping objects and provides access to water column data
     through the EchogramDataBackend interface.

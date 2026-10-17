@@ -4,7 +4,11 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [Unreleased]
+# [0.37.1] - 17-10-2026
+- pingprocessing -> 0.17.1
+
+## Fixes
+- pingprocessing: fixed test execution for tests the require echosounders library
 
 # [0.37.0] - 17-10-2026
 - navigation -> 0.21.0
