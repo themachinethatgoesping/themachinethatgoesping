@@ -4,7 +4,7 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [Unreleased]
+# [0.37.0] - 17-10-2026
 - navigation -> 0.21.0
 - echosounders -> 0.50.0
 - pingprocessing -> 0.17.0
@@ -12,6 +12,12 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - algorithms -> 0.14.0
 - widgets -> 0.2.0
 - meta -> 0.5.0
+
+## Highlights
+- Towards improved new ping structure to be used for raytracing applications (this means function names are beeing updated in this relase and following release)
+- Fix regression in wciviewer where pings with invalid bottom detection beams lead to silently dropping images
+- moving to nanobind split mode to make builds work with multiple python releases without recompilation
+- Pingprocessing now independent of echosounders library (transitional change)
 
 ## Breaking
 - algorithms/echosounders: refractoring pings to depend on mbestransmissioninfos 
