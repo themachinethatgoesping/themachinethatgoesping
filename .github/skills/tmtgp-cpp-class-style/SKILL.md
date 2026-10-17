@@ -76,11 +76,11 @@ style still visible in some `kmall` headers.
   `static_assert(sizeof(Content) == <N>, "...")`. A struct whose fields are already naturally aligned
   to the packed layout (all-4-byte records, or a carefully ordered header with every reserved field
   present — like the DRF) needs **no** pragma; packing it needlessly yields odd `sizeof`s that break
-  MSVC SIMD on Windows (see tmtgp-echosounders-record-parsers). Value-init in the ctor (`: _content{}`)
+  MSVC SIMD on Windows (see tmtgp-echosounders-lessons-learned). Value-init in the ctor (`: _content{}`)
   so an unset packed float never round-trips a NaN bit pattern.
 - Public: clean `get_x()/set_x(v)` per field; `bool operator==(const T&) const = default;`
   (but a *user-provided* `operator==` for an all-integer, packed, `bind_vector`-bound row of size ∉
-  {1,2,4,8} — see the Windows SIMD rule in tmtgp-echosounders-record-parsers);
+  {1,2,4,8} — see the Windows SIMD rule in tmtgp-echosounders-lessons-learned);
   `from_stream(...)` / `to_stream(std::ostream&) const`; an `__printer__` (below); the macros
   `__CLASSHELPER_DEFAULT_PRINTING_FUNCTIONS__` and `__STREAM_DEFAULT_TOFROM_BINARY_FUNCTIONS__(T)`
   (`..._NOT_CONST__(T)` if `to_stream` is non-const).
@@ -154,7 +154,7 @@ line straight back to the accessor. Examples:
 
 ### Substruct containers print their fields (the `(.accessor)` pattern)
 A per-beam/per-sample **container** (`std::vector<Row>` + `get_<field>_tensor()`; see
-tmtgp-echosounders-record-parsers) prints **all of its tensors**, so a reader sees the data — do NOT
+tmtgp-echosounders-lessons-learned) prints **all of its tensors**, so a reader sees the data — do NOT
 reduce a container's `__printer__` to a bare `number_of_x` count. Follow `AttitudeSampleContainer`:
 
 ```cpp

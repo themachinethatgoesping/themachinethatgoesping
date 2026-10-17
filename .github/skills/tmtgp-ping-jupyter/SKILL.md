@@ -55,7 +55,7 @@ d.print(); d.count_datagrams_per_type()              # per-type counts (string k
 raw  = fh.datagram_interface.datagrams_raw()          # unparsed
 typed = fh.datagram_interface.datagrams('7027')       # typed; accepts number/name/enum (o_ wrapper)
 ```
-Pings (after the ping interface is implemented — see tmtgp-echosounders-ping-interface):
+Pings (after the ping interface is implemented — see tmtgp-echosounders-add-format):
 ```python
 pings = fh.get_pings()
 p = pings[100]
@@ -87,7 +87,7 @@ Higher-level: `theping.pingprocessing.*` (filter_pings, overview, watercolumn.ec
 - A `UnicodeDecodeError` or `nanobind::str(): conversion error!` from a `print()` / `info_string()`
   usually means a datagram-identifier→string conversion emitted **raw bytes** (invalid UTF-8); for a
   numeric-id format (s7k) the fix is a decimal string, not `int_as_string` (see
-  tmtgp-echosounders-datagram-indexing).
+  tmtgp-echosounders-lessons-learned §1).
 - `count_datagrams_per_type()` returning `ValueError: <n> is not a valid t_...Identifier` means a file
   has a record type not named in the enum and a binding returned the raw enum to Python; the container
   now returns **string** keys to avoid this (see tmtgp-cpp-nanobind-style).
@@ -100,7 +100,7 @@ Higher-level: `theping.pingprocessing.*` (filter_pings, overview, watercolumn.ec
   some don't"). The classic cause is a `PingSampleSelector` (`select_max_bottom_range_percent` +
   `select_beam_range_by_angles` over the full swath) that includes outer beams with no bottom → range 0
   → the backtracer's `{0, range}` interpolator throws `_check_XY` "X list contains XType x values" (=
-  duplicate X). See **tmtgp-echosounders-watercolumn-bottom** gotcha #8. Confirm by commenting out the
+  duplicate X). See **tmtgp-echosounders-lessons-learned** §6 (zero-range beam). Confirm by commenting out the
   `ping_sample_selector=` argument — if it then works, it's this. The viewers now surface such errors
   (progress label + a `warnings.warn`) instead of freezing silently.
 - **Bisecting a theping regression the user hit via pixi/conda:** the user pins exact package builds

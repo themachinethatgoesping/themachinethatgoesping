@@ -1,6 +1,6 @@
 ---
 name: tmtgp-echosounders-add-format
-description: 'Architecture of a file-format reader in themachinethatgoesping/echosounders and how to add a new one (e.g. s7k, gsf, kmall, kongsbergall, simradraw). Explains the layering: datagrams (headers/records), types (identifier enum), datagram interface, file handler (indexing via I_InputFileHandler), file-data interfaces (configuration/navigation/environment/ping), ping data types, and the nanobind bindings. USE when planning or extending an echosounder format reader. For the concrete first coding step use the tmtgp-echosounders-datagram-indexing skill, then tmtgp-echosounders-record-parsers for the per-record parsers; for class style / exposing to Python / building use the tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style and tmtgp-build-and-test skills.'
+description: 'Architecture of a file-format reader in themachinethatgoesping/echosounders and how to add a new one (e.g. s7k, gsf, kmall, kongsbergall, simradraw). Explains the layering: datagrams (headers/records), types (identifier enum), datagram interface, file handler (indexing via I_InputFileHandler), file-data interfaces (configuration/navigation/environment/ping), ping data types, and the nanobind bindings, plus the recommended build order. USE when planning or extending an echosounder format reader. For the hard-won per-step gotchas (indexing, record parsing, navigation, ping/watercolumn/bottom, viewer debugging) use the tmtgp-echosounders-lessons-learned skill; for class style / exposing to Python / building use the tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style and tmtgp-build-and-test skills.'
 ---
 
 # echosounders format architecture
@@ -38,6 +38,25 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
    (ping/datagram containers). These turn indexed datagrams into pings, navigation, calibration,
    water-column images. Mirror `kongsbergall`/`kmall`.
 
+## Build order (recommended workflow — do a thin vertical slice first)
+Build a working slice before any per-record parsing, mirroring **kmall/kongsbergall** (complete) or
+**s7k** (recent) at every step. Each step's hard-won gotchas are in **tmtgp-echosounders-lessons-learned**
+(section numbers below).
+1. **Datagram header + indexing + raw iteration** — `types.hpp` (identifier enum + `o_` wrapper),
+   the `<Fmt>Datagram` header (`from_stream`/`skip`/`get_timestamp`/`get_datagram_identifier`),
+   `<fmt>unknown`, `datagrams.{hpp,cpp}` variant, the datagram interface, the file handler. Goal:
+   `print(fh)` + `fh.datagram_interface.datagrams()` work. (lessons §1)
+2. **Per-record datagram classes** — one class per record type into typed fields, with containers +
+   typed `datagrams(type)` access. (lessons §3)
+3. **File-data interfaces + minimal ping types** — the configuration/navigation/environment/ping
+   `DataInterface`+`...PerFile` shells and stub ping types so the ping interface compiles; keep ping
+   init OFF. (lessons §2)
+4. **Navigation** — implement `read_navigation_data()` (+ record preference). (lessons §4)
+5. **Ping interface** — implement `read_pings()` (group datagrams into pings, fill each ping's
+   file_data index), then enable ALL interface inits. (lessons §5)
+6. **Water column + bottom + calibration** — the `I_PingWatercolumn`/`I_PingBottom` overrides +
+   `<Fmt>WaterColumnCalibration` so pingprocessing/widgets can display pings. (lessons §6-§7)
+
 ## Key base classes (in `filetemplates/`)
 - `I_InputFileHandler<t_DatagramBase, t_DatagramInterface>` — indexing, caching, `append_file(s)`,
   `datagram_interface()`, printing. The **only** requirements on `t_DatagramBase` are
@@ -58,7 +77,7 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
 Split into submodules, each with `module.{hpp,cpp}` (`def_submodule` + per-class `init_c_*`):
 `py_<fmt>/` (enum + option + `c_<fmt>filehandler.cpp`) → `py_datagrams/` (one `c_<datagram>.cpp` each,
 `substructs/` if any) → `py_filedatacontainers/` → `py_filedatainterfaces/` (interface template in a
-`.hpp` + class/init in the `.cpp`) → later `py_filedatatypes/`. See tmtgp-echosounders-datagram-indexing §2.
+`.hpp` + class/init in the `.cpp`) → later `py_filedatatypes/`. See tmtgp-cpp-nanobind-style (module layout).
 
 ## Registration checklist (for every new file)
 - Sources + headers + `.docstrings/*.doc.hpp` → `src/themachinethatgoesping/echosounders/meson.build`.

@@ -117,7 +117,7 @@ with names `"<Class>"` (`datastreams::MappedFileStream`) and `"<Class>_stream"` 
   `<xtensor-python/nanobind/pytensor.hpp>`; variant returns need `<nanobind/stl/variant.h>`).
   ⚠️ `bind_vector` emits `std::find/count/remove`; on clang-cl/MSVC these fail to compile for a
   packed, all-integer `Row` whose `sizeof` ∉ {1,2,4,8}. Fix it on the C++ `Row` (user-provided
-  `operator==`), NOT here — see the Windows SIMD rule in tmtgp-echosounders-record-parsers.
+  `operator==`), NOT here — see the Windows SIMD rule in tmtgp-echosounders-lessons-learned.
 - End every class with `__PYCLASS_DEFAULT_COPY__/BINARY/PRINTING__(Class)` as applicable.
 - **When you add a processed getter to the C++ class, add its `.def` here too** (and re-run
   make_pybind_doc so `DOC(...,get_x_in_<unit>)` resolves).
@@ -160,6 +160,60 @@ transitive or unity-build include. Common ones: `<nanobind/stl/optional.h>` (`st
 `std::optional` binding missing the header → Windows `bad cast` at `I_Ping` init). To audit, grep for
 `std::<type>` / `= std::nullopt` in `src/nanomodule` and confirm each such file includes its caster.
 
+## `boost::flyweight` across module boundaries → **MUST** be `intermodule_holder` (never shared_ptr / value)
+`boost::flyweight<T>` is used deliberately throughout theping (sensor configuration, navigation
+interpolator, calibrations, RuntimeParameters, sample vectors, …). It gives **two** things at once:
+value **deduplication** *and* an **already-computed hash** carried in the handle. **Never "simplify"
+a flyweight to `std::shared_ptr<T>` or to a plain `T`, and never remove it** — doing so throws away
+the dedup *and* forces a re-hash. Changing it is only acceptable with a very good reason, a full
+performance analysis, and a better alternative.
+
+**Pass a flyweight *as a flyweight* end-to-end — never value→flyweight at a boundary.** Interning
+`flyweight<T>(value)` hashes `T`; for a big `T` (e.g. `NavigationInterpolatorLatLon`, which holds a
+whole file's navigation) that is expensive and, if done per ping, catastrophic. So the interface
+that owns the dedup (`I_NavigationDataInterface::_navigation_interpolators`), the setter
+(`PingInfo::set_navigation_interpolator_latlon`), and the member must all use the **same** flyweight
+type so the hand-off is a cheap handle copy (the hash is computed exactly once, when the object is
+first interned).
+
+**The holder is part of the flyweight *type*, and cross-module flyweights MUST use
+`boost::flyweights::intermodule_holder`.** A default (`static_holder`) flyweight factory is a
+hidden-visibility Meyers singleton → **one factory per `.so`**. theping's extension modules
+(`echosounders_nanopy`, `pingprocessing_nanopy`, …) are independent `.so`s that both link the same
+static libs, so a flyweight **interned in one module and ref-count-erased in another** operates on
+the *wrong* factory and corrupts the heap → **`MemoryError: bad_array_new_length`** (a `new T[n]`
+with garbage `n` inside the factory's hashed container). This is **platform-specific**:
+- **Linux/ELF**: the GNU loader gives the singleton a **`STB_GNU_UNIQUE`** symbol → one factory
+  process-wide anyway → the bug is **latent** (you *cannot* reproduce it locally, even under
+  mimalloc/jemalloc).
+- **macOS (Mach-O two-level namespace) / Windows (PE)**: no equivalent → one factory per module →
+  **crash**. Surfaces as a macOS/Windows-only CI failure (e.g. `KMALLFileHandler(..., cache=True)`).
+
+`intermodule_holder` forces a **single process-wide factory** shared by all modules, keeping the
+dedup *and* refcounted cleanup (no leak) while fixing the crash. It pulls in
+`boost::interprocess::ipcdetail::intermodule_singleton`; it compiles and runs on all three platforms
+here (proven green on macOS CI — do **not** assume otherwise from a misleading commit message).
+
+**Consistency rule (this is what bites):** because the holder is part of the type, `flyweight<T>` and
+`flyweight<T, intermodule_holder>` are **different types**. If you make only *some* of the chain
+`intermodule_holder` (e.g. only the PingInfo members, leaving the setters/interface on the default
+holder), assignment goes through a **cross-policy conversion that silently re-interns (re-hashes)** —
+it may even still compile — so you get the performance hit back *and* a confusing partial fix. Change
+the **whole** chain. Define one alias and use it everywhere:
+```cpp
+// pinginfo.hpp (pingprocessing::datatypes)
+using NavigationInterpolatorLatLonFlyweight =
+    boost::flyweights::flyweight<navigation::NavigationInterpolatorLatLon,
+                                 boost::flyweights::intermodule_holder>;
+```
+then use that exact type in: the owning interface map + its accessors
+(`I_NavigationDataInterface`), the `PingInfo` member, `PingInfo`/`I_Ping` setters, every
+`read_pings()` call site (kmall/kongsbergall/simradraw/s7k `*pingdatainterfaceperfile.hpp`), and the
+nanobind `set_data` lambda in `c_pinginfo.cpp`. Worked examples: the `*Flyweight` aliases in
+`pinginfo.hpp`, and the pre-existing `flyweight<BeamSampleSelection, intermodule_holder>` in
+`i_pingwatercolumn.hpp` (same rationale, written out inline). To audit, grep for
+`flyweight<navigation::` and confirm **none** are default-holder outside the alias definition.
+
 ## No C++ multiple inheritance → "add-interface" helper for a second base
 nanobind binds **exactly one** C++ base (`nb::class_<Derived, Base>`); binding two C++ bases is
 **unsupported** (nanobind 3.x porting docs). When a class multiply-inherits in C++ (e.g.
@@ -189,3 +243,13 @@ If header A forward-declares `class B;` and returns `B` by value, mkdoc emits a 
 `redefinition of 'mkd_doc_…_B'`. Fix: add `// IGNORE_DOC:mkd_doc_…_B` immediately above the forward
 declaration and re-run mkdoc (worked example: `MBESRawDetectionData` forward-declared in
 `i_mbesrawdetectioninfos.hpp`).
+
+## mkdoc cannot parse a `std::vector<xt::xtensor<...>>` return
+`pybind11_mkdoc` (libclang) **aborts the whole class parse** on a getter that returns
+`std::vector<xt::xtensor<...>>`, so `DOC()` vars go missing for that getter **and every method
+declared after it** (not just itself). Use a plain string-literal docstring for such getters and keep
+them **last** in the class. (xtensor getters also need their casters in *that* TU:
+`#include <xtensor-python/nanobind/pytensor.hpp>` for an `xt::xtensor` return and
+`#include <nanobind/stl/vector.h>` for a `std::vector<...>` of them.) Worked examples: the per-beam /
+per-sample tensor getters on the echosounder record containers (see tmtgp-echosounders-lessons-learned
+§3).

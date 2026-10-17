@@ -269,7 +269,7 @@ sub-objects share the exact same `PingInfo` instance.
   sensor configuration + navigation interpolator as their own flyweights. The `has_*` getters check the
   flyweight content (default-constructed ⇒ "not set") — there are **no** `_..._set` bool members.
 - The echosounder ping implementations hand the ping's `PingInfo` pointer to the bottom/watercolumn (see
-  the `tmtgp-echosounders-interfaces` skill). Nanobind exposes `ping_info` as a **read-only property**
+  the `tmtgp-echosounders-add-format` skill). Nanobind exposes `ping_info` as a **read-only property**
   (`reference_internal`) + `get_ping_info()`; `bottom.ping_info` / `watercolumn.ping_info` return the
   same object as `ping.ping_info`.
 
