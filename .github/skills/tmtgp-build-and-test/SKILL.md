@@ -9,6 +9,21 @@ Always build from the **themachinethatgoesping** workspace folder
 (`/home/ssd/src/themachinethatgoesping/themachinethatgoesping`), never from a subproject folder
 (the subproject build tasks have known issues).
 
+### ⚠️ Subproject repos are SYMLINKED — edit via the workspace `subprojects/<mod>/…` path
+Each subproject (`algorithms`, `tools`, `navigation`, `echosounders`, `pingprocessing`, `widgets`,
+`gridding`, `meta`) exists **both** as a standalone sibling checkout
+(e.g. `/ssd/src/themachinethatgoesping/algorithms`) **and** as
+`themachinethatgoesping/subprojects/<mod>` — these are **symlinked to the SAME files on disk**, so an
+edit through either path changes the one underlying file (realpath lands under
+`…/themachinethatgoesping/subprojects/<mod>/…`). **Prefer the workspace
+`subprojects/<mod>/…` path** so paths line up with the build and you don't get confused by the two
+views of the same file.
+- Path alias: the `view`/`edit`/`create` tools accept a `/home/ssd/…` prefix, but **bash sees only
+  `/ssd/…`** (`/home/ssd` does not exist for the shell) — use `/ssd/…` or cwd-relative
+  `subprojects/<mod>/…` paths in shell commands.
+- The repo's built-in `grep`/`glob` tools may be unavailable in the sandbox (bundled ripgrep missing);
+  fall back to bash `grep -rn` / `find` when they error.
+
 ## Preferred: the VS Code task (full pipeline)
 Run task **`Ping: Build and Test python (j8)`** from the `themachinethatgoesping` folder.
 It runs, from `builddir`:
@@ -26,6 +41,15 @@ the multi-root `.code-workspace` — tried bare label and `shell:` prefix, both 
 to running the task's **exact** command yourself in a terminal (the full block in the "ALWAYS finish"
 section below), `cwd = builddir`. That is functionally identical and is what the task runs.
 Other useful tasks: **`Ping: Build and Test cpp`** (C++ only), **`Ping: Test python`** (pytest only).
+
+### 🚫 NEVER hand-write / hand-edit the generated `.doc.hpp` docstrings
+The `.docstrings/*.doc.hpp` files are **generated** — step 1 of the `(j8)` task runs
+`pybind11_mkdoc` (`meson compile mkdoc`) which (re)creates them from the `/** @brief … */` and
+`///<` comments in the headers. **Edit the comments in the C++ header, then let the TASK regenerate
+the docstrings** — do not write a `mkd_doc_*` entry by hand (it will be overwritten, and hand edits
+cause `DOC(...)`/mkdoc drift). When you add a brand-new class/method the new `DOC(...)` var does not
+exist until the task's mkdoc step runs, so build in two phases (`(j8, no doc)` to see real compiler
+errors, then `(j8)` to regenerate docs and finish) — see the two-phase note below.
 
 ### ⚠️ ALWAYS finish with the full `(j8)` command (the one that runs `meson compile mkdoc`)
 Fast-iteration shortcuts (`meson compile`, `meson compile -j8`, the `(no doc)` / `(j8, no doc)` tasks,

@@ -108,6 +108,101 @@ class o_extr_mode:
     def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
         """Print object information"""
 
+class t_dup_mode(enum.Enum):
+    """
+    Duplicate-handling mode for insert().
+
+    insert() always silently drops EXACT duplicates (same x AND exactly
+    the same y). This mode only controls what happens on a genuine
+    CONFLICT: the same x value present with a DIFFERENT y value.
+    """
+
+    fail = 0
+    """throw a domain_error on a conflicting duplicate x value (default)"""
+
+    keep_first = 1
+    """on conflict keep the first occurrence (the existing / earlier value)"""
+
+    keep_last = 2
+    """
+    on conflict keep the last occurrence (the newly inserted / later
+    value)
+    """
+
+class o_dup_mode:
+    """
+    Helper class to convert between strings and enum values of type 't_dup_mode'
+    """
+
+    @overload
+    def __init__(self, value: t_dup_mode = t_dup_mode.fail) -> None:
+        """Construct from enum value"""
+
+    @overload
+    def __init__(self, value: str) -> None: ...
+
+    @overload
+    def __init__(self, value: int) -> None:
+        """Construct from string"""
+
+    @property
+    def value(self) -> t_dup_mode:
+        """enum value"""
+
+    @value.setter
+    def value(self, arg: t_dup_mode, /) -> None: ...
+
+    __default_value__: Final[t_dup_mode] = ...
+    """default enum value when constructing without arguments"""
+
+    @overload
+    def __eq__(self, arg: o_dup_mode, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: t_dup_mode, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: int, /) -> bool: ...
+
+    @overload
+    def __eq__(self, arg: str, /) -> bool: ...
+
+    def copy(self) -> o_dup_mode:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> o_dup_mode: ...
+
+    def __deepcopy__(self, arg: dict, /) -> o_dup_mode: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> o_dup_mode:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return the name of the enum value (safe for unregistered values)"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
 class NearestInterpolator:
     """
     Interpolator class to find nearest neighbors within vector data
@@ -179,12 +274,12 @@ class NearestInterpolator:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -215,7 +310,7 @@ class NearestInterpolator:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -239,7 +334,32 @@ class NearestInterpolator:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolator) -> bool: ...
 
@@ -350,12 +470,12 @@ class NearestInterpolatorF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -386,7 +506,7 @@ class NearestInterpolatorF:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -410,7 +530,32 @@ class NearestInterpolatorF:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorF) -> bool: ...
 
@@ -521,12 +666,12 @@ class NearestInterpolatorDF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -557,7 +702,7 @@ class NearestInterpolatorDF:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -581,7 +726,32 @@ class NearestInterpolatorDF:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorDF) -> bool: ...
 
@@ -692,12 +862,12 @@ class NearestInterpolatorFD:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -728,7 +898,7 @@ class NearestInterpolatorFD:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -752,7 +922,32 @@ class NearestInterpolatorFD:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorFD) -> bool: ...
 
@@ -863,12 +1058,12 @@ class NearestInterpolatorDI:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -899,7 +1094,7 @@ class NearestInterpolatorDI:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -923,7 +1118,32 @@ class NearestInterpolatorDI:
 
     def extend(self, X: Sequence[float], Y: Sequence[int]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[int], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[int], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorDI) -> bool: ...
 
@@ -1034,12 +1254,12 @@ class NearestInterpolatorFI:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1070,7 +1290,7 @@ class NearestInterpolatorFI:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1094,7 +1314,32 @@ class NearestInterpolatorFI:
 
     def extend(self, X: Sequence[float], Y: Sequence[int]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[int], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[int], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorFI) -> bool: ...
 
@@ -1205,12 +1450,12 @@ class NearestInterpolatorDO:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1241,7 +1486,7 @@ class NearestInterpolatorDO:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1265,7 +1510,32 @@ class NearestInterpolatorDO:
 
     def extend(self, X: Sequence[float], Y: Sequence[object]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[object], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[object], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorDO) -> bool: ...
 
@@ -1376,12 +1646,12 @@ class NearestInterpolatorFO:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1412,7 +1682,7 @@ class NearestInterpolatorFO:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1436,7 +1706,32 @@ class NearestInterpolatorFO:
 
     def extend(self, X: Sequence[float], Y: Sequence[object]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[object], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[object], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: NearestInterpolatorFO) -> bool: ...
 
@@ -1547,12 +1842,12 @@ class LinearInterpolator:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1583,7 +1878,7 @@ class LinearInterpolator:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1607,7 +1902,32 @@ class LinearInterpolator:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: LinearInterpolator) -> bool: ...
 
@@ -1718,12 +2038,12 @@ class LinearInterpolatorF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1754,7 +2074,7 @@ class LinearInterpolatorF:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1778,7 +2098,32 @@ class LinearInterpolatorF:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: LinearInterpolatorF) -> bool: ...
 
@@ -1889,12 +2234,12 @@ class LinearInterpolatorDF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -1925,7 +2270,7 @@ class LinearInterpolatorDF:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -1949,7 +2294,32 @@ class LinearInterpolatorDF:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: LinearInterpolatorDF) -> bool: ...
 
@@ -2060,12 +2430,12 @@ class LinearInterpolatorFD:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -2096,7 +2466,7 @@ class LinearInterpolatorFD:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -2120,7 +2490,32 @@ class LinearInterpolatorFD:
 
     def extend(self, X: Sequence[float], Y: Sequence[float]) -> None: ...
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None: ...
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
+        """
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
+
+        Args:
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
+        """
 
     def __eq__(self, other: LinearInterpolatorFD) -> bool: ...
 
@@ -2232,12 +2627,12 @@ class AkimaInterpolator:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -2268,7 +2663,7 @@ class AkimaInterpolator:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -2291,6 +2686,7 @@ class AkimaInterpolator:
     def append(self, x: float, y: float) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
+
         Exception: raises domain error, strong exception guarantee
 
         Args:
@@ -2310,19 +2706,31 @@ class AkimaInterpolator:
             Y: list of corresponding Y values. Must be same size as X
         """
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
-        append x and y value lists to the interpolator data (vectorized call)
-        This call is much more expensive than extend as it requires copying
-        data and sorting.
-        Exception: raises domain error, strong exception guarantee
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
 
         Args:
-            X: list of x values. (Does not have to be sorted. But must be
-               unique)
-            Y: list of corresponding Y values. Must be same size as X
-            is_sorted: this indicates that X is already sorted in ascending
-                       order. (default: false)
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
         """
 
     def __eq__(self, other: AkimaInterpolator) -> bool: ...
@@ -2435,12 +2843,12 @@ class AkimaInterpolatorF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def empty(self) -> bool:
@@ -2471,7 +2879,7 @@ class AkimaInterpolatorF:
 
         Args:
             X:: x vector (must be same size, must be sorted in ascending
-              order)
+                order)
             Y:: y vector (must be same size)
         """
 
@@ -2494,6 +2902,7 @@ class AkimaInterpolatorF:
     def append(self, x: float, y: float) -> None:
         """
         append an x- and the corresponding y value to the interpolator data.
+
         Exception: raises domain error, strong exception guarantee
 
         Args:
@@ -2513,19 +2922,31 @@ class AkimaInterpolatorF:
             Y: list of corresponding Y values. Must be same size as X
         """
 
-    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Y: Sequence[float], bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
-        append x and y value lists to the interpolator data (vectorized call)
-        This call is much more expensive than extend as it requires copying
-        data and sorting.
-        Exception: raises domain error, strong exception guarantee
+        Insert x and y value lists into the interpolator data (vectorized
+        call).
+
+        The new values are merged into the existing (already sorted) data.
+        Only the NEW values are sorted and then merged with the existing run,
+        which is much faster than re-sorting everything.
+
+        EXACT duplicates (same x AND exactly the same y) are always dropped
+        silently. A CONFLICT (same x but a DIFFERENT y) is resolved according
+        to ``duplicate_mode.``
+
+        Exception: raises domain_error, strong exception guarantee.
 
         Args:
-            X: list of x values. (Does not have to be sorted. But must be
-               unique)
-            Y: list of corresponding Y values. Must be same size as X
-            is_sorted: this indicates that X is already sorted in ascending
-                       order. (default: false)
+            X: list of x values. Does not have to be sorted.
+            Y: list of corresponding Y values. Must be the same size as X.
+            is_sorted: set to true if X is already sorted in ascending order
+                       (skips sorting the new values). (default: false)
+            duplicate_mode: how to resolve a conflict where the same x value
+                            is present with a different y value: fail (throw,
+                            the default), keep_first or keep_last. Exact (x,
+                            y) duplicates are always removed regardless of
+                            this.
         """
 
     def __eq__(self, other: AkimaInterpolatorF) -> bool: ...
@@ -2568,16 +2989,20 @@ class AkimaInterpolatorF:
 
 class SlerpInterpolator:
     """
-    Class that implements a slerp interpolation for vectors. Data is
-    internally represented in quaternions using lib eigen. Interfaces to
-    represent the data in yaw, pitch, roll angles are provided. the
-    __call__ equivalent to get interpolated yaw pitch roll is the ypr
+    Class that implements a slerp interpolation for vectors.
+
+    Data is internally represented in quaternions using lib eigen.
+
+    Interfaces to represent the data in yaw, pitch, roll angles are
+    provided.
+
+    the __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
 
     Template Args:
         XType:: type of the x values (must be floating point)
         YType:: floating point type of the y quaternion values (must be
-              floating point)
+                floating point)
     """
 
     def __init__(self, X: Sequence[float] = [], Yaw: Sequence[float] = [], Pitch: Sequence[float] = [], Roll: Sequence[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None:
@@ -2754,12 +3179,12 @@ class SlerpInterpolator:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
@@ -2831,7 +3256,7 @@ class SlerpInterpolator:
         """
 
     @overload
-    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -2848,7 +3273,7 @@ class SlerpInterpolator:
         """
 
     @overload
-    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
 
@@ -2900,16 +3325,20 @@ class SlerpInterpolator:
 
 class SlerpInterpolatorF:
     """
-    Class that implements a slerp interpolation for vectors. Data is
-    internally represented in quaternions using lib eigen. Interfaces to
-    represent the data in yaw, pitch, roll angles are provided. the
-    __call__ equivalent to get interpolated yaw pitch roll is the ypr
+    Class that implements a slerp interpolation for vectors.
+
+    Data is internally represented in quaternions using lib eigen.
+
+    Interfaces to represent the data in yaw, pitch, roll angles are
+    provided.
+
+    the __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
 
     Template Args:
         XType:: type of the x values (must be floating point)
         YType:: floating point type of the y quaternion values (must be
-              floating point)
+                floating point)
     """
 
     def __init__(self, X: Sequence[float] = [], Yaw: Sequence[float] = [], Pitch: Sequence[float] = [], Roll: Sequence[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None:
@@ -3086,12 +3515,12 @@ class SlerpInterpolatorF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
@@ -3163,7 +3592,7 @@ class SlerpInterpolatorF:
         """
 
     @overload
-    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -3180,7 +3609,7 @@ class SlerpInterpolatorF:
         """
 
     @overload
-    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
 
@@ -3232,16 +3661,20 @@ class SlerpInterpolatorF:
 
 class SlerpInterpolatorFD:
     """
-    Class that implements a slerp interpolation for vectors. Data is
-    internally represented in quaternions using lib eigen. Interfaces to
-    represent the data in yaw, pitch, roll angles are provided. the
-    __call__ equivalent to get interpolated yaw pitch roll is the ypr
+    Class that implements a slerp interpolation for vectors.
+
+    Data is internally represented in quaternions using lib eigen.
+
+    Interfaces to represent the data in yaw, pitch, roll angles are
+    provided.
+
+    the __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
 
     Template Args:
         XType:: type of the x values (must be floating point)
         YType:: floating point type of the y quaternion values (must be
-              floating point)
+                floating point)
     """
 
     def __init__(self, X: Sequence[float] = [], Yaw: Sequence[float] = [], Pitch: Sequence[float] = [], Roll: Sequence[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None:
@@ -3418,12 +3851,12 @@ class SlerpInterpolatorFD:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
@@ -3495,7 +3928,7 @@ class SlerpInterpolatorFD:
         """
 
     @overload
-    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -3512,7 +3945,7 @@ class SlerpInterpolatorFD:
         """
 
     @overload
-    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
 
@@ -3564,16 +3997,20 @@ class SlerpInterpolatorFD:
 
 class SlerpInterpolatorDF:
     """
-    Class that implements a slerp interpolation for vectors. Data is
-    internally represented in quaternions using lib eigen. Interfaces to
-    represent the data in yaw, pitch, roll angles are provided. the
-    __call__ equivalent to get interpolated yaw pitch roll is the ypr
+    Class that implements a slerp interpolation for vectors.
+
+    Data is internally represented in quaternions using lib eigen.
+
+    Interfaces to represent the data in yaw, pitch, roll angles are
+    provided.
+
+    the __call__ equivalent to get interpolated yaw pitch roll is the ypr
     function
 
     Template Args:
         XType:: type of the x values (must be floating point)
         YType:: floating point type of the y quaternion values (must be
-              floating point)
+                floating point)
     """
 
     def __init__(self, X: Sequence[float] = [], Yaw: Sequence[float] = [], Pitch: Sequence[float] = [], Roll: Sequence[float] = [], input_in_degrees: bool = True, extrapolation_mode: t_extr_mode = t_extr_mode.extrapolate) -> None:
@@ -3750,12 +4187,12 @@ class SlerpInterpolatorDF:
 
         Returns:
             xt::xtensor_XType_1 A 1D tensor containing the downsampled x
-               values
+            values
 
-        @note The returned values are actual x values from the data, not
-        interpolated positions.
-              Use these values with the interpolator to get corresponding y
-              values.
+        Note:
+            The returned values are actual x values from the data, not
+            interpolated positions. Use these values with the interpolator to
+            get corresponding y values.
         """
 
     def get_data_YPR(self, output_in_degrees: bool = True) -> list[list[float]]:
@@ -3827,7 +4264,7 @@ class SlerpInterpolatorDF:
         """
 
     @overload
-    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], Yaw: Sequence[float], Pitch: Sequence[float], Roll: Sequence[float], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with lists of x, yaw, pitch, roll data (vectorized call)
 
@@ -3844,7 +4281,7 @@ class SlerpInterpolatorDF:
         """
 
     @overload
-    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False) -> None:
+    def insert(self, X: Sequence[float], YPR: Sequence[Sequence[float]], input_in_degrees: bool = True, bool: bool = False, duplicate_mode: o_dup_mode = t_dup_mode.fail) -> None:
         """
         append data with list of x, yaw, pitch, roll data (vectorized call)
 

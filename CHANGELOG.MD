@@ -4,6 +4,25 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
+# [0.37.2.dev1] - Unreleased
+- tools -> 0.34.2
+- algorithms -> 0.14.1
+- navigation -> 0.21.1
+- echosounders -> 0.50.1
+- pingprocessing -> 0.17.2
+
+## Improvements
+- algorithms/navigation: add missing docstrings for beamsample geometry
+- tools: deduplicate interpolators in merging operations when x and y are the same
+- algorithms: update docstrings for beamsample geometry
+- pingprocessing: switching to faster beamsamplegeometry for make_wci
+
+## Fixes
+- echosounders: return empty sensor config for s7k for now
+
+## Maintanance
+- tools: updated fast_float to 8.3.3
+
 # [0.37.1] - 17-10-2026
 - pingprocessing -> 0.17.1
 

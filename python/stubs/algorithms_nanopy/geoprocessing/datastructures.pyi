@@ -1891,8 +1891,8 @@ class SampleIndices_3:
 
 class BeamSampleParameters:
     """
-    A structure to store directional parameters of multibeam system.
-    Usefull as input for raytracing water column images.
+    A structure to store directional parameters of a multibeam system.
+    Useful as input for raytracing water column images.
     """
 
     @overload
@@ -2029,7 +2029,8 @@ class BeamAffine1D:
             sample_nr: sample number (float for sub-sample interpolation)
 
         Returns:
-            float
+            float the interpolated value = offset[beam_index] +
+            slope[beam_index] * sample_nr
         """
 
     def inverse(self, beam_index: int, value: float) -> float:
@@ -2060,7 +2061,8 @@ class BeamAffine1D:
                                 [n_beams]
 
         Returns:
-            BeamAffine1D
+            BeamAffine1D with offset = base_value and slope = (end_value -
+            base_value) / end_sample_number per beam
         """
 
     def copy(self) -> BeamAffine1D:
@@ -2174,7 +2176,8 @@ class BeamSampleGeometry:
 
     def __eq__(self, other: BeamSampleGeometry) -> bool: ...
 
-    def get_n_beams(self) -> int: ...
+    def get_n_beams(self) -> int:
+        """Return the number of beams (n_beams)."""
 
     def get_first_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """[n_beams] first valid sample nr"""
@@ -2182,27 +2185,91 @@ class BeamSampleGeometry:
     def get_number_of_samples(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
         """[n_beams] number of samples"""
 
-    def get_last_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]: ...
+    def get_last_sample_numbers(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
+        """
+        Per-beam last valid sample number.
 
-    def has_x_affine(self) -> bool: ...
+        Computed as first_sample_numbers + number_of_samples - 1.
 
-    def has_y_affine(self) -> bool: ...
+        Returns:
+            xt::xtensor_float_1 last sample number per beam [n_beams]
+        """
 
-    def has_z_affine(self) -> bool: ...
+    def has_x_affine(self) -> bool:
+        """Return true if the x affine (sample_nr -> x per beam) is set."""
 
-    def get_x_affine(self) -> BeamAffine1D: ...
+    def has_y_affine(self) -> bool:
+        """Return true if the y affine (sample_nr -> y per beam) is set."""
 
-    def get_y_affine(self) -> BeamAffine1D: ...
+    def has_z_affine(self) -> bool:
+        """Return true if the z affine (sample_nr -> z per beam) is set."""
 
-    def get_z_affine(self) -> BeamAffine1D: ...
+    def get_x_affine(self) -> BeamAffine1D:
+        """
+        Get the x affine (sample_nr -> x per beam).
 
-    def set_x_affine(self, affine: BeamAffine1D) -> None: ...
+        Returns:
+            const reference to the x BeamAffine1D (throws if the x affine is
+            not set)
+        """
 
-    def set_y_affine(self, affine: BeamAffine1D) -> None: ...
+    def get_y_affine(self) -> BeamAffine1D:
+        """
+        Get the y affine (sample_nr -> y per beam).
 
-    def set_z_affine(self, affine: BeamAffine1D) -> None: ...
+        Returns:
+            const reference to the y BeamAffine1D (throws if the y affine is
+            not set)
+        """
 
-    def set_xyz_affines(self, affine_x: BeamAffine1D, affine_y: BeamAffine1D, affine_z: BeamAffine1D) -> None: ...
+    def get_z_affine(self) -> BeamAffine1D:
+        """
+        Get the z affine (sample_nr -> z per beam).
+
+        Returns:
+            const reference to the z BeamAffine1D (throws if the z affine is
+            not set)
+        """
+
+    def set_x_affine(self, affine: BeamAffine1D) -> None:
+        """
+        Set the x affine (sample_nr -> x per beam).
+
+        Args:
+            affine: per-beam affine mapping sample number to x; its size must
+                    equal n_beams
+        """
+
+    def set_y_affine(self, affine: BeamAffine1D) -> None:
+        """
+        Set the y affine (sample_nr -> y per beam).
+
+        Args:
+            affine: per-beam affine mapping sample number to y; its size must
+                    equal n_beams
+        """
+
+    def set_z_affine(self, affine: BeamAffine1D) -> None:
+        """
+        Set the z affine (sample_nr -> z per beam).
+
+        Args:
+            affine: per-beam affine mapping sample number to z; its size must
+                    equal n_beams
+        """
+
+    def set_xyz_affines(self, affine_x: BeamAffine1D, affine_y: BeamAffine1D, affine_z: BeamAffine1D) -> None:
+        """
+        Set all three (x, y, z) affines at once.
+
+        Args:
+            affine_x: per-beam affine mapping sample number to x; its size
+                      must equal n_beams
+            affine_y: per-beam affine mapping sample number to y; its size
+                      must equal n_beams
+            affine_z: per-beam affine mapping sample number to z; its size
+                      must equal n_beams
+        """
 
     @staticmethod
     def from_bottom_xyz(bottom_xyz: XYZ_1, base_x: float, base_y: float, base_z: float, bottom_sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], number_of_samples: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')]) -> BeamSampleGeometry:
@@ -2301,33 +2368,109 @@ class BeamSampleGeometry:
     @overload
     def forward_x(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
-        Compute x for (beam_index, sample_number) pairs. Sorted beam_indices yield best SIMD throughput.
+        Compute x coordinate for (beam_index, sample_number) pairs.
+
+        When beam_indices are sorted (consecutive same-beam entries), each run
+        is dispatched as a single SIMD FMA call for maximum throughput.
+
+        Args:
+            beam_indices: beam index per entry [N], values in [0, n_beams)
+            sample_numbers: float sample number per entry [N]
+
+        Returns:
+            xt::xtensor_float_1 x coordinate per entry [N]
         """
 
     @overload
     def forward_x(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], last_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_step: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
-        Compute x for sample ranges per beam. Returns 2D [n_beams x max_samples], NaN-padded.
+        Compute x coordinate for sample ranges per beam.
+
+        For each selected beam, generates sample numbers [first, first+step,
+        ..., <= last] and computes x = offset + slope * sample_nr via SIMD
+        FMA. Result is 2D [n_selected_beams x max_samples]; trailing unused
+        cells are NaN.
+
+        Args:
+            beam_indices: per selected beam [B], values in [0, n_beams)
+            first_sample_numbers: first sample number per beam [B]
+            last_sample_numbers: last sample number per beam [B]
+            sample_step: step between consecutive samples (default 1)
+
+        Returns:
+            xt::xtensor_float_2 [B x max_samples]
         """
 
     @overload
     def forward_y(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """Compute y for (beam_index, sample_number) pairs."""
+        """
+        Compute y coordinate for (beam_index, sample_number) pairs.
+
+        When beam_indices are sorted (consecutive same-beam entries), each run
+        is dispatched as a single SIMD FMA call for maximum throughput.
+
+        Args:
+            beam_indices: beam index per entry [N], values in [0, n_beams)
+            sample_numbers: float sample number per entry [N]
+
+        Returns:
+            xt::xtensor_float_1 y coordinate per entry [N]
+        """
 
     @overload
     def forward_y(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], last_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_step: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
-        Compute y for sample ranges per beam. Returns 2D [n_beams x max_samples], NaN-padded.
+        Compute y coordinate for sample ranges per beam.
+
+        For each selected beam, generates sample numbers [first, first+step,
+        ..., <= last] and computes y = offset + slope * sample_nr via SIMD
+        FMA. Result is 2D [n_selected_beams x max_samples]; trailing unused
+        cells are NaN.
+
+        Args:
+            beam_indices: per selected beam [B], values in [0, n_beams)
+            first_sample_numbers: first sample number per beam [B]
+            last_sample_numbers: last sample number per beam [B]
+            sample_step: step between consecutive samples (default 1)
+
+        Returns:
+            xt::xtensor_float_2 [B x max_samples]
         """
 
     @overload
     def forward_z(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """Compute z for (beam_index, sample_number) pairs."""
+        """
+        Compute z coordinate for (beam_index, sample_number) pairs.
+
+        When beam_indices are sorted (consecutive same-beam entries), each run
+        is dispatched as a single SIMD FMA call for maximum throughput.
+
+        Args:
+            beam_indices: beam index per entry [N], values in [0, n_beams)
+            sample_numbers: float sample number per entry [N]
+
+        Returns:
+            xt::xtensor_float_1 z coordinate per entry [N]
+        """
 
     @overload
     def forward_z(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], last_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_step: int = 1) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
         """
-        Compute z for sample ranges per beam. Returns 2D [n_beams x max_samples], NaN-padded.
+        Compute z coordinate for sample ranges per beam.
+
+        For each selected beam, generates sample numbers [first, first+step,
+        ..., <= last] and computes z = offset + slope * sample_nr via SIMD
+        FMA. Result is 2D [n_selected_beams x max_samples]; trailing unused
+        cells are NaN.
+
+        Args:
+            beam_indices: per selected beam [B], values in [0, n_beams)
+            first_sample_numbers: first sample number per beam [B]
+            last_sample_numbers: last sample number per beam [B]
+            sample_step: step between consecutive samples (default 1)
+
+        Returns:
+            xt::xtensor_float_2 [B x max_samples]
         """
 
     def get_flat_offsets(self) -> Annotated[NDArray[numpy.uint32], dict(order='C')]:
@@ -2357,27 +2500,46 @@ class BeamSampleGeometry:
         """
 
     def forward_y_flat(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """@copydoc forward_x_flat"""
+        """
+        Compute the full flat y coordinate array for all beams and samples.
+
+        The result has get_total_samples() elements laid out contiguously per
+        beam. Index with:
+          flat_index = get_flat_offsets()[beam] + (sample_nr -
+          first_sample_numbers[beam])
+        """
 
     def forward_z_flat(self) -> Annotated[NDArray[numpy.float32], dict(order='C')]:
-        """@copydoc forward_x_flat"""
+        """
+        Compute the full flat z coordinate array for all beams and samples.
+
+        The result has get_total_samples() elements laid out contiguously per
+        beam. Index with:
+          flat_index = get_flat_offsets()[beam] + (sample_nr -
+          first_sample_numbers[beam])
+        """
 
     @overload
     def forward_xyz(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_numbers: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
         """
-        Compute (x, y, z) for (beam_index, sample_number) pairs in a single pass. Returns a tuple (x, y, z) of shape [N]. ~3x faster than three separate calls.
+        Fused (x, y, z) for (beam_index, sample_number) pairs.
+
+        Equivalent to (forward_x, forward_y, forward_z) but ~3x faster from
+        Python (one call, one beam-run scan, three SIMD FMAs per run).
+
+        Returns:
+            std::tuple<x, y, z>, each of shape [N]
         """
 
     @overload
     def forward_xyz(self, beam_indices: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], first_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], last_sample_numbers: Annotated[NDArray[numpy.uint32], dict(shape=(None,), order='C')], sample_step: int = 1) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]]:
         """
-        Compute (x, y, z) for sample ranges per beam in a single pass. Returns a tuple of three 2D arrays [B x max_samples], NaN-padded.
+        Fused (x, y, z) for sample ranges per beam.
+
+        Returns three 2D arrays [B x max_samples], NaN-padded.
         """
 
-    def forward_xyz_flat(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]:
-        """
-        Compute the full flat (x, y, z) arrays for all beams and samples in a single pass.
-        """
+    def forward_xyz_flat(self) -> tuple[Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')]]: ...
 
     def get_bounds(self) -> BeamSampleGeometryBounds:
         """
@@ -2460,18 +2622,61 @@ class BeamSampleGeometry:
 
     def backward_nearest(self, data: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], y_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], supersampling: int = 1, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
         """
-        Backward-map WCI data to (y, z) image via nearest-neighbor.
-        Sample numbers use Euclidean range from the sensor to each pixel.
-        When supersampling > 1, probes S*S sub-pixel locations per pixel
-        and averages (equivalent to render-at-high-res-then-downsample).
+        Backward-map water-column (WCI) data into a (y, z) image via nearest-
+        neighbor sampling.
+
+        The geometry must have both its y and z affines set. For each output
+        pixel, finds the nearest beam via depth-invariant tangent matching and
+        computes the sample number from the pixel's Euclidean range to the
+        sensor (matching BTConstantSVP behaviour).
+
+        When supersampling > 1, each pixel probes S×S sub-pixel locations and
+        averages the results for anti-aliasing.
+
+        Args:
+            data: water-column amplitude data to resample, shape [n_beams x
+                  max_samples]
+            y_coordinates: target crosstrack coordinates in m [n_y], must be
+                           sorted ascending
+            z_coordinates: target depth coordinates in m [n_z], must be sorted
+                           ascending
+            supersampling: sub-pixel super-sampling factor per axis (>= 1,
+                           default 1)
+            mp_cores: number of OpenMP threads to use (default 1)
+
+        Returns:
+            resampled image of shape [n_y x n_z]; pixels with no valid data
+            are NaN
         """
 
     def backward_bilinear(self, data: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], y_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], z_coordinates: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], supersampling: int = 1, mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]:
         """
-        Backward-map WCI data to (y, z) image via bilinear interpolation.
-        Sample numbers use Euclidean range from the sensor to each pixel.
-        When supersampling > 1, probes S*S sub-pixel locations per pixel
-        and averages (equivalent to render-at-high-res-then-downsample).
+        Backward-map water-column (WCI) data into a (y, z) image via bilinear
+        interpolation.
+
+        The geometry must have both its y and z affines set. For each output
+        pixel, brackets the nearest two beams and the fractional sample
+        number, then bilinearly interpolates the four surrounding samples.
+        Sample numbers come from the pixel's Euclidean range to the sensor
+        (matching BTConstantSVP behaviour).
+
+        When supersampling > 1, each pixel probes S×S sub-pixel locations and
+        averages the results for anti-aliasing.
+
+        Args:
+            data: water-column amplitude data to resample, shape [n_beams x
+                  max_samples]
+            y_coordinates: target crosstrack coordinates in m [n_y], must be
+                           sorted ascending
+            z_coordinates: target depth coordinates in m [n_z], must be sorted
+                           ascending
+            supersampling: sub-pixel super-sampling factor per axis (>= 1,
+                           default 1)
+            mp_cores: number of OpenMP threads to use (default 1)
+
+        Returns:
+            resampled image of shape [n_y x n_z]; pixels with no valid data
+            are NaN
         """
 
     def copy(self) -> BeamSampleGeometry:
