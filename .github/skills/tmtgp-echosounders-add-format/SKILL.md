@@ -36,7 +36,10 @@ templated on `t_ifstream` and instantiated for `std::ifstream` and `datastreams:
 7. **(later) higher file-data interfaces** — `configuration` / `navigation` / `environment` / `ping`
    `DataInterface` + `...PerFile`, plus `filedatatypes` (ping objects), `filedatacontainers`
    (ping/datagram containers). These turn indexed datagrams into pings, navigation, calibration,
-   water-column images. Mirror `kongsbergall`/`kmall`.
+   water-column images. Mirror `kongsbergall`/`kmall`. The ping file-data must **not** retain the
+   water-column datagram — hold lightweight `filedatatypes/_sub/*Information` structs (per-beam sample
+   positions, NOT samples; flyweight-deduped; persisted to the index cache) and read samples on demand.
+   See tmtgp-echosounders-lessons-learned §6.
 
 ## Build order (recommended workflow — do a thin vertical slice first)
 Build a working slice before any per-record parsing, mirroring **kmall/kongsbergall** (complete) or
@@ -55,7 +58,10 @@ Build a working slice before any per-record parsing, mirroring **kmall/kongsberg
 5. **Ping interface** — implement `read_pings()` (group datagrams into pings, fill each ping's
    file_data index), then enable ALL interface inits. (lessons §5)
 6. **Water column + bottom + calibration** — the `I_PingWatercolumn`/`I_PingBottom` overrides +
-   `<Fmt>WaterColumnCalibration` so pingprocessing/widgets can display pings. (lessons §6-§7)
+   `<Fmt>WaterColumnCalibration` so pingprocessing/widgets can display pings. Build the water-column /
+   detection / system info as lazy, flyweight-deduped `filedatatypes/_sub/*Information` structs (per-beam
+   file positions, samples read on demand & returned — never stored) + an index-cache handler; never
+   hold the water-column datagram per ping. (lessons §6-§7)
 
 ## Key base classes (in `filetemplates/`)
 - `I_InputFileHandler<t_DatagramBase, t_DatagramInterface>` — indexing, caching, `append_file(s)`,

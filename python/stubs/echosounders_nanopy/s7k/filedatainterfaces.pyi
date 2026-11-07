@@ -2158,13 +2158,17 @@ class S7KPingDataInterfacePerFile_stream:
     Interface that reads the pings (bathymetry, water column) of a single
     .s7k file.
 
-    Template Args:
-        t_ifstream: 
+    Grouping is done in file order: a new ping is started at every 7000
+    SonarSettings record (the record that starts a ping cycle in the 7k
+    format); every following ping datagram is added to the current ping.
+    For every ping the lightweight per-ping information is built early
+    (and persisted into the index cache): the water-column information
+    (per-beam sample positions, NOT the samples), the bottom-detection
+    information and the system information. The water-column samples
+    themselves are read on demand per beam and never held in memory.
 
-    Note:
-        The datagram-processing function (read_pings) is not implemented
-        yet. The class currently only provides the structure so the pings
-        can be filled in in a later step.
+    Template Args:
+        t_ifstream:
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...
@@ -2272,13 +2276,17 @@ class S7KPingDataInterfacePerFile:
     Interface that reads the pings (bathymetry, water column) of a single
     .s7k file.
 
-    Template Args:
-        t_ifstream: 
+    Grouping is done in file order: a new ping is started at every 7000
+    SonarSettings record (the record that starts a ping cycle in the 7k
+    format); every following ping datagram is added to the current ping.
+    For every ping the lightweight per-ping information is built early
+    (and persisted into the index cache): the water-column information
+    (per-beam sample positions, NOT the samples), the bottom-detection
+    information and the system information. The water-column samples
+    themselves are read on demand per beam and never held in memory.
 
-    Note:
-        The datagram-processing function (read_pings) is not implemented
-        yet. The class currently only provides the structure so the pings
-        can be filled in in a later step.
+    Template Args:
+        t_ifstream:
     """
 
     def init_from_file(self, index_path: str = '', force: bool = False) -> None: ...

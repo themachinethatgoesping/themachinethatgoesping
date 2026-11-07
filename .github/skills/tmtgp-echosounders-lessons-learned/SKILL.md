@@ -174,6 +174,46 @@ see tmtgp-ping-jupyter).
   tmtgp-cpp-nanobind-style).
 
 ## 6. Water column + bottom + calibration
+- **⚠️ NEVER hold the water-column datagram in the ping file-data (memory blows up when iterating).**
+  The naive design — `S7KPingFileData::get_water_column()` reads the whole 7042/MWC record into a
+  `unique_ptr<...Datagram>` member and keeps it — means **every metadata getter**
+  (`get_number_of_beams`, `get_number_of_samples_per_beam`, `get_sample_interval`, …) pulls the entire
+  per-beam **sample** array into RAM *and retains it*. Going through a file once then resident-holds
+  every ping's samples → OOM. Replicate the **kmall lazy-substructure pattern** instead (reference:
+  `kmall/filedatatypes/_sub/`, `s7k/filedatatypes/_sub/`):
+  - **Lightweight `_sub::*Information` structs** in `<fmt>/filedatatypes/_sub/` hold only what the ping
+    interfaces read, never the samples: `WaterColumnInformation` = per-beam sample **counts** + per-beam
+    **file positions** of the samples + a record-wide `_WCIInfos` (sample rate, first sample, encoding);
+    `DetectionInformation` = the reduced per-beam arrays (rx angle, detection point) + scalars;
+    `SystemInformation`/`_SysInfos` = tx-signal params + calibration inputs. The file-data holds
+    `unique_ptr<_sub::X>` + `load_x/release_x/x_loaded/get_xinfos` (+ `set_x` for the cache) and
+    **deep-copies them in its copy ctor** (unique_ptr isn't copyable). Only the *presence* checks
+    (`has_water_column` = index lookup) touch the datagram index.
+  - **Samples are read on demand and RETURNED, never stored.** Build the info from a **`skip_data=true`
+    read that walks the per-beam headers** (reads beam nr / sample count, records `tellg()` as the
+    beam's sample position, seeks over the samples) — not the old one-shot "skip all beams" seek. Then
+    `read_beam_samples(bn, first_sample, n, ifs)` seeks to `position + first_sample*bytes_per_sample`
+    and reads just that sub-range. All 7042 encodings are **contiguous per sample** (magnitude+phase
+    interleaved, 1/2/4/5 bytes), so an arbitrary beam/sample sub-range is a single seek+read; the
+    accessor (`assemble_beam_samples`) loops selected beams, reads each sub-range, casts into the output
+    row. One beam in flight at a time instead of the whole record resident.
+  - **Deduplicate with `boost::flyweight` where values repeat across pings** (beam numbers 0..N-1,
+    receive-angle geometry, the record-wide `_WCIInfos`/`_SysInfos`); keep the per-ping-varying arrays
+    (sample **positions**, detection points) as plain members. Hash xtensors via
+    `tools/helper/xtensor_hash.hpp`; a POD infos struct hashes/serializes only its **padding-free
+    leading bytes** (order float/uint32 first, then the single bytes; `static_assert`/const the byte
+    count) so `hash_value` stays consistent with the defaulted `operator==`. These `_sub` flyweights are
+    interned+destroyed entirely inside `echosounders_nanopy.so`, so they need **no** `intermodule_holder`
+    (see tmtgp-build-and-test). `xt::operator==` returns **bool** (structural, xoperation.hpp), so
+    `flyweight<xtensor>` and `= default` comparisons on the info structs just work.
+  - **Build the infos early in `read_pings` + persist to the index cache** via a per-file cache handler
+    that mirrors `KMALLPingCacheHandler`: `FilePackageCache<_sub::X>` with `T::to_stream(os, hash_cache)`
+    / `static T::from_stream(is, hash_cache)` (hash-deduped like kmall's), read from the `.index` if
+    present else read + `add_package` + `update_file`. Re-opening a file then skips re-reading beam
+    headers. The `_sub` structs stay **private** (no nanobind binding), like kmall's.
+  - **Gotcha:** s7k `I_DatagramInterface::get_datagram_infos_by_type()` returns the vector **by value**
+    (kmall's `get_datagram_infos` returns by *reference*) — do **not** bind `const auto& di = …​.at(0);`
+    (dangles on the temporary); copy the `shared_ptr` (`const auto di = …​.at(0);`).
 - **`using t_base::get_x;` for every selection-taking override** (`get_beam_crosstrack_angles`,
   `get_number_of_samples_per_beam`, `get_tx_sector_per_beam`, `get_bottom_range_samples`, …) or the
   selection overload **hides** the base no-arg overload and 0-arg callers (e.g. pingcontainer) fail to

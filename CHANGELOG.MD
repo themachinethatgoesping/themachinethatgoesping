@@ -16,12 +16,14 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: deduplicate interpolators in merging operations when x and y are the same
 - algorithms: update docstrings for beamsample geometry
 - pingprocessing: switching to faster beamsamplegeometry for make_wci
+- s7k do not keep data in memorywhen reading water column data
 
 ## Fixes
 - echosounders: return empty sensor config for s7k for now
 
 ## Maintanance
 - tools: updated fast_float to 8.3.3
+- tools: updated fmt to 12.2.1
 
 # [0.37.1] - 17-10-2026
 - pingprocessing -> 0.17.1
