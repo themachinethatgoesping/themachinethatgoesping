@@ -1,6 +1,7 @@
 """Teledyne RESON .s7k (7k) file data types"""
 import typing
 
+from collections.abc import Sequence
 from typing import Annotated, overload
 
 import numpy
@@ -11,6 +12,268 @@ import themachinethatgoesping.echosounders_nanopy.s7k
 import themachinethatgoesping.echosounders_nanopy.s7k.filedatainterfaces
 import themachinethatgoesping.pingprocessing_nanopy.datatypes
 
+
+class S7KWaterColumnCalibration(themachinethatgoesping.pingprocessing_nanopy.datatypes.WaterColumnCalibration):
+    """
+    Water column calibration for Teledyne RESON 7k (and Norbit) systems.
+
+    This is a first, uncalibrated setup. The power/ap/av calibrations
+    carry the per-ping system gain offset (transmit source level "power
+    selection" + receiver "gain selection") and, for av, the volume-
+    scattering conversion factor derived from the effective pulse duration
+    and sound velocity. For CW the effective pulse duration is the nominal
+    transmit pulse width; for a linear chirp (FM) it is the matched-filter
+    compressed duration (~ 1 / bandwidth), because the water column is the
+    compressed envelope. av is therefore an uncalibrated Sv (a first guess
+    of Sv); the remaining fixed calibration constant (equivalent beam
+    angle, beam pattern, electronics offset) still has to be added via a
+    dedicated calibration before the result may be called a true Sv.
+    """
+
+    def __init__(self, sound_velocity: float, effective_pulse_duration: float, system_gain_offset: float, tvg_absorption_db_m: float, tvg_factor: float, is_fm: bool = False) -> None: ...
+
+    def modify_s7k_calibrations(self, sound_velocity: float | None = None, effective_pulse_duration: float | None = None, system_gain_offset: float | None = None, tvg_absorption_db_m: float | None = None, tvg_factor: float | None = None, is_fm: bool | None = None) -> None:
+        """
+        Modify individual calibration parameters and recompute the power/ap/av
+        calibrations.
+
+        Only the supplied (non-nullopt) parameters are changed; the rest keep
+        their current value. This mirrors the kmall modify_* updater and is
+        the supported way to tweak the (immutable) base calibrations.
+        """
+
+    def get_sound_velocity(self) -> float: ...
+
+    def get_effective_pulse_duration(self) -> float: ...
+
+    def get_system_gain_offset(self) -> float: ...
+
+    def is_fm(self) -> bool:
+        """whether the transmit pulse is a linear chirp (FM) rather than CW"""
+
+    def initialized(self) -> bool: ...
+
+    def check_initialized(self) -> None: ...
+
+    def pre_hashed(self) -> S7KMultiSectorWaterColumnCalibration_flyweight:
+        """
+        Return this class as a flyweight with computed hash. This is faster when updating the ping calibration.
+        """
+
+    def __eq__(self, other: S7KWaterColumnCalibration) -> bool: ...
+
+    def copy(self) -> S7KWaterColumnCalibration:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> S7KWaterColumnCalibration: ...
+
+    def __deepcopy__(self, arg: dict, /) -> S7KWaterColumnCalibration: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> S7KWaterColumnCalibration:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+class S7KMultiSectorWaterColumnCalibration_flyweight:
+    """Flyweight wrapper around the MultiSectorCalibration class."""
+
+    def __init__(self, other: S7KMultiSectorWaterColumnCalibration) -> None:
+        """Create a flyweight from a MultiSectorCalibration object."""
+
+    def get(self) -> S7KMultiSectorWaterColumnCalibration:
+        """Get the underlying T_MultiSectorCalibration object."""
+
+class S7KMultiSectorWaterColumnCalibration:
+    @overload
+    def __init__(self) -> None: ...
+
+    @overload
+    def __init__(self, calibration_per_sector: Sequence[S7KWaterColumnCalibration]) -> None: ...
+
+    @overload
+    def __init__(self, other: S7KMultiSectorWaterColumnCalibration) -> None: ...
+
+    def has_power_calibration(self) -> bool: ...
+
+    def has_ap_calibration(self) -> bool: ...
+
+    def has_av_calibration(self) -> bool: ...
+
+    def has_sp_calibration(self) -> bool: ...
+
+    def has_sv_calibration(self) -> bool: ...
+
+    def has_valid_absorption_db_m(self) -> bool: ...
+
+    def get_number_of_sectors(self) -> int: ...
+
+    def __len__(self) -> int: ...
+
+    def get_calibrations(self) -> list[S7KWaterColumnCalibration]: ...
+
+    def pre_hashed(self) -> S7KMultiSectorWaterColumnCalibration_flyweight:
+        """
+        Return this class as a flyweight with computed hash. This faster when updating the ping calibration.
+        """
+
+    def __eq__(self, other: S7KMultiSectorWaterColumnCalibration) -> bool: ...
+
+    def copy(self) -> S7KMultiSectorWaterColumnCalibration:
+        """return a copy using the c++ default copy constructor"""
+
+    def __copy__(self) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def __deepcopy__(self, arg: dict, /) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def to_binary(self, resize_buffer: bool = True) -> bytes:
+        """convert object to bytearray"""
+
+    @staticmethod
+    def from_binary(buffer: bytes, check_buffer_is_read_completely: bool = True) -> S7KMultiSectorWaterColumnCalibration:
+        """create T_CLASS object from bytearray"""
+
+    def __getstate__(self) -> bytes: ...
+
+    def __setstate__(self, arg: bytes, /) -> None: ...
+
+    def __hash__(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def hash(self) -> int:
+        """hash function implemented using binary_hash"""
+
+    def __str__(self) -> str:
+        """Return object information as string"""
+
+    def __repr__(self) -> str:
+        """Return object information as string"""
+
+    def info_string(self, float_precision: int = 3, superscript_exponents: bool = True) -> str:
+        """Return object information as string"""
+
+    def print(self, float_precision: int = 3, superscript_exponents: bool = True) -> None:
+        """Print object information"""
+
+    @overload
+    def apply_beam_sample_correction_power(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_power(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pp(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pp(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pv(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pv(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_ap(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_ap(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_av(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_av(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sp(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sp(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sv(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sv(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def inplace_beam_sample_correction_av(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
+
+    @overload
+    def inplace_beam_sample_correction_av(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
+
+    @overload
+    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply pp calibration with per-beam absorption coefficients."""
+
+    @overload
+    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_pv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply pv calibration with per-beam absorption coefficients."""
+
+    @overload
+    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_ap_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply ap calibration with per-beam absorption coefficients."""
+
+    @overload
+    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply av calibration with per-beam absorption coefficients."""
+
+    @overload
+    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sp_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply sp calibration with per-beam absorption coefficients."""
+
+    @overload
+    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')]: ...
+
+    @overload
+    def apply_beam_sample_correction_sv_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')]:
+        """Apply sv calibration with per-beam absorption coefficients."""
+
+    @overload
+    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float32], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float32], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None: ...
+
+    @overload
+    def inplace_beam_sample_correction_av_per_beam(self, wci: Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C')], beam_angles: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], ranges: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], absorption_db_m_per_beam: Annotated[NDArray[numpy.float64], dict(shape=(None,), order='C')], beam_numbers_per_tx_sector: Sequence[Sequence[int]], mp_cores: int = 1) -> None:
+        """Inplace apply av calibration with per-beam absorption coefficients."""
 
 class S7KPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingFileData):
     """
@@ -26,6 +289,28 @@ class S7KPingFileData_stream(themachinethatgoesping.pingprocessing_nanopy.dataty
         class currently only provides the structure so it can be filled in
         in a later step.
     """
+
+    def init_watercolumn_calibration(self, force: bool = False) -> None: ...
+
+    def has_watercolumn_calibration(self) -> bool: ...
+
+    @overload
+    def set_watercolumn_calibration(self, calibration: S7KWaterColumnCalibration) -> None: ...
+
+    @overload
+    def set_watercolumn_calibration(self, calibrations: Sequence[S7KWaterColumnCalibration]) -> None: ...
+
+    @overload
+    def get_watercolumn_calibration(self, tx_sector: int) -> S7KWaterColumnCalibration: ...
+
+    @overload
+    def get_watercolumn_calibration(self) -> S7KWaterColumnCalibration: ...
+
+    def get_multisector_calibration(self) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def set_multisector_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration) -> None: ...
+
+    def update_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration_flyweight) -> None: ...
 
     def copy(self) -> S7KPingFileData_stream:
         """return a copy using the c++ default copy constructor"""
@@ -104,6 +389,28 @@ class S7KPingFileData(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_P
         class currently only provides the structure so it can be filled in
         in a later step.
     """
+
+    def init_watercolumn_calibration(self, force: bool = False) -> None: ...
+
+    def has_watercolumn_calibration(self) -> bool: ...
+
+    @overload
+    def set_watercolumn_calibration(self, calibration: S7KWaterColumnCalibration) -> None: ...
+
+    @overload
+    def set_watercolumn_calibration(self, calibrations: Sequence[S7KWaterColumnCalibration]) -> None: ...
+
+    @overload
+    def get_watercolumn_calibration(self, tx_sector: int) -> S7KWaterColumnCalibration: ...
+
+    @overload
+    def get_watercolumn_calibration(self) -> S7KWaterColumnCalibration: ...
+
+    def get_multisector_calibration(self) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def set_multisector_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration) -> None: ...
+
+    def update_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration_flyweight) -> None: ...
 
     def copy(self) -> S7KPingFileData:
         """return a copy using the c++ default copy constructor"""
@@ -306,6 +613,15 @@ class S7KPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.dat
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingWatercolumn_stream: ...
 
+    def get_watercolumn_calibration(self) -> S7KWaterColumnCalibration: ...
+
+    def get_multisectorwatercolumn_calibration(self) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def update_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration_flyweight) -> None:
+        """
+        Replace the ping's calibration with the given (deduplicated) multi-sector calibration.
+        """
+
 class S7KPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     """
     Water column accessor of an s7k ping.
@@ -363,6 +679,15 @@ class S7KPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.
     def __copy__(self) -> S7KPingWatercolumn: ...
 
     def __deepcopy__(self, arg: dict, /) -> S7KPingWatercolumn: ...
+
+    def get_watercolumn_calibration(self) -> S7KWaterColumnCalibration: ...
+
+    def get_multisectorwatercolumn_calibration(self) -> S7KMultiSectorWaterColumnCalibration: ...
+
+    def update_calibration(self, calibration: S7KMultiSectorWaterColumnCalibration_flyweight) -> None:
+        """
+        Replace the ping's calibration with the given (deduplicated) multi-sector calibration.
+        """
 
 class S7KPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     """

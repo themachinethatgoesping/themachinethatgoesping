@@ -390,8 +390,6 @@ class SimradRawPingBottom(themachinethatgoesping.pingprocessing_nanopy.datatypes
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingBottom: ...
 
 class SimradRawPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
-    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration: ...
-
     def copy(self) -> SimradRawPingWatercolumn_stream:
         """return a copy using the c++ default copy constructor"""
 
@@ -399,15 +397,17 @@ class SimradRawPingWatercolumn_stream(themachinethatgoesping.pingprocessing_nano
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingWatercolumn_stream: ...
 
-class SimradRawPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration: ...
 
+class SimradRawPingWatercolumn(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_PingWatercolumn):
     def copy(self) -> SimradRawPingWatercolumn:
         """return a copy using the c++ default copy constructor"""
 
     def __copy__(self) -> SimradRawPingWatercolumn: ...
 
     def __deepcopy__(self, arg: dict, /) -> SimradRawPingWatercolumn: ...
+
+    def get_watercolumn_calibration(self) -> calibration.SimradRawWaterColumnCalibration: ...
 
 class SimradRawPing_stream(themachinethatgoesping.pingprocessing_nanopy.datatypes.I_Ping):
     def copy(self) -> SimradRawPing_stream:

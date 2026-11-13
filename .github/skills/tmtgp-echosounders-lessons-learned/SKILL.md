@@ -1,6 +1,6 @@
 ---
 name: tmtgp-echosounders-lessons-learned
-description: 'Hard-won, echosounder-specific gotchas and techniques for implementing or extending a file-format reader in themachinethatgoesping/echosounders (s7k, kmall, kongsbergall, simradraw, gsf): datagram header/identifier indexing & UTF-8-safe identifier printing, file-data interface init-order traps, on-disk binary record layout (packing, the Windows/MSVC bind_vector operator== SIMD rule, the fast substruct+container read pattern, skip_data), navigation unit/sign-convention conversion & record preference, ping grouping and the raw-detection (I_MBESRawDetectionInfos) interface, water-column/bottom/calibration pitfalls (strictly-increasing beam angles, zero-range-beam WCI crash), and debugging the WCI/Echogram viewers. USE when writing or debugging any echosounder format reader. For the layered architecture + build order see tmtgp-echosounders-add-format; for class/binding/build mechanics see tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style, tmtgp-build-and-test. Reference implementations: kmall / kongsbergall (complete), s7k (recent), gsf (minimal).'
+description: 'Hard-won, echosounder-specific gotchas and techniques for implementing or extending a file-format reader in themachinethatgoesping/echosounders (s7k, kmall, kongsbergall, simradraw, gsf): datagram header/identifier indexing & UTF-8-safe identifier printing, file-data interface init-order traps, on-disk binary record layout (packing, the Windows/MSVC bind_vector operator== SIMD rule, the fast substruct+container read pattern, skip_data), navigation unit/sign-convention conversion & record preference, ping grouping and the raw-detection (I_MBESRawDetectionInfos) interface, water-column/bottom/calibration pitfalls (strictly-increasing beam angles, zero-range-beam WCI crash), ping-init/"Initializing pings" performance (the cached-read bottleneck is the index-size-driven cache-handler deserialization, not per-ping compute; reference vs by-value datagram access; no re-sort; no per-ping file I/O), and debugging the WCI/Echogram viewers. USE when writing, debugging or optimizing any echosounder format reader. For the layered architecture + build order see tmtgp-echosounders-add-format; for class/binding/build mechanics see tmtgp-cpp-class-style, tmtgp-cpp-nanobind-style, tmtgp-build-and-test. Reference implementations: kmall / kongsbergall (complete), s7k (recent), gsf (minimal).'
 ---
 
 # echosounders: lessons learned (gotchas that cost real debugging time)
@@ -211,9 +211,43 @@ see tmtgp-ping-jupyter).
     / `static T::from_stream(is, hash_cache)` (hash-deduped like kmall's), read from the `.index` if
     present else read + `add_package` + `update_file`. Re-opening a file then skips re-reading beam
     headers. The `_sub` structs stay **private** (no nanobind binding), like kmall's.
-  - **Gotcha:** s7k `I_DatagramInterface::get_datagram_infos_by_type()` returns the vector **by value**
-    (kmall's `get_datagram_infos` returns by *reference*) — do **not** bind `const auto& di = …​.at(0);`
-    (dangles on the temporary); copy the `shared_ptr` (`const auto di = …​.at(0);`).
+  - **Per-ping datagram access must use references, not the copy accessor.**
+    `I_DatagramInterface::get_datagram_infos_by_type()` and `tools::helper::DefaultMap::at_const()`
+    return the per-type vector **by value** (atomic `shared_ptr` refcount traffic on every call) — but
+    `has_*`, `read_first_datagram`, the cache handler and the `ping.load()` path hit them ~10×/ping.
+    Mirror kmall: give the file-data a reference accessor
+    (`auto& get_datagram_infos(id) const { return _datagram_infos_by_type.at_const_ref(id); }`) and
+    make `has_datagram_type`/`read_first_datagram`/`get_ifs` read `at_const_ref` (added to `DefaultMap`;
+    returns a const ref to the shared default when the key is absent). Then `const auto& di = …​.at(0);`
+    is safe (no dangling temporary). (This copy is *not* the dominant init cost — see the profiling
+    note below — but it is free to remove and matches kmall.)
+  - **⏱ PROFILE "Initializing pings" before optimizing — on a *cached* (index-present) re-read the
+    dominant cost is the cache-handler construction (reading the `.index` buffers +
+    `FilePackageCache::from_stream` deserializing them into the per-ping package maps), which scales
+    with INDEX SIZE, not with per-ping compute.** Measured s7k vs kmall (env-gated `std::chrono` around
+    prolog / cache-handler / grouping / per-ping phases of `read_pings`): a ~1 GB all-water-column s7k
+    file → ~34 MB index → **cache-handler ≈ 20 ms** vs **≈ 15 ms for *all* per-ping work** (group ≈ 6,
+    wci/det/sys/load ≈ 9) for 1569 pings. The `get_datagram_infos_by_type` copies and the calibration
+    build are a **small** slice — do not assume they are the bottleneck. Keep the index small (it is
+    read+deserialized in full every open): flyweight-dedup the arrays that repeat across pings; the
+    per-ping-**unique** arrays (sample **positions** int64/beam, sample **counts**, detection points)
+    are what bloat it (s7k ≈ 20 KB/ping here vs a bottom-heavy kmall file ≈ 0.6 KB/ping). `reserve()` the
+    `FilePackageCache::from_stream` maps to avoid rehash churn.
+  - **Group from the datagram index in file order — never re-`std::sort` it.** The `DatagramInfo` index
+    is already stored in file order, so (like kmall) iterate `_datagram_infos_all` directly; an O(N log N)
+    sort of every datagram is pure overhead. Grouping itself (`add_datagram_info` per datagram) is
+    O(datagrams) and non-trivial (~0.7 µs/datagram), so don't add per-datagram work in the loop.
+  - **Do zero file I/O on a cached ping init.** If the calibration needs a value from a *second*
+    datagram (e.g. the s7k 7002 MatchFilter effective pulse width), read it once when the cached struct
+    is built and **fold it into the cached `SystemInformation`** (add a field, bump the cache-name
+    version e.g. `_V3`→`_V4`) — otherwise `init_watercolumn_calibration` re-reads that record from the
+    file for every ping even when everything else came from the index.
+  - **Don't bother with a "reuse last calibration flyweight if inputs match" cache.** Tried and
+    removed: sound velocity (from the 7000 settings) drifts almost every ping, so each ping's
+    calibration is unique, a last-value cache never hits, and the `boost::flyweight` factory
+    re-`binary_hash`es it anyway. Only *rounding* a continuously-varying input (e.g. sound velocity to
+    0.1 m/s) would make calibrations dedup — and that perturbs calibration values, so do it only with
+    the format owner's sign-off, not as a silent speed hack.
 - **`using t_base::get_x;` for every selection-taking override** (`get_beam_crosstrack_angles`,
   `get_number_of_samples_per_beam`, `get_tx_sector_per_beam`, `get_bottom_range_samples`, …) or the
   selection overload **hides** the base no-arg overload and 0-arg callers (e.g. pingcontainer) fail to
