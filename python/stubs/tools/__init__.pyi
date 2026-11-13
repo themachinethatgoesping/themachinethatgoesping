@@ -1,11 +1,13 @@
 from themachinethatgoesping.tools import (
     diff as diff,
+    helper as helper,
+    helper as helper_ext,
+    plot_helper as plot_helper,
     timeconv as timeconv,
     timeconv as timeconv_ext
 )
 from themachinethatgoesping.tools_nanopy import (
     classhelper as classhelper,
-    helper as helper,
     math as math,
     ostream_redirect as ostream_redirect,
     progressbars as progressbars,

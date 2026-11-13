@@ -4,12 +4,17 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [0.37.2.dev1] - Unreleased
+# [0.38.0.dev1] - Unreleased
 - tools -> 0.34.2
 - algorithms -> 0.14.1
 - navigation -> 0.21.1
 - echosounders -> 0.50.1
-- pingprocessing -> 0.17.2
+- pingprocessing -> 0.18.0
+- widgets -> 0.2.1
+
+## Changes
+- pingprocessing/tools: moved helper functions to tools helper module
+- widgets: adapt to pingprocessing 0.18.0
 
 ## Improvements
 - algorithms/navigation: add missing docstrings for beamsample geometry
@@ -19,6 +24,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - s7k do not keep data in memorywhen reading water column data
 - s7k: improve water column calibraiton to be closer to AV
 - echosounders/pings: return specialized water column calibration instead of generic one
+- tools: new helper for plotting station times
 
 ## Fixes
 - echosounders: return empty sensor config for s7k for now
