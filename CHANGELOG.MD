@@ -34,6 +34,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 - tools: updated fast_float to 8.3.3
 - tools: updated fmt to 12.2.1
 - tools: update xtensor to 0.27.2
+- tools: update fast_float to 0.8.4
 
 # [0.37.1] - 17-10-2026
 - pingprocessing -> 0.17.1
