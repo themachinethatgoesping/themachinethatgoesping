@@ -6,42 +6,41 @@ name: win
 
 on:
   push:
-    branches: [ main ]
-    
+    branches: [main]
+
     paths-ignore:
-      - '.github/workflows/python-package*'
-      - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/rattler*'
-      - '.github/workflows/test_*'
-      - '.github/workflows/ci-linux*'
-      - '.github/workflows/ci-mac*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
+      - ".github/workflows/python-package*"
+      - ".github/workflows/cibuildwheels*"
+      - ".github/workflows/rattler*"
+      - ".github/workflows/test_*"
+      - ".github/workflows/ci-linux*"
+      - ".github/workflows/ci-mac*"
+      - "conda.recipe/*"
+      - "*.md"
+      - "doc/*"
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"
     #  - "**.c"
     #  - "**.h"
   pull_request:
-    branches: [ main ]
-    
+    branches: [main]
+
     paths-ignore:
-      - '.github/workflows/python-package*'
-      - '.github/workflows/cibuildwheels*'
-      - '.github/workflows/rattler*'
-      - '.github/workflows/test_*'
-      - '.github/workflows/ci-linux*'
-      - '.github/workflows/ci-mac*'
-      - 'conda.recipe/*'
-      - '*.md'
-      - 'doc/*'
+      - ".github/workflows/python-package*"
+      - ".github/workflows/cibuildwheels*"
+      - ".github/workflows/rattler*"
+      - ".github/workflows/test_*"
+      - ".github/workflows/ci-linux*"
+      - ".github/workflows/ci-mac*"
+      - "conda.recipe/*"
+      - "*.md"
+      - "doc/*"
     #paths:
     #  - "**meson.build"
     #  - "**.cpp"
     #  - "**.c"
     #  - "**.h"
-
 
 # make sure that multiple jobs don't run for the same action (new commits cancel old jobs when they are still running)
 # Souce Ralf Gommers (commit to meson-python)
@@ -50,11 +49,10 @@ concurrency:
   cancel-in-progress: true
 
 # env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  #BUILD_TYPE: Release
-  
+# Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+#BUILD_TYPE: Release
+
 jobs:
-  
   build-on-windows:
     name: ${{matrix.os}}
     runs-on: ${{matrix.os}}
@@ -72,8 +70,7 @@ jobs:
           # - toolset: msvc
           #   compiler: sccache cl
           #   cpp_std: c++26
-            
-          
+
     env:
       #CC: msvc-14.32
       CC: ${{matrix.compiler}}
@@ -81,91 +78,99 @@ jobs:
       #this is where we will download ninja later
       NINJA: c:\ninja.exe
 
-    #container: python:latest #pull directly from dockerhub   
+    #container: python:latest #pull directly from dockerhub
     steps:
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
-    - name: setup python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-    
-    # make sure meson can find msvc
-    - uses: TheMrMilchmann/setup-msvc-dev@v2
-      with:
-        arch: x64
-        #toolset: 14.34
+      # make sure meson can find msvc
+      - uses: TheMrMilchmann/setup-msvc-dev@v2
+        with:
+          arch: x64
+          #toolset: 14.34
 
-    - name: checkout main repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        lfs: false
+      # FIX: The MSVC 14.52 STL (shipped with VS2026 / windows-2025-vs2026 runner)
+      # hard-requires Clang 22 or newer ("error STL1000"), but the image ships an
+      # older LLVM. Upgrade to the latest LLVM so clang-cl passes the check.
+      - name: Install latest LLVM (MSVC STL requires Clang >= 22)
+        run: |
+          choco upgrade llvm -y --limit-output --no-progress
+          # make sure subsequent steps resolve the upgraded clang-cl first
+          "C:\Program Files\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & "C:\Program Files\LLVM\bin\clang-cl.exe" --version
 
-    - name: sccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: super-ci-win       # name for the cache
-        variant: sccache  # supports windows
+      - name: checkout main repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
 
+      - name: sccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: super-ci-win # name for the cache
+          variant: sccache # supports windows
 
-    - name: Cache Boost
-      id: cache-boost
-      uses: actions/cache@v3
-      with:
-        path: c:\Boost
-        #key: windows-msvc-14.32-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
-        key: windows-${{matrix.toolset}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
-  
-    - name: Install dependencies on windows
-      if: steps.cache-boost.outputs.cache-hit != 'true'
-      run: |
-        Invoke-WebRequest -Uri https://archives.boost.io/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
-        7z x boost.7z 
-        cd .\boost_${{matrix.boost-version_}}\
-        .\bootstrap.bat ${{matrix.toolset}}
-        .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
-        cd ..
-        #rm -rv boost*
+      - name: Cache Boost
+        id: cache-boost
+        uses: actions/cache@v3
+        with:
+          path: c:\Boost
+          #key: windows-msvc-14.32-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
+          key: windows-${{matrix.toolset}}-boost-${{matrix.boost-version}}-${{matrix.boost-modules}}
 
-    - name: install dependencies (meson & python)
-      run: pip install meson meson-python pytest numpy 
-      #run: pip install meson meson-python pytest numpy ninja
+      - name: Install dependencies on windows
+        if: steps.cache-boost.outputs.cache-hit != 'true'
+        run: |
+          Invoke-WebRequest -Uri https://archives.boost.io/release/${{matrix.boost-version}}/source/boost_${{matrix.boost-version_}}.7z -outfile boost.7z
+          7z x boost.7z 
+          cd .\boost_${{matrix.boost-version_}}\
+          .\bootstrap.bat ${{matrix.toolset}}
+          .\b2.exe install --variant=release --threading=multi --link=static ${{matrix.boost-modules}}
+          cd ..
+          #rm -rv boost*
 
-    - name: download ninja long path
-      run : |
-        Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile c:\ninja.exe
+      - name: install dependencies (meson & python)
+        run: pip install meson meson-python pytest numpy
+        #run: pip install meson meson-python pytest numpy ninja
 
-    - name: check ninja executable path
-      run: |
-        $env:NINJA
-        c:\ninja.exe --version
+      - name: download ninja long path
+        run: |
+          Invoke-WebRequest -Uri https://raw.githubusercontent.com/themachinethatgoesping/tools/main/ninja-windows/ninja.exe -OutFile c:\ninja.exe
 
-    - name: configure meson
-      run: |
-        # meson setup builddir -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
-        meson setup builddir -Dunity=on -Dunity_size=9999999 -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
+      - name: check ninja executable path
+        run: |
+          $env:NINJA
+          c:\ninja.exe --version
 
-    - name: compile project
-      run: meson compile -C builddir/
+      - name: configure meson
+        run: |
+          # meson setup builddir -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
+          meson setup builddir -Dunity=on -Dunity_size=9999999 -D"python.install_env=auto" -Ddefault_library=static -D"python.install_env=auto" -Dcpp_std=${{matrix.cpp_std}}
 
-    - name: test (cpp)
-      #run: meson test -C builddir/ --print-errorlogs 
-      # meson test does not work with the custom ninja executable
-      run: c:\ninja.exe test -C builddir/ --verbose
+      - name: compile project
+        run: meson compile -C builddir/
 
-    - name: install project
-      run: meson install -C builddir/
+      - name: test (cpp)
+        #run: meson test -C builddir/ --print-errorlogs
+        # meson test does not work with the custom ninja executable
+        run: c:\ninja.exe test -C builddir/ --verbose
 
-    - name: install pip requirements
-      run: pip install -r requirements.txt
+      - name: install project
+        run: meson install -C builddir/
 
-    - name: test (pytest)
-      run: pytest -v
-    
-    - name: 'Upload error log'
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: windows_Meson_testlog
-        path: builddir/meson-logs/meson-log.txt
-        retention-days: 5
+      - name: install pip requirements
+        run: pip install -r requirements.txt
+
+      - name: test (pytest)
+        run: pytest -v
+
+      - name: "Upload error log"
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: windows_Meson_testlog
+          path: builddir/meson-logs/meson-log.txt
+          retention-days: 5
