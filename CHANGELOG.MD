@@ -4,7 +4,7 @@ Ping is still in the bootstrapping phase, thus changes will be frequent and not 
 
 Versioning scheme is currently based on my mood, but will be changed to [Semantic Versioning](https://semver.org/) once the project is more stable. 
 
-# [0.38.0.dev1] - Unreleased
+# [0.38.0] - 24-11-2026
 - tools -> 0.34.2
 - algorithms -> 0.14.1
 - navigation -> 0.21.1
@@ -15,6 +15,7 @@ Versioning scheme is currently based on my mood, but will be changed to [Semanti
 ## Changes
 - pingprocessing/tools: moved helper functions to tools helper module
 - widgets: adapt to pingprocessing 0.18.0
+- push 3.15 packages to pypi
 
 ## Improvements
 - algorithms/navigation: add missing docstrings for beamsample geometry

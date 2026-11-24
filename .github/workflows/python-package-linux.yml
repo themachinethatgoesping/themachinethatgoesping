@@ -132,7 +132,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-3-version: ["12", "13", "14"]
+        python-3-version: ["12", "13", "14", "15"]
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -207,7 +207,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.12','3.13', '3.14']
+        python-version: ['3.12','3.13', '3.14', '3.15']
 
     steps:
     - name: checkout main repository

@@ -119,6 +119,16 @@ jobs:
       with:
         architecture: x64
 
+    # FIX: The MSVC 14.52 STL (shipped with VS2026 / windows-2025-vs2026 runner)
+    # hard-requires Clang 22 or newer ("error STL1000"), but the image ships an
+    # older LLVM. Upgrade to the latest LLVM so clang-cl passes the check.
+    - name: Install latest LLVM (MSVC STL requires Clang >= 22)
+      run: |
+        choco upgrade llvm -y --limit-output --no-progress
+        # make sure subsequent steps resolve the upgraded clang-cl first
+        "C:\Program Files\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        & "C:\Program Files\LLVM\bin\clang-cl.exe" --version
+
     - name: Cache Boost
       id: cache-boost
       uses: actions/cache@v3
@@ -204,7 +214,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-3-version: ["12", "13", "14"]
+        python-3-version: ["12", "13", "14", "15"]
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -277,7 +287,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.12','3.13','3.14']
+        python-version: ['3.12','3.13','3.14','3.15']
 
     steps:
     - name: checkout main repository
